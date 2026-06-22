@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+notebooks/cache/
+notebooks/checkpoints/
+notebooks/results/
+data/*/
+plots/
+.venv/
+.DS_Store
