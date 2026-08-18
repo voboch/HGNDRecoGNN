@@ -46,6 +46,17 @@ FEATURES = [
 # instead of 2M, while each shard stays < 200 MB in memory.
 DEFAULT_SHARD_SIZE = 1024
 
+# Graph schema version.  Bump whenever the on-disk HeteroData layout changes
+# (new node type, renamed key, new required attribute).  Written into
+# meta.json; a mismatch on load forces reprocess() rather than silently
+# training on stale shards.
+#   v1 — original: hits, clusters
+#   v2 — adds virtual `events` (1/graph) and `sides` (1/graph) node types
+#        with hits↔events, clusters↔events, hits↔sides, clusters↔sides
+#        edges, enabling vkr26 hetero (SAGE/GAT/HGT) models to consume the
+#        same graphs without a per-model adapter.
+SCHEMA_V = 2
+
 
 # ── Standalone helpers (must be picklable → module-level) ─────────────────────
 
@@ -170,10 +181,39 @@ def _build_single_graph(args: tuple) -> Optional[HeteroData]:
     graph['hits'].y    = torch.as_tensor(n0_label_np)
     graph['hits', 'hits'].edge_index = edge_index
 
-    graph['clusters'].x = torch.empty((n_clusters, 1), dtype=torch.float32)
+    # Cluster placeholder feature — zeros (not torch.empty which is
+    # uninitialized memory) so hetero models can read it without NaN risk.
+    graph['clusters'].x = torch.zeros((n_clusters, 1), dtype=torch.float32)
     graph['clusters', 'clusters'].edge_index = edge_index_cl
     graph['clusters'].y = torch.as_tensor(true_links_cl, dtype=torch.float32)
     graph['clusters'].__setitem__('connection_mask', connection_mask)
+
+    # ── Virtual global node types (schema v2) ─────────────────────────────
+    # `events` and `sides` are single-node summaries per graph, added so
+    # heterogeneous models (vkr26 SAGE/GAT/HGT) can consume the same graphs
+    # without a per-model adapter. The current Net simply ignores them.
+    #
+    # HGNDRecoGNN splits top/bot before graph construction, so each graph
+    # belongs to exactly one side — events.x and sides.x both carry the
+    # `istop` flag as the single feature.
+    istop_feat = torch.tensor([[float(evt_meta['istop'])]], dtype=torch.float32)
+    graph['events'].x = istop_feat
+    graph['sides'].x  = istop_feat.clone()
+
+    hit_ids = torch.arange(n_hits, dtype=torch.long)
+    cl_ids  = torch.arange(n_clusters, dtype=torch.long)
+    zero_h  = torch.zeros_like(hit_ids)
+    zero_c  = torch.zeros_like(cl_ids)
+
+    graph['hits',     'in',       'events'].edge_index = torch.stack([hit_ids, zero_h], dim=0)
+    graph['events',   'contains', 'hits'].edge_index   = torch.stack([zero_h, hit_ids], dim=0)
+    graph['clusters', 'in',       'events'].edge_index = torch.stack([cl_ids,  zero_c], dim=0)
+    graph['events',   'contains', 'clusters'].edge_index = torch.stack([zero_c, cl_ids], dim=0)
+
+    graph['hits',     'on',    'sides'].edge_index    = torch.stack([hit_ids, zero_h], dim=0)
+    graph['sides',    'holds', 'hits'].edge_index     = torch.stack([zero_h, hit_ids], dim=0)
+    graph['clusters', 'on',    'sides'].edge_index    = torch.stack([cl_ids,  zero_c], dim=0)
+    graph['sides',    'holds', 'clusters'].edge_index = torch.stack([zero_c, cl_ids], dim=0)
 
     graph.__setitem__('true_links', torch.as_tensor(true_links, dtype=torch.float32))
     graph.__setitem__('cluster',    clusters.unsqueeze(1))
@@ -458,6 +498,7 @@ class HGNDGraphDataset(Dataset):
         num_shards: int | None = None,
         transform=None,
         pre_transform=None,
+        allow_stale_schema: bool = False,
     ):
         self.hits_csv_dir = hits_csv_dir
         self.runs = runs
@@ -468,6 +509,10 @@ class HGNDGraphDataset(Dataset):
         self._device = torch.device(device) if device is not None else None
         self.max_events = max_events
         self.num_shards = num_shards
+        # When True, load older-schema shards without triggering a rebuild.
+        # Only safe when the model doesn't need the new schema attributes
+        # (e.g. net_default is fine on v1 shards; hetero_* models are not).
+        self.allow_stale_schema = allow_stale_schema
         super().__init__(root, transform, pre_transform)
 
     # ── Metadata / file names ─────────────────────────────────────────────
@@ -507,6 +552,21 @@ class HGNDGraphDataset(Dataset):
         if os.path.exists(self._meta_path):
             with open(self._meta_path) as f:
                 meta = json.load(f)
+            # Schema mismatch → return a sentinel that does NOT exist so
+            # PyG triggers process(). Returning 'meta.json' here was a bug:
+            # it exists on disk, so PyG treated it as done and never rebuilt.
+            disk_v = meta.get('schema_version', 1)
+            if disk_v != SCHEMA_V:
+                if self.allow_stale_schema:
+                    total = meta['num_shards']
+                    return [f'shard_{i}.pt' for i in range(total)]
+                print(
+                    f'[HGNDGraphDataset] schema mismatch: on-disk v{disk_v} '
+                    f'vs code v{SCHEMA_V}. Reprocessing to rebuild shards. '
+                    f'Pass allow_stale_schema=True to keep the old shards '
+                    f'(safe for net_default only).'
+                )
+                return [f'_schema_v{SCHEMA_V}_marker.dat']
             total = meta['num_shards']
             return [f'shard_{i}.pt' for i in range(total)]
         return ['meta.json']      # triggers process()
@@ -629,6 +689,7 @@ class HGNDGraphDataset(Dataset):
 
         # Write final metadata & remove progress file
         meta = {
+            'schema_version': SCHEMA_V,
             'num_graphs': graph_idx,
             'num_shards': shard_idx,
             'shard_size': self.shard_size,
@@ -659,6 +720,13 @@ class HGNDGraphDataset(Dataset):
             if os.path.exists(self._meta_path):
                 with open(self._meta_path) as f:
                     self._meta_cache = json.load(f)
+                disk_v = self._meta_cache.get('schema_version', 1)
+                if disk_v != SCHEMA_V:
+                    print(
+                        f'[HGNDGraphDataset] WARNING: loading shards with '
+                        f'schema v{disk_v} while code expects v{SCHEMA_V}. '
+                        f'Downstream code may crash or produce wrong results.'
+                    )
             else:
                 # ── Infer from checkpoint or shard files on disk ───────────
                 ss = self.shard_size
@@ -709,7 +777,12 @@ class HGNDGraphDataset(Dataset):
         return shard
 
     # ── In-memory preloading ──────────────────────────────────────────────
-    def preload(self, verbose: bool = True) -> 'HGNDGraphDataset':
+    def preload(
+        self,
+        verbose: bool = True,
+        max_shards: int | None = None,
+        max_gb: float | None = None,
+    ) -> 'HGNDGraphDataset':
         """Load all exposed shards into a flat list in memory.
 
         After calling this, ``get()`` bypasses shard I/O entirely and
@@ -719,6 +792,17 @@ class HGNDGraphDataset(Dataset):
 
         Memory cost: ~5 MB per shard × N shards (100 shards ≈ 540 MB).
 
+        Parameters
+        ----------
+        max_shards : int | None
+            Hard cap on shards to load, independent of ``num_shards``.
+            None → no cap.
+        max_gb : float | None
+            Refuse to load more than this many GB. If passed and the first
+            shard's measured size × requested shard count exceeds ``max_gb``,
+            the shard count is trimmed and a warning is printed. Use this
+            on unified-memory machines (MPS) to avoid silent kernel death.
+
         Returns *self* so you can chain: ``dataset = HGNDGraphDataset(…).preload()``
         """
         import time as _time
@@ -726,6 +810,29 @@ class HGNDGraphDataset(Dataset):
         ss = meta.get('shard_size', self.shard_size)
         n_shards_disk = meta['num_shards']
         n_shards = min(n_shards_disk, self.num_shards) if self.num_shards else n_shards_disk
+        if max_shards is not None:
+            n_shards = min(n_shards, max_shards)
+
+        # ── Cheap upfront size check ──────────────────────────────────────
+        # Peek at shard 0, extrapolate to the requested count, and refuse if
+        # it would blow past ``max_gb``. Otherwise we would silently OOM.
+        if max_gb is not None and n_shards > 0:
+            probe_path = os.path.join(self.processed_dir, 'shard_0.pt')
+            if os.path.exists(probe_path):
+                probe_bytes = os.path.getsize(probe_path)
+                # torch.save serialises tensors compactly; real in-memory
+                # size is typically ~1.5× the on-disk size (Python object
+                # overhead + shared-tensor unpacking).
+                est_gb = probe_bytes * n_shards * 1.5 / 1024 ** 3
+                if est_gb > max_gb:
+                    trimmed = max(1, int(max_gb * 1024 ** 3 / (probe_bytes * 1.5)))
+                    if verbose:
+                        print(
+                            f'preload(): {n_shards} shards ≈ {est_gb:.1f} GB '
+                            f'exceeds max_gb={max_gb:.1f} — trimming to '
+                            f'{trimmed} shards to avoid OOM'
+                        )
+                    n_shards = trimmed
 
         if verbose:
             print(f'Preloading {n_shards} shards into memory …', end=' ', flush=True)
@@ -737,6 +844,10 @@ class HGNDGraphDataset(Dataset):
             shard = torch.load(path, weights_only=False)
             graphs.extend(shard)
             del shard
+
+        # Update num_shards to reflect what we actually loaded, so len() and
+        # __getitem__ agree with reality even when preload trimmed the request.
+        self.num_shards = n_shards
 
         # Cap to len()
         n = self.len()
