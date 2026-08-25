@@ -7,3 +7,24 @@ data/*/
 plots/
 .venv/
 .DS_Store
+data/smash_xecs_2.87gev_hardSkyrme_defaultSpot.tar.gz
+data/smash_xecs_2.87gev_hardSkyrme_bigSpot.tar.gz
+data/smash_xecs_2.87gev_hardSkyrme_zeroSpot.tar.gz
+logs/
+slurm/logs/
+*.out
+*.err
+# --- secrets / keys (never commit) ---
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+*_key
+*.token
+.env
+.env.*
