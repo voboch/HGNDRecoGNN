@@ -33,7 +33,19 @@ Account `proj_1855`, partition `rocky`, GPU `type_a` (V100 32 GB), env `hgnd-env
    cd ~ && git clone --depth 1 git@github.com:voboch/HGNDRecoGNN.git
    ```
    The package is imported as `HGNDRecoGNN` (run from `~`, its parent), so no
-   `pip install` is needed — `hgnd-env` already has torch + torch_geometric.
+   `pip install` of the repo is needed.
+3. **Fix the PyG stack in `hgnd-env`** (one-time). `net_default` uses
+   `DynamicEdgeConv`, which needs the compiled PyG extensions and a torch_geometric
+   that works with them on torch 2.5. torch_geometric 2.8 hard-requires
+   `pyg-lib>=0.6.0` (only exists for torch>=2.6), so pin 2.6.1:
+   ```
+   module load python/miniconda
+   conda run -n hgnd-env python -m pip install \
+     pyg-lib torch-scatter torch-sparse torch-cluster torch-spline-conv \
+     -f https://data.pyg.org/whl/torch-2.5.1+cu121.html
+   conda run -n hgnd-env python -m pip install "torch_geometric==2.6.1"
+   ```
+   (Already applied to the live `hgnd-env` on 2026-08-25.)
 
 ## Launching training
 
@@ -74,6 +86,12 @@ rsync -avhP charisma:/scratch/vbocharnikov/hgnd/checkpoints/  ./checkpoints_hpc/
 ```
 
 ## Notes
+- **Cache schema:** the uploaded `ndet_dataset_smash_defaultSpot` is **schema v1**;
+  current code warns it expects **v2** ("Downstream code may crash or produce wrong
+  results"). The smoke run trained fine, but for a trustworthy real run regenerate
+  the cache from raw CSVs with current code (upload `raw`, run preprocessing) so the
+  shards are v2.
+- Smoke verified end-to-end on a V100 (`net_default`, 12.5M params, checkpoint written).
 - `net_default` / `hidden` / `num-layers` mirror the repo's `slurm/train.sbatch` defaults.
 - Reads from `/scratch/.../cache`, writes checkpoints to `/scratch/.../checkpoints`.
   Never write large files to `/home`.
