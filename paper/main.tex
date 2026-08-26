@@ -476,7 +476,8 @@ efficiency $\varepsilon_{\text{ev}} = 0.744$ (F1 = 0.711).
 At the purity-locked operating point $t \approx 0.31$ used for
 comparison with the rule-based baseline of
 Sec.~\ref{sec:gnn:baseline} (purity $\pi = 0.706$),
-$\varepsilon_{\text{cl}} = 0.735$ and $\varepsilon_{\text{ev}} = 0.841$,
+$\varepsilon_{\text{cl}} = 0.739$ and $\varepsilon_{\text{ev}} = 0.844$
+(purity $0.702$, $t^\star = 0.305$),
 matching the value reported at the \BMN{} analysis-and-detector
 meeting~\cite{Bocharnikov2026Dombay}.  All quantities are computed
 from the prediction pickles under
@@ -506,20 +507,24 @@ the reconstruction uncertainty (Table~\ref{tab:eff_ekin}).
 \begin{table}[!t]
   \centering
   \caption{Cluster-level neutron detection efficiency at the
-    purity-locked operating point ($t \approx 0.31$, $\pi = 0.706$),
-    HPC checkpoint on the \texttt{defaultSpot} test split. The
+    purity-locked operating point ($t^\star = 0.305$, $\pi = 0.702$),
+    HPC checkpoint on the \texttt{defaultSpot} test split (97{,}104
+    events). Errors are $1\sigma$ Wilson binomial intervals. The
     below-1 GeV bins are the dominant contribution to the residual
-    inefficiency.}
+    inefficiency. Reproduced by
+    \texttt{notebooks/evaluate\_hpc\_checkpoint.ipynb} cell 16
+    (source CSV
+    \texttt{notebooks/results/hpc\_defaultSpot\_v2\_seed42/eff\_ekin\_purity70.csv}).}
   \label{tab:eff_ekin}
   \begin{tabular}{lrr}
     \toprule
     $\Ekin$ range (GeV) & signal clusters & $\varepsilon_{\text{cl}}$ \\
     \midrule
-    $[0.3, 0.5)$ & 1{,}200  & 0.32 \\
-    $[0.5, 1.0)$ & 5{,}103  & 0.54 \\
-    $[1.0, 2.0)$ & 13{,}838 & 0.73 \\
-    $[2.0, 3.0)$ & 11{,}020 & 0.82 \\
-    $[3.0, 5.0)$ & 8{,}012  & 0.81 \\
+    $[0.3, 0.5)$ & 1{,}200  & $0.328 \pm 0.014$ \\
+    $[0.5, 1.0)$ & 5{,}103  & $0.547 \pm 0.007$ \\
+    $[1.0, 2.0)$ & 13{,}838 & $0.737 \pm 0.004$ \\
+    $[2.0, 3.0)$ & 11{,}020 & $0.824 \pm 0.004$ \\
+    $[3.0, 5.0)$ & 8{,}012  & $0.807 \pm 0.005$ \\
     \bottomrule
   \end{tabular}
 \end{table}
