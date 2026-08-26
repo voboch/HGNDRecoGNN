@@ -61,6 +61,10 @@ def main() -> int:
                         action=argparse.BooleanOptionalAction,
                         help='Preload all shards into RAM (default: on). '
                              'Use --no-preload to disable.')
+    parser.add_argument('--preload-max-gb', type=float, default=None,
+                        help='Cap the preload footprint (GB). Trims shard '
+                             'count if the estimate would exceed this. '
+                             'Recommended on MPS / small-RAM machines.')
     args = parser.parse_args()
 
     _add_package_to_path()
@@ -82,7 +86,7 @@ def main() -> int:
     )
     dataset = HGNDGraphDataset(**ds_kwargs)
     if args.preload:
-        dataset.preload()
+        dataset.preload(max_gb=args.preload_max_gb)
     print(f'Dataset: {len(dataset)} graphs')
 
     # Build arch_kwargs, forwarding only explicit user overrides so each

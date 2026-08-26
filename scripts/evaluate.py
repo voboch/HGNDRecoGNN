@@ -40,10 +40,15 @@ def main() -> int:
                    help='cuda | mps | cpu | auto.')
     p.add_argument('--split', default='test', choices=['test', 'all'],
                    help='Run on the held-out test split (default) or the '
-                        'whole dataset.')
+                        'whole dataset. Use "all" when evaluating a checkpoint '
+                        'on a dataset it was never trained on (e.g. cross-'
+                        'dataset sensitivity).')
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--train-frac', type=float, default=0.5,
                    help='Only used with --split test to reproduce the split.')
+    p.add_argument('--preload-max-gb', type=float, default=None,
+                   help='Cap the preload footprint (GB). Trims shard count '
+                        'if the estimate would exceed this.')
     args = p.parse_args()
 
     _add_package_to_path()
@@ -61,8 +66,9 @@ def main() -> int:
           f'epoch={ckpt.epoch}  metrics={ckpt.metrics}')
 
     dataset = HGNDGraphDataset(root=args.root, hits_csv_dir=args.root,
-                               num_shards=args.num_shards)
-    dataset.preload()
+                               num_shards=args.num_shards,
+                               allow_stale_schema=True)
+    dataset.preload(max_gb=args.preload_max_gb)
 
     model, spec = model_registry.get(ckpt.arch_name, dataset, **ckpt.arch_kwargs)
     model.load_state_dict(ckpt.state_dict)

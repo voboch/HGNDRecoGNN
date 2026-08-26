@@ -45,6 +45,40 @@ class DatasetRun:
         return DATASET_TO_POTENTIAL_MEV.get(self.name)
 
 
+def mc_truth_yield_vs_ekin(
+    clusters_df: pd.DataFrame,
+    ekin_bins: np.ndarray,
+    label_col: str = 'cl_label',
+    etrue_col: str = 'e_true',
+) -> pd.DataFrame:
+    """Ground-truth neutron yield per Ekin bin, from MC labels alone.
+
+    Counts clusters flagged as signal (`cl_label == 1`, `e_true > 0`) in
+    each `e_true` bin. This is what an ideal reconstruction with 100%
+    efficiency and no background would report — the reference curve every
+    other yield estimate is trying to recover.
+
+    Returns columns: `ekin_lo, ekin_hi, ekin_mid, n_mc_truth, n_mc_truth_err`.
+    Error is √N Poisson on the MC count.
+    """
+    signal = clusters_df[(clusters_df[label_col] == 1)
+                         & (clusters_df[etrue_col] > 0)].copy()
+    if len(signal) == 0:
+        return pd.DataFrame(columns=['ekin_lo', 'ekin_hi', 'ekin_mid',
+                                     'n_mc_truth', 'n_mc_truth_err'])
+    signal['ekin_bin'] = pd.cut(signal[etrue_col], bins=ekin_bins, right=False,
+                                include_lowest=True)
+    counts = signal.groupby('ekin_bin', observed=True).size().rename('n_mc_truth')
+    out = counts.reset_index()
+    out['ekin_lo'] = np.array([float(b.left) for b in out['ekin_bin']])
+    out['ekin_hi'] = np.array([float(b.right) for b in out['ekin_bin']])
+    out['ekin_mid'] = 0.5 * (out['ekin_lo'] + out['ekin_hi'])
+    out['n_mc_truth_err'] = np.sqrt(out['n_mc_truth'].astype(float))
+    return out.drop(columns=['ekin_bin'])[
+        ['ekin_lo', 'ekin_hi', 'ekin_mid', 'n_mc_truth', 'n_mc_truth_err']
+    ]
+
+
 def reco_yield_vs_ekin(
     run: DatasetRun,
     ekin_bins: np.ndarray,
@@ -120,11 +154,23 @@ def compare_datasets(
     """Compute solved neutron yield for every dataset. Returns a dict
     `{run.name: solved_df}` plus a `combined` frame with dataset id +
     potential appended for direct plotting.
+
+    Each per-dataset DataFrame also carries `n_mc_truth` + `n_mc_truth_err`
+    (the ground-truth spectrum from `mc_truth_yield_vs_ekin`) so plots can
+    overlay it against `n_reco` / `n_true_solved`.
     """
     out: dict[str, pd.DataFrame] = {}
     combined_rows = []
     for run in runs:
         df = solve_true_yield(run, ekin_bins, threshold=threshold)
+        mc = mc_truth_yield_vs_ekin(
+            run.clusters_df, ekin_bins,
+            label_col=run.label_col, etrue_col=run.etrue_col,
+        )
+        df = df.merge(mc[['ekin_lo', 'ekin_hi', 'n_mc_truth', 'n_mc_truth_err']],
+                      on=['ekin_lo', 'ekin_hi'], how='left').fillna(
+                          {'n_mc_truth': 0, 'n_mc_truth_err': 0})
+        df['n_mc_truth'] = df['n_mc_truth'].astype(int)
         df['dataset'] = run.name
         df['potential_mev'] = run.potential_mev
         out[run.name] = df
@@ -134,5 +180,12 @@ def compare_datasets(
 
 
 def default_ekin_bins() -> np.ndarray:
-    """Standard log-spaced Ekin bins in GeV — from ~50 MeV to 3 GeV."""
-    return np.geomspace(0.05, 3.0, 21)
+    """Standard Ekin bins in GeV.
+
+    Linear, 20 equal bins over [0, 6] GeV. Matches the linear x-axes used
+    by the dataset check plots (which mirror `NeutronRecoGNN` cell 23)
+    and covers the full MC-truth support (signal neutron Ekin extends to
+    ~6.8 GeV on defaultSpot). Widen or refine locally if a specific plot
+    needs a different resolution.
+    """
+    return np.linspace(0.0, 6.0, 21)
