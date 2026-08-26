@@ -742,9 +742,25 @@ impact is quantified.
     preprocessing (see Sec.~\ref{sec:simulation}).  Evaluating a model
     trained on \texttt{defaultSpot} on the two other datasets
     therefore introduces a controlled input-distribution shift.
-    Impact on the closure metric: \TODO{quote from full run}.
-    Mitigation: refit a global scaler on the pooled datasets and
-    re-evaluate; report both closure values.
+    Impact on the closure metric was tested by refitting a pooled
+    \texttt{StandardScaler} on the concatenation of top and bottom
+    hits from all three datasets, remapping every graph via the
+    analytic $x_{\text{new}} = (\sigma_{\text{old}}/\sigma_{\text{new}})\,x_{\text{old}} + (\mu_{\text{old}} - \mu_{\text{new}})/\sigma_{\text{new}}$
+    identity, and re-evaluating the HPC checkpoint on the same
+    matched 4-shard subsets (see
+    \texttt{scripts/run\_pooled\_scaler\_sensitivity.py}).  On the
+    smoke-scale sample the closure shifts by only $+0.009$
+    (\texttt{zeroSpot}), $0.000$ (\texttt{defaultSpot}), and $+0.008$
+    (\texttt{bigSpot}) --- \texttt{defaultSpot} dominates the pooled
+    fit by 285:1 in hit count so the pooled scaler is essentially
+    identical to \texttt{defaultSpot}'s own.  The 37\,\% closure
+    deficit on \texttt{defaultSpot} is therefore \emph{not} caused
+    by scaler contamination; likely candidates are the
+    $e_{\text{pred}}$-vs-$e_{\text{true}}$ binning mismatch and
+    residual multi-neutron cluster ambiguity (Sec.~\ref{sec:sensitivity}).
+    \TODO{re-test at full \SMASH{} statistics after the SLURM sweep;
+    OOD scaler drift may re-emerge when the three datasets contribute
+    comparable hit counts to the pool.}
   \item \textbf{Non-uniform closure.}
     A dataset-dependent $\Ntrue/\Nmc$ folds directly into the ratio
     plot; we quote the maximum $|\text{closure}(d) - 1|$ across the
