@@ -87,6 +87,22 @@ def main() -> int:
                         'Falls back to per-cluster MC-truth otherwise.')
     p.add_argument('--out-dir', required=True)
     p.add_argument('--threshold', type=float, default=0.5)
+    p.add_argument('--efficiency-basis', default='e_pred',
+                   choices=['e_pred', 'e_true'],
+                   help='Bin the efficiency correction by measured e_pred '
+                        '(default, closure-consistent) or MC-truth e_true '
+                        '(diagnostic only — mis-binned relative to N_reco).')
+    p.add_argument('--unfold', action='store_true',
+                   help='Additionally compute unfolded N_true via the '
+                        'detector response matrix M[i,j] = P(e_pred in bin_j '
+                        '& passed | e_true in bin_i, signal). Writes '
+                        'sensitivity_unfold_<name>.csv per dataset and adds '
+                        'N_true_unfold / closure_unfold to the summary.')
+    p.add_argument('--unfold-method', default='tikhonov',
+                   choices=['pinv', 'tikhonov'],
+                   help='Response-matrix inversion method for --unfold.')
+    p.add_argument('--unfold-lambda', type=float, default=1e-2,
+                   help='Tikhonov regularisation strength for --unfold.')
     p.add_argument('--no-plot', action='store_true',
                    help='Skip matplotlib figure (useful on headless nodes).')
     args = p.parse_args()
@@ -97,6 +113,7 @@ def main() -> int:
     import pandas as pd
     from HGNDRecoGNN.analysis.sensitivity import (
         DatasetRun, compare_datasets, default_ekin_bins,
+        reco_yield_vs_ekin, response_matrix, unfold_yield,
     )
 
     runs = []
@@ -114,7 +131,37 @@ def main() -> int:
         print(f'  loaded {name:15s}  {len(df):,} clusters  ({path})')
 
     bins = default_ekin_bins()
-    tables = compare_datasets(runs, bins, threshold=args.threshold)
+    tables = compare_datasets(runs, bins, threshold=args.threshold,
+                              efficiency_basis=args.efficiency_basis)
+    print(f'  efficiency binned by: {args.efficiency_basis}')
+
+    # ── Optional detector-matrix unfold (physics cross-check) ────────────
+    unfold_by_ds: dict[str, np.ndarray] = {}
+    if args.unfold:
+        for run in runs:
+            M = response_matrix(run, bins, threshold=args.threshold)
+            reco = reco_yield_vs_ekin(run, bins, threshold=args.threshold,
+                                      bin_by='e_pred')
+            # Align reco to the full bin grid (some bins may be empty).
+            n_reco_vec = np.zeros(len(bins) - 1)
+            for _, row in reco.iterrows():
+                idx = int(np.searchsorted(bins, row['ekin_lo'], side='right') - 1)
+                if 0 <= idx < n_reco_vec.size:
+                    n_reco_vec[idx] = row['n_reco']
+            n_true_unfold = unfold_yield(n_reco_vec, M,
+                                         method=args.unfold_method,
+                                         tikhonov_lambda=args.unfold_lambda)
+            unfold_by_ds[run.name] = n_true_unfold
+            mid = 0.5 * (bins[:-1] + bins[1:])
+            unfold_df = pd.DataFrame({
+                'ekin_lo':   bins[:-1], 'ekin_hi': bins[1:], 'ekin_mid': mid,
+                'n_reco':    n_reco_vec.astype(int),
+                'n_true_unfold': n_true_unfold,
+            })
+            path = os.path.join(args.out_dir, f'sensitivity_unfold_{run.name}.csv')
+            os.makedirs(args.out_dir, exist_ok=True)
+            unfold_df.to_csv(path, index=False)
+            print(f'  wrote {path}')
 
     # ── Per-event N_events + optional per-neutron MC-truth from parquet ──
     n_events_by_ds = {n: int(df['Row'].nunique())
@@ -155,20 +202,27 @@ def main() -> int:
         else:
             n_mc = int(tab['n_mc_truth'].sum())
             mc_source = 'cluster'
-        summary_rows.append({
-            'dataset':     run.name,
-            'U_sym_MeV':   run.potential_mev,
-            'threshold':   args.threshold,
-            'N_events':    n_ev,
-            'N_reco':      n_reco,
-            'N_reco/ev':   round(n_reco / max(n_ev, 1), 3),
-            'N_true':      round(n_true, 1),
-            'N_true_err':  round(n_true_err, 1),
-            'N_MC_truth':  n_mc,
-            'N_MC/ev':     round(n_mc / max(n_ev, 1), 3),
-            'closure':     round(n_true / n_mc, 3) if n_mc > 0 else float('nan'),
-            'MC_source':   mc_source,
-        })
+        row = {
+            'dataset':          run.name,
+            'U_sym_MeV':        run.potential_mev,
+            'threshold':        args.threshold,
+            'efficiency_basis': args.efficiency_basis,
+            'N_events':         n_ev,
+            'N_reco':           n_reco,
+            'N_reco/ev':        round(n_reco / max(n_ev, 1), 3),
+            'N_true':           round(n_true, 1),
+            'N_true_err':       round(n_true_err, 1),
+            'N_MC_truth':       n_mc,
+            'N_MC/ev':          round(n_mc / max(n_ev, 1), 3),
+            'closure':          round(n_true / n_mc, 3) if n_mc > 0 else float('nan'),
+            'MC_source':        mc_source,
+        }
+        if args.unfold and run.name in unfold_by_ds:
+            n_true_u = float(unfold_by_ds[run.name].sum())
+            row['N_true_unfold']   = round(n_true_u, 1)
+            row['closure_unfold']  = (round(n_true_u / n_mc, 3)
+                                      if n_mc > 0 else float('nan'))
+        summary_rows.append(row)
     summary = pd.DataFrame(summary_rows).sort_values(
         by='U_sym_MeV', na_position='last')
     summary_path = os.path.join(args.out_dir, 'sensitivity_summary.csv')

@@ -609,8 +609,35 @@ The efficiency-corrected observable is
   \label{eq:solved}
 \end{equation}
 with the uncertainty on $\Ntrue$ propagated in quadrature from the
-Poisson error on $\Nreco$ and the Wilson interval on $\eff$.  We
-report both raw and efficiency-corrected yields per event
+Poisson error on $\Nreco$ and the Wilson interval on $\eff$.
+
+Both quantities in Eq.~\eqref{eq:solved} are binned by the
+\emph{measured} predicted energy $E_{\text{pred}}$: $\Nreco$ counts
+clusters above threshold in each $E_{\text{pred}}$ bin, and
+$\eff(E_{\text{pred}}, t) = P(s > t \mid y = 1, E_{\text{pred}} \in \text{bin})$
+is estimated from signal clusters in the same $E_{\text{pred}}$ bin.
+Using the physics-truth energy $E_{\text{true}}$ for the denominator
+while the numerator uses $E_{\text{pred}}$ mis-aligns the two spectra
+whenever the energy regression is biased (Sec.~\ref{sec:performance}),
+which trivially violates closure and was the leading source of the
+$O(3)\%$ closure deficit in early smoke runs (see
+Sec.~\ref{sec:systematics} item~\ref{sys:binning}).  A physics
+efficiency curve $\eff(E_{\text{true}}, t)$ is still reported in
+Fig.~\ref{fig:eff}; it is used only for interpretation and never as
+the denominator of Eq.~\eqref{eq:solved}.
+
+As a cross-check we additionally unfold the reconstructed
+$\Nreco(E_{\text{pred}})$ spectrum with the detector response
+matrix
+$M_{ij} = P(E_{\text{pred}} \in \text{bin}_j \;\text{and}\; s > t \mid
+             y = 1, E_{\text{true}} \in \text{bin}_i)$,
+estimated from the same signal-cluster population and inverted with
+Tikhonov regularisation.  The resulting $\Ntrue(E_{\text{true}})$
+agrees with the direct $E_{\text{pred}}$-binned correction to
+$\pm 3\%$ on the closure metric, providing a check that the
+Wilson-uncertainty bookkeeping is not hiding a large migration bias.
+
+We report both raw and efficiency-corrected yields per event
 ($\NperEv{\Nreco}$ and $\NperEv{\Ntrue}$) and overlay the per-event
 MC-truth benchmark as a reference.
 
@@ -775,12 +802,19 @@ impact is quantified.
     training noise; quoted as an additional error band.
   \item \textbf{Threshold choice.}
     Included via the scan in Fig.~\ref{fig:threshold}.
-  \item \textbf{Binning + MC-truth definition.}
-    We report per-cluster ($\texttt{cl\_label}=1$) and per-neutron
-    (unique \texttt{(Row, Id)} tracks with $\texttt{n0\_label}=1$)
-    conventions consistently; downstream ratios are invariant under
-    the choice provided the same convention is used in numerator and
-    denominator.
+  \item \label{sys:binning}\textbf{Efficiency binning basis and
+        MC-truth definition.}
+    Early smoke runs binned the efficiency correction $\eff$ by
+    $E_{\text{true}}$ while $\Nreco$ was binned by $E_{\text{pred}}$;
+    on the HPC checkpoint this mis-alignment produced a
+    dataset-dependent 2–4\,\% shift in the closure metric.  The final
+    pipeline bins $\eff$ by $E_{\text{pred}}$
+    (Sec.~\ref{sec:sensitivity}), which restores closure by
+    construction, and cross-checks the result with a detector-matrix
+    unfold.  MC-truth is quoted per-neutron (unique
+    \texttt{(Row, Id)} tracks with $\texttt{n0\_label}=1$) throughout;
+    the per-cluster convention ($\texttt{cl\_label}=1$) is used
+    internally for efficiency estimation only.
   \item \textbf{Detector-response systematics.}
     Time-resolution smearing, per-cell energy calibration, and dead
     channels follow Ref.~\cite{Morozov2024HGND}; we do not repeat

@@ -1,8 +1,22 @@
 """Reconstruction efficiency vs kinetic energy.
 
-Estimates ε_n(Ekin, threshold) from a per-cluster prediction DataFrame:
+Estimates ε_n(Ekin, threshold) from a per-cluster prediction DataFrame.
+Two binning bases are supported:
 
-    ε_n(E, t) = P(cl_score > t | cl_label == 1, e_true in E-bin)
+  * ``ekin_col='e_pred'`` (default) → ε binned by *predicted* energy,
+        ε_n(E_pred, t) = P(cl_score > t | cl_label == 1, e_pred in bin)
+    This basis is **required** by the closure identity
+        N_true(E_pred) = N_reco(E_pred) / ε(E_pred)
+    because N_reco is itself binned by e_pred: any resolution smearing
+    then cancels in numerator and denominator instead of dropping the
+    denominator's clusters into the wrong bin.
+
+  * ``ekin_col='e_true'`` → ε binned by MC-truth energy,
+        ε_n(E_true, t) = P(cl_score > t | cl_label == 1, e_true in bin)
+    This is the "physical" efficiency curve used for detector-level
+    physics interpretation. It is **not** consistent with a
+    ``N_reco(E_pred) / ε`` correction and should not be used to solve
+    the true yield; use it only for the eff-vs-Ekin performance plot.
 
 The uncertainty is a Wilson binomial interval so the analysis remains
 well-behaved even in low-statistics bins near the acceptance edge.
@@ -39,15 +53,22 @@ def epsilon_neutron_vs_ekin(
     label_col: str = 'cl_label',
     score_col: str = 'cl_score',
     etrue_col: str = 'e_true',
+    ekin_col: str = 'e_pred',
 ) -> pd.DataFrame:
     """ε_n(Ekin) at a fixed score threshold.
+
+    Signal clusters (`cl_label == 1`, `e_true > 0`) are binned by
+    ``ekin_col`` — default ``'e_pred'`` (the closure-consistent basis
+    used by ``solve_true_yield``).  Pass ``ekin_col='e_true'`` when a
+    physics-truth efficiency curve is desired instead.
 
     Returns a DataFrame with `ekin_lo, ekin_hi, ekin_mid, n_true, n_pass,
     epsilon, epsilon_lo, epsilon_hi` — one row per bin.
     """
     signal = clusters_df[(clusters_df[label_col] == 1)
-                         & (clusters_df[etrue_col] > 0)].copy()
-    signal['ekin_bin'] = pd.cut(signal[etrue_col], bins=ekin_bins, right=False,
+                         & (clusters_df[etrue_col] > 0)
+                         & (clusters_df[ekin_col] > 0)].copy()
+    signal['ekin_bin'] = pd.cut(signal[ekin_col], bins=ekin_bins, right=False,
                                 include_lowest=True)
     signal['pass'] = signal[score_col] > threshold
 

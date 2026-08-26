@@ -112,18 +112,26 @@ def solve_true_yield(
     run: DatasetRun,
     ekin_bins: np.ndarray,
     threshold: float = 0.5,
+    efficiency_basis: str = 'e_pred',
 ) -> pd.DataFrame:
     """Return the efficiency-corrected true neutron yield per Ekin bin.
 
-    Merges `reco_yield_vs_ekin` (from measured `e_pred`) with
-    `epsilon_neutron_vs_ekin` (from MC truth `e_true`). Bin edges are
-    identical so the merge is safe on `ekin_lo, ekin_hi`.
+    Merges ``reco_yield_vs_ekin`` (always binned by measured ``e_pred``)
+    with ``epsilon_neutron_vs_ekin`` on the same binning basis. The
+    default ``efficiency_basis='e_pred'`` guarantees bin consistency
+    between numerator and denominator; ``efficiency_basis='e_true'``
+    reproduces the earlier (mis-binned) behaviour and is retained only
+    for backward-compatibility diagnostics.
     """
+    if efficiency_basis not in ('e_pred', 'e_true'):
+        raise ValueError(f'efficiency_basis must be e_pred or e_true, '
+                         f'got {efficiency_basis!r}')
     reco = reco_yield_vs_ekin(run, ekin_bins, threshold=threshold, bin_by='e_pred')
     eff  = epsilon_neutron_vs_ekin(
         run.clusters_df, ekin_bins, threshold=threshold,
         label_col=run.label_col, score_col=run.score_col,
         etrue_col=run.etrue_col,
+        ekin_col=efficiency_basis,
     )
     df = eff.merge(reco[['ekin_lo', 'ekin_hi', 'n_reco']],
                    on=['ekin_lo', 'ekin_hi'], how='left').fillna({'n_reco': 0})
@@ -150,6 +158,7 @@ def compare_datasets(
     runs: list[DatasetRun],
     ekin_bins: np.ndarray,
     threshold: float = 0.5,
+    efficiency_basis: str = 'e_pred',
 ) -> dict[str, pd.DataFrame]:
     """Compute solved neutron yield for every dataset. Returns a dict
     `{run.name: solved_df}` plus a `combined` frame with dataset id +
@@ -162,7 +171,8 @@ def compare_datasets(
     out: dict[str, pd.DataFrame] = {}
     combined_rows = []
     for run in runs:
-        df = solve_true_yield(run, ekin_bins, threshold=threshold)
+        df = solve_true_yield(run, ekin_bins, threshold=threshold,
+                              efficiency_basis=efficiency_basis)
         mc = mc_truth_yield_vs_ekin(
             run.clusters_df, ekin_bins,
             label_col=run.label_col, etrue_col=run.etrue_col,
@@ -177,6 +187,77 @@ def compare_datasets(
         combined_rows.append(df)
     out['combined'] = pd.concat(combined_rows, ignore_index=True)
     return out
+
+
+def response_matrix(
+    run: DatasetRun,
+    ekin_bins: np.ndarray,
+    threshold: float = 0.5,
+) -> np.ndarray:
+    """Detector response matrix ``M[i, j] = P(e_pred ∈ bin_j & passed | e_true ∈ bin_i, signal)``.
+
+    Estimated from the population of MC-truth signal clusters
+    (``cl_label == 1``, ``e_true > 0``). Includes the classifier
+    efficiency by construction so that ``N_reco(e_pred) = M.T @ N_true(e_true)``
+    to good approximation (up to a small background leak from
+    misidentified label==0 clusters, which we quote separately in the
+    systematics section).
+
+    Returns a ``(nbins, nbins)`` matrix with row indexing ``e_true``
+    and column indexing ``e_pred``.
+    """
+    signal = run.clusters_df[
+        (run.clusters_df[run.label_col] == 1)
+        & (run.clusters_df[run.etrue_col] > 0)
+    ].copy()
+    passed = signal[run.score_col] > threshold
+    e_true = signal[run.etrue_col].to_numpy(dtype=float)
+    e_pred = signal[run.epred_col].to_numpy(dtype=float)
+    n = len(ekin_bins) - 1
+    M = np.zeros((n, n), dtype=float)
+    # Per-truth-bin normalisation → M[i, :] sums to eff_bin_i.
+    for i in range(n):
+        mask = ((e_true >= ekin_bins[i]) & (e_true < ekin_bins[i + 1]))
+        denom = int(mask.sum())
+        if denom == 0:
+            continue
+        # Passing signal only contributes to N_reco.
+        passing_pred = e_pred[mask & passed.to_numpy()]
+        counts, _ = np.histogram(passing_pred, bins=ekin_bins)
+        M[i, :] = counts.astype(float) / denom
+    return M
+
+
+def unfold_yield(
+    n_reco: np.ndarray,
+    M: np.ndarray,
+    method: str = 'pinv',
+    tikhonov_lambda: float = 1e-2,
+) -> np.ndarray:
+    """Unfold ``N_reco(e_pred)`` to ``N_true(e_true)`` via detector matrix.
+
+    Solves ``M.T @ N_true = N_reco`` for ``N_true``.
+
+    - ``method='pinv'``: Moore–Penrose pseudoinverse. Fast, no
+      regularisation; can amplify noise if M has small singular values.
+    - ``method='tikhonov'``: adds ``lambda * I`` before inversion for
+      numerical stability. Choose ``tikhonov_lambda`` around 1e-3–1e-1
+      depending on statistics.
+
+    Negative entries in the unfolded spectrum are clipped to 0
+    (equivalent to a non-negativity prior at the truncation step).
+    """
+    A = M.T
+    if method == 'pinv':
+        pinv = np.linalg.pinv(A)
+        n_true = pinv @ n_reco
+    elif method == 'tikhonov':
+        AtA = A.T @ A
+        regu = tikhonov_lambda * np.eye(AtA.shape[0])
+        n_true = np.linalg.solve(AtA + regu, A.T @ n_reco)
+    else:
+        raise ValueError(f'unknown method {method!r}')
+    return np.clip(n_true, 0.0, None)
 
 
 def default_ekin_bins() -> np.ndarray:
