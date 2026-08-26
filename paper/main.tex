@@ -654,6 +654,7 @@ MC-truth benchmark as a reference.
 \end{figure}
 
 \subsection{Cross-dataset ratios and closure}
+\label{sec:closure}
 
 The sensitivity signal is the ratio
 $\NperEv{\Ntrue}(d)/\NperEv{\Ntrue}(\text{defaultSpot})$ for
@@ -665,12 +666,79 @@ ratios (dashed reference in Fig.~\ref{fig:ratio}).  Any residual
 discrepancy between reco and MC-truth ratios is the systematic ceiling
 of the current analysis.
 
-We additionally quote a \emph{closure} metric,
-$\Ntrue/\Nmc$, integrated over all $\Ekin$ bins.  Values within
-$1\pm\sigma_{\text{stat}}$ across the three datasets are the minimum
-prerequisite for a physics interpretation of the cross-dataset shape
-comparison.  Non-uniform closure across datasets folds directly into
-the systematic uncertainty on the ratio.
+\paragraph*{Two closure definitions.}
+The per-cluster architecture of the reconstruction and the per-neutron
+character of the physics observable make the closure metric
+$\Ntrue/N_{\text{MC}}$ ambiguous.  We therefore quote both variants
+explicitly and reconcile them via a physical multiplicative bridge:
+\begin{align}
+  C_\nu &\equiv \frac{\Ntrue}{N_{\text{MC}}^{\nu}}
+    \qquad \text{(per-neutron closure)}, \label{eq:cnu}\\
+  C_c &\equiv \frac{\Ntrue}{N_{\text{MC}}^{\text{cl}}}
+    \qquad \text{(per-cluster closure)}, \label{eq:ccl}\\
+  k   &\equiv \frac{N_{\text{MC}}^{\text{cl}}}{N_{\text{MC}}^{\nu}}
+    \qquad \text{(cluster-per-neutron ratio)}, \label{eq:kratio}
+\end{align}
+with $C_\nu = k \cdot C_c$ by construction.
+$N_{\text{MC}}^{\nu}$ is the count of unique MC neutron tracks
+$(\text{event},\text{track})$ with $\texttt{n0\_label}=1$ passing the
+detector fiducial (Sec.~\ref{sec:detector}); $N_{\text{MC}}^{\text{cl}}$
+is the count of clusters flagged as signal by the truth-labeling
+procedure of Sec.~\ref{sec:simulation}.  The ratio $k$ measures how
+often multiple MC neutrons collapse into a single hit cluster:
+$k = 1$ is the diagonal 1-neutron-per-cluster limit;
+$k < 1$ signals multi-neutron cluster merging, which is a
+neutron-density-dependent physical property of each dataset and
+capping the per-cluster reconstruction from above.
+Values of $C_c$ near unity indicate a well-calibrated
+classifier + regression stage; the value of $C_\nu$ additionally
+absorbs the merger term $k$.
+
+Table~\ref{tab:closure} reports both metrics at threshold $t = 0.5$
+on the smoke-scale sensitivity subsets (matched 4-shard subsets of
+each dataset, HPC checkpoint of Sec.~\ref{sec:performance},
+pooled-scaler feature transform of Sec.~\ref{sec:systematics}).
+The per-cluster closure is uniform across the three datasets at
+$1.25 \pm 0.03$ (spread 5\%), confirming that the classifier +
+regression pipeline is dataset-independent within statistics at this
+scale.  All datasets over-recover slightly ($C_c > 1$) because the
+efficiency correction inflates true positives but does not subtract
+the small classifier background leak; this bias is treated as a
+threshold-dependent systematic in Sec.~\ref{sec:systematics} item
+\ref{sys:binning}.  The per-neutron closure $C_\nu$ spreads much more
+widely (0.65--0.85) because $k$ varies physically across datasets
+(0.51--0.69): \texttt{defaultSpot}'s higher effective neutron density
+increases the multi-neutron cluster-merger probability by
+$\sim 40\%$, and this alone accounts for essentially the whole
+per-neutron closure spread.  Physics-quality sensitivity to $\Usym$
+therefore requires either
+(i) a differentiable clustering step that resolves multi-neutron
+overlaps into separate cluster candidates, or
+(ii) an unfolding pass over the response matrix
+$M \otimes k^{-1}(\Usym)$ that treats cluster-merger as a
+$\Usym$-dependent efficiency factor.  Both are deferred to
+Sec.~\ref{sec:summary}.
+
+\begin{table}[!t]
+  \centering
+  \caption{Closure decomposition at $t = 0.5$, smoke-scale HPC-checkpoint
+    evaluation of the three \SMASH{} datasets on matched 4-shard
+    subsets ($\sim 1600$--$2000$ events each).  Both efficiency-basis
+    conventions of Sec.~\ref{sec:sensitivity} are quoted; a Tikhonov
+    detector-matrix unfold agrees with the $E_{\text{pred}}$-basis
+    correction to $\pm 3\%$ (\texttt{closure\_unfold} column of
+    \texttt{results/sensitivity\_hpc\_pooled\_smoke\_fixed/e\_pred/sensitivity\_summary.csv}).}
+  \label{tab:closure}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    dataset & $\Usym$ (MeV) & $k$ & $C_c$ (t=0.5) & $C_\nu$ (t=0.5) & $C_\nu = k C_c$ \\
+    \midrule
+    \texttt{zeroSpot}    & 0   & 0.687 & 1.23 & 0.846 & 0.845 \\
+    \texttt{defaultSpot} & 18  & 0.511 & 1.27 & 0.647 & 0.649 \\
+    \texttt{bigSpot}     & 90  & 0.663 & 1.29 & 0.853 & 0.855 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \begin{figure}[!t]
   \centering
@@ -690,7 +758,10 @@ the systematic uncertainty on the ratio.
   \caption{Sensitivity summary at threshold $t = 0.5$ (placeholder
     numbers from the smoke run; final values from full SLURM sweep).
     $N_{\text{ev}}$ is the per-dataset evaluation-split event count;
-    closure is $\Ntrue/\Nmc$.}
+    closure is the per-neutron $C_\nu = \Ntrue/N_{\text{MC}}^{\nu}$
+    (Eq.~\ref{eq:cnu}).  The per-cluster $C_c$ (Eq.~\ref{eq:ccl}) and
+    cluster-per-neutron ratio $k$ (Eq.~\ref{eq:kratio}) are quoted
+    separately in Table~\ref{tab:closure}.}
   \label{tab:summary}
   \begin{tabular}{lrrrrrr}
     \toprule
@@ -788,10 +859,25 @@ impact is quantified.
     \TODO{re-test at full \SMASH{} statistics after the SLURM sweep;
     OOD scaler drift may re-emerge when the three datasets contribute
     comparable hit counts to the pool.}
-  \item \textbf{Non-uniform closure.}
-    A dataset-dependent $\Ntrue/\Nmc$ folds directly into the ratio
-    plot; we quote the maximum $|\text{closure}(d) - 1|$ across the
-    three datasets as an additional systematic on the ratio.
+  \item \textbf{Cluster-merging (per-neutron closure spread).}
+    The per-neutron closure $C_\nu$ (Eq.~\ref{eq:cnu}) decomposes as
+    $C_\nu = k \cdot C_c$ (Sec.~\ref{sec:closure}); at smoke scale
+    $C_c$ is uniform across the three datasets at $1.25 \pm 0.03$
+    while $k$ ranges 0.51--0.69, so the observed 0.20 spread in
+    $C_\nu$ is dominated by the physical clusters-per-neutron ratio
+    $k(\Usym)$ rather than by any pipeline defect.  We quote both
+    metrics and the multiplicative bridge, and treat
+    $\text{spread}(k(\Usym))$ as the current systematic ceiling on
+    any per-event yield-ratio interpretation.  Mitigation is
+    deferred (differentiable clustering, or a
+    $k$-conditional unfold — Sec.~\ref{sec:summary}).
+  \item \textbf{Per-cluster closure bias.}
+    $C_c > 1$ across every dataset (Table~\ref{tab:closure}) because
+    the efficiency correction inflates true positives without
+    subtracting the small classifier background leak.  The bias is
+    dataset-independent within 3\%; we quote the max
+    $|C_c - 1|$ across thresholds $t \in \{0.3, 0.5, 0.7\}$ as a
+    threshold-dependent systematic on $C_\nu$.
   \item \textbf{Model-family disagreement.}
     We reweight the analysis using \texttt{hetero\_hgt} and
     \texttt{spectral\_dynedge} checkpoints and quote the spread on
@@ -834,10 +920,14 @@ nuclear symmetry potential in three \SMASH{} Xe+Cs simulations.
 %% full SLURM sweep is complete.
 
 The next steps toward first-data readiness are:
-(i) closure-driven refinement of the efficiency correction so that
-$\Ntrue/\Nmc \to 1$ uniformly across datasets;
-(ii) a differentiable clustering step to replace the fixed
-$r_{\text{loc}}, \Delta t$ radius-graph;
+(i) a differentiable clustering step to replace the fixed
+$r_{\text{loc}}, \Delta t$ radius-graph, so that multi-neutron
+overlaps within a single cluster (which cap $C_\nu$ at $k$;
+Sec.~\ref{sec:closure}) are resolved into per-neutron candidates;
+(ii) equivalently, a joint unfolding pass over the response matrix
+and the $\Usym$-dependent cluster-per-neutron ratio $k(\Usym)$ so
+that the physically-quoted per-neutron closure recovers unity across
+datasets;
 (iii) a domain-adaptation study to bridge the MC$\to$real-data
 gap using the first \BMN{} Xe+Cs sample;
 (iv) inclusion of the proton observables from complementary \BMN{}

@@ -187,7 +187,23 @@ def main() -> int:
         df.to_csv(out, index=False)
         print(f'  wrote {out}')
 
-    # Summary CSV per dataset — carries both counts and per-event yields.
+    # Summary CSV per dataset. Two closure definitions are quoted:
+    #
+    #   * closure          = N_true / N_MC_truth  (per-neutron denominator)
+    #       Physics-quoted number. Sensitive to multi-neutron cluster
+    #       merging: if two MC neutrons collapse into one cluster, the
+    #       per-cluster reconstruction fundamentally cannot recover both,
+    #       so closure < 1 even for a perfect classifier.
+    #
+    #   * closure_per_cluster = N_true / N_MC_clusters (cluster-signal denom)
+    #       Pipeline-diagnostic closure. Cancels the cluster-merging term
+    #       and measures only the classifier + regression stage. Should
+    #       approach 1.0 for a well-calibrated model.
+    #
+    #   * clusters_per_neutron = N_MC_clusters / N_MC_truth
+    #       The multiplicative bridge:  closure = clusters_per_neutron
+    #       * closure_per_cluster. When clusters_per_neutron << 1 the
+    #       cluster-merger term dominates the physics closure.
     summary_rows = []
     for run in runs:
         tab = tables[run.name]
@@ -195,6 +211,7 @@ def main() -> int:
         n_reco = int(tab['n_reco'].sum())
         n_true = float(tab['n_true_solved'].sum())
         n_true_err = float(np.sqrt((tab['n_true_solved_err'] ** 2).sum()))
+        n_mc_cluster = int((cluster_dfs[run.name][run.label_col] == 1).sum())
         if run.name in mc_from_parquet:
             counts, mc_ne = mc_from_parquet[run.name]
             n_mc = int(counts.sum())
@@ -203,25 +220,33 @@ def main() -> int:
             n_mc = int(tab['n_mc_truth'].sum())
             mc_source = 'cluster'
         row = {
-            'dataset':          run.name,
-            'U_sym_MeV':        run.potential_mev,
-            'threshold':        args.threshold,
-            'efficiency_basis': args.efficiency_basis,
-            'N_events':         n_ev,
-            'N_reco':           n_reco,
-            'N_reco/ev':        round(n_reco / max(n_ev, 1), 3),
-            'N_true':           round(n_true, 1),
-            'N_true_err':       round(n_true_err, 1),
-            'N_MC_truth':       n_mc,
-            'N_MC/ev':          round(n_mc / max(n_ev, 1), 3),
-            'closure':          round(n_true / n_mc, 3) if n_mc > 0 else float('nan'),
-            'MC_source':        mc_source,
+            'dataset':               run.name,
+            'U_sym_MeV':             run.potential_mev,
+            'threshold':             args.threshold,
+            'efficiency_basis':      args.efficiency_basis,
+            'N_events':              n_ev,
+            'N_reco':                n_reco,
+            'N_reco/ev':             round(n_reco / max(n_ev, 1), 3),
+            'N_true':                round(n_true, 1),
+            'N_true_err':            round(n_true_err, 1),
+            'N_MC_truth':            n_mc,
+            'N_MC/ev':               round(n_mc / max(n_ev, 1), 3),
+            'N_MC_clusters':         n_mc_cluster,
+            'clusters_per_neutron':  (round(n_mc_cluster / n_mc, 3)
+                                      if n_mc > 0 else float('nan')),
+            'closure':               (round(n_true / n_mc, 3)
+                                      if n_mc > 0 else float('nan')),
+            'closure_per_cluster':   (round(n_true / n_mc_cluster, 3)
+                                      if n_mc_cluster > 0 else float('nan')),
+            'MC_source':             mc_source,
         }
         if args.unfold and run.name in unfold_by_ds:
             n_true_u = float(unfold_by_ds[run.name].sum())
-            row['N_true_unfold']   = round(n_true_u, 1)
-            row['closure_unfold']  = (round(n_true_u / n_mc, 3)
-                                      if n_mc > 0 else float('nan'))
+            row['N_true_unfold']              = round(n_true_u, 1)
+            row['closure_unfold']             = (round(n_true_u / n_mc, 3)
+                                                  if n_mc > 0 else float('nan'))
+            row['closure_unfold_per_cluster'] = (round(n_true_u / n_mc_cluster, 3)
+                                                  if n_mc_cluster > 0 else float('nan'))
         summary_rows.append(row)
     summary = pd.DataFrame(summary_rows).sort_values(
         by='U_sym_MeV', na_position='last')
