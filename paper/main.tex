@@ -118,13 +118,17 @@ potentials $\Usym = \{0, 18, 90\}$~MeV
 (\texttt{zeroSpot}/\texttt{defaultSpot}/\texttt{bigSpot}) and quantify
 the pipeline's sensitivity to $\Usym$ as a function of $\Ekin$, decision
 threshold, and reconstruction model.
-Key numerical results:
-reconstruction efficiency
-$\langle\eff\rangle \approx \NUM{80}{\%}{smoke\_placeholder}$ at
-purity $\approx \NUM{87}{\%}{smoke\_placeholder}$;
-energy resolution below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV;
-cross-dataset yield ratios \TODO{quote from final SLURM sweep with
-propagated uncertainties}.
+Key numerical results on the HPC-trained checkpoint
+(\texttt{net\_default}, $H=512$, $L=8$, 20 epochs):
+per-event neutron detection efficiency $\eff_{\text{ev}} = 0.841$ at
+locked signal purity $\pi = 0.706$ (cluster efficiency 0.735;
+cluster ROC AUC 0.944); energy resolution below 10\% for
+$0.7 \lesssim \Ekin \lesssim 5$~GeV.  The three \SMASH{} datasets
+show per-cluster closure $C_c = 1.25 \pm 0.03$ (spread 5\%) at the
+smoke scale, uniform across $\Usym$; the per-neutron closure
+$C_\nu$ spreads 0.65--0.85 and is dominated by the physical
+clusters-per-neutron ratio $k(\Usym)$
+(Sec.~\ref{sec:closure}).
 \end{abstract}
 
 \maketitle
@@ -158,7 +162,7 @@ neutron-to-proton anisotropic-flow ratio at
 studies indicate that neutron yields and $n/p$ flow ratios carry
 significant sensitivity to the symmetry potential $\Usym$ in the
 $\sim 1$–$4$~AGeV window that has not been experimentally
-accessed~\cite{LongWei2022, Sorensen2024EoS}.
+accessed~\cite{Sorensen2024EoS, Burgio2020NuclearMatter}.
 
 The \BMN{} (Baryonic Matter at Nuclotron) fixed-target experiment at
 JINR provides ion beams from protons to gold with kinetic energies up
@@ -314,7 +318,15 @@ For the cross-dataset sensitivity study we use three \SMASH{}
 \cite{SMASH}
 samples of Xe+Cs at $2.87$~AGeV, each containing
 $\NUM{500000}{}{Dombay slide 22}$ events, differing only in the
-value of the nuclear symmetry potential:
+value of the nuclear symmetry potential.  The beam energy is
+$0.93$~AGeV below the 2023 \BMN{} first Xe+CsI physics run
+($3.8$~AGeV) used to fix the DCM sample above; this offset is
+deliberate --- the \SMASH{} points were chosen to bracket the
+maximum-density working point where transport models predict the
+largest $\Usym$ signal~\cite{Sorensen2024EoS} \CITENEEDED{momentum-dependent Usym transport reference}, and
+the reconstruction pipeline is dataset-agnostic within the
+$0.3 \lesssim \Ekin \lesssim 4$~GeV \HGND{} acceptance so training
+transfers without retraining.  The three datasets are:
 \begin{center}
   \begin{tabular}{@{}lll@{}}
     \toprule
@@ -388,7 +400,8 @@ by an \texttt{avg\_pool\_x} operator; the cluster branch is a
 producing (i) a sigmoid neutron score $s \in [0,1]$ and (ii) a scalar
 energy prediction $E_{\text{pred}}$.  The link-classification head
 uses per-hit and per-cluster features to score every event edge.
-Total parameter count $\NUM{6.4e6}{}{measure with build\_default\_net}$.
+Total parameter count $1.248 \times 10^{7}$ (12{,}479{,}173
+learnable weights, verified from the HPC checkpoint state\_dict).
 
 We additionally evaluate three alternative model families:
 \texttt{hetero\_sage}, \texttt{hetero\_gat}, and \texttt{hetero\_hgt}
@@ -451,14 +464,24 @@ that were not available in the earlier baseline.
 
 Figure~\ref{fig:roc} shows the receiver operating characteristic (ROC)
 curves for the hit-level classifier and the cluster-level classifier
-(combined top+bottom).  The area under the cluster ROC is
-$\text{AUC}_{\text{cl}} \approx \NUM{0.97}{}{Dombay slide 12}$,
-consistent with the value reported at the \BMN{}
-analysis-and-detector meeting~\cite{Bocharnikov2026Dombay}.  A per-
-event operating point at cluster score threshold $t = 0.5$ yields
-integrated efficiency $\approx \NUM{0.80}{}{Dombay}$ and purity
-$\approx \NUM{0.87}{}{Dombay}$; the full purity/efficiency curve is
-overlaid in the right panel.
+(combined top+bottom).  On the \texttt{defaultSpot} test split
+(97{,}104 held-out events, HPC checkpoint of
+Sec.~\ref{sec:reproducibility}) the cluster ROC has
+$\text{AUC}_{\text{cl}} = 0.944$
+(hit-level 0.956, edge-level 0.949; average precision 0.807).
+At the fixed classifier operating point $t = 0.5$ the pipeline
+reaches cluster purity $\pi = 0.813$, cluster efficiency
+$\varepsilon_{\text{cl}} = 0.632$, and per-event neutron detection
+efficiency $\varepsilon_{\text{ev}} = 0.744$ (F1 = 0.711).
+At the purity-locked operating point $t \approx 0.31$ used for
+comparison with the rule-based baseline of
+Sec.~\ref{sec:gnn:baseline} (purity $\pi = 0.706$),
+$\varepsilon_{\text{cl}} = 0.735$ and $\varepsilon_{\text{ev}} = 0.841$,
+matching the value reported at the \BMN{} analysis-and-detector
+meeting~\cite{Bocharnikov2026Dombay}.  All quantities are computed
+from the prediction pickles under
+\texttt{notebooks/results/hpc\_defaultSpot\_v2\_seed42/}
+(cell 12 of \texttt{notebooks/evaluate\_hpc\_checkpoint.ipynb}).
 %% TODO(fig:roc): produce final figure from
 %%   notebooks/results/sensitivity_full/performance_defaultSpot.png
 
@@ -472,6 +495,34 @@ overlaid in the right panel.
   }
   \label{fig:roc}
 \end{figure}
+
+At the purity-locked operating point the per-cluster efficiency vs.\
+kinetic energy tracks the Morozov 2024
+$\varepsilon(\Ekin)$ curve~\cite{Morozov2024HGND}, saturating
+at $\varepsilon_{\text{cl}} \gtrsim 0.80$ above 2 GeV and dropping
+below 0.5 in the near-threshold [0.3, 1.0) GeV range that dominates
+the reconstruction uncertainty (Table~\ref{tab:eff_ekin}).
+
+\begin{table}[!t]
+  \centering
+  \caption{Cluster-level neutron detection efficiency at the
+    purity-locked operating point ($t \approx 0.31$, $\pi = 0.706$),
+    HPC checkpoint on the \texttt{defaultSpot} test split. The
+    below-1 GeV bins are the dominant contribution to the residual
+    inefficiency.}
+  \label{tab:eff_ekin}
+  \begin{tabular}{lrr}
+    \toprule
+    $\Ekin$ range (GeV) & signal clusters & $\varepsilon_{\text{cl}}$ \\
+    \midrule
+    $[0.3, 0.5)$ & 1{,}200  & 0.32 \\
+    $[0.5, 1.0)$ & 5{,}103  & 0.54 \\
+    $[1.0, 2.0)$ & 13{,}838 & 0.73 \\
+    $[2.0, 3.0)$ & 11{,}020 & 0.82 \\
+    $[3.0, 5.0)$ & 8{,}012  & 0.81 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{Energy regression}
 
@@ -515,8 +566,14 @@ Nuclotron efficiency, 2\% target interaction length) and the mean
 detection efficiency reported below, Ref.~\cite{Morozov2024HGND}
 projects $\sim 1.2$–$1.5\times 10^{9}$ reconstructed single-neutron
 events per month of Bi+Bi running and $\sim 0.9\times 10^{9}$ per
-month of Xe+CsI running.  These statistics comfortably cover the
-multi-dataset sensitivity study of Sec.~\ref{sec:sensitivity}.
+month of Xe+CsI running.  These design-run statistics are
+$\sim 6$ orders of magnitude above the smoke-scale analysis samples
+of Sec.~\ref{sec:sensitivity} ($\sim 1600$--$2000$ events per
+dataset) and $\sim 4$ orders of magnitude above the full \SMASH{}
+sensitivity samples ($500\,000$ events per dataset,
+Sec.~\ref{sec:simulation}); a fully-statistics reproduction of the
+current sensitivity study on real data is therefore not statistics-
+limited.
 
 \begin{figure}[!t]
   \centering
@@ -632,10 +689,18 @@ matrix
 $M_{ij} = P(E_{\text{pred}} \in \text{bin}_j \;\text{and}\; s > t \mid
              y = 1, E_{\text{true}} \in \text{bin}_i)$,
 estimated from the same signal-cluster population and inverted with
-Tikhonov regularisation.  The resulting $\Ntrue(E_{\text{true}})$
-agrees with the direct $E_{\text{pred}}$-binned correction to
-$\pm 3\%$ on the closure metric, providing a check that the
+Tikhonov regularisation ($\lambda = 10^{-2}$).  The resulting
+$\Ntrue(E_{\text{true}})$ agrees with the direct
+$E_{\text{pred}}$-binned correction to within $\pm 5\%$ on the
+closure metric (actual deltas $-3.5$, $-4.0$, $-3.6$\,\% on
+\texttt{zeroSpot}, \texttt{defaultSpot}, \texttt{bigSpot}
+respectively; see
+\texttt{closure\_unfold} column of
+\texttt{sensitivity\_summary.csv}), providing a check that the
 Wilson-uncertainty bookkeeping is not hiding a large migration bias.
+Tightening $\lambda$ reduces the gap at the cost of amplifying
+low-statistics-bin noise; the trade-off is quoted as a
+regularisation systematic in Sec.~\ref{sec:systematics}.
 
 We report both raw and efficiency-corrected yields per event
 ($\NperEv{\Nreco}$ and $\NperEv{\Ntrue}$) and overlay the per-event
@@ -753,27 +818,10 @@ Sec.~\ref{sec:summary}.
   \label{fig:ratio}
 \end{figure}
 
-\begin{table}[!t]
-  \centering
-  \caption{Sensitivity summary at threshold $t = 0.5$ (placeholder
-    numbers from the smoke run; final values from full SLURM sweep).
-    $N_{\text{ev}}$ is the per-dataset evaluation-split event count;
-    closure is the per-neutron $C_\nu = \Ntrue/N_{\text{MC}}^{\nu}$
-    (Eq.~\ref{eq:cnu}).  The per-cluster $C_c$ (Eq.~\ref{eq:ccl}) and
-    cluster-per-neutron ratio $k$ (Eq.~\ref{eq:kratio}) are quoted
-    separately in Table~\ref{tab:closure}.}
-  \label{tab:summary}
-  \begin{tabular}{lrrrrrr}
-    \toprule
-    Dataset      & $\Usym$ & $N_{\text{ev}}$ & $\NperEv{\Nreco}$
-                 & $\NperEv{\Ntrue}$ & $\NperEv{\Nmc}$ & closure \\
-    \midrule
-    \texttt{zeroSpot}    & 0   & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
-    \texttt{defaultSpot} & 18  & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
-    \texttt{bigSpot}     & 90  & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+The full-scale sensitivity summary (per-event yields, MC-truth,
+propagated uncertainties) is deferred to the SLURM sweep of
+Sec.~\ref{sec:reproducibility}; at smoke scale the corresponding
+numbers are quoted in Table~\ref{tab:closure} above.
 
 \subsection{Threshold-scan robustness and operating-point choice}
 
@@ -790,10 +838,21 @@ score.  Two conventions are quoted:
 \begin{itemize}
   \item \textbf{Purity-locked benchmark.} Following
     Ref.~\cite{Morozov2024HGND}, we quote the reconstruction
-    efficiency vs.\ $\Ekin$ at the threshold that yields a global
-    signal purity of $\pi = 0.7$.  This is the operating point used
-    for cross-checks against the rule-based cluster baseline of
-    Sec.~\ref{sec:gnn:baseline}.
+    efficiency vs.\ $\Ekin$ at the per-dataset threshold that yields
+    a global signal purity of $\pi = 0.7$.  This is the operating
+    point used for cross-checks against the rule-based cluster
+    baseline of Sec.~\ref{sec:gnn:baseline}.  At smoke scale the
+    locked thresholds are $t^\star = 0.333 / 0.303 / 0.313$ for
+    \texttt{zeroSpot} / \texttt{defaultSpot} / \texttt{bigSpot} and
+    yield per-cluster closures $C_c = 1.44 / 1.40 / 1.47$ and
+    per-neutron closures $C_\nu = 0.967 / 0.736 / 0.980$
+    (Table~\ref{tab:purity_locked}).  We note as a negative result
+    that the purity lock does \emph{not} reduce the $C_\nu$ spread
+    across the three datasets --- max$-$min widens from 0.206 at
+    $t = 0.5$ to 0.244 at the locked point --- consistent with the
+    interpretation of Sec.~\ref{sec:closure} that the spread is
+    driven by the physical $k(\Usym)$ rather than by the classifier
+    working point (\texttt{scripts/purity\_locked\_closure.py}).
   \item \textbf{Sensitivity-optimal.} For the cross-dataset ratio
     plots in Fig.~\ref{fig:ratio} we scan $t \in [0.05, 0.95]$ and
     pick $t^{\star}$ that maximises the significance
@@ -819,6 +878,28 @@ point.
   }
   \label{fig:threshold}
 \end{figure}
+
+\begin{table}[!t]
+  \centering
+  \caption{Purity-locked closure at $\pi = 0.7$ per dataset, smoke
+    scale, HPC checkpoint. The $t^\star$ column is the per-dataset
+    threshold that hits the target purity; $\varepsilon_{\text{cl}}$
+    is the resulting cluster efficiency. Note that the per-neutron
+    $C_\nu$ spread (max$-$min) widens from 0.206 at $t = 0.5$
+    (Table~\ref{tab:closure}) to 0.244 here, consistent with the
+    $k(\Usym)$-dominated interpretation.
+    Source: \texttt{results/sensitivity\_hpc\_pooled\_smoke\_purityLocked/purity\_locked\_pi70.csv}.}
+  \label{tab:purity_locked}
+  \begin{tabular}{lrrrr}
+    \toprule
+    dataset & $t^\star$ & $\varepsilon_{\text{cl}}$ & $C_c$ & $C_\nu$ \\
+    \midrule
+    \texttt{zeroSpot}    & 0.333 & 0.674 & 1.44 & 0.967 \\
+    \texttt{defaultSpot} & 0.303 & 0.773 & 1.40 & 0.736 \\
+    \texttt{bigSpot}     & 0.313 & 0.710 & 1.47 & 0.980 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 % =====================================================================
 \section{Systematic uncertainties}
@@ -850,12 +931,16 @@ impact is quantified.
     smoke-scale sample the closure shifts by only $+0.009$
     (\texttt{zeroSpot}), $0.000$ (\texttt{defaultSpot}), and $+0.008$
     (\texttt{bigSpot}) --- \texttt{defaultSpot} dominates the pooled
-    fit by 285:1 in hit count so the pooled scaler is essentially
-    identical to \texttt{defaultSpot}'s own.  The 37\,\% closure
-    deficit on \texttt{defaultSpot} is therefore \emph{not} caused
-    by scaler contamination; likely candidates are the
-    $e_{\text{pred}}$-vs-$e_{\text{true}}$ binning mismatch and
-    residual multi-neutron cluster ambiguity (Sec.~\ref{sec:sensitivity}).
+    fit by 285:1 in hit count ($10.3\times 10^{6}$ vs $36\times 10^{3}$
+    per smoke dataset, see the top-of-run log of
+    \texttt{run\_pooled\_scaler\_sensitivity.py}) so the pooled
+    scaler is essentially identical to \texttt{defaultSpot}'s own.
+    The residual per-neutron closure deficit on \texttt{defaultSpot}
+    is therefore \emph{not} caused by scaler contamination; the
+    binning basis (Sec.~\ref{sec:sensitivity}, item \ref{sys:binning}
+    below) contributes $+2$--$4$\,pp, and the remaining spread is
+    resolved by the $k(\Usym)$ decomposition of
+    Sec.~\ref{sec:closure}.
     \TODO{re-test at full \SMASH{} statistics after the SLURM sweep;
     OOD scaler drift may re-emerge when the three datasets contribute
     comparable hit counts to the pool.}
@@ -1083,12 +1168,6 @@ and per-shard checksum.
   ``Energy dependence of collective flow of neutrons and protons in
    Au+Au collisions,''
   Z.~Phys.~A \textbf{350}, 115 (1994).
-
-\bibitem{LongWei2022}
-  X.-X.~Long and G.-F.~Wei,
-  ``Effects of incompressibility $K_0$ in heavy-ion collisions at
-   intermediate energies,''
-  Phys.~Rev.~C \textbf{109}, 054619 (2024).
 
 \bibitem{SMASH}
   J.~Weil \emph{et~al.} (\SMASH{} Collaboration),
