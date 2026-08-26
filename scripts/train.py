@@ -65,6 +65,15 @@ def main() -> int:
                         help='Cap the preload footprint (GB). Trims shard '
                              'count if the estimate would exceed this. '
                              'Recommended on MPS / small-RAM machines.')
+    parser.add_argument('--save-best-on', default='train',
+                        choices=['train', 'val'],
+                        help='Which loss drives checkpoint selection. '
+                             'train (default) preserves the 2026-08-26 '
+                             'HPC run behaviour; val is the physics-'
+                             'recommended choice for held-out generalisation.')
+    parser.add_argument('--scheduler-milestones', type=int, nargs='*',
+                        default=None,
+                        help='Override MultiStepLR milestones (e.g. 10 15 25).')
     args = parser.parse_args()
 
     _add_package_to_path()
@@ -118,7 +127,7 @@ def main() -> int:
     print(device_mod.summarize(plan))
     print(f'Params: {sum(p.numel() for p in model.parameters()):,}')
 
-    cfg = TrainConfig(
+    cfg_kwargs: dict = dict(
         batch_size=args.batch_size,
         num_workers_loader=args.num_workers_loader,
         seed=args.seed,
@@ -132,7 +141,12 @@ def main() -> int:
         checkpoint_dir=args.checkpoint_dir,
         checkpoint_name=args.checkpoint_name,
         loss_weights=spec.default_loss_weights,
+        save_best_on=args.save_best_on,
     )
+    if args.scheduler_milestones is not None:
+        cfg_kwargs['scheduler_milestones'] = tuple(args.scheduler_milestones)
+    cfg = TrainConfig(**cfg_kwargs)
+    print(f'Checkpoint policy: save_best_on={cfg.save_best_on}')
 
     train_loader, test_loader = build_loaders(dataset, cfg)
     result = fit(model, train_loader, test_loader, cfg, plan=plan,
