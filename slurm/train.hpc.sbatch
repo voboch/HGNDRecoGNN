@@ -9,13 +9,16 @@
 #SBATCH --constraint=type_a          # V100 32 GB; type_e=A100, type_f=H100, type_h=H200
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
+# Rocky currently advertises RealMemory=1 MB; an explicit --mem request is
+# therefore unschedulable. Use the partition's unlimited default until fixed.
 #SBATCH --time=08:00:00
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.err
 ##SBATCH --mail-type=END,FAIL
 ##SBATCH --mail-user=vobotch@gmail.com
 
+# The cluster profile references optional variables, so load it before nounset.
+source /etc/profile 2>/dev/null || true
 set -euo pipefail
 
 # ── Knobs (override via --export=ALL,NAME=value) ────────────────────────
@@ -26,7 +29,6 @@ set -euo pipefail
 export HF_HOME PYTHONUNBUFFERED=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1
 
 # ── Environment (Rocky 9) ───────────────────────────────────────────────
-source /etc/profile 2>/dev/null || true
 module purge 2>/dev/null || true
 module load python/miniconda
 module load cuda/12.9.1

@@ -673,10 +673,24 @@ class HGNDGraphDataset(Dataset):
                               f'({graph_idx} graphs total)', flush=True)
 
             if self.num_workers > 0:
-                with Pool(self.num_workers, maxtasksperchild=512) as pool:
-                    _process_chunks(
-                        lambda w: pool.imap(_build_single_graph, w,
-                                            chunksize=32))
+                # HeteroData contains torch storages.  The default
+                # ``file_descriptor`` sharing strategy can lose the worker's
+                # resource-sharer socket before the parent rebuilds a result,
+                # yielding ``RuntimeError: received 0 items of ancdata`` on
+                # long preprocessing runs.  Filesystem-backed sharing avoids
+                # that fragile descriptor hand-off while retaining parallel
+                # graph construction.
+                previous_strategy = torch.multiprocessing.get_sharing_strategy()
+                torch.multiprocessing.set_sharing_strategy('file_system')
+                print('multiprocessing tensor sharing: file_system')
+                try:
+                    with Pool(self.num_workers, maxtasksperchild=512) as pool:
+                        _process_chunks(
+                            lambda w: pool.imap(_build_single_graph, w,
+                                                chunksize=32))
+                finally:
+                    torch.multiprocessing.set_sharing_strategy(
+                        previous_strategy)
             else:
                 _process_chunks(
                     lambda w: (_build_single_graph(x) for x in w))
