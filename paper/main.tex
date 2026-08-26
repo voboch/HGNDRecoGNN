@@ -1,0 +1,1000 @@
+% =====================================================================
+%   HGND + GNN sensitivity paper — DRAFT SKELETON
+%   Target: Phys. Rev. C (or equivalent Q1: NIM A, EPJ C, JHEP)
+%   Style : revtex4-2, twocolumn, superscript numeric refs (aps style)
+%
+%   Structure and voice inspired by:
+%     Morozov et al., "The Highly-Granular Time-of-Flight Neutron
+%     Detector for the BM@N experiment", arXiv:2412.00455v1 (Nov 2024)
+%   Latest ML/physics results synthesised from the presentation:
+%     V. Bocharnikov, "Graph Neural Network-based neutron reconstruction
+%     in the HGND at the BM@N experiment", Analysis and Detector Meeting
+%     of the BM@N, 26.02.2026 (docs/VB_BMN_Dombay.pdf).
+%
+%   Fill-in policy
+%   --------------
+%   Every unresolved section is marked
+%       %% TODO(<tag>): <what is missing>  [<owner>]
+%   Every quantitative claim that needs verification is
+%       \NUM{value}{units}{tag}    ← replace with the measured number
+%   Every citation that needs a bib entry is
+%       \CITENEEDED{short-tag}
+%   Search this file for the string TODO / NUM / CITENEEDED before
+%   submitting.  Nothing should remain marked.
+%
+%   Sensitivity study is the *headline* result.  Until the full-scale
+%   SLURM sweep produces the final N_true(E_k) curves and closure
+%   diagnostic, the section carries placeholders + explicit blockers.
+% =====================================================================
+
+\documentclass[aps,prc,twocolumn,superscriptaddress,showpacs,%
+               nofootinbib,floatfix,longbibliography]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{physics}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% ---- Editorial helpers (remove before submission) --------------------
+\newcommand{\TODO}[1]{{\color{red}\textbf{[TODO: #1]}}}
+\newcommand{\NOTE}[1]{{\color{orange}\textit{[note: #1]}}}
+\newcommand{\NUM}[3]{{\color{purple}\underline{#1}~#2}\,\NOTE{#3}}
+\newcommand{\CITENEEDED}[1]{{\color{red}\textbf{[cite: #1]}}}
+
+% ---- Physics shorthand ----------------------------------------------
+\newcommand{\Ekin}{E_{\text{kin}}}
+\newcommand{\Nreco}{N_{\text{reco}}}
+\newcommand{\Ntrue}{N_{\text{true}}}
+\newcommand{\Nmc}{N_{\text{MC}}}
+\newcommand{\eff}{\varepsilon}
+\newcommand{\Usym}{U_{\text{sym}}}
+\newcommand{\NperEv}[1]{#1/N_{\text{ev}}}
+\newcommand{\HGND}{HGND}
+\newcommand{\BMN}{BM@N}
+\newcommand{\SMASH}{\textsc{smash}}
+\newcommand{\DCM}{\textsc{dcm-qgsm-smm}}
+\newcommand{\GEANT}{\textsc{Geant4}}
+\newcommand{\PyG}{PyTorch~Geometric}
+
+% =====================================================================
+\begin{document}
+
+\title{Sensitivity of the Highly-Granular Time-of-Flight Neutron
+       Detector at \BMN{} to the nuclear symmetry potential\\
+       via graph-neural-network based neutron reconstruction}
+
+% -- Author list: mirror the arXiv paper 2412.00455v1 ordering; ML
+%    contributors bumped forward for this ML/physics-driven paper.
+\author{V.~Bocharnikov}
+\email{vbocharnikov@hse.ru}
+\affiliation{HSE University, Moscow, Russia}
+\author{S.~Morozov}
+\affiliation{Institute for Nuclear Research of the Russian Academy of
+             Sciences, 60-letiya Oktyabrya prospekt 7a, 117312 Moscow,
+             Russia}
+\author{D.~Finogeev}
+\author{M.~Golubeva}
+\author{F.~Guber}
+\author{A.~Izvestnyy}
+\author{N.~Karpushkin}
+\author{A.~Makhnev}
+\author{P.~Parfenov}
+\author{D.~Serebryakov}
+\author{A.~Shabanov}
+\author{V.~Volkov}
+\author{A.~Zubankov}
+\affiliation{Institute for Nuclear Research of the Russian Academy of
+             Sciences, 60-letiya Oktyabrya prospekt 7a, 117312 Moscow,
+             Russia}
+%% TODO(authors): confirm final author list + order + affiliations
+%%                with the BM@N HGND working group before submission.
+
+\date{\today}
+
+\begin{abstract}
+%% TODO(abstract): rewrite once the sensitivity result is final.
+%% Draft:
+We investigate the sensitivity of the Highly-Granular Time-of-Flight
+Neutron Detector (\HGND{}) of the fixed-target \BMN{} experiment at
+JINR to the nuclear symmetry potential $\Usym$ using a graph
+neural-network (GNN) based neutron reconstruction algorithm.  The
+detector concept, geometry, and time-of-flight response are those of
+Morozov \emph{et~al.}~\cite{Morozov2024HGND}.
+Neutron identification, energy regression, and multiplicity
+reconstruction are performed cluster-wise with a heterogeneous GNN
+trained on \DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+CsI simulations.
+The reconstructed per-event neutron kinetic-energy spectra
+$\Nreco(\Ekin)$ are efficiency-corrected against a Monte-Carlo (MC)
+truth benchmark to yield the solved neutron yield
+$\Ntrue(\Ekin) = \Nreco(\Ekin)/\eff(\Ekin)$.
+We compare $\Ntrue(\Ekin)$ across three \SMASH{} datasets with symmetry
+potentials $\Usym = \{0, 18, 90\}$~MeV
+(\texttt{zeroSpot}/\texttt{defaultSpot}/\texttt{bigSpot}) and quantify
+the pipeline's sensitivity to $\Usym$ as a function of $\Ekin$, decision
+threshold, and reconstruction model.
+Key numerical results:
+reconstruction efficiency
+$\langle\eff\rangle \approx \NUM{80}{\%}{smoke\_placeholder}$ at
+purity $\approx \NUM{87}{\%}{smoke\_placeholder}$;
+energy resolution below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV;
+cross-dataset yield ratios \TODO{quote from final SLURM sweep with
+propagated uncertainties}.
+\end{abstract}
+
+\maketitle
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+% ---------------------------------------------------------------------
+% Following 2412.00455v1 §1: EoS motivation → symmetry-energy gap →
+% BM@N/HGND capability → gap this paper fills (ML + cross-dataset
+% sensitivity). ~1.5 pages in single-column proof.
+% ---------------------------------------------------------------------
+
+The equation of state (EoS) of dense nuclear matter, defined as the
+binding energy per nucleon as a function of pressure, density, energy
+and temperature, separates into a symmetric-matter component and a
+symmetry-energy component~\cite{Burgio2020NuclearMatter}.  The
+symmetric-matter term is well constrained by heavy-ion measurements of
+meson yields and anisotropic flow at intermediate
+energies~\cite{E895_ellipticFlow, E895_sideFlow, E895_diffElliptic,
+Sorensen2024EoS}, although residual discrepancies between experiments
+translate into a sizeable systematic on the EoS constraints and
+motivate new data at higher baryon density~\cite{Sorensen2024EoS,
+LeFevre2015}.  The symmetry-energy term encodes the isospin
+asymmetry between neutron- and proton-rich matter and is a direct
+input to neutron-star observables (radii, tidal deformabilities,
+merger dynamics)~\cite{Burgio2020NuclearMatter}.  At high baryon
+density the only laboratory constraint comes from the FOPI/LAND
+neutron-to-proton anisotropic-flow ratio at
+400~MeV/nucleon~\cite{FOPI_LAND1, FOPI_LAND2}; transport-model
+studies indicate that neutron yields and $n/p$ flow ratios carry
+significant sensitivity to the symmetry potential $\Usym$ in the
+$\sim 1$–$4$~AGeV window that has not been experimentally
+accessed~\cite{LongWei2022, Sorensen2024EoS}.
+
+The \BMN{} (Baryonic Matter at Nuclotron) fixed-target experiment at
+JINR provides ion beams from protons to gold with kinetic energies up
+to $6$~AGeV for light ions and $4.5$~AGeV for heavy
+ions~\cite{BMN_EPJ, Afanasiev2024BMN}, reaching baryon densities of
+3–4~$\rho_0$ in the collision fireball~\cite{Cleymans, Friman}, and
+delivers a comprehensive tracking, PID and centrality
+setup~\cite{Afanasiev2024BMN, Senger2022BMN}.  First Xe+CsI data were
+recorded at $3.8$~AGeV in 2023.  The Highly-Granular Time-of-Flight
+Neutron Detector (\HGND{}) has been designed and constructed to
+measure neutron yields and azimuthal flow at these energies for
+heavier colliding systems~\cite{Morozov2024HGND, Guber2023HGND};
+the detector concept, readout, and simulation performance were
+reported in Ref.~\cite{Morozov2024HGND}, together with two prototype
+neutron reconstruction strategies --- a rule-based cluster method and
+a first two-network GNN baseline.  A parallel study established the
+intrinsic scintillator time resolution at
+$\sim 130$–$150$~ps~\cite{Guber2023SiPM}, and a 100~ps FPGA TDC
+readout was demonstrated~\cite{Finogeev2024TDC}.  The estimated
+primary neutron flux in the \HGND{} acceptance is
+$\sim 500$~neutrons per second in the
+$0.3 \lesssim \Ekin \lesssim 4$~GeV range~\cite{Morozov2024HGND}.
+
+The present paper closes two gaps in that pipeline.
+First, we replace the two-network baseline (event-level classification
++ energy regression) with a single heterogeneous GNN that operates
+directly on the physically motivated hit \emph{clusters}, jointly
+producing a per-cluster neutron score and an energy prediction.  This
+brings the reconstruction primitives one step closer to the ideal
+neutron-per-cluster observable and simplifies downstream analysis.
+Second, and more importantly, we quantify the \emph{physics}
+sensitivity of the \HGND{} + GNN pipeline to the underlying symmetry
+potential by comparing reconstructed neutron kinetic-energy spectra
+across three \SMASH{} Xe+CsI datasets differing only in $\Usym$
+($0$, $18$, $90$~MeV).  This turns the detector performance study of
+Ref.~\cite{Morozov2024HGND} into a physics-observable study, and
+delivers the first end-to-end sensitivity benchmark for the \HGND{}
+before first data-taking.
+
+The paper is organised as follows.
+Section~\ref{sec:detector} briefly recaps the \HGND{} concept for the
+reader who does not have Ref.~\cite{Morozov2024HGND} to hand, focussing
+on the pieces relevant to reconstruction.
+Section~\ref{sec:simulation} describes the two simulation samples
+used: \DCM{} + \GEANT{} for detector-response validation and \SMASH{}
+Xe+CsI with three $\Usym$ values for the sensitivity study.
+Section~\ref{sec:gnn} details the graph construction, network
+architecture, and training procedure.
+Section~\ref{sec:performance} reports classification, energy, and
+multiplicity performance on the \DCM{} sample.
+Section~\ref{sec:sensitivity} presents the sensitivity study: MC-truth
+spectra, per-event reconstructed yields, the efficiency-corrected
+observable $\Ntrue(\Ekin)$, and cross-dataset ratios.
+Section~\ref{sec:systematics} discusses systematic uncertainties.
+Section~\ref{sec:summary} summarises and outlines the path to first
+data.
+
+% =====================================================================
+\section{The HGND at BM@N}
+\label{sec:detector}
+% ---------------------------------------------------------------------
+% Compact recap (~0.75 pages) — most of the design detail is deferred
+% to 2412.00455v1.  Include only what is needed to read the plots.
+% ---------------------------------------------------------------------
+
+The \HGND{} is a sampling calorimeter combining copper absorbers with
+high-granularity plastic scintillator readout.  Two geometrical
+options were studied in Ref.~\cite{Morozov2024HGND}: a single 16-layer
+module at 5~m from the target (17$^\circ$ to the beam axis) and a
+split ``2-arms'' option in which two 8-layer modules are placed at
+7~m from the target and offset out of the horizontal plane
+(10$^\circ$ to the beam axis).  The 2-arms option was adopted to
+compensate for the reduction of acceptance at the larger distance and
+to keep the rapidity coverage centred around mid-rapidity
+($y \sim 1.06$, extending to $y \sim 2.4$) while avoiding
+spectator neutrons at forward angles below
+$4.7^\circ$~\cite{Morozov2024HGND}.  In this work we use the 2-arms
+geometry throughout.
+
+Each arm consists of eight active layers separated by $3$~cm copper
+absorbers.  An active layer hosts an $11\times11$ grid of
+$4\times4\times2.5$~cm$^3$ polystyrene scintillator cells (with 1.5\%
+paraterphenyl + 0.01\% POPOP, produced at
+JINR)~\cite{Morozov2024HGND}, packaged in a 3D-printed PETG
+light-tight frame capped by 1.5~mm aluminium sheets.  Two downstream
+PCBs host $55 + 66$ SiPMs, preamplifiers and LVDS comparators; an
+upstream PCB with 121 LEDs enables full-circuit calibration.  A
+scintillator veto layer preceding the first active layer rejects
+upstream charged particles.  With $121$ cells $\times$ $8$ layers per
+arm the pipeline sees $2 \times 968$ instrumented cells.  The
+detector-mounted FPGA readout with Kintex~7 TDCs delivers a per-cell
+time resolution of $\sim 150$~ps~\cite{Guber2023SiPM,
+Finogeev2024TDC}, giving a kinematic reach of
+$0.3 \lesssim \Ekin \lesssim 4$~GeV for the time-of-flight (ToF)
+neutron energy estimator
+\begin{equation}
+  E_{\text{ToF}}
+    = m_n\!\left(\!\frac{1}{\sqrt{1-\beta^2}} - 1 \right),
+  \qquad \beta = \frac{d}{c\,t_{\text{hit}}},
+  \label{eq:etof}
+\end{equation}
+where $d$ and $t_{\text{hit}}$ are the cell-to-vertex distance and
+the (noise-broadened) hit time respectively.  The fiducial hit
+selection follows Ref.~\cite{Morozov2024HGND}: a per-cell energy
+deposition threshold $E_{\text{dep}} > 3$~MeV, corresponding to
+approximately $0.5$~MIP, and a hit-time cut $t_{\text{hit}} < 35$~ns
+tuned to accept neutrons with $\Ekin > 300$~MeV while suppressing
+low-energy background neutrons by a factor of $\sim 6$ at the cost
+of $\sim 8\%$ of the primary signal.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/detector_layout_placeholder}
+  \caption{
+    (Placeholder) Schematic view of the \HGND{} 2-arms geometry at
+    \BMN{}.  Reproduced/adapted from Ref.~\cite{Morozov2024HGND}
+    Fig.~2 pending permission.
+    %% TODO(fig:detector): decide re-use vs redraw for consistent style.
+  }
+  \label{fig:detector}
+\end{figure}
+
+% =====================================================================
+\section{Simulation samples}
+\label{sec:simulation}
+% ---------------------------------------------------------------------
+% Two samples: DCM (detector-response validation) + SMASH (sensitivity).
+% Report event counts, cuts, and any known differences vs. the arXiv
+% paper's DCM sample.
+% ---------------------------------------------------------------------
+
+Two independent simulation samples are used in this work.  Detector
+response is generated with \GEANT{}~\cite{Geant4} inside the
+\texttt{bmnroot}~\cite{bmnroot} simulation and analysis framework;
+Gaussian time smearing with $\sigma_t = 150$~ps is applied to each
+\HGND{} hit, matching the calibration reported in
+Ref.~\cite{Morozov2024HGND}.  The cell-level fiducial selection of
+Sec.~\ref{sec:detector} is applied at analysis time.
+
+\paragraph*{DCM sample --- detector-response validation.}
+For classification, energy-regression and multiplicity benchmarking we
+use $\NUM{300000}{}{Dombay slide 4}$ heavy-ion events generated with
+the DCM-QGSM-SMM Monte Carlo cascade
+generator~\cite{Baznat2020DCMSMM}, replicating the settings of
+Ref.~\cite{Morozov2024HGND} so that the results reported here are
+directly comparable to the earlier cluster-method and two-network GNN
+baselines.  This sample supports the per-cluster efficiency, purity,
+energy-linearity, and multiplicity plots of
+Sec.~\ref{sec:performance}.
+
+\paragraph*{SMASH sensitivity sample.}
+For the cross-dataset sensitivity study we use three \SMASH{}
+\cite{SMASH}
+samples of Xe+Cs at $2.87$~AGeV, each containing
+$\NUM{500000}{}{Dombay slide 22}$ events, differing only in the
+value of the nuclear symmetry potential:
+\begin{center}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Dataset label     & $\Usym$ (MeV)  & Preprocessing status \\
+    \midrule
+    \texttt{zeroSpot}    & $0$   & full CSV dump on cluster            \\
+    \texttt{defaultSpot} & $18$  & 200k preprocessed graphs (schema v2)\\
+    \texttt{bigSpot}     & $90$  & full CSV dump on cluster            \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Only \texttt{defaultSpot} is fully preprocessed at the time of
+writing; the other two are reduced to smoke-scale subsets
+(\num{4000} graphs each) for laptop validation.  The full-scale
+preprocessing runs on 128~GB nodes and takes
+\NUM{4}{\text{h}}{estimate} per dataset (see
+Appendix~\ref{sec:reproducibility}).
+
+\paragraph*{Common preprocessing.}
+For each event we build a heterogeneous graph as follows.  Cells with
+$E_{\text{dep}} > 3$~MeV and $t_{\text{hit}} < 35$~ns become
+\texttt{hits} nodes; edges are the intersection of a spatial
+radius-graph ($r_{\text{loc}} = 3.6$ cells) and a temporal
+radius-graph ($\Delta t = 1.5$~ns).  Connected components of that
+graph form \texttt{clusters} nodes; a cluster is labelled ``signal''
+if it contains at least one prompt-neutron hit passing the upstream
+surface.  Per-cluster energy targets are the fastest prompt neutron's
+kinetic energy.  Auxiliary \texttt{events} and \texttt{sides}
+node types encode the top/bottom arm assignment for hetero-GNN
+compatibility.
+
+% =====================================================================
+\section{GNN reconstruction}
+\label{sec:gnn}
+% ---------------------------------------------------------------------
+% Message-passing model + loss + training curriculum.  Diagram helps.
+% ---------------------------------------------------------------------
+
+\subsection{Baseline: rule-based cluster reconstruction}
+\label{sec:gnn:baseline}
+
+We benchmark against the rule-based cluster reconstruction of
+Ref.~\cite{Morozov2024HGND} in a version reimplemented for this
+analysis to run on the same preprocessed graphs.  Neighbouring fired
+cells with close time stamps are grouped into clusters; the ``head''
+of each cluster is the cell with the largest apparent speed
+$v = d/t_{\text{hit}}$, and sub-clusters with similar speeds are
+merged into larger clusters.  Neutron candidacy is enforced by
+rejecting clusters that contain veto-layer or first-active-layer cells
+(suppressing charged particles and $\gamma$) and by requiring
+$v < c$.  The kinetic energy is obtained from Eq.~\eqref{eq:etof}
+applied to the cluster head, and the expected number of fired cells,
+sub-clusters and total deposited energy provide a cross-check on the
+neutron hypothesis.  This baseline is well understood and has a
+predictable systematic behaviour --- notably a positive bias in the
+energy determination at $\Ekin > 2$~GeV that we track together with
+the GNN prediction throughout the paper.
+
+\subsection{Architecture}
+
+The reconstruction network is a per-cluster classifier + energy
+regressor built on \PyG{}~\cite{FeyLenssen2019PyG,
+KipfWelling2016GCN}.  The hit branch is
+a stack of \texttt{EdgeConv}~$\to$ \texttt{EdgeConv}~$\to$ $L$
+\texttt{SAGEConv} $\to$ \texttt{GraphConv}~$\to$ \texttt{GraphConv}
+layers with hidden dimension $H$ (default $H=512$, $L=4$).  Edge
+scores from the hit branch are learned via a two-layer MLP and used to
+weight message passing.  Hits are pooled into cluster representations
+by an \texttt{avg\_pool\_x} operator; the cluster branch is a
+\texttt{DynamicEdgeConv} ($k=100$) followed by two MLP heads
+producing (i) a sigmoid neutron score $s \in [0,1]$ and (ii) a scalar
+energy prediction $E_{\text{pred}}$.  The link-classification head
+uses per-hit and per-cluster features to score every event edge.
+Total parameter count $\NUM{6.4e6}{}{measure with build\_default\_net}$.
+
+We additionally evaluate three alternative model families:
+\texttt{hetero\_sage}, \texttt{hetero\_gat}, and \texttt{hetero\_hgt}
+(vkr26 heterogeneous graph attention baselines), and the
+spectral-gated \texttt{spectral\_dynedge} of the thesis baseline.
+Model-family agreement is one of the systematic checks in
+Sec.~\ref{sec:systematics}.
+
+\subsection{Loss}
+
+The composite loss combines four BCE terms and one MSE term:
+\begin{equation}
+  \mathcal{L}
+  = \lambda_h \mathcal{L}^{\text{BCE}}_{\text{hit}}
+  + \lambda_l \mathcal{L}^{\text{BCE}}_{\text{link}}
+  + \lambda_c \mathcal{L}^{\text{BCE}}_{\text{cl}}
+  + \lambda_E \mathcal{L}^{\text{MSE}}_{E,\text{cl}}
+  + \lambda_{cl} \mathcal{L}^{\text{BCE}}_{\text{cl-link}}.
+  \label{eq:loss}
+\end{equation}
+Default weights are all unity; ablations vary $\lambda_E$ over
+$\{0.1, 0.5, 1, 2\}$.
+
+\subsection{Training procedure}
+
+Training is performed on a single NVIDIA A100 with the Adam optimizer
+(learning rate $10^{-3}$, weight decay $10^{-5}$),
+\texttt{MultiStepLR} milestones at epochs $\{10, 15, 25\}$
+($\gamma=0.1$), batch size 512, and a 50/50 train/test split (seed
+42).  Full-scale training runs for 20 epochs and completes in
+\NUM{4}{\text{h}}{measure on cluster} wall time.  Model checkpoints,
+training curves, and per-run manifests are archived under
+\texttt{checkpoints/} of the analysis repository.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/gnn_architecture_placeholder}
+  \caption{
+    (Placeholder) Schematic of the heterogeneous GNN reconstruction
+    network: hit-level message passing, cluster pooling, and two
+    per-cluster heads for neutron classification and energy regression.
+    %% TODO(fig:arch): produce a clean tikz or PPT diagram.
+  }
+  \label{fig:arch}
+\end{figure}
+
+% =====================================================================
+\section{Reconstruction performance}
+\label{sec:performance}
+% ---------------------------------------------------------------------
+% Reproduce and extend the Dombay results on the DCM sample.  These
+% panels are copied by convention from NeutronRecoGNN/results_smash.
+% ---------------------------------------------------------------------
+
+We benchmark the GNN reconstruction on the \DCM{} Xe+CsI sample
+following Ref.~\cite{Morozov2024HGND}, adding cluster-level metrics
+that were not available in the earlier baseline.
+
+\subsection{Classification}
+
+Figure~\ref{fig:roc} shows the receiver operating characteristic (ROC)
+curves for the hit-level classifier and the cluster-level classifier
+(combined top+bottom).  The area under the cluster ROC is
+$\text{AUC}_{\text{cl}} \approx \NUM{0.97}{}{Dombay slide 12}$,
+consistent with the value reported at the \BMN{}
+analysis-and-detector meeting~\cite{Bocharnikov2026Dombay}.  A per-
+event operating point at cluster score threshold $t = 0.5$ yields
+integrated efficiency $\approx \NUM{0.80}{}{Dombay}$ and purity
+$\approx \NUM{0.87}{}{Dombay}$; the full purity/efficiency curve is
+overlaid in the right panel.
+%% TODO(fig:roc): produce final figure from
+%%   notebooks/results/sensitivity_full/performance_defaultSpot.png
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/performance_roc_placeholder}
+  \caption{Left: hit- and cluster-level ROC curves on the DCM sample
+    (blinded to training events).  Right: purity and efficiency
+    versus decision threshold for the best-cluster-per-event strategy.
+    %% TODO(fig:roc): swap in the final PDF.
+  }
+  \label{fig:roc}
+\end{figure}
+
+\subsection{Energy regression}
+
+Figure~\ref{fig:ereco} shows $E_{\text{reco}}$ vs.\ $E_{\text{true}}$
+on a logarithmic colour scale.  Linearity is within 10\% for
+$0.7 \lesssim \Ekin \lesssim 5$~GeV, and the model compensates for the
+ToF-based overestimate visible at $\Ekin > 2$~GeV in the pure ToF
+estimator of Eq.~\eqref{eq:etof} (compare
+Ref.~\cite{Morozov2024HGND}, Fig.~13).  The relative energy resolution
+is $\sigma_E/E < 10\%$ over the same interval.
+%% TODO(sec:performance): quote final resolution vs Ekin curve.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/ereco_vs_etrue_placeholder}
+  \caption{Cluster-level $E_{\text{reco}}$ vs. $E_{\text{true}}$ 2D
+    histogram (log colour).  Dashed line is $y=x$.  Compare to
+    Ref.~\cite{Morozov2024HGND} Fig.~13 (right).
+    %% TODO(fig:ereco): swap in final PDF.
+  }
+  \label{fig:ereco}
+\end{figure}
+
+\subsection{Neutron multiplicity}
+
+The multiplicity confusion matrix
+$N_{\text{reco}}^{\text{cl}} \times N_{\text{true}}$ at threshold
+$t = 0.5$ is shown in Fig.~\ref{fig:mult}.  The pipeline resolves up
+to $\NUM{3}{}{Dombay slide 15}$ ``good'' neutron clusters per event;
+horizontal (vertical) normalisation quantifies efficiency (purity)
+as a function of multiplicity.  The event-level neutron multiplicity
+distribution reproduces the shape reported in
+Ref.~\cite{Morozov2024HGND} Fig.~9 within statistical uncertainties.
+For context, the DCM-QGSM-SMM simulation predicts that single-neutron
+events account for $\sim 17.3\%$ of all Bi+Bi @ $3.0$~AGeV events
+reaching the \HGND{} surface ($\sim 76\%$ of neutron-containing
+events), and $\sim 12.7\%$ for the Xe+CsI @ $3.8$~AGeV
+sample~\cite{Morozov2024HGND}.  Folded with the nominal \BMN{}
+operation cycle ($10^{6}$~ions/spill, 50\% duty factor, 70\%
+Nuclotron efficiency, 2\% target interaction length) and the mean
+detection efficiency reported below, Ref.~\cite{Morozov2024HGND}
+projects $\sim 1.2$–$1.5\times 10^{9}$ reconstructed single-neutron
+events per month of Bi+Bi running and $\sim 0.9\times 10^{9}$ per
+month of Xe+CsI running.  These statistics comfortably cover the
+multi-dataset sensitivity study of Sec.~\ref{sec:sensitivity}.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/multiplicity_placeholder}
+  \caption{Neutron multiplicity: (left) event-level $N_n$ per event,
+    (right) confusion matrix $N_{\text{reco}} \times N_{\text{true}}$
+    at threshold $t = 0.5$.
+    %% TODO(fig:mult): reproduce from Dombay slides 15--16 with the
+    %% final SLURM checkpoint.
+  }
+  \label{fig:mult}
+\end{figure}
+
+% =====================================================================
+\section{Sensitivity to the nuclear symmetry potential}
+\label{sec:sensitivity}
+% ---------------------------------------------------------------------
+% *** Headline result section ***
+% Everything downstream of the SLURM full-scale sweep lands here.
+% Current smoke-scale numbers are placeholders; the section outline
+% is fixed so full-scale drop-in is mechanical.
+% ---------------------------------------------------------------------
+
+The physics observable of interest is the reconstructed neutron
+kinetic-energy yield per event as a function of the assumed symmetry
+potential.  We compare the three \SMASH{} datasets on equal footing:
+identical GNN weights (trained on \texttt{defaultSpot}), identical
+number of evaluation events per dataset, identical binning, and
+identical decision threshold.
+
+\subsection{MC-truth benchmark}
+
+Before evaluating the reconstruction we plot the per-event MC-truth
+neutron spectrum for each dataset, defined as one entry per unique
+$(\text{event}, \text{track})$ signal neutron
+($\texttt{n0\_label}=1$).  This is the physical spectrum the
+pipeline aims to recover in the limit of perfect reconstruction and
+zero background, and it also sets the natural upper bound on any
+efficiency-corrected reconstructed yield.  Figure~\ref{fig:mctruth}
+shows the three spectra.  Any downstream cross-dataset comparison must
+either normalise these curves to unit area or explicitly account for
+their differences.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/mctruth_spectra_placeholder}
+  \caption{Per-event MC-truth neutron kinetic-energy spectra for the
+    three \SMASH{} samples (\texttt{zeroSpot}: $\Usym=0$~MeV,
+    \texttt{defaultSpot}: $\Usym=18$~MeV, \texttt{bigSpot}:
+    $\Usym=90$~MeV).  Error bars are $\sqrt{N}$ Poisson counts.
+    %% TODO(fig:mctruth): swap in
+    %%   notebooks/results/sensitivity_full/mctruth_spectra.png
+  }
+  \label{fig:mctruth}
+\end{figure}
+
+\subsection{Per-dataset efficiency}
+
+The per-dataset per-bin reconstruction efficiency
+\begin{equation}
+  \eff(\Ekin, t;\, d)
+  = P\!\left( s > t \,\middle|\, y=1,\; E_{\text{true}}\in\text{bin}(\Ekin),\; d\right)
+  \label{eq:eps}
+\end{equation}
+is estimated from the same signal-cluster population that provides the
+MC-truth benchmark; error bars are the Wilson binomial score interval
+\cite{Wilson1927} so that low-statistics bins do not collapse to
+$\{0,1\}$ with vanishing uncertainty.  Figure~\ref{fig:eff}
+reports $\eff(\Ekin)$ at the working point $t = 0.5$; the three
+datasets differ only through the underlying $\Usym$-dependent MC
+spectrum, and any residual $\eff$ mismatch is a systematic that must
+be tracked in the closure test below.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/efficiency_vs_ekin_placeholder}
+  \caption{Per-dataset reconstruction efficiency $\eff_n(\Ekin)$ at
+    $t=0.5$ with Wilson binomial intervals.
+    %% TODO(fig:eff): swap in efficiency_vs_ekin.png from full run.
+  }
+  \label{fig:eff}
+\end{figure}
+
+\subsection{Solved neutron yield $\Ntrue(\Ekin)$}
+
+The efficiency-corrected observable is
+\begin{equation}
+  \Ntrue(\Ekin;\, d)
+  = \Nreco(\Ekin;\, d) \,/\, \eff(\Ekin;\, d),
+  \label{eq:solved}
+\end{equation}
+with the uncertainty on $\Ntrue$ propagated in quadrature from the
+Poisson error on $\Nreco$ and the Wilson interval on $\eff$.  We
+report both raw and efficiency-corrected yields per event
+($\NperEv{\Nreco}$ and $\NperEv{\Ntrue}$) and overlay the per-event
+MC-truth benchmark as a reference.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/sensitivity_yield_placeholder}
+  \caption{Per-event reconstructed yield $\NperEv{\Nreco}$ (left) and
+    efficiency-corrected yield $\NperEv{\Ntrue}$ (right) versus
+    $\Ekin$ for the three \SMASH{} samples.  Dashed lines are the
+    per-event MC-truth benchmark.
+    %% TODO(fig:yield): swap in sensitivity_yield_analysis.png.
+  }
+  \label{fig:yield}
+\end{figure}
+
+\subsection{Cross-dataset ratios and closure}
+
+The sensitivity signal is the ratio
+$\NperEv{\Ntrue}(d)/\NperEv{\Ntrue}(\text{defaultSpot})$ for
+$d \in \{\text{zeroSpot}, \text{bigSpot}\}$.  A pipeline that faithfully
+recovers the underlying physics returns ratios that (i) differ from
+unity by more than the propagated uncertainties in physically
+meaningful $\Ekin$ regions, and (ii) track the corresponding MC-truth
+ratios (dashed reference in Fig.~\ref{fig:ratio}).  Any residual
+discrepancy between reco and MC-truth ratios is the systematic ceiling
+of the current analysis.
+
+We additionally quote a \emph{closure} metric,
+$\Ntrue/\Nmc$, integrated over all $\Ekin$ bins.  Values within
+$1\pm\sigma_{\text{stat}}$ across the three datasets are the minimum
+prerequisite for a physics interpretation of the cross-dataset shape
+comparison.  Non-uniform closure across datasets folds directly into
+the systematic uncertainty on the ratio.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/sensitivity_ratios_placeholder}
+  \caption{Cross-dataset per-event yield ratios
+    $\Ntrue(\Usym)/\Ntrue(\Usym{=}18\,\text{MeV})$
+    for $\Usym \in \{0, 90\}$~MeV (solid) versus the corresponding
+    MC-truth ratios (dashed).  Deviation from unity in excess of the
+    error band is the sensitivity signal.
+    %% TODO(fig:ratio): swap in sensitivity_ratios.png.
+  }
+  \label{fig:ratio}
+\end{figure}
+
+\begin{table}[!t]
+  \centering
+  \caption{Sensitivity summary at threshold $t = 0.5$ (placeholder
+    numbers from the smoke run; final values from full SLURM sweep).
+    $N_{\text{ev}}$ is the per-dataset evaluation-split event count;
+    closure is $\Ntrue/\Nmc$.}
+  \label{tab:summary}
+  \begin{tabular}{lrrrrrr}
+    \toprule
+    Dataset      & $\Usym$ & $N_{\text{ev}}$ & $\NperEv{\Nreco}$
+                 & $\NperEv{\Ntrue}$ & $\NperEv{\Nmc}$ & closure \\
+    \midrule
+    \texttt{zeroSpot}    & 0   & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
+    \texttt{defaultSpot} & 18  & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
+    \texttt{bigSpot}     & 90  & \TODO{} & \TODO{} & \TODO{} & \TODO{} & \TODO{} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Threshold-scan robustness and operating-point choice}
+
+Cluster candidacy is enforced by a single cut $s > t$ on the
+per-cluster classifier score.  We treat $t$ as a
+\emph{physics-optimized free parameter}, not a canonical value:
+the value quoted in Sec.~\ref{sec:performance} at $t = 0.5$ is
+reported for continuity with the analysis-and-detector-meeting
+plots~\cite{Bocharnikov2026Dombay} and to allow direct comparison
+with the earlier prototype baselines of Ref.~\cite{Morozov2024HGND},
+but the final analysis operating point is chosen to maximise a
+physics-driven figure of merit rather than to hit a fixed classifier
+score.  Two conventions are quoted:
+\begin{itemize}
+  \item \textbf{Purity-locked benchmark.} Following
+    Ref.~\cite{Morozov2024HGND}, we quote the reconstruction
+    efficiency vs.\ $\Ekin$ at the threshold that yields a global
+    signal purity of $\pi = 0.7$.  This is the operating point used
+    for cross-checks against the rule-based cluster baseline of
+    Sec.~\ref{sec:gnn:baseline}.
+  \item \textbf{Sensitivity-optimal.} For the cross-dataset ratio
+    plots in Fig.~\ref{fig:ratio} we scan $t \in [0.05, 0.95]$ and
+    pick $t^{\star}$ that maximises the significance
+    $|\Ntrue(\Usym{=}0) - \Ntrue(\Usym{=}90)|
+     / \sqrt{\Ntrue(\Usym{=}18)}$
+    integrated over $0.5 \le \Ekin \le 4$~GeV.  The stability of the
+    resulting ratio under $t \to t \pm 0.15$ is reported as a
+    threshold systematic.
+\end{itemize}
+Figure~\ref{fig:threshold} overlays cross-dataset ratios for
+$t \in \{0.3, 0.5, 0.7\}$; a stable shape across thresholds indicates
+the sensitivity signal is not an artefact of a particular operating
+point.
+%% TODO(sec:sensitivity): confirm the smoke-scale trend survives at
+%% full scale.  If not, defer the qualitative sensitivity claim.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/sensitivity_threshold_scan_placeholder}
+  \caption{Threshold-scan robustness of the cross-dataset per-event
+    yield ratios.
+    %% TODO(fig:threshold): swap in sensitivity_threshold_scan.png.
+  }
+  \label{fig:threshold}
+\end{figure}
+
+% =====================================================================
+\section{Systematic uncertainties}
+\label{sec:systematics}
+% ---------------------------------------------------------------------
+% Enumerate what has been quantified vs. what is deferred.  Anticipate
+% the reviewer questions on: scaler drift, model family, seed variance,
+% closure bias, MC-truth definition.
+% ---------------------------------------------------------------------
+
+We identify the following sources of systematic uncertainty on the
+per-event yield ratio.  Each is discussed with the mitigation in
+place at time of writing and the reference plot or table where the
+impact is quantified.
+
+\begin{enumerate}
+  \item \textbf{Cross-dataset feature-scaler drift.}
+    Each \SMASH{} dataset fits its own \texttt{StandardScaler} during
+    preprocessing (see Sec.~\ref{sec:simulation}).  Evaluating a model
+    trained on \texttt{defaultSpot} on the two other datasets
+    therefore introduces a controlled input-distribution shift.
+    Impact on the closure metric: \TODO{quote from full run}.
+    Mitigation: refit a global scaler on the pooled datasets and
+    re-evaluate; report both closure values.
+  \item \textbf{Non-uniform closure.}
+    A dataset-dependent $\Ntrue/\Nmc$ folds directly into the ratio
+    plot; we quote the maximum $|\text{closure}(d) - 1|$ across the
+    three datasets as an additional systematic on the ratio.
+  \item \textbf{Model-family disagreement.}
+    We reweight the analysis using \texttt{hetero\_hgt} and
+    \texttt{spectral\_dynedge} checkpoints and quote the spread on
+    the per-event ratio as a model systematic.
+    %% TODO(sec:sys): produce a comparison table across model families.
+  \item \textbf{Seed variance.}
+    Three independent training seeds per model provide the intra-model
+    training noise; quoted as an additional error band.
+  \item \textbf{Threshold choice.}
+    Included via the scan in Fig.~\ref{fig:threshold}.
+  \item \textbf{Binning + MC-truth definition.}
+    We report per-cluster ($\texttt{cl\_label}=1$) and per-neutron
+    (unique \texttt{(Row, Id)} tracks with $\texttt{n0\_label}=1$)
+    conventions consistently; downstream ratios are invariant under
+    the choice provided the same convention is used in numerator and
+    denominator.
+  \item \textbf{Detector-response systematics.}
+    Time-resolution smearing, per-cell energy calibration, and dead
+    channels follow Ref.~\cite{Morozov2024HGND}; we do not repeat
+    those studies here.
+\end{enumerate}
+
+% =====================================================================
+\section{Summary and outlook}
+\label{sec:summary}
+% ---------------------------------------------------------------------
+
+We have presented a graph-neural-network based neutron reconstruction
+pipeline for the \HGND{} at \BMN{} and used it to establish the first
+end-to-end sensitivity benchmark of the detector concept to the
+nuclear symmetry potential in three \SMASH{} Xe+Cs simulations.
+%% TODO(sec:summary): write one paragraph of headline numbers once the
+%% full SLURM sweep is complete.
+
+The next steps toward first-data readiness are:
+(i) closure-driven refinement of the efficiency correction so that
+$\Ntrue/\Nmc \to 1$ uniformly across datasets;
+(ii) a differentiable clustering step to replace the fixed
+$r_{\text{loc}}, \Delta t$ radius-graph;
+(iii) a domain-adaptation study to bridge the MC$\to$real-data
+gap using the first \BMN{} Xe+Cs sample;
+(iv) inclusion of the proton observables from complementary \BMN{}
+subdetectors to convert the neutron-only sensitivity into an
+$n/p$-ratio measurement directly comparable to
+FOPI/LAND~\cite{FOPI_LAND1, FOPI_LAND2} at BM@N energies.
+
+% =====================================================================
+\begin{acknowledgments}
+This work was carried out at the Institute for Nuclear Research,
+Russian Academy of Sciences, and supported by the Russian Scientific
+Foundation grant No.~22-12-00132.  This research received funding from
+the Basic Research Program at the National Research University Higher
+School of Economics.  Computational resources were provided by the
+HPC facilities at HSE University.
+\end{acknowledgments}
+
+% =====================================================================
+\appendix
+\section{Reproducibility}
+\label{sec:reproducibility}
+% ---------------------------------------------------------------------
+% Mention the analysis repo, SLURM/local scripts, seed, dataset
+% checksums.  Ties directly to notebooks/scripts/slurm layout.
+% ---------------------------------------------------------------------
+
+All analysis code, training scripts, and figure-producing notebooks
+are released with this paper at
+\CITENEEDED{repo url + tag}.
+The pipeline supports two execution modes with identical code paths:
+\begin{itemize}
+  \item \emph{Local (macOS/MPS, laptop).}
+    Smoke-scale reproduction runs on a subset of the \SMASH{} data
+    via \texttt{scripts/run\_sensitivity\_smoke.sh} in
+    $\sim 5$~min wall time; peak resident memory
+    $< 3$~GB.  A memory-safe device planner
+    (\texttt{HGNDRecoGNN.device}) auto-selects CUDA $\to$ MPS $\to$
+    CPU and applies per-submodule CPU pinning for MPS-hostile
+    ops (\texttt{DynamicEdgeConv} in particular).
+  \item \emph{Cluster (SLURM/CUDA).}
+    Full-scale runs are driven by
+    \texttt{slurm/sensitivity\_full.sbatch} and support array-job
+    sweeps across models via \texttt{--array=0-2}.  Per-run wall
+    time is \NUM{6}{\text{h}}{measure} on a single A100.
+\end{itemize}
+Random seed 42 is used throughout; deterministic
+\texttt{torch\_geometric} loaders are enabled.  Dataset shard
+manifests (\texttt{meta.json}) record schema version, event count,
+and per-shard checksum.
+
+%% TODO(sec:reproducibility): add the git tag, DOI, and dataset
+%% checksums once the paper is submitted.
+
+% =====================================================================
+% Bibliography
+% =====================================================================
+\bibliographystyle{apsrev4-2}
+% Inline biblist for the sketch; migrate to main.bib before submission.
+\begin{thebibliography}{99}
+
+\bibitem{Morozov2024HGND}
+  S.~Morozov \emph{et~al.},
+  ``The Highly-Granular Time-of-Flight Neutron Detector for the BM@N
+   experiment,''
+  arXiv:2412.00455 (2024).
+
+\bibitem{Guber2023HGND}
+  F.~Guber \emph{et~al.},
+  ``Development of high granular neutron time-of-flight detector for
+   the BM@N experiment,''
+  arXiv:2309.09610 (2023).
+
+\bibitem{Finogeev2024TDC}
+  D.~Finogeev \emph{et~al.},
+  ``Development of a 100~ps TDC based on a Kintex 7 FPGA for the high
+   granular neutron time-of-flight detector for the BM@N experiment,''
+  Nucl.~Instrum.~Meth.~A \textbf{1059}, 168952 (2024).
+
+\bibitem{Guber2023SiPM}
+  F.~Guber \emph{et~al.},
+  ``Measurement of time resolution of scintillation detectors with
+   EQR-15 SiPMs for the ToF neutron detector of the BM@N experiment,''
+  arXiv:2309.03614 (2023).
+
+\bibitem{Afanasiev2024BMN}
+  S.~Afanasiev \emph{et~al.},
+  ``The BM@N spectrometer at the NICA accelerator complex,''
+  Nucl.~Instrum.~Meth.~A \textbf{1065}, 169532 (2024);
+  arXiv:2312.17573.
+
+\bibitem{BMN_EPJ}
+  M.~Kapishin (BM@N Collaboration),
+  ``Studies of baryonic matter at the BM@N experiment (JINR),''
+  Nucl.~Phys.~A \textbf{982}, 967 (2019).
+
+\bibitem{Cleymans}
+  J.~Randrup and J.~Cleymans,
+  ``Maximum freeze-out baryon density in nuclear collisions,''
+  Phys.~Rev.~C \textbf{74}, 047901 (2006).
+
+\bibitem{Friman}
+  B.~Friman, W.~N\"orenberg, and V.~D.~Toneev,
+  ``The quark condensate in relativistic nucleus-nucleus collisions,''
+  Eur.~Phys.~J.~A \textbf{3}, 165 (1998).
+
+\bibitem{Senger2022BMN}
+  P.~Senger (BM@N Collaboration),
+  ``The heavy-ion program at the upgraded BM@N experiment at NICA,''
+  PoS \textbf{CPOD2021}, 033 (2022).
+
+\bibitem{Sorensen2024EoS}
+  A.~Sorensen \emph{et~al.},
+  ``Dense nuclear matter equation of state from heavy-ion collisions,''
+  Prog.~Part.~Nucl.~Phys.~\textbf{134}, 104080 (2024).
+
+\bibitem{LeFevre2015}
+  A.~Le~F\`evre \emph{et~al.},
+  ``Constraining the nuclear matter equation of state around twice
+   saturation density,''
+  Nucl.~Phys.~A \textbf{945}, 112 (2016).
+
+\bibitem{E895_ellipticFlow}
+  C.~Pinkenburg \emph{et~al.} (E895 Collaboration),
+  ``Elliptic flow: transition from out-of-plane to in-plane emission
+   in Au+Au collisions,''
+  Phys.~Rev.~Lett.~\textbf{83}, 1295 (1999).
+
+\bibitem{E895_sideFlow}
+  H.~Liu \emph{et~al.} (E895 Collaboration),
+  ``Sideward flow in Au+Au collisions between 2 and 8~AGeV,''
+  Phys.~Rev.~Lett.~\textbf{84}, 5488 (2000).
+
+\bibitem{E895_diffElliptic}
+  P.~Chung \emph{et~al.} (E895 Collaboration),
+  ``Differential elliptic flow in 2--6 AGeV Au+Au collisions: a new
+   constraint for the nuclear equation of state,''
+  Phys.~Rev.~C \textbf{66}, 021901 (2002).
+
+\bibitem{Burgio2020NuclearMatter}
+  G.~F.~Burgio and I.~Vidana,
+  ``The Equation of State of Nuclear Matter: from Finite Nuclei to
+   Neutron Stars,''
+  Universe \textbf{6} (8), 119 (2020).
+
+\bibitem{FOPI_LAND1}
+  Y.~Leifels \emph{et~al.},
+  ``Exclusive studies of neutron and charged particle emission in
+   Au+Au at 400~MeV/nucleon,''
+  Phys.~Rev.~Lett.~\textbf{71}, 963 (1993).
+
+\bibitem{FOPI_LAND2}
+  D.~Lambrecht \emph{et~al.},
+  ``Energy dependence of collective flow of neutrons and protons in
+   Au+Au collisions,''
+  Z.~Phys.~A \textbf{350}, 115 (1994).
+
+\bibitem{LongWei2022}
+  X.-X.~Long and G.-F.~Wei,
+  ``Effects of incompressibility $K_0$ in heavy-ion collisions at
+   intermediate energies,''
+  Phys.~Rev.~C \textbf{109}, 054619 (2024).
+
+\bibitem{SMASH}
+  J.~Weil \emph{et~al.} (\SMASH{} Collaboration),
+  ``Particle production and equilibrium properties within a new
+   hadron-transport approach for heavy-ion collisions,''
+  Phys.~Rev.~C \textbf{94}, 054905 (2016);
+  \CITENEEDED{SMASH DOI update if newer reference exists}.
+
+\bibitem{Geant4}
+  S.~Agostinelli \emph{et~al.} (\GEANT{} Collaboration),
+  ``Geant4 --- a simulation toolkit,''
+  Nucl.~Instrum.~Meth.~A \textbf{506}, 250 (2003).
+
+\bibitem{bmnroot}
+  BM@N Collaboration,
+  ``\texttt{bmnroot}: simulation and analysis framework for the BM@N
+   experiment,''
+  \url{https://git.jinr.ru/nica/bmnroot}.
+
+\bibitem{Baznat2020DCMSMM}
+  M.~Baznat, A.~Botvina, G.~Musulmanbekov, V.~Toneev, and V.~Zhezher,
+  ``Monte-Carlo Generator of Heavy Ion Collisions DCM-SMM,''
+  Phys.~Part.~Nucl.~Lett.~\textbf{17}, 303 (2020).
+
+\bibitem{Wilson1927}
+  E.~B.~Wilson,
+  ``Probable inference, the law of succession, and statistical inference,''
+  J.~Amer.~Statist.~Assoc.~\textbf{22}, 209 (1927).
+
+\bibitem{FeyLenssen2019PyG}
+  M.~Fey and J.~E.~Lenssen,
+  ``Fast Graph Representation Learning with PyTorch Geometric,''
+  ICLR Workshop on Representation Learning on Graphs and Manifolds (2019).
+
+\bibitem{KipfWelling2016GCN}
+  T.~N.~Kipf and M.~Welling,
+  ``Semi-supervised classification with graph convolutional networks,''
+  arXiv:1609.02907 (2016).
+
+\bibitem{Bocharnikov2026Dombay}
+  V.~Bocharnikov,
+  ``Graph Neural Network-based neutron reconstruction in the HGND at
+   the BM@N experiment,''
+  presentation at the BM@N Analysis and Detector Meeting,
+  26 February 2026 (unpublished).
+
+\end{thebibliography}
+
+\end{document}
