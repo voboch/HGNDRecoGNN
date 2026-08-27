@@ -32,7 +32,7 @@ source /etc/profile 2>/dev/null || true
 set -euo pipefail
 
 : "${ENV_NAME:=hgnd-env}"
-: "${PROJECT_DIR:=$HOME/HGNDRecoGNN}"
+: "${PROJECT_DIR:=$HOME}"
 : "${SCRATCH:=/scratch/$USER}"
 : "${CKPT:=$SCRATCH/hgnd/checkpoints/defaultSpot_v2_seed42_20ep_after4278192/model.pt}"
 : "${BATCH_SIZE:=512}"
@@ -45,8 +45,10 @@ module load cuda/12.9.1
 # shellcheck disable=SC1091
 source activate "$ENV_NAME" 2>/dev/null || conda activate "$ENV_NAME"
 
-mkdir -p logs
+# See preprocess_all_smash.hpc.sbatch for the HGNDRecoGNN sys.path fix.
 cd "$PROJECT_DIR"
+export PYTHONPATH="$HOME/HGNDRecoGNN:${PYTHONPATH:-}"
+mkdir -p "${SLURM_SUBMIT_DIR:-$HOME/HGNDRecoGNN}/logs"
 
 OUT_ROOT="$SCRATCH/hgnd/results/sensitivity_full_hpc_${SLURM_JOB_ID:-local}"
 mkdir -p "$OUT_ROOT"

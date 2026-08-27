@@ -30,7 +30,7 @@ source /etc/profile 2>/dev/null || true
 set -euo pipefail
 
 : "${ENV_NAME:=hgnd-env}"
-: "${PROJECT_DIR:=$HOME/HGNDRecoGNN}"
+: "${PROJECT_DIR:=$HOME}"
 : "${SCRATCH:=/scratch/$USER}"
 : "${NUM_WORKERS:=${SLURM_CPUS_PER_TASK:-8}}"
 
@@ -40,7 +40,12 @@ module load cuda/12.9.1
 # shellcheck disable=SC1091
 source activate "$ENV_NAME" 2>/dev/null || conda activate "$ENV_NAME"
 
+# HGNDRecoGNN package lives at $HOME/HGNDRecoGNN/HGNDRecoGNN/. The parent
+# must be on sys.path for `python -m HGNDRecoGNN.*` to resolve. Older
+# preprocess job 4278192 worked because PROJECT_DIR defaulted to $HOME
+# and PYTHONPATH was inherited from the shell. Force both explicitly.
 cd "$PROJECT_DIR"
+export PYTHONPATH="$HOME/HGNDRecoGNN:${PYTHONPATH:-}"
 
 DATASETS=(zeroSpot defaultSpot bigSpot)
 IDX="${SLURM_ARRAY_TASK_ID:-0}"

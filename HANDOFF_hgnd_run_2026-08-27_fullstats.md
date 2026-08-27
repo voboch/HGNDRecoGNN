@@ -126,12 +126,40 @@ Purity-lock CLI: ~1 min.
 
 ## 4. Retrieve to laptop
 
+`login-02` is not directly reachable from the laptop (`ssh charisma`
+lands on `sms`, per §7 of the original `HANDOFF_hgnd.md`), so a
+one-shot `rsync login-02:...` will not work without extra ssh
+config. Two reliable options:
+
+**Option A — one-shot two-hop tar** (no ssh-config changes):
+
 ```bash
-# From your laptop, replace <JOBID> with the actual Slurm job id.
 JOB=<JOBID>
-mkdir -p ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB
-rsync -av login-02:/scratch/vbocharnikov/hgnd/results/sensitivity_full_hpc_$JOB/ \
-      ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB/
+mkdir -p ~/Project/BM@N/HGND/HGNDRecoGNN/results
+ssh charisma "ssh -A -o IdentitiesOnly=no -o StrictHostKeyChecking=no login-02 \
+    'tar czf - -C /scratch/vbocharnikov/hgnd/results sensitivity_full_hpc_$JOB'" \
+    > ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB.tar.gz
+tar xzf ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB.tar.gz \
+    -C ~/Project/BM@N/HGND/HGNDRecoGNN/results/
+```
+
+**Option B — rsync via ProxyJump** (persistent one-line rsync).
+Add to the laptop's `~/.ssh/config` (leaves the cluster config
+untouched per §7):
+
+```
+Host login-02 login-*
+    HostName login-02
+    User vbocharnikov
+    ProxyJump charisma
+    ForwardAgent yes
+```
+
+Then:
+
+```bash
+rsync -av login-02:/scratch/vbocharnikov/hgnd/results/sensitivity_full_hpc_$JOB \
+      ~/Project/BM@N/HGND/HGNDRecoGNN/results/
 ```
 
 The `results/` tree is gitignored (see `.gitignore`), so the CSVs
