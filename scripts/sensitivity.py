@@ -186,8 +186,21 @@ def main() -> int:
             row_filter = set(cluster_dfs[name]['Row'].unique())
             counts, ne = _mc_truth_per_neutron(parquet, row_filter, bins)
             mc_from_parquet[name] = (counts, ne)
+            n_pred_events = len(row_filter)
             print(f'  MC parquet: {name:15s}  {counts.sum():,} neutrons in '
                   f'{ne:,} events  ({parquet})')
+            # Integrity guard — the 2026-08-27 4284506 pre-fix run silently
+            # pulled the tiny _smoke parquet for zeroSpot / bigSpot, and the
+            # parquet-event count came in at <1% of the prediction-event
+            # count. Warn on anything below 50% coverage so future runs cannot
+            # regress into that mode without a visible flag.
+            if n_pred_events > 0 and ne < 0.5 * n_pred_events:
+                print(f'  MC parquet: {name:15s}  WARNING parquet covers '
+                      f'{ne:,} events but predictions have {n_pred_events:,} '
+                      f'unique Row IDs ({100*ne/n_pred_events:.1f}% coverage) '
+                      f'— MC-truth counts will be undercounted. Check that '
+                      f'the parquet in {parquet} matches the dataset used '
+                      f'for evaluation.', file=sys.stderr)
 
     os.makedirs(args.out_dir, exist_ok=True)
     for name, df in tables.items():

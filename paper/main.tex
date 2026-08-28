@@ -98,40 +98,38 @@
 \date{\today}
 
 \begin{abstract}
-%% TODO(abstract): rewrite once the sensitivity result is final.
-%% Draft:
-We investigate the sensitivity of the Highly-Granular Time-of-Flight
-Neutron Detector (\HGND{}) of the fixed-target \BMN{} experiment at
-JINR to the nuclear symmetry potential $\Usym$ using a graph
-neural-network (GNN) based neutron reconstruction algorithm.  The
-detector concept, geometry, and time-of-flight response are those of
-Morozov \emph{et~al.}~\cite{Morozov2024HGND}.
-Neutron identification, energy regression, and multiplicity
-reconstruction are performed cluster-wise with a heterogeneous GNN
-trained on \DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+CsI simulations.
-The reconstructed per-event neutron kinetic-energy spectra
-$\Nreco(\Ekin)$ are efficiency-corrected against a Monte-Carlo (MC)
-truth benchmark to yield the solved neutron yield
-$\Ntrue(\Ekin) = \Nreco(\Ekin)/\eff(\Ekin)$.
-We compare $\Ntrue(\Ekin)$ across three \SMASH{} datasets with symmetry
-potentials $\Usym = \{0, 18, 90\}$~MeV
-(\texttt{zeroSpot}/\texttt{defaultSpot}/\texttt{bigSpot}) and quantify
-the pipeline's sensitivity to $\Usym$ as a function of $\Ekin$, decision
-threshold, and reconstruction model.
-Key numerical results on the HPC-trained checkpoint
-(\texttt{net\_default}, $H=512$, $L=8$, 20 epochs):
-per-event neutron detection efficiency $\eff_{\text{ev}} = 0.841$ at
-locked signal purity $\pi = 0.706$ (cluster efficiency 0.735;
-cluster ROC AUC 0.944); energy resolution below 10\% for
-$0.7 \lesssim \Ekin \lesssim 5$~GeV.  At full statistics
-($\sim 10^{5}$--$6 \times 10^{5}$ events per dataset in the seed-42
-test half) the three \SMASH{} samples show per-cluster closure
-$C_c = 1.275 \pm 0.010$ (spread 1.4\%) at $t = 0.5$ and
-$C_c = 1.462 \pm 0.006$ (spread 0.75\%) at the purity-locked working
-point, uniform across $\Usym$; the per-neutron closure
-$C_\nu = 0.891 \pm 0.023$ (spread 4.5\%) is compatible with the
-$\sim 4.4\%$ physical spread in the clusters-per-neutron ratio
-$k(\Usym) = 0.670$--$0.714$ (Sec.~\ref{sec:closure}).
+We present a heterogeneous graph-neural-network (GNN) reconstruction
+algorithm for the Highly-Granular Time-of-Flight Neutron Detector
+(\HGND{}) of the fixed-target \BMN{} experiment at JINR.  The
+detector concept, geometry, and time-of-flight response follow
+Morozov \emph{et~al.}~\cite{Morozov2024HGND}.  Compared with the
+two-network prototype reported there, the pipeline operates
+cluster-wise on a single hetero-GNN that jointly produces a neutron
+score, an energy prediction, and a link-classification output on
+each candidate cluster; it is trained end-to-end on
+\DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+Cs simulations.
+On the \DCM{} test split the checkpoint (\texttt{net\_default},
+$H=512$, $L=8$, 20 epochs) reaches cluster ROC AUC 0.944 and, at a
+signal-purity-locked working point of $\pi = 0.706$, cluster
+efficiency 0.735 and per-event neutron detection efficiency 0.841
+(Table~\ref{tab:eff_ekin}), matching the prototype benchmarks of
+Ref.~\cite{Morozov2024HGND}; the relative energy resolution is
+below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV.
+As a pipeline-calibration cross-check we evaluate the same
+checkpoint on three \SMASH{} samples with different values of the
+nuclear symmetry potential ($\Usym = 0$, $18$, $90$~MeV) and
+introduce a decomposition of the closure metric into a per-cluster
+pipeline term and a physical clusters-per-neutron ratio
+(Sec.~\ref{sec:closure}); at full statistics the per-cluster closure
+$C_c$ is uniform across the three samples to $1.4\%$ at $t = 0.5$
+and $0.75\%$ at the purity-locked point.
+The associated per-neutron sensitivity to $\Usym$ is
+\emph{provisional}: it is folded with the same MC-truth definition
+used to train the network, and the SMASH samples underlying the
+three-dataset comparison have an upstream simulation bug reported
+after the analysis was frozen for this draft.  A physics-quality
+symmetry-potential measurement is deferred to a follow-up paper on
+re-simulated data (Sec.~\ref{sec:summary}).
 \end{abstract}
 
 \maketitle
