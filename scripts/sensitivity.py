@@ -40,10 +40,13 @@ def _add_package_to_path() -> None:
 def _discover_parquet(cache_root: str, name: str) -> str | None:
     """Find the raw-hits parquet for a dataset under a cache root.
 
-    Tries `_smoke`-suffixed dirs first (small subsets), then the full
-    `ndet_dataset_smash_<name>` directory. Returns None if nothing found.
+    Preference order: `_v2` (schema-v2 full builds) → unsuffixed
+    (legacy full builds, same raw data as v2 → Row IDs match) →
+    `_smoke` (smoke slices; only used as a last-resort fallback,
+    with a warning because a smoke parquet on full-stats predictions
+    produces silently wrong MC-truth counts).
     """
-    for suffix in ('_smoke', ''):
+    for suffix in ('_v2', '', '_smoke'):
         pat = os.path.join(
             cache_root,
             f'ndet_dataset_smash_{name}{suffix}',
@@ -51,6 +54,11 @@ def _discover_parquet(cache_root: str, name: str) -> str | None:
         )
         hits = glob.glob(pat)
         if hits:
+            if suffix == '_smoke':
+                print(f'  MC parquet: {name:15s}  WARNING using smoke '
+                      f'parquet; MC-truth will be undercounted if the '
+                      f'prediction covers more events than the smoke '
+                      f'subset ({hits[0]})', file=sys.stderr)
             return hits[0]
     return None
 

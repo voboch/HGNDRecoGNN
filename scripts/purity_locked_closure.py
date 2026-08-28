@@ -44,12 +44,19 @@ def _add_package_to_path() -> None:
 
 
 def _discover_parquet(cache_root: str, name: str) -> str | None:
-    for suffix in ('_smoke', ''):
+    # See scripts/sensitivity.py::_discover_parquet — v2 → unsuffixed
+    # → smoke. Smoke is a last-resort fallback (warns to stderr) so
+    # full-stats predictions do not silently pull the tiny smoke
+    # parquet as their MC-truth reference.
+    for suffix in ('_v2', '', '_smoke'):
         pat = os.path.join(cache_root,
                            f'ndet_dataset_smash_{name}{suffix}',
                            'processed', '_hits_cache_*.parquet')
         hits = glob.glob(pat)
         if hits:
+            if suffix == '_smoke':
+                print(f'  MC parquet: {name:15s}  WARNING using smoke '
+                      f'parquet {hits[0]}', file=sys.stderr)
             return hits[0]
     return None
 
