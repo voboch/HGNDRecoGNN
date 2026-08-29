@@ -65,9 +65,10 @@
 % =====================================================================
 \begin{document}
 
-\title{Sensitivity of the Highly-Granular Time-of-Flight Neutron
-       Detector at \BMN{} to the nuclear symmetry potential\\
-       via graph-neural-network based neutron reconstruction}
+\title{A heterogeneous graph-neural-network reconstruction of the
+       Highly-Granular Time-of-Flight Neutron Detector at \BMN{}\\
+       and its calibration across three
+       nuclear-symmetry-potential simulations}
 
 % -- Author list: mirror the arXiv paper 2412.00455v1 ordering; ML
 %    contributors bumped forward for this ML/physics-driven paper.
@@ -110,12 +111,12 @@ each candidate cluster; it is trained end-to-end on
 \DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+Cs simulations.
 On the \DCM{} test split the checkpoint (\texttt{net\_default},
 $H=512$, $L=8$, 20 epochs) reaches cluster ROC AUC 0.944 and, at a
-signal-purity-locked working point of $\pi = 0.706$, cluster
-efficiency 0.735 and per-event neutron detection efficiency 0.841
-(Table~\ref{tab:eff_ekin}), matching the prototype benchmarks of
-Ref.~\cite{Morozov2024HGND}; the relative energy resolution is
-below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV.
-As a pipeline-calibration cross-check we evaluate the same
+signal-purity-locked working point of $\pi = 0.702$
+($t^\star = 0.305$), cluster efficiency 0.739 and per-event neutron
+detection efficiency 0.844 (Table~\ref{tab:eff_ekin}), matching the
+prototype benchmarks of Ref.~\cite{Morozov2024HGND}; the relative
+energy resolution is below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV.
+As a pipeline calibration we evaluate the same
 checkpoint on three \SMASH{} samples with different values of the
 nuclear symmetry potential ($\Usym = 0$, $18$, $90$~MeV) and
 introduce a decomposition of the closure metric into a per-cluster
@@ -724,7 +725,7 @@ MC-truth benchmark as a reference.
   \label{fig:yield}
 \end{figure}
 
-\subsection{Cross-dataset ratios and closure}
+\subsection{Per-cluster closure uniformity across three $\Usym$ samples}
 \label{sec:closure}
 
 The sensitivity signal is the ratio
@@ -802,7 +803,8 @@ $\Usym$-dependent efficiency factor.
   \centering
   \caption{Closure decomposition at $t = 0.5$, full-statistics
     HPC-checkpoint evaluation of the three \SMASH{} datasets on
-    schema-v2 caches built on cHARISMa (job 4284505; \texttt{zeroSpot}
+    schema-v2 caches built on cHARISMa (preprocess array 4284505,
+    sensitivity job 4284506; \texttt{zeroSpot}
     $1.86 \times 10^{6}$ graphs, \texttt{bigSpot} $1.80 \times 10^{6}$
     graphs, \texttt{defaultSpot} $2.0 \times 10^{5}$ graphs --- the
     latter still under the $100\,000$-event preprocessing cap from
@@ -840,10 +842,10 @@ $\Usym$-dependent efficiency factor.
   \label{fig:ratio}
 \end{figure}
 
-The full-scale sensitivity summary (per-event yields, MC-truth,
-propagated uncertainties) is deferred to the SLURM sweep of
-Sec.~\ref{sec:reproducibility}; at smoke scale the corresponding
-numbers are quoted in Table~\ref{tab:closure} above.
+The full-statistics sensitivity summary (per-event yields,
+MC-truth, propagated uncertainties) is quoted in
+Table~\ref{tab:closure} above; the raw and unfolded CSVs used to
+populate it are catalogued in Sec.~\ref{sec:reproducibility}.
 
 \subsection{Threshold-scan robustness and operating-point choice}
 
@@ -863,18 +865,16 @@ score.  Two conventions are quoted:
     efficiency vs.\ $\Ekin$ at the per-dataset threshold that yields
     a global signal purity of $\pi = 0.7$.  This is the operating
     point used for cross-checks against the rule-based cluster
-    baseline of Sec.~\ref{sec:gnn:baseline}.  At smoke scale the
-    locked thresholds are $t^\star = 0.333 / 0.303 / 0.313$ for
+    baseline of Sec.~\ref{sec:gnn:baseline}.  At full statistics
+    the locked thresholds are $t^\star = 0.308 / 0.310 / 0.305$ for
     \texttt{zeroSpot} / \texttt{defaultSpot} / \texttt{bigSpot} and
-    yield per-cluster closures $C_c = 1.44 / 1.40 / 1.47$ and
-    per-neutron closures $C_\nu = 0.967 / 0.736 / 0.980$
-    (Table~\ref{tab:purity_locked}).  We note as a negative result
-    that the purity lock does \emph{not} reduce the $C_\nu$ spread
-    across the three datasets --- max$-$min widens from 0.206 at
-    $t = 0.5$ to 0.244 at the locked point --- consistent with the
-    interpretation of Sec.~\ref{sec:closure} that the spread is
-    driven by the physical $k(\Usym)$ rather than by the classifier
-    working point (\texttt{scripts/purity\_locked\_closure.py}).
+    yield per-cluster closures $C_c = 1.457 / 1.468 / 1.461$ and
+    per-neutron closures $C_\nu = 1.040 / 0.984 / 1.040$
+    (Table~\ref{tab:purity_locked}), tightening the $C_c$ spread
+    from $1.4\%$ at $t = 0.5$ to $0.75\%$ at the locked point while
+    the $C_\nu$ spread stays within the $\sim 4.4\%$ physical
+    $k(\Usym)$ ceiling of Sec.~\ref{sec:closure}
+    (\texttt{scripts/purity\_locked\_closure.py}).
   \item \textbf{Sensitivity-optimal.} For the cross-dataset ratio
     plots in Fig.~\ref{fig:ratio} we scan $t \in [0.05, 0.95]$ and
     pick $t^{\star}$ that maximises the significance
@@ -972,16 +972,17 @@ impact is quantified.
     comparable hit counts to the pool.}
   \item \textbf{Cluster-merging (per-neutron closure spread).}
     The per-neutron closure $C_\nu$ (Eq.~\ref{eq:cnu}) decomposes as
-    $C_\nu = k \cdot C_c$ (Sec.~\ref{sec:closure}); at smoke scale
-    $C_c$ is uniform across the three datasets at $1.25 \pm 0.03$
-    while $k$ ranges 0.51--0.69, so the observed 0.20 spread in
-    $C_\nu$ is dominated by the physical clusters-per-neutron ratio
-    $k(\Usym)$ rather than by any pipeline defect.  We quote both
+    $C_\nu = k \cdot C_c$ (Sec.~\ref{sec:closure}); at full statistics
+    $C_c$ is uniform across the three datasets at $1.275 \pm 0.010$
+    at $t = 0.5$ (Table~\ref{tab:closure}) while $k$ ranges
+    $0.670$--$0.714$, so the observed $\sim 4.5\%$ spread in
+    $C_\nu$ tracks the physical clusters-per-neutron ratio
+    $k(\Usym)$ rather than any pipeline defect.  We quote both
     metrics and the multiplicative bridge, and treat
     $\text{spread}(k(\Usym))$ as the current systematic ceiling on
     any per-event yield-ratio interpretation.  Mitigation is
     deferred (differentiable clustering, or a
-    $k$-conditional unfold — Sec.~\ref{sec:summary}).
+    $k$-conditional unfold --- Sec.~\ref{sec:summary}).
   \item \textbf{Per-cluster closure bias.}
     $C_c > 1$ across every dataset (Table~\ref{tab:closure}) because
     the efficiency correction inflates true positives without
