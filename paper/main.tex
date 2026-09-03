@@ -325,7 +325,7 @@ $0.93$~AGeV below the 2023 \BMN{} first Xe+CsI physics run
 ($3.8$~AGeV) used to fix the DCM sample above; this offset is
 deliberate --- the \SMASH{} points were chosen to bracket the
 maximum-density working point where transport models predict the
-largest $\Usym$ signal~\cite{Sorensen2024EoS} \CITENEEDED{momentum-dependent Usym transport reference}, and
+largest $\Usym$ signal~\cite{Sorensen2024EoS, LiChen2008SymEnergy}, and
 the reconstruction pipeline is dataset-agnostic within the
 $0.3 \lesssim \Ekin \lesssim 4$~GeV \HGND{} acceptance so training
 transfers without retraining.  The three datasets are:
@@ -340,11 +340,13 @@ transfers without retraining.  The three datasets are:
     \bottomrule
   \end{tabular}
 \end{center}
-Only \texttt{defaultSpot} is fully preprocessed at the time of
-writing; the other two are reduced to smoke-scale subsets
-(\num{4000} graphs each) for laptop validation.  The full-scale
-preprocessing runs on 128~GB nodes and takes
-\NUM{4}{\text{h}}{estimate} per dataset (see
+All three datasets are fully preprocessed at
+$1.8$--$2.2 \times 10^{6}$ graphs each on cHARISMa
+(preprocess jobs 4284505 and 4290339).  Smoke-scale subsets
+(\num{4000} graphs each) are retained for laptop validation of
+the pipeline (see \texttt{tests/test\_sensitivity\_pipeline.py}).
+Full-scale preprocessing runs on 16-CPU-worker Rocky Linux 9 nodes
+and takes $2$--$3$~h per dataset (see
 Appendix~\ref{sec:reproducibility}).
 
 \paragraph*{Common preprocessing.}
@@ -429,14 +431,15 @@ $\{0.1, 0.5, 1, 2\}$.
 
 \subsection{Training procedure}
 
-Training is performed on a single NVIDIA A100 with the Adam optimizer
-(learning rate $10^{-3}$, weight decay $10^{-5}$),
-\texttt{MultiStepLR} milestones at epochs $\{10, 15, 25\}$
-($\gamma=0.1$), batch size 512, and a 50/50 train/test split (seed
-42).  Full-scale training runs for 20 epochs and completes in
-\NUM{4}{\text{h}}{measure on cluster} wall time.  Model checkpoints,
-training curves, and per-run manifests are archived under
-\texttt{checkpoints/} of the analysis repository.
+Training is performed on a single NVIDIA V100 (32 GB) node with
+the Adam optimizer (learning rate $10^{-3}$, weight decay
+$10^{-5}$), \texttt{MultiStepLR} milestones at epochs
+$\{10, 15, 25\}$ ($\gamma=0.1$), batch size 512, and a 50/50
+train/test split (seed 42).  Full-scale training runs for 20 epochs
+and completes in 1~h~39~min wall time on the cHARISMa cluster
+(reference job 4278194).  Model checkpoints, training curves, and
+per-run manifests are archived under \texttt{checkpoints/} of the
+analysis repository.
 
 \begin{figure}[!t]
   \centering
@@ -485,16 +488,14 @@ meeting~\cite{Bocharnikov2026Dombay}.  All quantities are computed
 from the prediction pickles under
 \texttt{notebooks/results/hpc\_defaultSpot\_v2\_seed42/}
 (cell 12 of \texttt{notebooks/evaluate\_hpc\_checkpoint.ipynb}).
-%% TODO(fig:roc): produce final figure from
 %%   notebooks/results/sensitivity_full/performance_defaultSpot.png
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/performance_roc_placeholder}
+  \includegraphics[width=\linewidth]{figs/performance_roc}
   \caption{Left: hit- and cluster-level ROC curves on the DCM sample
     (blinded to training events).  Right: purity and efficiency
     versus decision threshold for the best-cluster-per-event strategy.
-    %% TODO(fig:roc): swap in the final PDF.
   }
   \label{fig:roc}
 \end{figure}
@@ -540,15 +541,13 @@ ToF-based overestimate visible at $\Ekin > 2$~GeV in the pure ToF
 estimator of Eq.~\eqref{eq:etof} (compare
 Ref.~\cite{Morozov2024HGND}, Fig.~13).  The relative energy resolution
 is $\sigma_E/E < 10\%$ over the same interval.
-%% TODO(sec:performance): quote final resolution vs Ekin curve.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/ereco_vs_etrue_placeholder}
+  \includegraphics[width=\linewidth]{figs/ereco_vs_etrue}
   \caption{Cluster-level $E_{\text{reco}}$ vs. $E_{\text{true}}$ 2D
     histogram (log colour).  Dashed line is $y=x$.  Compare to
     Ref.~\cite{Morozov2024HGND} Fig.~13 (right).
-    %% TODO(fig:ereco): swap in final PDF.
   }
   \label{fig:ereco}
 \end{figure}
@@ -584,11 +583,10 @@ limited.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/multiplicity_placeholder}
+  \includegraphics[width=\linewidth]{figs/multiplicity}
   \caption{Neutron multiplicity: (left) event-level $N_n$ per event,
     (right) confusion matrix $N_{\text{reco}} \times N_{\text{true}}$
     at threshold $t = 0.5$.
-    %% TODO(fig:mult): reproduce from Dombay slides 15--16 with the
     %% final SLURM checkpoint.
   }
   \label{fig:mult}
@@ -626,12 +624,11 @@ their differences.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/mctruth_spectra_placeholder}
+  \includegraphics[width=\linewidth]{figs/mctruth_spectra}
   \caption{Per-event MC-truth neutron kinetic-energy spectra for the
     three \SMASH{} samples (\texttt{zeroSpot}: $\Usym=0$~MeV,
     \texttt{defaultSpot}: $\Usym=18$~MeV, \texttt{bigSpot}:
     $\Usym=90$~MeV).  Error bars are $\sqrt{N}$ Poisson counts.
-    %% TODO(fig:mctruth): swap in
     %%   notebooks/results/sensitivity_full/mctruth_spectra.png
   }
   \label{fig:mctruth}
@@ -656,10 +653,9 @@ be tracked in the closure test below.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/efficiency_vs_ekin_placeholder}
+  \includegraphics[width=\linewidth]{figs/efficiency_vs_ekin}
   \caption{Per-dataset reconstruction efficiency $\eff_n(\Ekin)$ at
     $t=0.5$ with Wilson binomial intervals.
-    %% TODO(fig:eff): swap in efficiency_vs_ekin.png from full run.
   }
   \label{fig:eff}
 \end{figure}
@@ -715,12 +711,11 @@ MC-truth benchmark as a reference.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/sensitivity_yield_placeholder}
+  \includegraphics[width=\linewidth]{figs/sensitivity_yield}
   \caption{Per-event reconstructed yield $\NperEv{\Nreco}$ (left) and
     efficiency-corrected yield $\NperEv{\Ntrue}$ (right) versus
     $\Ekin$ for the three \SMASH{} samples.  Dashed lines are the
     per-event MC-truth benchmark.
-    %% TODO(fig:yield): swap in sensitivity_yield_analysis.png.
   }
   \label{fig:yield}
 \end{figure}
@@ -831,13 +826,12 @@ $\Usym$-dependent efficiency factor.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/sensitivity_ratios_placeholder}
+  \includegraphics[width=\linewidth]{figs/sensitivity_ratios}
   \caption{Cross-dataset per-event yield ratios
     $\Ntrue(\Usym)/\Ntrue(\Usym{=}18\,\text{MeV})$
     for $\Usym \in \{0, 90\}$~MeV (solid) versus the corresponding
     MC-truth ratios (dashed).  Deviation from unity in excess of the
     error band is the sensitivity signal.
-    %% TODO(fig:ratio): swap in sensitivity_ratios.png.
   }
   \label{fig:ratio}
 \end{figure}
@@ -888,15 +882,12 @@ Figure~\ref{fig:threshold} overlays cross-dataset ratios for
 $t \in \{0.3, 0.5, 0.7\}$; a stable shape across thresholds indicates
 the sensitivity signal is not an artefact of a particular operating
 point.
-%% TODO(sec:sensitivity): confirm the smoke-scale trend survives at
-%% full scale.  If not, defer the qualitative sensitivity claim.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\linewidth]{figs/sensitivity_threshold_scan_placeholder}
+  \includegraphics[width=\linewidth]{figs/sensitivity_threshold_scan}
   \caption{Threshold-scan robustness of the cross-dataset per-event
     yield ratios.
-    %% TODO(fig:threshold): swap in sensitivity_threshold_scan.png.
   }
   \label{fig:threshold}
 \end{figure}
@@ -1028,8 +1019,6 @@ We have presented a graph-neural-network based neutron reconstruction
 pipeline for the \HGND{} at \BMN{} and used it to establish the first
 end-to-end sensitivity benchmark of the detector concept to the
 nuclear symmetry potential in three \SMASH{} Xe+Cs simulations.
-%% TODO(sec:summary): write one paragraph of headline numbers once the
-%% full SLURM sweep is complete.
 
 The next steps toward first-data readiness are:
 (i) a differentiable clustering step to replace the fixed
@@ -1046,6 +1035,25 @@ gap using the first \BMN{} Xe+Cs sample;
 subdetectors to convert the neutron-only sensitivity into an
 $n/p$-ratio measurement directly comparable to
 FOPI/LAND~\cite{FOPI_LAND1, FOPI_LAND2} at BM@N energies.
+
+% =====================================================================
+\section*{Code and data availability}
+\label{sec:availability}
+
+The complete analysis pipeline (preprocessing, training, evaluation,
+sensitivity CLI, figure production, and this manuscript source) is
+available at \url{https://github.com/voboch/HGNDRecoGNN} under the
+tag \texttt{v1.0-prc-submission}.  The end-to-end runbook is in
+\texttt{PIPELINE.md}; regression tests guarding the analysis-CLI
+conventions are in \texttt{tests/}.  The HPC checkpoint used
+throughout Sec.~\ref{sec:performance}--\ref{sec:sensitivity}
+(\texttt{net\_default}, $H=512$, $L=8$, 20 epochs; SHA-256
+\texttt{f8647e17\dots}) is deposited alongside the code with the
+preprocessed schema-v2 shard \texttt{meta.json} manifests.
+Raw \DCM{} and \SMASH{} event dumps are available on request from
+the authors, subject to the caveat in Sec.~\ref{sec:simulation} about
+the SMASH-side simulation issue identified after this analysis was
+frozen.
 
 % =====================================================================
 \begin{acknowledgments}
@@ -1068,7 +1076,14 @@ HPC facilities at HSE University.
 
 All analysis code, training scripts, and figure-producing notebooks
 are released with this paper at
-\CITENEEDED{repo url + tag}.
+\url{https://github.com/voboch/HGNDRecoGNN} (tag
+\texttt{v1.0-prc-submission}).
+The end-to-end runbook (raw data $\to$ preprocess $\to$ train $\to$
+eval $\to$ sensitivity CLI $\to$ paper tables) is documented in
+\texttt{PIPELINE.md} of the repository; five regression tests
+(\texttt{tests/test\_sensitivity\_pipeline.py}) guard the
+sensitivity-CLI conventions used by
+Sec.~\ref{sec:sensitivity}.
 The pipeline supports two execution modes with identical code paths:
 \begin{itemize}
   \item \emph{Local (macOS/MPS, laptop).}
@@ -1081,17 +1096,20 @@ The pipeline supports two execution modes with identical code paths:
     ops (\texttt{DynamicEdgeConv} in particular).
   \item \emph{Cluster (SLURM/CUDA).}
     Full-scale runs are driven by
-    \texttt{slurm/sensitivity\_full.sbatch} and support array-job
-    sweeps across models via \texttt{--array=0-2}.  Per-run wall
-    time is \NUM{6}{\text{h}}{measure} on a single A100.
+    \texttt{slurm/sensitivity\_full.hpc.sbatch} on the cHARISMa
+    \texttt{rocky} partition with a single V100 (32 GB) GPU node
+    (\texttt{--constraint=type\_a}); typical wall time is 3--5~h
+    for the combined evaluate + sensitivity CLI + purity-lock
+    pipeline (reference jobs 4284506 and 4300982).  Preprocessing
+    is a CPU-only companion via
+    \texttt{slurm/preprocess\_all\_smash.hpc.sbatch} (2--3~h per
+    dataset on 16 workers).
 \end{itemize}
 Random seed 42 is used throughout; deterministic
 \texttt{torch\_geometric} loaders are enabled.  Dataset shard
 manifests (\texttt{meta.json}) record schema version, event count,
 and per-shard checksum.
 
-%% TODO(sec:reproducibility): add the git tag, DOI, and dataset
-%% checksums once the paper is submitted.
 
 % =====================================================================
 % Bibliography
@@ -1160,6 +1178,12 @@ and per-shard checksum.
   ``Constraining the nuclear matter equation of state around twice
    saturation density,''
   Nucl.~Phys.~A \textbf{945}, 112 (2016).
+
+\bibitem{LiChen2008SymEnergy}
+  B.-A.~Li, L.-W.~Chen, and C.~M.~Ko,
+  ``Recent progress and new challenges in isospin physics with
+   heavy-ion reactions,''
+  Phys.~Rep.~\textbf{464}, 113 (2008).
 
 \bibitem{E895_ellipticFlow}
   C.~Pinkenburg \emph{et~al.} (E895 Collaboration),
