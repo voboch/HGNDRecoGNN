@@ -122,8 +122,8 @@ nuclear symmetry potential ($\Usym = 0$, $18$, $90$~MeV) and
 introduce a decomposition of the closure metric into a per-cluster
 pipeline term and a physical clusters-per-neutron ratio
 (Sec.~\ref{sec:closure}); at full statistics the per-cluster closure
-$C_c$ is uniform across the three samples to $1.4\%$ at $t = 0.5$
-and $0.75\%$ at the purity-locked point.
+$C_c$ is uniform across the three samples to $1.0\%$ at $t = 0.5$
+and $0.48\%$ at the purity-locked point.
 The associated per-neutron sensitivity to $\Usym$ is
 \emph{provisional}: it is folded with the same MC-truth definition
 used to train the network, and the SMASH samples underlying the
@@ -762,28 +762,29 @@ classifier + regression stage; the value of $C_\nu$ additionally
 absorbs the merger term $k$.
 
 Table~\ref{tab:closure} reports both metrics at threshold $t = 0.5$
-on the full-statistics HPC-checkpoint sensitivity evaluation (~76k
-to 640k events per dataset in the seed-42 test half; caveat on the
-100k-event preprocessing cap on \texttt{defaultSpot} noted in the
-table caption and Sec.~\ref{sec:reproducibility}).  The per-cluster
-closure is uniform across the three datasets at $1.275 \pm 0.010$
-(spread 1.4\%, $\pm 0.006$ at the purity-locked working point of
-Table~\ref{tab:purity_locked}), confirming that the classifier +
-regression pipeline is dataset-independent at this scale.  All
-datasets over-recover slightly ($C_c > 1$) because the efficiency
-correction inflates true positives but does not subtract the small
-classifier background leak; this bias is treated as a
-threshold-dependent systematic in Sec.~\ref{sec:systematics} item
-\ref{sys:binning}.  The physical cluster-per-neutron ratio $k$ is
-also uniform to 6.5\% at full statistics
-($k = 0.670$--$0.714$; the smoke-scale spread of 0.51--0.69 turned
-out to be dominated by small-sample fluctuation on the $\sim 1600$
-smoke events per dataset).  The per-neutron closure $C_\nu$
-therefore inherits both uniformities: at $t = 0.5$
-$C_\nu = 0.891 \pm 0.023$ (spread 4.5\%), and at the purity-locked
-working point $C_\nu = 1.021 \pm 0.032$ (spread 5.6\%), with the
-combined $\Usym$-dependent multi-neutron cluster-merger accounting
-for essentially all of the residual spread.  Physics-quality
+on the full-statistics HPC-checkpoint sensitivity evaluation
+($6.2$--$8.4 \times 10^{5}$ events per dataset in the seed-42
+test half; all three datasets preprocessed at
+$1.8$--$2.2 \times 10^{6}$ graphs each on cHARISMa without an
+event cap).  The per-cluster closure is uniform across the three
+datasets at $1.274 \pm 0.007$ (spread 1.0\%, $\pm 0.004$ at the
+purity-locked working point of Table~\ref{tab:purity_locked}),
+confirming that the classifier + regression pipeline is
+dataset-independent at this scale.  All datasets over-recover
+slightly ($C_c > 1$) because the efficiency correction inflates
+true positives but does not subtract the small classifier
+background leak; this bias is treated as a threshold-dependent
+systematic in Sec.~\ref{sec:systematics} item \ref{sys:binning}.
+The physical cluster-per-neutron ratio $k$ is also uniform to
+$6.7\%$ at full statistics ($k = 0.669$--$0.714$; the smoke-scale
+spread of $0.51$--$0.69$ turned out to be dominated by
+small-sample fluctuation on the $\sim 1600$ smoke events per
+dataset).  The per-neutron closure $C_\nu$ therefore inherits both
+uniformities: at $t = 0.5$
+$C_\nu = 0.889 \pm 0.025$ (spread 4.9\%), and at the purity-locked
+working point $C_\nu = 1.020 \pm 0.030$ (spread 5.9\%), with the
+$\Usym$-dependent multi-neutron cluster-merger accounting for
+essentially all of the residual spread.  Physics-quality
 sensitivity to $\Usym$ therefore rests on measuring
 $k(\Usym)$ itself with statistical error, rather than on absorbing
 it into a $C_\nu$ shift.  Two complementary follow-ups are deferred
@@ -798,28 +799,25 @@ $\Usym$-dependent efficiency factor.
   \centering
   \caption{Closure decomposition at $t = 0.5$, full-statistics
     HPC-checkpoint evaluation of the three \SMASH{} datasets on
-    schema-v2 caches built on cHARISMa (preprocess array 4284505,
-    sensitivity job 4284506; \texttt{zeroSpot}
-    $1.86 \times 10^{6}$ graphs, \texttt{bigSpot} $1.80 \times 10^{6}$
-    graphs, \texttt{defaultSpot} $2.0 \times 10^{5}$ graphs --- the
-    latter still under the $100\,000$-event preprocessing cap from
-    2026-08-26, to be lifted before the final table).  $N_{\text{ev}}$
-    is the per-dataset event count in the seed-42 test half.  Both
-    efficiency-basis conventions of Sec.~\ref{sec:sensitivity} are
-    quoted; a Tikhonov detector-matrix unfold agrees with the
-    $E_{\text{pred}}$-basis correction to $\pm 5\%$
-    (\texttt{closure\_unfold} column of
-    \texttt{results/sensitivity\_full\_hpc\_4284506/sensitivity\_e\_pred\_fixed/sensitivity\_summary.csv}).}
+    schema-v2 caches built on cHARISMa (preprocess jobs 4284505
+    and 4290339, sensitivity jobs 4284506 and 4300982; each dataset
+    $1.8$--$2.2 \times 10^{6}$ graphs, no per-dataset event cap).
+    $N_{\text{ev}}$ is the per-dataset event count in the seed-42
+    test half.  Both efficiency-basis conventions of
+    Sec.~\ref{sec:sensitivity} are quoted; a Tikhonov detector-matrix
+    unfold agrees with the $E_{\text{pred}}$-basis correction to
+    $\pm 9\%$ (\texttt{closure\_unfold} column of
+    \texttt{results/sensitivity\_full\_hpc\_finish\_4300982/sensitivity\_e\_pred/sensitivity\_summary.csv}).}
   \label{tab:closure}
   \begin{tabular}{lrrrrrr}
     \toprule
     dataset & $\Usym$ (MeV) & $N_{\text{ev}}$ & $k$ & $C_c$ (t=0.5) & $C_\nu$ (t=0.5) & $C_\nu = k C_c$ \\
     \midrule
     \texttt{zeroSpot}    & 0   & 640{,}333 & 0.714 & 1.270 & 0.907 & 0.907 \\
-    \texttt{defaultSpot} & 18  &  76{,}600 & 0.670 & 1.286 & 0.862 & 0.862 \\
+    \texttt{defaultSpot} & 18  & 838{,}284 & 0.669 & 1.282 & 0.858 & 0.858 \\
     \texttt{bigSpot}     & 90  & 619{,}603 & 0.712 & 1.269 & 0.903 & 0.903 \\
     \midrule
-    max$-$min            &     &           & 0.044 & 0.017 & 0.045 &        \\
+    max$-$min            &     &           & 0.045 & 0.013 & 0.049 &        \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -862,11 +860,11 @@ score.  Two conventions are quoted:
     baseline of Sec.~\ref{sec:gnn:baseline}.  At full statistics
     the locked thresholds are $t^\star = 0.308 / 0.310 / 0.305$ for
     \texttt{zeroSpot} / \texttt{defaultSpot} / \texttt{bigSpot} and
-    yield per-cluster closures $C_c = 1.457 / 1.468 / 1.461$ and
-    per-neutron closures $C_\nu = 1.040 / 0.984 / 1.040$
+    yield per-cluster closures $C_c = 1.457 / 1.454 / 1.461$ and
+    per-neutron closures $C_\nu = 1.040 / 0.981 / 1.040$
     (Table~\ref{tab:purity_locked}), tightening the $C_c$ spread
-    from $1.4\%$ at $t = 0.5$ to $0.75\%$ at the locked point while
-    the $C_\nu$ spread stays within the $\sim 4.4\%$ physical
+    from $1.0\%$ at $t = 0.5$ to $0.48\%$ at the locked point while
+    the $C_\nu$ spread stays within the $\sim 6.7\%$ physical
     $k(\Usym)$ ceiling of Sec.~\ref{sec:closure}
     (\texttt{scripts/purity\_locked\_closure.py}).
   \item \textbf{Sensitivity-optimal.} For the cross-dataset ratio
@@ -896,24 +894,24 @@ point.
   \centering
   \caption{Purity-locked closure at $\pi = 0.7$ per dataset,
     full-statistics HPC-checkpoint evaluation
-    (job 4284506).  The $t^\star$ column is the per-dataset
+    (job 4300982, post lift-cap defaultSpot preprocess 4290339).
+    The $t^\star$ column is the per-dataset
     threshold that hits the target purity; $\varepsilon_{\text{cl}}$
     is the resulting cluster efficiency.  The per-cluster closure
-    $C_c$ is uniform to $0.75\%$; the small residual per-neutron
-    $C_\nu$ spread (0.056) is compatible with the $\sim 4.4\%$
-    spread in $k(\Usym)$ (Table~\ref{tab:closure}) and no longer
-    dominates.
-    Source: \texttt{results/sensitivity\_full\_hpc\_4284506/purity\_locked\_pi70\_fixed/purity\_locked\_pi70.csv}.}
+    $C_c$ is uniform to $0.48\%$; the small residual per-neutron
+    $C_\nu$ spread (0.059) is compatible with the $\sim 6.7\%$
+    spread in $k(\Usym)$ (Table~\ref{tab:closure}).
+    Source: \texttt{results/sensitivity\_full\_hpc\_finish\_4300982/purity\_locked\_pi70/purity\_locked\_pi70.csv}.}
   \label{tab:purity_locked}
   \begin{tabular}{lrrrr}
     \toprule
     dataset & $t^\star$ & $\varepsilon_{\text{cl}}$ & $C_c$ & $C_\nu$ \\
     \midrule
     \texttt{zeroSpot}    & 0.308 & 0.704 & 1.457 & 1.040 \\
-    \texttt{defaultSpot} & 0.310 & 0.731 & 1.468 & 0.984 \\
+    \texttt{defaultSpot} & 0.310 & 0.734 & 1.454 & 0.981 \\
     \texttt{bigSpot}     & 0.305 & 0.706 & 1.461 & 1.040 \\
     \midrule
-    max$-$min            &        &        & 0.011 & 0.056 \\
+    max$-$min            &        &        & 0.007 & 0.059 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -964,9 +962,9 @@ impact is quantified.
   \item \textbf{Cluster-merging (per-neutron closure spread).}
     The per-neutron closure $C_\nu$ (Eq.~\ref{eq:cnu}) decomposes as
     $C_\nu = k \cdot C_c$ (Sec.~\ref{sec:closure}); at full statistics
-    $C_c$ is uniform across the three datasets at $1.275 \pm 0.010$
+    $C_c$ is uniform across the three datasets at $1.274 \pm 0.007$
     at $t = 0.5$ (Table~\ref{tab:closure}) while $k$ ranges
-    $0.670$--$0.714$, so the observed $\sim 4.5\%$ spread in
+    $0.669$--$0.714$, so the observed $\sim 4.9\%$ spread in
     $C_\nu$ tracks the physical clusters-per-neutron ratio
     $k(\Usym)$ rather than any pipeline defect.  We quote both
     metrics and the multiplicative bridge, and treat
