@@ -979,14 +979,42 @@ impact is quantified.
     dataset-independent within 3\%; we quote the max
     $|C_c - 1|$ across thresholds $t \in \{0.3, 0.5, 0.7\}$ as a
     threshold-dependent systematic on $C_\nu$.
-  \item \textbf{Model-family disagreement.}
-    We reweight the analysis using \texttt{hetero\_hgt} and
-    \texttt{spectral\_dynedge} checkpoints and quote the spread on
-    the per-event ratio as a model systematic.
-    %% TODO(sec:sys): produce a comparison table across model families.
-  \item \textbf{Seed variance.}
-    Three independent training seeds per model provide the intra-model
-    training noise; quoted as an additional error band.
+  \item \textbf{Model-family disagreement.} Deferred.
+    Full-statistics \texttt{hetero\_hgt} and \texttt{hetero\_sage}
+    checkpoints have been trained (validation losses 0.464 and
+    0.408 respectively on the shared \texttt{defaultSpot} recipe;
+    \texttt{spectral\_dynedge} did not converge because of a
+    LapPE-side CPU/CUDA device mismatch that remains open), but a
+    per-cluster sensitivity comparison against \texttt{net\_default}
+    is blocked by an eval-pipeline limitation: the shared
+    \texttt{training.eval.predict} routine hardcodes the
+    \texttt{net\_default} 6-tuple forward output
+    $(\text{link}_s, \text{hit}_s, \text{cl}_s, E_{\text{pred}},
+    \text{cl-link}_s, \text{cl-batch})$, while the \texttt{HeteroGNN}
+    baseline returns a 2-tuple.  A per-\texttt{ModelSpec} output
+    convention is needed before the model-family spread can be
+    quoted; this refactor is scheduled as a follow-up.  Provisional
+    ceiling: bounded above by the aggregated systematic on
+    $C_\nu$ from the other items in this list.
+  \item \label{sys:seed}\textbf{Seed variance.}
+    Two additional training seeds ($s = 123, 456$) of
+    \texttt{net\_default} were run under the same recipe as the
+    2026-08-26 baseline ($s = 42$) and evaluated on the same
+    full-statistics three-dataset trio.  The per-event yield ratio
+    $R_d = \Ntrue(d)/\Ntrue(\texttt{defaultSpot})$ is reproducible
+    to within
+    $\max|R_{\text{zeroSpot}}| - \min|R_{\text{zeroSpot}}| = 0.007$
+    (mean $\bar R_{\text{zeroSpot}} = 1.117$, $\sigma = 0.003$)
+    and
+    $\max|R_{\text{bigSpot}}| - \min|R_{\text{bigSpot}}| = 0.005$
+    (mean $\bar R_{\text{bigSpot}} = 1.082$, $\sigma = 0.003$)
+    across the three seeds (source:
+    \texttt{results/systematics\_aggregate/seed\_variance.csv},
+    aggregating cHARISMa jobs 4304929 and 4305276 on top of the
+    baseline job 4300982).  Seed variance is therefore a $0.3\%$
+    absolute contribution to the yield-ratio systematic budget ---
+    an order of magnitude below the $k(\Usym)$ ceiling of item 2
+    and negligible against the other sources in this list.
   \item \textbf{Threshold choice.}
     Included via the scan in Fig.~\ref{fig:threshold}.
   \item \label{sys:binning}\textbf{Efficiency binning basis and
