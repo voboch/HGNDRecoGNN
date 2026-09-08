@@ -109,13 +109,14 @@ cluster-wise on a single hetero-GNN that jointly produces a neutron
 score, an energy prediction, and a link-classification output on
 each candidate cluster; it is trained end-to-end on
 \DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+Cs simulations.
-On the \DCM{} test split the checkpoint (\texttt{net\_default},
-$H=512$, $L=8$, 20 epochs) reaches cluster ROC AUC 0.944 and, at a
-signal-purity-locked working point of $\pi = 0.702$
-($t^\star = 0.305$), cluster efficiency 0.739 and per-event neutron
-detection efficiency 0.844 (Table~\ref{tab:eff_ekin}), matching the
-prototype benchmarks of Ref.~\cite{Morozov2024HGND}; the relative
-energy resolution is below 10\% for $0.7 \lesssim \Ekin \lesssim 5$~GeV.
+On the \DCM{} Xe+CsI test split (97{,}104 held-out events) the
+checkpoint (\texttt{net\_default}, $H=512$, $L=8$, 20 epochs) reaches
+cluster ROC AUC 0.944 and, at a signal-purity-locked working point
+of $\pi = 0.702$ ($t^\star = 0.305$), cluster efficiency 0.739 and
+per-event neutron detection efficiency 0.844 (Table~\ref{tab:eff_ekin}),
+matching the prototype benchmarks of Ref.~\cite{Morozov2024HGND}; the
+relative energy resolution is below 25\% for $1 \lesssim \Ekin \lesssim
+3$~GeV and grows to $\sim 30\%$ toward the acceptance edges.
 As a pipeline calibration we evaluate the same
 checkpoint on three \SMASH{} samples with different values of the
 nuclear symmetry potential ($\Usym = 0$, $18$, $90$~MeV) and
@@ -123,7 +124,7 @@ introduce a decomposition of the closure metric into a per-cluster
 pipeline term and a physical clusters-per-neutron ratio
 (Sec.~\ref{sec:closure}); at full statistics the per-cluster closure
 $C_c$ is uniform across the three samples to $1.0\%$ at $t = 0.5$
-and $0.48\%$ at the purity-locked point.
+and $0.62\%$ at the purity-locked point.
 The associated per-neutron sensitivity to $\Usym$ is
 \emph{provisional}: it is folded with the same MC-truth definition
 used to train the network, and the SMASH samples underlying the
@@ -478,13 +479,18 @@ At the fixed classifier operating point $t = 0.5$ the pipeline
 reaches cluster purity $\pi = 0.813$, cluster efficiency
 $\varepsilon_{\text{cl}} = 0.632$, and per-event neutron detection
 efficiency $\varepsilon_{\text{ev}} = 0.744$ (F1 = 0.711).
-At the purity-locked operating point $t \approx 0.31$ used for
-comparison with the rule-based baseline of
-Sec.~\ref{sec:gnn:baseline} (purity $\pi = 0.706$),
-$\varepsilon_{\text{cl}} = 0.739$ and $\varepsilon_{\text{ev}} = 0.844$
-(purity $0.702$, $t^\star = 0.305$),
-matching the value reported at the \BMN{} analysis-and-detector
-meeting~\cite{Bocharnikov2026Dombay}.  All quantities are computed
+At the purity-locked operating point $t^\star = 0.305$
+($\pi = 0.702$, from the fine threshold scan of
+Sec.~\ref{sec:gnn:baseline}) the cluster efficiency is
+$\varepsilon_{\text{cl}} = 0.739$ and the per-event neutron
+detection efficiency $\varepsilon_{\text{ev}} = 0.844$, matching
+the value reported at the \BMN{} analysis-and-detector
+meeting~\cite{Bocharnikov2026Dombay}.  (The corresponding
+purity-locked working point on the full-statistics
+\texttt{defaultSpot}~v2 SMASH cache is
+$t^\star = 0.310, \pi = 0.701$, Table~\ref{tab:purity_locked};
+the difference reflects the DCM$\to$SMASH sample change, not a
+pipeline instability.)  All quantities are computed
 from the prediction pickles under
 \texttt{notebooks/results/hpc\_defaultSpot\_v2\_seed42/}
 (cell 12 of \texttt{notebooks/evaluate\_hpc\_checkpoint.ipynb}).
@@ -860,10 +866,10 @@ score.  Two conventions are quoted:
     baseline of Sec.~\ref{sec:gnn:baseline}.  At full statistics
     the locked thresholds are $t^\star = 0.308 / 0.310 / 0.305$ for
     \texttt{zeroSpot} / \texttt{defaultSpot} / \texttt{bigSpot} and
-    yield per-cluster closures $C_c = 1.457 / 1.454 / 1.461$ and
+    yield per-cluster closures $C_c = 1.457 / 1.466 / 1.461$ and
     per-neutron closures $C_\nu = 1.040 / 0.981 / 1.040$
     (Table~\ref{tab:purity_locked}), tightening the $C_c$ spread
-    from $1.0\%$ at $t = 0.5$ to $0.48\%$ at the locked point while
+    from $1.0\%$ at $t = 0.5$ to $0.62\%$ at the locked point while
     the $C_\nu$ spread stays within the $\sim 6.7\%$ physical
     $k(\Usym)$ ceiling of Sec.~\ref{sec:closure}
     (\texttt{scripts/purity\_locked\_closure.py}).
@@ -898,7 +904,7 @@ point.
     The $t^\star$ column is the per-dataset
     threshold that hits the target purity; $\varepsilon_{\text{cl}}$
     is the resulting cluster efficiency.  The per-cluster closure
-    $C_c$ is uniform to $0.48\%$; the small residual per-neutron
+    $C_c$ is uniform to $0.62\%$; the small residual per-neutron
     $C_\nu$ spread (0.059) is compatible with the $\sim 6.7\%$
     spread in $k(\Usym)$ (Table~\ref{tab:closure}).
     Source: \texttt{results/sensitivity\_full\_hpc\_finish\_4300982/purity\_locked\_pi70/purity\_locked\_pi70.csv}.}
@@ -908,10 +914,10 @@ point.
     dataset & $t^\star$ & $\varepsilon_{\text{cl}}$ & $C_c$ & $C_\nu$ \\
     \midrule
     \texttt{zeroSpot}    & 0.308 & 0.704 & 1.457 & 1.040 \\
-    \texttt{defaultSpot} & 0.310 & 0.734 & 1.454 & 0.981 \\
+    \texttt{defaultSpot} & 0.310 & 0.734 & 1.466 & 0.981 \\
     \texttt{bigSpot}     & 0.305 & 0.706 & 1.461 & 1.040 \\
     \midrule
-    max$-$min            &        &        & 0.007 & 0.059 \\
+    max$-$min            &        &        & 0.009 & 0.059 \\
     \bottomrule
   \end{tabular}
 \end{table}
