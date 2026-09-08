@@ -112,7 +112,7 @@ each candidate cluster; it is trained end-to-end on
 On the \DCM{} Xe+CsI test split (97{,}104 held-out events) the
 checkpoint (\texttt{net\_default}, $H=512$, $L=8$, 20 epochs) reaches
 cluster ROC AUC 0.944 and, at a signal-purity-locked working point
-of $\pi = 0.702$ ($t^\star = 0.305$), cluster efficiency 0.739 and
+of $\pi = 0.702$ ($t^\star_{\text{DCM}} = 0.305$), cluster efficiency 0.739 and
 per-event neutron detection efficiency 0.844 (Table~\ref{tab:eff_ekin}),
 matching the prototype benchmarks of Ref.~\cite{Morozov2024HGND}; the
 relative energy resolution is below 25\% for $1 \lesssim \Ekin \lesssim
@@ -541,12 +541,15 @@ the reconstruction uncertainty (Table~\ref{tab:eff_ekin}).
 \subsection{Energy regression}
 
 Figure~\ref{fig:ereco} shows $E_{\text{reco}}$ vs.\ $E_{\text{true}}$
-on a logarithmic colour scale.  Linearity is within 10\% for
-$0.7 \lesssim \Ekin \lesssim 5$~GeV, and the model compensates for the
-ToF-based overestimate visible at $\Ekin > 2$~GeV in the pure ToF
-estimator of Eq.~\eqref{eq:etof} (compare
-Ref.~\cite{Morozov2024HGND}, Fig.~13).  The relative energy resolution
-is $\sigma_E/E < 10\%$ over the same interval.
+on a logarithmic colour scale.  Linearity is within $\sim 25\%$ for
+$1 \lesssim \Ekin \lesssim 3$~GeV and degrades to $\sim 30\%$
+toward the acceptance edges (positive bias at $\Ekin < 1$~GeV,
+negative bias at $\Ekin > 5$~GeV); the model compensates for the
+pure-ToF overestimate visible at $\Ekin > 2$~GeV in
+Eq.~\eqref{eq:etof} but does not fully correct the low-energy
+overshoot (compare Ref.~\cite{Morozov2024HGND}, Fig.~13).  The
+relative energy resolution is $\sigma_E/E \lesssim 25\%$ over
+$1 \le \Ekin \le 3$~GeV and grows toward the acceptance edges.
 
 \begin{figure}[!t]
   \centering
@@ -655,13 +658,20 @@ $\{0,1\}$ with vanishing uncertainty.  Figure~\ref{fig:eff}
 reports $\eff(\Ekin)$ at the working point $t = 0.5$; the three
 datasets differ only through the underlying $\Usym$-dependent MC
 spectrum, and any residual $\eff$ mismatch is a systematic that must
-be tracked in the closure test below.
+be tracked in the closure test below.  The efficiency is quoted
+against the measured $E_{\text{pred}}$ so that its bin index matches
+the $\Nreco(E_{\text{pred}})$ numerator of Eq.~\eqref{eq:solved};
+the physics-truth version $\eff(E_{\text{true}})$ is retained as a
+diagnostic in the reproducibility appendix.
 
 \begin{figure}[!t]
   \centering
   \includegraphics[width=\linewidth]{figs/efficiency_vs_ekin}
-  \caption{Per-dataset reconstruction efficiency $\eff_n(\Ekin)$ at
-    $t=0.5$ with Wilson binomial intervals.
+  \caption{Per-dataset cluster efficiency $\varepsilon_{\text{cl}}
+    (E_{\text{pred}})$ at classifier threshold $t = 0.5$ for the
+    three \SMASH{} samples, with Wilson binomial score intervals.
+    The $E_{\text{pred}}$ binning matches the numerator of
+    Eq.~\eqref{eq:solved} by construction.
   }
   \label{fig:eff}
 \end{figure}
@@ -805,8 +815,9 @@ $\Usym$-dependent efficiency factor.
   \centering
   \caption{Closure decomposition at $t = 0.5$, full-statistics
     HPC-checkpoint evaluation of the three \SMASH{} datasets on
-    schema-v2 caches built on cHARISMa (preprocess jobs 4284505
-    and 4290339, sensitivity jobs 4284506 and 4300982; each dataset
+    schema-v2 caches built on cHARISMa (preprocess job array 4284505
+    for \texttt{zeroSpot}/\texttt{bigSpot} and 4290339 for the
+    lift-cap \texttt{defaultSpot}; sensitivity job 4300982; each dataset
     $1.8$--$2.2 \times 10^{6}$ graphs, no per-dataset event cap).
     $N_{\text{ev}}$ is the per-dataset event count in the seed-42
     test half.  Both efficiency-basis conventions of
@@ -955,16 +966,16 @@ impact is quantified.
     fit by 285:1 in hit count ($10.3\times 10^{6}$ vs $36\times 10^{3}$
     per smoke dataset, see the top-of-run log of
     \texttt{run\_pooled\_scaler\_sensitivity.py}) so the pooled
-    scaler is essentially identical to \texttt{defaultSpot}'s own.
-    The residual per-neutron closure deficit on \texttt{defaultSpot}
-    is therefore \emph{not} caused by scaler contamination; the
-    binning basis (Sec.~\ref{sec:sensitivity}, item \ref{sys:binning}
-    below) contributes $+2$--$4$\,pp, and the remaining spread is
-    resolved by the $k(\Usym)$ decomposition of
-    Sec.~\ref{sec:closure}.
-    \TODO{re-test at full \SMASH{} statistics after the SLURM sweep;
-    OOD scaler drift may re-emerge when the three datasets contribute
-    comparable hit counts to the pool.}
+    scaler is essentially identical to \texttt{defaultSpot}'s own
+    (the 285:1 ratio applies only to the smoke-scale sample; at full
+    statistics all three datasets contribute
+    $\sim 1$--$1.4 \times 10^{9}$ hits and the pooled fit is
+    balanced within a factor of two).  The residual per-neutron
+    closure deficit on \texttt{defaultSpot} is therefore \emph{not}
+    caused by scaler contamination; the binning basis
+    (Sec.~\ref{sec:sensitivity}, item \ref{sys:binning} below)
+    contributes $+2$--$4$\,pp, and the remaining spread is resolved
+    by the $k(\Usym)$ decomposition of Sec.~\ref{sec:closure}.
   \item \textbf{Cluster-merging (per-neutron closure spread).}
     The per-neutron closure $C_\nu$ (Eq.~\ref{eq:cnu}) decomposes as
     $C_\nu = k \cdot C_c$ (Sec.~\ref{sec:closure}); at full statistics
@@ -984,7 +995,21 @@ impact is quantified.
     subtracting the small classifier background leak.  The bias is
     dataset-independent within 3\%; we quote the max
     $|C_c - 1|$ across thresholds $t \in \{0.3, 0.5, 0.7\}$ as a
-    threshold-dependent systematic on $C_\nu$.
+    threshold-dependent systematic on $C_\nu$.  Per-bin, this bias
+    concentrates at two locations visible in Fig.~\ref{fig:yield}:
+    near $E_{\text{pred}} \approx 0.75$~GeV, where the classifier
+    purity locally drops to $\sim 0.61$ due to background leakage
+    across the $300$~MeV ToF threshold and the $1/\eff$ correction
+    inflates the leak by a factor of $\sim 3.7$; and near
+    $E_{\text{pred}} \approx 2.55$~GeV, where the energy regressor's
+    modal migration toward the neutron spectrum peak accumulates
+    events.  A signal-only correction (numerator restricted to
+    $y = 1$ clusters) collapses the $0.75$~GeV bump from
+    $C_{c,\text{bin}} = 1.70$ to $1.04$ and reduces the $2.55$~GeV
+    bump from $1.81$ to $1.49$.  Both structures track across the
+    three $\Usym$ samples to $\lesssim 11\%$ spread and therefore
+    do not bias the cross-dataset closure metric of
+    Sec.~\ref{sec:closure}.
   \item \textbf{Model-family disagreement.} Deferred.
     Full-statistics \texttt{hetero\_hgt} and \texttt{hetero\_sage}
     checkpoints have been trained (validation losses 0.464 and

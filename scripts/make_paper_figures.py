@@ -197,15 +197,17 @@ def make_sensitivity_yield() -> None:
     summary = pd.read_csv(E_PRED_DIR / 'sensitivity_summary.csv')
 
     fig, (ax_l, ax_r) = plt.subplots(1, 2, figsize=(12, 4.6), sharex=True)
+    markers = {'zeroSpot': 'o', 'defaultSpot': 's', 'bigSpot': '^'}
     for ds, row in summary.set_index('dataset').iterrows():
         df = combined[combined.dataset == ds]
         n_ev = int(row['N_events'])
         c = COLORS.get(ds, 'k')
+        mk = markers.get(ds, 'o')
         # Left: raw N_reco/ev + MC-truth dashed
         y_reco = df['n_reco'] / max(n_ev, 1)
         yerr_reco = np.sqrt(df['n_reco']) / max(n_ev, 1)
         ax_l.errorbar(df['ekin_mid'], y_reco, yerr=yerr_reco,
-                      fmt='o-', capsize=2, color=c,
+                      fmt=mk+'-', capsize=2, color=c, alpha=0.85,
                       label=f'{ds} $N_{{\\rm reco}}$/ev')
         y_mc = df['n_mc_truth'] / max(n_ev, 1)
         ax_l.plot(df['ekin_mid'], y_mc, '--', color=c, alpha=0.55)
@@ -213,7 +215,7 @@ def make_sensitivity_yield() -> None:
         y_true = df['n_true_solved'] / max(n_ev, 1)
         yerr_true = df['n_true_solved_err'] / max(n_ev, 1)
         ax_r.errorbar(df['ekin_mid'], y_true, yerr=yerr_true,
-                      fmt='o-', capsize=2, color=c,
+                      fmt=mk+'-', capsize=2, color=c, alpha=0.85,
                       label=f'{ds} $N_{{\\rm true}}$/ev')
         ax_r.plot(df['ekin_mid'], y_mc, '--', color=c, alpha=0.55)
 
@@ -313,8 +315,7 @@ def make_threshold_scan() -> None:
     ax.axhline(1, color='k', lw=0.8, alpha=0.5)
     ax.set(xlabel=r'classifier threshold $t$',
            ylabel=r'integrated $N_{\rm true}$ ratio',
-           title=r'Threshold-scan robustness of cross-dataset ratio '
-                 r'(full stats, lift-cap defaultSpot)',
+           title=r'Threshold-scan robustness (full statistics)',
            xlim=(0.25, 0.75),
            ylim=(0.95, 1.30))
     ax.grid(True, alpha=0.3)
