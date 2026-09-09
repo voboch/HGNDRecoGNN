@@ -2,8 +2,9 @@
 
 These are **directive rules**, not a tutorial. Any coding agent that runs, submits,
 or edits training jobs in this repo MUST follow them. Values below are verified
-against the live cluster (2026-08-25); if a fact looks stale, re-check the source
-page rather than guessing — the Rocky 9 migration is ongoing.
+against the live cluster (2026-09-08); if a fact looks stale, re-check the source
+page rather than guessing — the cluster is still being migrated to Rocky 9, and the
+SSH entry point already moved once (see section 1).
 
 ## 0. Non-negotiables
 
@@ -21,20 +22,42 @@ page rather than guessing — the Rocky 9 migration is ongoing.
 ## 1. How to reach the cluster
 
 ```
-ssh charisma            # → vbocharnikov@cluster.hpc.hse.ru:2222, host "sms", CentOS 7
-ssh -A login-02         # from sms → Rocky Linux 9 login node (use this for new work)
+ssh charisma            # → vbocharnikov@cluster.hpc.hse.ru:2222 → login-02, Rocky Linux 9
 ```
 
-- `~/.ssh/config` (local) already defines `charisma` with `ForwardAgent yes`,
+**One hop, as of 2026-09-08.** The entry point behind `cluster.hpc.hse.ru:2222` was
+migrated from the old CentOS 7 node `sms` to the Rocky Linux 9 node `login-02`, so
+`ssh charisma` now lands on the Rocky node directly. The former two-step
+`ssh charisma` → `ssh -A login-02` is obsolete, and so is the `-o IdentitiesOnly=no`
+workaround, which existed only for that inner hop. Non-interactive use is now just:
+
+```
+ssh -o BatchMode=yes charisma '<cmd>'
+```
+
+- **Host keys changed with the migration** (both ED25519 and ECDSA; the server is now
+  OpenSSH 9.9). If `known_hosts` still holds the old `sms` keys, ssh refuses to
+  connect with "host key has changed". Current verified fingerprints:
+  - `ED25519 SHA256:x3TzZFswnhbRd7Ccgyqs2nXliHyCFkNhJjRm5MCRP98`
+  - `ECDSA   SHA256:aWqPu667Evrt2ZjF0qJbzYEVNdvUtnsnSVJjNjid/v8`
+  - `RSA     SHA256:gDqMHFKMBRoqMNjOey5k2J5CO1gfBntbCzZYzwY48ik`
+
+  Refresh with `ssh-keygen -R '[cluster.hpc.hse.ru]:2222'`, then re-add — but verify
+  the fingerprints against an HSE source before trusting a changed key.
+- `~/.ssh/config` (local) defines `charisma` with `ForwardAgent yes`,
   `AddKeysToAgent yes`, `UseKeychain yes`, and an `IdentityFile` pointing at your
   local cluster key. The exact path is a local-machine detail — keep it out of git.
 - The cluster key is passphrase-protected; it is loaded into the local macOS agent
   (`ssh-add --apple-use-keychain <your-cluster-key>`). The passphrase and the key
   never leave the local machine — only the agent's signing channel is forwarded.
-- The CentOS 7 login node (`sms`) runs an old OpenSSH: use
-  `-o StrictHostKeyChecking=no` (NOT `accept-new`) for the inner hop to `login-02`.
-- Verify agent forwarding on `login-02`: `ssh-add -l` lists both keys and
+- The `charisma` block also carries `BindInterface en0`, so an active VPN tunnel
+  cannot hijack source-address selection and break the connection with
+  "Can't assign requested address". Drop it if you stop using that VPN.
+- Verify agent forwarding on the cluster: `ssh-add -l` lists both keys and
   `ssh -T git@github.com` returns `Hi voboch!`.
+- The cluster-side `~/.ssh/config` has a `Host * IdentitiesOnly yes` block that
+  breaks the forwarded agent for git. Do not edit that file; instead pass
+  `GIT_SSH_COMMAND="ssh -o IdentitiesOnly=no"` for git operations on the cluster.
 
 ## 2. Slurm facts (verified)
 
@@ -66,7 +89,7 @@ module load python/miniconda      # conda; NOT the CentOS "Anaconda_v10.2019"
 module load cuda/12.9.1           # or cuda/12.9 / cuda/13.1
 ```
 
-- Build the conda env **on `login-02` only** (internet + right glibc), into
+- Build the conda env **on the login node only** (internet + right glibc), into
   `/home/$USER` or a named env. Use `slurm/setup_env.sh <env-name> <py-version>`.
 - A conda env built on Rocky 9 will **fail with glibc errors on CentOS 7** and vice
   versa. Rebuild per OS; never reuse across partitions.
@@ -100,7 +123,7 @@ Every `#SBATCH` block MUST have: `--account=proj_1855`, `--partition`,
 
 ## 5. Agent checklist before you submit anything
 
-- [ ] On `login-02`, not `sms`, and not a compute node.
+- [ ] On the login node, not a compute node (`ssh charisma` lands on `login-02`).
 - [ ] Env activated and imports (torch + CUDA) verified on a `test` GPU shell.
 - [ ] Data/weights already on `/scratch/$USER`; no download in the job body.
 - [ ] `--account=proj_1855` and `--constraint=type_a` present.

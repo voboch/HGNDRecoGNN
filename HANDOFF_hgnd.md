@@ -22,22 +22,28 @@ monitor them, and pull results back — and to regenerate the dataset cache to s
 v2 for trustworthy results (see §7).
 
 ## 2. Cluster access (all verified)
-- `ssh charisma` → login node `sms` (CentOS 7), user `vbocharnikov`. The local
-  `~/.ssh/config` alias carries host/port/user/key; the encrypted key is in the
-  macOS agent (passphrase in Keychain, never leaves the machine).
-- From `sms`: `ssh -A -o IdentitiesOnly=no -o StrictHostKeyChecking=no login-02`
-  → **Rocky Linux 9** login node (use this for env/git/sbatch).
-- **CRITICAL SSH gotcha — do NOT edit the cluster `~/.ssh/config`** (user's choice).
-  It has a `Host * IdentitiesOnly yes IdentityFile ~/.ssh/cluster` block (added
-  2026-08-25) that breaks forwarded-agent auth. Work around it in every command:
-  - inner hop: add `-o IdentitiesOnly=no`
-  - git on the cluster: `export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=no -o StrictHostKeyChecking=no"`
+- `ssh charisma` → **`login-02`, Rocky Linux 9.8, in ONE hop**, user `vbocharnikov`.
+  The local `~/.ssh/config` alias carries host/port/user/key; the encrypted key is in
+  the macOS agent (passphrase in Keychain, never leaves the machine).
+- **Changed 2026-09-08:** the entry point behind `cluster.hpc.hse.ru:2222` was migrated
+  off the old CentOS 7 node `sms`, so the former second hop
+  (`ssh -A -o IdentitiesOnly=no login-02`) is **obsolete** — drop it from any command
+  you copy from older notes. Non-interactive use is just
+  `ssh -o BatchMode=yes charisma '<cmd>'`.
+- That migration also **rotated the host keys** (ED25519 + ECDSA, server now
+  OpenSSH 9.9). `known_hosts` was refreshed on 2026-09-08 with the verified
+  fingerprints; if you hit "host key has changed" on another machine, verify against
+  an HSE source before trusting it.
+- **Still true — do NOT edit the cluster `~/.ssh/config`** (user's choice). It has a
+  `Host * IdentitiesOnly yes IdentityFile ~/.ssh/cluster` block that breaks the
+  forwarded agent, so **git on the cluster** still needs
+  `export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=no -o StrictHostKeyChecking=no"`.
 - Slurm: account `proj_1855`, partition `rocky` (default), GPU tier V100 32 GB =
   `--constraint=type_a`. Debug: `--partition=test` (30-min). Quotas: 200 CPU / 20 GPU
   / 1 TB scratch. General rules are in `HPC.md`; data/run specifics in `HPC_DATA.md`.
 
 ## 3. Environment (ready — but version-sensitive)
-- Conda env **`hgnd-env`** on `login-02` (py3.11, torch 2.5.1+cu121). Built; do not
+- Conda env **`hgnd-env`** on the login node (py3.11, torch 2.5.1+cu121). Built; do not
   rebuild. Activate non-interactively: `conda run -n hgnd-env ...`. Load first:
   `module load python/miniconda cuda/12.9.1`.
 - **PyG stack is pinned** (do not "upgrade"): `torch_geometric==2.6.1` + compiled
@@ -108,6 +114,6 @@ trained fine, but a real run's metrics are not trustworthy on v1 shards.
 ## 9. Guardrails
 - Never run training on a login node; smoke on `--partition=test` before a long run.
 - Never write large files to `/home`; everything big lives on `/scratch`.
-- Don't edit the cluster `~/.ssh/config`; use the `-o IdentitiesOnly=no` bypass.
+- Don't edit the cluster `~/.ssh/config`; use `GIT_SSH_COMMAND="ssh -o IdentitiesOnly=no"` for git there.
 - Don't upgrade `torch_geometric` past 2.6.x in `hgnd-env` (breaks `DynamicEdgeConv`).
 - Compute nodes have no internet — data/weights must be on `/scratch` beforehand.

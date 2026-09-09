@@ -1,7 +1,7 @@
 #!/bin/bash
 # setup_env.sh — build a conda env on the Rocky 9 login node (login-02).
 #
-# Usage (ON login-02, NOT on a compute node, NOT on sms):
+# Usage (ON the login node -- `ssh charisma` lands there -- NOT on a compute node):
 #   bash slurm/setup_env.sh <env-name> [py-version] [requirements-file]
 # Example:
 #   bash slurm/setup_env.sh hgnd-env 3.11 requirements.txt
@@ -17,7 +17,7 @@ REQ_FILE="${3:-}"
 # ── Guard rails ─────────────────────────────────────────────────────────
 host="$(hostname)"
 if [[ "$host" == "sms" ]]; then
-    echo "ERROR: this is the CentOS 7 login node. Run on login-02 (Rocky 9): ssh -A login-02" >&2
+    echo "ERROR: this is the legacy CentOS 7 node. Since 2026-09-08 'ssh charisma' lands on login-02 (Rocky 9) directly -- reconnect." >&2
     exit 1
 fi
 if [[ -n "${SLURM_JOB_ID:-}" ]]; then

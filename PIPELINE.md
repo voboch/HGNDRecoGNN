@@ -19,8 +19,7 @@ Steps 1–4 run on cHARISMa; steps 5–6 run on the laptop.
 Prerequisites verified once per dataset:
 
 ```bash
-ssh charisma
-ssh -A -o IdentitiesOnly=no -o StrictHostKeyChecking=no login-02
+ssh charisma        # one hop → login-02 (Rocky 9); the second hop is obsolete
 ls /scratch/vbocharnikov/hgnd/data/smash_xecs_2.87gev_hardSkyrme_{zeroSpot,defaultSpot,bigSpot}/ | head
 ```
 
@@ -75,13 +74,13 @@ A val-loss variant is stubbed in `slurm/train_valloss.hpc.sbatch`.
 sbatch slurm/train_valloss.hpc.sbatch          # ~1h40m on V100 32 GB (type_a)
 ```
 
-Retrieve the checkpoint (48 MB) via two-hop tar:
+Retrieve the checkpoint (48 MB) — a plain rsync since 2026-09-08, when
+`ssh charisma` started landing directly on `login-02`:
 
 ```bash
-ssh charisma "ssh -A -o IdentitiesOnly=no -o StrictHostKeyChecking=no login-02 \
-  'tar czf - -C /scratch/vbocharnikov/hgnd/checkpoints \
-     defaultSpot_v2_seed42_20ep_valloss_${JOB}'" \
-  > ~/Project/BM@N/HGND/HGNDRecoGNN/checkpoints_hpc/valloss_${JOB}.tar.gz
+rsync -avhP \
+  charisma:/scratch/vbocharnikov/hgnd/checkpoints/defaultSpot_v2_seed42_20ep_valloss_${JOB}/ \
+  ~/Project/BM@N/HGND/HGNDRecoGNN/checkpoints_hpc/valloss_${JOB}/
 ```
 
 ---
@@ -126,35 +125,18 @@ Wall time: ~30 min preprocess + ~30-60 min sensitivity on the V100.
 
 ## Stage 5 — Retrieve to laptop
 
-`login-02` is not directly SSH-reachable from the laptop (see
-`HANDOFF_hgnd.md` §7). Two working options:
-
-**Option A — two-hop tar (no ssh-config changes):**
+Since 2026-09-08 the cluster entry point *is* the Rocky 9 login node, so
+`ssh charisma` reaches it in one hop and retrieval is a single rsync. The old
+two-hop tar and the `ProxyJump` workaround are no longer needed.
 
 ```bash
 JOB=<JOBID>
 mkdir -p ~/Project/BM@N/HGND/HGNDRecoGNN/results
-ssh charisma "ssh -A -o IdentitiesOnly=no -o StrictHostKeyChecking=no login-02 \
-    'tar czf - -C /scratch/vbocharnikov/hgnd/results \
-       --exclude=\"*/pred_hits*.pkl\" --exclude=\"*/pred_edges*.pkl\" \
-       sensitivity_full_hpc_$JOB'" \
-    > ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB.tar.gz
-tar xzf ~/Project/BM@N/HGND/HGNDRecoGNN/results/sensitivity_full_hpc_$JOB.tar.gz \
-    -C ~/Project/BM@N/HGND/HGNDRecoGNN/results/
+rsync -avhP \
+    --exclude='pred_hits*.pkl' --exclude='pred_edges*.pkl' \
+    charisma:/scratch/vbocharnikov/hgnd/results/sensitivity_full_hpc_$JOB \
+    ~/Project/BM@N/HGND/HGNDRecoGNN/results/
 ```
-
-**Option B — rsync with a ProxyJump added to laptop `~/.ssh/config`:**
-
-```
-Host login-02 login-*
-    HostName login-02
-    User vbocharnikov
-    ProxyJump charisma
-    ForwardAgent yes
-```
-
-Then `rsync -av login-02:/scratch/.../sensitivity_full_hpc_$JOB \
-       ~/Project/BM@N/HGND/HGNDRecoGNN/results/` works one-shot.
 
 `results/` is gitignored (see `.gitignore`); small artefacts
 (summary CSVs, PNGs) can be committed manually into `paper/figs/`.

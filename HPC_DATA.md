@@ -28,8 +28,8 @@ Account `proj_1855`, partition `rocky`, GPU `type_a` (V100 32 GB), env `hgnd-env
    ```
 2. **Clone the code onto the cluster** (login node has internet + forwarded git):
    ```
-   ssh charisma
-   ssh -A login-02
+   ssh charisma          # one hop → login-02 (Rocky 9); the old
+                         # `ssh -A login-02` second hop is obsolete
    cd ~ && git clone --depth 1 git@github.com:voboch/HGNDRecoGNN.git
    ```
    The package is imported as `HGNDRecoGNN` (run from `~`, its parent), so no
