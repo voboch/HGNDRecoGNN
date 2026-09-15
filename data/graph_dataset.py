@@ -18,7 +18,9 @@ Usage
 from __future__ import annotations
 
 import os
+import sys
 import glob
+import time
 import hashlib
 import json
 from typing import Optional, Sequence
@@ -576,10 +578,35 @@ class HGNDGraphDataset(Dataset):
         return os.path.join(self.processed_dir, '_progress.json')
 
     def _save_progress(self, graph_idx: int, shard_idx: int, phase: str):
-        """Write a checkpoint so processing can resume after a crash."""
+        """Write a checkpoint so processing can resume after a crash.
+
+        Written atomically (temp file + rename) and retried: on Lustre this
+        call can fail with a transient EACCES under metadata load. Job
+        4329340_1 died that way after 266 shards / 25 min of work. The
+        checkpoint is only an optimisation for resuming, so a write that
+        fails every retry logs a warning and lets processing continue --
+        losing it costs at most one shard of redundant work on the next
+        resume, whereas raising discards the whole run.
+        """
         prog = {'graph_idx': graph_idx, 'shard_idx': shard_idx, 'phase': phase}
-        with open(self._progress_path, 'w') as f:
-            json.dump(prog, f)
+        tmp = f'{self._progress_path}.tmp'
+        for attempt in range(5):
+            try:
+                with open(tmp, 'w') as f:
+                    json.dump(prog, f)
+                os.replace(tmp, self._progress_path)
+                return
+            except OSError as exc:
+                if attempt == 4:
+                    print(f'  WARNING could not write progress checkpoint '
+                          f'({exc}); continuing without it', file=sys.stderr,
+                          flush=True)
+                    try:
+                        os.unlink(tmp)
+                    except OSError:
+                        pass
+                    return
+                time.sleep(2 ** attempt)
 
     def _load_progress(self) -> dict | None:
         if os.path.exists(self._progress_path):
