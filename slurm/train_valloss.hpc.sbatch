@@ -36,7 +36,12 @@ source /etc/profile 2>/dev/null || true
 set -euo pipefail
 
 : "${ENV_NAME:=hgnd-env}"
-: "${PROJECT_DIR:=$SLURM_SUBMIT_DIR}"
+# $HOME, not $SLURM_SUBMIT_DIR: the clone at $HOME/HGNDRecoGNN *is* the
+# HGNDRecoGNN package, so `python -m HGNDRecoGNN.scripts.train` only resolves
+# from its parent. Submitting from ~/HGNDRecoGNN and cd-ing there put the
+# package dir itself on cwd and raised ModuleNotFoundError. Matches the
+# handling in preprocess_all_smash.hpc.sbatch / sensitivity_full.hpc.sbatch.
+: "${PROJECT_DIR:=$HOME}"
 : "${SCRATCH:=/scratch/$USER}"
 # TAG selects the cache generation to train on (v2 = original, v2fix = re-simulated).
 : "${TAG:=v2}"
@@ -48,8 +53,10 @@ module load cuda/12.9.1
 # shellcheck disable=SC1091
 source activate "$ENV_NAME" 2>/dev/null || conda activate "$ENV_NAME"
 
-mkdir -p logs
 cd "$PROJECT_DIR"
+export PYTHONPATH="$HOME/HGNDRecoGNN:${PYTHONPATH:-}"
+# --output is relative to the submit dir, so logs/ must exist there.
+mkdir -p "${SLURM_SUBMIT_DIR:-$HOME/HGNDRecoGNN}/logs"
 
 echo "host:    $(hostname)"
 echo "date:    $(date)"
