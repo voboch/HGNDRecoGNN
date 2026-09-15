@@ -57,11 +57,22 @@ tar xzf "$TARBALL" -C "$DEST" \
 
 n_hits=$(find "$TREE" -name '*_hits.csv' | wc -l)
 n_vacs=$(find "$TREE" -name '*_vacs.csv' | wc -l)
-echo "extracted: hits=$n_hits vacs=$n_vacs  size=$(du -sh "$TREE" | cut -f1)"
+# Sum apparent sizes rather than `du`: on Lustre, `du` run immediately after
+# tar reports a fraction of the real size until allocation settles (it read
+# 131M for a 3.8G tree in smoke job 4329237).
+bytes=$(find "$TREE" -type f -name '*.csv' -printf '%s\n' | awk '{s+=$1} END {print s+0}')
+# Header-only CSVs occur for runs that produced no hits; they are harmless but
+# worth surfacing, since they dilute the per-file event count.
+n_empty=$(find "$TREE" -type f -name '*.csv' -size -1k | wc -l)
+echo "extracted: hits=$n_hits vacs=$n_vacs  csv_bytes=$bytes ($(awk -v b="$bytes" 'BEGIN{printf "%.2f GB", b/1073741824}'))  header_only=$n_empty"
 
 if (( n_hits == 0 || n_hits != n_vacs )); then
     echo "ERROR: hits/vacs count mismatch ($n_hits vs $n_vacs)" >&2
     exit 4
+fi
+if (( bytes < 100000000 )); then
+    echo "ERROR: extracted CSVs total only $bytes bytes — extraction looks truncated" >&2
+    exit 5
 fi
 
 echo "HGND_EXIT=0"
