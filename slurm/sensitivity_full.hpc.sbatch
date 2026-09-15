@@ -38,6 +38,11 @@ set -euo pipefail
 : "${BATCH_SIZE:=512}"
 : "${THRESHOLD:=0.5}"
 : "${TARGET_PURITY:=0.7}"
+# TAG selects which cache generation to evaluate:
+#   v2     original (pre-bugfix) SMASH caches
+#   v2fix  caches built from the 2026-09 re-simulated archives
+: "${TAG:=v2}"
+: "${RUN_LABEL:=$TAG}"
 
 module purge 2>/dev/null || true
 module load python/miniconda
@@ -50,7 +55,7 @@ cd "$PROJECT_DIR"
 export PYTHONPATH="$HOME/HGNDRecoGNN:${PYTHONPATH:-}"
 mkdir -p "${SLURM_SUBMIT_DIR:-$HOME/HGNDRecoGNN}/logs"
 
-OUT_ROOT="$SCRATCH/hgnd/results/sensitivity_full_hpc_${SLURM_JOB_ID:-local}"
+OUT_ROOT="$SCRATCH/hgnd/results/sensitivity_full_hpc_${RUN_LABEL}_${SLURM_JOB_ID:-local}"
 mkdir -p "$OUT_ROOT"
 
 echo "host:       $(hostname)"
@@ -59,6 +64,7 @@ echo "job:        ${SLURM_JOB_ID:-local}  part=${SLURM_JOB_PARTITION:-?}"
 echo "gpu:        ${CUDA_VISIBLE_DEVICES:-none}"
 echo "env:        $ENV_NAME  cwd=$PROJECT_DIR"
 echo "checkpoint: $CKPT"
+echo "cache tag:  $TAG"
 echo "batch:      $BATCH_SIZE   threshold: $THRESHOLD   purity: $TARGET_PURITY"
 echo "out root:   $OUT_ROOT"
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())"
@@ -73,7 +79,7 @@ DATASETS=(defaultSpot zeroSpot bigSpot)
 declare -a SENS_ARGS=()
 declare -a PURITY_ARGS=()
 for ds in "${DATASETS[@]}"; do
-    ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${ds}_v2"
+    ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${ds}_${TAG}"
     if [[ ! -f "$ROOT/processed/meta.json" ]]; then
         echo "ERROR: missing v2 cache for $ds at $ROOT" >&2
         exit 3

@@ -4,11 +4,23 @@ End-to-end recipe from raw SMASH CSVs (on cHARISMa scratch) to the
 per-dataset sensitivity summary CSV that feeds `paper/main.tex`
 tables `tab:closure` and `tab:purity_locked`.
 
-**Data caveat (2026-08-28):** the three SMASH samples currently on
-cHARISMa have an upstream simulation bug (see memory
-`project-smash-datasets-bug`). Per-neutron physics results are
-provisional; per-cluster pipeline calibration numbers are not
-affected.
+**Data generations (updated 2026-09-15).** Two generations of the three
+SMASH samples now exist:
+
+| generation | raw tree | cache tag | status |
+|---|---|---|---|
+| pre-bugfix | `data/` | `_v2` | superseded — carries the upstream simulation bug |
+| re-simulated | `data_fixed/` | `_v2fix` | current; archives rebuilt 2026-09-10..12 |
+
+The re-simulated archives fix the upstream bug. Measured against matched
+event files (`scripts/compare_data_versions.py`), the fix removes ~31 % of
+hits per event, ~33 % of detected neutrons, half the pi- and 41 % of the
+gammas, while *raising* protons ~8 % and doubling the median neutron Ekin
+(0.49 -> 1.00 GeV). See `results/data_version_comparison/`.
+
+Consequence: **the standing `_v2` checkpoint is out of distribution on the
+fixed data and must not be reused** — the fixed-data chain retrains. All
+`_v2` physics numbers in `paper/` are superseded.
 
 Steps 1–4 run on cHARISMa; steps 5–6 run on the laptop.
 
@@ -51,14 +63,19 @@ Expected artefact per dataset:
 
 Wall time: **~2 h per full dataset** on the `rocky` / `type_d`
 partition (matches jobs 4278192 / 4284505 profile).
-Note: as of 2026-08-27 the `defaultSpot` cache was built with
-`max_events=100000`. Lifting the cap is a one-line override:
 
-```bash
-sbatch --array=1 --export=ALL,MAX_EVENTS= slurm/preprocess_all_smash.hpc.sbatch
-```
+The script takes three env overrides (defaults reproduce the old `_v2` build):
 
-(Empty `MAX_EVENTS` → no cap; the script forwards accordingly.)
+| var | default | meaning |
+|---|---|---|
+| `DATA_ROOT` | `$SCRATCH/hgnd/data` | raw CSV tree to read |
+| `TAG` | `v2` | cache suffix → `cache/ndet_dataset_smash_<ds>_<TAG>` |
+| `MAX_EVENTS` | *(empty)* | per-dataset event cap; empty = no cap |
+
+So the fixed-data build is
+`--export=ALL,DATA_ROOT=$SCRATCH/hgnd/data_fixed,TAG=v2fix,MAX_EVENTS=`.
+`slurm/sensitivity_full.hpc.sbatch` and `slurm/train_valloss.hpc.sbatch`
+take the same `TAG`.
 
 ---
 
@@ -123,6 +140,43 @@ Wall time: ~30 min preprocess + ~30-60 min sensitivity on the V100.
 
 ---
 
+## Stage 4b — The fixed-data chain (one command)
+
+For the re-simulated archives the four cluster stages are wrapped in a
+single dependency chain, so this replaces Stages 1–4 rather than adding
+to them:
+
+```bash
+# on login-02, from ~/HGNDRecoGNN
+bash slurm/run_sensitivity_fixed.sh
+```
+
+which submits, each gated on the previous with `afterok`:
+
+| # | job | partition | what |
+|---|---|---|---|
+| 1 | `extract_fixed.hpc.sbatch` (array 0-2) | `type_d` | unpack `data_fixed/*.tar.gz` (skips the nested `unigen` ROOT tree) |
+| 2 | `preprocess_all_smash.hpc.sbatch` (array 0-2) | `type_d` | build `_v2fix` caches, no event cap |
+| 3 | `train_valloss.hpc.sbatch` | `type_a` | **retrain** net_default on fixed `defaultSpot`, val-loss policy |
+| 4 | `sensitivity_full.hpc.sbatch` | `type_a` | evaluate all three + sensitivity CLI + purity lock |
+
+Results land in
+`$SCRATCH/hgnd/results/sensitivity_full_hpc_v2fix_<jid>/`.
+
+**Why step 3 is not optional.** The fixed simulation has ~31 % fewer hits
+per event and a much harder neutron spectrum, so the `_v2` checkpoint is
+out of distribution; its reconstruction efficiency does not transfer and
+reusing it would bias every `_v2fix` closure number.
+
+Useful overrides: `SKIP_EXTRACT=1` (archives already unpacked),
+`SKIP_TRAIN=1 CKPT=/path/model.pt` (evaluate an existing fixed-data
+checkpoint).
+
+Prerequisite: the three archives must be in `$SCRATCH/hgnd/data_fixed/`
+(upload from the laptop with `rsync -avhP --partial`).
+
+---
+
 ## Stage 5 — Retrieve to laptop
 
 Since 2026-09-08 the cluster entry point *is* the Rocky 9 login node, so
@@ -182,11 +236,11 @@ Add new asserts here before adding new columns / bases to the CLI.
 
 ---
 
-## Known caveats (as of 2026-08-28)
+## Known caveats (as of 2026-09-15)
 
 | # | Item | Impact | Fix |
 |---|---|---|---|
-| 1 | SMASH simulation bug in all 3 samples | Per-neutron physics is provisional | Re-simulate; runbook is unchanged |
-| 2 | `defaultSpot_v2` cache has `max_events=100000` | `N_MC/ev = 0.80` vs 1.10 on OOD; sample-selection artefact | `sbatch --array=1 --export=ALL,MAX_EVENTS= slurm/preprocess_all_smash.hpc.sbatch` |
+| 1 | ~~SMASH simulation bug in all 3 samples~~ | **Resolved 2026-09-15** by the re-simulated archives (`_v2fix`). `_v2` numbers are superseded. | `bash slurm/run_sensitivity_fixed.sh` |
+| 2 | ~~`defaultSpot_v2` cache has `max_events=100000`~~ | **Resolved** — `scripts/preprocess.py` defaults `--max-events` to `None`, and the fixed chain passes `MAX_EVENTS=` explicitly. | — |
 | 3 | Checkpoint saved by train-loss (epoch 18) not val-loss (epoch 19) | Small (~0.4 %) validation gap | `slurm/train_valloss.hpc.sbatch` |
 | 4 | Rocky partition queue times variable (min→17 h observed 2026-08-26) | Wall-time budgeting | Fair-share fluctuates; submit early |

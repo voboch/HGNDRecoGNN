@@ -38,6 +38,9 @@ set -euo pipefail
 : "${ENV_NAME:=hgnd-env}"
 : "${PROJECT_DIR:=$SLURM_SUBMIT_DIR}"
 : "${SCRATCH:=/scratch/$USER}"
+# TAG selects the cache generation to train on (v2 = original, v2fix = re-simulated).
+: "${TAG:=v2}"
+: "${TRAIN_DS:=defaultSpot}"
 
 module purge 2>/dev/null || true
 module load python/miniconda
@@ -55,8 +58,8 @@ echo "gpu:     ${CUDA_VISIBLE_DEVICES:-none}"
 echo "env:     $ENV_NAME   cwd=$PROJECT_DIR"
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())"
 
-DATA_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_defaultSpot_v2"
-CKPT_DIR="$SCRATCH/hgnd/checkpoints/defaultSpot_v2_seed42_20ep_valloss_${SLURM_JOB_ID}"
+DATA_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${TRAIN_DS}_${TAG}"
+CKPT_DIR="$SCRATCH/hgnd/checkpoints/${TRAIN_DS}_${TAG}_seed42_20ep_valloss_${SLURM_JOB_ID}"
 
 echo
 echo "training root:      $DATA_ROOT"

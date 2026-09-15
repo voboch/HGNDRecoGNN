@@ -33,6 +33,13 @@ set -euo pipefail
 : "${PROJECT_DIR:=$HOME}"
 : "${SCRATCH:=/scratch/$USER}"
 : "${NUM_WORKERS:=${SLURM_CPUS_PER_TASK:-8}}"
+# Data version knobs. Defaults reproduce the original (pre-bugfix) build.
+#   DATA_ROOT  where the raw CSV trees live
+#   TAG        cache suffix -> cache/ndet_dataset_smash_${DATASET}_${TAG}
+#   MAX_EVENTS optional per-dataset event cap (empty = no cap)
+: "${DATA_ROOT:=$SCRATCH/hgnd/data}"
+: "${TAG:=v2}"
+: "${MAX_EVENTS:=}"
 
 module purge 2>/dev/null || true
 module load python/miniconda
@@ -55,8 +62,8 @@ if (( IDX < 0 || IDX >= ${#DATASETS[@]} )); then
 fi
 DATASET="${DATASETS[$IDX]}"
 
-CSV_DIR="$SCRATCH/hgnd/data/smash_xecs_2.87gev_hardSkyrme_${DATASET}"
-DATASET_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${DATASET}_v2"
+CSV_DIR="$DATA_ROOT/smash_xecs_2.87gev_hardSkyrme_${DATASET}"
+DATASET_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${DATASET}_${TAG}"
 
 echo "host:       $(hostname)"
 echo "date:       $(date)"
@@ -65,6 +72,8 @@ echo "part:       ${SLURM_JOB_PARTITION:-?}"
 echo "env:        $ENV_NAME  cwd=$PROJECT_DIR"
 echo "dataset:    $DATASET (index $IDX)"
 echo "csv:        $CSV_DIR"
+echo "tag:        $TAG"
+echo "max_events: ${MAX_EVENTS:-<none>}"
 echo "root:       $DATASET_ROOT"
 echo "workers:    $NUM_WORKERS"
 python -c "from HGNDRecoGNN.data.graph_dataset import SCHEMA_V; print('schema:', SCHEMA_V)"
@@ -83,10 +92,17 @@ if [[ -f "$DATASET_ROOT/processed/meta.json" ]]; then
     echo "existing cache at $DATASET_ROOT is schema v$disk_v; will be rebuilt."
 fi
 
+# NB: plain `[[ ... ]] && EXTRA+=(...)` would trip `set -e` when MAX_EVENTS is empty.
+EXTRA=()
+if [[ -n "$MAX_EVENTS" ]]; then
+    EXTRA+=(--max-events "$MAX_EVENTS")
+fi
+
 python -u -m HGNDRecoGNN.scripts.preprocess \
     --csv-dir "$CSV_DIR" \
     --root    "$DATASET_ROOT" \
-    --num-workers "$NUM_WORKERS"
+    --num-workers "$NUM_WORKERS" \
+    "${EXTRA[@]}"
 
 echo "HGND_EXIT=0"
 echo "preprocess $DATASET done: $(date)"
