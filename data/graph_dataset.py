@@ -608,6 +608,32 @@ class HGNDGraphDataset(Dataset):
                     return
                 time.sleep(2 ** attempt)
 
+    def _save_shard(self, shard_buf, path: str) -> None:
+        """torch.save a shard, retrying transient filesystem errors.
+
+        Job 4329340_2 lost 24 min and 253 shards when this raised
+        "Parent directory ... does not exist" -- for a directory that held
+        253 shards already and was present again immediately after. Both
+        that failure and the EACCES in _save_progress happened on cn-030
+        while an identical job on cn-031 ran for hours, i.e. node-local
+        Lustre flakiness rather than a real path problem.
+
+        Unlike the progress checkpoint, a shard is real output: if it still
+        cannot be written after the retries, raise, because silently
+        skipping it would leave a gap in the dataset.
+        """
+        for attempt in range(5):
+            try:
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                torch.save(shard_buf, path)
+                return
+            except (OSError, RuntimeError) as exc:
+                if attempt == 4:
+                    raise
+                print(f'  WARNING shard write to {path} failed ({exc}); '
+                      f'retry {attempt + 1}/4', file=sys.stderr, flush=True)
+                time.sleep(2 ** attempt)
+
     def _load_progress(self) -> dict | None:
         if os.path.exists(self._progress_path):
             with open(self._progress_path) as f:
@@ -687,7 +713,7 @@ class HGNDGraphDataset(Dataset):
                     if shard_buf:
                         path = os.path.join(self.processed_dir,
                                             f'shard_{shard_idx}.pt')
-                        torch.save(shard_buf, path)
+                        self._save_shard(shard_buf, path)
                         graph_idx += len(shard_buf)
                         shard_idx += 1
                         processed_in_phase += len(shard_buf)
