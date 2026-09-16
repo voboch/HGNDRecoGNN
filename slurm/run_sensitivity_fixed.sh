@@ -24,6 +24,7 @@
 #   SKIP_TRAIN=1 CKPT=/path/model.pt bash slurm/run_sensitivity_fixed.sh
 #   TAG=v3 SKIP_EXTRACT=1 bash slurm/run_sensitivity_fixed.sh   # rebuild caches
 #   EXCLUDE= bash slurm/run_sensitivity_fixed.sh                # allow all nodes
+#   AFTER=<jobid> bash slurm/run_sensitivity_fixed.sh           # queue behind a smoke run
 set -euo pipefail
 
 : "${SCRATCH:=/scratch/$USER}"
@@ -35,6 +36,10 @@ set -euo pipefail
 # filesystem errors that killed two preprocess jobs on 2026-09-15 while the
 # same work ran for hours on cn-031; Slurm still lists it healthy.
 : "${EXCLUDE:=cn-030}"
+# Optional job id the first stage waits on (afterok). Lets the chain be queued
+# behind a still-pending smoke run instead of waiting for it serially: if the
+# smoke fails, afterok stops the chain before it consumes anything.
+: "${AFTER:=}"
 
 EXC=()
 if [[ -n "$EXCLUDE" ]]; then
@@ -45,6 +50,9 @@ cd "$(dirname "$0")/.."
 mkdir -p logs
 
 DEP=""
+if [[ -n "$AFTER" ]]; then
+    DEP="--dependency=afterok:$AFTER"
+fi
 submit () {  # submit <name> <extra-sbatch-args...> -- returns job id
     local jid
     jid=$(sbatch --parsable "$@")
@@ -53,7 +61,7 @@ submit () {  # submit <name> <extra-sbatch-args...> -- returns job id
 
 # ── 1) extract ───────────────────────────────────────────────────────────
 if [[ "$SKIP_EXTRACT" != "1" ]]; then
-    JID_EX=$(submit --array=0-2 "${EXC[@]}" slurm/extract_fixed.hpc.sbatch)
+    JID_EX=$(submit --array=0-2 $DEP "${EXC[@]}" slurm/extract_fixed.hpc.sbatch)
     echo "extract    : array job $JID_EX"
     DEP="--dependency=afterok:$JID_EX"
 fi
