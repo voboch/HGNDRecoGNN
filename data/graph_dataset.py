@@ -59,6 +59,12 @@ DEFAULT_SHARD_SIZE = 1024
 #        same graphs without a per-model adapter.
 SCHEMA_V = 2
 
+# Bump whenever load_hits() changes how CSVs are parsed/keyed, so that
+# _cache_key() invalidates parquet caches built by the previous logic.
+#   1 → original; per-file Row offsets used a hardcoded stride of 500
+#   2 → per-file Row blocks sized from the data (fixes cross-file collisions)
+LOADER_V = 2
+
 
 # ── Standalone helpers (must be picklable → module-level) ─────────────────────
 
@@ -233,12 +239,17 @@ def _build_single_graph(args: tuple) -> Optional[HeteroData]:
 def _cache_key(datadir: str, runs: Sequence[str]) -> str:
     """Deterministic hash of the CSV directory content for cache invalidation.
 
-    Uses run folder names + file names + sizes (not content — that would be
-    too slow for millions of files).  A content-level change that does not
-    alter file sizes will *not* invalidate the cache; delete the .parquet
+    Uses LOADER_V + run folder names + file names + sizes (not content — that
+    would be too slow for millions of files).  A content-level change that does
+    not alter file sizes will *not* invalidate the cache; delete the .parquet
     file manually in that rare case.
+
+    LOADER_V is part of the key so that a change to the parsing logic itself
+    invalidates existing caches. Without it the v1 caches — built with the
+    broken Row offsets — would be silently reused by the fixed loader.
     """
     h = hashlib.sha256()
+    h.update(f'loader_v{LOADER_V}'.encode())
     h.update(os.path.abspath(datadir).encode())
     for run in runs:
         h.update(run.encode())
@@ -285,24 +296,73 @@ def load_hits(
 
     print(f'No cache found — parsing CSVs in {datadir} …')
 
-    # ── hits ──────────────────────────────────────────────────────────────
-    dfs = []
+    # ── hits + MC particles, one file pair at a time ──────────────────────
+    #
+    # Row is only unique *within* a CSV, so it has to be mapped into a global
+    # space. The original code did this with a hardcoded stride:
+    #
+    #     idf.Row += (file_number - 1) * 500 + run_index * 200_000
+    #
+    # which assumed <500 events per file. Real files hold ~4150, so each file
+    # spilled ~3650 rows into the next file's band and ~8 consecutive files
+    # aliased onto the same ids. That corrupted the hits↔MC merge below (it
+    # joins on ['Row', 'Instance']): ~23 % of truth keys were duplicated and
+    # ~31 % of hits matched more than one MC particle.
+    #
+    # Instead, give every (run, file) its own block sized from the data, so
+    # the same Row in two different files can never collide. Hits and vacs for
+    # one file are read together and share a block whose width covers both.
+    HITS_COLS = ['Row', 'Instance', 'fX', 'fY', 'fZ', 'DetectorId', 'LayerId',
+                 'RowId', 'ColumnId', 'fTime', 'fELoss']
+    VACS_COLS = ['Row', 'Instance', 'Id', 'PDG', 'Ekin', 'Rapid', 'fMotherId',
+                 'Weight', 'DetectorID', 'Side', 'X', 'Y', 'Z',
+                 'vX', 'vY', 'vZ', 'Px', 'Py', 'Pz']
+
+    def _read(path, names):
+        idf = pd.read_csv(path, sep=',', skiprows=[0], names=names,
+                          skip_blank_lines=True, engine='c')
+        idf = idf.dropna(axis=1)
+        idf.columns = idf.columns.str.replace(' ', '')
+        return idf
+
+    dfs, mcp_dfs = [], []
+    row_base = 0
+    n_pairs = 0
     for i, run in enumerate(runs):
         run_dir = os.path.join(datadir, run)
-        for f in sorted(os.listdir(run_dir)):
-            path = os.path.join(run_dir, f)
-            if f.endswith('hits.csv') and os.stat(path).st_size > 100:
-                idf = pd.read_csv(
-                    path, sep=',', skiprows=[0],
-                    names=['Row', 'Instance', 'fX', 'fY', 'fZ',
-                           'DetectorId', 'LayerId', 'RowId', 'ColumnId',
-                           'fTime', 'fELoss'],
-                    skip_blank_lines=True, engine='c',
-                )
-                idf = idf.dropna(axis=1)
-                idf.columns = idf.columns.str.replace(' ', '')
-                idf.Row += (int(f.split('_')[0]) - 1) * 500 + i * 200_000
-                dfs.append(idf)
+        stems = sorted({
+            f.rsplit('_', 1)[0] for f in os.listdir(run_dir)
+            if f.endswith('hits.csv') or f.endswith('vacs.csv')
+        })
+        for stem in stems:
+            hpath = os.path.join(run_dir, f'{stem}_hits.csv')
+            vpath = os.path.join(run_dir, f'{stem}_vacs.csv')
+            # A hits file with no matching vacs file (or vice versa) would
+            # produce hits with no truth, so require both.
+            if not (os.path.exists(hpath) and os.path.exists(vpath)):
+                continue
+            if os.stat(hpath).st_size <= 100 or os.stat(vpath).st_size <= 100:
+                continue
+
+            hdf = _read(hpath, HITS_COLS)
+            vdf = _read(vpath, VACS_COLS)
+            if not len(hdf) or not len(vdf):
+                continue
+
+            # Block width covers both frames so neither can run into the next
+            # file's block, whatever the hits/vacs alignment turns out to be.
+            span = int(max(hdf.Row.max(), vdf.Row.max())) + 1
+            hdf.Row += row_base
+            vdf.Row += row_base
+            row_base += span
+            n_pairs += 1
+            dfs.append(hdf)
+            mcp_dfs.append(vdf)
+
+    if not dfs:
+        raise RuntimeError(f'no usable hits/vacs file pairs found under {datadir}')
+    print(f'  parsed {n_pairs} file pairs; global Row space = {row_base:,}',
+          flush=True)
 
     df = pd.concat(dfs, ignore_index=True).dropna(axis=0)
     df = df.astype({
@@ -314,27 +374,19 @@ def load_hits(
     df['fTime'] = df['fTime'] + np.random.normal(0, 0.15, len(df))
     df = df[df.fELoss > 0.003]
 
-    # ── MC particles ──────────────────────────────────────────────────────
-    mcp_dfs = []
-    for i, run in enumerate(runs):
-        run_dir = os.path.join(datadir, run)
-        for f in sorted(os.listdir(run_dir)):
-            path = os.path.join(run_dir, f)
-            if f.endswith('vacs.csv') and os.stat(path).st_size > 100:
-                idf = pd.read_csv(
-                    path, sep=',', skiprows=[0],
-                    names=['Row', 'Instance', 'Id', 'PDG', 'Ekin', 'Rapid',
-                           'fMotherId', 'Weight', 'DetectorID', 'Side',
-                           'X', 'Y', 'Z', 'vX', 'vY', 'vZ', 'Px', 'Py', 'Pz'],
-                    skip_blank_lines=True, engine='c',
-                )
-                idf = idf.dropna(axis=1)
-                idf.columns = idf.columns.str.replace(' ', '')
-                idf.Row += (int(f.split('_')[0]) - 1) * 500 + i * 200_000
-                mcp_dfs.append(idf)
-
+    # ── MC particles (already parsed above, sharing each file's Row block) ─
     mcpdf = pd.concat(mcp_dfs, ignore_index=True)
     mcpdf['PDG'] = np.abs(mcpdf.PDG)
+
+    # The merge below joins on ['Row', 'Instance'] and is only correct if that
+    # pair is unique in the MC frame. With the old stride it was not; guard so
+    # a regression shows up here instead of as quietly wrong physics.
+    _dup = int(mcpdf.duplicated(subset=['Row', 'Instance']).sum())
+    if _dup:
+        raise RuntimeError(
+            f'{_dup:,} duplicate (Row, Instance) keys in the MC frame '
+            f'({100 * _dup / len(mcpdf):.1f}%). Row blocks are colliding across '
+            f'files — hits would be matched to the wrong MC particles.')
 
     # ── eToF ──────────────────────────────────────────────────────────────
     dist = np.linalg.norm(np.asarray([df.fX, df.fY, df.fZ]) / 100, axis=0)
