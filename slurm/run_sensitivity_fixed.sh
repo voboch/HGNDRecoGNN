@@ -22,6 +22,8 @@
 #   bash slurm/run_sensitivity_fixed.sh            # full chain
 #   SKIP_EXTRACT=1 bash slurm/run_sensitivity_fixed.sh   # archives already unpacked
 #   SKIP_TRAIN=1 CKPT=/path/model.pt bash slurm/run_sensitivity_fixed.sh
+#   TAG=v3 SKIP_EXTRACT=1 bash slurm/run_sensitivity_fixed.sh   # rebuild caches
+#   EXCLUDE= bash slurm/run_sensitivity_fixed.sh                # allow all nodes
 set -euo pipefail
 
 : "${SCRATCH:=/scratch/$USER}"
@@ -29,6 +31,15 @@ set -euo pipefail
 : "${DATA_ROOT:=$SCRATCH/hgnd/data_fixed}"
 : "${SKIP_EXTRACT:=0}"
 : "${SKIP_TRAIN:=0}"
+# Comma-separated nodes to keep every stage off. cn-030 produced two distinct
+# filesystem errors that killed two preprocess jobs on 2026-09-15 while the
+# same work ran for hours on cn-031; Slurm still lists it healthy.
+: "${EXCLUDE:=cn-030}"
+
+EXC=()
+if [[ -n "$EXCLUDE" ]]; then
+    EXC+=(--exclude="$EXCLUDE")
+fi
 
 cd "$(dirname "$0")/.."
 mkdir -p logs
@@ -42,20 +53,20 @@ submit () {  # submit <name> <extra-sbatch-args...> -- returns job id
 
 # ── 1) extract ───────────────────────────────────────────────────────────
 if [[ "$SKIP_EXTRACT" != "1" ]]; then
-    JID_EX=$(submit --array=0-2 slurm/extract_fixed.hpc.sbatch)
+    JID_EX=$(submit --array=0-2 "${EXC[@]}" slurm/extract_fixed.hpc.sbatch)
     echo "extract    : array job $JID_EX"
     DEP="--dependency=afterok:$JID_EX"
 fi
 
 # ── 2) preprocess to v2fix caches ────────────────────────────────────────
-JID_PP=$(submit --array=0-2 $DEP \
+JID_PP=$(submit --array=0-2 $DEP "${EXC[@]}" \
     --export=ALL,DATA_ROOT="$DATA_ROOT",TAG="$TAG",MAX_EVENTS= \
     slurm/preprocess_all_smash.hpc.sbatch)
 echo "preprocess : array job $JID_PP  (DATA_ROOT=$DATA_ROOT TAG=$TAG, no event cap)"
 
 # ── 3) train on the fixed defaultSpot cache ──────────────────────────────
 if [[ "$SKIP_TRAIN" != "1" ]]; then
-    JID_TR=$(submit --dependency=afterok:$JID_PP \
+    JID_TR=$(submit --dependency=afterok:$JID_PP "${EXC[@]}" \
         --export=ALL,TAG="$TAG",TRAIN_DS=defaultSpot \
         slurm/train_valloss.hpc.sbatch)
     echo "train      : job $JID_TR  (net_default H=512 L=8, 20 ep, save-best-on=val)"
@@ -67,7 +78,7 @@ else
 fi
 
 # ── 4) sensitivity on all three fixed datasets ───────────────────────────
-JID_SE=$(submit $SENS_DEP \
+JID_SE=$(submit $SENS_DEP "${EXC[@]}" \
     --export=ALL,TAG="$TAG",RUN_LABEL="$TAG",CKPT="$CKPT" \
     slurm/sensitivity_full.hpc.sbatch)
 echo "sensitivity: job $JID_SE"
