@@ -44,11 +44,12 @@ def _add_package_to_path() -> None:
 
 
 def _discover_parquet(cache_root: str, name: str) -> str | None:
-    # See scripts/sensitivity.py::_discover_parquet — v2 → unsuffixed
-    # → smoke. Smoke is a last-resort fallback (warns to stderr) so
-    # full-stats predictions do not silently pull the tiny smoke
-    # parquet as their MC-truth reference.
-    for suffix in ('_v2', '', '_smoke'):
+    # See scripts/sensitivity.py::_discover_parquet — v3 → v2 → unsuffixed
+    # → smoke. v3 is the only generation built with per-file Row blocks, so
+    # it is the only one whose hits↔truth association is trustworthy. Smoke
+    # is a last-resort fallback (warns to stderr) so full-stats predictions
+    # do not silently pull the tiny smoke parquet as their MC-truth reference.
+    for suffix in ('_v3', '_v2', '', '_smoke'):
         pat = os.path.join(cache_root,
                            f'ndet_dataset_smash_{name}{suffix}',
                            'processed', '_hits_cache_*.parquet')

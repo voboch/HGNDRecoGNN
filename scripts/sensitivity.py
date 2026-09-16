@@ -40,13 +40,16 @@ def _add_package_to_path() -> None:
 def _discover_parquet(cache_root: str, name: str) -> str | None:
     """Find the raw-hits parquet for a dataset under a cache root.
 
-    Preference order: `_v2` (schema-v2 full builds) → unsuffixed
+    Preference order: `_v3` (built by loader v2, with per-file Row blocks —
+    the only generation whose MC-truth association is trustworthy) →
+    `_v2` (schema-v2 full builds, but built by loader v1, whose cross-file
+    Row collisions corrupted the hits↔truth merge) → unsuffixed
     (legacy full builds, same raw data as v2 → Row IDs match) →
     `_smoke` (smoke slices; only used as a last-resort fallback,
     with a warning because a smoke parquet on full-stats predictions
     produces silently wrong MC-truth counts).
     """
-    for suffix in ('_v2', '', '_smoke'):
+    for suffix in ('_v3', '_v2', '', '_smoke'):
         pat = os.path.join(
             cache_root,
             f'ndet_dataset_smash_{name}{suffix}',
