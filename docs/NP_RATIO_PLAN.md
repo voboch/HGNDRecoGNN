@@ -20,153 +20,160 @@ Concretely, the expectation to test: **the U_sym response of n/p should exceed
 that of any neutron-only observable on the same events**, and — unlike M_n — it
 should be *monotonic* in U_sym, because the isovector force has a definite sign.
 
-## First look — the prediction holds (2026-09-17)
+## First look, and why it is not a physics ratio (2026-09-17)
 
-Measured on the `_v3` parquets (`results/v3_mc_truth/np_probe.txt`), with the
-hit-level caveat of blocker 3 below:
+n/p measured on the `_v3` parquets is **monotonic in U_sym** — the isovector
+signature, and the first observable besides spectral hardness to order correctly
+where M_n turns over. That much is robust. The magnitude is not, for a reason
+that is specific to BM@N.
 
-| U_sym | n/p (integrated) |
-|---|---|
-| 0 MeV | 1.2427 ± 0.0012 |
-| 18 MeV | 1.2479 ± 0.0013 |
-| 90 MeV | 1.2493 ± 0.0014 |
+### The magnetic-field problem
 
-**n/p is monotonic in U_sym** — the isovector signature, and the first observable
-besides spectral hardness to order correctly where M_n turns over.
+BM@N's analysing magnet bends charged tracks. A **primary proton with kinematics
+comparable to a neutron that reaches the HGND is swept out of acceptance** — the
+two species are simply not sampled over the same phase space. Whatever is
+recorded as a proton at the HGND is therefore either a magnetically-selected
+survivor or something produced locally, and neither is comparable to the neutron
+sample sitting in the numerator.
 
-The amplification is the striking part. In E_kin ∈ [3,5) GeV, where the signal
-lives:
+The data bear this out. Using `fMotherId == -1` for "primary" (note: **not**
+`!= 0` — `0` is a valid track index; the primary flag is `-1`):
 
-| observable | ratio 90/0 | relative effect | significance |
-|---|---|---|---|
-| neutron yield alone | 1.0759 | +7.6 % | 11.6σ |
-| **n/p** | 1.1641 | **+16.4 %** | 9.9σ |
+| species | primary | secondary |
+|---|---|---|
+| neutrons | 48.4 % | 51.2 % |
+| protons | **20.3 %** | **79.2 %** |
 
-n/p carries **2.16× the relative response** of the neutron spectrum — the two
-arms adding rather than partly cancelling, as the isovector argument predicts.
-Its significance is marginally lower (9.9σ vs 11.6σ) only because proton
-counting adds statistical noise; the larger effect wins as statistics grow.
+and the contamination is **energy dependent**, with protons lagging neutrons at
+every energy:
 
-Same lesson as everywhere else in this study: *integrated* n/p is only +0.52 %
-at 3.5σ, while the same ratio in one energy bin is +16.4 %. Integration destroys
-this signal too — any n/p analysis must be differential.
+| E_kin (GeV) | 0–.25 | .25–.5 | .5–.75 | .75–1 | 1–1.5 | 1.5–2 | 2–3 | 3–5 |
+|---|---|---|---|---|---|---|---|---|
+| neutron primary % | 4 | 23 | 40 | 50 | 61 | 71 | 81 | 95 |
+| proton primary % | 1 | 12 | 21 | 28 | 34 | 42 | 61 | 85 |
+| gap (pp) | 3 | 11 | 19 | 22 | 27 | 29 | 20 | 10 |
 
-This is measured on HGND-hit protons, so it is a detector-response ratio, not
-the physics n/p (blocker 3). It is evidence the observable is worth the work,
-not a result to quote.
+An energy-dependent contamination distorts the *shape* of the ratio, not merely
+its normalisation — which is fatal for a spectral observable.
 
-## What blocks it today
+### How much it matters
 
-Three separate problems, in increasing order of cost.
+Restricting to primaries moves the ratio by a factor ~2.4 and more than doubles
+the significance:
 
-### 1. Charge sign is destroyed (`data/graph_dataset.py`)
+| | all recorded | primaries only |
+|---|---|---|
+| n/p at U = 0 | 1.2427 | 2.9672 |
+| n/p at U = 18 | 1.2479 | 2.9900 |
+| n/p at U = 90 | 1.2493 | 3.0334 |
+| 90 vs 0 | +0.52 %, 3.5σ | +2.23 %, **7.6σ** |
 
-```python
-mcpdf['PDG'] = np.abs(mcpdf.PDG)
-```
-
-Protons and antiprotons fold together, as do π⁺/π⁻. Antiprotons are negligible
-at 2.87 GeV so the proton count is nearly unaffected — but the operation is
-wrong in principle and makes every charge-differential observable unavailable.
-
-### 2. The MC columns needed for a differential ratio are dropped
-
-The hits↔truth merge keeps only:
-
-```python
-mcpdf[['Row','Instance','Id','fMotherId','PDG','Ekin','Side','X','Y','Z']]
-```
-
-`Rapid`, `Weight`, and `Px,Py,Pz` exist in `*_vacs.csv` and are discarded. Without
-rapidity and momentum there is no n/p versus (y, p_T) — which is the form the
-observable is defined in, since the effect is strongly rapidity-dependent.
-
-### 3. The parquet is hit-aligned, so "protons" are the wrong sample
-
-`*_vacs.csv` records the particle that produced each *hit in the HGND*. The HGND
-sits behind absorber and is built to reject charge, so protons appearing there
-are a heavily biased, detector-response population — not emitted protons. A
-ratio built from them measures the detector, not the source.
-
-**This is the binding constraint.** Fixing 1 and 2 yields a legitimate
-detector-level ratio and a useful systematic handle, but the physics n/p needs
-primary-particle information that the current CSVs do not contain at all.
+**Withdrawn:** the earlier "n/p carries 2.16× the relative response of the
+neutron spectrum" was computed on the all-recorded sample and is not a physics
+result. The qualitative claim survives — the response is larger in n/p than in
+neutrons alone, in both treatments, and monotonic in both — but no number from
+HGND hits should be quoted, because numerator and denominator do not share an
+acceptance.
 
 ## Staged plan
 
-### Stage 1 — preserve what the CSVs already hold *(no new simulation)*
+The magnetic-field argument changes the priority order: Stage 1 is no longer a
+route to a physics ratio, only a diagnostic. The primaries dump (Stage 2) is now
+the *only* path to the measurement, so it moves to the front.
+
+### Stage 1 — preserve what the CSVs hold *(diagnostic value only)*
 
 In `load_hits()`:
 
-- keep a signed `PDG_signed` column alongside the existing absolute `PDG`
-  (backward compatible — nothing downstream changes meaning);
-- carry `Rapid`, `Weight`, `Px`, `Py`, `Pz` through the merge into the parquet,
-  and derive `pT = hypot(Px,Py)`;
-- bump `LOADER_V` so existing caches invalidate and rebuild.
+- keep a signed `PDG_signed` alongside the existing absolute `PDG`;
+- carry `Rapid`, `Weight`, `Px`, `Py`, `Pz` through the merge, and derive
+  `pT = hypot(Px, Py)`;
+- **propagate `fMotherId` usefully** — it is already carried, but nothing
+  downstream uses it. Every nucleon-level observable should be able to select
+  primaries;
+- bump `LOADER_V` so caches rebuild.
 
-Cost: one rebuild (~8 h/dataset, already budgeted). Delivers hit-level n/p vs
-(E_kin, y, p_T) — a detector-response ratio, worth having as a systematic
-cross-check and a first look at whether the ordering is monotonic.
+This buys rapidity- and p_T-differential *diagnostics* and a clean primary
+selection. It does **not** buy an n/p measurement, for the acceptance reason
+above. Cheap, and it rides a rebuild already planned.
 
-### Stage 2 — obtain primary-particle output *(needs the simulation team)*
+### Stage 2 — all primary nucleons, regardless of acceptance *(the blocking item)*
 
-The physics ratio needs one row per **primary particle per event**, not per hit.
-Two routes:
+This is the request to whoever runs the simulation. What is needed is **every
+primary proton and neutron from the collision, written whether or not the
+particle reaches any detector** — so that n/p can be formed over a phase-space
+region defined by physics rather than by what survived the magnet.
 
-- **`unigen` ROOT files.** The `defaultSpot` archive already ships these
-  (`unigen/particles_*.root` plus `unigen_*.tar.gz`); `zeroSpot` and `bigSpot`
-  do **not** — their manifests contain zero ROOT files. Request the matching
-  unigen output for the other two potentials.
-- **A primaries CSV**, if that is cheaper to produce. Requested schema, one row
-  per primary particle:
+`unigen` output already satisfies this in principle and exists for
+`defaultSpot` (`unigen/particles_*.root`); `zeroSpot` and `bigSpot` archives
+contain **zero** ROOT files. Either request the matching unigen for the other
+two potentials, or produce a primaries CSV per event:
 
-  | column | meaning |
-  |---|---|
-  | `Row` | event index **within the file** (see note below) |
-  | `Instance` | particle index within the event |
-  | `PDG` | **signed** PDG code |
-  | `E`, `Ekin` | total and kinetic energy (GeV) |
-  | `Px`, `Py`, `Pz` | momentum components (GeV/c) |
-  | `Rapid` | rapidity in the lab frame |
-  | `Weight` | generator weight |
-  | `b` | impact parameter (fm) |
-  | `Npart` | participant nucleons |
+| column | meaning |
+|---|---|
+| `Row` | event index **within the file** |
+| `Instance` | particle index within the event |
+| `PDG` | **signed** PDG code |
+| `E`, `Ekin` | total and kinetic energy (GeV) |
+| `Px`, `Py`, `Pz` | momentum components (GeV/c) |
+| `Rapid` | lab rapidity |
+| `pT` | transverse momentum (GeV/c) |
+| `b` | impact parameter (fm) |
+| `Npart` | participant nucleons |
+| `Weight` | generator weight |
 
-  `b` / `Npart` are not optional: n/p depends strongly on centrality, so the
-  three potentials must be compared in matched centrality bins or the
-  comparison is confounded by any difference in the sampled impact-parameter
-  distribution.
+Two constraints that are not optional:
 
-  **Note on `Row`:** it only needs to be unique *within a file* — the loader now
-  assigns each file its own global block (`LOADER_V = 2`). Do not attempt a
-  global numbering in the writer; that is what produced the cross-file collision
-  fixed in `9b7c6ee`.
+- **All primaries, no acceptance filter.** The moment the writer applies a
+  geometric or magnetic cut, the sample inherits exactly the bias this plan
+  exists to remove. If a cut is unavoidable, it must be applied identically to
+  protons and neutrons and recorded in the file.
+- **`b` / `Npart` for centrality matching.** n/p depends strongly on impact
+  parameter, so the three potentials must be compared in matched centrality
+  bins or any difference in the sampled b distribution is confounded with the
+  U_sym effect.
 
-### Stage 3 — the measurement
+`Row` needs to be unique only *within a file* — the loader assigns each file its
+own global block (`LOADER_V = 2`). A writer-side global numbering is what caused
+the cross-file collision fixed in `9b7c6ee`.
 
-- Single ratio `R_np(y, p_T) = N_n / N_p` per U_sym, in matched centrality.
-- **Double ratio** `DR = R_np(U=90) / R_np(U=0)` — cancels generator-level and
-  acceptance systematics common to the two samples, which is why the literature
-  quotes it rather than the single ratio.
-- Run the same significance machinery used for R, so the two observables are
-  compared on equal footing: significance per event, and events needed for 5σ.
-- Decision criterion: n/p replaces R as the headline observable only if it
-  beats it in σ per event **and** is monotonic in U_sym.
+### Stage 3 — the measurement, on a common fiducial region
 
-### Stage 4 — reconstruction reality
+- Define a **common fiducial window in (y, p_T)** and compute n/p inside it for
+  both species. This is what makes the ratio meaningful: identical phase space,
+  not identical detectors.
+- Single ratio `R_np(y, p_T)` per U_sym, in matched centrality.
+- **Double ratio** `R_np(U=90) / R_np(U=0)` — cancels generator-level and
+  acceptance systematics common to both samples.
+- Same significance machinery as spectral hardness, so the two observables are
+  compared per event on equal footing.
+- Differential, always: integrated n/p is +0.52 % / 3.5σ at hit level and
+  +2.23 % / 7.6σ for primaries, while the [3,5) GeV bin alone reaches ~10σ.
+  Integration destroys this signal exactly as it destroys the neutron one.
 
-The HGND reconstructs neutrons. Protons are measured by BM@N tracking
-(GEM/TOF), not by this detector. So a *measured* n/p is a cross-detector
-analysis outside the HGND pipeline's present scope. That does not devalue
-Stages 1–3 — a generator-level n/p sensitivity number sets the physics reach
-and tells you whether a cross-detector analysis is worth proposing — but the
-report must not imply the HGND alone can deliver n/p.
+### Stage 4 — what a *measured* n/p would require
+
+The HGND measures neutrons. Protons are measured by BM@N tracking (GEM / TOF /
+DCH) **inside** the magnetic field, with an acceptance that is a strong function
+of rigidity and charge sign. A measured n/p therefore needs:
+
+1. neutron acceptance × efficiency from the HGND pipeline,
+2. proton acceptance × efficiency from the tracking system,
+3. a fiducial region where **both** are non-zero and well understood,
+4. each corrected to the same (y, p_T) window before the ratio is formed.
+
+That is a cross-detector analysis, outside the present HGND scope. Stages 2–3
+remain worth doing regardless: a generator-level n/p sensitivity number tells you
+whether that analysis is worth proposing, and is publishable on its own as a
+feasibility statement.
 
 ## Order of work
 
-1. Stage 1 now — cheap, reversible, and rides the rebuild already planned.
-2. Request unigen for `zeroSpot` / `bigSpot` in parallel — it is a lead-time
-   item and blocks the physics result.
-3. Stage 3 once either arrives.
-4. Keep R (spectral hardness) as the headline observable until n/p is
-   demonstrated to beat it. It is measured, monotonic, and already at 10σ.
+1. **Request the primaries dump now** — it is the blocking item and has the
+   longest lead time. Everything physics-facing waits on it.
+2. Stage 1 alongside, riding the rebuild already queued; it gives primary
+   selection and (y, p_T) diagnostics.
+3. Stage 3 once the primaries arrive.
+4. Keep spectral hardness R as the headline observable meanwhile. It is
+   measurable by the HGND alone, monotonic, and at 6.4σ on the reconstruction
+   target — no acceptance caveat attached.
