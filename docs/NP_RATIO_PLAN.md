@@ -20,6 +20,41 @@ Concretely, the expectation to test: **the U_sym response of n/p should exceed
 that of any neutron-only observable on the same events**, and — unlike M_n — it
 should be *monotonic* in U_sym, because the isovector force has a definite sign.
 
+## First look — the prediction holds (2026-09-17)
+
+Measured on the `_v3` parquets (`results/v3_mc_truth/np_probe.txt`), with the
+hit-level caveat of blocker 3 below:
+
+| U_sym | n/p (integrated) |
+|---|---|
+| 0 MeV | 1.2427 ± 0.0012 |
+| 18 MeV | 1.2479 ± 0.0013 |
+| 90 MeV | 1.2493 ± 0.0014 |
+
+**n/p is monotonic in U_sym** — the isovector signature, and the first observable
+besides spectral hardness to order correctly where M_n turns over.
+
+The amplification is the striking part. In E_kin ∈ [3,5) GeV, where the signal
+lives:
+
+| observable | ratio 90/0 | relative effect | significance |
+|---|---|---|---|
+| neutron yield alone | 1.0759 | +7.6 % | 11.6σ |
+| **n/p** | 1.1641 | **+16.4 %** | 9.9σ |
+
+n/p carries **2.16× the relative response** of the neutron spectrum — the two
+arms adding rather than partly cancelling, as the isovector argument predicts.
+Its significance is marginally lower (9.9σ vs 11.6σ) only because proton
+counting adds statistical noise; the larger effect wins as statistics grow.
+
+Same lesson as everywhere else in this study: *integrated* n/p is only +0.52 %
+at 3.5σ, while the same ratio in one energy bin is +16.4 %. Integration destroys
+this signal too — any n/p analysis must be differential.
+
+This is measured on HGND-hit protons, so it is a detector-response ratio, not
+the physics n/p (blocker 3). It is evidence the observable is worth the work,
+not a result to quote.
+
 ## What blocks it today
 
 Three separate problems, in increasing order of cost.
