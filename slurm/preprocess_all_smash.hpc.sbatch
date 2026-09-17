@@ -14,6 +14,11 @@
 # data is not yet on scratch, submit the array with the appropriate
 # --array subset (e.g. --array=0,2 to build zero+big only).
 #
+# Walltime: 12 h. Loader v2 keeps ~3.2x more data than the old broken parsing
+# (zeroSpot: 5.3M graphs vs 1.67M), so at the observed ~195 graphs/s a full
+# build needs ~8 h. The previous 4 h limit timed out jobs 4331469_0 and _1
+# mid-build. Work is not lost on a timeout -- _progress.json lets a resubmit
+# resume -- but the array's afterok dependents get cancelled, so size it properly.
 #SBATCH --job-name=hgnd-preprocess-v2-smash
 #SBATCH --account=proj_1855
 #SBATCH --partition=rocky
@@ -22,7 +27,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
-#SBATCH --time=04:00:00
+#SBATCH --time=12:00:00
 #SBATCH --output=logs/%x_%A_%a.out
 #SBATCH --error=logs/%x_%A_%a.err
 
