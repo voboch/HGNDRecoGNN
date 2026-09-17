@@ -629,8 +629,18 @@ class HGNDGraphDataset(Dataset):
     def _progress_path(self) -> str:
         return os.path.join(self.processed_dir, '_progress.json')
 
-    def _save_progress(self, graph_idx: int, shard_idx: int, phase: str):
+    def _save_progress(self, graph_idx: int, shard_idx: int,
+                       done_phases: Sequence[str], cur_phase: str | None,
+                       cur_done: int):
         """Write a checkpoint so processing can resume after a crash.
+
+        `done_phases` lists fully-built phases; `cur_phase`/`cur_done` record
+        how many events of the in-progress phase are already on disk. The
+        earlier format stored only a "last completed phase" string, which was
+        '' while a phase was mid-flight -- so a resume skipped nothing, replayed
+        the phase from its first event, and appended every rebuilt graph again
+        under a continuing graph_idx. Job 4333774_0 was on course to duplicate
+        ~2.3 M of zeroSpot's graphs that way.
 
         Written atomically (temp file + rename) and retried: on Lustre this
         call can fail with a transient EACCES under metadata load. Job
@@ -640,7 +650,9 @@ class HGNDGraphDataset(Dataset):
         losing it costs at most one shard of redundant work on the next
         resume, whereas raising discards the whole run.
         """
-        prog = {'graph_idx': graph_idx, 'shard_idx': shard_idx, 'phase': phase}
+        prog = {'graph_idx': graph_idx, 'shard_idx': shard_idx,
+                'done_phases': list(done_phases), 'cur_phase': cur_phase,
+                'cur_done': int(cur_done)}
         tmp = f'{self._progress_path}.tmp'
         for attempt in range(5):
             try:
@@ -698,16 +710,29 @@ class HGNDGraphDataset(Dataset):
 
         # ── Resume from checkpoint if available ───────────────────────────
         progress = self._load_progress()
+        if progress is not None and 'done_phases' not in progress:
+            # Pre-event-resume checkpoint: it cannot say how far into a phase
+            # the build got, and trusting it duplicates graphs. Start over.
+            print('Ignoring legacy progress checkpoint (no event offset); '
+                  'rebuilding from scratch', file=sys.stderr, flush=True)
+            for _stale in glob.glob(os.path.join(self.processed_dir, 'shard_*.pt')):
+                os.remove(_stale)
+            progress = None
         if progress is not None:
             graph_idx = progress['graph_idx']
             shard_idx = progress['shard_idx']
-            skip_phase = progress['phase']  # 'top' or 'bot'
+            done_phases = list(progress.get('done_phases', []))
+            resume_phase = progress.get('cur_phase')
+            resume_done = int(progress.get('cur_done', 0))
             print(f'Resuming from checkpoint: {graph_idx} graphs, '
-                  f'{shard_idx} shards, last completed phase={skip_phase}')
+                  f'{shard_idx} shards, done={done_phases}, '
+                  f'in-progress={resume_phase} at {resume_done} events')
         else:
             graph_idx = 0
             shard_idx = 0
-            skip_phase = None
+            done_phases = []
+            resume_phase = None
+            resume_done = 0
 
         print('Loading CSVs …')
         df = load_hits(
@@ -720,26 +745,49 @@ class HGNDGraphDataset(Dataset):
         for half_df, scaler, istop in halves:
             tag = 'top' if istop else 'bot'
 
-            # Skip already-completed phases on resume
-            if skip_phase is not None:
-                if tag == 'top' and skip_phase in ('top', 'bot'):
-                    print(f'Skipping {tag} (already done)')
-                    continue
-                if tag == 'bot' and skip_phase == 'bot':
-                    print(f'Skipping {tag} (already done)')
-                    continue
+            # Skip phases already built in full
+            if tag in done_phases:
+                print(f'Skipping {tag} (already done)')
+                continue
 
-            n_events = half_df.Row.nunique()
-            # Optionally cap the number of events (useful for quick tests)
+            # Resume mid-phase: drop the events already on disk. _prepare_events
+            # iterates df.groupby('Row'), which yields keys in sorted order, so
+            # "the first N events" is well defined and stable across runs.
+            phase_done = 0
+            if resume_phase == tag and resume_done > 0:
+                ordered = np.sort(half_df.Row.unique())
+                if resume_done >= len(ordered):
+                    print(f'Skipping {tag} (checkpoint covers all '
+                          f'{len(ordered)} events)')
+                    continue
+                half_df = half_df[half_df.Row.isin(ordered[resume_done:])]
+                phase_done = resume_done
+                print(f'Resuming {tag} at event {resume_done} '
+                      f'({len(ordered) - resume_done} remaining)')
+
+            # n_remaining is what this run will build; n_events is the phase
+            # total including anything a previous run already wrote, so the
+            # progress line stays meaningful across a resume.
+            n_remaining = half_df.Row.nunique()
+            n_events = n_remaining + phase_done
+            # Optionally cap the number of events (useful for quick tests).
+            # The cap is on the phase total, so subtract what is already done.
             if self.max_events is not None and self.max_events < n_events:
-                keep_rows = half_df.Row.unique()[:self.max_events]
+                budget = max(self.max_events - phase_done, 0)
+                if budget == 0:
+                    print(f'max_events={self.max_events} already satisfied by '
+                          f'{phase_done} checkpointed events; skipping {tag}')
+                    done_phases.append(tag)
+                    continue
+                keep_rows = np.sort(half_df.Row.unique())[:budget]
                 half_df = half_df[half_df.Row.isin(keep_rows)]
-                n_events = len(keep_rows)
-                print(f'max_events={self.max_events}: using first {n_events} events '
-                      f'for {tag} half')
+                n_remaining = len(keep_rows)
+                n_events = n_remaining + phase_done
+                print(f'max_events={self.max_events}: using {n_remaining} more '
+                      f'events for {tag} half (total {n_events})')
 
-            print(f'Building {tag} graphs ({n_events} events, '
-                  f'workers={self.num_workers}, '
+            print(f'Building {tag} graphs ({n_remaining} events to build, '
+                  f'{n_events} in phase, workers={self.num_workers}, '
                   f'shard_size={self.shard_size}) …')
 
             # Stream events through a generator — never hold all 1M+ in memory
@@ -748,11 +796,14 @@ class HGNDGraphDataset(Dataset):
             # Process one shard_size chunk at a time.
             # Keep a single Pool alive for the whole phase to avoid
             # spawn/teardown overhead per chunk.
-            processed_in_phase = 0
+            processed_in_phase = 0        # graphs built by THIS run
+            events_in_phase = phase_done   # events of this phase now on disk
 
             def _process_chunks(builder_fn):
                 nonlocal graph_idx, shard_idx, processed_in_phase
+                nonlocal events_in_phase
                 for chunk in _iter_chunks(event_gen, self.shard_size):
+                    n_chunk = len(chunk)
                     work = [(f, m, self.rlocal, self.twindow) for f, m in chunk]
                     shard_buf = []
                     for g in builder_fn(work):
@@ -771,11 +822,16 @@ class HGNDGraphDataset(Dataset):
                         processed_in_phase += len(shard_buf)
                         del shard_buf
 
-                        # Checkpoint after every shard
-                        self._save_progress(graph_idx, shard_idx, '')
-                        print(f'  shard {shard_idx-1}: '
-                              f'{processed_in_phase}/{n_events} events  '
-                              f'({graph_idx} graphs total)', flush=True)
+                    # Count events consumed, not graphs written: an event that
+                    # builds no graph is still done, and resume works off
+                    # events. Checkpoint even for an empty shard so those
+                    # events are not replayed.
+                    events_in_phase += n_chunk
+                    self._save_progress(graph_idx, shard_idx, done_phases,
+                                        tag, events_in_phase)
+                    print(f'  shard {shard_idx-1}: '
+                          f'{events_in_phase}/{n_events} events  '
+                          f'({graph_idx} graphs total)', flush=True)
 
             if self.num_workers > 0:
                 # HeteroData contains torch storages.  The default
@@ -803,8 +859,10 @@ class HGNDGraphDataset(Dataset):
             # Save scaler & mark this phase complete
             scaler_path = os.path.join(self.processed_dir, f'scaler_{tag}.pkl')
             pd.to_pickle(scaler, scaler_path)
-            self._save_progress(graph_idx, shard_idx, tag)
-            print(f'{tag} done — {processed_in_phase} graphs')
+            done_phases.append(tag)
+            self._save_progress(graph_idx, shard_idx, done_phases, None, 0)
+            print(f'{tag} done — {processed_in_phase} graphs this run, '
+                  f'{events_in_phase} events in phase')
 
         # Write final metadata & remove progress file
         meta = {
