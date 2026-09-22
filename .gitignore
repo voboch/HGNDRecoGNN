@@ -34,3 +34,7 @@ id_ecdsa
 *.token
 .env
 .env.*
+
+# --- ncx converter (runs on the ncx cluster, not here) ---
+ncx/
+ncx_refactor/
