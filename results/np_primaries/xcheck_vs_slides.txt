@@ -1,0 +1,73 @@
+file-content check (first 2 MB of each sampled file):
+  zeroSpot     66dc269c3fc77506
+  defaultSpot  386f478c198b142d
+  bigSpot      6f8edf3c5287c789
+
+PARTICIPANT region (spectator veto: not(|y-0|<0.25 or |y-y_beam|<0.25 with pT<0.25))
+                N part    <pT>   <y_cm>      n/p       ±
+  zeroSpot     195,488   0.454   -0.000   1.2401  0.0056
+  defaultSpot   206,174   0.452   -0.007   1.1975  0.0053
+  bigSpot      210,878   0.439   -0.010   1.2001  0.0052
+    -> 90/0 = 0.9678 ± 0.0061
+
+SPECTATOR-like nucleons only
+                N spec      n/p       ±
+  zeroSpot     375,742   1.3254  0.0044
+  defaultSpot   365,117   1.3460  0.0045
+  bigSpot      360,475   1.3527  0.0046
+    -> 90/0 = 1.0206 ± 0.0048
+
+mean kinematics per sample (should differ if S_pot differs):
+              <pT> all  <pT> part  <Ekin> part
+  zeroSpot      0.2413     0.4544       1.0334
+  defaultSpot    0.2455     0.4516       1.0254
+  bigSpot       0.2434     0.4392       1.0383
+counts and precision per (y, Ekin) cell — can this sample even see the slide effect?
+
+selection                      n(S=0)   p(S=0)     n/p       ±    90/0       ±   slides  tension
+|y|<0.5, Ekin 1.3-1.7           5,036    4,330   1.163   0.024   1.007   0.030     1.20     6.5σ
+|y|<0.5, Ekin 0.9-1.3          11,566   10,142   1.140   0.016   0.996   0.019     1.13     7.0σ
+|y|<0.5, Ekin 0.3-0.7          17,114   15,078   1.135   0.013   0.996   0.016     1.04     2.8σ
+|y|>0.5, Ekin 0.3-0.7           2,411    2,027   1.189   0.036   1.133   0.048     1.10     0.7σ
+|y|>0.5, Ekin 0.9-1.3             149      127   1.173   0.142   1.125   0.192     1.25     0.7σ
+
+interpretation
+  'slides' column = double ratio read off slide 3 for that cell.
+  tension = |my 90/0 - slide 90/0| / my statistical error.
+  tension < 2 sigma => consistent, my sample is simply too small to resolve it.
+CROSS-CHECK SUMMARY vs 'n_p - SMASH check' slides
+
+CONFIRMED
+  beam       2.5A GeV == sqrt(s_NN) 2.866 GeV -> slide 3 is this dataset
+             slides 4,5,7,8 are 3.8A GeV (sqrt(s)=3.26) -- a DIFFERENT sample
+  S_pot      0 / 18 / 90 MeV == zeroSpot / defaultSpot / bigSpot
+  rapidity   Rapid is LAB; y_cm = y_lab - 0.9863 (bimodal peaks at 0 and y_beam=1.973)
+  samples    three productions are genuinely distinct (different md5, different yields)
+
+AGREES
+  |y_cm|>0.5, Ekin 0.3-0.7   my 90/0 = 1.133 +- 0.048   slide ~1.10   0.7 sigma
+  |y_cm|>0.5, Ekin 0.9-1.3   my 90/0 = 1.125 +- 0.192   slide ~1.25   0.7 sigma
+
+DISAGREES
+  |y_cm|<0.5, Ekin 0.9-1.3   my 90/0 = 0.996 +- 0.019   slide ~1.13   7.0 sigma
+  |y_cm|<0.5, Ekin 1.3-1.7   my 90/0 = 1.007 +- 0.030   slide ~1.20   6.5 sigma
+
+ROOT CAUSE CANDIDATE -- spectator contamination
+  primaries = 256.7 nucleons/event vs A(Xe+Cs) = 264: the file lists essentially
+  EVERY nucleon of both nuclei, participants and spectators alike.
+  spectator-like fraction vs polar angle:
+     theta [0,1)   96.3%
+     theta [1,2)   96.6%
+     theta [2,3)   96.1%
+     theta [3,4)   90.9%
+     theta [4,6)   32.1%
+     theta [6,8.9)    3.3%
+     theta [8.9,13.1)    5.7%  <- HGND band
+
+  splitting the sample:
+     participants  n/p = 1.2401 / 1.1975 / 1.2001   90/0 = 0.968 +- 0.006  (NOT ordered)
+     spectators    n/p = 1.3254 / 1.3460 / 1.3527   90/0 = 1.021 +- 0.005  (ordered)
+
+  => the monotonic forward-angle signal reported earlier is SPECTATOR-driven.
+     In the clean participant region my result disagrees with the slides in
+     BOTH sign and ordering. This is unresolved.

@@ -122,6 +122,59 @@ the HGND acceptance is not useless for U_sym — n/p is simply the wrong
 observable there. Single-species yield or shape keeps what the ratio cancels,
 which is consistent with spectral hardness on neutrons alone reaching 6.4σ.
 
+### Cross-check against the reference SMASH study (2026-09-23)
+
+Compared against `docs/n_p - smash check.pdf`. Identifications established first:
+the slides' **2.5A GeV is this dataset** (√s_NN = 2.866 GeV ≈ the "2.87gev"
+label); slides at 3.8A GeV are a different production. `Rapid` is **lab**
+rapidity — the distribution is bimodal with peaks at y ≈ 0 and y ≈ y_beam =
+1.973 — so y_cm = y_lab − 0.9863. The three samples are distinct productions.
+
+| region | this analysis (90/0) | slides | tension |
+|---|---|---|---|
+| \|y_cm\|>0.5, Ekin 0.3–0.7 | 1.133 ± 0.048 | ~1.10 | 0.7σ |
+| \|y_cm\|>0.5, Ekin 0.9–1.3 | 1.125 ± 0.192 | ~1.25 | 0.7σ |
+| \|y_cm\|<0.5, Ekin 0.9–1.3 | 0.996 ± 0.019 | ~1.13 | **7.0σ** |
+| \|y_cm\|<0.5, Ekin 1.3–1.7 | 1.007 ± 0.030 | ~1.20 | **6.5σ** |
+
+Statistics in the mid-rapidity cells (5–17k nucleons per species) are ample to
+resolve the reported effect, so this is not a sample-size limitation.
+
+**Root cause — the primaries include spectators.** The file holds 256.7
+nucleons per event against A(Xe+Cs) = 264: essentially every nucleon of both
+nuclei, participants and spectators alike. The spectator fraction is strongly
+angle dependent:
+
+| θ_lab | spectator-like |
+|---|---|
+| [0,1) | 96.3 % |
+| [2,3) | 96.1 % |
+| [3,4) | 90.9 % |
+| [4,6) | 32.1 % |
+| [6,8.9) | 3.3 % |
+| **[8.9,13.1) HGND** | **5.7 %** |
+
+Splitting the sample is decisive:
+
+| component | 0 MeV | 18 MeV | 90 MeV | 90/0 | ordered |
+|---|---|---|---|---|---|
+| participant | 1.2401 | 1.1975 | 1.2001 | 0.968 ± 0.006 | no |
+| spectator | 1.3254 | 1.3460 | 1.3527 | 1.021 ± 0.005 | yes |
+
+**The monotonic forward-angle signal reported above is spectator-driven, not the
+isovector emission signal.** In the clean participant region this analysis
+disagrees with the slides in both sign and ordering. Unresolved.
+
+What survives: the HGND band is participant-dominated (5.7 % spectator) and
+shows no n/p dependence on S_pot, while single-species yields there still move
+3–6.5 % against 0.2 % over 4π.
+
+Candidate explanations to settle: (i) the reference study may count only free or
+emitted nucleons, excluding those bound in spectator fragments, whereas the
+converter writes all of them; (ii) centrality is unmatched (below).
+
+Full output: `results/np_primaries/xcheck_vs_slides.txt`.
+
 ### Blocking caveat — centrality
 
 The converter wrote `B = -1` and `NPrim = -1` for every event: the
