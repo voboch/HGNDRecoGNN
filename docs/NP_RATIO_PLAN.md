@@ -75,6 +75,67 @@ neutrons alone, in both treatments, and monotonic in both — but no number from
 HGND hits should be quoted, because numerator and denominator do not share an
 acceptance.
 
+## Measured on primaries (2026-09-23) — the signal is outside the HGND
+
+Stage 2 delivered: `*_prim.csv` now exists, so n/p can be formed over
+physics-defined phase space. Sample: 2,225 events per Spot, ~571k primaries each.
+
+**Total production is identical across the three samples** — 4π yields agree to
+0.17 % (n) and 0.24 % (p). U_sym does not change how many nucleons are made; it
+changes where they go.
+
+**n/p tilts strongly with U_sym, but only at forward angles:**
+
+| θ (deg) | U=0 | U=18 | U=90 | 90−0 | σ | ordered |
+|---|---|---|---|---|---|---|
+| [0,1) | 1.1997 | 1.2937 | 1.3379 | +0.1383 | 5.8 | yes |
+| [1,2) | 1.2262 | 1.2830 | 1.2947 | +0.0685 | 4.5 | yes |
+| [3,4) | 1.3505 | 1.2814 | 1.2764 | −0.0741 | 4.0 | yes |
+| [4,6) | 1.3837 | 1.2172 | 1.2165 | −0.1672 | **7.8** | yes |
+| **[8.9,13.1) HGND** | 1.1644 | 1.1478 | 1.1811 | +0.0167 | **0.8** | **no** |
+
+The ratio rises with U_sym below 3°, falls between 3° and 6°, crossing over near
+2–3°. Integrating over a wide angular range therefore cancels it almost exactly:
+4π n/p is 1.2955 → 1.2902 → 1.2940, a 0.3σ non-effect. Same lesson as the
+neutron spectrum — the signal is differential, here in *angle* rather than
+energy.
+
+**Inside the HGND acceptance the ratio is flat and non-monotonic.** The band
+(θ ∈ [8.9°,13.1°], derived from hit positions) sits beyond the signal region.
+
+### Is the difference driven by protons? No.
+
+`dR/R = dn/n − dp/p` attributes the change directly:
+
+| region | pair | dR/R | dn/n | dp/p | proton share |
+|---|---|---|---|---|---|
+| 4π | 90 vs 0 | −0.12 % | −0.07 % | +0.04 % | 37 % |
+| HGND band | 90 vs 0 | +1.43 % | +4.81 % | +3.32 % | 41 % |
+
+Neither species dominates (37–59 % across pairs).
+
+**The useful finding hides in the same table**: HGND-band *yields* change by
+3–6.5 % between potentials, against 0.2 % over 4π — a twenty-fold
+amplification. The band is genuinely sensitive to the angular redistribution;
+the *ratio* is blind because n and p move into it together and divide out. So
+the HGND acceptance is not useless for U_sym — n/p is simply the wrong
+observable there. Single-species yield or shape keeps what the ratio cancels,
+which is consistent with spectral hardness on neutrons alone reaching 6.4σ.
+
+### Blocking caveat — centrality
+
+The converter wrote `B = -1` and `NPrim = -1` for every event: the
+`MCEventHeader.` branch was not found in this BmnRoot build. n/p depends
+strongly on impact parameter, so a difference in the b-distribution between
+samples is indistinguishable from a U_sym effect. **No n/p number here is
+defensible until centrality can be matched.** The 0.2 % agreement of 4π yields
+is reassuring about gross sample composition but is not a substitute.
+
+The sample is also small and sequential (first 40 MB of the first two files per
+dataset), so per-bin significances need re-measuring on a random draw.
+
+Full output: `results/np_primaries/`.
+
 ## Staged plan
 
 The magnetic-field argument changes the priority order: Stage 1 is no longer a
