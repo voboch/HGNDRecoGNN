@@ -1,0 +1,6 @@
+zeroSpot     events= 2,008  N(E>2.0)=    765  N(E<1.0)= 33,673  R=0.0227
+               per-particle SE = 0.00083   event bootstrap SE = 0.00084   inflation = 1.01x
+defaultSpot  events= 1,986  N(E>2.0)=    749  N(E<1.0)= 35,053  R=0.0214
+               per-particle SE = 0.00079   event bootstrap SE = 0.00086   inflation = 1.09x
+bigSpot      events= 2,042  N(E>2.0)=    738  N(E<1.0)= 33,521  R=0.0220
+               per-particle SE = 0.00082   event bootstrap SE = 0.00080   inflation = 0.98x
