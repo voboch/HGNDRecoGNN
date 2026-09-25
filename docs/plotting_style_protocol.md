@@ -182,6 +182,18 @@ is preserved and the luminance adapted: reference `#2b2b2b` in light mode and
 non-colour channels (line style, marker shape) are theme-invariant and carry the
 identity on their own.
 
+**§1 — axis limits must be derived from the data, and containment asserted.**
+Figure 1 panel (a) was first drawn with hardcoded limits of 0.03–3 GeV⁻¹ for a
+spectrum spanning 0.056–21.3: **75 % of the plotted points sat above the top of
+the panel**, the worst by a factor 7. The XML well-formedness and
+bounds-in-viewBox checks both passed, because the marks were valid SVG at
+coordinates outside the *panel* rectangle but inside the *canvas*. Two rules
+follow: compute limits from the plotted values rather than typing them, and
+assert that every mark and error-bar end lies inside its panel, not merely
+inside the figure. Snapping limits to a 1–3–10 sequence rather than full decades
+keeps the data filling the panel (86 % of the height here, against 65 % for
+decade rounding). `results/spectral_hardness/chkfig.py` performs the check.
+
 **Mechanical.** SVG text labels containing `<` or `>` — routine in physics
 labels such as `|y_cm| < 0.5` — must be escaped as `&lt;`/`&gt;` or the figure
 silently fails to parse. This broke two figures before an XML well-formedness

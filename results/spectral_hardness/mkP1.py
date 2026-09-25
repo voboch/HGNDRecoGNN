@@ -11,9 +11,28 @@ h1,h2=250,100                      # 2.5:1 per §4
 H=T+h1+h2+52
 pw=W-L-R; xmax=3.0
 xm=lambda v:L+pw*(v/xmax)
-ylo,yhi=0.008,3.0
+# Axis limits are DERIVED from the data, never hardcoded: a previous version
+# fixed them at 0.008-3.0 for data spanning 0.056-21.3, putting 75 % of the
+# points off the top of the panel. Containment is asserted below.
+_vals=[b[k]["n"]/b[k]["ev"]/(b["hi"]-b["lo"]) for b in B for k in ("0","18","90")]
+_dmin,_dmax=min(_vals),max(_vals)
+# snap to a 1-3-10 sequence rather than full decades, so the data fills the
+# panel instead of sitting in the middle of an over-wide axis
+_seq=[m*10.0**e for e in range(-4,4) for m in (1,3)]
+ylo=max([c for c in _seq if c<=_dmin/1.6])
+yhi=min([c for c in _seq if c>=_dmax*1.3])
 ya=lambda v:T+h1*(1-(np.log10(v)-np.log10(ylo))/(np.log10(yhi)-np.log10(ylo)))
-b_lo,b_hi=0.88,1.12                # symmetric about unity per §4
+assert ylo<_dmin and yhi>_dmax, f"panel (a) clips data: {_dmin:.3g}-{_dmax:.3g} vs axis {ylo:g}-{yhi:g}"
+YMAJ=[c for c in _seq if ylo<=c<=yhi and abs(np.log10(c)-round(np.log10(c)))<1e-9]
+YMIN=[c for c in [m*10.0**e for e in range(-4,4) for m in (2,3,4,5,6,7,8,9)] if ylo<c<yhi]
+# §4 symmetric about unity, sized to contain the points and their error bars
+_rv=[]
+for b in B:
+    y0=b["0"]["n"]/b["0"]["ev"]; y9=b["90"]["n"]/b["90"]["ev"]
+    r=y9/y0; se=r*np.sqrt(1/b["0"]["n"]+1/b["90"]["n"])
+    _rv += [r-se, r+se]
+_half=max(abs(min(_rv)-1.0), abs(max(_rv)-1.0))*1.15
+b_lo,b_hi=1.0-_half,1.0+_half
 yb=lambda v:T+h1+h2*(1-(v-b_lo)/(b_hi-b_lo))
 o=[]
 def frame(y0,hh,yt,ym,fmt,xlab,ymin=None):
@@ -46,7 +65,7 @@ def eb(x,y,dy,cls,c=3):
             f'<line class="er {cls}" x1="{x-c:.1f}" y1="{y-dy:.1f}" x2="{x+c:.1f}" y2="{y-dy:.1f}"/>'
             f'<line class="er {cls}" x1="{x-c:.1f}" y1="{y+dy:.1f}" x2="{x+c:.1f}" y2="{y+dy:.1f}"/>')
 
-o+=frame(T,h1,[0.01,0.1,1.0],ya,lambda v:f"{v:g}",False,[0.02,0.05,0.2,0.5,2.0])
+o+=frame(T,h1,YMAJ,ya,lambda v:(f"{v:g}" if v>=0.1 else f"{v:g}"),False,YMIN)
 # §2: reference first and darkest
 ARMS=[("0","ref","o","solid"),("18","prior","s","dash"),("90","model","^","solid")]
 for key,cls,shape,ls in ARMS:
@@ -70,9 +89,14 @@ for i,(key,cls,shape,ls) in enumerate(ARMS):
     o.append(mk(lx+14,yy-3.5,cls,shape))
     tag = " (reference)" if key=="0" else ""
     o.append(f'<text class="lg" x="{lx+32}" y="{yy}">{key}{tag}</text>')
-o.append(f'<text class="axt" transform="translate(22,{T+h1/2}) rotate(-90)" text-anchor="middle">(1/N&#8337;&#8341;) dN/dE&#8342;&#8347;&#8342;  [GeV&#8315;&#185;]</text>')
+o.append(f'<text class="axt" transform="translate(22,{T+h1/2}) rotate(-90)" text-anchor="middle">(1/N&#8337;&#8341;) dN/dE&#8342;&#8347;&#8342;  [GeV&#8315;&#185;]  (log)</text>')
 # ratio panel
-o+=frame(T+h1,h2,[0.90,1.00,1.10],yb,lambda v:f"{v:.2f}",True,[0.92,0.94,0.96,0.98,1.02,1.04,1.06,1.08])
+_step=0.05 if _half>0.07 else 0.02
+_maj=[round(1.0+k*_step,3) for k in range(-3,4) if b_lo< 1.0+k*_step <b_hi]
+_min=[round(1.0+k*_step/2,3) for k in range(-7,8) if b_lo< 1.0+k*_step/2 <b_hi]
+o+=frame(T+h1,h2,_maj,yb,lambda v:f"{v:.2f}",True,_min)
+for _r in _rv:
+    assert b_lo<=_r<=b_hi, f"ratio panel clips a point/error bar: {_r:.4f} outside {b_lo:.3f}-{b_hi:.3f}"
 o.append(f'<line class="unity" x1="{L}" y1="{yb(1.0):.1f}" x2="{L+pw}" y2="{yb(1.0):.1f}"/>')
 for b in B:
     x=xm(0.5*(b["lo"]+b["hi"]))
