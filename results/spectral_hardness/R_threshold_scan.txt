@@ -1,0 +1,19 @@
+scan of R = N(Ekin>Ehi) / N(Ekin<Elo), primary neutrons, |y_cm|<0.5, full production
+
+  Elo   Ehi      R(0)     90/0   sigma  ordered
+  0.5   1.4    0.3149   1.0379    29.3      yes
+  0.6   1.4    0.3149   1.0379    29.3      yes
+  0.4   1.4    0.4441   1.0397    29.2      yes
+  0.4   1.6    0.2305   1.0512    29.2      yes
+  0.5   1.6    0.1635   1.0493    29.0      yes
+  0.6   1.6    0.1635   1.0493    29.0      yes
+  0.3   1.6    0.4014   1.0537    28.6      yes
+  0.3   1.4    0.7734   1.0422    27.9      yes
+  0.8   1.4    0.1791   1.0335    27.5      yes
+  0.8   1.6    0.0930   1.0449    27.4      yes
+  1.0   1.4    0.1441   1.0325    27.1      yes
+  1.0   1.6    0.0748   1.0439    27.0      yes
+
+best ordered definition: Elo=0.5, Ehi=1.4 -> 90/0 = 1.0379, 29.3 sigma
+reference definition used so far (Elo=1.0, Ehi=2.0):
+  90/0 = 1.0651, 20.9 sigma, ordered=True
