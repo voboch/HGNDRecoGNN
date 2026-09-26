@@ -1,0 +1,58 @@
+{
+ "per_sample_scalers": {
+  "differential_response_MeV": {
+   "value": -30.67835618324366,
+   "err": 8.649350161885511,
+   "sigma_from_zero": 3.546897236098942
+  },
+  "truth_signal": {
+   "rel": 0.03666646850936339,
+   "err": 0.021199479150115004
+  },
+  "reco_signal": {
+   "rel": -0.030406418114742095,
+   "err": 0.024351526016355696
+  },
+  "paired_displacement": {
+   "rel": -0.06707288662410549,
+   "err": 0.02382747498019252,
+   "sigma": 2.8149389173574764,
+   "frac_of_truth": 1.8292704302018425
+  },
+  "reco_R_n": {
+   "zeroSpot": 1.0792250143871092,
+   "defaultSpot": 1.0970334928229666,
+   "bigSpot": 1.0464096473597662
+  },
+  "reco_ordered": false,
+  "reco_monotonic_boot_frac": 0.24
+ },
+ "shared_scaler": {
+  "differential_response_MeV": {
+   "value": -11.355226244611604,
+   "err": 9.758383948222919,
+   "sigma_from_zero": 1.1636379860498811
+  },
+  "truth_signal": {
+   "rel": 0.03666646850936339,
+   "err": 0.021199479150115004
+  },
+  "reco_signal": {
+   "rel": 0.022472635635798932,
+   "err": 0.024322618893060734
+  },
+  "paired_displacement": {
+   "rel": -0.01419383287356446,
+   "err": 0.026667677837887135,
+   "sigma": 0.5322485504680534,
+   "frac_of_truth": 0.3871066249518911
+  },
+  "reco_R_n": {
+   "zeroSpot": 1.0818948983505945,
+   "defaultSpot": 1.0970334928229666,
+   "bigSpot": 1.106207928197457
+  },
+  "reco_ordered": true,
+  "reco_monotonic_boot_frac": 0.465
+ }
+}

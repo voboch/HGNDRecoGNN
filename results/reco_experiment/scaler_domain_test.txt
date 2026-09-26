@@ -1,0 +1,15 @@
+================================================================================
+  Sample-dependent energy response: per-sample vs shared normalisation
+  identical checkpoint, no retraining
+================================================================================
+  quantity                                      per-sample              shared
+  differential response [MeV]                 -30.7 ±  8.6        -11.4 ±  9.8
+    ... sigma from zero                               3.55                1.16
+  truth 90/0-1 [%]                            +3.67 ± 2.12        +3.67 ± 2.12
+  reco  90/0-1 [%]                            -3.04 ± 2.44        +2.25 ± 2.43
+  paired displacement [%]                     -6.71 ± 2.38        -1.42 ± 2.67
+    ... sigma                                         2.81                0.53
+    ... fraction of truth effect                      1.83                0.39
+  reconstructed R_n ordered 0/18/90                  False                True
+
+wrote results/reco_experiment/scaler_domain_test.json
