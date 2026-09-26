@@ -87,6 +87,17 @@ mismatch can masquerade as signal.
 
 ## Finding in the feasibility subset: the samples do not share a b distribution (2026-09-26)
 
+> **SUPERSEDED (2026-09-26, later the same day).** The full production does not
+> reproduce this.  At full statistics ⟨b⟩ differs between the 0 and 90 MeV
+> samples by **+0.0034 ± 0.0147 fm — 0.23σ** with job-level errors, against the
+> −0.255 fm below; the KS distance falls from 0.0562 to 0.0038.  Two defects in
+> the subset explain the difference, both documented further down: the 80 MiB
+> extracts were biased by their own truncation, and the KS tests here assume
+> events are independent within a job file, which they are not.  The section is
+> kept because the reasoning about *why* a b mismatch would matter is still
+> correct, and because the retraction should be legible.  Do not cite its
+> numbers.
+
 The first centrality-matched analysis found that the check above **fails in the
 analysed subset**.  This subset comprises four sequential, byte-limited primary
 CSV extracts per production; the incomplete final event of each extract is
@@ -277,3 +288,38 @@ The median |σ| sits where a calibrated procedure puts it, and 3σ is reached in
 **method's noise floor**: 0.13 % for the HGND-band neutron hardness, against
 1.9 % on the four-file subset.  A measured `S_pot` difference is interpretable
 only when it stands clear of this floor.
+
+
+---
+
+## Resolution: the full production shares a b distribution (2026-09-26)
+
+Streaming the complete exports — 195 and 173 job files, 804 369 and 717 286
+events, matching the documented counts exactly — settles the question the
+subset could not.
+
+| test | per-event errors | job-level errors |
+|---|---|---|
+| Δ⟨b⟩, 90 vs 0 MeV | +0.0034 ± 0.0050 fm (0.68σ) | +0.0034 ± 0.0147 fm (**0.23σ**) |
+| b-ratio vs unity, 28 bins | χ²/ndf = 13.57, p = 2 × 10⁻⁶³ | χ²/ndf = **1.57**, p = 0.029 |
+
+The error bars differ by a factor 2.95, and that factor is the entire artefact.
+A mild shape residual remains (p = 0.029) and reweighting removes it: the
+spread in ⟨b⟩ across samples falls from 0.00171 to 0.00009 fm, costing 0.1 % of
+effective statistics and discarding no events.
+
+**Consequence for the convention.** The tension noted above is resolved in
+favour of the convention: percentile classes are usable here because the
+samples genuinely share a b distribution. Reweighting is still applied, because
+it is nearly free and because it corrects event by event rather than by
+stratification.
+
+**Consequence for the physics.** With centrality matched and errors resampled at
+the job level, the spectral-hardness signal is present and isovector: R_n
++4.26 % (23.5σ), R_p −5.83 % (33.8σ), the double ratio R_n/R_p +10.72 %
+(38.9σ) in 10 of 10 centrality classes, against a null-test noise floor of
+0.25 %. n/p in the same band is null at 0.9σ. The 18 MeV sample is still
+reducing, so no monotonicity check and no EOS parameter extraction yet.
+
+Full analysis and report: [`results/b_full_analysis/`](../results/b_full_analysis/),
+https://claude.ai/code/artifact/f4e1652c-b51c-4f0e-8284-c040b689c061
