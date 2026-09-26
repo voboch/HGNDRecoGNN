@@ -365,11 +365,51 @@ def fig_spectra(hist_dir, out_dir, emin=0.1, emax=8.0):
     return {"e_centers": ec[keep].tolist(), "ratios": out}
 
 
+def fig_response(resp_json, out_dir):
+    """Fig: response to S_pot, every observable normalised to its own S_pot = 0 value.
+
+    Plotting the relative change puts observables of very different size on one
+    axis and makes the two things the three-point scan adds visible at once:
+    whether the middle point lies between the outer two, and whether the
+    response is straight.
+    """
+    d = json.load(open(resp_json))["response"]
+    show = [("Rn_over_Rp_band", r"$R_n/R_p$ (band)", "#1f77b4", "^", "-"),
+            ("R_n_band",        r"$R_n$ (band)",     "#2b2b2b", "o", "-"),
+            ("R_p_band",        r"$R_p$ (band)",     "#B22222", "s", "--"),
+            ("np_band",         r"$n/p$ (band)",     "#6B727B", "D", ":")]
+    x = np.array([0.0, 18.0, 90.0])
+    fig, ax = plt.subplots(figsize=(FULL, FULL / 2.0))
+    ax.axhline(0.0, color="#6B727B", lw=0.7, ls=":")
+    allv = []
+    for k, lab, col, mk, ls in show:
+        if k not in d:
+            continue
+        y = np.array(d[k]["values"]); e = np.array(d[k]["errors"])
+        r = (y / y[0] - 1.0) * 100.0
+        re = e / y[0] * 100.0
+        ax.errorbar(x, r, yerr=re, color=col, ls="none", marker=mk, ms=4.5,
+                    mfc="none", mew=1.0, elinewidth=0.8, capsize=2.0, label=lab)
+        ax.plot([x[0], x[2]], [r[0], r[2]], color=col, ls=ls, lw=0.9, alpha=0.75)
+        allv += list(r + re) + list(r - re)
+    ax.set_xlabel(r"$S_{\mathrm{pot}}$  [MeV]")
+    ax.set_ylabel("change relative to $S_{\mathrm{pot}}=0$  [%]")
+    ax.set_title("Three-point scan: dashed lines join the end points, "
+                 "so a middle point off the line is curvature", fontsize=7)
+    ax.legend(loc="upper left", fontsize=6.5, ncols=2)
+    lo, hi = min(allv), max(allv)
+    m = (hi - lo) * 0.16
+    ax.set_ylim(lo - m, hi + m); ax.set_xlim(-5, 95)
+    assert_contained(ax, "response")
+    save(fig, out_dir, "fig7_spot_response")
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--events-dir", type=Path, required=True)
     p.add_argument("--report", type=Path, required=True)
     p.add_argument("--null", type=Path, default=None)
+    p.add_argument("--response", type=Path, default=None)
     p.add_argument("--output-dir", type=Path, required=True)
     p.add_argument("--samples", default=None,
                    help="comma-separated subset, when one production is still reducing")
@@ -402,6 +442,8 @@ def main():
         fig_spectra(a.events_dir, a.output_dir)
     except SystemExit as e:
         print(f"  spectra figure skipped: {e}")
+    if a.response and a.response.exists():
+        fig_response(a.response, a.output_dir)
     if a.null and a.null.exists():
         fig_null(json.load(open(a.null)), rep, a.output_dir)
     json.dump({"job_structure": js, "b_binned": binned},

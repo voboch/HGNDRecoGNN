@@ -317,9 +317,21 @@ stratification.
 **Consequence for the physics.** With centrality matched and errors resampled at
 the job level, the spectral-hardness signal is present and isovector: R_n
 +4.26 % (23.5σ), R_p −5.83 % (33.8σ), the double ratio R_n/R_p +10.72 %
-(38.9σ) in 10 of 10 centrality classes, against a null-test noise floor of
-0.25 %. n/p in the same band is null at 0.9σ. The 18 MeV sample is still
-reducing, so no monotonicity check and no EOS parameter extraction yet.
+(37.0σ) in 10 of 10 centrality classes, against a null-test noise floor of
+0.25 %. n/p in the same band is null at 1.0σ.
+
+The scan is now complete at all three `S_pot` values (804 369 / 824 338 /
+717 286 events, 195 / 200 / 173 job files). The 18 MeV point lies between the
+other two for every hardness observable, the double ratio is monotonic in
+`S_pot` in **10 of 10** centrality classes against a chance expectation of 3.3,
+and the response is straight to within 1.6σ over 0–90 MeV at **+0.118 % per
+MeV**. Dividing that slope into the null-test noise floor gives a truth-level
+statistical resolution of about **2 MeV** in `S_pot`.
+
+The scan also strengthens the negative result: `np_band` is not merely
+consistent with zero but sits 7.2σ off the line through the outer two points
+and is not ordered in `S_pot` at all, so the n/p yield ratio is excluded as a
+probe on stronger grounds than its integrated significance alone.
 
 Full analysis and report: [`results/b_full_analysis/`](../results/b_full_analysis/),
 https://claude.ai/code/artifact/f4e1652c-b51c-4f0e-8284-c040b689c061

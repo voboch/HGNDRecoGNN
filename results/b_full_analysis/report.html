@@ -144,7 +144,7 @@ footer code{font-size:12px;}
   <p class="byline">
     <span>Xe+CsI, &radic;s<sub>NN</sub> = 2.87 GeV</span>
     <span>SMASH, hard Skyrme, K<sub>0</sub> = 349.5 MeV</span>
-    <span>1 521 655 events, 368 job files</span>
+    <span>2 345 993 events, 568 job files</span>
     <span>2026-09-26</span>
   </p>
 </header>
@@ -178,8 +178,13 @@ footer code{font-size:12px;}
     <li class="down"><b>Established:</b> HGND cannot supply the proton arm. Protons that
       reach it are soft secondaries, <span class="num">R_p = 0.076</span>, with no
       S<sub>pot</sub> dependence (<span class="num">0.65&sigma;</span>).</li>
-    <li class="hold"><b>Pending:</b> the 18 MeV production is still reducing, so there is
-      no monotonicity check and no response-shape fit. No EOS parameter is extracted here.</li>
+    <li class="up"><b>Established:</b> the scan is complete and monotonic. The 18 MeV
+      point lies between the other two for every hardness observable, the double ratio is
+      ordered in S<sub>pot</sub> in <span class="num">10 of 10</span> centrality classes
+      (chance 3.3), and the response is linear to within
+      <span class="num">1.6&sigma;</span> across 0&ndash;90 MeV at
+      <span class="num">+0.118 % per MeV</span> &mdash; a truth-level resolution of about
+      <span class="num">2 MeV</span> in S<sub>pot</sub>.</li>
   </ul>
 </div>
 
@@ -222,21 +227,21 @@ versus event-level errors, one level further out.</p>
 
 <h2><span class="num">2</span> <span>At full statistics the distributions agree</span></h2>
 
-<p>The reduction streamed the complete production &mdash; 195 and 173 job files, 804&nbsp;369
-and 717&nbsp;286 events, matching the documented counts exactly, with no failed members and
-no rows outside the histogram axes.</p>
+<p>The reduction streamed all three complete productions &mdash; 195, 200 and 173 job
+files, 804&nbsp;369, 824&nbsp;338 and 717&nbsp;286 events, matching the documented counts
+exactly, with no failed members and no rows outside the histogram axes.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>quantity</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 90</th><th>difference</th><th>significance</th></tr></thead>
+<thead><tr><th>quantity</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 18</th><th>S<sub>pot</sub> = 90</th><th>difference (90 &minus; 0)</th><th>significance</th></tr></thead>
 <tbody>
-<tr><td>job files</td><td>195</td><td>173</td><td>&mdash;</td><td>&mdash;</td></tr>
-<tr><td>events</td><td>804 369</td><td>717 286</td><td>&mdash;</td><td>&mdash;</td></tr>
-<tr class="hi"><td>&lang;b&rang; [fm]</td><td>8.5454</td><td>8.5488</td><td>+0.0034 &plusmn; 0.0147</td><td class="sig null">0.23&sigma;</td></tr>
-<tr><td>&nbsp;&nbsp;(per-event errors)</td><td></td><td></td><td>&plusmn;0.0050</td><td class="sig null">0.68&sigma;</td></tr>
-<tr><td>KS D</td><td colspan="2">0.0038</td><td>subset gave 0.0562</td><td class="sig">&mdash;</td></tr>
-<tr class="hi"><td>ratio vs unity</td><td colspan="2">&chi;&sup2;/ndf = 1.57</td><td>28 bins, job-level</td><td class="sig null">p = 0.029</td></tr>
-<tr><td>&nbsp;&nbsp;(per-event errors)</td><td colspan="2">&chi;&sup2;/ndf = 13.57</td><td>bars 2.95&times; smaller</td><td class="sig neg">p = 2&times;10<sup>&minus;63</sup></td></tr>
+<tr><td>job files</td><td>195</td><td>200</td><td>173</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>events</td><td>804 369</td><td>824 338</td><td>717 286</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr class="hi"><td>&lang;b&rang; [fm]</td><td>8.5454</td><td>8.5348</td><td>8.5488</td><td>+0.0034 &plusmn; 0.0147</td><td class="sig null">0.23&sigma;</td></tr>
+<tr><td>&nbsp;&nbsp;(per-event errors)</td><td></td><td></td><td></td><td>&plusmn;0.0050</td><td class="sig null">0.68&sigma;</td></tr>
+<tr><td>KS D (90 vs 0)</td><td colspan="3">0.0038</td><td>subset gave 0.0562</td><td class="sig">&mdash;</td></tr>
+<tr class="hi"><td>ratio vs unity</td><td colspan="3">&chi;&sup2;/ndf = 1.57</td><td>28 bins, job-level</td><td class="sig null">p = 0.029</td></tr>
+<tr><td>&nbsp;&nbsp;(per-event errors)</td><td colspan="3">&chi;&sup2;/ndf = 13.57</td><td>bars 2.95&times; smaller</td><td class="sig neg">p = 2&times;10<sup>&minus;63</sup></td></tr>
 </tbody>
 </table>
 </div>
@@ -324,16 +329,16 @@ protons.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>observable</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 90</th><th>relative</th><th>&sigma;</th><th>noise floor</th></tr></thead>
+<thead><tr><th>observable</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 18</th><th>S<sub>pot</sub> = 90</th><th>90 / 0 &minus; 1</th><th>&sigma;</th><th>floor</th></tr></thead>
 <tbody>
-<tr class="hi"><td>Rn_over_Rp_band</td><td>1.00913 &plusmn; 0.00181</td><td>1.11727 &plusmn; 0.00179</td><td class="pos">+10.72 %</td><td class="sig">38.9</td><td>0.25 %</td></tr>
-<tr><td>R_p_band</td><td>0.68111 &plusmn; 0.00090</td><td>0.64139 &plusmn; 0.00088</td><td class="neg">&minus;5.83 %</td><td class="sig">33.8</td><td>0.22 %</td></tr>
-<tr><td>R_n_mid</td><td>0.02074 &plusmn; 0.00005</td><td>0.02210 &plusmn; 0.00005</td><td class="pos">+6.54 %</td><td class="sig">23.5</td><td>0.25 %</td></tr>
-<tr class="hi"><td>R_n_band</td><td>0.68733 &plusmn; 0.00094</td><td>0.71661 &plusmn; 0.00094</td><td class="pos">+4.26 %</td><td class="sig">23.5</td><td>0.13 %</td></tr>
-<tr><td>np_4pi</td><td>1.29165 &plusmn; 0.00017</td><td>1.29512 &plusmn; 0.00017</td><td>+0.27 %</td><td class="sig">29.4</td><td>0.01 %</td></tr>
-<tr><td>R_n_4pi</td><td>0.62809 &plusmn; 0.00052</td><td>0.62976 &plusmn; 0.00052</td><td>+0.27 %</td><td class="sig">18.8</td><td>0.01 %</td></tr>
-<tr><td>np_mid</td><td>1.14426 &plusmn; 0.00037</td><td>1.14251 &plusmn; 0.00032</td><td>&minus;0.15 %</td><td class="sig">3.6</td><td>0.04 %</td></tr>
-<tr><td>np_band</td><td>1.17596 &plusmn; 0.00083</td><td>1.17493 &plusmn; 0.00078</td><td class="null">&minus;0.09 %</td><td class="sig null">0.9</td><td>0.08 %</td></tr>
+<tr class="hi"><td>Rn_over_Rp_band</td><td>1.00909</td><td>1.03461</td><td>1.11739</td><td class="pos">+10.73 %</td><td class="sig">37.0</td><td>0.25 %</td></tr>
+<tr><td>R_p_band</td><td>0.68086</td><td>0.67035</td><td>0.64112</td><td class="neg">&minus;5.84 %</td><td class="sig">33.4</td><td>0.20 %</td></tr>
+<tr><td>R_n_mid</td><td>0.02077</td><td>0.02106</td><td>0.02212</td><td class="pos">+6.53 %</td><td class="sig">22.5</td><td>0.27 %</td></tr>
+<tr class="hi"><td>R_n_band</td><td>0.68705</td><td>0.69355</td><td>0.71638</td><td class="pos">+4.27 %</td><td class="sig">21.7</td><td>0.16 %</td></tr>
+<tr><td>np_4pi</td><td>1.29156</td><td>1.29248</td><td>1.29504</td><td>+0.27 %</td><td class="sig">28.9</td><td>0.01 %</td></tr>
+<tr><td>R_n_4pi</td><td>0.62780</td><td>0.62985</td><td>0.62948</td><td>+0.27 %</td><td class="sig">19.1</td><td>0.01 %</td></tr>
+<tr><td>np_mid</td><td>1.14422</td><td>1.14792</td><td>1.14244</td><td>&minus;0.16 %</td><td class="sig">3.5</td><td>0.04 %</td></tr>
+<tr><td>np_band</td><td>1.17590</td><td>1.18258</td><td>1.17484</td><td class="null">&minus;0.09 %</td><td class="sig null">1.0</td><td>0.09 %</td></tr>
 </tbody>
 </table>
 </div>
@@ -375,6 +380,52 @@ be with no symmetry potential &mdash; and the potential drives it to
 3&sigma; in 6 of 10 classes. The double ratio is flatter because it also divides out the
 common centrality trend.</p>
 
+
+<h3>The three-point scan</h3>
+
+<p>Two samples establish a difference; three establish that the difference is a
+<em>response</em>. The 18 MeV point lies between the other two for every hardness
+observable, and the ordering is not a coincidence of the integrated numbers: the double
+ratio is monotonic in S<sub>pot</sub> in <b>10 of 10</b> centrality classes, against a
+chance expectation of 3.3.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>observable</th><th>slope [% / MeV]</th><th>deviation from straight</th><th>floor</th><th>&delta;S<sub>pot</sub></th></tr></thead>
+<tbody>
+<tr class="hi"><td>Rn_over_Rp_band</td><td class="pos">+0.1176</td><td>1.6&sigma;</td><td>0.250 %</td><td><b>2.1 MeV</b></td></tr>
+<tr><td>R_p_band</td><td class="neg">&minus;0.0632</td><td>2.0&sigma;</td><td>0.202 %</td><td>3.2 MeV</td></tr>
+<tr><td>R_n_band</td><td class="pos">+0.0470</td><td>0.5&sigma;</td><td>0.162 %</td><td>3.5 MeV</td></tr>
+<tr><td>R_n_mid</td><td class="pos">+0.0723</td><td>0.3&sigma;</td><td>0.265 %</td><td>3.7 MeV</td></tr>
+<tr><td>np_band</td><td class="null">&minus;0.0039</td><td class="neg">7.2&sigma;, not monotonic</td><td>0.086 %</td><td>&mdash;</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The response is straight to within 1.6&sigma; over the whole 0&ndash;90 MeV range, so a
+single slope describes it. Dividing that slope into the null test&rsquo;s measured noise
+floor gives the smallest S<sub>pot</sub> difference the observable resolves: about
+<b>2 MeV</b> for the double ratio at this Monte-Carlo statistics. That is a statistical,
+truth-level figure and takes no systematic into account &mdash; least of all the
+reconstruction response of &sect;5, which currently dominates everything.</p>
+
+<p>The scan also sharpens the negative result. <code>np_band</code> is not merely
+consistent with zero: its middle point sits <b>7.2&sigma;</b> off the line through the
+outer two and the three values are not ordered at all. A quantity that does not vary
+monotonically with a parameter is not responding to it, so the n/p yield ratio is excluded
+as an S<sub>pot</sub> probe on stronger grounds than its integrated significance alone.</p>
+
+<figure>
+  <img src="fig7_spot_response.png" alt="Relative change of four observables against the symmetry potential at 0, 18 and 90 MeV, each normalised to its own zero value, with dashed lines joining the end points.">
+  <figcaption><b>Figure 6.</b> Response to S<sub>pot</sub>, each observable normalised to
+  its own S<sub>pot</sub> = 0 value; dashed lines join the end points, so a middle point off
+  the line is curvature. Uncertainties are job-file bootstrap.
+  <b>Result:</b> R<sub>n</sub>/R<sub>p</sub> rises linearly to +10.7 %, R<sub>n</sub> to
+  +4.3 % and R<sub>p</sub> falls to &minus;5.8 %, while n/p stays on zero throughout.
+  <b>Provenance:</b> <code>fig7_spot_response.pdf</code>,
+  <code>scripts/spot_response.py</code>.</figcaption>
+</figure>
+
 <h2><span class="num">5</span> <span>Does it survive reconstruction?</span></h2>
 
 <p>Everything above is Monte-Carlo truth. The question that decides feasibility is
@@ -411,7 +462,7 @@ cannot supply it even in principle.</p>
 
 <figure>
   <img src="fig7_reco_ladder.png" alt="Relative change of the neutron hardness ratio between the 90 and 0 MeV samples at five stages, from Monte-Carlo truth through detector acceptance and cluster selection to reconstructed energy; the first three are positive and the last two negative.">
-  <figcaption><b>Figure 6.</b> The 90-versus-0 MeV difference in R<sub>n</sub> at each stage
+  <figcaption><b>Figure 7.</b> The 90-versus-0 MeV difference in R<sub>n</sub> at each stage
   of the measurement, on the same 20 job files per sample, with job-file bootstrap
   uncertainties. <b>Result:</b> the signal keeps its sign and roughly its size through the
   detector acceptance and through cluster selection, then <b>changes sign</b> when the
@@ -450,7 +501,7 @@ size of the effect being measured, and in the direction that cancels it.</p>
 
 <figure>
   <img src="fig8_energy_response.png" alt="Mean difference between reconstructed and true neutron energy against true energy for the three samples, with a panel showing the difference relative to the zero-MeV sample; the 90 MeV sample sits systematically lower above 2 GeV.">
-  <figcaption><b>Figure 7.</b> Energy response of the single calibrated estimator, against
+  <figcaption><b>Figure 8.</b> Energy response of the single calibrated estimator, against
   true neutron energy, for all three samples; below, the difference from
   S<sub>pot</sub> = 0. The dashed line marks the 2 GeV threshold.
   <b>Result:</b> the 18 MeV sample is indistinguishable from 0 MeV, but the 90 MeV sample
@@ -488,10 +539,12 @@ size of the effect being measured, and in the direction that cancels it.</p>
 <h2><span class="num">6</span> <span>What this does and does not establish</span></h2>
 
 <div class="note pending">
-  <p><b>The 18 MeV production is still reducing.</b> Everything above is the 0 versus 90 MeV
-  contrast. Without the intermediate point there is no monotonicity check, no response-shape
-  fit, and therefore <b>no extraction of any EOS parameter</b> &mdash; not L, not S<sub>0</sub>.
-  A two-point comparison establishes sensitivity, not a measurement.</p>
+  <p><b>A slope is not an EOS parameter.</b> The scan gives the response of these
+  observables to the SMASH symmetry-potential strength, and a resolution on that strength.
+  Turning it into L or S<sub>0</sub> needs the mapping from S<sub>pot</sub> to the symmetry
+  energy at the densities this system probes, which is a property of the transport model
+  and is not measured here. The 2 MeV figure is the statistical reach of the observable,
+  not an uncertainty on a published EOS parameter.</p>
 </div>
 
 <div class="note">

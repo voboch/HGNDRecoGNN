@@ -39,3 +39,24 @@
 [bigSpot]  170 files    704907 events   7.47/7.63 GB   0.53 MB/s  ETA   5.1 min
 [bigSpot] DONE 173 files this pass, 717286 events, 173 members total, 0 rows outside histogram axes, 0 failed, 14000s
 === defaultSpot: /Users/vovvy/ncx/data/smash_xecs_2.87gev_hardSkyrme_defaultSpot.tar.gz ===
+[defaultSpot]   10 files     41040 events   0.44/8.73 GB   0.59 MB/s  ETA 233.9 min
+[defaultSpot]   20 files     82035 events   0.86/8.73 GB   0.47 MB/s  ETA 278.0 min
+[defaultSpot]   30 files    123404 events   1.29/8.73 GB   0.44 MB/s  ETA 280.5 min
+[defaultSpot]   40 files    164616 events   1.72/8.73 GB   0.42 MB/s  ETA 275.5 min
+[defaultSpot]   50 files    205796 events   2.16/8.73 GB   0.42 MB/s  ETA 262.7 min
+[defaultSpot]   60 files    247286 events   2.61/8.73 GB   0.41 MB/s  ETA 248.9 min
+[defaultSpot]   70 files    288791 events   3.04/8.73 GB   0.44 MB/s  ETA 213.9 min
+[defaultSpot]   80 files    329671 events   3.47/8.73 GB   0.45 MB/s  ETA 194.3 min
+[defaultSpot]   90 files    370927 events   3.91/8.73 GB   0.41 MB/s  ETA 198.2 min
+[defaultSpot]  100 files    412142 events   4.34/8.73 GB   0.40 MB/s  ETA 180.9 min
+[defaultSpot]  110 files    453152 events   4.78/8.73 GB   0.42 MB/s  ETA 157.5 min
+[defaultSpot]  120 files    494156 events   5.22/8.73 GB   0.45 MB/s  ETA 130.2 min
+[defaultSpot]  130 files    535591 events   5.66/8.73 GB   0.47 MB/s  ETA 109.2 min
+[defaultSpot]  140 files    576990 events   6.11/8.73 GB   0.48 MB/s  ETA  90.9 min
+[defaultSpot]  150 files    618321 events   6.54/8.73 GB   0.51 MB/s  ETA  71.3 min
+[defaultSpot]  160 files    659259 events   6.98/8.73 GB   0.52 MB/s  ETA  55.9 min
+[defaultSpot]  170 files    700261 events   7.41/8.73 GB   0.55 MB/s  ETA  39.8 min
+[defaultSpot]  180 files    741209 events   7.85/8.73 GB   0.58 MB/s  ETA  25.4 min
+[defaultSpot]  190 files    782862 events   8.29/8.73 GB   0.59 MB/s  ETA  12.3 min
+[defaultSpot]  200 files    824338 events   8.73/8.73 GB   0.61 MB/s  ETA   0.1 min
+[defaultSpot] DONE 200 files this pass, 824338 events, 200 members total, 0 rows outside histogram axes, 0 failed, 14342s
