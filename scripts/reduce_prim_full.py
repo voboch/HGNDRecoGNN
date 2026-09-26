@@ -102,6 +102,75 @@ def reduce_member(fobj, file_idx):
     return pd.DataFrame(out), h, h.sum(axis=1).astype(np.int32), lost
 
 
+def iter_dir_members(root):
+    """Yield (key, open-file) for every *_prim.csv under an extracted directory.
+
+    Running where the data already lives -- on the ncx cluster -- avoids moving
+    25 GB over the mount to produce 115 MB of tables.
+    """
+    for dirpath, _, names in os.walk(root):
+        for n in sorted(names):
+            if n.endswith("_prim.csv"):
+                full = os.path.join(dirpath, n)
+                yield "/".join(full.split(os.sep)[-2:]), full
+
+
+def run_dir(root, tag, outdir):
+    """Same reduction as run(), reading an extracted directory instead of a stream."""
+    os.makedirs(outdir, exist_ok=True)
+    ev_path = os.path.join(outdir, f"{tag}_events.pkl")
+    hi_path = os.path.join(outdir, f"{tag}_filehist.npz")
+    pr_path = os.path.join(outdir, f"{tag}_progress.json")
+    done, frames, hists = {}, [], {}
+    gh = np.zeros(HSHAPE, dtype=np.int64)
+    if os.path.exists(pr_path):
+        done = json.load(open(pr_path))["done"]
+        if os.path.exists(ev_path):
+            frames.append(pd.read_pickle(ev_path))
+        if os.path.exists(hi_path):
+            z = np.load(hi_path)
+            hists = {k: z[k] for k in z.files if not k.startswith("_")}
+            if "_global" in z.files:
+                gh = z["_global"]
+        print(f"[{tag}] resuming, {len(done)} members already reduced", flush=True)
+
+    def flush():
+        if frames:
+            tmp = ev_path + ".tmp"
+            pd.concat(frames, ignore_index=True).to_pickle(tmp)
+            os.replace(tmp, ev_path)
+        if hists or gh.any():
+            np.savez_compressed(hi_path + ".tmp.npz", _global=gh, _b_edges=B_EDGES,
+                                _e_edges=E_EDGES, _th_edges=TH_EDGES, **hists)
+            os.replace(hi_path + ".tmp.npz", hi_path)
+        with open(pr_path + ".tmp", "w") as fh:
+            json.dump({"done": done}, fh)
+        os.replace(pr_path + ".tmp", pr_path)
+
+    t0, nev, nfile, lost_total = time.time(), 0, 0, 0
+    members = list(iter_dir_members(root))
+    print(f"[{tag}] {len(members)} prim members under {root}", flush=True)
+    for key, path in members:
+        if key in done:
+            continue
+        try:
+            with open(path, "rb") as fo:
+                df, h, hf, lost = reduce_member(fo, len(done))
+        except Exception as e:
+            print(f"[{tag}] FAILED {key}: {type(e).__name__}: {e}", flush=True)
+            continue
+        frames.append(df); hists[key] = hf; gh += h
+        done[key] = int(len(df)); nev += len(df); nfile += 1; lost_total += lost
+        if nfile % 10 == 0:
+            print(f"[{tag}] {nfile:4d}/{len(members)} files  {nev:8d} events  "
+                  f"{time.time()-t0:6.0f}s", flush=True)
+            flush()
+    flush()
+    print(f"[{tag}] DONE {nfile} files this pass, {nev} events, {len(done)} members "
+          f"total, {lost_total} rows outside histogram axes, {time.time()-t0:.0f}s",
+          flush=True)
+
+
 def run(tar_path, tag, outdir):
     os.makedirs(outdir, exist_ok=True)
     ev_path = os.path.join(outdir, f"{tag}_events.pkl")
@@ -187,7 +256,12 @@ def run(tar_path, tag, outdir):
 
 if __name__ == "__main__":
     outdir = sys.argv[1]
+    root = os.environ.get("DATA_ROOT", "/Users/vovvy/ncx/data")
     for tag in sys.argv[2:]:
-        tp = f"/Users/vovvy/ncx/data/smash_xecs_2.87gev_hardSkyrme_{tag}.tar.gz"
-        print(f"=== {tag}: {tp} ===", flush=True)
-        run(tp, tag, outdir)
+        base = f"{root}/smash_xecs_2.87gev_hardSkyrme_{tag}"
+        if os.path.isdir(base):
+            print(f"=== {tag}: {base}/ (extracted) ===", flush=True)
+            run_dir(base, tag, outdir)
+        else:
+            print(f"=== {tag}: {base}.tar.gz ===", flush=True)
+            run(f"{base}.tar.gz", tag, outdir)
