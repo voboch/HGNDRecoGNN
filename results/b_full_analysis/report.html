@@ -133,11 +133,14 @@ footer code{font-size:12px;}
 <div class="wrap">
 <header>
   <p class="eyebrow">BM@N · High-Granularity Neutron Detector · feasibility</p>
-  <h1>The symmetry-potential signal is real; the centrality artefact was not</h1>
+  <h1>The signal is real at truth level; the centrality artefact and the reconstruction are not</h1>
   <p class="standfirst">Full-production impact-parameter analysis of the SMASH Xe+CsI samples.
   The three productions do share a <span class="num">b</span> distribution, so the effect
   previously withdrawn as a sampling artefact survives — and it appears as an isovector
-  tilt of the nucleon spectra, opposite in sign for neutrons and protons.</p>
+  tilt of the nucleon spectra, opposite in sign for neutrons and protons. Running the GNN
+  over the same events then shows where a measurement would lose it: not in the detector
+  acceptance, but in the energy estimate, whose response depends on the very quantity
+  being measured.</p>
   <p class="byline">
     <span>Xe+CsI, &radic;s<sub>NN</sub> = 2.87 GeV</span>
     <span>SMASH, hard Skyrme, K<sub>0</sub> = 349.5 MeV</span>
@@ -166,6 +169,15 @@ footer code{font-size:12px;}
       structure (<span class="num">&chi;&sup2;/ndf = 8.15</span>, 194 dof). Per-event
       errors understate every <span class="num">b</span>-dependent uncertainty by
       <span class="num">2.85&times;</span>; that single mistake produced the artefact.</li>
+    <li class="down"><b>Established:</b> the signal does <em>not</em> survive the GNN
+      energy estimate. The same clusters give <span class="num">+3.3 %</span> with true
+      energy and <span class="num">&minus;5.3 %</span> with reconstructed energy, a paired
+      difference of <span class="num">3.91&sigma;</span>, because the estimator&rsquo;s
+      response is itself S<sub>pot</sub>-dependent by <span class="num">30.6 MeV</span> at
+      the threshold. More statistics would make this worse, not better.</li>
+    <li class="down"><b>Established:</b> HGND cannot supply the proton arm. Protons that
+      reach it are soft secondaries, <span class="num">R_p = 0.076</span>, with no
+      S<sub>pot</sub> dependence (<span class="num">0.65&sigma;</span>).</li>
     <li class="hold"><b>Pending:</b> the 18 MeV production is still reducing, so there is
       no monotonicity check and no response-shape fit. No EOS parameter is extracted here.</li>
   </ul>
@@ -363,7 +375,117 @@ be with no symmetry potential &mdash; and the potential drives it to
 3&sigma; in 6 of 10 classes. The double ratio is flatter because it also divides out the
 common centrality trend.</p>
 
-<h2><span class="num">5</span> <span>What this does and does not establish</span></h2>
+<h2><span class="num">5</span> <span>Does it survive reconstruction?</span></h2>
+
+<p>Everything above is Monte-Carlo truth. The question that decides feasibility is
+whether the GNN reconstruction delivers the same answer, so the trained
+<code>net_default</code> checkpoint (hidden 512, 8 layers, epoch 18) was run over 20 job
+files per sample &mdash; about 82 000 events each &mdash; from the same production the
+truth analysis used. Cluster selection is purity-locked at 0.70 in each sample
+separately, the protocol this project already uses because a fixed score threshold
+selects different physical purity in different datasets. Predicted energy is calibrated
+once, on the 18 MeV sample, and that one calibration is applied to all three.</p>
+
+<p><strong>The proton arm does not survive the detector at all.</strong> For protons that
+actually reach HGND, R<sub>p</sub> is <span class="num">0.0755</span> against
+<span class="num">0.682</span> for primary protons in the angular band: the protons that
+arrive are soft secondaries, and their S<sub>pot</sub> difference is
+<span class="num">+1.9 % &plusmn; 2.9 % (0.65&sigma;)</span>. The &sect;4 statement that the
+proton arm must come from BM@N tracking is therefore not a technicality &mdash; HGND
+cannot supply it even in principle.</p>
+
+<p>For neutrons, the measurement can be followed rung by rung on the same events.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>rung</th><th>S<sub>90</sub>/S<sub>0</sub> &minus; 1</th><th>&sigma;</th><th>N<sub>hi</sub></th><th>N<sub>lo</sub></th></tr></thead>
+<tbody>
+<tr><td>primary $n$, angular band</td><td class="pos">+2.65 % &plusmn; 0.54 %</td><td class="sig">4.93</td><td>120 264</td><td>174 694</td></tr>
+<tr><td>$n$ reaching the detector</td><td class="pos">+3.67 % &plusmn; 2.05 %</td><td class="sig null">1.79</td><td>6 489</td><td>19 423</td></tr>
+<tr><td>selected clusters, true $E$</td><td class="pos">+3.32 % &plusmn; 2.94 %</td><td class="sig null">1.13</td><td>5 138</td><td>2 873</td></tr>
+<tr class="hi"><td>selected clusters, reconstructed $E$</td><td class="neg">&minus;3.04 % &plusmn; 2.30 %</td><td class="sig null">1.32</td><td>5 626</td><td>5 213</td></tr>
+<tr><td>selected clusters, uncalibrated $E$</td><td class="neg">&minus;4.39 % &plusmn; 3.56 %</td><td class="sig null">1.23</td><td>15 274</td><td>1 943</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure>
+  <img src="fig7_reco_ladder.png" alt="Relative change of the neutron hardness ratio between the 90 and 0 MeV samples at five stages, from Monte-Carlo truth through detector acceptance and cluster selection to reconstructed energy; the first three are positive and the last two negative.">
+  <figcaption><b>Figure 6.</b> The 90-versus-0 MeV difference in R<sub>n</sub> at each stage
+  of the measurement, on the same 20 job files per sample, with job-file bootstrap
+  uncertainties. <b>Result:</b> the signal keeps its sign and roughly its size through the
+  detector acceptance and through cluster selection, then <b>changes sign</b> when the
+  neutron energy is taken from the network instead of from truth.
+  <b>Provenance:</b> <code>results/reco_experiment/fig1_reco_ladder.pdf</code>.</figcaption>
+</figure>
+
+<p>The last two rungs use the <em>same</em> clusters as the third; only the energy estimate
+differs, so job files can be resampled jointly and the change tested as a paired
+difference. It is <span class="num">&minus;8.66 % &plusmn; 2.21 %</span>, or
+<strong>3.91&sigma;</strong>. The energy estimate does not merely dilute the signal
+towards zero, which is what finite resolution alone would do &mdash; it moves the answer
+by more than the signal is worth.</p>
+
+<h3>Why: the estimator's response depends on the sample</h3>
+
+<p>Averaged over the clusters that pass selection, the calibrated energy response is</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>sample</th><th>N</th><th>bias, all</th><th>bias, $E_{\mathrm{true}}<1$</th><th>bias, $E_{\mathrm{true}}\ge 2$</th></tr></thead>
+<tbody>
+<tr><td>S<sub>pot</sub> = 0</td><td>17 429</td><td>&minus;0.043</td><td>+0.105</td><td>&minus;0.322</td></tr>
+<tr><td>S<sub>pot</sub> = 18</td><td>17 541</td><td>&minus;0.045</td><td>+0.104</td><td>&minus;0.322</td></tr>
+<tr class="hi"><td>S<sub>pot</sub> = 90</td><td>17 939</td><td>&minus;0.063</td><td>+0.098</td><td>&minus;0.352</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>A sample-independent estimator would give one number per column. Instead the high bin
+&mdash; where the R numerator lives &mdash; is reconstructed <span class="num">30.6 MeV</span>
+lower in the 90 MeV sample than in the 0 MeV sample, while the 18 MeV sample tracks the
+0 MeV one to within a few MeV. A differential threshold shift of that size on a steeply
+falling spectrum moves a few per cent of the high-bin population, which is precisely the
+size of the effect being measured, and in the direction that cancels it.</p>
+
+<figure>
+  <img src="fig8_energy_response.png" alt="Mean difference between reconstructed and true neutron energy against true energy for the three samples, with a panel showing the difference relative to the zero-MeV sample; the 90 MeV sample sits systematically lower above 2 GeV.">
+  <figcaption><b>Figure 7.</b> Energy response of the single calibrated estimator, against
+  true neutron energy, for all three samples; below, the difference from
+  S<sub>pot</sub> = 0. The dashed line marks the 2 GeV threshold.
+  <b>Result:</b> the 18 MeV sample is indistinguishable from 0 MeV, but the 90 MeV sample
+  is reconstructed 30&ndash;37 MeV low in the 2.1&ndash;3.0 GeV region. The strong negative
+  slope is the estimator's shrinkage: at 3.5 GeV it under-reconstructs by 0.8 GeV.
+  <b>Provenance:</b> <code>results/reco_experiment/fig2_energy_response.pdf</code>.</figcaption>
+</figure>
+
+<p>For context, the calibration itself is sound: the residual is centred
+(<span class="num">&minus;0.043 GeV</span>) with a spread of
+<span class="num">0.417 GeV</span>, 21 % at the 2 GeV threshold, and 70 % of truly-low and
+67 % of truly-high clusters stay in their bin. Resolution is not the problem; the
+<em>sample dependence</em> of the response is.</p>
+
+<div class="note withdrawn">
+  <p><b>What this means for feasibility.</b> The observable is sensitive at truth level and
+  survives acceptance and cluster selection, but the reconstruction as it stands does not
+  deliver it, and <b>more statistics will not help</b> &mdash; the bias is systematic, so
+  more events converge on the wrong answer. The project already controls this failure mode
+  for the classifier by locking purity; the energy regressor has the same disease and
+  nothing currently controls it. The first thing to fix is the most likely cause: this
+  checkpoint was trained on a different production and is running out of domain, which also
+  shows up as a <span class="num">+0.75 GeV</span> raw scale bias. Retraining on the current
+  production and re-running this exact ladder is the next step, and the ladder is the test
+  to judge it by.</p>
+</div>
+
+<div class="note">
+  <p><b>Idealisations in this section.</b> The purity lock and the energy calibration both
+  use truth labels, so the reconstruction is given more information than a measurement
+  would have. Twenty of about 200 job files per sample were used. The comparison is
+  90 versus 0 MeV; the 18 MeV sample enters only as the calibration reference.</p>
+</div>
+
+<h2><span class="num">6</span> <span>What this does and does not establish</span></h2>
 
 <div class="note pending">
   <p><b>The 18 MeV production is still reducing.</b> Everything above is the 0 versus 90 MeV
@@ -406,7 +528,7 @@ common centrality trend.</p>
   where the bootstrap cannot estimate its own error.</p>
 </div>
 
-<h2><span class="num">6</span> <span>Reproduction</span></h2>
+<h2><span class="num">7</span> <span>Reproduction</span></h2>
 <p>One command runs reduction, reweighting, both validation tests and every figure:</p>
 <p><code>scripts/run_full_b_analysis.sh &lt;events_dir&gt; &lt;results_dir&gt; [n_boot]</code></p>
 <p>The reduction streams the tarballs over the mounted volume, or reads the extracted CSVs
@@ -417,6 +539,11 @@ matrix product over a precomputed (file &times; b-bin &times; counter) tensor, s
 replicates over 800 000 events take under a second.</p>
 
 <footer>
+  <p>Reconstruction experiment: <code>results/reco_experiment/</code> &mdash;
+  <code>reco_experiment.json</code>, <code>response_diagnostics.json</code> and their text
+  tables; code <code>scripts/reco_experiment.py</code>,
+  <code>scripts/reco_response_diagnostics.py</code>,
+  <code>scripts/reco_truth_join.py</code>, <code>scripts/plot_reco_experiment.py</code>.</p>
   <p>Data: <code>results/b_full_analysis/</code> &mdash; figures as PDF and PNG,
   <code>b_reweight.json</code>, <code>null_test_*.json</code>,
   <code>injection_test_zeroSpot.json</code>, <code>reduction.log</code>.

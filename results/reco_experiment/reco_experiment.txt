@@ -1,0 +1,66 @@
+energy calibration fitted on defaultSpot: e_pred 0.69..4.19 -> e_true 0.53..2.91 GeV
+=== zeroSpot ===
+  61,022 reco events, 82,395 truth events, 20 job files
+  purity-locked threshold 0.286 (purity 0.700, keeps 20.4% of clusters)
+    R_n_truth_primary          0.68843 +- 0.00250   (hi   120,264  lo   174,694)
+    R_p_truth_primary          0.68186 +- 0.00222   (hi   100,796  lo   147,825)
+    R_n_truth_reaching         0.33409 +- 0.00444   (hi     6,489  lo    19,423)
+    R_p_truth_reaching         0.07547 +- 0.00173   (hi     1,653  lo    21,903)
+    R_n_sig_trueE              1.78837 +- 0.03250   (hi     5,138  lo     2,873)
+    R_n_sig_predE             15.26675 +- 0.57583   (hi    12,076  lo       791)
+    R_n_reco                   7.86104 +- 0.20473   (hi    15,274  lo     1,943)
+    R_n_reco_calib             1.07923 +- 0.01773   (hi     5,626  lo     5,213)
+    np_truth_primary           1.17405 +- 0.00284   (hi   487,991  lo   415,649)
+    np_truth_reaching          1.29975 +- 0.01036   (hi    38,947  lo    29,965)
+    np_reco_over_truthp        0.05989 +- 0.00052   (hi    24,892  lo   415,649)
+    np_reco_over_reachp        0.83070 +- 0.00809   (hi    24,892  lo    29,965)
+=== defaultSpot ===
+  60,636 reco events, 82,035 truth events, 20 job files
+  purity-locked threshold 0.291 (purity 0.702, keeps 20.4% of clusters)
+    R_n_truth_primary          0.69344 +- 0.00305   (hi   122,795  lo   177,082)
+    R_p_truth_primary          0.66694 +- 0.00402   (hi    99,905  lo   149,797)
+    R_n_truth_reaching         0.33473 +- 0.00345   (hi     6,613  lo    19,756)
+    R_p_truth_reaching         0.07653 +- 0.00171   (hi     1,656  lo    21,639)
+    R_n_sig_trueE              1.80075 +- 0.03465   (hi     5,260  lo     2,921)
+    R_n_sig_predE             15.00743 +- 0.45475   (hi    12,126  lo       808)
+    R_n_reco                   7.83555 +- 0.13283   (hi    15,295  lo     1,952)
+    R_n_reco_calib             1.09703 +- 0.01599   (hi     5,732  lo     5,225)
+    np_truth_primary           1.18064 +- 0.00275   (hi   493,778  lo   418,229)
+    np_truth_reaching          1.32879 +- 0.00937   (hi    39,578  lo    29,785)
+    np_reco_over_truthp        0.05971 +- 0.00056   (hi    24,973  lo   418,229)
+    np_reco_over_reachp        0.83844 +- 0.00644   (hi    24,973  lo    29,785)
+=== bigSpot ===
+  61,768 reco events, 83,204 truth events, 20 job files
+  purity-locked threshold 0.286 (purity 0.702, keeps 20.5% of clusters)
+    R_n_truth_primary          0.70666 +- 0.00266   (hi   126,837  lo   179,489)
+    R_p_truth_primary          0.63485 +- 0.00341   (hi    99,418  lo   156,600)
+    R_n_truth_reaching         0.34634 +- 0.00491   (hi     6,933  lo    20,018)
+    R_p_truth_reaching         0.07689 +- 0.00125   (hi     1,694  lo    22,031)
+    R_n_sig_trueE              1.84769 +- 0.04411   (hi     5,471  lo     2,961)
+    R_n_sig_predE             14.90887 +- 0.61644   (hi    12,270  lo       823)
+    R_n_reco                   7.51630 +- 0.18079   (hi    15,446  lo     2,055)
+    R_n_reco_calib             1.04641 +- 0.01896   (hi     5,727  lo     5,473)
+    np_truth_primary           1.17333 +- 0.00287   (hi   503,909  lo   429,469)
+    np_truth_reaching          1.32378 +- 0.01189   (hi    40,264  lo    30,416)
+    np_reco_over_truthp        0.05953 +- 0.00046   (hi    25,568  lo   429,469)
+    np_reco_over_reachp        0.84061 +- 0.00817   (hi    25,568  lo    30,416)
+
+==============================================================================
+  S_pot = 90 vs 0 MeV, same 20 job files per sample
+  errors from independent job-file bootstrap in each sample
+==============================================================================
+observable                      U=0       U=90    90/0-1   sigma
+R_n_truth_primary           0.68843    0.70666   +0.0265    4.93
+R_p_truth_primary           0.68186    0.63485   -0.0689   11.35
+R_n_truth_reaching          0.33409    0.34634   +0.0367    1.79
+R_p_truth_reaching          0.07547    0.07689   +0.0188    0.65
+R_n_sig_trueE               1.78837    1.84769   +0.0332    1.13
+R_n_sig_predE              15.26675   14.90887   -0.0234    0.44
+R_n_reco                    7.86104    7.51630   -0.0439    1.23
+R_n_reco_calib              1.07923    1.04641   -0.0304    1.32
+np_truth_primary            1.17405    1.17333   -0.0006    0.19
+np_truth_reaching           1.29975    1.32378   +0.0185    1.40
+np_reco_over_truthp         0.05989    0.05953   -0.0059    0.52
+np_reco_over_reachp         0.83070    0.84061   +0.0119    0.85
+
+wrote results/reco_experiment/reco_experiment.json

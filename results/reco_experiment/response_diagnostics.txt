@@ -1,0 +1,23 @@
+==============================================================================
+  Energy response of one estimator across samples (signal clusters)
+==============================================================================
+  sample              N   <e_true>       bias bias lo bin bias hi bin
+  zeroSpot        17429     1.6802    -0.0431     +0.1046     -0.3218
+  defaultSpot     17541     1.6854    -0.0450     +0.1042     -0.3224
+  bigSpot         17939     1.6945    -0.0626     +0.0981     -0.3523
+
+  differential response in the high bin, bigSpot vs zeroSpot: -30.6 MeV
+  A sample-independent estimator would give zero here. This shifts the
+  2 GeV threshold by a different amount in each sample.
+
+==============================================================================
+  Paired test: identical clusters, only the energy estimate differs
+==============================================================================
+  true energy       +3.32% +- 3.00%
+  calibrated reco   -5.34% +- 2.78%
+  difference        -8.66% +- 2.21%  -> 3.91 sigma
+
+  The estimator does not merely dilute the signal towards zero;
+  it moves the answer by more than the signal itself.
+
+wrote results/reco_experiment/response_diagnostics.json

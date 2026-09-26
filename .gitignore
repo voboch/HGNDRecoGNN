@@ -39,6 +39,11 @@ results/
 !/results/b_full_analysis/*.txt
 !/results/b_full_analysis/*.html
 !/results/b_full_analysis/*.log
+!/results/reco_experiment/
+!/results/reco_experiment/*.png
+!/results/reco_experiment/*.pdf
+!/results/reco_experiment/*.json
+!/results/reco_experiment/*.txt
 
 # --- secrets / keys (never commit) ---
 *.pem
