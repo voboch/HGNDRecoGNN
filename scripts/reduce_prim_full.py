@@ -7,9 +7,11 @@ and emits two compact products per sample:
   <tag>_events.pkl       one row per event: the job file it came from, the
                          impact parameter, and integer counters for every
                          selection the feasibility analysis uses.
-  <tag>_filehist.npz     per-job-file 3-D histograms in (b, Ekin, theta) for
-                         each species, for spectra figures and for job-level
-                         resampling.
+  <tag>_filehist.npz     per-job-file histograms: "<member>|eth" is
+                         (species, Ekin, theta) and "<member>|acc" is
+                         (species, Ekin) restricted to the true front-face
+                         acceptance.  "_global" is the full
+                         (species, b, Ekin, theta) array for the sample.
 
 The per-job file index is kept deliberately, because impact parameter carries
 job-level block structure: within a single sample, where no symmetry-potential
@@ -23,10 +25,21 @@ import io, json, os, sys, tarfile, time
 import numpy as np
 import pandas as pd
 
-TH_LO, TH_HI = 8.9, 13.1          # HGND angular acceptance band [deg]
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from hgnd_acceptance import in_acceptance
+
+TH_LO, TH_HI = 8.9, 13.1          # legacy polar-angle band, kept for continuity
+# The real acceptance is the front-face rectangle, tested per particle by
+# propagating from its vertex (scripts/hgnd_acceptance.py).  It is 0.0114 sr
+# against 0.0879 sr for the band, and it covers only 20 % of azimuth -- which
+# matters because the generator keeps the reaction plane fixed in the lab, so
+# directed flow makes the azimuthal distribution non-uniform and strongly
+# energy-dependent (v1 = +0.09 above 2 GeV against +0.005 below 1 GeV).  No
+# azimuthal weighting can stand in for the exact test.
 ELO, EHI = 1.0, 2.0               # spectral-hardness Ekin thresholds [GeV]
 YS = 0.9863                       # y_cm shift (beam rapidity / 2)
-USECOLS = ["Row", "PDG", "Ekin", "Pt", "Pz", "Rapid", "B"]
+USECOLS = ["Row", "PDG", "Ekin", "Pt", "Pz", "Rapid", "B",
+           "Px", "Py", "vX", "vY", "vZ"]
 
 # Histogram axes.  They must span the full kinematic range: the exports carry
 # the whole nucleon inventory, so target spectators reach theta -> 180 deg and
@@ -39,6 +52,7 @@ HSHAPE   = (2, len(B_EDGES) - 1, len(E_EDGES) - 1, len(TH_EDGES) - 1)
 HSHAPE_F = (2, len(E_EDGES) - 1, len(TH_EDGES) - 1)   # per-file: no b axis
 
 COUNTERS = [
+    "acc_n", "acc_p", "acc_n_hi", "acc_n_lo", "acc_p_hi", "acc_p_lo",
     "band_n", "band_p", "band_n_hi", "band_n_lo", "band_p_hi", "band_p_lo",
     "mid_n", "mid_p", "mid_n_hi", "mid_n_lo", "mid_p_hi", "mid_p_lo",
     "all_n", "all_p", "all_n_hi", "all_n_lo", "all_p_hi", "all_p_lo",
@@ -62,11 +76,16 @@ def reduce_member(fobj, file_idx):
     pdg = d.PDG.to_numpy()
 
     isn, isp = pdg == 2112, pdg == 2212
+    acc = in_acceptance(d.Px.to_numpy(), d.Py.to_numpy(), pz,
+                        d.vX.to_numpy(), d.vY.to_numpy(), d.vZ.to_numpy())
     inband = (th >= TH_LO) & (th < TH_HI)
     mid = np.abs(ycm) < 0.5
     hi, lo = ek >= EHI, ek < ELO
 
     masks = {
+        "acc_n": acc & isn, "acc_p": acc & isp,
+        "acc_n_hi": acc & isn & hi, "acc_n_lo": acc & isn & lo,
+        "acc_p_hi": acc & isp & hi, "acc_p_lo": acc & isp & lo,
         "band_n": inband & isn, "band_p": inband & isp,
         "band_n_hi": inband & isn & hi, "band_n_lo": inband & isn & lo,
         "band_p_hi": inband & isp & hi, "band_p_lo": inband & isp & lo,
@@ -95,11 +114,21 @@ def reduce_member(fobj, file_idx):
                 np.column_stack([b_rows[m], ek[m], th[m]]),
                 bins=[B_EDGES, E_EDGES, TH_EDGES])
             h[k] = hk.astype(np.int64)
+    # spectra inside the true acceptance: (species, Ekin), per job file
+    ha = np.zeros((2, len(E_EDGES) - 1), dtype=np.int64)
+    for k, m in enumerate((isn & acc, isp & acc)):
+        if m.any():
+            ha[k] = np.histogram(ek[m], bins=E_EDGES)[0]
     lost = len(d) - int(h.sum())
     # the full (b, Ekin, theta) array is accumulated per sample; only the
     # b-integrated projection is kept per job file, so job-level resampling of
     # spectra stays affordable (23 kB rather than 2.7 MB per file)
-    return pd.DataFrame(out), h, h.sum(axis=1).astype(np.int32), lost
+    # per-file products kept separate rather than concatenated: one is
+    # (species, Ekin, theta), the other (species, Ekin) inside the true
+    # acceptance, and flattening them together would invite a silent misread
+    return (pd.DataFrame(out), h,
+            {"eth": h.sum(axis=1).astype(np.int32),
+             "acc": ha.astype(np.int32)}, lost)
 
 
 def iter_dir_members(root):
@@ -159,7 +188,10 @@ def run_dir(root, tag, outdir):
         except Exception as e:
             print(f"[{tag}] FAILED {key}: {type(e).__name__}: {e}", flush=True)
             continue
-        frames.append(df); hists[key] = hf; gh += h
+        frames.append(df)
+        for sub, arr in hf.items():
+            hists[f"{key}|{sub}"] = arr
+        gh += h
         done[key] = int(len(df)); nev += len(df); nfile += 1; lost_total += lost
         if nfile % 10 == 0:
             print(f"[{tag}] {nfile:4d}/{len(members)} files  {nev:8d} events  "
@@ -229,7 +261,8 @@ def run(tar_path, tag, outdir):
                 failed.append(key)
                 continue
             frames.append(df)
-            hists[key] = hf
+            for sub, arr in hf.items():
+                hists[f"{key}|{sub}"] = arr
             gh += h
             lost_total += lost
             done[key] = int(len(df))

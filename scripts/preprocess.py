@@ -41,6 +41,12 @@ def main() -> int:
                         help='Parallel workers for graph construction. 0 = serial.')
     parser.add_argument('--max-events', type=int, default=None,
                         help='Cap events per half. Useful for smoke tests.')
+    parser.add_argument('--scaler-source', default=None,
+                        help='Reuse scaler_{top,bot}.pkl from this processed/ '
+                             'dir instead of fitting new ones. Required when '
+                             'datasets will be compared or trained together — '
+                             'per-dataset standardisation absorbs real '
+                             'differences between them.')
     parser.add_argument('--force-rebuild', action='store_true',
                         help='Delete existing processed/ before starting.')
     args = parser.parse_args()
@@ -65,6 +71,7 @@ def main() -> int:
         num_workers=args.num_workers,
         shard_size=args.shard_size,
         max_events=args.max_events,
+        scaler_source=args.scaler_source,
     )
     print(f'Done — {len(ds)} graphs in {(time.time() - t0):.1f}s')
     return 0
