@@ -176,7 +176,12 @@ def rel_90_0(res):
     return out
 
 
-def main(events_dir, out_dir, n_boot=400):
+def main(events_dir, out_dir, n_boot=400, samples=None):
+    """`samples` restricts the comparison, e.g. when one production is still
+    being reduced.  The reference and the high-S_pot arm must both be present."""
+    global SAMPLES
+    if samples:
+        SAMPLES = {k: v for k, v in SAMPLES.items() if k in samples}
     os.makedirs(out_dir, exist_ok=True)
     rng = np.random.default_rng(20260926)
     data = load(events_dir)
@@ -364,7 +369,8 @@ def _cli():
         null_test(a[0], a[1], a[2] if len(a) > 2 else "zeroSpot",
                   int(a[3]) if len(a) > 3 else 40, int(a[4]) if len(a) > 4 else 200)
     else:
-        main(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 400)
+        main(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 400,
+             samples=sys.argv[4].split(",") if len(sys.argv) > 4 else None)
 
 
 

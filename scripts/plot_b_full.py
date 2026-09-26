@@ -86,16 +86,25 @@ def save(fig, out_dir: Path, stem: str):
 
 # ---------------------------------------------------------------------------
 def fig_b_distributions(data, out_dir, bw=0.5):
-    """Fig 1: dN/db for the three samples, with the ratio to the reference."""
+    """Fig 1: dN/db for each sample, with the ratio to the reference.
+
+    Uncertainties are job-level: the density is estimated per job file and the
+    error is the scatter of those per-file densities over sqrt(N_files).  Per-bin
+    Poisson errors would be roughly 2.9x smaller here and would misrepresent the
+    agreement, since b is not independent between events of the same job.
+    """
     allb = np.concatenate([d.B.to_numpy() for d in data.values()])
     edges = np.arange(0.0, np.ceil(allb.max() / bw) * bw + bw, bw)
     ctr = 0.5 * (edges[:-1] + edges[1:])
     dens, err = {}, {}
     for k, d in data.items():
-        c, _ = np.histogram(d.B.to_numpy(), bins=edges)
-        n = c.sum()
-        dens[k] = c / (n * bw)
-        err[k] = np.sqrt(np.maximum(c, 1)) / (n * bw)
+        per = []
+        for _, g in d.groupby("file_idx"):
+            c, _ = np.histogram(g.B.to_numpy(), bins=edges)
+            per.append(c / (max(c.sum(), 1) * bw))
+        per = np.asarray(per)
+        dens[k] = per.mean(axis=0)
+        err[k] = per.std(axis=0, ddof=1) / np.sqrt(len(per))
 
     fig, (a, b) = plt.subplots(2, 1, figsize=(FULL, FULL / 1.75), sharex=True,
                                gridspec_kw={"height_ratios": [2.5, 1], "hspace": 0.06})
@@ -104,7 +113,9 @@ def fig_b_distributions(data, out_dir, bw=0.5):
                    marker=s["marker"], ms=3, mfc="none", mew=0.7, elinewidth=0.6,
                    capsize=1.2, label=s["label"])
     a.set_ylabel(r"$(1/N)\,\mathrm{d}N/\mathrm{d}b$  [fm$^{-1}$]")
-    a.set_ylim(*snap_limits([v for k in dens for v in dens[k]]))
+    # limits must contain the error-bar ends, not just the points (Appendix A)
+    a.set_ylim(*snap_limits([v for k in dens
+                             for v in np.concatenate([dens[k] + err[k], dens[k] - err[k]])]))
     a.legend(loc="upper left", ncols=1)
     a.set_title("Xe+CsI, $\\sqrt{s_{NN}}=2.87$ GeV, SMASH hard Skyrme, "
                 f"minimum bias, {SCOPE}", fontsize=7)
@@ -121,10 +132,16 @@ def fig_b_distributions(data, out_dir, bw=0.5):
                    ms=3, mfc="none", mew=0.7, elinewidth=0.6, capsize=1.2)
     b.set_xlabel(r"$b$  [fm]")
     b.set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$")
-    fin = [x for k in DATASETS if k != REF
-           for x in np.divide(dens[k], dens[REF], out=np.full(len(ctr), np.nan),
-                              where=dens[REF] > 0) if np.isfinite(x)]
-    m = max(abs(np.array(fin) - 1).max(), 0.02) * 1.25
+    fin = []
+    for k in DATASETS:
+        if k == REF:
+            continue
+        rr = np.divide(dens[k], dens[REF], out=np.full(len(ctr), np.nan),
+                       where=dens[REF] > 0)
+        ee = rr * np.sqrt((err[k] / np.maximum(dens[k], 1e-30)) ** 2 +
+                          (err[REF] / np.maximum(dens[REF], 1e-30)) ** 2)
+        fin += [x for x in np.concatenate([rr + ee, rr - ee]) if np.isfinite(x)]
+    m = max(abs(np.array(fin) - 1).max(), 0.02) * 1.15
     b.set_ylim(1 - m, 1 + m)
     b.set_xlim(0, edges[-1])
     for ax, nm in ((a, "fig1a"), (b, "fig1b")):
@@ -354,11 +371,16 @@ def main():
     p.add_argument("--report", type=Path, required=True)
     p.add_argument("--null", type=Path, default=None)
     p.add_argument("--output-dir", type=Path, required=True)
+    p.add_argument("--samples", default=None,
+                   help="comma-separated subset, when one production is still reducing")
     p.add_argument("--scope", default="full production",
                    help="sample-scope label shown in figure titles")
     a = p.parse_args()
-    global SCOPE
+    global SCOPE, DATASETS
     SCOPE = a.scope
+    if a.samples:
+        keep = a.samples.split(",")
+        DATASETS = {k: v for k, v in DATASETS.items() if k in keep}
     apply_style()
     a.output_dir.mkdir(parents=True, exist_ok=True)
     data = {k: pd.read_pickle(a.events_dir / f"{k}_events.pkl") for k in DATASETS}
@@ -366,9 +388,16 @@ def main():
     binned = fig_b_distributions(data, a.output_dir)
     js = fig_job_structure(data, a.output_dir)
     fig_closure(data, rep, a.output_dir)
-    for o in ("R_n_band", "R_n_mid", "np_band"):
+    labels = {
+        "Rn_over_Rp_band": r"$R_n/R_p$  (HGND band)",
+        "R_n_band": r"$R_n=N(E_{\mathrm{kin}}>2)/N(E_{\mathrm{kin}}<1)$  (HGND band)",
+        "R_p_band": r"$R_p=N(E_{\mathrm{kin}}>2)/N(E_{\mathrm{kin}}<1)$  (HGND band)",
+        "R_n_mid": r"$R_n$  ($|y_{\mathrm{cm}}|<0.5$)",
+        "np_band": r"$n/p$  (HGND band)",
+    }
+    for o, lab in labels.items():
         if o in rep.get("classes", {}):
-            fig_observable(rep, a.output_dir, o)
+            fig_observable(rep, a.output_dir, o, lab)
     try:
         fig_spectra(a.events_dir, a.output_dir)
     except SystemExit as e:
