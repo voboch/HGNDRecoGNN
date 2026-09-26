@@ -172,19 +172,22 @@ def fig_closure(data, rep, out_dir, bw=0.25):
     """Fig 3: the b density before and after reweighting, with the ratio panel."""
     import sys
     sys.path.insert(0, str(Path(__file__).parent))
-    from b_reweight import ref_density, weights
+    from b_reweight import ref_density, bin_weights
     allb = np.concatenate([d.B.to_numpy() for d in data.values()])
     edges = np.arange(0.0, np.ceil(allb.max() / bw) * bw + bw, bw)
     ctr = 0.5 * (edges[:-1] + edges[1:])
-    ref = ref_density([data[k].B.to_numpy() for k in DATASETS], edges)
+    counts = {k: np.histogram(data[k].B.to_numpy(), bins=edges)[0].astype(float)
+              for k in DATASETS}
+    ref = ref_density([counts[k] for k in DATASETS])
     fig, (a, b) = plt.subplots(2, 1, figsize=(FULL, FULL / 1.75), sharex=True,
                                gridspec_kw={"height_ratios": [2.5, 1], "hspace": 0.06})
     raw, rw = {}, {}
     for k in DATASETS:
-        bb = data[k].B.to_numpy()
-        w = weights(bb, edges, ref)
-        c, _ = np.histogram(bb, bins=edges); raw[k] = c / max(c.sum(), 1)
-        cw, _ = np.histogram(bb, bins=edges, weights=w); rw[k] = cw / max(cw.sum(), 1)
+        c = counts[k]
+        w = bin_weights(c, ref)
+        raw[k] = c / max(c.sum(), 1)
+        cw = w * c
+        rw[k] = cw / max(cw.sum(), 1)
     for k, s in DATASETS.items():
         a.step(ctr, raw[k] / bw, where="mid", color=s["color"], ls=s["ls"], lw=0.9,
                label=s["label"] + " (raw)")

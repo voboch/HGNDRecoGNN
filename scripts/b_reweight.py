@@ -8,29 +8,39 @@ signal.  Equal-percentile classes do not remove it: when the underlying b
 distributions differ, equal percentiles select unequal b.  Common b edges are a
 stratification check only, and leave a residual whenever the observable varies
 inside a bin.  Reweighting instead forces every sample onto one common b
-density, so the comparison is made at matched b by construction.
+density event by event, so the comparison is made at matched b by construction.
 
 Why job-level errors
 --------------------
-b carries job-file block structure.  Within a single sample, where no S_pot
-difference can exist, four job files scattered in <b> with chi2/ndf = 27.2 and
-one file drifted by 0.8 fm between its own halves.  Per-event errors therefore
-understate the uncertainty on any b-dependent quantity.  Every uncertainty here
-comes from resampling whole job files with replacement, with the reweighting
-recomputed inside each replicate so the weight-estimation error is included.
+b carries job-file block structure: within a single sample, where no S_pot
+difference can exist, job-file means of b scatter at chi2/ndf = 6.7 over 30
+complete files, and the job-level error on <b> is 2.6x the per-event one.
+Per-event errors therefore understate the uncertainty on any b-dependent
+quantity.  Every uncertainty here comes from resampling whole job files with
+replacement, with the reweighting rebuilt inside each replicate so the
+weight-estimation error is propagated too.
 
-Usage:  python3 scripts/b_reweight.py <events_dir> <out_dir> [n_boot]
+How it is made affordable
+-------------------------
+A bootstrap replicate is a multiset of job files, and the reweighting factor
+depends only on the b bin.  Both facts let a replicate be evaluated as a small
+matrix product over a precomputed (file x b-bin x counter) tensor rather than by
+gathering hundreds of thousands of event rows.
+
+Usage:
+  python3 scripts/b_reweight.py <events_dir> <out_dir> [n_boot]
+  python3 scripts/b_reweight.py null <events_dir> <out_dir> [sample] [splits] [boot]
 """
 import json, os, sys
 import numpy as np
 import pandas as pd
 
 SAMPLES = {"zeroSpot": 0, "defaultSpot": 18, "bigSpot": 90}
-BW = 0.25                        # reweighting bin width [fm]
-MIN_COUNT = 20                   # a b bin below this is unusable in a sample
+REF_SAMPLE = "zeroSpot"
+BW = 0.10                        # reweighting bin width [fm]
+MIN_COUNT = 20                   # a b bin below this count is unusable in a sample
 NCLASS = 10                      # centrality percentile classes (community convention)
 
-# numerator / denominator counter pairs
 OBSERVABLES = {
     "R_n_band":  ("band_n_hi", "band_n_lo"),
     "R_p_band":  ("band_p_hi", "band_p_lo"),
@@ -40,204 +50,220 @@ OBSERVABLES = {
     "np_mid":    ("mid_n",     "mid_p"),
     "np_4pi":    ("all_n",     "all_p"),
 }
+COUNTERS = sorted({c for pair in OBSERVABLES.values() for c in pair})
+CIDX = {c: i for i, c in enumerate(COUNTERS)}
 
 
 def load(events_dir):
-    d = {}
-    for s in SAMPLES:
-        p = os.path.join(events_dir, f"{s}_events.pkl")
-        d[s] = pd.read_pickle(p)
-    return d
+    return {s: pd.read_pickle(os.path.join(events_dir, f"{s}_events.pkl")) for s in SAMPLES}
 
 
-def ref_density(bs_list, edges):
-    """Reference b density: the mean of the per-sample densities.
-
-    Averaging densities rather than pooling events keeps a sample with more
-    events from defining the target it is then weighted towards.
-    """
-    dens = []
-    for b in bs_list:
-        c, _ = np.histogram(b, bins=edges)
-        dens.append(c / max(c.sum(), 1))
-    return np.mean(dens, axis=0)
-
-
-def weights(b, edges, ref, min_count=MIN_COUNT):
-    """Per-event weights taking this sample's b density onto `ref`."""
-    nb = len(ref)
-    idx = np.digitize(b, edges) - 1
-    inside = (idx >= 0) & (idx < nb)
-    cnt = np.bincount(idx[inside], minlength=nb).astype(float)
-    dens = cnt / max(cnt.sum(), 1)
-    usable = (cnt >= min_count) & (ref > 0)
-    ratio = np.zeros(nb)
-    ratio[usable] = ref[usable] / dens[usable]
-    w = np.zeros(len(b))
-    w[inside] = ratio[idx[inside]]
-    return w
-
-
-def wratio(df, w, num, den):
-    n = float(np.dot(w, df[num].to_numpy()))
-    d = float(np.dot(w, df[den].to_numpy()))
-    return n / d if d > 0 else np.nan
-
-
-def n_eff(w):
-    w = w[w > 0]
-    return float(w.sum() ** 2 / np.dot(w, w)) if len(w) else 0.0
-
-
-def build_edges(data):
-    bmax = max(d.B.max() for d in data.values())
+def grid(data):
+    bmax = max(float(d.B.max()) for d in data.values())
     return np.arange(0.0, np.ceil(bmax / BW) * BW + BW, BW)
 
 
-def class_edges(data, nclass=NCLASS):
-    """Centrality class edges in b, from the pooled distribution.
+class Binned:
+    """A sample reduced to (job file) x (b bin) sums, the unit the bootstrap needs."""
+
+    def __init__(self, df, edges, counters=COUNTERS):
+        fi = df.file_idx.to_numpy()
+        self.files = np.unique(fi)
+        nf, nb = len(self.files), len(edges) - 1
+        fpos = np.searchsorted(self.files, fi)
+        bpos = np.clip(np.digitize(df.B.to_numpy(), edges) - 1, 0, nb - 1)
+        flat = fpos * nb + bpos
+        self.n = np.bincount(flat, minlength=nf * nb).reshape(nf, nb).astype(np.float64)
+        self.bsum = np.bincount(flat, weights=df.B.to_numpy().astype(np.float64),
+                                minlength=nf * nb).reshape(nf, nb)
+        C = np.empty((nf, nb, len(counters)))
+        for k, c in enumerate(counters):
+            C[:, :, k] = np.bincount(flat, weights=df[c].to_numpy().astype(np.float64),
+                                     minlength=nf * nb).reshape(nf, nb)
+        self.nf, self.nb, self.nc = nf, nb, len(counters)
+        self.Cflat = C.reshape(nf, nb * len(counters))    # BLAS-friendly
+        self.n_events = len(df)
+
+    def unit(self):
+        return np.ones(self.nf)
+
+    def resample(self, rng):
+        pick = rng.integers(0, self.nf, self.nf)
+        return np.bincount(pick, minlength=self.nf).astype(np.float64)
+
+    def aggregate(self, m):
+        return m @ self.n, (m @ self.Cflat).reshape(self.nb, self.nc), m @ self.bsum
+
+
+def ref_density(dens_list):
+    """Reference b density: the mean of the per-sample densities."""
+    return np.mean([d / max(d.sum(), 1) for d in dens_list], axis=0)
+
+
+def bin_weights(N, ref, min_count=MIN_COUNT):
+    dens = N / max(N.sum(), 1)
+    w = np.zeros_like(ref)
+    ok = (N >= min_count) & (ref > 0) & (dens > 0)
+    w[ok] = ref[ok] / dens[ok]
+    return w
+
+
+def evaluate(aggs, keys, sl=None, min_count=MIN_COUNT, reweight=True):
+    """Reweight every sample onto their common reference and read the observables.
+
+    `sl` restricts to a slice of b bins, i.e. one centrality class.
+    """
+    N, T, Bs = {}, {}, {}
+    for s in keys:
+        n, t, b = aggs[s]
+        if sl is not None:
+            n, t, b = n[sl], t[sl], b[sl]
+        N[s], T[s], Bs[s] = n, t, b
+    ref = ref_density([N[s] for s in keys])
+    res, meta = {}, {}
+    for s in keys:
+        # reweight=False evaluates the same samples with unit weights, which is
+        # what an uncorrected comparison would report
+        w = bin_weights(N[s], ref, min_count) if reweight \
+            else (N[s] > 0).astype(float)
+        tot = w @ T[s]
+        res[s] = {o: (tot[CIDX[nu]] / tot[CIDX[de]] if tot[CIDX[de]] > 0 else np.nan)
+                  for o, (nu, de) in OBSERVABLES.items()}
+        wn = w @ N[s]
+        meta[s] = {
+            "mean_b": float((w * Bs[s]).sum() / wn) if wn > 0 else np.nan,
+            "n_eff": float(wn ** 2 / ((w ** 2) @ N[s])) if (w ** 2) @ N[s] > 0 else 0.0,
+            "zero_w_frac": float(1 - N[s][w > 0].sum() / max(N[s].sum(), 1e-30)),
+            "n_raw": float(N[s].sum()),
+        }
+    return res, meta
+
+
+def class_slices(data, edges, nclass=NCLASS):
+    """Centrality classes as slices of the reweighting grid.
 
     b is not an observable; these stand in for the experimental convention of
     percentile classes built on a measured multiplicity or spectator signal.
-    Pooling the samples gives one common set of edges, so the classes select the
-    same b in every sample.
+    Edges come from the pooled b quantiles and are snapped to the reweighting
+    grid, so every sample's class k covers exactly the same b interval.
     """
     allb = np.concatenate([d.B.to_numpy() for d in data.values()])
-    return np.quantile(allb, np.linspace(0, 1, nclass + 1))
+    q = np.quantile(allb, np.linspace(0, 1, nclass + 1))
+    j = np.clip(np.searchsorted(edges, q), 0, len(edges) - 1)
+    j[0], j[-1] = 0, len(edges) - 1
+    for k in range(1, len(j)):                      # keep every class non-empty
+        j[k] = max(j[k], j[k - 1] + 1)
+    return [(slice(j[k], j[k + 1]), float(edges[j[k]]), float(edges[j[k + 1]]))
+            for k in range(nclass)]
 
 
-def replicate(data, edges, rng=None, resample=True):
-    """One (optionally bootstrapped) realisation: returns per-sample frames+weights.
-
-    Job files are resampled with replacement and the reference density is
-    rebuilt inside the replicate, so both the sampling error and the
-    weight-estimation error are propagated.
-    """
+def rel_90_0(res):
     out = {}
-    for s, d in data.items():
-        if resample:
-            files = d.file_idx.unique()
-            pick = rng.choice(files, size=len(files), replace=True)
-            d = pd.concat([d[d.file_idx == f] for f in pick], ignore_index=True)
-        out[s] = d
-    ref = ref_density([out[s].B.to_numpy() for s in SAMPLES], edges)
-    return out, {s: weights(out[s].B.to_numpy(), edges, ref) for s in out}, ref
+    for o in OBSERVABLES:
+        a, b = res[REF_SAMPLE][o], res["bigSpot"][o]
+        out[o] = b / a - 1.0 if a and np.isfinite(a) and np.isfinite(b) else np.nan
+    return out
 
 
 def main(events_dir, out_dir, n_boot=400):
     os.makedirs(out_dir, exist_ok=True)
     rng = np.random.default_rng(20260926)
     data = load(events_dir)
-    edges = build_edges(data)
-    cedges = class_edges(data)
-    frames, W, ref = replicate(data, edges, resample=False)
+    edges = grid(data)
+    bins = {s: Binned(data[s], edges) for s in SAMPLES}
+    keys = list(SAMPLES)
+    classes = class_slices(data, edges)
+
+    cen_agg = {s: bins[s].aggregate(bins[s].unit()) for s in keys}
+    cen, meta = evaluate(cen_agg, keys)
+    cen_cls = [evaluate(cen_agg, keys, sl=sl, min_count=5)[0] for sl, _, _ in classes]
 
     rep = {"n_boot": int(n_boot), "bin_width_fm": BW, "n_class": NCLASS,
-           "b_edges_class": cedges.tolist(), "samples": {}}
+           "min_count": MIN_COUNT, "samples": {}, "classes": {}, "integrated": {}}
 
     print("=" * 78)
     print("  b reweighting: closure and cost")
     print("=" * 78)
-    print(f"{'sample':<13}{'n':>8}{'<b> raw':>10}{'<b> rw':>10}"
-          f"{'n_eff':>9}{'n_eff/n':>9}{'w=0 frac':>10}")
-    for s in SAMPLES:
-        d, w = frames[s], W[s]
-        b = d.B.to_numpy()
-        raw, rw = b.mean(), np.dot(w, b) / w.sum()
-        rep["samples"][s] = {
-            "U_MeV": SAMPLES[s], "n_events": int(len(d)),
-            "n_files": int(d.file_idx.nunique()),
-            "mean_b_raw": float(raw), "mean_b_rw": float(rw),
-            "n_eff": n_eff(w), "zero_weight_frac": float((w == 0).mean()),
-        }
-        print(f"{s:<13}{len(d):>8d}{raw:>10.4f}{rw:>10.4f}"
-              f"{n_eff(w):>9.0f}{n_eff(w)/len(d):>9.3f}{(w==0).mean():>10.4f}")
+    print(f"{'sample':<13}{'events':>9}{'files':>7}{'<b> raw':>10}{'<b> rw':>10}"
+          f"{'n_eff/n':>9}{'w=0 frac':>10}")
+    for s in keys:
+        raw = float(data[s].B.mean())
+        m = meta[s]
+        rep["samples"][s] = {"U_MeV": SAMPLES[s], "n_events": int(bins[s].n_events),
+                             "n_files": int(bins[s].nf), "mean_b_raw": raw,
+                             "mean_b_rw": m["mean_b"], "n_eff": m["n_eff"],
+                             "zero_weight_frac": m["zero_w_frac"]}
+        print(f"{s:<13}{bins[s].n_events:>9d}{bins[s].nf:>7d}{raw:>10.4f}"
+              f"{m['mean_b']:>10.4f}{m['n_eff']/bins[s].n_events:>9.3f}"
+              f"{m['zero_w_frac']:>10.5f}")
+    sp_raw = float(np.std([rep["samples"][s]["mean_b_raw"] for s in keys]))
+    sp_rw = float(np.std([rep["samples"][s]["mean_b_rw"] for s in keys]))
+    rep["closure"] = {"mean_b_spread_raw": sp_raw, "mean_b_spread_rw": sp_rw}
+    print(f"\n  closure: <b> spread across samples {sp_raw:.5f} fm raw "
+          f"-> {sp_rw:.5f} fm reweighted")
 
-    mb = [rep["samples"][s]["mean_b_rw"] for s in SAMPLES]
-    print(f"\n  closure: reweighted <b> spread = {np.std(mb):.5f} fm "
-          f"(raw spread {np.std([rep['samples'][s]['mean_b_raw'] for s in SAMPLES]):.5f} fm)")
-    rep["closure_mean_b_spread_rw"] = float(np.std(mb))
-
-    # ---- integrated observables, job-level bootstrap on the 90/0 ratio ------
-    print("\n" + "=" * 78)
-    print("  Reweighted observables, integrated, errors from job-file bootstrap")
-    print("=" * 78)
-    boot = {o: {s: [] for s in SAMPLES} for o in OBSERVABLES}
+    # ---- bootstrap: one set of replicate multiplicities drives every result ---
+    bi = {o: {s: [] for s in keys} for o in OBSERVABLES}
+    brel = {o: [] for o in OBSERVABLES}
+    bcls = [{o: [] for o in OBSERVABLES} for _ in classes]
     for _ in range(n_boot):
-        bf, bw, _ = replicate(data, edges, rng=rng)
-        for o, (nu, de) in OBSERVABLES.items():
-            for s in SAMPLES:
-                boot[o][s].append(wratio(bf[s], bw[s], nu, de))
+        mult = {s: bins[s].resample(rng) for s in keys}
+        agg = {s: bins[s].aggregate(mult[s]) for s in keys}
+        r, _ = evaluate(agg, keys)
+        for o in OBSERVABLES:
+            for s in keys:
+                bi[o][s].append(r[s][o])
+        for o, v in rel_90_0(r).items():
+            brel[o].append(v)
+        for k, (sl, _, _) in enumerate(classes):
+            rc, _ = evaluate(agg, keys, sl=sl, min_count=5)
+            for o, v in rel_90_0(rc).items():
+                bcls[k][o].append(v)
 
-    rep["integrated"] = {}
-    print(f"{'observable':<11}{'U=0':>18}{'U=18':>18}{'U=90':>18}{'90/0-1':>12}{'sig':>7}")
-    for o, (nu, de) in OBSERVABLES.items():
-        cen = {s: wratio(frames[s], W[s], nu, de) for s in SAMPLES}
-        err = {s: float(np.nanstd(boot[o][s], ddof=1)) for s in SAMPLES}
-        rel = np.array(boot[o]["bigSpot"]) / np.array(boot[o]["zeroSpot"]) - 1.0
-        d90 = cen["bigSpot"] / cen["zeroSpot"] - 1.0
-        sd = float(np.nanstd(rel, ddof=1))
-        sig = abs(d90) / sd if sd > 0 else np.nan
-        rep["integrated"][o] = {
-            "central": cen, "err": err,
-            "rel_90_over_0": float(d90), "rel_err": sd, "sigma": float(sig)}
-        print(f"{o:<11}" + "".join(f"{cen[s]:>11.5f}±{err[s]:<6.5f}" for s in SAMPLES)
-              + f"{d90:>+12.4f}{sig:>7.2f}")
-
-    # ---- per-centrality-class, reweighted within each class ----------------
     print("\n" + "=" * 78)
-    print(f"  Per centrality class ({NCLASS} classes, common b edges from pooled quantiles)")
-    print("  reweighted within each class; sigma from job-file bootstrap")
+    print("  Reweighted observables, integrated; errors from job-file bootstrap")
     print("=" * 78)
-    rep["classes"] = {}
-    for o, (nu, de) in OBSERVABLES.items():
+    print(f"{'observable':<11}{'U=0':>17}{'U=18':>17}{'U=90':>17}{'90/0-1':>11}{'sig':>7}")
+    for o in OBSERVABLES:
+        err = {s: float(np.nanstd(bi[o][s], ddof=1)) for s in keys}
+        d = cen["bigSpot"][o] / cen[REF_SAMPLE][o] - 1.0
+        sd = float(np.nanstd(brel[o], ddof=1))
+        sig = abs(d) / sd if sd > 0 else np.nan
+        rep["integrated"][o] = {"central": {s: float(cen[s][o]) for s in keys},
+                                "err": err, "rel_90_over_0": float(d),
+                                "rel_err": sd, "sigma": float(sig)}
+        print(f"{o:<11}" + "".join(f"{cen[s][o]:>10.5f}±{err[s]:<6.5f}" for s in keys)
+              + f"{d:>+11.4f}{sig:>7.2f}")
+
+    print("\n" + "=" * 78)
+    print(f"  Per centrality class ({NCLASS} classes, common b edges, reweighted within class)")
+    print("=" * 78)
+    summary = {}
+    for o in OBSERVABLES:
         print(f"\n  {o}")
-        print(f"  {'class':<9}{'b range [fm]':>16}{'U=0':>10}{'U=18':>10}"
-              f"{'U=90':>10}{'90/0-1':>10}{'sig':>7}")
+        print(f"  {'class':<9}{'b [fm]':>14}{'U=0':>10}{'U=18':>10}{'U=90':>10}"
+              f"{'90/0-1':>10}{'sig':>7}")
         rows = []
-        for k in range(NCLASS):
-            lo, hi = cedges[k], cedges[k + 1]
-            sub = {s: frames[s][(frames[s].B >= lo) & (frames[s].B < hi)] for s in SAMPLES}
-            sedg = np.arange(lo, hi + BW, BW)
-            if len(sedg) < 3:
-                sedg = np.linspace(lo, hi, 3)
-            sref = ref_density([sub[s].B.to_numpy() for s in SAMPLES], sedg)
-            sw = {s: weights(sub[s].B.to_numpy(), sedg, sref, min_count=5) for s in SAMPLES}
-            cen = {s: wratio(sub[s], sw[s], nu, de) for s in SAMPLES}
-            bs = []
-            for _ in range(max(n_boot // 4, 50)):
-                r = {}
-                for s in SAMPLES:
-                    files = sub[s].file_idx.unique()
-                    pick = rng.choice(files, size=len(files), replace=True)
-                    r[s] = pd.concat([sub[s][sub[s].file_idx == f] for f in pick],
-                                     ignore_index=True)
-                rr = ref_density([r[s].B.to_numpy() for s in SAMPLES], sedg)
-                rw = {s: weights(r[s].B.to_numpy(), sedg, rr, min_count=5) for s in SAMPLES}
-                v0, v9 = wratio(r["zeroSpot"], rw["zeroSpot"], nu, de), \
-                         wratio(r["bigSpot"], rw["bigSpot"], nu, de)
-                bs.append(v9 / v0 - 1.0 if v0 and np.isfinite(v0) else np.nan)
-            d90 = cen["bigSpot"] / cen["zeroSpot"] - 1.0 if cen["zeroSpot"] else np.nan
-            sd = float(np.nanstd(bs, ddof=1))
-            sig = abs(d90) / sd if sd > 0 and np.isfinite(d90) else np.nan
-            rows.append({"class": k, "b_lo": float(lo), "b_hi": float(hi),
-                         "central": cen, "rel_90_over_0": float(d90),
-                         "rel_err": sd, "sigma": float(sig)})
-            print(f"  {f'{k*10}-{(k+1)*10}%':<9}{f'{lo:.2f}-{hi:.2f}':>16}"
-                  f"{cen['zeroSpot']:>10.4f}{cen['defaultSpot']:>10.4f}"
-                  f"{cen['bigSpot']:>10.4f}{d90:>+10.4f}{sig:>7.2f}")
+        for k, (sl, lo, hi) in enumerate(classes):
+            c = cen_cls[k]
+            d = c["bigSpot"][o] / c[REF_SAMPLE][o] - 1.0 if c[REF_SAMPLE][o] else np.nan
+            sd = float(np.nanstd(bcls[k][o], ddof=1))
+            sig = abs(d) / sd if sd > 0 and np.isfinite(d) else np.nan
+            rows.append({"class": k, "b_lo": lo, "b_hi": hi,
+                         "central": {s: float(c[s][o]) for s in keys},
+                         "rel_90_over_0": float(d), "rel_err": sd, "sigma": float(sig)})
+            print(f"  {f'{k*10}-{(k+1)*10}%':<9}{f'{lo:.2f}-{hi:.2f}':>14}"
+                  f"{c[REF_SAMPLE][o]:>10.4f}{c['defaultSpot'][o]:>10.4f}"
+                  f"{c['bigSpot'][o]:>10.4f}{d:>+10.4f}{sig:>7.2f}")
         rep["classes"][o] = rows
-        nsig = sum(1 for r in rows if np.isfinite(r["sigma"]) and r["sigma"] >= 3)
-        ordered = sum(1 for r in rows
-                      if np.isfinite(r["central"]["defaultSpot"])
-                      and (r["central"]["zeroSpot"] < r["central"]["defaultSpot"]
-                           < r["central"]["bigSpot"]
-                           or r["central"]["zeroSpot"] > r["central"]["defaultSpot"]
-                           > r["central"]["bigSpot"]))
-        print(f"  -> {nsig}/{NCLASS} classes at >=3 sigma; "
-              f"{ordered}/{NCLASS} monotonic in U_sym (chance {NCLASS/3:.1f})")
-        rep["classes_summary"] = rep.get("classes_summary", {})
-        rep["classes_summary"][o] = {"n_ge_3sigma": nsig, "n_ordered": ordered}
+        ns = sum(1 for r in rows if np.isfinite(r["sigma"]) and r["sigma"] >= 3)
+        om = sum(1 for r in rows
+                 if r["central"][REF_SAMPLE] < r["central"]["defaultSpot"] < r["central"]["bigSpot"]
+                 or r["central"][REF_SAMPLE] > r["central"]["defaultSpot"] > r["central"]["bigSpot"])
+        summary[o] = {"n_ge_3sigma": ns, "n_ordered": om}
+        print(f"  -> {ns}/{NCLASS} classes at >=3 sigma; {om}/{NCLASS} monotonic "
+              f"in U_sym (chance {NCLASS/3:.1f})")
+    rep["classes_summary"] = summary
 
     with open(os.path.join(out_dir, "b_reweight.json"), "w") as f:
         json.dump(rep, f, indent=1)
@@ -245,88 +271,157 @@ def main(events_dir, out_dir, n_boot=400):
     return rep
 
 
+# ---------------------------------------------------------------------------
+def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
+    """Split one sample's own job files in two and run the identical pipeline.
+
+    Both halves have the same S_pot, so every apparent difference is manufactured
+    by the method.  The distribution of |sigma| over random splits is the
+    procedure's false-positive rate: a calibrated procedure gives a median |sigma|
+    near 0.7 and exceeds 3 sigma in about 0.3 % of splits.  This is the check
+    that decides whether a 3-4 sigma reweighted result is believable.
+    """
+    rng = np.random.default_rng(31415)
+    df = pd.read_pickle(os.path.join(events_dir, f"{sample}_events.pkl"))
+    edges = np.arange(0.0, np.ceil(float(df.B.max()) / BW) * BW + BW, BW)
+    files = np.sort(df.file_idx.unique())
+    if len(files) < 4:
+        raise SystemExit(f"{sample} has only {len(files)} job files")
+    keys = ["A", "B"]
+
+    print("=" * 78)
+    print(f"  NULL TEST: {sample}, {len(files)} job files, {len(df)} events")
+    print(f"  {n_splits} random half/half splits; both halves share the same S_pot")
+    print("=" * 78)
+    got = {o: [] for o in OBSERVABLES}
+    for _ in range(n_splits):
+        perm = rng.permutation(files)
+        half = {"A": perm[: len(files) // 2], "B": perm[len(files) // 2:]}
+        bns = {k: Binned(df[df.file_idx.isin(half[k])], edges) for k in keys}
+        agg = {k: bns[k].aggregate(bns[k].unit()) for k in keys}
+        cen, _ = evaluate(agg, keys)
+        boot = {o: [] for o in OBSERVABLES}
+        for _ in range(n_boot):
+            m = {k: bns[k].resample(rng) for k in keys}
+            r, _ = evaluate({k: bns[k].aggregate(m[k]) for k in keys}, keys)
+            for o in OBSERVABLES:
+                a, b = r["A"][o], r["B"][o]
+                boot[o].append(b / a - 1.0 if a and np.isfinite(a) else np.nan)
+        for o in OBSERVABLES:
+            a, b = cen["A"][o], cen["B"][o]
+            rel = b / a - 1.0 if a and np.isfinite(a) else np.nan
+            sd = float(np.nanstd(boot[o], ddof=1))
+            got[o].append((float(rel), sd, abs(rel) / sd if sd > 0 else np.nan))
+
+    print(f"{'observable':<11}{'median|sig|':>12}{'p90':>7}{'max':>7}"
+          f"{'frac>=2':>9}{'frac>=3':>9}{'median|rel|':>13}")
+    out = {}
+    for o in OBSERVABLES:
+        sg = np.array([g[2] for g in got[o]], float); sg = sg[np.isfinite(sg)]
+        rl = np.abs([g[0] for g in got[o]])
+        out[o] = {"median_sigma": float(np.median(sg)),
+                  "p90_sigma": float(np.percentile(sg, 90)),
+                  "max_sigma": float(sg.max()),
+                  "frac_ge_2": float((sg >= 2).mean()),
+                  "frac_ge_3": float((sg >= 3).mean()),
+                  "median_abs_rel": float(np.nanmedian(rl)),
+                  "n_splits": int(len(sg))}
+        print(f"{o:<11}{np.median(sg):>12.2f}{np.percentile(sg,90):>7.2f}{sg.max():>7.2f}"
+              f"{(sg>=2).mean():>9.3f}{(sg>=3).mean():>9.3f}{np.nanmedian(rl):>+13.4f}")
+    print("\n  Calibrated: median |sigma| ~ 0.7, frac>=3 ~ 0.003.  A larger frac>=3")
+    print("  means the quoted sigmas are too small and a 3-sigma S_pot result sits")
+    print("  inside the method's own noise.")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, f"null_test_{sample}.json"), "w") as f:
+        json.dump(out, f, indent=1)
+    return out
+
+
 def _cli():
-    if sys.argv[1] == "null":
-        # null <events_dir> <out_dir> [sample] [n_splits] [n_boot]
+    if sys.argv[1] == "inject":
         a = sys.argv[2:]
-        null_test(a[0], a[2] if len(a) > 2 else "zeroSpot",
-                  int(a[3]) if len(a) > 3 else 20,
-                  int(a[4]) if len(a) > 4 else 200, out_dir=a[1])
+        injection_test(a[0], a[1], a[2] if len(a) > 2 else "zeroSpot",
+                       float(a[3]) if len(a) > 3 else 0.15,
+                       int(a[4]) if len(a) > 4 else 300)
+    elif sys.argv[1] == "null":
+        a = sys.argv[2:]
+        null_test(a[0], a[1], a[2] if len(a) > 2 else "zeroSpot",
+                  int(a[3]) if len(a) > 3 else 40, int(a[4]) if len(a) > 4 else 200)
     else:
         main(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 400)
 
 
-# ---------------------------------------------------------------------------
-# Null test
-# ---------------------------------------------------------------------------
-def null_test(events_dir, sample="zeroSpot", n_splits=20, n_boot=200, out_dir=None):
-    """Split one sample's own job files in two and run the identical pipeline.
 
-    Both halves have the same S_pot, so every apparent difference is manufactured
-    by the method: by the reweighting, by the job-level bootstrap, or by the
-    block structure in b.  The distribution of |sigma| over many random splits is
-    the procedure's false-positive rate, and a calibrated 3-sigma threshold
-    should be exceeded in about 0.3 % of splits.  This is the check that decides
-    whether a 3-4 sigma reweighted result on the real samples is believable.
+# ---------------------------------------------------------------------------
+def injection_test(events_dir, out_dir, sample="zeroSpot", tilt=0.15, n_boot=300):
+    """Inject a known b bias into one half of a sample and try to remove it.
+
+    The null test shows the method invents nothing when nothing is there.  This
+    shows the converse: that it *removes* a b-induced difference that really is
+    there.  One half of a single sample is subsampled with acceptance
+    exp(-tilt * b), which pulls it towards central collisions by roughly the
+    offset claimed between productions.  Both halves still share the same S_pot,
+    so the uncorrected comparison measures the size of the artefact and the
+    reweighted comparison measures what survives correction.
     """
-    rng = np.random.default_rng(31415)
-    d = pd.read_pickle(os.path.join(events_dir, f"{sample}_events.pkl"))
-    files = np.sort(d.file_idx.unique())
-    if len(files) < 4:
-        raise SystemExit(f"need >=4 job files to split, {sample} has {len(files)}")
-    edges = np.arange(0.0, np.ceil(d.B.max() / BW) * BW + BW, BW)
+    rng = np.random.default_rng(2718)
+    df = pd.read_pickle(os.path.join(events_dir, f"{sample}_events.pkl"))
+    edges = np.arange(0.0, np.ceil(float(df.B.max()) / BW) * BW + BW, BW)
+    files = np.sort(df.file_idx.unique())
+    perm = rng.permutation(files)
+    A = df[df.file_idx.isin(perm[: len(files) // 2])]
+    Bfull = df[df.file_idx.isin(perm[len(files) // 2:])]
+    acc = np.exp(-tilt * Bfull.B.to_numpy())
+    B = Bfull[rng.random(len(Bfull)) < acc / acc.max()]
 
-    rows = {o: [] for o in OBSERVABLES}
-    print("=" * 78)
-    print(f"  NULL TEST: {sample} split into two pseudo-samples, {n_splits} random splits")
-    print(f"  {len(files)} job files, {len(d)} events; both halves have identical S_pot")
-    print("=" * 78)
-    for it in range(n_splits):
-        perm = rng.permutation(files)
-        A, B = perm[: len(files) // 2], perm[len(files) // 2:]
-        fa, fb = d[d.file_idx.isin(A)], d[d.file_idx.isin(B)]
-        ref = ref_density([fa.B.to_numpy(), fb.B.to_numpy()], edges)
-        wa, wb = weights(fa.B.to_numpy(), edges, ref), weights(fb.B.to_numpy(), edges, ref)
+    keys = ["A", "B"]
+    bns = {"A": Binned(A, edges), "B": Binned(B, edges)}
+    agg = {k: bns[k].aggregate(bns[k].unit()) for k in keys}
 
+    print("=" * 78)
+    print(f"  INJECTION TEST: {sample}, acceptance exp(-{tilt} b) applied to half B")
+    print("=" * 78)
+    print(f"  half A: {len(A):7d} events, <b> = {A.B.mean():.4f} fm")
+    print(f"  half B: {len(B):7d} events, <b> = {B.B.mean():.4f} fm  "
+          f"(shifted {B.B.mean()-A.B.mean():+.4f} fm)")
+    out = {"tilt": tilt, "mean_b_A": float(A.B.mean()), "mean_b_B": float(B.B.mean()),
+           "n_A": int(len(A)), "n_B": int(len(B)), "observables": {}}
+
+    res = {}
+    for mode, rw in (("uncorrected", False), ("reweighted", True)):
+        cen, meta = evaluate(agg, keys, reweight=rw)
         boot = {o: [] for o in OBSERVABLES}
         for _ in range(n_boot):
-            ra = pd.concat([fa[fa.file_idx == f] for f in rng.choice(A, len(A), replace=True)],
-                           ignore_index=True)
-            rb = pd.concat([fb[fb.file_idx == f] for f in rng.choice(B, len(B), replace=True)],
-                           ignore_index=True)
-            rr = ref_density([ra.B.to_numpy(), rb.B.to_numpy()], edges)
-            wra, wrb = weights(ra.B.to_numpy(), edges, rr), weights(rb.B.to_numpy(), edges, rr)
-            for o, (nu, de) in OBSERVABLES.items():
-                va, vb = wratio(ra, wra, nu, de), wratio(rb, wrb, nu, de)
-                boot[o].append(vb / va - 1.0 if va and np.isfinite(va) else np.nan)
-        for o, (nu, de) in OBSERVABLES.items():
-            va, vb = wratio(fa, wa, nu, de), wratio(fb, wb, nu, de)
-            rel = vb / va - 1.0 if va else np.nan
-            sd = float(np.nanstd(boot[o], ddof=1))
-            rows[o].append({"rel": float(rel), "err": sd,
-                            "sigma": float(abs(rel) / sd) if sd > 0 else np.nan})
+            m = {k: bns[k].resample(rng) for k in keys}
+            r, _ = evaluate({k: bns[k].aggregate(m[k]) for k in keys}, keys, reweight=rw)
+            for o in OBSERVABLES:
+                a, b = r["A"][o], r["B"][o]
+                boot[o].append(b / a - 1.0 if a and np.isfinite(a) else np.nan)
+        res[mode] = (cen, {o: float(np.nanstd(boot[o], ddof=1)) for o in OBSERVABLES}, meta)
 
-    print(f"{'observable':<11}{'median |sig|':>13}{'p90':>8}{'max':>8}"
-          f"{'frac>=2':>9}{'frac>=3':>9}{'median |rel|':>14}")
-    rep = {}
+    print(f"\n  <b> after reweighting: A = {res['reweighted'][2]['A']['mean_b']:.4f}, "
+          f"B = {res['reweighted'][2]['B']['mean_b']:.4f} fm")
+    print(f"\n{'observable':<11}{'uncorrected B/A-1':>20}{'sig':>7}"
+          f"{'reweighted B/A-1':>20}{'sig':>7}")
     for o in OBSERVABLES:
-        s = np.array([r["sigma"] for r in rows[o]], dtype=float)
-        rl = np.abs([r["rel"] for r in rows[o]])
-        s = s[np.isfinite(s)]
-        rep[o] = {"median_sigma": float(np.median(s)), "p90_sigma": float(np.percentile(s, 90)),
-                  "max_sigma": float(s.max()), "frac_ge_2": float((s >= 2).mean()),
-                  "frac_ge_3": float((s >= 3).mean()),
-                  "median_abs_rel": float(np.nanmedian(rl)), "n_splits": int(len(s))}
-        print(f"{o:<11}{np.median(s):>13.2f}{np.percentile(s,90):>8.2f}{s.max():>8.2f}"
-              f"{(s>=2).mean():>9.2f}{(s>=3).mean():>9.2f}{np.nanmedian(rl):>+14.4f}")
-    print("\n  A calibrated procedure gives median |sigma| ~ 0.7, frac>=3 ~ 0.003.")
-    print("  frac>=3 well above that means the quoted sigmas are too small and any")
-    print("  3-sigma result on the real samples is within the method's own noise.")
-    if out_dir:
-        with open(os.path.join(out_dir, f"null_test_{sample}.json"), "w") as f:
-            json.dump(rep, f, indent=1)
-    return rep
-
+        row = {}
+        for mode in ("uncorrected", "reweighted"):
+            cen, err, _ = res[mode]
+            d = cen["B"][o] / cen["A"][o] - 1.0 if cen["A"][o] else np.nan
+            sd = err[o]
+            row[mode] = {"rel": float(d), "err": sd,
+                         "sigma": float(abs(d) / sd) if sd > 0 else np.nan}
+        out["observables"][o] = row
+        u, r = row["uncorrected"], row["reweighted"]
+        print(f"{o:<11}{u['rel']:>+14.4f}±{u['err']:<5.4f}{u['sigma']:>7.2f}"
+              f"{r['rel']:>+14.4f}±{r['err']:<5.4f}{r['sigma']:>7.2f}")
+    print("\n  The injected bias should be large and significant uncorrected, and")
+    print("  consistent with zero after reweighting.  Anything left is the residual")
+    print("  the correction cannot reach, and bounds what a real result must exceed.")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, f"injection_test_{sample}.json"), "w") as f:
+        json.dump(out, f, indent=1)
+    return out
 
 if __name__ == "__main__":
     _cli()

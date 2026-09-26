@@ -200,11 +200,15 @@ of `b` scatter far beyond their statistical errors:
 | 0 MeV (feasibility subset) | 4 | 27.2 |
 | 18 MeV (feasibility subset) | 4 | 5.1 |
 | 90 MeV (feasibility subset) | 4 | 15.1 |
-| 0 MeV (first 30 complete files) | 30 | 6.68 |
+| 0 MeV (**full production**) | **195** | **8.15** |
 
-χ²/ndf = 1 is what i.i.d. sampling of `b` within a job would give.  At 30
-complete files the job-level error on ⟨b⟩ is 0.0223 fm against a per-event
-error of 0.0086 fm — an inflation factor of **2.6**.
+χ²/ndf = 1 is what i.i.d. sampling of `b` within a job would give.  Over the
+full 195-file, 804 369-event `zeroSpot` production the value is 8.15 for 194
+degrees of freedom, p = 6.7 × 10⁻²¹⁶: the file means scatter with an rms of
+0.137 fm against a mean per-file error of 0.048 fm.  The job-level error on ⟨b⟩
+is 0.0098 fm against a per-event error of 0.0034 fm — an inflation factor of
+**2.85**.  The effect is not a small-sample curiosity; it is a property of the
+production.
 
 **Consequence.** The unit of resampling for any b-dependent quantity is the job
 file, not the event.  This is the same class of error as the per-particle vs.
@@ -254,3 +258,22 @@ hardness.  With four job files the bootstrap cannot estimate its own error, so
 **no result from that subset is interpretable** — including a nominally 3.9 %,
 3.9σ reweighted `S_pot` difference in the same observable.  This is why the full
 production is required rather than merely desirable.
+
+At full statistics the procedure is calibrated.  Sixty half/half splits of the
+195-file `zeroSpot` production give
+
+| observable | median \|σ\| | p90 | max | frac ≥ 3σ | median \|Δ\| |
+|---|---|---|---|---|---|
+| `R_n_band` | 0.52 | 1.30 | 2.09 | 0.000 | 0.13 % |
+| `R_p_band` | 0.86 | 1.70 | 3.59 | 0.017 | 0.22 % |
+| `R_n_mid`  | 0.65 | 1.73 | 2.76 | 0.000 | 0.25 % |
+| `R_n_4pi`  | 0.63 | 1.57 | 1.95 | 0.000 | 0.01 % |
+| `np_band`  | 0.62 | 1.57 | 2.52 | 0.000 | 0.08 % |
+| `np_mid`   | 0.62 | 1.83 | 2.93 | 0.000 | 0.04 % |
+| `np_4pi`   | 0.73 | 1.77 | 2.37 | 0.000 | 0.01 % |
+
+The median |σ| sits where a calibrated procedure puts it, and 3σ is reached in
+0–1.7 % of splits rather than 33 %.  The median same-sample difference is the
+**method's noise floor**: 0.13 % for the HGND-band neutron hardness, against
+1.9 % on the four-file subset.  A measured `S_pot` difference is interpretable
+only when it stands clear of this floor.
