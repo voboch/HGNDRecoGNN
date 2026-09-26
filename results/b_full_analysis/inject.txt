@@ -1,0 +1,21 @@
+==============================================================================
+  INJECTION TEST: zeroSpot, acceptance exp(-0.15 b) applied to half B
+==============================================================================
+  half A:  400199 events, <b> = 8.5481 fm
+  half B:  126607 events, <b> = 6.9924 fm  (shifted -1.5557 fm)
+
+  <b> after reweighting: A = 7.7702, B = 7.7702 fm
+
+observable    uncorrected B/A-1    sig    reweighted B/A-1    sig
+R_n_band                +0.0220±0.0036   6.19       +0.0014±0.0033   0.42
+R_p_band                +0.0060±0.0036   1.65       -0.0032±0.0033   0.97
+R_n_mid                 +0.1262±0.0068  18.43       +0.0020±0.0045   0.44
+R_n_4pi                 -0.1669±0.0027  61.01       +0.0003±0.0003   1.07
+np_band                 -0.0105±0.0016   6.74       -0.0012±0.0017   0.72
+np_mid                  -0.0031±0.0008   3.65       -0.0008±0.0008   1.00
+np_4pi                  -0.0245±0.0005  53.71       +0.0002±0.0002   1.07
+Rn_over_Rp_band         +0.0160±0.0046   3.47       +0.0046±0.0050   0.92
+
+  The injected bias should be large and significant uncorrected, and
+  consistent with zero after reweighting.  Anything left is the residual
+  the correction cannot reach, and bounds what a real result must exceed.

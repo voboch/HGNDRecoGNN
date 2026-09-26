@@ -1,0 +1,41 @@
+=== zeroSpot: /Users/vovvy/ncx/data/smash_xecs_2.87gev_hardSkyrme_zeroSpot.tar.gz ===
+[zeroSpot]   10 files     40998 events   0.44/8.52 GB   4.10 MB/s  ETA  32.9 min
+[zeroSpot]   20 files     82395 events   0.87/8.52 GB   4.00 MB/s  ETA  31.8 min
+[zeroSpot]   30 files    123943 events   1.30/8.52 GB   4.04 MB/s  ETA  29.8 min
+[zeroSpot]   40 files    164904 events   1.72/8.52 GB   4.53 MB/s  ETA  25.0 min
+[zeroSpot]   50 files    206210 events   2.17/8.52 GB   4.52 MB/s  ETA  23.4 min
+[zeroSpot]   60 files    247354 events   2.61/8.52 GB   4.48 MB/s  ETA  22.0 min
+[zeroSpot]   70 files    288718 events   3.04/8.52 GB   4.44 MB/s  ETA  20.6 min
+[zeroSpot]   80 files    330126 events   3.47/8.52 GB   4.24 MB/s  ETA  19.8 min
+[zeroSpot]   90 files    371390 events   3.91/8.52 GB   4.24 MB/s  ETA  18.1 min
+[zeroSpot]  100 files    412842 events   4.35/8.52 GB   4.27 MB/s  ETA  16.3 min
+[zeroSpot]  110 files    454023 events   4.79/8.52 GB   4.23 MB/s  ETA  14.7 min
+[zeroSpot]  120 files    495032 events   5.22/8.52 GB   4.25 MB/s  ETA  12.9 min
+[zeroSpot]  130 files    536175 events   5.66/8.52 GB   4.27 MB/s  ETA  11.1 min
+[zeroSpot]  140 files    577657 events   6.11/8.52 GB   4.22 MB/s  ETA   9.5 min
+[zeroSpot]  150 files    618858 events   6.55/8.52 GB   4.22 MB/s  ETA   7.8 min
+[zeroSpot]  160 files    659827 events   6.98/8.52 GB   4.22 MB/s  ETA   6.1 min
+[zeroSpot]  170 files    701250 events   7.42/8.52 GB   4.21 MB/s  ETA   4.3 min
+[zeroSpot]  180 files    742671 events   7.86/8.52 GB   4.19 MB/s  ETA   2.6 min
+[zeroSpot]  190 files    783678 events   8.30/8.52 GB   4.19 MB/s  ETA   0.9 min
+[zeroSpot] DONE 195 files this pass, 804369 events, 195 members total, 0 rows outside histogram axes, 0 failed, 2031s
+=== bigSpot: /Users/vovvy/ncx/data/smash_xecs_2.87gev_hardSkyrme_bigSpot.tar.gz ===
+[bigSpot]   10 files     41671 events   0.45/7.63 GB   0.72 MB/s  ETA 165.5 min
+[bigSpot]   20 files     83204 events   0.88/7.63 GB   0.33 MB/s  ETA 345.8 min
+[bigSpot]   30 files    124596 events   1.31/7.63 GB   0.34 MB/s  ETA 311.0 min
+[bigSpot]   40 files    166213 events   1.75/7.63 GB   0.37 MB/s  ETA 267.1 min
+[bigSpot]   50 files    207341 events   2.19/7.63 GB   0.38 MB/s  ETA 237.9 min
+[bigSpot]   60 files    249068 events   2.63/7.63 GB   0.39 MB/s  ETA 216.1 min
+[bigSpot]   70 files    290379 events   3.06/7.63 GB   0.39 MB/s  ETA 194.1 min
+[bigSpot]   80 files    331764 events   3.49/7.63 GB   0.42 MB/s  ETA 162.9 min
+[bigSpot]   90 files    373359 events   3.94/7.63 GB   0.46 MB/s  ETA 135.1 min
+[bigSpot]  100 files    414638 events   4.37/7.63 GB   0.47 MB/s  ETA 114.6 min
+[bigSpot]  110 files    455884 events   4.81/7.63 GB   0.49 MB/s  ETA  95.1 min
+[bigSpot]  120 files    497359 events   5.25/7.63 GB   0.50 MB/s  ETA  79.4 min
+[bigSpot]  130 files    538877 events   5.70/7.63 GB   0.51 MB/s  ETA  62.9 min
+[bigSpot]  140 files    580359 events   6.14/7.63 GB   0.52 MB/s  ETA  47.6 min
+[bigSpot]  150 files    621621 events   6.58/7.63 GB   0.53 MB/s  ETA  33.0 min
+[bigSpot]  160 files    663323 events   7.03/7.63 GB   0.53 MB/s  ETA  18.8 min
+[bigSpot]  170 files    704907 events   7.47/7.63 GB   0.53 MB/s  ETA   5.1 min
+[bigSpot] DONE 173 files this pass, 717286 events, 173 members total, 0 rows outside histogram axes, 0 failed, 14000s
+=== defaultSpot: /Users/vovvy/ncx/data/smash_xecs_2.87gev_hardSkyrme_defaultSpot.tar.gz ===

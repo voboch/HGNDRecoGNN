@@ -20,6 +20,26 @@ checkpoints_hpc/
 results/
 *.pkl
 
+# Keep the reproducible n/p audit code and its compact published products.
+!/results/
+/results/*
+!/results/np_primaries/
+/results/np_primaries/*
+!/results/np_primaries/_common.py
+!/results/np_primaries/README.md
+!/results/np_ratio_smash_check/
+!/results/np_ratio_smash_check/*.png
+!/results/np_ratio_smash_check/*.csv
+!/results/np_ratio_smash_check/*.json
+!/results/np_ratio_smash_check/*.md
+!/results/b_full_analysis/
+!/results/b_full_analysis/*.png
+!/results/b_full_analysis/*.pdf
+!/results/b_full_analysis/*.json
+!/results/b_full_analysis/*.txt
+!/results/b_full_analysis/*.html
+!/results/b_full_analysis/*.log
+
 # --- secrets / keys (never commit) ---
 *.pem
 *.key

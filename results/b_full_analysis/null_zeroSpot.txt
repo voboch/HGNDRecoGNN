@@ -1,0 +1,17 @@
+==============================================================================
+  NULL TEST: zeroSpot, 195 job files, 804369 events
+  60 random half/half splits; both halves share the same S_pot
+==============================================================================
+observable        median|sig|    p90    max  frac>=2  frac>=3  median|rel|
+R_n_band                 0.52   1.30   2.09    0.017    0.000      +0.0013
+R_p_band                 0.86   1.70   3.59    0.033    0.017      +0.0022
+R_n_mid                  0.65   1.73   2.76    0.067    0.000      +0.0025
+R_n_4pi                  0.63   1.57   1.95    0.000    0.000      +0.0001
+np_band                  0.62   1.57   2.52    0.050    0.000      +0.0008
+np_mid                   0.62   1.83   2.93    0.050    0.000      +0.0004
+np_4pi                   0.73   1.77   2.37    0.050    0.000      +0.0001
+Rn_over_Rp_band          0.67   1.67   2.83    0.033    0.000      +0.0025
+
+  Calibrated: median |sigma| ~ 0.7, frac>=3 ~ 0.003.  A larger frac>=3
+  means the quoted sigmas are too small and a 3-sigma S_pot result sits
+  inside the method's own noise.

@@ -1,0 +1,430 @@
+<title>Isovector Hardness Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#FCFCFD; --panel:#F4F5F7; --ink:#17191C; --ink-2:#3C424A; --muted:#6B727B;
+  --rule:#E2E5E9; --rule-2:#CFD4DA;
+  --ref:#2B2B2B; --arm-a:#B22222; --arm-b:#1F77B4;
+  --ok:#1F6F43; --warn:#8A5A00; --bad:#A02020;
+  --wash:#EEF3F8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101215; --panel:#181B20; --ink:#E9ECEF; --ink-2:#BFC6CE; --muted:#8B939C;
+    --rule:#262A30; --rule-2:#343A42;
+    --ref:#E8E8E8; --arm-a:#E86A6A; --arm-b:#6FB3E8;
+    --ok:#5FC08A; --warn:#D9A441; --bad:#E87070;
+    --wash:#16202B;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101215; --panel:#181B20; --ink:#E9ECEF; --ink-2:#BFC6CE; --muted:#8B939C;
+  --rule:#262A30; --rule-2:#343A42;
+  --ref:#E8E8E8; --arm-a:#E86A6A; --arm-b:#6FB3E8;
+  --ok:#5FC08A; --warn:#D9A441; --bad:#E87070;
+  --wash:#16202B;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px; margin:0 auto; padding:64px 28px 120px;}
+header{border-bottom:2px solid var(--ink); padding-bottom:26px; margin-bottom:14px;}
+.eyebrow{
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:11.5px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 14px;
+}
+h1{
+  font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:2.35rem;
+  line-height:1.16; margin:0 0 14px; text-wrap:balance; letter-spacing:-.011em;
+}
+.standfirst{font-size:1.14rem; color:var(--ink-2); margin:0; text-wrap:pretty;}
+.byline{
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:12.5px; color:var(--muted);
+  margin:22px 0 0; display:flex; flex-wrap:wrap; gap:8px 20px;
+}
+h2{
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-weight:600; font-size:1.16rem;
+  letter-spacing:-.005em; margin:60px 0 4px; padding-top:16px; border-top:1px solid var(--rule);
+  display:flex; gap:14px; align-items:baseline;
+}
+h2 .num{
+  font-family:"IBM Plex Mono",monospace; font-size:.8em; color:var(--arm-b);
+  font-weight:500; flex:none;
+}
+h3{
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-weight:600; font-size:.98rem;
+  margin:34px 0 2px; color:var(--ink);
+}
+p{margin:14px 0;}
+a{color:var(--arm-b);}
+strong{font-weight:600;}
+code,.num{font-family:"IBM Plex Mono",monospace; font-size:.9em;}
+code{background:var(--panel); padding:.1em .34em; border-radius:3px;}
+
+.verdict{
+  background:var(--panel); border:1px solid var(--rule-2); border-radius:6px;
+  padding:22px 26px; margin:34px 0 0;
+}
+.verdict h2{margin:0 0 12px; border:0; padding:0; font-size:1rem;}
+.verdict ul{margin:0; padding-left:0; list-style:none;}
+.verdict li{
+  padding:11px 0 11px 30px; position:relative; border-top:1px solid var(--rule);
+  font-size:.97rem;
+}
+.verdict li:first-child{border-top:0;}
+.verdict li::before{
+  content:""; position:absolute; left:6px; top:1.28em; width:9px; height:9px;
+  border-radius:50%; background:var(--flag,var(--muted));
+}
+li.up{--flag:var(--ok)} li.down{--flag:var(--bad)} li.hold{--flag:var(--warn)}
+
+figure{margin:34px 0; }
+figure img{
+  width:100%; height:auto; display:block; border:1px solid var(--rule);
+  border-radius:4px; background:#fff;
+}
+figcaption{
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:12.5px; line-height:1.55;
+  color:var(--muted); margin-top:10px;
+}
+figcaption b{color:var(--ink-2); font-weight:600;}
+
+.tablewrap{overflow-x:auto; margin:26px 0;}
+table{border-collapse:collapse; width:100%; font-size:13.5px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;}
+th,td{padding:7px 12px; text-align:right; border-bottom:1px solid var(--rule);
+  font-variant-numeric:tabular-nums; white-space:nowrap;}
+th:first-child,td:first-child{text-align:left; font-family:"IBM Plex Mono",monospace;
+  font-size:12.5px;}
+thead th{
+  font-weight:600; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1.5px solid var(--rule-2);
+}
+tbody tr.hi{background:var(--wash);}
+td.sig{font-family:"IBM Plex Mono",monospace;}
+.null{color:var(--muted);}
+.pos{color:var(--arm-b); font-weight:600;}
+.neg{color:var(--arm-a); font-weight:600;}
+
+.note{
+  border-left:3px solid var(--rule-2); padding:4px 0 4px 18px; margin:26px 0;
+  color:var(--ink-2); font-size:.95rem;
+}
+.note b{color:var(--ink);}
+.withdrawn{border-left-color:var(--bad);}
+.pending{border-left-color:var(--warn);}
+
+footer{
+  margin-top:70px; padding-top:22px; border-top:1px solid var(--rule);
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:12.5px; color:var(--muted);
+}
+footer code{font-size:12px;}
+@media (max-width:640px){
+  body{font-size:16px;} .wrap{padding:40px 18px 80px;} h1{font-size:1.85rem;}
+}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">BM@N · High-Granularity Neutron Detector · feasibility</p>
+  <h1>The symmetry-potential signal is real; the centrality artefact was not</h1>
+  <p class="standfirst">Full-production impact-parameter analysis of the SMASH Xe+CsI samples.
+  The three productions do share a <span class="num">b</span> distribution, so the effect
+  previously withdrawn as a sampling artefact survives — and it appears as an isovector
+  tilt of the nucleon spectra, opposite in sign for neutrons and protons.</p>
+  <p class="byline">
+    <span>Xe+CsI, &radic;s<sub>NN</sub> = 2.87 GeV</span>
+    <span>SMASH, hard Skyrme, K<sub>0</sub> = 349.5 MeV</span>
+    <span>1 521 655 events, 368 job files</span>
+    <span>2026-09-26</span>
+  </p>
+</header>
+
+<div class="verdict">
+  <h2>What changed</h2>
+  <ul>
+    <li class="down"><b>Withdrawn:</b> &ldquo;the productions do not share a
+      <span class="num">b</span> distribution.&rdquo; At full statistics
+      &lang;b&rang; differs by <span class="num">+0.0034 &plusmn; 0.0147 fm</span>
+      &mdash; <span class="num">0.23&sigma;</span>, against the
+      <span class="num">&minus;0.255 fm</span> claimed from the 1 % subset.</li>
+    <li class="down"><b>Withdrawn:</b> the conclusion that the spectral-hardness signal
+      was manufactured by centrality. It was not; there was no mismatch of consequence
+      to manufacture it.</li>
+    <li class="up"><b>Established:</b> neutron and proton spectra in the HGND band tilt
+      in <em>opposite</em> directions with S<sub>pot</sub>. The double ratio
+      R<sub>n</sub>/R<sub>p</sub> moves <span class="num">+10.7 %</span>, at
+      <span class="num">43&times;</span> the method&rsquo;s measured noise floor, in
+      10 of 10 centrality classes.</li>
+    <li class="up"><b>Established:</b> <span class="num">b</span> carries job-file block
+      structure (<span class="num">&chi;&sup2;/ndf = 8.15</span>, 194 dof). Per-event
+      errors understate every <span class="num">b</span>-dependent uncertainty by
+      <span class="num">2.85&times;</span>; that single mistake produced the artefact.</li>
+    <li class="hold"><b>Pending:</b> the 18 MeV production is still reducing, so there is
+      no monotonicity check and no response-shape fit. No EOS parameter is extracted here.</li>
+  </ul>
+</div>
+
+<h2><span class="num">1</span> <span>Why the earlier answer was wrong</span></h2>
+
+<p>The previous feasibility study compared four byte-limited CSV extracts per production
+and found the samples differed in impact parameter: &lang;b&rang; = 8.705 / 8.632 / 8.450 fm,
+KS p = 1.5&nbsp;&times;&nbsp;10<sup>&minus;12</sup> for the 90 MeV sample. Because spectral
+hardness varies by a factor ~4 across centrality, a per-cent-level offset in &lang;b&rang;
+is enough to manufacture the whole apparent S<sub>pot</sub> effect. That reasoning was
+sound. The input was not, for two independent reasons.</p>
+
+<h3>The extracts were biased by their own truncation</h3>
+<p>Each extract was cut at 80 MiB, about the first half of a ~4 130-event job file. Because
+<span class="num">b</span> is serially correlated within a file &mdash; one file drifts
+0.8 fm between its halves, Spearman &rho; = &minus;0.14, p = 3.5&nbsp;&times;&nbsp;10<sup>&minus;11</sup>
+&mdash; a fixed byte cut is not a neutral sample of its own file. Reducing the
+<em>complete</em> first four <code>zeroSpot</code> files gives &lang;b&rang; = 8.589 fm
+against 8.705 fm truncated, KS p = 6.6&nbsp;&times;&nbsp;10<sup>&minus;6</sup>.</p>
+
+<h3>Events in a job file are not independent in <span class="num">b</span></h3>
+<p>Within one production, where no S<sub>pot</sub> difference can exist, job-file means of
+<span class="num">b</span> scatter far beyond their statistical errors: &chi;&sup2;/ndf = 8.15
+over 194 degrees of freedom (p = 6.7&nbsp;&times;&nbsp;10<sup>&minus;216</sup>) for
+<code>zeroSpot</code> and 9.19 for <code>bigSpot</code>. The file means have an rms of
+0.137 fm against a mean per-file error of 0.048 fm. The correct unit of resampling is
+therefore the job file, not the event &mdash; the same class of mistake as per-particle
+versus event-level errors, one level further out.</p>
+
+<figure>
+  <img src="fig2_job_structure.png" alt="Mean impact parameter per job file for each sample, with the sample weighted mean shown as a dotted line; the scatter between files greatly exceeds the per-file error bars.">
+  <figcaption><b>Figure 1.</b> Mean impact parameter of each job file, grouped by sample,
+  with per-file statistical errors; dotted lines are the sample weighted means. Both
+  samples scatter far beyond those errors (&chi;&sup2;/ndf = 8.15 and 9.19), which is why
+  every uncertainty in this report comes from resampling job files. The two samples&rsquo;
+  weighted means are indistinguishable.
+  <b>Provenance:</b> <code>scripts/plot_b_full.py</code>,
+  <code>results/b_full_analysis/fig2_job_structure.pdf</code>.</figcaption>
+</figure>
+
+<h2><span class="num">2</span> <span>At full statistics the distributions agree</span></h2>
+
+<p>The reduction streamed the complete production &mdash; 195 and 173 job files, 804&nbsp;369
+and 717&nbsp;286 events, matching the documented counts exactly, with no failed members and
+no rows outside the histogram axes.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>quantity</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 90</th><th>difference</th><th>significance</th></tr></thead>
+<tbody>
+<tr><td>job files</td><td>195</td><td>173</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>events</td><td>804 369</td><td>717 286</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr class="hi"><td>&lang;b&rang; [fm]</td><td>8.5454</td><td>8.5488</td><td>+0.0034 &plusmn; 0.0147</td><td class="sig null">0.23&sigma;</td></tr>
+<tr><td>&nbsp;&nbsp;(per-event errors)</td><td></td><td></td><td>&plusmn;0.0050</td><td class="sig null">0.68&sigma;</td></tr>
+<tr><td>KS D</td><td colspan="2">0.0038</td><td>subset gave 0.0562</td><td class="sig">&mdash;</td></tr>
+<tr class="hi"><td>ratio vs unity</td><td colspan="2">&chi;&sup2;/ndf = 1.57</td><td>28 bins, job-level</td><td class="sig null">p = 0.029</td></tr>
+<tr><td>&nbsp;&nbsp;(per-event errors)</td><td colspan="2">&chi;&sup2;/ndf = 13.57</td><td>bars 2.95&times; smaller</td><td class="sig neg">p = 2&times;10<sup>&minus;63</sup></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The last two rows are the whole story of the earlier error. With per-event errors the
+two <span class="num">b</span> distributions look irreconcilable; with job-level errors
+they are consistent to within a mild residual that reweighting then removes.</p>
+
+<figure>
+  <img src="fig1_b_distributions.png" alt="Normalised impact-parameter distributions for the two samples with a ratio panel; the curves lie on top of each other and the ratio scatters about unity.">
+  <figcaption><b>Figure 2.</b> Normalised <span class="num">b</span> distributions,
+  minimum bias, full production, with the ratio to S<sub>pot</sub> = 0 below. Uncertainties
+  are job-level: the density is estimated per job file and the error is the scatter of those
+  densities over &radic;N<sub>files</sub>. <b>Result:</b> &chi;&sup2;/ndf = 1.57 for 28 bins
+  (p = 0.029); the same comparison with per-event Poisson errors would read
+  &chi;&sup2;/ndf = 13.57.
+  <b>Provenance:</b> <code>fig1_b_distributions.pdf</code>.</figcaption>
+</figure>
+
+<h2><span class="num">3</span> <span>Reweighting, and two tests of it</span></h2>
+
+<p>Rather than rely on the agreement above, every comparison is made after forcing the
+samples onto a common <span class="num">b</span> density. Each event carries a weight
+w = f<sub>ref</sub>(b)/f<sub>sample</sub>(b) in 0.1 fm bins, with f<sub>ref</sub> the mean
+of the samples&rsquo; own densities; centrality classes use ten 10 % bins with edges from
+the pooled quantiles, with the reweighting reapplied inside each class. Because the
+distributions already agree, the correction is nearly free: effective statistics fall by
+0.1 %, no event is discarded, and the spread in &lang;b&rang; between samples falls from
+<span class="num">0.00171</span> to <span class="num">0.00009 fm</span>.</p>
+
+<p>Reweighting is not the same as percentile matching or common-<span class="num">b</span>
+stratification. Equal percentiles select unequal <span class="num">b</span> when the
+underlying distributions differ, and stratification leaves a residual whenever the
+observable varies inside a bin. The correction here is applied event by event.</p>
+
+<h3>The null test: does the method invent a signal?</h3>
+<p>Splitting one production&rsquo;s own job files into two pseudo-samples and running the
+identical pipeline must find nothing, because both halves share S<sub>pot</sub>. Over 60
+random splits of <code>zeroSpot</code> the median |&sigma;| is 0.52&ndash;0.86 where a
+calibrated procedure gives ~0.7, and 3&sigma; is reached in 0&ndash;1.7 % of splits.
+<code>bigSpot</code> behaves the same way. The median same-sample difference is the
+<strong>noise floor</strong>: 0.13 % for R<sub>n</sub>, 0.22 % for R<sub>p</sub>, 0.25 %
+for the double ratio.</p>
+
+<h3>The injection test: does the method remove a real bias?</h3>
+<p>Applying an acceptance exp(&minus;0.15 b) to one half shifts &lang;b&rang; by
+&minus;1.56 fm, roughly six times the offset once claimed between productions.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>observable</th><th>uncorrected</th><th>&sigma;</th><th>reweighted</th><th>&sigma;</th></tr></thead>
+<tbody>
+<tr><td>R_n_4pi</td><td class="neg">&minus;16.69 %</td><td class="sig neg">61.0</td><td>+0.03 %</td><td class="sig null">1.07</td></tr>
+<tr><td>np_4pi</td><td class="neg">&minus;2.45 %</td><td class="sig neg">53.7</td><td>+0.02 %</td><td class="sig null">1.07</td></tr>
+<tr><td>R_n_mid</td><td class="pos">+12.62 %</td><td class="sig neg">18.4</td><td>+0.20 %</td><td class="sig null">0.44</td></tr>
+<tr><td>R_n_band</td><td class="pos">+2.20 %</td><td class="sig neg">6.2</td><td>+0.14 %</td><td class="sig null">0.42</td></tr>
+<tr class="hi"><td>Rn_over_Rp_band</td><td>+1.60 %</td><td class="sig">3.5</td><td>+0.46 %</td><td class="sig null">0.92</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Uncorrected, the injected bias manufactures up to 61&sigma;. After reweighting every
+observable returns to &le;1.1&sigma; and &le;0.5 %, and the two halves&rsquo; &lang;b&rang;
+agree to four decimals. Note also that the double ratio is the least disturbed quantity in
+the set even <em>before</em> correction &mdash; it is intrinsically centrality-robust, which
+is why it is the headline below.</p>
+
+<figure>
+  <img src="fig5_null_calibration.png" alt="For each observable, the distribution of absolute significance obtained from same-sample splits, shown as median, 90th percentile and maximum, with the measured 90-versus-0 significance marked separately.">
+  <figcaption><b>Figure 3.</b> Null-test calibration. Circles and bars give the median, 90th
+  percentile and maximum |&sigma;| from 60 same-sample splits of <code>zeroSpot</code>;
+  triangles give the measured S<sub>pot</sub> = 90 versus 0 significance; the dashed line
+  is 3&sigma;. <b>Result:</b> the null sits below 3&sigma; almost everywhere while the
+  measured hardness observables sit at 19&ndash;39&sigma;, far off the scale of the null.
+  <b>Provenance:</b> <code>fig5_null_calibration.pdf</code>, 60 splits &times; 300 bootstrap
+  resamples.</figcaption>
+</figure>
+
+<h2><span class="num">4</span> <span>The result: an isovector tilt</span></h2>
+
+<p>With centrality matched and errors resampled at the job level, the spectral-hardness
+ratio R = N(E<sub>kin</sub> &gt; 2 GeV)/N(E<sub>kin</sub> &lt; 1 GeV) responds strongly to
+the symmetry potential &mdash; and responds with <em>opposite sign</em> for neutrons and
+protons.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>observable</th><th>S<sub>pot</sub> = 0</th><th>S<sub>pot</sub> = 90</th><th>relative</th><th>&sigma;</th><th>noise floor</th></tr></thead>
+<tbody>
+<tr class="hi"><td>Rn_over_Rp_band</td><td>1.00913 &plusmn; 0.00181</td><td>1.11727 &plusmn; 0.00179</td><td class="pos">+10.72 %</td><td class="sig">38.9</td><td>0.25 %</td></tr>
+<tr><td>R_p_band</td><td>0.68111 &plusmn; 0.00090</td><td>0.64139 &plusmn; 0.00088</td><td class="neg">&minus;5.83 %</td><td class="sig">33.8</td><td>0.22 %</td></tr>
+<tr><td>R_n_mid</td><td>0.02074 &plusmn; 0.00005</td><td>0.02210 &plusmn; 0.00005</td><td class="pos">+6.54 %</td><td class="sig">23.5</td><td>0.25 %</td></tr>
+<tr class="hi"><td>R_n_band</td><td>0.68733 &plusmn; 0.00094</td><td>0.71661 &plusmn; 0.00094</td><td class="pos">+4.26 %</td><td class="sig">23.5</td><td>0.13 %</td></tr>
+<tr><td>np_4pi</td><td>1.29165 &plusmn; 0.00017</td><td>1.29512 &plusmn; 0.00017</td><td>+0.27 %</td><td class="sig">29.4</td><td>0.01 %</td></tr>
+<tr><td>R_n_4pi</td><td>0.62809 &plusmn; 0.00052</td><td>0.62976 &plusmn; 0.00052</td><td>+0.27 %</td><td class="sig">18.8</td><td>0.01 %</td></tr>
+<tr><td>np_mid</td><td>1.14426 &plusmn; 0.00037</td><td>1.14251 &plusmn; 0.00032</td><td>&minus;0.15 %</td><td class="sig">3.6</td><td>0.04 %</td></tr>
+<tr><td>np_band</td><td>1.17596 &plusmn; 0.00083</td><td>1.17493 &plusmn; 0.00078</td><td class="null">&minus;0.09 %</td><td class="sig null">0.9</td><td>0.08 %</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Two things in that table deserve emphasis. First, <strong>n/p in the HGND band is
+null</strong> (0.9&sigma;) while the <em>hardness</em> of each species moves by several
+per cent. The ratio of yields is not the sensitive observable; the shape of the spectrum
+is. This supports the earlier decision to decline primary-nucleon n/p, and relocates the
+sensitivity to R. Second, at S<sub>pot</sub> = 0 the double ratio is
+<span class="num">1.009</span> &mdash; neutrons and protons are equally hard, as they should
+be with no symmetry potential &mdash; and the potential drives it to
+<span class="num">1.117</span>.</p>
+
+<figure>
+  <img src="fig6_hgnd_band_spectra.png" alt="Kinetic-energy spectra of neutrons and protons in the HGND angular band for both samples, with ratio panels; the neutron ratio rises above 2 GeV while the proton ratio falls.">
+  <figcaption><b>Figure 4.</b> Kinetic-energy spectra in the HGND angular band, neutrons left
+  and protons right, with the ratio to S<sub>pot</sub> = 0 below each and shared ratio limits.
+  <b>Result:</b> the change is a smooth spectral tilt, not a threshold effect &mdash; the
+  neutron ratio rises monotonically above ~2 GeV to 1.55, while the proton ratio falls to
+  0.92. The opposite sense of the two tilts is the isovector signature.
+  <b>Caveat:</b> the &theta; selection here is the histogram grid&rsquo;s
+  9.0&ndash;13.5&deg;, marginally wider than the 8.9&ndash;13.1&deg; band applied per particle
+  for the quoted R values. <b>Provenance:</b> <code>fig6_hgnd_band_spectra.pdf</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="fig4_Rn_over_Rp_band_centrality.png" alt="The neutron-to-proton hardness double ratio versus centrality class for both samples, with a difference panel; the two curves are separated in every class.">
+  <figcaption><b>Figure 5.</b> The double ratio R<sub>n</sub>/R<sub>p</sub> in the HGND band
+  against centrality class, reweighted to a common <span class="num">b</span> density within
+  each class, with job-file bootstrap uncertainties. <b>Result:</b> the separation holds in
+  <b>10 of 10 classes</b>, from +15.3 % (3.9&ndash;24.3&sigma; across classes) centrally to
+  +18.6 % peripherally, against a 0.25 % noise floor. The S<sub>pot</sub> = 0 arm sits near
+  unity throughout. <b>Provenance:</b> <code>fig4_Rn_over_Rp_band_centrality.pdf</code>.</figcaption>
+</figure>
+
+<p>The single-species neutron hardness &mdash; the quantity HGND can actually measure
+&mdash; is strongest in central collisions, as a density-dependent potential should be:
++7.3 % (18.8&sigma;) in 0&ndash;10 %, falling to +2.3 % by mid-centrality, and exceeding
+3&sigma; in 6 of 10 classes. The double ratio is flatter because it also divides out the
+common centrality trend.</p>
+
+<h2><span class="num">5</span> <span>What this does and does not establish</span></h2>
+
+<div class="note pending">
+  <p><b>The 18 MeV production is still reducing.</b> Everything above is the 0 versus 90 MeV
+  contrast. Without the intermediate point there is no monotonicity check, no response-shape
+  fit, and therefore <b>no extraction of any EOS parameter</b> &mdash; not L, not S<sub>0</sub>.
+  A two-point comparison establishes sensitivity, not a measurement.</p>
+</div>
+
+<div class="note">
+  <p><b>These are MC-truth primary nucleons.</b> No detector response, no reconstruction
+  efficiency, no GNN. The HGND band is an angular selection on truth momenta, and the
+  measured quantity would be a reconstructed neutron energy with finite resolution, which
+  will dilute a spectral-shape effect.</p>
+</div>
+
+<div class="note">
+  <p><b>HGND measures neutrons, not protons.</b> Charged protons bend in the BM@N field and
+  do not reach the detector with the kinematics assumed here, so R<sub>p</sub> in the
+  &ldquo;HGND band&rdquo; is a truth-level angular selection rather than an HGND measurement.
+  Building the double ratio experimentally requires the proton arm from BM@N tracking, over a
+  different acceptance with different systematics. The directly HGND-relevant result is the
+  single-species R<sub>n</sub>: <b>+4.26 %, 23.5&sigma;, 33&times; the noise floor</b>.</p>
+</div>
+
+<div class="note">
+  <p><b>Residual and definitional caveats.</b> The <span class="num">b</span> ratio retains a
+  mild shape tension (&chi;&sup2;/ndf = 1.57, p = 0.029) that reweighting removes but which
+  should be watched when the third sample lands. Generator weights are absent and unit
+  weighting is undocumented. The free/emitted-nucleon definition that separates this export
+  from the reference calculation is unchanged and still unresolved.</p>
+</div>
+
+<div class="note withdrawn">
+  <p><b>Superseded numbers.</b> The 29.3&sigma; / 9.9&sigma; / 6.4&sigma; hardness figures from
+  the pre-centrality report used per-event errors and no matching, and the subsequent
+  retraction of those figures as a <span class="num">b</span> artefact was itself based on the
+  biased subset. Both are replaced by the table in &sect;4. The centrality-feasibility
+  conclusion that &ldquo;no observable reaches 3&sigma; when matched in
+  <span class="num">b</span>&rdquo; is withdrawn: it was computed on 4 job files per sample,
+  where the bootstrap cannot estimate its own error.</p>
+</div>
+
+<h2><span class="num">6</span> <span>Reproduction</span></h2>
+<p>One command runs reduction, reweighting, both validation tests and every figure:</p>
+<p><code>scripts/run_full_b_analysis.sh &lt;events_dir&gt; &lt;results_dir&gt; [n_boot]</code></p>
+<p>The reduction streams the tarballs over the mounted volume, or reads the extracted CSVs
+directly when <code>DATA_ROOT</code> points at them &mdash;
+<code>slurm/reduce_prim.ncx.sbatch</code> runs it on ncx, where the data is local, and
+returns ~40 MB per sample instead of moving 25 GB. A bootstrap replicate is evaluated as a
+matrix product over a precomputed (file &times; b-bin &times; counter) tensor, so 400
+replicates over 800 000 events take under a second.</p>
+
+<footer>
+  <p>Data: <code>results/b_full_analysis/</code> &mdash; figures as PDF and PNG,
+  <code>b_reweight.json</code>, <code>null_test_*.json</code>,
+  <code>injection_test_zeroSpot.json</code>, <code>reduction.log</code>.
+  Code: <code>scripts/reduce_prim_full.py</code>, <code>scripts/b_reweight.py</code>,
+  <code>scripts/plot_b_full.py</code>. Conventions and the clustering finding:
+  <code>docs/CENTRALITY_CONVENTION.md</code>.</p>
+  <p>Figures follow <code>docs/plotting_style_protocol.md</code>: printed size, 8 pt base type,
+  vector PDF, colour never the only channel, a ratio panel on every comparison, axis limits
+  derived from the data with panel containment asserted.</p>
+</footer>
+</div>
