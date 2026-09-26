@@ -50,7 +50,15 @@ OBSERVABLES = {
     "np_mid":    ("mid_n",     "mid_p"),
     "np_4pi":    ("all_n",     "all_p"),
 }
+# Derived quantities: ratios of two primary observables.  The neutron-to-proton
+# double ratio of spectral hardness cancels effects common to both species
+# (centrality residual, acceptance, the overall spectral slope) and keeps only
+# the isovector part, which is what a symmetry-potential measurement wants.
+DERIVED = {
+    "Rn_over_Rp_band": ("R_n_band", "R_p_band"),
+}
 COUNTERS = sorted({c for pair in OBSERVABLES.values() for c in pair})
+ALL_OBS = list(OBSERVABLES) + list(DERIVED)
 CIDX = {c: i for i, c in enumerate(COUNTERS)}
 
 
@@ -129,6 +137,9 @@ def evaluate(aggs, keys, sl=None, min_count=MIN_COUNT, reweight=True):
         tot = w @ T[s]
         res[s] = {o: (tot[CIDX[nu]] / tot[CIDX[de]] if tot[CIDX[de]] > 0 else np.nan)
                   for o, (nu, de) in OBSERVABLES.items()}
+        for d, (a, b_) in DERIVED.items():
+            res[s][d] = (res[s][a] / res[s][b_]
+                         if res[s][b_] and np.isfinite(res[s][b_]) else np.nan)
         wn = w @ N[s]
         meta[s] = {
             "mean_b": float((w * Bs[s]).sum() / wn) if wn > 0 else np.nan,
@@ -159,7 +170,7 @@ def class_slices(data, edges, nclass=NCLASS):
 
 def rel_90_0(res):
     out = {}
-    for o in OBSERVABLES:
+    for o in ALL_OBS:
         a, b = res[REF_SAMPLE][o], res["bigSpot"][o]
         out[o] = b / a - 1.0 if a and np.isfinite(a) and np.isfinite(b) else np.nan
     return out
@@ -203,14 +214,14 @@ def main(events_dir, out_dir, n_boot=400):
           f"-> {sp_rw:.5f} fm reweighted")
 
     # ---- bootstrap: one set of replicate multiplicities drives every result ---
-    bi = {o: {s: [] for s in keys} for o in OBSERVABLES}
-    brel = {o: [] for o in OBSERVABLES}
-    bcls = [{o: [] for o in OBSERVABLES} for _ in classes]
+    bi = {o: {s: [] for s in keys} for o in ALL_OBS}
+    brel = {o: [] for o in ALL_OBS}
+    bcls = [{o: [] for o in ALL_OBS} for _ in classes]
     for _ in range(n_boot):
         mult = {s: bins[s].resample(rng) for s in keys}
         agg = {s: bins[s].aggregate(mult[s]) for s in keys}
         r, _ = evaluate(agg, keys)
-        for o in OBSERVABLES:
+        for o in ALL_OBS:
             for s in keys:
                 bi[o][s].append(r[s][o])
         for o, v in rel_90_0(r).items():
@@ -223,8 +234,9 @@ def main(events_dir, out_dir, n_boot=400):
     print("\n" + "=" * 78)
     print("  Reweighted observables, integrated; errors from job-file bootstrap")
     print("=" * 78)
-    print(f"{'observable':<11}{'U=0':>17}{'U=18':>17}{'U=90':>17}{'90/0-1':>11}{'sig':>7}")
-    for o in OBSERVABLES:
+    print(f"{'observable':<17}" + "".join(f"{'U='+str(SAMPLES[s]):>17}" for s in keys)
+          + f"{'90/0-1':>11}{'sig':>7}")
+    for o in ALL_OBS:
         err = {s: float(np.nanstd(bi[o][s], ddof=1)) for s in keys}
         d = cen["bigSpot"][o] / cen[REF_SAMPLE][o] - 1.0
         sd = float(np.nanstd(brel[o], ddof=1))
@@ -232,17 +244,18 @@ def main(events_dir, out_dir, n_boot=400):
         rep["integrated"][o] = {"central": {s: float(cen[s][o]) for s in keys},
                                 "err": err, "rel_90_over_0": float(d),
                                 "rel_err": sd, "sigma": float(sig)}
-        print(f"{o:<11}" + "".join(f"{cen[s][o]:>10.5f}±{err[s]:<6.5f}" for s in keys)
+        print(f"{o:<17}" + "".join(f"{cen[s][o]:>10.5f}±{err[s]:<6.5f}" for s in keys)
               + f"{d:>+11.4f}{sig:>7.2f}")
 
     print("\n" + "=" * 78)
     print(f"  Per centrality class ({NCLASS} classes, common b edges, reweighted within class)")
     print("=" * 78)
     summary = {}
-    for o in OBSERVABLES:
+    for o in ALL_OBS:
         print(f"\n  {o}")
-        print(f"  {'class':<9}{'b [fm]':>14}{'U=0':>10}{'U=18':>10}{'U=90':>10}"
-              f"{'90/0-1':>10}{'sig':>7}")
+        print(f"  {'class':<9}{'b [fm]':>14}"
+              + "".join(f"{'U='+str(SAMPLES[s]):>10}" for s in keys)
+              + f"{'90/0-1':>10}{'sig':>7}")
         rows = []
         for k, (sl, lo, hi) in enumerate(classes):
             c = cen_cls[k]
@@ -253,13 +266,16 @@ def main(events_dir, out_dir, n_boot=400):
                          "central": {s: float(c[s][o]) for s in keys},
                          "rel_90_over_0": float(d), "rel_err": sd, "sigma": float(sig)})
             print(f"  {f'{k*10}-{(k+1)*10}%':<9}{f'{lo:.2f}-{hi:.2f}':>14}"
-                  f"{c[REF_SAMPLE][o]:>10.4f}{c['defaultSpot'][o]:>10.4f}"
-                  f"{c['bigSpot'][o]:>10.4f}{d:>+10.4f}{sig:>7.2f}")
+                  + "".join(f"{c[s][o]:>10.4f}" for s in keys)
+                  + f"{d:>+10.4f}{sig:>7.2f}")
         rep["classes"][o] = rows
         ns = sum(1 for r in rows if np.isfinite(r["sigma"]) and r["sigma"] >= 3)
-        om = sum(1 for r in rows
-                 if r["central"][REF_SAMPLE] < r["central"]["defaultSpot"] < r["central"]["bigSpot"]
-                 or r["central"][REF_SAMPLE] > r["central"]["defaultSpot"] > r["central"]["bigSpot"])
+        if "defaultSpot" in keys:
+            om = sum(1 for r in rows
+                     if r["central"][REF_SAMPLE] < r["central"]["defaultSpot"] < r["central"]["bigSpot"]
+                     or r["central"][REF_SAMPLE] > r["central"]["defaultSpot"] > r["central"]["bigSpot"])
+        else:
+            om = -1        # monotonicity needs the intermediate sample
         summary[o] = {"n_ge_3sigma": ns, "n_ordered": om}
         print(f"  -> {ns}/{NCLASS} classes at >=3 sigma; {om}/{NCLASS} monotonic "
               f"in U_sym (chance {NCLASS/3:.1f})")
@@ -293,30 +309,30 @@ def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
     print(f"  NULL TEST: {sample}, {len(files)} job files, {len(df)} events")
     print(f"  {n_splits} random half/half splits; both halves share the same S_pot")
     print("=" * 78)
-    got = {o: [] for o in OBSERVABLES}
+    got = {o: [] for o in ALL_OBS}
     for _ in range(n_splits):
         perm = rng.permutation(files)
         half = {"A": perm[: len(files) // 2], "B": perm[len(files) // 2:]}
         bns = {k: Binned(df[df.file_idx.isin(half[k])], edges) for k in keys}
         agg = {k: bns[k].aggregate(bns[k].unit()) for k in keys}
         cen, _ = evaluate(agg, keys)
-        boot = {o: [] for o in OBSERVABLES}
+        boot = {o: [] for o in ALL_OBS}
         for _ in range(n_boot):
             m = {k: bns[k].resample(rng) for k in keys}
             r, _ = evaluate({k: bns[k].aggregate(m[k]) for k in keys}, keys)
-            for o in OBSERVABLES:
+            for o in ALL_OBS:
                 a, b = r["A"][o], r["B"][o]
                 boot[o].append(b / a - 1.0 if a and np.isfinite(a) else np.nan)
-        for o in OBSERVABLES:
+        for o in ALL_OBS:
             a, b = cen["A"][o], cen["B"][o]
             rel = b / a - 1.0 if a and np.isfinite(a) else np.nan
             sd = float(np.nanstd(boot[o], ddof=1))
             got[o].append((float(rel), sd, abs(rel) / sd if sd > 0 else np.nan))
 
-    print(f"{'observable':<11}{'median|sig|':>12}{'p90':>7}{'max':>7}"
+    print(f"{'observable':<17}{'median|sig|':>12}{'p90':>7}{'max':>7}"
           f"{'frac>=2':>9}{'frac>=3':>9}{'median|rel|':>13}")
     out = {}
-    for o in OBSERVABLES:
+    for o in ALL_OBS:
         sg = np.array([g[2] for g in got[o]], float); sg = sg[np.isfinite(sg)]
         rl = np.abs([g[0] for g in got[o]])
         out[o] = {"median_sigma": float(np.median(sg)),
@@ -326,7 +342,7 @@ def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
                   "frac_ge_3": float((sg >= 3).mean()),
                   "median_abs_rel": float(np.nanmedian(rl)),
                   "n_splits": int(len(sg))}
-        print(f"{o:<11}{np.median(sg):>12.2f}{np.percentile(sg,90):>7.2f}{sg.max():>7.2f}"
+        print(f"{o:<17}{np.median(sg):>12.2f}{np.percentile(sg,90):>7.2f}{sg.max():>7.2f}"
               f"{(sg>=2).mean():>9.3f}{(sg>=3).mean():>9.3f}{np.nanmedian(rl):>+13.4f}")
     print("\n  Calibrated: median |sigma| ~ 0.7, frac>=3 ~ 0.003.  A larger frac>=3")
     print("  means the quoted sigmas are too small and a 3-sigma S_pot result sits")
@@ -390,20 +406,20 @@ def injection_test(events_dir, out_dir, sample="zeroSpot", tilt=0.15, n_boot=300
     res = {}
     for mode, rw in (("uncorrected", False), ("reweighted", True)):
         cen, meta = evaluate(agg, keys, reweight=rw)
-        boot = {o: [] for o in OBSERVABLES}
+        boot = {o: [] for o in ALL_OBS}
         for _ in range(n_boot):
             m = {k: bns[k].resample(rng) for k in keys}
             r, _ = evaluate({k: bns[k].aggregate(m[k]) for k in keys}, keys, reweight=rw)
-            for o in OBSERVABLES:
+            for o in ALL_OBS:
                 a, b = r["A"][o], r["B"][o]
                 boot[o].append(b / a - 1.0 if a and np.isfinite(a) else np.nan)
-        res[mode] = (cen, {o: float(np.nanstd(boot[o], ddof=1)) for o in OBSERVABLES}, meta)
+        res[mode] = (cen, {o: float(np.nanstd(boot[o], ddof=1)) for o in ALL_OBS}, meta)
 
     print(f"\n  <b> after reweighting: A = {res['reweighted'][2]['A']['mean_b']:.4f}, "
           f"B = {res['reweighted'][2]['B']['mean_b']:.4f} fm")
     print(f"\n{'observable':<11}{'uncorrected B/A-1':>20}{'sig':>7}"
           f"{'reweighted B/A-1':>20}{'sig':>7}")
-    for o in OBSERVABLES:
+    for o in ALL_OBS:
         row = {}
         for mode in ("uncorrected", "reweighted"):
             cen, err, _ = res[mode]
@@ -413,7 +429,7 @@ def injection_test(events_dir, out_dir, sample="zeroSpot", tilt=0.15, n_boot=300
                          "sigma": float(abs(d) / sd) if sd > 0 else np.nan}
         out["observables"][o] = row
         u, r = row["uncorrected"], row["reweighted"]
-        print(f"{o:<11}{u['rel']:>+14.4f}±{u['err']:<5.4f}{u['sigma']:>7.2f}"
+        print(f"{o:<17}{u['rel']:>+14.4f}±{u['err']:<5.4f}{u['sigma']:>7.2f}"
               f"{r['rel']:>+14.4f}±{r['err']:<5.4f}{r['sigma']:>7.2f}")
     print("\n  The injected bias should be large and significant uncorrected, and")
     print("  consistent with zero after reweighting.  Anything left is the residual")

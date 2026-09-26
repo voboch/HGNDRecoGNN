@@ -63,6 +63,10 @@ def assert_contained(ax, name):
     ex, ey = (x1 - x0) * 1e-6, (y1 - y0) * 1e-6
     bad = 0
     for ln in ax.get_lines():
+        # axhline/axvline store x (or y) in axes coordinates, not data
+        # coordinates; only marks drawn in data space can be checked here
+        if ln.get_transform() is not ax.transData:
+            continue
         xd, yd = np.asarray(ln.get_xdata(), float), np.asarray(ln.get_ydata(), float)
         ok = np.isfinite(xd) & np.isfinite(yd)
         if not ok.any():
@@ -274,6 +278,76 @@ def fig_null(null_rep, rep, out_dir):
     save(fig, out_dir, "fig5_null_calibration")
 
 
+def fig_spectra(hist_dir, out_dir, emin=0.1, emax=8.0):
+    """Fig 6: HGND-band kinetic-energy spectra for each species, with ratio panels.
+
+    This is the shape behind the hardness ratio: it shows whether R moves because
+    the spectrum genuinely tilts or because a threshold sits on a steep edge.
+
+    The theta selection here is the histogram grid's nearest bins, 9.0-13.5 deg,
+    slightly wider than the 8.9-13.1 deg band used for the quoted R values, which
+    is applied per particle before binning.  The spectrum is shown from 0.1 GeV:
+    below that the histogram's own lower edge dominates the ratio and compresses
+    the 1-8 GeV region where the hardness thresholds sit.
+    """
+    Z = {k: np.load(Path(hist_dir) / f"{k}_filehist.npz") for k in DATASETS
+         if (Path(hist_dir) / f"{k}_filehist.npz").exists()}
+    if REF not in Z:
+        raise SystemExit("spectra figure needs the reference sample")
+    ee = Z[REF]["_e_edges"]; th = Z[REF]["_th_edges"]
+    ec = 0.5 * (ee[:-1] + ee[1:]); wid = np.diff(ee)
+    band = (th[:-1] >= 8.9) & (th[:-1] < 13.1)
+    keep = (ec > emin) & (ec < emax)
+
+    fig, ax = plt.subplots(2, 2, figsize=(FULL, FULL / 1.45), sharex="col",
+                           gridspec_kw={"height_ratios": [2.5, 1], "hspace": 0.07,
+                                        "wspace": 0.28})
+    out = {}
+    for col, (sp, nm) in enumerate(((0, "neutrons"), (1, "protons"))):
+        dens = {}
+        for k, z in Z.items():
+            h = z["_global"][sp][:, :, band].sum(axis=(0, 2)).astype(float)
+            dens[k] = (h / h.sum()) / wid
+        for k, st in DATASETS.items():
+            if k not in dens:
+                continue
+            ax[0, col].plot(ec[keep], dens[k][keep], color=st["color"], ls=st["ls"],
+                            marker=st["marker"], ms=2.5, mfc="none", mew=0.7,
+                            label=st["label"])
+        ax[0, col].set_yscale("log"); ax[0, col].set_xscale("log")
+        ax[0, col].set_ylabel(
+            r"$(1/N)\,\mathrm{d}N/\mathrm{d}E_{\mathrm{kin}}$  [GeV$^{-1}$]")
+        ax[0, col].set_title(rf"{nm}, HGND band ($9.0^\circ<\theta<13.5^\circ$)",
+                             fontsize=7)
+        ax[0, col].set_ylim(*snap_limits([dens[k][keep] for k in dens], log=True))
+        if col == 0:
+            ax[0, col].legend(loc="lower left", fontsize=6.5)
+        for k, st in DATASETS.items():
+            if k == REF or k not in dens:
+                continue
+            r = np.divide(dens[k], dens[REF], out=np.full_like(dens[k], np.nan),
+                          where=dens[REF] > 0)
+            ax[1, col].plot(ec[keep], r[keep], color=st["color"], ls=st["ls"],
+                            marker=st["marker"], ms=2.5, mfc="none", mew=0.7)
+            out[f"{nm}_{k}"] = r[keep].tolist()
+        ax[1, col].axhline(1.0, color="#2b2b2b", lw=0.8)
+        ax[1, col].set_xscale("log")
+        ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+        ax[1, col].set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
+        ax[1, col].set_xlim(emin, emax); ax[0, col].set_xlim(emin, emax)
+
+    # shared ratio limits across the row, so the two species compare by eye
+    fin = np.array([v for vv in out.values() for v in vv if np.isfinite(v)])
+    m = max(abs(fin - 1).max(), 0.02) * 1.15 if len(fin) else 0.2
+    for col in (0, 1):
+        ax[1, col].set_ylim(1 - m, 1 + m)
+    for i in range(2):
+        for j in range(2):
+            assert_contained(ax[i, j], f"fig6_{i}{j}")
+    save(fig, out_dir, "fig6_hgnd_band_spectra")
+    return {"e_centers": ec[keep].tolist(), "ratios": out}
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--events-dir", type=Path, required=True)
@@ -295,6 +369,10 @@ def main():
     for o in ("R_n_band", "R_n_mid", "np_band"):
         if o in rep.get("classes", {}):
             fig_observable(rep, a.output_dir, o)
+    try:
+        fig_spectra(a.events_dir, a.output_dir)
+    except SystemExit as e:
+        print(f"  spectra figure skipped: {e}")
     if a.null and a.null.exists():
         fig_null(json.load(open(a.null)), rep, a.output_dir)
     json.dump({"job_structure": js, "b_binned": binned},
