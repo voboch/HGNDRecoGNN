@@ -101,37 +101,53 @@
 \begin{abstract}
 We present a heterogeneous graph-neural-network (GNN) reconstruction
 algorithm for the Highly-Granular Time-of-Flight Neutron Detector
-(\HGND{}) of the fixed-target \BMN{} experiment at JINR.  The
-detector concept, geometry, and time-of-flight response follow
-Morozov \emph{et~al.}~\cite{Morozov2024HGND}.  Compared with the
-two-network prototype reported there, the pipeline operates
-cluster-wise on a single hetero-GNN that jointly produces a neutron
-score, an energy prediction, and a link-classification output on
-each candidate cluster; it is trained end-to-end on
-\DCM{} + \GEANT{} Bi+Bi and \SMASH{} Xe+Cs simulations.
-On the \DCM{} Xe+CsI test split (97{,}104 held-out events) the
-checkpoint (\texttt{net\_default}, $H=512$, $L=8$, 20 epochs) reaches
-cluster ROC AUC 0.944 and, at a signal-purity-locked working point
-of $\pi = 0.702$ ($t^\star_{\text{DCM}} = 0.305$), cluster efficiency 0.739 and
-per-event neutron detection efficiency 0.844 (Table~\ref{tab:eff_ekin}),
-matching the prototype benchmarks of Ref.~\cite{Morozov2024HGND}; the
-relative energy resolution is below 25\% for $1 \lesssim \Ekin \lesssim
-3$~GeV and grows to $\sim 30\%$ toward the acceptance edges.
-As a pipeline calibration we evaluate the same
-checkpoint on three \SMASH{} samples with different values of the
-nuclear symmetry potential ($\Usym = 0$, $18$, $90$~MeV) and
-introduce a decomposition of the closure metric into a per-cluster
-pipeline term and a physical clusters-per-neutron ratio
-(Sec.~\ref{sec:closure}); at full statistics the per-cluster closure
-$C_c$ is uniform across the three samples to $1.0\%$ at $t = 0.5$
-and $0.62\%$ at the purity-locked point.
-The associated per-neutron sensitivity to $\Usym$ is
-\emph{provisional}: it is folded with the same MC-truth definition
-used to train the network, and the SMASH samples underlying the
-three-dataset comparison have an upstream simulation bug reported
-after the analysis was frozen for this draft.  A physics-quality
-symmetry-potential measurement is deferred to a follow-up paper on
-re-simulated data (Sec.~\ref{sec:summary}).
+(\HGND{}) of the fixed-target \BMN{} experiment at JINR, and use it to
+assess what the detector can say about the nuclear symmetry potential
+$\Usym{}$.  The detector concept, geometry and time-of-flight response
+follow Morozov \emph{et~al.}~\cite{Morozov2024HGND}.  The pipeline
+operates cluster-wise on a single hetero-GNN that produces a neutron
+score, an energy prediction and a link-classification output per
+candidate cluster.  On the \DCM{} Xe+CsI test split the checkpoint
+reaches cluster ROC AUC 0.944 and, at a purity-locked working point
+$\pi = 0.702$, cluster efficiency 0.739 and per-event neutron
+detection efficiency 0.844, matching the benchmarks of
+Ref.~\cite{Morozov2024HGND}.
+
+Three \SMASH{} Xe+Cs samples with $\Usym = 0$, $18$ and $90$~MeV
+(2{,}345{,}993 events in 568 generation jobs) define the physics case.
+Events within one generation job are correlated in impact parameter
+($\chi^2/\mathrm{ndf} = 8.15$ for 194 degrees of freedom), so all
+uncertainties here resample whole jobs rather than events; per-event
+errors understate them by a factor 2.85.  With that accounting the
+three samples share a common impact-parameter distribution
+($\Delta\langle b\rangle = 0.0034 \pm 0.0147$~fm), and event-level
+reweighting removes the residual at a cost of 0.1\% in effective
+statistics.  At MC-truth level the spectral hardness
+$R = N(\Ekin > 2~\mathrm{GeV})/N(\Ekin < 1~\mathrm{GeV})$ responds to
+$\Usym{}$ with opposite sign for the two species: $R_n$ rises by
+$4.27\%$ and $R_p$ falls by $5.84\%$ between $0$ and $90$~MeV, so the
+double ratio $R_n/R_p$ rises by $10.73\%$.  The response is ordered at
+$0$, $18$ and $90$~MeV, linear to within $1.6\sigma$, and holds in all
+ten centrality classes; the $n/p$ yield ratio does not respond
+($1.0\sigma$, non-monotonic).  Dividing the fitted slope by the
+noise floor measured from same-sample splits gives a truth-level
+statistical reach of about $2$~MeV in $\Usym{}$.
+
+Reconstruction does not yet deliver this response.  Following the same
+selected clusters, the measured $\Usym{}$ effect keeps its sign through
+detector acceptance and cluster selection and reverses when the neutron
+energy is taken from the network, a paired displacement of
+$-8.66 \pm 2.21\%$.  Two thirds of that came from standardising the
+time-of-flight energy baseline separately in each sample; one shared
+normalisation reduces the sample-dependent high-energy response from
+$-30.7 \pm 8.6$ to $-11.4 \pm 9.8$~MeV.  A retrained estimator restores
+linearity to within $10\%$ over $1.4$--$2.6$~GeV from $+50$--$60\%$
+before.  A held-out test of the reconstructed sensitivity remains
+statistically inconclusive rather than negative: its uncertainty admits
+only $0.62\sigma$ on the expected effect.  We quantify what closes the
+gap, and note that the \SMASH{} samples carry an upstream simulation
+defect reported after this analysis was frozen, so the $\Usym{}$
+numbers are a sensitivity study and not a measurement.
 \end{abstract}
 
 \maketitle
@@ -172,7 +188,7 @@ JINR provides ion beams from protons to gold with kinetic energies up
 to $6$~AGeV for light ions and $4.5$~AGeV for heavy
 ions~\cite{BMN_EPJ, Afanasiev2024BMN}, reaching baryon densities of
 3–4~$\rho_0$ in the collision fireball~\cite{Cleymans, Friman}, and
-delivers a comprehensive tracking, PID and centrality
+delivers tracking, PID and centrality
 setup~\cite{Afanasiev2024BMN, Senger2022BMN}.  First Xe+CsI data were
 recorded at $3.8$~AGeV in 2023.  The Highly-Granular Time-of-Flight
 Neutron Detector (\HGND{}) has been designed and constructed to
@@ -618,6 +634,129 @@ identical GNN weights (trained on \texttt{defaultSpot}), identical
 number of evaluation events per dataset, identical binning, and
 identical decision threshold.
 
+\subsection{Impact-parameter control}
+\label{sec:centrality}
+
+Spectral hardness varies by a factor of about four across centrality, so
+a per-cent difference in the impact-parameter distributions of the three
+samples would reproduce the whole $\Usym{}$ effect.  Two properties of
+the production decide how that is tested.
+
+First, events generated in one job are not independent in $b$.  Within a
+single sample, where no $\Usym{}$ difference can exist, the job means of
+$b$ scatter at $\chi^2/\mathrm{ndf} = 8.15$ for 194 degrees of freedom
+(Fig.~\ref{fig:jobstruct}); the job-level error on $\langle b\rangle$ is
+$2.85$ times the per-event one.  Every uncertainty in this section
+therefore comes from resampling whole generation jobs with replacement.
+This is the per-particle versus per-event distinction familiar from flow
+analyses, one level further out.
+
+Second, with that accounting the samples agree.  The difference in
+$\langle b\rangle$ between $\Usym = 90$ and $0$~MeV is
+$0.0034 \pm 0.0147$~fm, and the binned ratio of the two distributions
+gives $\chi^2/\mathrm{ndf} = 1.57$ over 28 bins.  The same comparison
+with per-event errors would read $\chi^2/\mathrm{ndf} = 13.57$: the error
+bars differ by a factor 2.95, and that factor alone separates agreement
+from apparent inconsistency.
+
+We nonetheless reweight each event by $w = f_{\text{ref}}(b) /
+f_{\text{sample}}(b)$ onto the mean of the three densities in $0.1$~fm
+bins, which costs $0.1\%$ of the effective statistics and discards no
+events.  The procedure is calibrated in both directions: splitting one
+sample's own jobs in two gives a median $|\sigma|$ of $0.52$--$0.86$ and
+reaches $3\sigma$ in under $2\%$ of splits, while an injected $-1.56$~fm
+shift in $\langle b \rangle$ produces apparent effects up to $61\sigma$
+before correction and leaves every observable within $1.2\sigma$ after.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/job_structure}
+  \caption{Mean impact parameter of each generation job, grouped by
+    sample, with per-job statistical errors; dotted lines are the
+    sample weighted means.  The scatter between jobs exceeds those
+    errors ($\chi^2/\mathrm{ndf} = 8.15$ and $9.19$), which is why
+    uncertainties in Sec.~\ref{sec:sensitivity} resample jobs rather
+    than events.  The weighted means themselves are
+    indistinguishable.}
+  \label{fig:jobstruct}
+\end{figure}
+
+\subsection{Acceptance}
+\label{sec:acceptance}
+
+Earlier drafts selected nucleons in a polar-angle band,
+$\theta \in [8.9^\circ, 13.1^\circ)$.  The front face of the detector is
+a rectangle offset to negative $x$, at $z = 718.4$~cm spanning
+$-146.6 < x < -106.7$~cm and $|y| < 77.3$~cm.  It subtends
+$8.45^\circ$ to $12.99^\circ$ but only $71.9^\circ$ of azimuth: the
+band covers $0.0879$~sr, the detector $0.0114$~sr.
+
+The azimuthal difference cannot be absorbed into a weight, because the
+generator holds the reaction plane fixed in the laboratory frame.
+Directed flow is therefore visible in laboratory azimuth and depends
+strongly on energy within the \HGND{} polar range, $v_1 = +0.090$ above
+$2$~GeV against $+0.005$ below $1$~GeV.  The detector sits near
+$\phi = 180^\circ$, on the away side, so its azimuthal position changes
+$R_n$ on its own.  Both species are therefore selected by propagating
+each particle from its production vertex to the front face, which also
+gives the neutron and proton arms one common window by construction.
+
+\subsection{Truth-level response}
+\label{sec:truthscan}
+
+Table~\ref{tab:truthscan} lists the reweighted observables.  The
+hardness of the two species moves in opposite directions, which is the
+isovector signature: at $\Usym = 0$ the double ratio sits at
+$1.009$, consistent with neutrons and protons being equally hard when
+no symmetry potential acts.
+
+\begin{table}[!t]
+  \centering
+  \caption{Reweighted observables at MC-truth level, with uncertainties
+    from a job-level bootstrap.  The noise floor is the median
+    difference between two halves of a single sample.}
+  \label{tab:truthscan}
+  \begin{ruledtabular}
+  \begin{tabular}{lcccrc}
+    observable & $0$~MeV & $18$~MeV & $90$~MeV & $90/0-1$ & floor \\
+    \hline
+    $R_n/R_p$ & 1.00909 & 1.03461 & 1.11739 & $+10.73\%$ & 0.25\% \\
+    $R_p$     & 0.68086 & 0.67035 & 0.64112 & $-5.84\%$  & 0.20\% \\
+    $R_n$     & 0.68705 & 0.69355 & 0.71638 & $+4.27\%$  & 0.16\% \\
+    $n/p$     & 1.17590 & 1.18258 & 1.17484 & $-0.09\%$  & 0.09\% \\
+  \end{tabular}
+  \end{ruledtabular}
+\end{table}
+
+Three samples establish more than two.  The $18$~MeV point lies between
+the other two for every hardness observable, the double ratio is ordered
+in $\Usym{}$ in all ten centrality classes against a chance expectation
+of $3.3$, and the response is straight to within $1.6\sigma$ across
+$0$--$90$~MeV at $+0.118\%$ per MeV (Fig.~\ref{fig:spotresponse}).
+Dividing that slope by the measured noise floor gives a statistical
+reach of about $2$~MeV in $\Usym{}$ at this Monte-Carlo sample size.
+That figure is a truth-level statistical reach, not an experimental
+uncertainty, and it does not translate into a bound on a symmetry-energy
+parameter such as $L$ without the transport-model relation between
+$\Usym{}$ and the density-dependent symmetry energy.
+
+The scan also settles the $n/p$ yield ratio in the negative.  Its middle
+point sits $7.2\sigma$ off the line through the outer two and the three
+values are not ordered at all.  A quantity that does not vary
+monotonically with a parameter is not responding to it.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/spot_response}
+  \caption{Response to $\Usym{}$, each observable normalised to its own
+    value at $\Usym = 0$; dashed lines join the end points, so a middle
+    point off the line indicates curvature.  Uncertainties are from a
+    job-level bootstrap.  $R_n/R_p$ rises to $+10.7\%$, $R_n$ to
+    $+4.3\%$ and $R_p$ falls to $-5.8\%$, while the $n/p$ yield ratio
+    stays at zero.}
+  \label{fig:spotresponse}
+\end{figure}
+
 \subsection{MC-truth benchmark}
 
 Before evaluating the reconstruction we plot the per-event MC-truth
@@ -934,6 +1073,123 @@ point.
 \end{table}
 
 % =====================================================================
+\section{What survives reconstruction}
+\label{sec:recoladder}
+
+The truth-level response of Sec.~\ref{sec:truthscan} is not a
+measurement.  To locate where a measurement would lose it, we follow
+$R_n$ through the chain on one set of events, 20 generation jobs per
+sample, with cluster selection purity-locked separately in each sample
+and the energy calibration fitted once and applied unchanged.
+
+\begin{table}[!t]
+  \centering
+  \caption{The $\Usym = 90$ versus $0$~MeV difference in $R_n$ at each
+    stage, on the same events, with job-level uncertainties.}
+  \label{tab:ladder}
+  \begin{ruledtabular}
+  \begin{tabular}{lrr}
+    stage & $90/0 - 1$ & $\sigma$ \\
+    \hline
+    primary neutrons in the angular band & $+2.65 \pm 0.54\%$ & 4.93 \\
+    neutrons reaching the detector       & $+3.67 \pm 2.05\%$ & 1.79 \\
+    selected clusters, true energy       & $+3.32 \pm 2.94\%$ & 1.13 \\
+    selected clusters, reconstructed energy & $-3.04 \pm 2.30\%$ & 1.32 \\
+  \end{tabular}
+  \end{ruledtabular}
+\end{table}
+
+The sign survives acceptance and cluster selection and reverses at the
+energy estimate (Table~\ref{tab:ladder}, Fig.~\ref{fig:ladder}).  The
+last two rows use the same clusters, so the change can be tested as a
+paired difference: $-8.66 \pm 2.21\%$.  Finite resolution alone would
+pull the answer toward zero; this moves it further than the effect is
+worth, which means the estimator responds differently to the different
+samples.  It does: in the bin where the numerator of $R_n$ lives, the
+energy is reconstructed $30.7 \pm 8.6$~MeV lower in the $90$~MeV sample
+than in the $0$~MeV one.
+
+\subsection{Normalisation of the time-of-flight baseline}
+
+The hit-level feature $E_{\text{ToF}}$ is the available-energy baseline
+computed from the hit time and coordinate under the neutron hypothesis,
+and compensating its overestimation is part of what the network does.
+Standardising it separately in each sample therefore rescales a
+physics-bearing quantity by a different factor in each: across the scan
+the fitted scale differs by $1.9\%$, the largest shift of any input.
+
+Rebuilding the caches with one common normalisation and running the
+same weights, without retraining, reduces the sample-dependent
+high-energy response from $-30.7 \pm 8.6$ to $-11.4 \pm 9.8$~MeV, moves
+the reconstructed $90/0$ effect from $-3.04\%$ to $+2.25 \pm 2.43\%$
+against a truth value of $+3.67 \pm 2.12\%$, and restores the ordering
+of reconstructed $R_n$ across the three samples.  Any datasets that will
+be compared, or trained on jointly, must share one fitted
+normalisation.
+
+\subsection{Efficiency and the choice of hardness window}
+
+Detection and reconstruction efficiency for neutrons arriving at the
+front face varies by a factor of $39.6$ across $\Ekin$, from $0.02$
+below $0.5$~GeV to $0.80$ near $2.5$~GeV.  A response kernel
+$K_{ij} = \varepsilon_i P(\text{reco } j \mid \text{true } i)$
+reproduces the observed reconstructed spectrum bin by bin to $0.1\%$,
+so the forward model is correct, but it cannot be inverted: the
+denominator of the truth-level definition sits below $1$~GeV, where the
+detector records $2\%$ of what arrives.  No unfolding recovers
+information that was never recorded.
+
+The hardness window is ours to choose.  We therefore treat both the
+cluster score threshold and the energy window as free parameters
+matched to the detector, excluding any window whose denominator falls
+in the inefficient region, and select them on the training and
+validation splits before the test split is opened.  The figure of merit
+rewards separation only when the three samples are ordered in the
+direction the truth-level scan established.
+
+\subsection{Retrained energy estimator}
+
+Retraining on the three samples pooled, split by generation job, with
+one normalisation fitted on the training split, improves the energy
+estimate where the measurement needs it
+(Fig.~\ref{fig:energyperf}).  The linearity, $+50$ to $+60\%$ across the
+range for the earlier checkpoint, passes through zero near $2.4$~GeV and
+stays within $10\%$ over $1.4$--$2.6$~GeV; the resolution falls from
+$26$--$34\%$ to $15$--$20\%$.  Both remain short of the $10\%$
+benchmarks of Ref.~\cite{Morozov2024HGND}, and the run was stopped after
+4 of 20 planned epochs, so these are a lower bound on what the
+architecture reaches.
+
+Applied to the held-out split, the pre-selected working point gives
+$+2.87 \pm 6.92\%$.  That is not evidence against the method: the
+uncertainty on the held-out split admits only $0.62\sigma$ on the
+expected effect, so the test cannot resolve it either way.  Closing
+that gap needs about 284 generation jobs in the test split against the
+12 used here, which the full production supplies.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/reco_ladder}
+  \caption{The $\Usym = 90$ versus $0$~MeV difference in $R_n$ at each
+    stage of the measurement, on the same generation jobs, with
+    job-level uncertainties.  The response keeps its sign through the
+    detector acceptance and through cluster selection, and changes sign
+    when the neutron energy comes from the network rather than from
+    truth.}
+  \label{fig:ladder}
+\end{figure}
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/energy_performance}
+  \caption{Energy linearity (top) and resolution (bottom) against true
+    neutron energy for the earlier checkpoint and the retrained
+    estimator, on identical test data with identical normalisation.
+    Shaded bands mark the $10\%$ targets of
+    Ref.~\cite{Morozov2024HGND}.}
+  \label{fig:energyperf}
+\end{figure}
+
 \section{Systematic uncertainties}
 \label{sec:systematics}
 % ---------------------------------------------------------------------
@@ -1072,28 +1328,51 @@ impact is quantified.
 \label{sec:summary}
 % ---------------------------------------------------------------------
 
-We have presented a graph-neural-network based neutron reconstruction
-pipeline for the \HGND{} at \BMN{} and used it to establish the first
-end-to-end sensitivity benchmark of the detector concept to the
-nuclear symmetry potential in three \SMASH{} Xe+Cs simulations.
+We have presented a graph-neural-network neutron reconstruction for the
+\HGND{} at \BMN{} and used three \SMASH{} samples to ask what the
+detector could say about the nuclear symmetry potential.
 
-The next steps toward first-data readiness are:
-(i) a differentiable clustering step to replace the fixed
-$r_{\text{loc}}, \Delta t$ radius-graph, so that multi-neutron
-overlaps within a single cluster (which cap $C_\nu$ at $k$;
-Sec.~\ref{sec:closure}) are resolved into per-neutron candidates;
-(ii) equivalently, a joint unfolding pass over the response matrix
-and the $\Usym$-dependent cluster-per-neutron ratio $k(\Usym)$ so
-that the physically-quoted per-neutron closure recovers unity across
-datasets;
-(iii) a domain-adaptation study to bridge the MC$\to$real-data
-gap using the first \BMN{} Xe+Cs sample;
-(iv) inclusion of the proton observables from complementary \BMN{}
-subdetectors to convert the neutron-only sensitivity into an
-$n/p$-ratio measurement directly comparable to
-FOPI/LAND~\cite{FOPI_LAND1, FOPI_LAND2} at BM@N energies.
+At MC-truth level the answer is specific.  Neutron and proton spectral
+hardness in the detector acceptance respond to $\Usym{}$ with opposite
+sign, $+4.27\%$ and $-5.84\%$ between $0$ and $90$~MeV, so their double
+ratio moves by $10.73\%$.  The response is ordered at $0$, $18$ and
+$90$~MeV, linear to within $1.6\sigma$, and present in all ten
+centrality classes.  The $n/p$ yield ratio does not respond and is
+excluded.  These statements rest on impact-parameter reweighting and on
+uncertainties that resample generation jobs, without which per-event
+errors overstate the significance by a factor 2.85 and an apparent
+centrality mismatch appears where none exists.
 
-% =====================================================================
+Reconstruction does not yet deliver that response, and we have
+identified what stands in the way rather than only that something does.
+The neutron energy estimate reversed the sign of the effect, and two
+thirds of that came from standardising the time-of-flight energy
+baseline separately in each sample; one common normalisation removes
+it.  The remaining gap is the estimator itself, whose linearity a
+partial retrain already improves from $+50$--$60\%$ to within $10\%$
+over $1.4$--$2.6$~GeV.  The held-out test of the reconstructed
+sensitivity is inconclusive for want of statistics, not for want of
+signal: it admits $0.62\sigma$ on the expected effect.
+
+Four steps follow.  (i) Train to convergence on the full production
+with one normalisation and a job-level split, and repeat the paired
+ladder of Sec.~\ref{sec:recoladder} as the acceptance test.  (ii) Size
+the held-out split to resolve the effect, which needs of order 280
+generation jobs.  (iii) Replace the rule-based radius graph with a
+differentiable clustering step so that overlapping neutrons resolve
+into separate candidates.  (iv) Build the proton arm from \BMN{}
+tracking over the same interaction-point window used here, which is
+what converts the neutron measurement into the $n/p$ hardness double
+ratio and makes it comparable with FOPI/LAND~\cite{FOPI_LAND1,
+FOPI_LAND2}.
+
+Two caveats bound everything above.  The \SMASH{} samples carry an
+upstream simulation defect reported after this analysis was frozen, and
+the same generation shares a fixed reaction plane, which is why the
+azimuthal acceptance had to be treated explicitly.  The $\Usym{}$
+results are therefore a sensitivity study of the detector and the
+reconstruction, not a measurement of the symmetry potential.
+
 \section*{Code and data availability}
 \label{sec:availability}
 
