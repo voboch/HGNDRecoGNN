@@ -26,8 +26,20 @@ from reco_experiment import fit_energy_calibration, apply_calibration
 
 TAGS = [("zeroSpot", 0), ("defaultSpot", 18), ("bigSpot", 90)]
 SCORES = np.round(np.arange(0.10, 0.91, 0.05), 2)
-WINDOWS = [((1.0, 2.0), 2.0), ((1.0, 2.0), 2.5), ((1.5, 2.0), 2.0),
-           ((1.5, 2.0), 2.5), ((0.7, 1.5), 2.0), ((1.0, 1.8), 2.2)]
+# The hardness window is a free parameter, chosen to suit the detector and the
+# reconstruction rather than inherited from the truth-level definition.  The
+# legacy pair -- denominator below 1 GeV, numerator above 2 GeV -- puts the
+# denominator where detection efficiency is 2 %, so it is excluded here on
+# purpose; every window below keeps both arms inside the efficiency plateau and
+# inside the energy estimator's usable range.
+WINDOWS = [((0.7, 1.5), 2.0), ((0.7, 1.5), 2.5),
+           ((0.8, 1.6), 2.0), ((0.8, 1.6), 2.4),
+           ((1.0, 1.5), 2.0), ((1.0, 1.5), 2.2),
+           ((1.0, 1.8), 2.0), ((1.0, 1.8), 2.2), ((1.0, 1.8), 2.6),
+           ((1.0, 2.0), 2.0), ((1.0, 2.0), 2.5),
+           ((1.2, 2.0), 2.0), ((1.2, 2.0), 2.4),
+           ((1.5, 2.0), 2.0), ((1.5, 2.0), 2.5),
+           ((1.5, 2.2), 2.4), ((1.8, 2.4), 2.6)]
 
 
 def load_split(pred_dir, raw_dir, split, cal):
@@ -68,10 +80,19 @@ def ratios(c, score, win, rng=None, n_boot=0, ecol="e_cal"):
     return out, boot
 
 
-def fom(vals, boot):
-    """Separation significance, but only for an ordered scan."""
+def fom(vals, boot, require_increasing=True):
+    """Separation significance, but only for an ordered scan.
+
+    `require_increasing` demands the ordering run the way the truth-level scan
+    established it -- R_n rises with S_pot, +4.27 % at 21.7 sigma.  That is prior
+    physics, fixed before the test set is opened, not a choice made on the test
+    data.  Without it the figure of merit rewards a monotonic *decrease* just as
+    much, and a reconstructed observable moving opposite to the truth is not
+    measuring the response.
+    """
     v = [vals[t] for t, _ in TAGS]
-    ordered = (v[0] < v[1] < v[2]) or (v[0] > v[1] > v[2])
+    ordered = (v[0] < v[1] < v[2]) if require_increasing else \
+              ((v[0] < v[1] < v[2]) or (v[0] > v[1] > v[2]))
     rel = v[2] / v[0] - 1
     b = boot["bigSpot"] / boot["zeroSpot"] - 1
     sd = float(np.nanstd(b, ddof=1))
@@ -85,6 +106,9 @@ def main():
     p.add_argument("--raw-dir", required=True, help="dir with train/ val/ test/ CSV trees")
     p.add_argument("--out", required=True)
     p.add_argument("--n-boot", type=int, default=200)
+    p.add_argument("--any-direction", action="store_true",
+                   help="accept a monotonic decrease as well; the default "
+                        "requires the direction the truth-level scan established")
     p.add_argument("--raw-energy", action="store_true",
                    help="use e_pred directly instead of the calibrated energy")
     a = p.parse_args()
@@ -107,7 +131,7 @@ def main():
         vals, boot = ratios(dev, score, win, rng, a.n_boot, ecol)
         if vals is None:
             continue
-        f, ordered, rel, sd = fom(vals, boot)
+        f, ordered, rel, sd = fom(vals, boot, not a.any_direction)
         rows.append({"score": float(score), "window": str(win), "fom": f,
                      "ordered": ordered, "rel": rel, "err": sd,
                      **{f"R_{t}": vals[t] for t, _ in TAGS}})
@@ -131,7 +155,7 @@ def main():
         if vals is None:
             print("  test set too small for this configuration")
         else:
-            f, ordered, rel, sd = fom(vals, boot)
+            f, ordered, rel, sd = fom(vals, boot, not a.any_direction)
             print("\n" + "=" * 70)
             print("  TEST SET — configuration fixed beforehand, not tuned here")
             print("=" * 70)

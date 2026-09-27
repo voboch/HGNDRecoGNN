@@ -44,6 +44,11 @@ results/
 !/results/reco_experiment/*.pdf
 !/results/reco_experiment/*.json
 !/results/reco_experiment/*.txt
+!/results/retrain_eval/
+!/results/retrain_eval/*.png
+!/results/retrain_eval/*.pdf
+!/results/retrain_eval/*.json
+!/results/retrain_eval/*.txt
 
 # --- secrets / keys (never commit) ---
 *.pem
