@@ -103,7 +103,7 @@ Conclusions in this guide are ordered by the strongest available evidence:
 | Held-out sensitivity test | blocked by statistics, not by method | +2.87 ± 6.92 %; 0.62σ expected even with perfect reconstruction | size the test split to ~280 generation jobs |
 | PRC manuscript | reworked, moved to `../HGNDPaper` | referee review v7: major revision, B-2 and B-3 closed | two placeholder figures remain (B-1, open since v5) |
 | Feature normalisation | resolved, needs rollout | per-dataset scaler shifted `eToF` by 1.9 % in scale between samples | one fitted scaler for every dataset that is compared or trained together |
-| Nucleon acceptance definition | corrected, needs full re-reduction | front face is 0.0114 sr over 20 % of azimuth, not a 0.0879 sr band; fixed reaction plane with energy-dependent `v1` | re-reduce the production with the per-particle acceptance test |
+| Nucleon acceptance definition | complete | full production reduced in the front face; +10.48 % double ratio against +10.73 % for the band | selection does not drive the result |
 | Reconstructed-energy efficiency | characterised | efficiency spans 39.6x; forward model closes exactly, inversion does not | redefine `R` inside the efficiency plateau |
 | Experimental centrality projection | not started | only truth-b limit exists | add FHCal/multiplicity estimator and resolution |
 | Model-family systematic | incomplete | seeds 42/123/456 exist; alternative model-family outputs are missing | fill before final systematic claim |
@@ -220,9 +220,29 @@ need the production re-reduced with the per-particle test, which
 `reduce_prim_full.py` now emits; the mount has been serving at 0.2 MB/s, so this
 should run on ncx where the data is local.
 
-**Consequence:** the truth-level table above remains correct for the band it
-names, but the band is not the HGND acceptance, and the acceptance-corrected
-signal is larger.  Do not describe band numbers as HGND acceptance numbers.
+**Resolved (2026-09-28).**  The full production has been reduced in the
+front-face acceptance — on cHARISMa, where all 568 primary job files already
+live, in 13m47s against roughly nine hours over the mount.  The impact
+parameter was joined from the reduction of the B-enabled copy, after asserting
+identical job files, event keys and per-event multiplicity.
+
+| observable | acceptance | band | ratio |
+|---|---|---|---|
+| `R_n` | +4.52 % (10.2σ) | +4.27 % (22.9σ) | 1.06 |
+| `R_p` | −5.39 % (10.5σ) | −5.84 % (31.9σ) | 0.92 |
+| `R_n/R_p` | **+10.48 % (13.8σ)** | +10.73 % (36.9σ) | 0.98 |
+| `n/p` | +0.06 % (0.2σ) | −0.09 % (1.0σ) | — |
+
+**This withdraws the claim that the acceptance roughly doubles the response.**
+That figure (+8.0 % → +15.3 %) came from the cached sub-samples, 8 840
+truncation-biased events each, and did not survive full statistics.  The two
+selections agree to within 2.4 % of each other.
+
+The physics is stronger for it: the response does not depend on which selection
+is used, so it is not an artefact of the angular cut.  The acceptance holds 7.9
+times fewer particles, so it reaches 13.8σ where the band reaches 36.9 on the
+same events, with the same central values and monotonicity in 9 of 10
+centrality classes.
 
 ## Reconstructed `R_n` needs the observable redefined, not just corrected
 
@@ -383,7 +403,12 @@ Do not quote the following as current conclusions:
 - The current GNN reconstructs the truth-level hardness response.
 - A 2 MeV `S_pot` reach is an experimental or EOS-parameter uncertainty.
 - The `theta in [8.9, 13.1)` band is the HGND acceptance.  It is 7.7 times the
-  solid angle and spans azimuths the detector does not cover.
+  solid angle and spans azimuths the detector does not cover — though at full
+  statistics it gives the same central values, so it is a valid proxy even
+  though it is not the acceptance.
+- The acceptance roughly doubles the double-ratio response.  Measured on
+  truncation-biased sub-samples; the full production gives +10.48 % against
+  +10.73 %.
 - The sample-dependent energy response is wholly a property of the network.  Two
   thirds of it came from standardising the `eToF` baseline per dataset.
 - A reconstructed `R_n` with a sub-1 GeV denominator can be recovered by
