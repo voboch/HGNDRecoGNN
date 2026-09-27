@@ -1042,7 +1042,25 @@ class HGNDGraphDataset(Dataset):
         graphs: list[HeteroData] = []
         for sid in range(n_shards):
             path = os.path.join(self.processed_dir, f'shard_{sid}.pt')
-            shard = torch.load(path, weights_only=False)
+            # Lustre intermittently returns EACCES or ENOENT for a file that is
+            # present and world-readable; a 16-hour training job has died two
+            # minutes in on exactly this. Retry before giving up, and fail loudly
+            # if the shard really is unreadable, since a silently skipped shard
+            # would quietly change the training set.
+            shard = None
+            for attempt in range(5):
+                try:
+                    shard = torch.load(path, weights_only=False)
+                    break
+                except (PermissionError, FileNotFoundError, OSError) as exc:
+                    if attempt == 4:
+                        raise RuntimeError(
+                            f'preload(): {path} unreadable after 5 attempts '
+                            f'({type(exc).__name__}: {exc}). The file is '
+                            f'usually present and readable, so this is normally '
+                            f'a transient filesystem fault — resubmit.'
+                        ) from exc
+                    _time.sleep(2 ** attempt)
             graphs.extend(shard)
             del shard
 
