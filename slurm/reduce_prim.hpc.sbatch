@@ -10,6 +10,19 @@
 # (acc_*) alongside the legacy polar-angle band ones (band_*), which is what
 # the acceptance-corrected S_pot numbers need.
 #
+# NOTE ON IMPACT PARAMETER.  This copy of the primaries predates the converter
+# fix and carries B = -1.  Its kinematics are intact -- the two copies are
+# identical except in the B and NPrim columns -- so the acceptance counters
+# computed here are correct and only B is missing.  Join it afterwards from a
+# reduction of the B-enabled copy:
+#
+#     python3 scripts/merge_acc_with_b.py --acc-dir <this OUTDIR> \
+#         --b-dir <reduction of the ncx copy> --out-dir <merged>
+#
+# That script asserts the two reductions cover the same job files and the same
+# per-event primary multiplicity before joining, so a mismatched pair fails
+# rather than producing a silently wrong table.
+#
 #     sbatch slurm/reduce_prim.hpc.sbatch
 #
 #SBATCH --job-name=reduce_prim
@@ -56,3 +69,5 @@ echo
 echo "== outputs =="
 ls -la "$OUTDIR"
 echo "copy *_events.pkl and *_filehist.npz back; ~40 MB per sample"
+echo
+echo "B is -1 in these tables by construction; join it with merge_acc_with_b.py"
