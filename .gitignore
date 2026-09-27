@@ -49,6 +49,9 @@ results/
 !/results/retrain_eval/*.pdf
 !/results/retrain_eval/*.json
 !/results/retrain_eval/*.txt
+!/results/status_report/
+!/results/status_report/*.png
+!/results/status_report/*.html
 
 # --- secrets / keys (never commit) ---
 *.pem

@@ -1,0 +1,399 @@
+<title>HGND Submission Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#FBFBFC; --panel:#F2F4F6; --sunk:#E9ECF0;
+  --ink:#14171A; --ink-2:#39404A; --muted:#69727C;
+  --rule:#E0E4E9; --rule-2:#C8CED6;
+  --go:#1C6B45; --hold:#8A5B08; --stop:#9E2222; --acc:#1F6FB4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1013; --panel:#171A1F; --sunk:#1E222A;
+    --ink:#EAEDF0; --ink-2:#C0C7D0; --muted:#8A929C;
+    --rule:#242931; --rule-2:#333A44;
+    --go:#5FBF8C; --hold:#D8A441; --stop:#E87272; --acc:#6DB2E8;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1013; --panel:#171A1F; --sunk:#1E222A;
+  --ink:#EAEDF0; --ink-2:#C0C7D0; --muted:#8A929C;
+  --rule:#242931; --rule-2:#333A44;
+  --go:#5FBF8C; --hold:#D8A441; --stop:#E87272; --acc:#6DB2E8;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif; font-size:16.5px; line-height:1.6; margin:0;}
+.wrap{max-width:900px; margin:0 auto; padding:56px 26px 110px;}
+header{border-bottom:3px solid var(--ink); padding-bottom:20px;}
+.eyebrow{font-family:"IBM Plex Sans",sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 12px;}
+h1{font-weight:600; font-size:2.2rem; line-height:1.14; margin:0 0 12px; text-wrap:balance;}
+.sub{font-size:1.1rem; color:var(--ink-2); margin:0;}
+.meta{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--muted);
+  margin-top:18px; display:flex; flex-wrap:wrap; gap:6px 18px;}
+h2{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:1.1rem;
+  margin:54px 0 6px; padding-top:14px; border-top:1px solid var(--rule);}
+h3{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.95rem; margin:30px 0 2px;}
+p{margin:13px 0;} a{color:var(--acc);}
+code{font-family:"IBM Plex Mono",monospace; font-size:.88em; background:var(--panel);
+  padding:.1em .32em; border-radius:3px;}
+.num{font-family:"IBM Plex Mono",monospace; font-size:.92em;}
+
+.verdict{background:var(--panel); border:1px solid var(--rule-2); border-radius:7px;
+  padding:20px 24px; margin:30px 0 0;}
+.verdict p{margin:0 0 10px;} .verdict p:last-child{margin-bottom:0;}
+.verdict strong{font-weight:600;}
+
+.status{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:26px 0;}
+.card{background:var(--panel); border-radius:6px; padding:14px 16px; border-left:4px solid var(--flag,var(--muted));}
+.card.go{--flag:var(--go)} .card.hold{--flag:var(--hold)} .card.stop{--flag:var(--stop)}
+.card .k{font-family:"IBM Plex Sans",sans-serif; font-size:10.5px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--muted);}
+.card .v{font-family:"IBM Plex Mono",monospace; font-size:1.45rem; margin:5px 0 3px; color:var(--ink);}
+.card .d{font-size:12.5px; color:var(--ink-2); font-family:"IBM Plex Sans",sans-serif; line-height:1.45;}
+
+figure{margin:30px 0;}
+figure img{width:100%; height:auto; display:block; border:1px solid var(--rule);
+  border-radius:4px; background:#fff;}
+figcaption{font-family:"IBM Plex Sans",sans-serif; font-size:12px; line-height:1.5;
+  color:var(--muted); margin-top:9px;}
+figcaption b{color:var(--ink-2);}
+
+.tw{overflow-x:auto; margin:22px 0;}
+table{border-collapse:collapse; width:100%; font-size:13px; font-family:"IBM Plex Sans",sans-serif;}
+th,td{padding:8px 11px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top;}
+td.n,th.n{text-align:right; font-variant-numeric:tabular-nums; font-family:"IBM Plex Mono",monospace; white-space:nowrap;}
+thead th{font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1.5px solid var(--rule-2);}
+tbody tr:hover{background:var(--sunk);}
+.pos{color:var(--acc); font-weight:600;} .neg{color:var(--stop); font-weight:600;}
+.dim{color:var(--muted);}
+
+.phase{border:1px solid var(--rule); border-radius:7px; margin:20px 0; overflow:hidden;}
+.phase > .h{background:var(--panel); padding:12px 18px; display:flex; gap:14px;
+  align-items:baseline; border-bottom:1px solid var(--rule);}
+.phase .pn{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--acc); flex:none;}
+.phase .pt{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.97rem;}
+.phase .pe{margin-left:auto; font-family:"IBM Plex Sans",sans-serif; font-size:11.5px;
+  color:var(--muted); flex:none;}
+.phase > .b{padding:6px 18px 14px;}
+.phase ul{margin:10px 0; padding-left:20px;} .phase li{margin:5px 0; font-size:.95rem;}
+.gate{background:var(--sunk); border-radius:5px; padding:10px 14px; margin:12px 0 4px;
+  font-size:.9rem; font-family:"IBM Plex Sans",sans-serif;}
+.gate b{color:var(--ink);}
+
+.note{border-left:3px solid var(--rule-2); padding:3px 0 3px 17px; margin:22px 0;
+  color:var(--ink-2); font-size:.95rem;}
+.note.warn{border-left-color:var(--hold);}
+.note.bad{border-left-color:var(--stop);}
+footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--rule);
+  font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--muted);}
+@media(max-width:640px){body{font-size:15.5px}.wrap{padding:36px 16px 70px}h1{font-size:1.7rem}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">BM@N · High-Granularity Neutron Detector</p>
+  <h1>Status and the route to submission</h1>
+  <p class="sub">The physics observable is established at MC-truth level and centrality is
+  under control. Reconstruction is no longer the unknown it was a week ago: the failure was
+  located, two thirds of it was preprocessing, and a partial retrain has already halved what
+  remained. What stands between here and a submitted manuscript is four pieces of ordinary
+  work, none of them research.</p>
+  <p class="meta">
+    <span>Xe+CsI, &radic;s<sub>NN</sub> = 2.87 GeV</span>
+    <span>SMASH hard Skyrme, S<sub>pot</sub> = 0 / 18 / 90 MeV</span>
+    <span>2 345 993 events · 568 generation jobs</span>
+    <span>2026-09-27</span>
+  </p>
+</header>
+
+<div class="verdict">
+  <p><strong>Recommendation: submit the reconstruction paper, not a physics measurement.</strong>
+  The SMASH samples carry an upstream simulation defect and no re-simulation has been run,
+  so the S<sub>pot</sub> numbers cannot be a measurement whatever the reconstruction does.
+  They are strong as a sensitivity study and as a stress test that exposed a real,
+  generalisable failure mode &mdash; a reconstruction whose energy response depends on the
+  physics being measured. That is a publishable methods result today.</p>
+  <p>A physics-sensitivity claim needs re-simulated samples and belongs in a second paper.</p>
+</div>
+
+<div class="status">
+  <div class="card go"><div class="k">truth-level response</div><div class="v">+10.7 %</div>
+    <div class="d">R<sub>n</sub>/R<sub>p</sub>, 0 &rarr; 90 MeV. Ordered at 0/18/90, linear
+    to 1.6&sigma;, 10 of 10 centrality classes.</div></div>
+  <div class="card go"><div class="k">centrality</div><div class="v">0.23&sigma;</div>
+    <div class="d">&Delta;&lang;b&rang; between samples. Under control; reweighting costs
+    0.1 % of statistics.</div></div>
+  <div class="card hold"><div class="k">energy linearity</div><div class="v">&plusmn;10 %</div>
+    <div class="d">over 1.4&ndash;2.6 GeV after a 4-epoch retrain, from +50&ndash;60 % before.
+    Target is 0.7&ndash;5 GeV.</div></div>
+  <div class="card stop"><div class="k">held-out test</div><div class="v">0.62&sigma;</div>
+    <div class="d">expected significance with <em>perfect</em> reconstruction. The split is
+    too small to decide anything.</div></div>
+</div>
+
+<h2>1 &nbsp;What is established</h2>
+
+<p>Spectral hardness responds to the symmetry potential with opposite sign for the two
+species. At S<sub>pot</sub> = 0 the double ratio sits at <span class="num">1.009</span>,
+which is where it should be when no symmetry potential acts.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>observable</th><th class="n">0 MeV</th><th class="n">18 MeV</th><th class="n">90 MeV</th><th class="n">90/0 &minus; 1</th><th class="n">floor</th></tr></thead>
+<tbody>
+<tr><td>R<sub>n</sub>/R<sub>p</sub></td><td class="n">1.00909</td><td class="n">1.03461</td><td class="n">1.11739</td><td class="n pos">+10.73 %</td><td class="n dim">0.25 %</td></tr>
+<tr><td>R<sub>p</sub></td><td class="n">0.68086</td><td class="n">0.67035</td><td class="n">0.64112</td><td class="n neg">&minus;5.84 %</td><td class="n dim">0.20 %</td></tr>
+<tr><td>R<sub>n</sub></td><td class="n">0.68705</td><td class="n">0.69355</td><td class="n">0.71638</td><td class="n pos">+4.27 %</td><td class="n dim">0.16 %</td></tr>
+<tr><td>n/p yield</td><td class="n">1.17590</td><td class="n">1.18258</td><td class="n">1.17484</td><td class="n dim">&minus;0.09 %</td><td class="n dim">0.09 %</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The fitted slope is <span class="num">+0.118 %</span> per MeV. Divided by the noise floor
+measured from same-sample splits, that is a truth-level statistical reach of about
+<strong>2 MeV</strong> in S<sub>pot</sub>. It is a reach, not an experimental uncertainty,
+and it does not convert to a bound on <em>L</em> without the transport relation between
+S<sub>pot</sub> and the density-dependent symmetry energy.</p>
+
+<p>The n/p yield ratio is excluded, and on stronger grounds than its significance: its
+middle point sits <span class="num">7.2&sigma;</span> off the line through the outer two and
+the three values are not ordered. A quantity that does not vary monotonically with a
+parameter is not responding to it.</p>
+
+<figure>
+  <img src="p1_truth_response.png" alt="Relative change of four observables against the symmetry potential at 0, 18 and 90 MeV, each normalised to its own zero value, with dashed lines joining the end points.">
+  <figcaption><b>Response to S<sub>pot</sub>.</b> Each observable normalised to its own value
+  at 0 MeV; dashed lines join the end points, so a middle point off the line is curvature.
+  The two species move oppositely and the n/p yield ratio stays on zero.
+  Uncertainties from a job-level bootstrap.</figcaption>
+</figure>
+
+<h3>These numbers exist because of one methodological fix</h3>
+
+<p>Events generated in the same job are correlated in impact parameter. Within a single
+sample, where no S<sub>pot</sub> difference can exist, job means of <span class="num">b</span>
+scatter at <span class="num">&chi;&sup2;/ndf = 8.15</span> for 194 degrees of freedom.
+Per-event errors understate every b-dependent uncertainty by <span class="num">2.85&times;</span>.</p>
+
+<p>That factor is not academic. With per-event errors the b distributions of the three
+samples look irreconcilable (<span class="num">&chi;&sup2;/ndf = 13.57</span>,
+p = 2&times;10<sup>&minus;63</sup>); with job-level errors they agree
+(<span class="num">1.57</span>, p = 0.029). An earlier conclusion that the whole
+S<sub>pot</sub> signal was a centrality artefact rested on the wrong one and has been
+withdrawn.</p>
+
+<figure>
+  <img src="p2_job_structure.png" alt="Mean impact parameter per generation job for each sample, with per-job errors; the scatter between jobs greatly exceeds those errors.">
+  <figcaption><b>Why uncertainties resample jobs, not events.</b> Mean impact parameter of
+  each generation job, with per-job statistical errors; dotted lines are sample means. The
+  scatter exceeds the errors by design of the production, not by chance. The sample means
+  themselves are indistinguishable.</figcaption>
+</figure>
+
+<figure>
+  <img src="p3_centrality.png" alt="The neutron-to-proton hardness double ratio versus centrality class for the zero and 90 MeV samples, separated in every class.">
+  <figcaption><b>The response is not a centrality accident.</b> R<sub>n</sub>/R<sub>p</sub>
+  against centrality class, reweighted to a common b density within each class. The
+  separation holds in <b>10 of 10 classes</b>, and the S<sub>pot</sub> = 0 arm sits near
+  unity throughout.</figcaption>
+</figure>
+
+<h2>2 &nbsp;What reconstruction does to it</h2>
+
+<p>Following R<sub>n</sub> through the chain on one set of events isolates where the
+measurement is lost. The sign survives detector acceptance and cluster selection, and
+reverses at the energy estimate.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>stage</th><th class="n">90/0 &minus; 1</th><th class="n">&sigma;</th><th>reading</th></tr></thead>
+<tbody>
+<tr><td>primary neutrons, polar-angle band</td><td class="n pos">+2.65 &plusmn; 0.54 %</td><td class="n">4.93</td><td>truth response reproduced</td></tr>
+<tr><td>neutrons reaching the detector</td><td class="n pos">+3.67 &plusmn; 2.05 %</td><td class="n">1.79</td><td>acceptance keeps the sign</td></tr>
+<tr><td>selected clusters, true energy</td><td class="n pos">+3.32 &plusmn; 2.94 %</td><td class="n">1.13</td><td>classifier is not the problem</td></tr>
+<tr><td>same clusters, reconstructed energy</td><td class="n neg">&minus;3.04 &plusmn; 2.30 %</td><td class="n">1.32</td><td>the energy estimate is</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The last two rows use the same clusters, so the change is a paired difference:
+<span class="num">&minus;8.66 &plusmn; 2.21 %</span>. Finite resolution alone pulls an answer
+toward zero; this moves it further than the effect is worth, which means the estimator
+responds differently to the different samples. It does &mdash; by
+<span class="num">30.7 &plusmn; 8.6 MeV</span> in the bin where the R<sub>n</sub> numerator
+lives.</p>
+
+<figure>
+  <img src="p4_ladder.png" alt="The 90 versus 0 MeV difference in neutron hardness at five stages, the first three positive and the last two negative.">
+  <figcaption><b>Where the measurement is lost.</b> The S<sub>pot</sub> = 90 versus 0 MeV
+  difference in R<sub>n</sub> at each stage, on the same generation jobs. The first row is a
+  polar-angle selection and the rest are detector-level, so the first step folds an
+  acceptance change together with transport.</figcaption>
+</figure>
+
+<h3>Two thirds of it was preprocessing</h3>
+
+<p><code>eToF</code> is the available-energy baseline from hit time and coordinate, and
+compensating its overestimation is part of what the network does. Standardising it
+separately in each sample therefore rescales a physics-bearing quantity by a different
+factor in each &mdash; 1.9 % across the scan, the largest shift of any input.</p>
+
+<p>One shared normalisation, the same weights, no retraining:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>quantity</th><th class="n">per-sample scalers</th><th class="n">shared scaler</th></tr></thead>
+<tbody>
+<tr><td>differential high-bin response</td><td class="n neg">&minus;30.7 &plusmn; 8.6 MeV (3.55&sigma;)</td><td class="n pos">&minus;11.4 &plusmn; 9.8 MeV (1.16&sigma;)</td></tr>
+<tr><td>reconstructed 90/0 effect</td><td class="n neg">&minus;3.04 %</td><td class="n pos">+2.25 &plusmn; 2.43 %</td></tr>
+<tr><td>paired displacement</td><td class="n neg">2.81&sigma;</td><td class="n pos">0.53&sigma;</td></tr>
+<tr><td>R<sub>n</sub> ordered 0/18/90</td><td class="n neg">no</td><td class="n pos">yes</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>A partial retrain halved what remained</h3>
+
+<p>Retrained on the three samples pooled, split by generation job, one scaler fitted on
+train. Thermal throttling stretched epochs from 7 to over 50 minutes and the run stopped
+after <strong>4 of 20 epochs</strong>, so this is a lower bound on the architecture.</p>
+
+<figure>
+  <img src="p5_energy.png" alt="Energy linearity and resolution against true neutron energy for the previous checkpoint and the retrained estimator, with ten per cent target bands shaded.">
+  <figcaption><b>Energy performance, identical test data and normalisation.</b> The bias
+  crosses zero near 2.4 GeV instead of sitting at +50&ndash;60 % across the range: the
+  time-of-flight overestimation is being compensated. Resolution roughly halved but remains
+  above the 10 % target. Shaded bands are the reference targets.</figcaption>
+</figure>
+
+<h2>3 &nbsp;What the held-out test can and cannot say</h2>
+
+<p>With the working point chosen on train+val and applied once to test, the result is
+<span class="num">+2.87 &plusmn; 6.92 %</span>. That uncertainty is the whole story.</p>
+
+<figure>
+  <img src="p6_testpower.png" alt="Reconstructed neutron hardness against the symmetry potential on the test split, with the truth-level response shown as a dotted line and large error bars.">
+  <figcaption><b>The test split is underpowered by construction.</b> Against a +4.27 % truth
+  effect, the split admits <b>0.62&sigma;</b> even if reconstruction were perfect. Reaching
+  3&sigma; needs about <b>284 generation jobs</b>; 12 were used. No conclusion about the
+  reconstruction follows from this figure.</figcaption>
+</figure>
+
+<div class="note warn">
+  <p>This is the single most important thing to fix, and it is the cheapest. The job files
+  needed are 5.5 MB per pair on the cluster &mdash; about 1.5 GB for 280 &mdash; against the
+  154 MB per file that made the primary exports expensive.</p>
+</div>
+
+<h2>4 &nbsp;Route to submission</h2>
+
+<div class="phase">
+  <div class="h"><span class="pn">P0</span><span class="pt">Close the manuscript blockers</span><span class="pe">days · no compute</span></div>
+  <div class="b">
+    <ul>
+      <li>Produce the two placeholder figures: detector layout and GNN architecture. Open
+        since review v5 and the only hard blocker to the submit button.</li>
+      <li>State the trials factor on the 289-configuration working-point scan (review v7,
+        Ma-4), and the assumptions behind the 284-job estimate (Ma-5).</li>
+      <li>Clear the editorial markers: three <code>\NUM{}</code>, one
+        <code>\CITENEEDED</code>, one author-list TODO.</li>
+      <li>Install <code>siunitx</code> and <code>physics</code> and do a real build. Every
+        check so far stubbed them.</li>
+    </ul>
+    <div class="gate"><b>Gate:</b> the manuscript compiles unstubbed with no placeholder
+      figures and no editorial markers.</div>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="h"><span class="pn">P1</span><span class="pt">Make the numbers acceptance-correct</span><span class="pe">~1 day · ncx</span></div>
+  <div class="b">
+    <p>Every truth-level number is currently computed in the polar-angle band, which is
+    <span class="num">7.7&times;</span> the solid angle of the detector and spans azimuths it
+    does not cover. Because the generator holds the reaction plane fixed and v<sub>1</sub> is
+    energy dependent, the azimuth cannot be weighted away.</p>
+    <ul>
+      <li>Run <code>slurm/reduce_prim.ncx.sbatch</code> where the data is local. The mount has
+        been serving at 0.2 MB/s, so streaming 25 GB from here is not viable.</li>
+      <li>Re-run the reweighting and the three-point scan in the front-face acceptance.</li>
+      <li>Expect the signal to grow: on sub-samples where both selections exist the double
+        ratio moves from +8.0 % to +15.3 % on the same events.</li>
+    </ul>
+    <div class="gate"><b>Gate:</b> the manuscript quotes acceptance numbers rather than band
+      numbers, and says so consistently.</div>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="h"><span class="pn">P2</span><span class="pt">Train to convergence</span><span class="pe">~1 day · cHARISMa</span></div>
+  <div class="b">
+    <ul>
+      <li>Full 20 epochs on the pooled three-sample split with one scaler fitted on train.
+        The laptop throttled; this belongs on the cluster.</li>
+      <li>Repeat the paired ladder and the response diagnostic as the acceptance test.</li>
+      <li>Compare at least one model family beyond <code>net_default</code>, which the
+        systematics section still needs.</li>
+    </ul>
+    <div class="gate"><b>Gate:</b> reconstructed and true-energy effects share a sign; their
+      paired difference is under 2&sigma; <em>and</em> under 25 % of the truth effect
+      (currently 39 %); the differential response is consistent with zero on blind jobs.</div>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="h"><span class="pn">P3</span><span class="pt">Size the held-out split</span><span class="pe">~1 day · transfer + CPU</span></div>
+  <div class="b">
+    <ul>
+      <li>Transfer hits and vacs for ~280 additional generation jobs (~1.5 GB) and preprocess
+        with the same scaler.</li>
+      <li>Re-run the pre-registered working point. Only now does the gate mean anything.</li>
+    </ul>
+    <div class="gate"><b>Gate:</b> the test split resolves a 4 % effect at 3&sigma; or better,
+      so a null result would be informative.</div>
+  </div>
+</div>
+
+<div class="note bad">
+  <p><b>Not on the path to this paper.</b> Re-simulation. The SMASH samples carry an upstream
+  defect and the current production is a re-conversion of the same events, not a new run. No
+  amount of reconstruction work changes that, which is precisely why this manuscript should
+  present a sensitivity study and a methods result rather than a measurement.</p>
+</div>
+
+<h2>5 &nbsp;Risks</h2>
+
+<div class="tw">
+<table>
+<thead><tr><th>risk</th><th>effect</th><th>mitigation</th></tr></thead>
+<tbody>
+<tr><td>P2 fails its gate after full training</td><td>no reconstructed sensitivity for the
+  paper</td><td>Fall back to a forward-folded spectrum fit with calibration nuisance
+  parameters. The forward model already closes bin by bin to 0.1 %; only the inversion
+  fails.</td></tr>
+<tr><td>ncx throughput stays at 0.2 MB/s</td><td>P1 and P3 stall</td><td>Both run on the
+  cluster and return tens of MB. Only the submission of those jobs needs a hand on ncx.</td></tr>
+<tr><td>Acceptance numbers move the headline</td><td>text and figures need another pass</td>
+  <td>Expected direction is a larger signal, so conclusions harden rather than reverse.
+  Band numbers are labelled as conservative.</td></tr>
+<tr><td>Referee rejects the sensitivity framing</td><td>major revision</td><td>Review v7
+  already argues the framing internally; the withdrawn-claims list is explicit about what the
+  numbers are not.</td></tr>
+</tbody>
+</table>
+</div>
+
+<footer>
+  <p>Analysis: <code>HGNDRecoGNN</code> &mdash; <code>results/b_full_analysis/</code>,
+  <code>results/reco_experiment/</code>, <code>results/retrain_eval/</code>.
+  Manuscript and reviews: <code>HGNDPaper</code> (split with history).
+  Decision record: <code>docs/HGND_PROGRESS_GUIDE.md</code>.</p>
+  <p>Figures follow <code>docs/plotting_style_protocol.md</code>: printed size, vector PDF
+  alongside these PNGs, colour never the only channel, ratio panels on comparisons, axis
+  limits derived from the data with panel containment asserted.</p>
+</footer>
+</div>
