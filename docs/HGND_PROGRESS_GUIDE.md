@@ -1,6 +1,6 @@
 # HGND reconstruction and symmetry-potential study: progress review and guide
 
-**Status date:** 2026-09-27  
+**Status date:** 2026-09-27 (evening)  
 **Purpose:** single decision record for what is established, what has been
 withdrawn, what currently blocks a measurement, and what should be done next.
 
@@ -99,7 +99,9 @@ Conclusions in this guide are ordered by the strongest available evidence:
 | HGND-band n/p yield ratio | closed negative | −0.09 %, 1.0σ; non-monotonic middle point | decline as an `S_pot` probe |
 | Proton measurement with HGND | closed negative | reaching protons are soft secondaries; 0.65σ response | requires an external charged-particle arm |
 | Neutron acceptance and cluster selection | promising but limited | response keeps its sign through truth acceptance and selected clusters | detector geometry/classifier are not the main blocker |
-| Reconstructed neutron energy | blocked, partly diagnosed | sign reversal removed by a shared scaler; residual 39 % of the truth effect | retrain on shared normalisation, then revalidate |
+| Reconstructed neutron energy | improving, retrain incomplete | linearity +50–60 % → within 10 % over 1.4–2.6 GeV; resolution 26–34 % → 15–20 % | train to convergence; 4 of 20 epochs completed |
+| Held-out sensitivity test | blocked by statistics, not by method | +2.87 ± 6.92 %; 0.62σ expected even with perfect reconstruction | size the test split to ~280 generation jobs |
+| PRC manuscript | reworked | abstract, sensitivity and reconstruction sections rewritten; builds under revtex4-2 | two placeholder figures remain |
 | Feature normalisation | resolved, needs rollout | per-dataset scaler shifted `eToF` by 1.9 % in scale between samples | one fitted scaler for every dataset that is compared or trained together |
 | Nucleon acceptance definition | corrected, needs full re-reduction | front face is 0.0114 sr over 20 % of azimuth, not a 0.0879 sr band; fixed reaction plane with energy-dependent `v1` | re-reduce the production with the per-particle acceptance test |
 | Reconstructed-energy efficiency | characterised | efficiency spans 39.6x; forward model closes exactly, inversion does not | redefine `R` inside the efficiency plateau |
@@ -320,6 +322,55 @@ efficiency definitions to quote are the report's own — energy-weighted
 `purity = 1 - E_fake/E_predicted` and `efficiency = E_true/E_all signals` — with
 the count-based event-level pair reported alongside.
 
+## Retrained estimator (2026-09-27)
+
+Retrained `net_default` on the three samples pooled, split by generation job
+12/4/4 per sample, with one scaler fitted on the training split.  Thermal
+throttling stretched epochs from 7 to over 50 minutes and the run was stopped
+after **4 of 20 epochs** at val 1.223, already past the previous checkpoint's
+1.354.  Everything below is therefore a lower bound on the architecture.
+
+On identical test data, identical normalisation:
+
+| `E_true` [GeV] | linearity before → after | resolution before → after |
+|---|---|---|
+| 0.7–1.0 | +63.9 % → **+37.0 %** | 33.7 % → 16.9 % |
+| 1.4–1.8 | +57.5 % → **+10.3 %** | 26.3 % → 19.8 % |
+| 2.2–2.6 | +38.2 % → **−1.3 %** | 20.2 % → 15.0 % |
+| 2.6–3.0 | +27.1 % → **−8.7 %** | 18.6 % → 15.0 % |
+
+The bias now crosses zero near 2.4 GeV instead of sitting at +50–60 % across the
+range: the ToF overestimation is being compensated, which is the behaviour the
+reference describes.  Resolution roughly halved but is still above the 10 %
+target, and classification is marginally behind (AUC 0.941 against 0.948) —
+both consistent with four epochs.
+
+### The hardness window is a free parameter
+
+Following the decision that thresholds may be matched to the hardware, both the
+cluster score threshold and the energy window are now scanned, with any window
+whose denominator falls below 1 GeV excluded outright — detection efficiency
+there is 2 %.  The figure of merit rewards separation only when the samples are
+ordered **in the direction the truth-level scan established**; without that
+constraint it selected configurations in which `R_n` *decreases* with `S_pot`.
+
+### The held-out test is inconclusive, not negative
+
+The selected working point gives **+2.87 ± 6.92 %** on test.  The uncertainty is
+the point: against a +4.27 % truth effect, the split admits only **0.62σ** even
+with perfect reconstruction.
+
+| | value |
+|---|---|
+| measured error on the 90/0 ratio | 6.92 % |
+| truth-level effect | +4.27 % |
+| expected significance, perfect reconstruction | 0.62σ |
+| test generation jobs needed for 3σ | **≈ 284** (12 used) |
+
+No conclusion about the reconstruction can be drawn from this split.  Sizing the
+test set is a prerequisite for the P1 gates to be testable at all, and it should
+be added to P1 alongside training to convergence.
+
 ## Superseded or unsafe claims
 
 Do not quote the following as current conclusions:
@@ -473,8 +524,8 @@ framing must follow the newest evidence.
 ## One-sentence project status
 
 **The physics observable is well established at truth level and centrality is
-under control; two thirds of the sample-dependent energy response turned out to
-be per-dataset feature normalisation rather than the network, so the next unit of
-progress is a retrain on shared-scaler caches with the hardness ratio redefined
-inside the efficiency plateau, measured in the detector's real acceptance rather
-than a polar-angle band.**
+under control; a shared normalisation and a partial retrain have already moved
+the energy estimator from +50–60 % linearity error to within 10 % over
+1.4–2.6 GeV, so the remaining blockers are ordinary ones — train to convergence,
+and size the held-out split to the ~280 generation jobs a 4 % effect needs,
+since the present 12 admit only 0.62σ.**
