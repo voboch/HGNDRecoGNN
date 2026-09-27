@@ -41,7 +41,14 @@ BW = 0.10                        # reweighting bin width [fm]
 MIN_COUNT = 20                   # a b bin below this count is unusable in a sample
 NCLASS = 10                      # centrality percentile classes (community convention)
 
+# acc_* select on the per-particle front-face acceptance test; band_* are the
+# legacy polar-angle band, kept so the two can be compared directly on the same
+# events.  The band is 7.7x the solid angle and spans azimuths the detector does
+# not cover, so acc_* are the physics numbers and band_* the continuity ones.
 OBSERVABLES = {
+    "R_n_acc":   ("acc_n_hi",  "acc_n_lo"),
+    "R_p_acc":   ("acc_p_hi",  "acc_p_lo"),
+    "np_acc":    ("acc_n",     "acc_p"),
     "R_n_band":  ("band_n_hi", "band_n_lo"),
     "R_p_band":  ("band_p_hi", "band_p_lo"),
     "R_n_mid":   ("mid_n_hi",  "mid_n_lo"),
@@ -55,6 +62,7 @@ OBSERVABLES = {
 # (centrality residual, acceptance, the overall spectral slope) and keeps only
 # the isovector part, which is what a symmetry-potential measurement wants.
 DERIVED = {
+    "Rn_over_Rp_acc":  ("R_n_acc",  "R_p_acc"),
     "Rn_over_Rp_band": ("R_n_band", "R_p_band"),
 }
 COUNTERS = sorted({c for pair in OBSERVABLES.values() for c in pair})
@@ -63,7 +71,25 @@ CIDX = {c: i for i, c in enumerate(COUNTERS)}
 
 
 def load(events_dir):
-    return {s: pd.read_pickle(os.path.join(events_dir, f"{s}_events.pkl")) for s in SAMPLES}
+    """Load the per-event tables, dropping observables the tables do not carry.
+
+    Tables reduced before the acceptance test existed have only the band_*
+    counters.  Rather than fail, the acceptance observables are dropped and the
+    run reports what it actually computed.
+    """
+    d = {s: pd.read_pickle(os.path.join(events_dir, f"{s}_events.pkl")) for s in SAMPLES}
+    have = set.intersection(*(set(v.columns) for v in d.values()))
+    global OBSERVABLES, DERIVED, COUNTERS, CIDX, ALL_OBS
+    missing = {o for o, (a, b) in OBSERVABLES.items() if a not in have or b not in have}
+    if missing:
+        print(f"note: {sorted(missing)} not in these event tables; skipping")
+        OBSERVABLES = {k: v for k, v in OBSERVABLES.items() if k not in missing}
+        DERIVED = {k: v for k, v in DERIVED.items()
+                   if v[0] not in missing and v[1] not in missing}
+        COUNTERS = sorted({c for pair in OBSERVABLES.values() for c in pair})
+        CIDX = {c: i for i, c in enumerate(COUNTERS)}
+        ALL_OBS = list(OBSERVABLES) + list(DERIVED)
+    return d
 
 
 def grid(data):
@@ -74,7 +100,10 @@ def grid(data):
 class Binned:
     """A sample reduced to (job file) x (b bin) sums, the unit the bootstrap needs."""
 
-    def __init__(self, df, edges, counters=COUNTERS):
+    def __init__(self, df, edges, counters=None):
+        # resolved at call time, not definition time: load() may drop
+        # observables the event tables do not carry, which rebinds COUNTERS
+        counters = COUNTERS if counters is None else counters
         fi = df.file_idx.to_numpy()
         self.files = np.unique(fi)
         nf, nb = len(self.files), len(edges) - 1
