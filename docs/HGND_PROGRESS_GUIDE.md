@@ -101,7 +101,7 @@ Conclusions in this guide are ordered by the strongest available evidence:
 | Neutron acceptance and cluster selection | promising but limited | response keeps its sign through truth acceptance and selected clusters | detector geometry/classifier are not the main blocker |
 | Reconstructed neutron energy | improving, retrain incomplete | linearity +50–60 % → within 10 % over 1.4–2.6 GeV; resolution 26–34 % → 15–20 % | train to convergence; 4 of 20 epochs completed |
 | Held-out sensitivity test | blocked by statistics, not by method | +2.87 ± 6.92 %; 0.62σ expected even with perfect reconstruction | size the test split to ~280 generation jobs |
-| PRC manuscript | reworked | abstract, sensitivity and reconstruction sections rewritten; builds under revtex4-2 | two placeholder figures remain |
+| PRC manuscript | reworked, moved to `../HGNDPaper` | referee review v7: major revision, B-2 and B-3 closed | two placeholder figures remain (B-1, open since v5) |
 | Feature normalisation | resolved, needs rollout | per-dataset scaler shifted `eToF` by 1.9 % in scale between samples | one fitted scaler for every dataset that is compared or trained together |
 | Nucleon acceptance definition | corrected, needs full re-reduction | front face is 0.0114 sr over 20 % of azimuth, not a 0.0879 sr band; fixed reaction plane with energy-dependent `v1` | re-reduce the production with the per-particle acceptance test |
 | Reconstructed-energy efficiency | characterised | efficiency spans 39.6x; forward model closes exactly, inversion does not | redefine `R` inside the efficiency plateau |
@@ -518,8 +518,10 @@ framing must follow the newest evidence.
   [`check_acceptance.py`](../scripts/check_acceptance.py)
 - Current n/p decision history:
   [`NP_RATIO_PLAN.md`](NP_RATIO_PLAN.md)
-- Latest manuscript review:
-  [`critical_review_v6.md`](../paper/critical_review_v6.md)
+- Manuscript and its reviews: now a separate repository, `../HGNDPaper`
+  (split with `git subtree`, history intact).  Latest review is
+  `critical_review_v7.md` there; `paper/README.md` in this repository records
+  which script generates each figure.
 
 ## One-sentence project status
 
