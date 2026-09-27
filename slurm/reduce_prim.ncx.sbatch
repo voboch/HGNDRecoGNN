@@ -39,6 +39,16 @@ if ! python3 -c "import numpy, pandas" 2>/dev/null; then
 fi
 python3 -c "import numpy,pandas;print('numpy',numpy.__version__,'pandas',pandas.__version__)"
 
+# Record the acceptance the run used.  The per-particle front-face test replaced
+# the old polar-angle band, and the log should say which geometry produced the
+# counters so a later reader cannot confuse the two.
+if [ ! -f "$SUBMIT_DIR/scripts/hgnd_acceptance.py" ]; then
+    echo "ERROR: scripts/hgnd_acceptance.py must be copied alongside reduce_prim_full.py"
+    exit 1
+fi
+echo "== HGND acceptance in use =="
+python3 "$SUBMIT_DIR/scripts/hgnd_acceptance.py"
+
 for tag in zeroSpot bigSpot defaultSpot; do
     if [ ! -d "$DATA_ROOT/smash_xecs_2.87gev_hardSkyrme_$tag" ]; then
         echo "skip $tag: no extracted directory under $DATA_ROOT"
@@ -51,3 +61,7 @@ python3 -u scripts/reduce_prim_full.py "$OUTDIR" zeroSpot bigSpot defaultSpot
 echo "== outputs =="
 ls -la "$OUTDIR"
 echo "copy *_events.pkl and *_filehist.npz back to the laptop; they are ~40 MB per sample"
+echo
+echo "The event tables now carry acc_* counters (per-particle front-face acceptance)"
+echo "alongside the legacy band_* ones, and each job file contributes an 'acc'"
+echo "spectrum so R can be recomputed at any threshold without another pass."
