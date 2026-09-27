@@ -1,0 +1,29 @@
+{
+ "zeroSpot": {
+  "job_files": 195,
+  "events": 804369,
+  "dropped_files_acc_only": [],
+  "dropped_files_b_only": [],
+  "mean_b": 8.545416831970215,
+  "acc_n_per_event": 0.7578275642149312,
+  "band_n_per_event": 5.981711130090791
+ },
+ "defaultSpot": {
+  "job_files": 200,
+  "events": 824338,
+  "dropped_files_acc_only": [],
+  "dropped_files_b_only": [],
+  "mean_b": 8.534784317016602,
+  "acc_n_per_event": 0.7630098333450599,
+  "band_n_per_event": 6.017042766438038
+ },
+ "bigSpot": {
+  "job_files": 173,
+  "events": 717286,
+  "dropped_files_acc_only": [],
+  "dropped_files_b_only": [],
+  "mean_b": 8.548829078674316,
+  "acc_n_per_event": 0.762001488945832,
+  "band_n_per_event": 5.992538541111913
+ }
+}

@@ -52,6 +52,9 @@ results/
 !/results/status_report/
 !/results/status_report/*.png
 !/results/status_report/*.html
+!/results/acceptance_full/
+!/results/acceptance_full/*.json
+!/results/acceptance_full/*.txt
 
 # --- secrets / keys (never commit) ---
 *.pem
