@@ -59,15 +59,21 @@ def row_offsets(csv_dir, runs=None):
 
 
 def to_local(global_rows, offsets):
-    """Map global Row values to (stem, local Row)."""
+    """Map global Row values to (run, stem, local Row).
+
+    The run is carried because file stems repeat across samples: a split tree
+    holding zeroSpot/0020 and bigSpot/0020 would otherwise collapse them.
+    """
     g = np.asarray(global_rows, dtype=np.int64)
     edges = offsets.row_base.to_numpy()
     idx = np.searchsorted(edges, g, side="right") - 1
     bad = (idx < 0) | (g >= offsets.row_end.to_numpy()[np.clip(idx, 0, len(edges) - 1)])
     idx = np.clip(idx, 0, len(edges) - 1)
     stem = offsets.stem.to_numpy()[idx]
+    run = offsets.run.to_numpy()[idx]
     local = g - edges[idx]
-    return pd.DataFrame({"stem": np.where(bad, None, stem),
+    return pd.DataFrame({"run": np.where(bad, None, run),
+                         "stem": np.where(bad, None, stem),
                          "local_row": np.where(bad, -1, local),
                          "unmapped": bad})
 

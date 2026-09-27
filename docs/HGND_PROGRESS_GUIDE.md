@@ -255,13 +255,19 @@ estimator is retrained.  The hardness definition used for reconstruction must si
 inside the efficiency plateau and inside the estimator's dynamic range, and the
 retrained estimator must extend that range.
 
-## Normalisation was a domain leak
+## Normalisation: standardise a physics baseline once, not per sample
 
-`prepare_halves` fitted `StandardScaler` per dataset.  Because `eToF` carries the
-neutron energy, a harder sample receives a wider `eToF` scale, and per-dataset
-fitting divides part of the measured difference out before the network sees it.
-Across the scan the shift is 0.02 sigma in mean and 1.9 % in scale for `eToF`,
-the largest of any feature.
+`eToF` is not an incidental feature.  It is the available-energy baseline built
+from the hit time and coordinate under the neutron hypothesis, and correcting it
+is part of what the network is for — the Dombay report states plainly that the
+model "compensates ToF overestimation".  That is exactly why it must not be
+standardised per dataset: rescaling a physics-bearing baseline separately in each
+sample removes part of the difference between samples before the network sees it.
+This is a normalisation choice, not information leakage.
+
+`prepare_halves` fitted `StandardScaler` per dataset.  Across the scan that gives
+`eToF` a 1.9 % different scale and a 0.02 sigma different mean between the 90 and
+0 MeV samples — the largest per-feature shift in the set.
 
 Rebuilding the caches with a single scaler from the 18 MeV midpoint and running
 the **identical checkpoint**:
@@ -288,8 +294,31 @@ alone.  Against the P1 gates this moves three from failing to passing:
 | no threshold or calibration chosen with truth information | fails — purity lock and energy calibration both use truth |
 | stable across thresholds, seeds and two model families | not tested |
 
-Retraining is still required, but it is now a smaller target, and it must be done
-on caches built with one shared scaler or the same leak returns.
+Retraining is still required, but it is now a smaller target.  The scaler must be
+fitted once — on the training split — and reused unchanged for validation, test
+and every physics sample, so the baseline keeps one common scale everywhere.
+
+## Reference performance targets
+
+From the 26.02.2026 Dombay report on the same detector and reconstruction, using
+3.2 AGeV Xe+CsI DCM-QGSM-SMM with Geant4 and about 300 k events, a retrained
+model should reproduce:
+
+| quantity | reference |
+|---|---|
+| cluster classification | ROC AUC ≈ 0.97 |
+| quoted working point | ≈ 80 % efficiency at ≈ 87 % purity |
+| other points on the curve | 0.86/0.77, 0.80/0.87, 0.72/0.92 (eff/purity) |
+| energy linearity | within 10 % over 0.7 to ~5 GeV |
+| energy resolution | < 10 % at feasible energies |
+| cluster isolation | prompt neutron splits into secondary clusters < 2 % |
+
+These are the acceptance criteria for P1, and the current checkpoint fails them:
+its energy is biased **+0.75 GeV** before calibration and its calibrated range
+saturates near 2.9 GeV, against a reference linear to 5 GeV.  The purity and
+efficiency definitions to quote are the report's own — energy-weighted
+`purity = 1 - E_fake/E_predicted` and `efficiency = E_true/E_all signals` — with
+the count-based event-level pair reported alongside.
 
 ## Superseded or unsafe claims
 
@@ -304,8 +333,8 @@ Do not quote the following as current conclusions:
 - A 2 MeV `S_pot` reach is an experimental or EOS-parameter uncertainty.
 - The `theta in [8.9, 13.1)` band is the HGND acceptance.  It is 7.7 times the
   solid angle and spans azimuths the detector does not cover.
-- The sample-dependent energy response is a property of the network.  Two thirds
-  of it came from per-dataset feature standardisation.
+- The sample-dependent energy response is wholly a property of the network.  Two
+  thirds of it came from standardising the `eToF` baseline per dataset.
 - A reconstructed `R_n` with a sub-1 GeV denominator can be recovered by
   efficiency correction or unfolding.
 
@@ -322,9 +351,11 @@ Do not quote the following as current conclusions:
 
 **P1.0 — prerequisites, both now implemented and cheap.**
 
-- Rebuild every cache with **one shared scaler** (`preprocess.py --scaler-source`).
-  This alone removes two thirds of the response differential and must be in place
-  before any retraining, or the leak returns through the training data.
+- Rebuild every cache with **one scaler fitted on the training split**
+  (`preprocess.py --scaler-source`).  This alone removes two thirds of the
+  response differential, and it must be in place before retraining so that the
+  `eToF` baseline carries one common scale through training, validation, test and
+  every physics sample.
 - Redefine the reconstructed hardness ratio inside the efficiency plateau and
   inside the estimator's dynamic range.  The present definition is unmeasurable
   in its denominator whatever the estimator does.
