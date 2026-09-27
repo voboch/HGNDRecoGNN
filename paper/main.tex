@@ -122,7 +122,8 @@ errors understate them by a factor 2.85.  With that accounting the
 three samples share a common impact-parameter distribution
 ($\Delta\langle b\rangle = 0.0034 \pm 0.0147$~fm), and event-level
 reweighting removes the residual at a cost of 0.1\% in effective
-statistics.  At MC-truth level the spectral hardness
+statistics.  At MC-truth level, in the polar-angle band $\theta \in [8.9^\circ,
+13.1^\circ)$, the spectral hardness
 $R = N(\Ekin > 2~\mathrm{GeV})/N(\Ekin < 1~\mathrm{GeV})$ responds to
 $\Usym{}$ with opposite sign for the two species: $R_n$ rises by
 $4.27\%$ and $R_p$ falls by $5.84\%$ between $0$ and $90$~MeV, so the
@@ -140,9 +141,9 @@ energy is taken from the network, a paired displacement of
 $-8.66 \pm 2.21\%$.  Two thirds of that came from standardising the
 time-of-flight energy baseline separately in each sample; one shared
 normalisation reduces the sample-dependent high-energy response from
-$-30.7 \pm 8.6$ to $-11.4 \pm 9.8$~MeV.  A retrained estimator restores
-linearity to within $10\%$ over $1.4$--$2.6$~GeV from $+50$--$60\%$
-before.  A held-out test of the reconstructed sensitivity remains
+$-30.7 \pm 8.6$ to $-11.4 \pm 9.8$~MeV.  A retrained estimator, stopped after 4 of 20 planned epochs and
+therefore a lower bound on the architecture, restores linearity to
+within $10\%$ over $1.4$--$2.6$~GeV from $+50$--$60\%$ before.  A held-out test of the reconstructed sensitivity remains
 statistically inconclusive rather than negative: its uncertainty admits
 only $0.62\sigma$ on the expected effect.  We quantify what closes the
 gap, and note that the \SMASH{} samples carry an upstream simulation
@@ -488,7 +489,7 @@ Figure~\ref{fig:roc} shows the receiver operating characteristic (ROC)
 curves for the hit-level classifier and the cluster-level classifier
 (combined top+bottom).  On the \texttt{defaultSpot} test split
 (97{,}104 held-out events, HPC checkpoint of
-Sec.~\ref{sec:reproducibility}) the cluster ROC has
+Sec.~\ref{sec:availability}) the cluster ROC has
 $\text{AUC}_{\text{cl}} = 0.944$
 (hit-level 0.956, edge-level 0.949; average precision 0.807).
 At the fixed classifier operating point $t = 0.5$ the pipeline
@@ -557,7 +558,11 @@ the reconstruction uncertainty (Table~\ref{tab:eff_ekin}).
 \subsection{Energy regression}
 
 Figure~\ref{fig:ereco} shows $E_{\text{reco}}$ vs.\ $E_{\text{true}}$
-on a logarithmic colour scale.  Linearity is within $\sim 25\%$ for
+on a logarithmic colour scale, for the \DCM{} test split.  The same
+checkpoint evaluated on the \SMASH{} samples is considerably worse
+(Sec.~\ref{sec:recoladder}), which is itself a domain-transfer
+statement rather than a property of the architecture.  On \DCM{},
+linearity is within $\sim 25\%$ for
 $1 \lesssim \Ekin \lesssim 3$~GeV and degrades to $\sim 30\%$
 toward the acceptance edges (positive bias at $\Ekin < 1$~GeV,
 negative bias at $\Ekin > 5$~GeV); the model compensates for the
@@ -654,7 +659,7 @@ analyses, one level further out.
 Second, with that accounting the samples agree.  The difference in
 $\langle b\rangle$ between $\Usym = 90$ and $0$~MeV is
 $0.0034 \pm 0.0147$~fm, and the binned ratio of the two distributions
-gives $\chi^2/\mathrm{ndf} = 1.57$ over 28 bins.  The same comparison
+gives $\chi^2/\mathrm{ndf} = 1.57$ over 28 bins (Fig.~\ref{fig:bdist}).  The same comparison
 with per-event errors would read $\chi^2/\mathrm{ndf} = 13.57$: the error
 bars differ by a factor 2.95, and that factor alone separates agreement
 from apparent inconsistency.
@@ -667,6 +672,16 @@ sample's own jobs in two gives a median $|\sigma|$ of $0.52$--$0.86$ and
 reaches $3\sigma$ in under $2\%$ of splits, while an injected $-1.56$~fm
 shift in $\langle b \rangle$ produces apparent effects up to $61\sigma$
 before correction and leaves every observable within $1.2\sigma$ after.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/b_distributions}
+  \caption{Normalised impact-parameter distributions for the three
+    samples with the ratio to $\Usym = 0$ below.  Uncertainties are
+    job-level: the density is estimated per generation job and the error
+    is the scatter of those densities over $\sqrt{N_{\text{jobs}}}$.}
+  \label{fig:bdist}
+\end{figure}
 
 \begin{figure}[!t]
   \centering
@@ -704,7 +719,13 @@ gives the neutron and proton arms one common window by construction.
 \subsection{Truth-level response}
 \label{sec:truthscan}
 
-Table~\ref{tab:truthscan} lists the reweighted observables.  The
+Table~\ref{tab:truthscan} lists the reweighted observables, selected in
+the polar-angle band rather than the front-face acceptance of
+Sec.~\ref{sec:acceptance}.  The band is what the full production has so
+far been reduced in; on the sub-samples for which both selections exist
+the acceptance roughly doubles the double-ratio response, from $+8.0\%$
+to $+15.3\%$ on the same events, so the band numbers below are the
+conservative ones.  The
 hardness of the two species moves in opposite directions, which is the
 isovector signature: at $\Usym = 0$ the double ratio sits at
 $1.009$, consistent with neutrons and protons being equally hard when
@@ -712,7 +733,8 @@ no symmetry potential acts.
 
 \begin{table}[!t]
   \centering
-  \caption{Reweighted observables at MC-truth level, with uncertainties
+  \caption{Reweighted observables at MC-truth level in the polar-angle
+    band $\theta \in [8.9^\circ, 13.1^\circ)$, with uncertainties
     from a job-level bootstrap.  The noise floor is the median
     difference between two halves of a single sample.}
   \label{tab:truthscan}
@@ -993,7 +1015,7 @@ $\Usym$-dependent efficiency factor.
 The full-statistics sensitivity summary (per-event yields,
 MC-truth, propagated uncertainties) is quoted in
 Table~\ref{tab:closure} above; the raw and unfolded CSVs used to
-populate it are catalogued in Sec.~\ref{sec:reproducibility}.
+populate it are catalogued in Sec.~\ref{sec:availability}.
 
 \subsection{Threshold-scan robustness and operating-point choice}
 
@@ -1085,13 +1107,16 @@ and the energy calibration fitted once and applied unchanged.
 \begin{table}[!t]
   \centering
   \caption{The $\Usym = 90$ versus $0$~MeV difference in $R_n$ at each
-    stage, on the same events, with job-level uncertainties.}
+    stage, on the same events, with job-level uncertainties.  The first
+    row is a polar-angle selection and the rest are detector-level, so
+    the step between rows 1 and 2 folds an acceptance change together
+    with transport and is not a transport effect alone.}
   \label{tab:ladder}
   \begin{ruledtabular}
   \begin{tabular}{lrr}
     stage & $90/0 - 1$ & $\sigma$ \\
     \hline
-    primary neutrons in the angular band & $+2.65 \pm 0.54\%$ & 4.93 \\
+    primary neutrons, polar-angle band & $+2.65 \pm 0.54\%$ & 4.93 \\
     neutrons reaching the detector       & $+3.67 \pm 2.05\%$ & 1.79 \\
     selected clusters, true energy       & $+3.32 \pm 2.94\%$ & 1.13 \\
     selected clusters, reconstructed energy & $-3.04 \pm 2.30\%$ & 1.32 \\
@@ -1108,6 +1133,15 @@ worth, which means the estimator responds differently to the different
 samples.  It does: in the bin where the numerator of $R_n$ lives, the
 energy is reconstructed $30.7 \pm 8.6$~MeV lower in the $90$~MeV sample
 than in the $0$~MeV one.
+
+This does not contradict the closure uniformity of
+Sec.~\ref{sec:closure}.  Closure is a yield-integrated quantity: it
+compares how many neutrons the pipeline returns with how many it should,
+and a response that is uniform in normalisation across samples can still
+tilt in energy.  Hardness is a spectral-shape quantity and is sensitive
+to exactly that tilt.  The two measurements are consistent, and together
+they locate the defect in the energy coordinate rather than in the
+selection.
 
 \subsection{Normalisation of the time-of-flight baseline}
 
@@ -1152,8 +1186,9 @@ direction the truth-level scan established.
 Retraining on the three samples pooled, split by generation job, with
 one normalisation fitted on the training split, improves the energy
 estimate where the measurement needs it
-(Fig.~\ref{fig:energyperf}).  The linearity, $+50$ to $+60\%$ across the
-range for the earlier checkpoint, passes through zero near $2.4$~GeV and
+(Fig.~\ref{fig:energyperf}; all numbers on the \SMASH{} test split).
+The linearity, $+50$ to $+60\%$ across the range for the earlier
+checkpoint on this sample, passes through zero near $2.4$~GeV and
 stays within $10\%$ over $1.4$--$2.6$~GeV; the resolution falls from
 $26$--$34\%$ to $15$--$20\%$.  Both remain short of the $10\%$
 benchmarks of Ref.~\cite{Morozov2024HGND}, and the run was stopped after
@@ -1333,9 +1368,11 @@ We have presented a graph-neural-network neutron reconstruction for the
 detector could say about the nuclear symmetry potential.
 
 At MC-truth level the answer is specific.  Neutron and proton spectral
-hardness in the detector acceptance respond to $\Usym{}$ with opposite
+hardness in the polar-angle band respond to $\Usym{}$ with opposite
 sign, $+4.27\%$ and $-5.84\%$ between $0$ and $90$~MeV, so their double
-ratio moves by $10.73\%$.  The response is ordered at $0$, $18$ and
+ratio moves by $10.73\%$.  These are band results; the front-face
+acceptance of Sec.~\ref{sec:acceptance} covers $12.9\%$ of that solid
+angle, and re-reducing the full production in it is outstanding.  The response is ordered at $0$, $18$ and
 $90$~MeV, linear to within $1.6\sigma$, and present in all ten
 centrality classes.  The $n/p$ yield ratio does not respond and is
 excluded.  These statements rest on impact-parameter reweighting and on
