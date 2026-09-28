@@ -64,9 +64,27 @@ DATA_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_smash_${TRAIN_DS}_${TAG}"
 if [ -z "$CKPT_DIR" ]; then
     CKPT_DIR="$SCRATCH/hgnd/checkpoints/${TRAIN_DS}_${TAG}_h${HIDDEN}l${LAYERS}_${EPOCHS}ep_${SLURM_JOB_ID:-local}"
 fi
+# Auto-detect where the previous submission stopped, so a chain of jobs
+# sharing one CKPT_DIR continues without anyone tracking epoch numbers.
+if [ "$START_EPOCH" -eq 0 ] && [ -f "$CKPT_DIR/optim.pt" ]; then
+    START_EPOCH=$(python - "$CKPT_DIR/optim.pt" <<'EOF'
+import sys, torch
+try:
+    print(int(torch.load(sys.argv[1], map_location="cpu",
+                         weights_only=False).get("next_epoch", 0)))
+except Exception:
+    print(0)
+EOF
+)
+    echo "auto-resume: optim.pt reports next_epoch=$START_EPOCH"
+fi
 # Resuming without an explicit INIT_FROM picks up the last epoch's weights.
 if [ "$START_EPOCH" -gt 0 ] && [ -z "$INIT_FROM" ] && [ -f "$CKPT_DIR/last.pt" ]; then
     INIT_FROM="$CKPT_DIR/last.pt"
+fi
+if [ "$START_EPOCH" -ge "$EPOCHS" ]; then
+    echo "already at epoch $START_EPOCH of $EPOCHS — nothing to do"
+    exit 0
 fi
 
 echo "host:   $(hostname)   gpu: ${CUDA_VISIBLE_DEVICES:-none}"
