@@ -72,8 +72,8 @@ def main() -> int:
 
     model, spec = model_registry.get(ckpt.arch_name, dataset, **ckpt.arch_kwargs)
     model.load_state_dict(ckpt.state_dict)
-    plan = device_mod.plan_for(model, args.device,
-                               cpu_pinned=spec.default_cpu_pinned or None)
+    plan = device_mod.plan_for_spec(model, args.device,
+                                    spec.default_cpu_pinned)
     device_mod.to_device(model, plan)
 
     if args.split == 'test':

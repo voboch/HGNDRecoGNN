@@ -77,6 +77,22 @@ class DeviceMap:
         return self.main
 
 
+def plan_for_spec(model: nn.Module, device: str | torch.device | None,
+                  spec_pinned: Iterable[str] | None) -> DeviceMap:
+    """Apply a model's CPU-pinning list only where it is needed.
+
+    `default_cpu_pinned` exists because DynamicEdgeConv has no MPS kernel. It
+    is not a CUDA workaround: honouring it there leaves the GPU idle while the
+    most expensive layer runs on CPU, and forces the hit features to be
+    detached to cross the device boundary. On anything other than MPS the model
+    stays in one place.
+    """
+    dev = resolve(device)
+    if dev.type == 'mps' and spec_pinned:
+        return DeviceMap(main=dev, cpu_pinned=tuple(spec_pinned))
+    return DeviceMap(main=dev, cpu_pinned=())
+
+
 def plan_for(model: nn.Module, device: str | torch.device | None = None,
              cpu_pinned: Iterable[str] | None = None) -> DeviceMap:
     """Build a `DeviceMap` for `model` on `device`.

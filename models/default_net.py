@@ -103,18 +103,37 @@ class Net(torch.nn.Module):
         ])
 
     def to(self, device):
-        """Move model to `device`, then pin `*_cpu` submodules back to CPU.
+        """Move the model to `device`, pinning the cluster branch only on MPS.
 
-        Preserved from v1 for behavioral compatibility. Phase 2 will replace
-        this with `HGNDRecoGNN.device.to_device(model, plan)` so CUDA can
-        keep the cluster branch on GPU.
+        DynamicEdgeConv has no MPS kernel, so on Apple silicon the cluster
+        branch has to run on CPU.  That routing was previously applied on every
+        device, with two costs on CUDA: the GPU sat idle while the most
+        expensive layer ran on CPU, which on a shared cluster gets the job
+        reaped by the idle-GPU watchdog, and the hit features had to be
+        detached to cross the device boundary, so the score and energy heads
+        could not shape the representation they consume.
+
+        On CUDA and CPU the branch now stays with the rest of the model. The
+        `_cpu` suffixes are kept because they are baked into existing
+        checkpoints' state_dict keys.
         """
         super().to(device)
-        self.cluster_conv_cpu.cpu()
-        self.clclass_out_cpu.cpu()
-        self.clenergy_out_cpu.cpu()
-        self.cl_edge_out_cpu.cpu()
+        if torch.device(device).type == 'mps':
+            self.cluster_conv_cpu.cpu()
+            self.clclass_out_cpu.cpu()
+            self.clenergy_out_cpu.cpu()
+            self.cl_edge_out_cpu.cpu()
         return self
+
+    def _cluster_split_from(self, x: torch.Tensor) -> bool:
+        """Whether the cluster branch sits on a different device from the hits.
+
+        Compared against the hit features rather than tested for `cpu`, so a
+        CPU-only run keeps the gradient: there is no device boundary to cross
+        there, and detaching would preserve the MPS workaround where it costs
+        something and buys nothing.
+        """
+        return next(self.cluster_conv_cpu.parameters()).device != x.device
 
     def forward(self, x, edge_index, edge_index_cl, clusters, batch):
         x = self.convs[0](x, edge_index).relu()
@@ -132,18 +151,25 @@ class Net(torch.nn.Module):
         x = self.convs[-1](x, edge_index)
         x = x.relu()
 
-        # Cluster branch. avg_pool_x is CPU-friendly; DynamicEdgeConv on MPS
-        # is broken so we route through CPU. This detaches from the hit
-        # branch's gradient — the cluster branch trains via its own losses.
-        cl_x, cl_batch = avg_pool_x(clusters.cpu(),
-                                    x.detach().cpu(),
-                                    batch.cpu())
+        # Cluster branch. When it is pinned to CPU (MPS only, since
+        # DynamicEdgeConv has no MPS kernel) the hit features must be detached
+        # to cross the device boundary, and the branch then trains only on its
+        # own losses. When it shares the device with the hit branch the
+        # gradient flows through, so the score and energy heads shape the hit
+        # representation they consume — which is what "end-to-end" should mean.
+        _split = self._cluster_split_from(x)
+        if _split:
+            cl_x, cl_batch = avg_pool_x(clusters.cpu(),
+                                        x.detach().cpu(),
+                                        batch.cpu())
+        else:
+            cl_x, cl_batch = avg_pool_x(clusters, x, batch)
         cl_x = self.cluster_conv_cpu(cl_x, cl_batch)
 
         cl_cl = self.clclass_out_cpu(cl_x).sigmoid()
         cl_e  = self.clenergy_out_cpu(cl_x)
 
-        row_cl, col_cl = edge_index_cl.cpu()
+        row_cl, col_cl = edge_index_cl.cpu() if _split else edge_index_cl
         cl_connection = self.cl_edge_out_cpu(
             torch.cat([cl_x[row_cl], cl_x[col_cl]], dim=-1)
         )

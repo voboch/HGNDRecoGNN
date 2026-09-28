@@ -121,8 +121,8 @@ def main() -> int:
     model, spec = model_registry.get(args.model, dataset, **arch_kwargs)
     print(f'Model: {args.model} — {spec.description}')
 
-    plan = device_mod.plan_for(model, args.device,
-                               cpu_pinned=spec.default_cpu_pinned or None)
+    plan = device_mod.plan_for_spec(model, args.device,
+                                    spec.default_cpu_pinned)
     device_mod.to_device(model, plan)
     print(device_mod.summarize(plan))
     print(f'Params: {sum(p.numel() for p in model.parameters()):,}')
