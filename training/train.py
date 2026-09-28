@@ -35,6 +35,7 @@ class TrainConfig:
 
     # ── Optimizer / schedule ─────────────────────────────────────────────
     epochs: int = 20
+    start_epoch: int = 0
     lr: float = 1e-3
     weight_decay: float = 1e-5
     scheduler_milestones: tuple[int, ...] = (10, 15, 25)
@@ -216,6 +217,27 @@ def fit(
     )
 
     ckpt_path = os.path.join(cfg.checkpoint_dir, cfg.checkpoint_name)
+
+    # Resuming. Long runs on a shared cluster do not always reach their
+    # walltime -- two 20-epoch jobs here were cancelled by the scheduler at
+    # about three and a half hours -- so a run has to be continuable across
+    # several submissions. The optimizer and scheduler state live beside the
+    # checkpoint rather than inside it, which keeps the checkpoint format
+    # unchanged and loadable by every existing consumer.
+    start_epoch = int(getattr(cfg, 'start_epoch', 0) or 0)
+    opt_path = os.path.join(cfg.checkpoint_dir, 'optim.pt')
+    if start_epoch and os.path.exists(opt_path):
+        blob = torch.load(opt_path, map_location='cpu', weights_only=False)
+        optimizer.load_state_dict(blob['optimizer'])
+        scheduler.load_state_dict(blob['scheduler'])
+        min_loss = float(blob.get('min_loss', min_loss))
+        best_epoch = int(blob.get('best_epoch', best_epoch))
+        if cfg.verbose:
+            print(f'fit(): resumed optimizer and schedule from {opt_path} '
+                  f'at epoch {start_epoch} (lr {scheduler.get_last_lr()[0]:.2e})')
+    elif start_epoch and cfg.verbose:
+        print(f'fit(): starting at epoch {start_epoch} with a fresh optimizer; '
+              f'no {opt_path} found, so Adam moments restart')
     train_history: list[float] = []
     val_history: list[float] = []
     min_loss = float('inf')
@@ -226,7 +248,7 @@ def fit(
               f'epochs={cfg.epochs}  batch={cfg.batch_size}  lr={cfg.lr}')
 
     t0 = time.time()
-    for epoch in range(cfg.epochs):
+    for epoch in range(start_epoch, cfg.epochs):
         train_loss = train_epoch(
             model, train_loader, optimizer, plan, cfg.loss_weights,
             forward_fn=forward_fn, loss_fn=loss_fn,
@@ -254,6 +276,24 @@ def fit(
                 epoch=epoch,
                 metrics={'train_loss': train_loss, 'val_loss': val_loss},
             )
+
+        # Written every epoch, not only on improvement: a job cancelled
+        # mid-run must be resumable from where it stopped, which needs the
+        # latest optimizer state and the next epoch index, not the best one.
+        torch.save({'optimizer': optimizer.state_dict(),
+                    'scheduler': scheduler.state_dict(),
+                    'next_epoch': epoch + 1,
+                    'min_loss': min_loss,
+                    'best_epoch': best_epoch},
+                   os.path.join(cfg.checkpoint_dir, 'optim.pt.tmp'))
+        os.replace(os.path.join(cfg.checkpoint_dir, 'optim.pt.tmp'),
+                   os.path.join(cfg.checkpoint_dir, 'optim.pt'))
+        save_checkpoint(
+            os.path.join(cfg.checkpoint_dir, 'last.pt'), model,
+            arch_name=cfg.arch_name, arch_kwargs=cfg.arch_kwargs,
+            epoch=epoch,
+            metrics={'train_loss': train_loss, 'val_loss': val_loss},
+        )
 
         if cfg.verbose:
             lr_now = optimizer.param_groups[0]['lr']

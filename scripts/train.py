@@ -48,6 +48,14 @@ def main() -> int:
                         help='Cap loaded shards. None = all.')
     parser.add_argument('--batch-size', type=int, default=512)
     parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--init-from', default=None,
+                        help='Checkpoint to load weights from before training. '
+                             'Use with --start-epoch to continue a run that the '
+                             'scheduler cancelled.')
+    parser.add_argument('--start-epoch', type=int, default=0,
+                        help='First epoch index. Continues the LR schedule and, '
+                             'if checkpoint-dir/optim.pt exists, the optimizer '
+                             'state.')
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--weight-decay', type=float, default=1e-5)
     parser.add_argument('--seed', type=int, default=42)
@@ -121,6 +129,18 @@ def main() -> int:
     model, spec = model_registry.get(args.model, dataset, **arch_kwargs)
     print(f'Model: {args.model} — {spec.description}')
 
+    if args.init_from:
+        from HGNDRecoGNN.training import load_checkpoint
+        prev = load_checkpoint(args.init_from)
+        missing, unexpected = model.load_state_dict(prev.state_dict, strict=False)
+        if missing or unexpected:
+            raise SystemExit(
+                f'--init-from {args.init_from}: state_dict does not match this '
+                f'architecture ({len(missing)} missing, {len(unexpected)} '
+                f'unexpected keys). Check --hidden/--num-layers.')
+        print(f'Initialised from {args.init_from} '
+              f'(epoch {prev.epoch}, metrics {prev.metrics})')
+
     plan = device_mod.plan_for_spec(model, args.device,
                                     spec.default_cpu_pinned)
     device_mod.to_device(model, plan)
@@ -133,6 +153,7 @@ def main() -> int:
         seed=args.seed,
         train_frac=args.train_frac,
         epochs=args.epochs,
+        start_epoch=args.start_epoch,
         lr=args.lr,
         weight_decay=args.weight_decay,
         device=args.device,
