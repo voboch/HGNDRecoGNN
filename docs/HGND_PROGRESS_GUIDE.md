@@ -391,6 +391,50 @@ No conclusion about the reconstruction can be drawn from this split.  Sizing the
 test set is a prerequisite for the P1 gates to be testable at all, and it should
 be added to P1 alongside training to convergence.
 
+## The cluster branch was running on CPU, and detached (2026-09-28)
+
+Training job 4356776 was `CANCELLED by 0` after 3 h 37 m on an A100 — the
+admin idle-GPU reaper, the same kill this project saw in August.  The cause was
+in the job's own log:
+
+    cpu_pinned=[cluster_conv_cpu, clclass_out_cpu, clenergy_out_cpu, cl_edge_out_cpu]
+
+Four layers, including `DynamicEdgeConv` with `k=100`, ran on CPU while the GPU
+idled.
+
+**It is an MPS workaround that was being applied on CUDA.**  `default_net.py`
+line 6 states that `DynamicEdgeConv` has no MPS kernel and that the `_cpu`
+suffixes exist only for `state_dict` stability.  `device.plan_for` auto-pins on
+MPS alone, but `train.py` and `evaluate.py` passed the model's
+`default_cpu_pinned` list explicitly, and `Net.to()` re-pinned on every device.
+
+**The gradient cost was larger than the throughput cost.**  Routing the cluster
+branch through CPU forced
+
+    avg_pool_x(clusters.cpu(), x.detach().cpu(), batch.cpu())
+
+so the neutron-score and energy heads could not shape the hit representation
+they consume.  On a synthetic forward/backward, **18 hit-branch tensors now
+receive gradient from the energy head where none did before**.  This is a
+candidate explanation for energy resolution plateauing at 15–20 % against the
+< 10 % reference: the regressor was training on frozen features.
+
+It also means the manuscript's description of the network as trained end-to-end
+was not accurate for the cluster branch, and the architecture section needs a
+sentence when the retrained numbers land.
+
+**Fixed.**  `Net.to()` pins only on MPS; `plan_for_spec` applies a model's
+pinning list only where it is needed; and the detach is decided by comparing the
+cluster branch's device against the hit features rather than testing for `cpu`,
+so a CPU-only run keeps its gradient too.  `state_dict` keys are unchanged, so
+existing checkpoints still load.
+
+**Rule going forward:** a device workaround must be conditioned on the device
+that needs it.  Check GPU utilisation on the first long job after any change to
+model placement — a job that trains correctly but leaves the GPU idle will be
+killed on a shared cluster, and here it was also training a different model from
+the one intended.
+
 ## Superseded or unsafe claims
 
 Do not quote the following as current conclusions:
@@ -411,6 +455,9 @@ Do not quote the following as current conclusions:
   +10.73 %.
 - The sample-dependent energy response is wholly a property of the network.  Two
   thirds of it came from standardising the `eToF` baseline per dataset.
+- The network is trained end to end.  The cluster branch was detached from the
+  hit branch on every device until 2026-09-28; checkpoints from before then were
+  trained with the score and energy heads unable to shape their own inputs.
 - A reconstructed `R_n` with a sub-1 GeV denominator can be recovered by
   efficiency correction or unfolding.
 
