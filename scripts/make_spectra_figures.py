@@ -132,6 +132,74 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
     return payload
 
 
+def fig_np_relation(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
+    """Where in energy the isovector signal lives, and what that implies.
+
+    The hardness window is a choice of where to split the spectrum, so the
+    quantity that should drive it is the relation between the two species as a
+    function of energy, not a round number.  Left: n/p against energy for each
+    sample.  Right: the same relative to the zero-potential sample, which is the
+    isovector signal itself and shows which energies carry it.
+    """
+    sp = truth_spectra(hist_dir)
+    edges = sp[REF]["edges"]
+    ctr = np.sqrt(np.maximum(edges[:-1], 1e-12) * edges[1:])
+    ref_counts = sp[REF]["per_job"].sum(axis=0)
+    keep = ((ctr > emin) & (ctr < emax)
+            & (ref_counts[0] >= min_counts) & (ref_counts[1] >= min_counts))
+
+    fig, (a, b) = plt.subplots(1, 2, figsize=(FULL, FULL / 2.6),
+                               gridspec_kw={"wspace": 0.26})
+    npr, npe = {}, {}
+    for tag, st in DATASETS.items():
+        if tag not in sp:
+            continue
+        pj = sp[tag]["per_job"]
+        n_job = len(pj)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            per = pj[:, 0, :] / np.where(pj[:, 1, :] > 0, pj[:, 1, :], np.nan)
+        npr[tag] = np.nanmean(per, axis=0)
+        idx = rng.integers(0, n_job, (400, n_job))
+        npe[tag] = np.nanmean(per[idx], axis=1).std(axis=0, ddof=1)
+        a.errorbar(ctr[keep], npr[tag][keep], yerr=npe[tag][keep], color=st["color"],
+                   ls=st["ls"], marker=st["marker"], ms=2.6, mfc="none", mew=0.7,
+                   elinewidth=0.6, capsize=1.2, label=st["label"])
+    a.set_xscale("log")
+    a.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+    a.set_ylabel(r"$n/p$  in the HGND acceptance")
+    a.legend(loc="upper left", fontsize=6.4)
+    a.set_title("nucleon ratio against energy", fontsize=7.5)
+    v = np.concatenate([(npr[t] + npe[t])[keep] for t in npr]
+                       + [(npr[t] - npe[t])[keep] for t in npr])
+    v = v[np.isfinite(v)]
+    pad = (v.max() - v.min()) * 0.10
+    a.set_ylim(v.min() - pad, v.max() + pad); a.set_xlim(emin, emax)
+
+    fin = []
+    for tag, st in DATASETS.items():
+        if tag not in npr or tag == REF:
+            continue
+        r = npr[tag] / npr[REF]
+        re = r * np.sqrt((npe[tag] / npr[tag]) ** 2 + (npe[REF] / npr[REF]) ** 2)
+        b.errorbar(ctr[keep], r[keep], yerr=re[keep], color=st["color"], ls=st["ls"],
+                   marker=st["marker"], ms=2.6, mfc="none", mew=0.7,
+                   elinewidth=0.6, capsize=1.2, label=st["label"])
+        fin += [x for x in np.concatenate([(r + re)[keep], (r - re)[keep]])
+                if np.isfinite(x)]
+    b.axhline(1.0, color="#2b2b2b", lw=0.8)
+    b.set_xscale("log")
+    b.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+    b.set_ylabel(r"$(n/p)$ relative to $S_{\mathrm{pot}}=0$")
+    b.set_title("the isovector signal, against energy", fontsize=7.5)
+    m = max(abs(np.array(fin) - 1).max(), 0.01) * 1.15
+    b.set_ylim(1 - m, 1 + m); b.set_xlim(emin, emax)
+    for ax_, nm in ((a, "npr_a"), (b, "npr_b")):
+        assert_contained(ax_, nm)
+    save(fig, out_dir, "fig_np_spectra_relation")
+    return {"e_centres": ctr[keep].tolist(),
+            "np_ratio": {t: npr[t][keep].tolist() for t in npr}}
+
+
 def reco_spectra(pred_dir, purity=0.7):
     from reco_experiment import purity_locked_threshold
     out = {}
@@ -231,6 +299,7 @@ def main():
     out = Path(a.output_dir); out.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(20260929)
     meta = {"truth": fig_truth(a.truth_hist_dir, out, rng),
+            "np_relation": fig_np_relation(a.truth_hist_dir, out, rng),
             "reco": fig_reco(a.pred_dir, out, rng)}
     json.dump(meta, open(out / "spectra_figure_data.json", "w"), indent=1)
     print("spectra figures complete")

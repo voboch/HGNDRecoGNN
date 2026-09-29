@@ -39,7 +39,7 @@ only an inclusive average.
 | Conventional reconstructed $R_n$ | Denominator below 1 GeV has $\sim2\%$ efficiency | Redefine the reconstructed window inside the efficiency plateau. |
 | Detector-safe reconstructed $\widehat R_n$ | $-0.39\%\pm2.86\%$ for 90/0 | Current reconstruction is statistically compatible with no response. |
 | Modified $1$--$2$ GeV upper-tail hardness | $+1.49\%\pm1.39\%$ for 90/0 | Best ordered in-band ratio, but exploratory and only $1.07\sigma$. |
-| Optimised truth window $(R_{\mathrm{thr}},\delta)$ | $+4.45\%\pm0.94\%$ held out | Broad optimum near 2.2 GeV; agrees with the conventional window. |
+| Optimised truth window $(R_{\mathrm{thr}},\delta)$ | $+4.45\%\pm0.94\%$ held out | $R_{\mathrm{thr}}=2.2$, $\delta=0.1$, on a ridge spanning 1.5–2.6 GeV that tracks where the isovector signal crosses unity (Figs. 9, 10). |
 | Optimised reconstructed window | 0 of 60 admissible windows order | No window in the plateau separates the samples with this checkpoint. |
 
 ## Neutron-to-proton ratio feasibility
@@ -468,22 +468,62 @@ the truth scan established, and — for reconstructed energy — if both edges l
 above the efficiency turn-on. The optimum is selected on development units and
 one window is carried to the held-out units.
 
-At truth level the optimum is broad, with the eight best windows spanning
-$R_{\mathrm{thr}}=1.9$–$2.4$. The held-out result shows what hand-picking
-conceals: the development estimate is $+6.73\%$ at $9.8\sigma$, and the same
-window on held-out jobs gives $+4.45\%\pm0.94\%$ at $4.7\sigma$. That the
-optimised window lands where the conventional one did, $+4.45\%$ against
-$+4.52\%$, is reassurance about the conventional choice rather than a new
-result.
+Figure 9 shows the scanned plane rather than only its argmax, so that the
+claim of a broad optimum can be checked and the trade-off can be seen.
 
-At reconstructed level the search returns nothing. Of sixty admissible windows
-inside the plateau, **none orders the three samples**. The strongest
-positive-but-unordered window gives $+0.71\%$ at $0.44\sigma$. The optimiser
-reports this rather than returning the best-looking row, because sorting by a
-figure of merit that is zero everywhere would hand back an arbitrary window and
-dress a null up as a measurement. This is a stronger statement than the earlier
-single-window null: it is not that the chosen window failed, but that no window
-in the validated region succeeds with this checkpoint.
+![Response and significance of the hardness ratio over the window centre and half-gap, for truth and for reconstructed energy.](../results/update_note/fig_hardness_window_surface.png)
+
+*Figure 9. The hardness-window scan. Left column: the 90/0 response, diverging
+colour centred on zero. Right column: its significance, sequential colour. Top
+row truth, bottom row reconstructed energy. Grey marks windows that do not order
+the three samples; the star marks the window selected on development units.*
+
+The two truth panels do not peak in the same place, and that is the substance of
+the choice. The response grows monotonically towards large $R_{\mathrm{thr}}$
+and large $\delta$, reaching about $+17\%$ in the far corner, because a harder
+high band and a wider gap both increase the contrast. The significance peaks
+instead in a broad ridge spanning roughly $R_{\mathrm{thr}}=1.5$–$2.6$ and
+$\delta=0$–$0.6$, because the far corner buys its larger response with far
+fewer counts. The optimiser maximises significance, so it selects inside the
+ridge rather than at the largest response, and the ridge is wide enough that the
+exact cell is not important — moving the centre by $\pm0.3$ GeV changes the
+significance by less than a tenth of its value.
+
+The physical reason the ridge sits where it does is in Figure 10. The
+isovector signal — $n/p$ measured against the zero-potential sample — is
+suppressed by a few per cent between 0.2 and 1.5 GeV, crosses unity near
+1.8–2.0 GeV, and rises steeply above it to about $+20\%$ by 4 GeV. A window
+centred just above that crossing puts a suppressed region in the denominator and
+an enhanced region in the numerator, which is where the contrast per unit
+statistics is greatest. The optimum is therefore not an arbitrary round number;
+it tracks the energy at which the two species exchange their ordering.
+
+![Nucleon ratio against energy for the three samples, and the same relative to the zero-potential sample.](../results/update_note/fig_np_spectra_relation.png)
+
+*Figure 10. Left: $n/p$ against kinetic energy inside the front-face acceptance
+for the three samples. Right: the same relative to $U_{\mathrm{sym}}=0$, which
+is the isovector signal itself. Job-level bootstrap, 400 resamples; bins with
+fewer than 500 reference entries of either species are suppressed.*
+
+Numerically, the optimum is broad, with the eight best windows spanning
+$R_{\mathrm{thr}}=1.9$–$2.4$, and the selected point is
+$R_{\mathrm{thr}}=2.2$, $\delta=0.1$. The held-out result shows what
+hand-picking conceals: the development estimate is $+6.73\%$ at $9.8\sigma$,
+and the same window on held-out jobs gives $+4.45\%\pm0.94\%$ at $4.7\sigma$.
+That the optimised window lands where the conventional one did, $+4.45\%$
+against $+4.52\%$, is reassurance about the conventional choice rather than a
+new result.
+
+At reconstructed level the search returns nothing, which the bottom row of
+Figure 9 shows directly: of sixty admissible windows inside the plateau, **none
+orders the three samples**, and the response map has no coherent structure at
+all. The strongest positive-but-unordered window gives $+0.71\%$ at
+$0.44\sigma$. The optimiser reports this rather than returning the best-looking
+row, because sorting by a figure of merit that is zero everywhere would hand
+back an arbitrary window and dress a null up as a measurement. This is a
+stronger statement than the earlier single-window null: it is not that the
+chosen window failed, but that no window in the validated region succeeds with
+this checkpoint.
 
 The common feature normalisation is mandatory. Fitting a separate scaler in
 each sample changed the scale of the time-of-flight energy feature by 1.9% and
@@ -558,5 +598,7 @@ events per Spot sample and is recorded in
 `scripts/make_spectra_figures.py`; the window search is
 `scripts/hardness_threshold_opt.py`, whose full scan surfaces are stored in
 `results/update_note/hardness_opt_truth.json` and
-`results/update_note/hardness_opt_reco.json` so that the optimum can be checked
-to be broad rather than a spike.
+`results/update_note/hardness_opt_reco.json`, and whose surfaces are drawn by
+`scripts/plot_hardness_surface.py`. Per the convention recorded in `AGENTS.md`,
+every fixed parameter in this note is accompanied by the objective plotted over
+that parameter and by a statement of what it trades off.
