@@ -226,6 +226,10 @@ def fit(
     # unchanged and loadable by every existing consumer.
     start_epoch = int(getattr(cfg, 'start_epoch', 0) or 0)
     opt_path = os.path.join(cfg.checkpoint_dir, 'optim.pt')
+    train_history: list[float] = []
+    val_history: list[float] = []
+    min_loss = float('inf')
+    best_epoch = -1
     if start_epoch and os.path.exists(opt_path):
         blob = torch.load(opt_path, map_location='cpu', weights_only=False)
         optimizer.load_state_dict(blob['optimizer'])
@@ -238,10 +242,6 @@ def fit(
     elif start_epoch and cfg.verbose:
         print(f'fit(): starting at epoch {start_epoch} with a fresh optimizer; '
               f'no {opt_path} found, so Adam moments restart')
-    train_history: list[float] = []
-    val_history: list[float] = []
-    min_loss = float('inf')
-    best_epoch = -1
 
     if cfg.verbose:
         print(f'fit(): {device_mod.summarize(plan)}  '
