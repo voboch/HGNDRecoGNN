@@ -57,9 +57,12 @@ Uncertainties resample production jobs.
 
 *Figure 0. Primary neutrons (left) and protons (right) inside the front-face
 acceptance, for the three symmetry-potential samples, with the ratio to
-$U_{\mathrm{sym}}=0$ below each panel and shared ratio limits. Bins with fewer
-than 500 entries in the reference sample are suppressed. Job-level bootstrap,
-400 resamples.*
+$U_{\mathrm{sym}}=0$ below each panel and shared ratio limits. The energy axis
+is linear: the hardness window is searched between 1 and 3 GeV, shaded here, and
+a logarithmic axis would compress that range into a third of the panel. Bins
+with fewer than 500 entries in the reference sample are suppressed, and the
+display starts at 0.15 GeV below which the log-spaced source bins are narrower
+than a marker. Job-level bootstrap, 400 resamples.*
 
 The isovector structure is visible directly rather than only through an
 integrated number. Above roughly 2 GeV the neutron ratio rises to about 1.15
@@ -318,7 +321,7 @@ Uncertainties are event-level rather than job-level: the source file list of the
 v3 caches cannot be reconstructed, their graph counts exceeding the row space of
 the directory they appear to derive from, so the generation-job label is not
 available for these predictions. Bins with fewer than 300 reference entries are
-suppressed.*
+suppressed. The energy axis is linear for the reason given at Figure 0.*
 
 Two features matter for the observable definition. The reconstructed spectrum
 is confined to roughly 0.4–4 GeV, far narrower than the truth spectrum, which
@@ -502,8 +505,10 @@ it tracks the energy at which the two species exchange their ordering.
 
 *Figure 10. Left: $n/p$ against kinetic energy inside the front-face acceptance
 for the three samples. Right: the same relative to $U_{\mathrm{sym}}=0$, which
-is the isovector signal itself. Job-level bootstrap, 400 resamples; bins with
-fewer than 500 reference entries of either species are suppressed.*
+is the isovector signal itself. The shaded band is the range over which
+$R_{\mathrm{thr}}$ is searched; the signal crosses unity at roughly 1.75 GeV,
+inside it. Job-level bootstrap, 400 resamples; bins with fewer than 500
+reference entries of either species are suppressed.*
 
 Numerically, the optimum is broad, with the eight best windows spanning
 $R_{\mathrm{thr}}=1.9$–$2.4$, and the selected point is

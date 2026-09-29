@@ -25,6 +25,23 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from plot_b_full import apply_style, assert_contained, save, FULL, DATASETS, REF
 
+# The energy axis is linear. A log axis is right when the interesting structure
+# spans decades; here the hardness window is searched over roughly 1 to 3 GeV,
+# and a log axis compresses exactly that range into a third of the panel while
+# spending the rest on a sub-GeV region no threshold is placed in. The vertical
+# band marks the searched range so the spectra can be read against the choice
+# they justify. The y axis stays logarithmic where the yield spans more than
+# two decades, per docs/plotting_style_protocol.md section 5.
+SCAN_LO, SCAN_HI = 1.0, 3.0
+
+
+def mark_scan_range(ax, label=True, y=0.04, va="bottom"):
+    ax.axvspan(SCAN_LO, SCAN_HI, color="#2b2b2b", alpha=0.07, lw=0, zorder=0)
+    if label:
+        ax.text(0.5 * (SCAN_LO + SCAN_HI), y, r"$R_{\mathrm{thr}}$ searched",
+                transform=ax.get_xaxis_transform(), ha="center", va=va,
+                fontsize=6.0, color="#69727C")
+
 
 def truth_spectra(hist_dir):
     """Per-job (species, Ekin) histograms inside the front-face acceptance."""
@@ -57,7 +74,7 @@ def _band(per_job, edges, rng, n_boot=400):
     return mean, boot.std(axis=0, ddof=1)
 
 
-def fig_truth(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
+def fig_truth(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500):
     sp = truth_spectra(hist_dir)
     if REF not in sp:
         raise SystemExit("truth spectra need the reference sample")
@@ -88,7 +105,9 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
                                 color=st["color"], ls=st["ls"], marker=st["marker"],
                                 ms=2.6, mfc="none", mew=0.7, elinewidth=0.6,
                                 capsize=1.2, label=st["label"])
-        ax[0, col].set_xscale("log"); ax[0, col].set_yscale("log")
+        ax[0, col].set_yscale("log")
+        # label only the panel without a legend in that corner
+        mark_scan_range(ax[0, col], label=(col == 1))
         ax[0, col].set_ylabel(r"$(1/N)\,\mathrm{d}N/\mathrm{d}E_{\mathrm{kin}}$  [GeV$^{-1}$]")
         ax[0, col].set_title(f"primary {name}, HGND front-face acceptance", fontsize=7)
         lo = np.concatenate([(dens[t] - err[t])[keep_s] for t in dens])
@@ -113,7 +132,7 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
                     if np.isfinite(v)]
             payload[f"{name}_{tag}_over_ref"] = r[keep_s].tolist()
         ax[1, col].axhline(1.0, color="#2b2b2b", lw=0.8)
-        ax[1, col].set_xscale("log")
+        mark_scan_range(ax[1, col], label=False)
         ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
         ax[1, col].set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
         ratio_span += fin
@@ -132,7 +151,7 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
     return payload
 
 
-def fig_np_relation(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500):
+def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500):
     """Where in energy the isovector signal lives, and what that implies.
 
     The hardness window is a choice of where to split the spectrum, so the
@@ -164,7 +183,7 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500)
         a.errorbar(ctr[keep], npr[tag][keep], yerr=npe[tag][keep], color=st["color"],
                    ls=st["ls"], marker=st["marker"], ms=2.6, mfc="none", mew=0.7,
                    elinewidth=0.6, capsize=1.2, label=st["label"])
-    a.set_xscale("log")
+    mark_scan_range(a, label=False)
     a.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
     a.set_ylabel(r"$n/p$  in the HGND acceptance")
     a.legend(loc="upper left", fontsize=6.4)
@@ -187,7 +206,7 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.05, emax=6.0, min_counts=500)
         fin += [x for x in np.concatenate([(r + re)[keep], (r - re)[keep]])
                 if np.isfinite(x)]
     b.axhline(1.0, color="#2b2b2b", lw=0.8)
-    b.set_xscale("log")
+    mark_scan_range(b)
     b.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
     b.set_ylabel(r"$(n/p)$ relative to $S_{\mathrm{pot}}=0$")
     b.set_title("the isovector signal, against energy", fontsize=7.5)
@@ -214,13 +233,13 @@ def reco_spectra(pred_dir, purity=0.7):
     return out
 
 
-def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=6.0, n_boot=300,
+def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
              min_counts=300):
     sp = reco_spectra(pred_dir)
     if REF not in sp:
         raise SystemExit("reco spectra need the reference sample")
-    edges = np.geomspace(emin, emax, 26)
-    ctr = np.sqrt(edges[:-1] * edges[1:]); wid = np.diff(edges)
+    edges = np.linspace(emin, emax, 26)
+    ctr = 0.5 * (edges[:-1] + edges[1:]); wid = np.diff(edges)
 
     ref_counts = np.histogram(sp[REF]["sel"].e_pred.to_numpy(), bins=edges)[0]
     keep = ref_counts >= min_counts
@@ -252,9 +271,10 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=6.0, n_boot=300,
         a.errorbar(ctr[ok], dens[tag][ok], yerr=err[tag][ok], color=st["color"],
                    ls=st["ls"], marker=st["marker"], ms=2.8, mfc="none", mew=0.7,
                    elinewidth=0.6, capsize=1.2, label=st["label"])
-    a.set_xscale("log"); a.set_yscale("log")
+    a.set_yscale("log")
     a.set_ylabel(r"clusters per event  [GeV$^{-1}$]")
-    b.set_xscale("log")
+    mark_scan_range(a)
+    mark_scan_range(b, label=False)
     a.set_title("reconstructed neutron candidates, purity-locked selection", fontsize=7)
     # limits must contain the error-bar ends, not only the points
     lo = np.concatenate([(dens[t] - err[t])[keep & (dens[t] > 0)] for t in dens])
@@ -280,7 +300,7 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=6.0, n_boot=300,
     b.set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
     m = max(abs(np.array(fin) - 1).max(), 0.02) * 1.15 if fin else 0.2
     b.set_ylim(1 - m, 1 + m)
-    lo_e, hi_e = ctr[keep].min() * 0.85, ctr[keep].max() * 1.18
+    lo_e = max(ctr[keep].min() - 0.15, 0.0); hi_e = ctr[keep].max() + 0.15
     a.set_xlim(lo_e, hi_e); b.set_xlim(lo_e, hi_e)
     for ax, nm in ((a, "reco_a"), (b, "reco_b")):
         assert_contained(ax, nm)
