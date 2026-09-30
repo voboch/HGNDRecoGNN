@@ -42,6 +42,67 @@ only an inclusive average.
 | Optimised truth window $(R_{\mathrm{thr}},\delta)$ | $+4.45\%\pm0.94\%$ held out | $R_{\mathrm{thr}}=2.2$, $\delta=0.1$, on a ridge spanning 1.5–2.6 GeV that tracks where the isovector signal crosses unity (Figs. 9, 10). |
 | Optimised reconstructed window | 0 of 60 admissible windows order | No window in the plateau separates the samples with this checkpoint. |
 
+## Statistical conventions
+
+Figure captions state whether the contents are **MC truth** or
+**reconstructed**. Truth quantities use information available only in
+simulation — the generated nucleon list, the true kinetic energy, the
+truth-matched cluster label — and set what a perfect detector would measure.
+Reconstructed quantities use only what the pipeline produces from hits. Mixing
+them silently in one figure is the error that made an earlier draft read as
+though the detector had measured the truth-level response, so the distinction is
+now carried in the caption of every figure.
+
+Every $\sigma$ quoted in this note is defined as follows, so that numbers from
+different sections are comparable.
+
+For a ratio observable formed from two counts in a sample $s$,
+
+$$
+R_s \;=\; \frac{N^{\mathrm{hi}}_s}{N^{\mathrm{lo}}_s},
+\qquad
+\Delta \;\equiv\; \frac{R_{90}}{R_{0}} - 1 ,
+$$
+
+where $\Delta$ is the response quoted as "90/0". Uncertainties come from a
+bootstrap over *resample units* rather than from counting errors. Let $u$ index
+the units of a sample and $b=1\ldots B$ the replicates. Each replicate draws
+$|u|$ units with replacement and recomputes the ratio from the resampled totals,
+
+$$
+R_s^{(b)}=\frac{\sum_{u\in\mathcal{B}^{(b)}_s} n^{\mathrm{hi}}_{u}}
+               {\sum_{u\in\mathcal{B}^{(b)}_s} n^{\mathrm{lo}}_{u}},
+\qquad
+\Delta^{(b)}=\frac{R_{90}^{(b)}}{R_{0}^{(b)}}-1 ,
+$$
+
+and the quoted uncertainty and significance are
+
+$$
+\sigma_\Delta=\sqrt{\frac{1}{B-1}\sum_b\left(\Delta^{(b)}-\overline{\Delta}\right)^2},
+\qquad
+\mathcal{S}=\frac{|\Delta|}{\sigma_\Delta}.
+$$
+
+The resample unit is the **generation job** wherever the job label is available.
+Events produced by one job are correlated in impact parameter: within a single
+sample, where no $U_{\mathrm{sym}}$ difference can exist, job means of $b$
+scatter at $\chi^2/\mathrm{ndf}=8.15$ for 194 degrees of freedom, and the
+job-level error on $\langle b\rangle$ is 2.85 times the per-event one. Treating
+events as independent therefore overstates significance by roughly that factor
+for any $b$-dependent quantity. Where the job label is unavailable — the
+reconstructed spectra, whose cache source list cannot be reconstructed — the
+unit is the event, and that is stated at the point of use.
+
+Significance is a statement about statistical reproducibility only. It carries
+no systematic uncertainty, and for a quantity selected by scanning it is
+inflated by the selection: the hardness window search below quotes both the
+development value and the held-out value for exactly this reason. The empirical
+floor against which a response should be judged is the **noise floor**, the
+median $|\Delta|$ obtained by splitting one sample's own jobs into two halves
+and running the identical procedure; a response comparable to that floor is not
+distinguishable from the method's own variance whatever its $\mathcal{S}$.
+
 ## Neutron-to-proton ratio feasibility
 
 ### The spectra behind the ratios
@@ -55,7 +116,7 @@ Uncertainties resample production jobs.
 
 ![Primary neutron and proton kinetic-energy spectra in the HGND front-face acceptance, with the ratio to the zero-potential sample below each.](../results/update_note/fig_truth_np_spectra.png)
 
-*Figure 0. Primary neutrons (left) and protons (right) inside the front-face
+*Figure 0 (MC truth). Primary neutrons (left) and protons (right) inside the front-face
 acceptance, for the three symmetry-potential samples, with the ratio to
 $U_{\mathrm{sym}}=0$ below each panel and shared ratio limits. The energy axis
 is linear: the hardness window is searched between 1 and 3 GeV, shaded here, and
@@ -82,7 +143,7 @@ with the large common spectral shape.
 
 ![Primary-nucleon n/p versus kinetic energy in two rapidity regions. All available production files are included. Statistical errors are evaluated with event clustering in the source reduction.](../results/update_note/fig01_np_global_ekin.png)
 
-*Figure 1. Primary-nucleon $n/p$ versus kinetic energy at midrapidity (left)
+*Figure 1 (MC truth). Primary-nucleon $n/p$ versus kinetic energy at midrapidity (left)
 and in full phase space (right). All available production files are included.
 Statistical errors are evaluated with event clustering in the source
 reduction.*
@@ -152,7 +213,7 @@ conserves all entries, and connects all populated points.
 
 ![Differential primary-nucleon n/p in the exact HGND front-face acceptance.](../results/update_note/fig02_np_hgnd_acceptance_ekin_v2.png)
 
-*Figure 2. Differential primary-nucleon $n/p$ in the exact HGND front-face
+*Figure 2 (MC truth). Differential primary-nucleon $n/p$ in the exact HGND front-face
 acceptance. The lower panel is the 90/0 double ratio. Error bars are from a
 400-replica generation-job bootstrap.*
 
@@ -188,13 +249,13 @@ outer samples for $R_n$, $R_p$, and $R_n/R_p$.
 
 ![Neutron spectral hardness globally and in the HGND front-face acceptance.](../results/update_note/fig03_neutron_hardness_global_vs_hgnd.png)
 
-*Figure 3. Neutron spectral hardness globally and in the HGND front-face
+*Figure 3 (MC truth). Neutron spectral hardness globally and in the HGND front-face
 acceptance. The response is localised in the forward detector window; the
 global spectrum changes little.*
 
 ![Observable comparison between yield n/p and spectral hardness.](../results/update_note/fig04_observable_feasibility_summary.png)
 
-*Figure 4. Observable comparison. Yield $n/p$ is small or null in the HGND
+*Figure 4 (MC truth, with reconstructed entries labelled in the panel). Observable comparison. Yield $n/p$ is small or null in the HGND
 acceptance, while the spectral-hardness observables show a monotonic isovector
 response.*
 
@@ -269,7 +330,7 @@ detector-folded quantities rather than efficiency-corrected spectra.
 
 ![Relative 90/0 response and separation power.](../results/update_note/fig06_observable_separation_power_v4.png)
 
-*Figure 5. Relative 90/0 response and separation power. Reconstruction
+*Figure 5 (MC truth and reconstructed, as labelled per entry). Relative 90/0 response and separation power. Reconstruction
 strongly reduces neutron-only sensitivity. All orange and purple points use
 one frozen neutron model and one score threshold.*
 
@@ -315,8 +376,12 @@ above the purity-locked score threshold, binned in predicted energy.
 
 ![Reconstructed neutron-candidate spectra for the three samples with the ratio to the zero-potential sample below.](../results/update_note/fig_reco_neutron_spectra.png)
 
-*Figure 8b. Reconstructed neutron candidates per event against predicted
-energy, purity-locked selection, with the ratio to $U_{\mathrm{sym}}=0$ below.
+*Figure 8b (reconstructed, not MC truth). Neutron candidates per event against
+predicted energy, purity-locked selection, with the ratio to
+$U_{\mathrm{sym}}=0$ below. Both axes are linear: once the low-statistics tails
+are masked the yield spans well under the factor of about fifty that would earn
+a logarithmic ordinate, and a log axis flattens the shape difference between the
+samples that the panel exists to show.
 Uncertainties are event-level rather than job-level: the source file list of the
 v3 caches cannot be reconstructed, their graph counts exceeding the row space of
 the directory they appear to derive from, so the generation-job label is not
@@ -342,7 +407,7 @@ alternative.
 
 ![Truth-level 90/0 response in ten impact-parameter classes after reweighting.](../results/update_note/fig05_hgnd_response_vs_centrality.png)
 
-*Figure 6. Truth-level 90/0 response in ten impact-parameter classes after
+*Figure 6 (MC truth). Truth-level 90/0 response in ten impact-parameter classes after
 reweighting. Every uncertainty is evaluated by resampling generation jobs and
 rebuilding the weights in each replica.*
 
@@ -367,18 +432,18 @@ energy. A single classifier working point is applied to all three samples. The
 resulting rank efficiencies and row-normalised multiplicity response are shown
 in Figures 7 and 8.
 
-![Conditional efficiency by neutron rank and true multiplicity.](../results/update_note/conditional_neutron_efficiency_v2.png)
+![Conditional efficiency by neutron rank and true multiplicity, MC truth.](../results/update_note/conditional_neutron_efficiency_v2.png)
 
-*Conditional efficiency of the first through fourth true-neutron clusters and
-efficiency versus true event multiplicity. Wilson intervals are statistical
+*Figure 7 (MC truth). Conditional efficiency of the first through fourth
+true-neutron clusters and efficiency versus true event multiplicity. Wilson intervals are statistical
 only. Points require at least 20 eligible events. The dashed curves require all
 neutrons through rank $k$ to be retained and therefore expose compounding
 losses in multi-neutron events.*
 
 ![Multiplicity response matrix.](../results/update_note/multiplicity_response.png)
 
-*Figure 8. Row-normalised response between reconstructable truth multiplicity
-and selected truth-matched multiplicity. The last bin includes overflow. Fake
+*Figure 8 (MC truth). Row-normalised response between reconstructable truth
+multiplicity and selected truth-matched multiplicity. The last bin includes overflow. Fake
 selected clusters are excluded here and are tracked separately through
 purity.*
 
@@ -394,6 +459,31 @@ former 90 MeV point at rank 5 (the horizontal axis is neutron rank, not energy)
 contained exactly one eligible event. It is retained in the CSV/JSON audit
 products but omitted from the physics figure by the predeclared
 $N_{\rm event}\geq20$ display requirement.
+
+Rank and multiplicity are only half of the response. The other half is the
+energy dependence, which the observable definition in the next section depends
+on directly, and which Figure 8c separates into its two stages.
+
+![Neutron efficiency against true kinetic energy, separated into detection and selection.](../results/update_note/fig_efficiency_vs_ekin.png)
+
+*Figure 8c (MC truth). Neutron efficiency against true kinetic energy. The step
+curve is detection, $P(\text{selected cluster}\mid\text{neutron reaches the
+front face})$, with the denominator taken from the surface-crossing export, so
+it folds cluster formation and the classifier together. The points are
+selection, $P(\text{selected}\mid\text{a truth-matched cluster exists})$, which
+isolates the classifier. The shaded band is the range over which
+$R_{\mathrm{thr}}$ is searched. Wilson intervals, bins with fewer than 25
+eligible clusters suppressed.*
+
+The two curves separate cleanly and answer different questions. Detection is
+0.02 below 0.5 GeV and does not exceed 0.37 anywhere below 1 GeV, which is the
+quantitative reason the conventional denominator $E_{\mathrm{kin}}<1$ GeV
+cannot be recovered and why the search is restricted to windows above it.
+Selection, once a cluster exists, is already 0.78 at 1 GeV and peaks near 0.92
+at 2 GeV, and it is indistinguishable across the three samples. The loss below
+1 GeV is therefore cluster formation and transport, not classification, and no
+amount of classifier work will recover it. An architecture comparison should be
+judged on the points, which it can move, and not on the step, which it cannot.
 
 This decomposition should replace a single “neutron efficiency” number in
 algorithm comparisons. The first-neutron efficiency mainly measures ordinary
@@ -476,7 +566,7 @@ claim of a broad optimum can be checked and the trade-off can be seen.
 
 ![Response and significance of the hardness ratio over the window centre and half-gap, for truth and for reconstructed energy.](../results/update_note/fig_hardness_window_surface.png)
 
-*Figure 9. The hardness-window scan. Left column: the 90/0 response, diverging
+*Figure 9 (top row MC truth, bottom row reconstructed). The hardness-window scan. Left column: the 90/0 response, diverging
 colour centred on zero. Right column: its significance, sequential colour. Top
 row truth, bottom row reconstructed energy. Grey marks windows that do not order
 the three samples; the star marks the window selected on development units.*
@@ -503,7 +593,7 @@ it tracks the energy at which the two species exchange their ordering.
 
 ![Nucleon ratio against energy for the three samples, and the same relative to the zero-potential sample.](../results/update_note/fig_np_spectra_relation.png)
 
-*Figure 10. Left: $n/p$ against kinetic energy inside the front-face acceptance
+*Figure 10 (MC truth). Left: $n/p$ against kinetic energy inside the front-face acceptance
 for the three samples. Right: the same relative to $U_{\mathrm{sym}}=0$, which
 is the isovector signal itself. The shaded band is the range over which
 $R_{\mathrm{thr}}$ is searched; the signal crosses unity at roughly 1.75 GeV,

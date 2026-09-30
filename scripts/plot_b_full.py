@@ -77,6 +77,25 @@ def assert_contained(ax, name):
         raise AssertionError(f"{name}: {bad} marks fall outside the panel")
 
 
+def mark_provenance(ax, kind: str, loc: str = "upper right"):
+    """Stamp a panel as MC truth or reconstructed.
+
+    A figure that mixes the two without saying so once made an earlier draft
+    read as though the detector had measured the truth-level response. Captions
+    carry the distinction, but a figure travels without its caption into talks
+    and slides, so the panel carries it too.
+    """
+    text = {"truth": "MC truth", "reco": "reconstructed",
+            "mixed": "MC truth + reconstructed"}[kind]
+    xy = {"upper right": (0.985, 0.985, "right", "top"),
+          "upper left": (0.015, 0.985, "left", "top"),
+          "lower right": (0.985, 0.015, "right", "bottom"),
+          "lower left": (0.015, 0.015, "left", "bottom")}[loc]
+    ax.text(xy[0], xy[1], text, transform=ax.transAxes, ha=xy[2], va=xy[3],
+            fontsize=6.0, color="#69727C",
+            bbox=dict(fc="white", ec="#C8CED6", lw=0.4, alpha=0.9, pad=1.6))
+
+
 def save(fig, out_dir: Path, stem: str):
     for ext in ("pdf", "png"):
         fig.savefig(out_dir / f"{stem}.{ext}", dpi=200)

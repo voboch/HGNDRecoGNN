@@ -1,0 +1,184 @@
+{
+  "definition": {
+    "model": "single frozen HGND GNN evaluated on all three SMASH samples",
+    "score_selection": "cl_score > 0.45",
+    "candidate_yield": "all selected clusters per represented event; includes fakes",
+    "truth_matched_yield": "selected cl_label == 1 per represented event; closure diagnostic",
+    "differential_yield_2p6_3p0": "selected candidates per event per GeV for 2.6 <= e_pred < 3.0 GeV",
+    "safe_hardness": "N(e_pred >= 2.6 GeV) / N(1.8 <= e_pred < 2.4 GeV)",
+    "band_hardness_1p0_1p5_vs_1p5_2p0": "N(1.5 <= e_pred < 2.0 GeV) / N(1.0 <= e_pred < 1.5 GeV)",
+    "band_hardness_1p0_1p8_vs_1p8_2p0": "N(1.8 <= e_pred < 2.0 GeV) / N(1.0 <= e_pred < 1.8 GeV)",
+    "band_mean_energy_1p0_2p0": "mean e_pred of selected candidates with 1.0 <= e_pred < 2.0 GeV",
+    "uncertainty": "event-level standard error; independent-sample propagation for 90/0"
+  },
+  "samples": {
+    "zeroSpot": {
+      "prediction_file": "results/update_note/model_v3/zeroSpot/pred_clusters_smash.pkl",
+      "n_cluster_rows": 610385,
+      "n_events": 409600,
+      "n_selected": 84515,
+      "selected_purity": 0.8444654795006804,
+      "candidate_yield": [
+        0.20633544921875,
+        0.0006789073996766445
+      ],
+      "truth_matched_yield": [
+        0.1742431640625,
+        0.0006251545975217934
+      ],
+      "differential_yield_2p6_3p0": [
+        0.01484375,
+        0.0003010936663544798
+      ],
+      "safe_hardness": [
+        0.07847136814950355,
+        0.0015949317830912546
+      ],
+      "band_hardness_1p0_1p5_vs_1p5_2p0": [
+        1.7278828553996337,
+        0.015505453273608517
+      ],
+      "band_hardness_1p0_1p8_vs_1p8_2p0": [
+        0.3694070803236427,
+        0.0035938583189772293
+      ],
+      "band_mean_energy_1p0_2p0": [
+        1.5828107003218943,
+        0.0011807275193830417
+      ],
+      "safe_window_counts": {
+        "low_1p8_2p4": 33337,
+        "high_ge_2p6": 2616
+      },
+      "band_window_counts": {
+        "low_1p0_1p5": 19668,
+        "high_1p5_2p0": 33984,
+        "low_1p0_1p8": 39179,
+        "high_1p8_2p0": 14473,
+        "all_1p0_2p0": 53652
+      }
+    },
+    "defaultSpot": {
+      "prediction_file": "results/update_note/model_v3/defaultSpot/pred_clusters_smash.pkl",
+      "n_cluster_rows": 609967,
+      "n_events": 409600,
+      "n_selected": 84782,
+      "selected_purity": 0.8471609539760798,
+      "candidate_yield": [
+        0.2069873046875,
+        0.0006798226743181068
+      ],
+      "truth_matched_yield": [
+        0.1753515625,
+        0.0006271217117776537
+      ],
+      "differential_yield_2p6_3p0": [
+        0.014599609375,
+        0.0002978888884916822
+      ],
+      "safe_hardness": [
+        0.0763805880946689,
+        0.0015688616444512323
+      ],
+      "band_hardness_1p0_1p5_vs_1p5_2p0": [
+        1.70995670995671,
+        0.015292817266695093
+      ],
+      "band_hardness_1p0_1p8_vs_1p8_2p0": [
+        0.37067494971611886,
+        0.003598622151283359
+      ],
+      "band_mean_energy_1p0_2p0": [
+        1.5821659697763757,
+        0.0011793758176464688
+      ],
+      "safe_window_counts": {
+        "low_1p8_2p4": 33464,
+        "high_ge_2p6": 2556
+      },
+      "band_window_counts": {
+        "low_1p0_1p5": 19866,
+        "high_1p5_2p0": 33970,
+        "low_1p0_1p8": 39277,
+        "high_1p8_2p0": 14559,
+        "all_1p0_2p0": 53836
+      }
+    },
+    "bigSpot": {
+      "prediction_file": "results/update_note/model_v3/bigSpot/pred_clusters_smash.pkl",
+      "n_cluster_rows": 610905,
+      "n_events": 409600,
+      "n_selected": 84868,
+      "selected_purity": 0.8485648300890795,
+      "candidate_yield": [
+        0.207197265625,
+        0.0006804115213940069
+      ],
+      "truth_matched_yield": [
+        0.1758203125,
+        0.0006284726284435557
+      ],
+      "differential_yield_2p6_3p0": [
+        0.01510009765625,
+        0.0003043851461968106
+      ],
+      "safe_hardness": [
+        0.07816439737771054,
+        0.0015884844578164256
+      ],
+      "band_hardness_1p0_1p5_vs_1p5_2p0": [
+        1.7466830592695046,
+        0.015711532417514894
+      ],
+      "band_hardness_1p0_1p8_vs_1p8_2p0": [
+        0.37492627638023435,
+        0.0036381030496733953
+      ],
+      "band_mean_energy_1p0_2p0": [
+        1.583491174322475,
+        0.0011838389533132393
+      ],
+      "safe_window_counts": {
+        "low_1p8_2p4": 33711,
+        "high_ge_2p6": 2635
+      },
+      "band_window_counts": {
+        "low_1p0_1p5": 19521,
+        "high_1p5_2p0": 34097,
+        "low_1p0_1p8": 38997,
+        "high_1p8_2p0": 14621,
+        "all_1p0_2p0": 53618
+      }
+    }
+  },
+  "responses": {
+    "candidate_yield": {
+      "relative_change": 0.004176773353842478,
+      "error": 0.004668074209413992
+    },
+    "truth_matched_yield": {
+      "relative_change": 0.00905142216617616,
+      "error": 0.00511039297323069
+    },
+    "differential_yield_2p6_3p0": {
+      "relative_change": 0.01726973684210531,
+      "error": 0.029090836369615885
+    },
+    "safe_hardness": {
+      "relative_change": -0.003911882499718522,
+      "error": 0.02862959444375547
+    },
+    "band_hardness_1p0_1p5_vs_1p5_2p0": {
+      "relative_change": 0.010880485219886493,
+      "error": 0.012844071978471006
+    },
+    "band_hardness_1p0_1p8_vs_1p8_2p0": {
+      "relative_change": 0.014940688336986252,
+      "error": 0.013945972970226699
+    },
+    "band_mean_energy_1p0_2p0": {
+      "relative_change": 0.0004299149610516029,
+      "error": 0.0010565767193629646
+    }
+  }
+}

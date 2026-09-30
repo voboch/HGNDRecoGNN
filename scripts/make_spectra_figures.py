@@ -109,7 +109,8 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500):
         # label only the panel without a legend in that corner
         mark_scan_range(ax[0, col], label=(col == 1))
         ax[0, col].set_ylabel(r"$(1/N)\,\mathrm{d}N/\mathrm{d}E_{\mathrm{kin}}$  [GeV$^{-1}$]")
-        ax[0, col].set_title(f"primary {name}, HGND front-face acceptance", fontsize=7)
+        ax[0, col].set_title(f"primary {name}, HGND front-face acceptance "
+                             f"(MC truth)", fontsize=7)
         lo = np.concatenate([(dens[t] - err[t])[keep_s] for t in dens])
         hi = np.concatenate([(dens[t] + err[t])[keep_s] for t in dens])
         lo = lo[lo > 0]
@@ -133,7 +134,7 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500):
             payload[f"{name}_{tag}_over_ref"] = r[keep_s].tolist()
         ax[1, col].axhline(1.0, color="#2b2b2b", lw=0.8)
         mark_scan_range(ax[1, col], label=False)
-        ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+        ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
         ax[1, col].set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
         ratio_span += fin
         panels[col] = None
@@ -184,10 +185,10 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500)
                    ls=st["ls"], marker=st["marker"], ms=2.6, mfc="none", mew=0.7,
                    elinewidth=0.6, capsize=1.2, label=st["label"])
     mark_scan_range(a, label=False)
-    a.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+    a.set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
     a.set_ylabel(r"$n/p$  in the HGND acceptance")
     a.legend(loc="upper left", fontsize=6.4)
-    a.set_title("nucleon ratio against energy", fontsize=7.5)
+    a.set_title("nucleon ratio against energy (MC truth)", fontsize=7.5)
     v = np.concatenate([(npr[t] + npe[t])[keep] for t in npr]
                        + [(npr[t] - npe[t])[keep] for t in npr])
     v = v[np.isfinite(v)]
@@ -207,9 +208,9 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500)
                 if np.isfinite(x)]
     b.axhline(1.0, color="#2b2b2b", lw=0.8)
     mark_scan_range(b)
-    b.set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
+    b.set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
     b.set_ylabel(r"$(n/p)$ relative to $S_{\mathrm{pot}}=0$")
-    b.set_title("the isovector signal, against energy", fontsize=7.5)
+    b.set_title("the isovector signal, against energy (MC truth)", fontsize=7.5)
     m = max(abs(np.array(fin) - 1).max(), 0.01) * 1.15
     b.set_ylim(1 - m, 1 + m); b.set_xlim(emin, emax)
     for ax_, nm in ((a, "npr_a"), (b, "npr_b")):
@@ -271,16 +272,21 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
         a.errorbar(ctr[ok], dens[tag][ok], yerr=err[tag][ok], color=st["color"],
                    ls=st["ls"], marker=st["marker"], ms=2.8, mfc="none", mew=0.7,
                    elinewidth=0.6, capsize=1.2, label=st["label"])
-    a.set_yscale("log")
+    # Linear ordinate. With the low-statistics tails masked the displayed yield
+    # spans well under the ~50x that would earn a log axis
+    # (docs/plotting_style_protocol.md section 5), and a log axis flattens the
+    # shape difference between the samples, which is the point of the panel.
     a.set_ylabel(r"clusters per event  [GeV$^{-1}$]")
     mark_scan_range(a)
     mark_scan_range(b, label=False)
-    a.set_title("reconstructed neutron candidates, purity-locked selection", fontsize=7)
+    a.set_title("reconstructed neutron candidates, purity-locked selection "
+                "(reconstructed, not MC truth)", fontsize=7)
     # limits must contain the error-bar ends, not only the points
-    lo = np.concatenate([(dens[t] - err[t])[keep & (dens[t] > 0)] for t in dens])
-    hi = np.concatenate([(dens[t] + err[t])[keep & (dens[t] > 0)] for t in dens])
-    lo = lo[lo > 0]
-    a.set_ylim(lo.min() * 0.6, hi.max() * 1.8)
+    lo = np.concatenate([(dens[t] - err[t])[keep] for t in dens])
+    hi = np.concatenate([(dens[t] + err[t])[keep] for t in dens])
+    lo, hi = lo[np.isfinite(lo)], hi[np.isfinite(hi)]
+    pad = (hi.max() - lo.min()) * 0.10
+    a.set_ylim(max(lo.min() - pad, 0.0), hi.max() + pad)
     a.legend(loc="lower left", fontsize=6.4)
     fin = []
     for tag, st in DATASETS.items():
@@ -296,7 +302,7 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
         fin += [x for x in np.concatenate([(r + re)[keep], (r - re)[keep]])
                 if np.isfinite(x)]
     b.axhline(1.0, color="#2b2b2b", lw=0.8)
-    b.set_xscale("log"); b.set_xlabel(r"$E_{\mathrm{reco}}$  [GeV]")
+    b.set_xlabel(r"$E_{\mathrm{reco}}$ (reconstructed)  [GeV]")
     b.set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
     m = max(abs(np.array(fin) - 1).max(), 0.02) * 1.15 if fin else 0.2
     b.set_ylim(1 - m, 1 + m)

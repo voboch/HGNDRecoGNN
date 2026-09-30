@@ -72,3 +72,16 @@ be equally true of any analysis is filler; delete it.
 This does not license flattening the prose. Keep hedges that carry real
 uncertainty, keep the caveat that a referee would ask for, and keep the
 sentence that explains why a null is uninformative rather than negative.
+
+## Marking MC truth
+
+Every figure and distribution states whether it is **MC truth** or
+**reconstructed**, in the caption and on the panel itself
+(`plot_b_full.mark_provenance`). Truth quantities use information available only
+in simulation — the generated nucleon list, true kinetic energy, the
+truth-matched cluster label — and describe what a perfect detector would
+measure. Reconstructed quantities use only what the pipeline derives from hits.
+
+A figure travels without its caption into talks and slides, which is why the
+panel carries the label too. Mixing the two silently in one figure made an
+earlier draft read as though the detector had measured the truth-level response.

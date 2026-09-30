@@ -1,0 +1,15 @@
+observable,response_percent,error_percent,separation_sigma,level,note
+truth differential $n$ yield,0.18100859078023726,0.15292148369801536,1.183670118828349,truth,per-event yield in $8.9^\circ<\theta<13.1^\circ$
+truth yield $n/p$,0.06171254297446804,0.28288485692549403,0.21815428243556298,truth,exact HGND acceptance
+truth hardness $R_n$,4.519132002636894,0.4450217961317394,10.154855429371148,truth,exact HGND acceptance
+truth hardness $R_p$,-5.391331186204007,0.5145324216467615,10.478117528432994,truth,exact HGND acceptance
+truth double ratio $R_n/R_p$,10.475216820084587,0.7581337785855886,13.817108689745579,truth,exact HGND acceptance
+reco candidate yield $\widehat Y_n$,0.4176773353842478,0.46680742094139915,0.8947529894488996,reconstructed,all selected clusters; includes fakes
+reco matched yield $\widehat Y_n^{\rm match}$,0.905142216617616,0.511039297323069,1.7711792837829512,reconstructed,truth-matched closure diagnostic
+reco $d\widehat N_n/dE$,1.726973684210531,2.9090836369615887,0.5936486879470677,reconstructed,selected candidates; $2.6\leq E_{\rm reco}<3.0$ GeV
+reco safe-window $\widehat R_n$,-0.3911882499718522,2.862959444375547,0.1366377196646514,reconstructed,"$E_{\rm reco}\in[1.8,2.4)$ vs. $E_{\rm reco}\geq2.6$ GeV"
+reco $R_n^{1{-}2}$ (equal bins),1.0880485219886493,1.2844071978471006,0.8471211651666356,reconstructed,"$[1.5,2.0)/[1.0,1.5)$ GeV; not 0/18/90 ordered; exploratory"
+reco $R_n^{1{-}2}$ (upper tail),1.4940688336986252,1.3945972970226699,1.0713263512616276,reconstructed,"$[1.8,2.0)/[1.0,1.8)$ GeV; 0/18/90 ordered; exploratory"
+reco $\langle E\rangle_{1{-}2}$,0.04299149610516029,0.10565767193629647,0.40689422090504596,reconstructed,"mean selected-candidate energy in $[1.0,2.0)$ GeV; not ordered; exploratory"
+hybrid yield $\widehat Y_n/Y_p^{\rm MC}$,0.14940780069081505,0.4922586725348072,0.3035148165525729,hybrid,reco candidates and MC-truth proton yield; independent-error estimate
+hybrid $\widehat R_n/R_p^{\rm MC}$,5.285079051342723,3.079803497350207,1.7160442397996771,hybrid,safe-window reco neutron and MC-truth proton; independent-error estimate

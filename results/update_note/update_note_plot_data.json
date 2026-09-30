@@ -1,0 +1,272 @@
+{
+ "n_boot": 400,
+ "acceptance_spectra": {
+  "zeroSpot": {
+   "n_job_files": 195,
+   "n": [
+    79229.0,
+    29529.0,
+    55072.0,
+    106027.0,
+    80202.0,
+    93695.0,
+    87398.0,
+    54131.0,
+    20108.0,
+    3828.0
+   ],
+   "p": [
+    61634.0,
+    25882.0,
+    48721.0,
+    93301.0,
+    69566.0,
+    80500.0,
+    74503.0,
+    45136.0,
+    16245.0,
+    3284.0
+   ],
+   "np": [
+    1.2854755492098517,
+    1.1409087396646318,
+    1.1303544672728392,
+    1.1363972519051242,
+    1.1528907799787251,
+    1.163913043478261,
+    1.1730802786464976,
+    1.1992866004962779,
+    1.237796244998461,
+    1.1656516443361753
+   ],
+   "np_job_bootstrap_error": [
+    0.006824502050910157,
+    0.008950403927536682,
+    0.006666573209621842,
+    0.005084705602382754,
+    0.005501706770810941,
+    0.00545670601030681,
+    0.005918007360375334,
+    0.008385207724249957,
+    0.014177032456136895,
+    0.02804220419029788
+   ]
+  },
+  "defaultSpot": {
+   "n_job_files": 200,
+   "n": [
+    82034.0,
+    30442.0,
+    56537.0,
+    109312.0,
+    82878.0,
+    96009.0,
+    89647.0,
+    56512.0,
+    20962.0,
+    4250.0
+   ],
+   "p": [
+    63568.0,
+    27182.0,
+    50091.0,
+    96502.0,
+    71842.0,
+    82635.0,
+    75646.0,
+    46045.0,
+    16362.0,
+    3331.0
+   ],
+   "np": [
+    1.290492071482507,
+    1.119932308145096,
+    1.128685791858817,
+    1.1327433628318584,
+    1.153614877091395,
+    1.1618442548556907,
+    1.1850857943579303,
+    1.2273210989249648,
+    1.2811392250336144,
+    1.2758931251876313
+   ],
+   "np_job_bootstrap_error": [
+    0.007340799351024118,
+    0.009816667756856788,
+    0.007201793681108951,
+    0.005256519868973032,
+    0.006227010442276508,
+    0.004899390203650189,
+    0.006100582237079,
+    0.007791641695802623,
+    0.013889889894755727,
+    0.03093327105820648
+   ]
+  },
+  "bigSpot": {
+   "n_job_files": 173,
+   "n": [
+    70419.0,
+    26217.0,
+    48145.0,
+    94087.0,
+    71388.0,
+    83767.0,
+    78795.0,
+    50417.0,
+    19053.0,
+    3894.0
+   ],
+   "p": [
+    55421.0,
+    23877.0,
+    44971.0,
+    84894.0,
+    62899.0,
+    72347.0,
+    65160.0,
+    38789.0,
+    13783.0,
+    2753.0
+   ],
+   "np": [
+    1.2706194402843687,
+    1.0980022615906522,
+    1.070578817460141,
+    1.10828798266073,
+    1.1349624000381564,
+    1.1578503600702172,
+    1.2092541436464088,
+    1.2997757096083942,
+    1.3823550750925053,
+    1.4144569560479476
+   ],
+   "np_job_bootstrap_error": [
+    0.0074339513856297446,
+    0.009791783109176624,
+    0.006766125237411169,
+    0.0058645743680384105,
+    0.005587885602408544,
+    0.00592123696914004,
+    0.006446287951244331,
+    0.008707577341815684,
+    0.0152825178932738,
+    0.033800837070599304
+   ]
+  }
+ },
+ "observable_separation_power": [
+  {
+   "observable": "truth differential $n$ yield",
+   "response_percent": 0.18100859078023726,
+   "error_percent": 0.15292148369801536,
+   "separation_sigma": 1.183670118828349,
+   "level": "truth",
+   "note": "per-event yield in $8.9^\\circ<\\theta<13.1^\\circ$"
+  },
+  {
+   "observable": "truth yield $n/p$",
+   "response_percent": 0.06171254297446804,
+   "error_percent": 0.28288485692549403,
+   "separation_sigma": 0.21815428243556298,
+   "level": "truth",
+   "note": "exact HGND acceptance"
+  },
+  {
+   "observable": "truth hardness $R_n$",
+   "response_percent": 4.519132002636894,
+   "error_percent": 0.4450217961317394,
+   "separation_sigma": 10.154855429371148,
+   "level": "truth",
+   "note": "exact HGND acceptance"
+  },
+  {
+   "observable": "truth hardness $R_p$",
+   "response_percent": -5.391331186204007,
+   "error_percent": 0.5145324216467615,
+   "separation_sigma": 10.478117528432994,
+   "level": "truth",
+   "note": "exact HGND acceptance"
+  },
+  {
+   "observable": "truth double ratio $R_n/R_p$",
+   "response_percent": 10.475216820084587,
+   "error_percent": 0.7581337785855886,
+   "separation_sigma": 13.817108689745579,
+   "level": "truth",
+   "note": "exact HGND acceptance"
+  },
+  {
+   "observable": "reco candidate yield $\\widehat Y_n$",
+   "response_percent": 0.4176773353842478,
+   "error_percent": 0.46680742094139915,
+   "separation_sigma": 0.8947529894488996,
+   "level": "reconstructed",
+   "note": "all selected clusters; includes fakes"
+  },
+  {
+   "observable": "reco matched yield $\\widehat Y_n^{\\rm match}$",
+   "response_percent": 0.905142216617616,
+   "error_percent": 0.511039297323069,
+   "separation_sigma": 1.7711792837829512,
+   "level": "reconstructed",
+   "note": "truth-matched closure diagnostic"
+  },
+  {
+   "observable": "reco $d\\widehat N_n/dE$",
+   "response_percent": 1.726973684210531,
+   "error_percent": 2.9090836369615887,
+   "separation_sigma": 0.5936486879470677,
+   "level": "reconstructed",
+   "note": "selected candidates; $2.6\\leq E_{\\rm reco}<3.0$ GeV"
+  },
+  {
+   "observable": "reco safe-window $\\widehat R_n$",
+   "response_percent": -0.3911882499718522,
+   "error_percent": 2.862959444375547,
+   "separation_sigma": 0.1366377196646514,
+   "level": "reconstructed",
+   "note": "$E_{\\rm reco}\\in[1.8,2.4)$ vs. $E_{\\rm reco}\\geq2.6$ GeV"
+  },
+  {
+   "observable": "reco $R_n^{1{-}2}$ (equal bins)",
+   "response_percent": 1.0880485219886493,
+   "error_percent": 1.2844071978471006,
+   "separation_sigma": 0.8471211651666356,
+   "level": "reconstructed",
+   "note": "$[1.5,2.0)/[1.0,1.5)$ GeV; not 0/18/90 ordered; exploratory"
+  },
+  {
+   "observable": "reco $R_n^{1{-}2}$ (upper tail)",
+   "response_percent": 1.4940688336986252,
+   "error_percent": 1.3945972970226699,
+   "separation_sigma": 1.0713263512616276,
+   "level": "reconstructed",
+   "note": "$[1.8,2.0)/[1.0,1.8)$ GeV; 0/18/90 ordered; exploratory"
+  },
+  {
+   "observable": "reco $\\langle E\\rangle_{1{-}2}$",
+   "response_percent": 0.04299149610516029,
+   "error_percent": 0.10565767193629647,
+   "separation_sigma": 0.40689422090504596,
+   "level": "reconstructed",
+   "note": "mean selected-candidate energy in $[1.0,2.0)$ GeV; not ordered; exploratory"
+  },
+  {
+   "observable": "hybrid yield $\\widehat Y_n/Y_p^{\\rm MC}$",
+   "response_percent": 0.14940780069081505,
+   "error_percent": 0.4922586725348072,
+   "separation_sigma": 0.3035148165525729,
+   "level": "hybrid",
+   "note": "reco candidates and MC-truth proton yield; independent-error estimate"
+  },
+  {
+   "observable": "hybrid $\\widehat R_n/R_p^{\\rm MC}$",
+   "response_percent": 5.285079051342723,
+   "error_percent": 3.079803497350207,
+   "separation_sigma": 1.7160442397996771,
+   "level": "hybrid",
+   "note": "safe-window reco neutron and MC-truth proton; independent-error estimate"
+  }
+ ]
+}
