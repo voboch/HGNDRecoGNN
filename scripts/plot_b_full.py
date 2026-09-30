@@ -412,7 +412,7 @@ def fig_response(resp_json, out_dir):
         ax.plot([x[0], x[2]], [r[0], r[2]], color=col, ls=ls, lw=0.9, alpha=0.75)
         allv += list(r + re) + list(r - re)
     ax.set_xlabel(r"$S_{\mathrm{pot}}$  [MeV]")
-    ax.set_ylabel("change relative to $S_{\mathrm{pot}}=0$  [%]")
+    ax.set_ylabel(r"change relative to $S_{\mathrm{pot}}=0$  [%]")
     ax.set_title("Three-point scan: dashed lines join the end points, "
                  "so a middle point off the line is curvature", fontsize=7)
     ax.legend(loc="upper left", fontsize=6.5, ncols=2)
