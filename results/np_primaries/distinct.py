@@ -1,21 +1,24 @@
 """Are the three S_pot samples genuinely different, and do they differ in the
 PARTICIPANT region where the slides see the effect?"""
-import glob, numpy as np, pandas as pd, hashlib
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import hashlib
+import numpy as np
+import pandas as pd
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 YB=1.9727; YS=0.9863
 print("file-content check (first 2 MB of each sampled file):")
 for ds in U:
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv"))[:1]:
+    for f in primary_files(ds)[:1]:
         h=hashlib.md5(open(f,'rb').read(2*1024*1024)).hexdigest()[:16]
         print(f"  {ds:12s} {h}")
 print()
 D={}
 for ds in U:
     fr=[]
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["Row","PDG","Ekin","Rapid","Pt","Pz"],engine="pyarrow")
-        x["ev"]=f.split("_")[-2]+"_"+x.Row.astype(str)
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["Row","PDG","Ekin","Rapid","Pt","Pz"])
+        x["ev"]=f.stem+"_"+x.Row.astype(str)
         fr.append(x)
     D[ds]=pd.concat(fr,ignore_index=True); del fr
 

@@ -1,0 +1,25 @@
+{
+  "centrality_B_valid": false,
+  "common_phase_space": true,
+  "decision": "DECLINE",
+  "decision_reasons": [
+    "impact parameter B is unavailable or invalid",
+    "participant count NPrim is unavailable or invalid",
+    "generator weights are absent and unit weighting is not documented",
+    "sample is a small sequential export rather than the complete/random production",
+    "HGND alone does not provide a common-acceptance proton measurement"
+  ],
+  "event_counts": {
+    "bigSpot": 2226,
+    "defaultSpot": 2225,
+    "zeroSpot": 2225
+  },
+  "participant_count_valid": false,
+  "row_counts": {
+    "bigSpot": 571353,
+    "defaultSpot": 571291,
+    "zeroSpot": 571230
+  },
+  "spot_reconstruction_from_primary_np": false,
+  "weights_present": false
+}

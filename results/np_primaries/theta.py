@@ -1,15 +1,16 @@
 """Angular distributions of primary n and p, and the significance of the
 band-yield differences. The HGND band is narrow, so what matters is how the
 U_sym potential redistributes nucleons in polar angle."""
-import glob, numpy as np, pandas as pd
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import numpy as np
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 EDG=np.array([0,2,4,6,8.9,13.1,18,25,40,90,180])
 d={}
 for ds in U:
     th_n=[];th_p=[];nev=0
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["Row","PDG","Pt","Pz"],engine="pyarrow")
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["Row","PDG","Pt","Pz"])
         nev+=int(x.Row.nunique())
         t=np.degrees(np.arctan2(x.Pt.to_numpy(),x.Pz.to_numpy()))
         isn=(x.PDG==2112).to_numpy()

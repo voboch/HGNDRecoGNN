@@ -201,9 +201,7 @@ def plot_rank(all_rank: pd.DataFrame, all_mult: pd.DataFrame, outdir: Path) -> N
     ax0.text(0.98, 0.05, rf"points require $N_{{\rm event}}\geq{MIN_PLOT_EVENTS}$",
              transform=ax0.transAxes, fontsize=8, va="bottom", ha="right", color="0.35")
     for ax in (ax0, ax1):
-        ax.grid(alpha=0.18)
         ax.legend(fontsize=8.5, loc="best")
-    fig.suptitle(r"HGND multi-neutron reconstruction, common classifier working point", y=1.01)
     fig.tight_layout()
     for ext in ("pdf", "png"):
         fig.savefig(outdir / f"conditional_neutron_efficiency_v2.{ext}")
@@ -225,7 +223,6 @@ def plot_response(summaries: dict, outdir: Path) -> None:
     if im is not None:
         fig.colorbar(im, ax=axes, fraction=0.025, pad=0.02,
                      label=r"$P(N_n^{\rm sel}\mid N_n^{\rm true})$")
-    fig.suptitle("HGND multiplicity response (overflow included in final bin)")
     fig.subplots_adjust(left=0.07, right=0.91, bottom=0.16, top=0.82, wspace=0.10)
     for ext in ("pdf", "png"):
         fig.savefig(outdir / f"multiplicity_response.{ext}")

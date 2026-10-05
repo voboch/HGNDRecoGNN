@@ -1,7 +1,7 @@
 """513 nucleons/event vs A=264 for Xe+Cs. Where does the factor ~2 come from?"""
-import pandas as pd, numpy as np
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
-d=pd.read_csv(f"{SP}/npsample/zeroSpot_1_prim.csv",engine="pyarrow")
+from _common import primary_files, read_primary
+
+d=read_primary(primary_files("zeroSpot")[0])
 print(f"rows={len(d):,}  events={d.Row.nunique():,}  rows/event={len(d)/d.Row.nunique():.1f}")
 ev=d[d.Row==d.Row.iloc[0]]
 print(f"\nevent {ev.Row.iloc[0]}: {len(ev)} rows, {ev.Id.nunique()} unique Id")

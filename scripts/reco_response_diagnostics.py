@@ -6,7 +6,7 @@ physical purity in different datasets, and locks purity to remove that
 regressor* has the same pathology and that nothing currently controls it: its
 response depends on the sample, so it moves the R thresholds by a different
 amount in each, and that differential is large enough to invert the measured
-S_pot difference.
+U_sym difference.
 
 Two tests:
 

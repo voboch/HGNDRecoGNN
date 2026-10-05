@@ -19,7 +19,7 @@ solved for N_true and R_n read off the unfolded spectrum.
 Two choices matter for bias, and both are deliberate:
 
   * the kernel is built on ONE sample and applied to all three.  Building it
-    per sample would let it absorb the S_pot difference being measured.
+    per sample would let it absorb the U_sym difference being measured.
   * that sample is the 18 MeV midpoint, which is symmetric between the two
     extremes being compared.  `--kernel-sample` changes it, and
     `--kernel-sample all` pools the three, which is the other defensible
@@ -196,7 +196,7 @@ def main():
             "truth_arriving": {"rel": float(rt), "err": float(et),
                                "sigma": float(abs(rt) / et) if et else np.nan}}
         print("\n" + "=" * 84)
-        print("  S_pot = 90 vs 0 MeV, job-file bootstrap")
+        print("  U_sym = 90 vs 0 MeV, job-file bootstrap")
         print("=" * 84)
         print(f"  truth (arriving)   {rt*100:+7.2f}% +- {et*100:.2f}%   "
               f"{abs(rt)/et if et else float('nan'):.2f} sigma")

@@ -447,7 +447,7 @@ def prepare_halves(df: pd.DataFrame, scaler_source: str | None = None):
         fitted per dataset absorbs genuine differences between them: `eToF`
         carries the neutron energy, so a harder sample gets a wider `eToF`
         scale, and per-sample fitting divides part of that difference out
-        before the network ever sees it.  Measured across the three S_pot
+        before the network ever sees it.  Measured across the three U_sym
         samples the shift is 0.02 sigma in the mean and 1.9 % in the scale of
         `eToF`, which is the same order as the sample-dependent energy response
         seen in reconstruction.  Datasets that will be compared, or used

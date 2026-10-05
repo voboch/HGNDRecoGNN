@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Response of the hardness observables to S_pot, from the three-point scan.
+"""Response of the hardness observables to U_sym, from the three-point scan.
 
-With samples at S_pot = 0, 18 and 90 MeV the scan can do three things the
+With samples at U_sym = 0, 18 and 90 MeV the scan can do three things the
 two-point comparison could not: check that the middle point lies between the
 outer two (a signal that is not monotonic in the parameter is not a response to
 it), test whether the response is linear over the range, and convert the
-measured slope into the S_pot resolution the observable would support.
+measured slope into the U_sym resolution the observable would support.
 
 The resolution quoted is statistical and truth-level.  It uses the null test's
 measured noise floor -- the median difference between two halves of one
@@ -49,7 +49,7 @@ def main():
     x = np.array([u for _, u in ORDER])
     out = {}
     print("=" * 92)
-    print("  Response to S_pot across the three-point scan (reweighted, job-level errors)")
+    print("  Response to U_sym across the three-point scan (reweighted, job-level errors)")
     print("=" * 92)
     print(f"{'observable':<18}{'U=0':>10}{'U=18':>10}{'U=90':>10}"
           f"{'slope %/MeV':>13}{'linearity':>11}{'floor %':>9}{'dS_pot MeV':>12}")
@@ -81,9 +81,9 @@ def main():
               f"{rel_slope:>+13.4f}{dev_s:>10.1f}σ{fl:>9.3f}{dspot:>12.1f}"
               + ("" if mono else "   NOT MONOTONIC"))
 
-    print("\n  slope is per MeV of S_pot, as a percentage of the S_pot = 0 value.")
+    print("\n  slope is per MeV of U_sym, as a percentage of the U_sym = 0 value.")
     print("  linearity is the middle point's deviation from the line through the outer two.")
-    print("  dS_pot is the noise floor divided by the slope: the smallest S_pot difference")
+    print("  dS_pot is the noise floor divided by the slope: the smallest U_sym difference")
     print("  this observable resolves at truth level, before any systematic.")
     with open(a.out, "w") as f:
         json.dump({"floors": floor, "response": out}, f, indent=1)

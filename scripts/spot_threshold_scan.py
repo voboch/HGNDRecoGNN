@@ -1,4 +1,4 @@
-"""S_pot sensitivity with the working point chosen on train/val and applied to test.
+"""U_sym sensitivity with the working point chosen on train/val and applied to test.
 
 The quantity is the reconstructed neutron hardness ratio
 
@@ -8,7 +8,7 @@ and both the cluster score threshold and the energy window are free.  Choosing
 them on the same events used to quote the result would be circular, so the scan
 runs on train+val and exactly one configuration is carried to test.
 
-The figure of merit requires the three samples to be *ordered* in S_pot before
+The figure of merit requires the three samples to be *ordered* in U_sym before
 it rewards separation.  A large 90-vs-0 difference with the 18 MeV point out of
 place is not a response to the parameter, which is the same argument that
 rejected the n/p yield ratio at truth level.
@@ -84,7 +84,7 @@ def fom(vals, boot, require_increasing=True):
     """Separation significance, but only for an ordered scan.
 
     `require_increasing` demands the ordering run the way the truth-level scan
-    established it -- R_n rises with S_pot, +4.27 % at 21.7 sigma.  That is prior
+    established it -- R_n rises with U_sym, +4.27 % at 21.7 sigma.  That is prior
     physics, fixed before the test set is opened, not a choice made on the test
     data.  Without it the figure of merit rewards a monotonic *decrease* just as
     much, and a reconstructed observable moving opposite to the truth is not
@@ -160,9 +160,9 @@ def main():
             print("  TEST SET — configuration fixed beforehand, not tuned here")
             print("=" * 70)
             for t, u in TAGS:
-                print(f"    S_pot = {u:>2} MeV   R_n = {vals[t]:.4f}")
+                print(f"    U_sym = {u:>2} MeV   R_n = {vals[t]:.4f}")
             print(f"    90/0 - 1 = {rel*100:+.2f} % +- {sd*100:.2f} %  ({abs(rel)/sd:.2f} sigma)")
-            print(f"    ordered in S_pot: {ordered}")
+            print(f"    ordered in U_sym: {ordered}")
 
     out = {"scan": scan.to_dict("records"),
            "chosen": None if best is None else {

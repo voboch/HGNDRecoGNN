@@ -60,6 +60,37 @@ results/
 !/results/update_note/*.pdf
 !/results/update_note/*.json
 
+# Calibration and audit products added with the reconstruction calibration:
+# compact (under 1 MB each) and quoted directly in reports/, so they belong
+# with the note rather than on scratch.
+!/results/final_eval/
+/results/final_eval/*
+!/results/final_eval/observables/
+!/results/final_eval/observables/*.json
+!/results/graph_audit/
+!/results/graph_audit/**/
+!/results/graph_audit/**/*.png
+!/results/graph_audit/**/*.pdf
+!/results/graph_audit/**/*.json
+!/results/graph_audit_dcm/
+!/results/graph_audit_dcm/**/
+!/results/graph_audit_dcm/**/*.png
+!/results/graph_audit_dcm/**/*.pdf
+!/results/graph_audit_dcm/**/*.json
+!/results/dcm/
+!/results/dcm/*.png
+!/results/dcm/*.json
+!/results/hardness_opt_converged/
+!/results/hardness_opt_converged/*.json
+
+# Scratch and intermediate render output; not analysis products.
+tmp/
+output/
+notebooks/.ipynb_checkpoints/
+notebooks/.jupyter/
+*" copy".*
+* copy.*
+
 # --- secrets / keys (never commit) ---
 *.pem
 *.key

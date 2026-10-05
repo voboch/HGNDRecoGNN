@@ -1,14 +1,15 @@
 """If my rapidity selection were misaligned with the slides', the |y|<0.5 and
 |y|>0.5 windows would sample the wrong physical regions. Scan the assumed
 frame shift and see where the slide-like ordering appears at mid-rapidity."""
-import glob, numpy as np, pandas as pd
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import numpy as np
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 d={}
 for ds in U:
     E=[];Y=[];P=[]
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["PDG","Ekin","Rapid"],engine="pyarrow")
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["PDG","Ekin","Rapid"])
         E.append(x.Ekin.to_numpy()); Y.append(x.Rapid.to_numpy()); P.append(x.PDG.to_numpy()); del x
     d[ds]=dict(E=np.concatenate(E),y=np.concatenate(Y),pdg=np.concatenate(P))
 

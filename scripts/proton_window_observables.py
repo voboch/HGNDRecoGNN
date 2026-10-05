@@ -89,8 +89,10 @@ def reduce_sample(root: Path, max_files: int | None) -> dict:
     bsum_files = np.zeros_like(n_files)
     counter_files = np.zeros((len(paths), nb, len(COUNTERS)), dtype=float)
     n_events = 0
+    impact_parameter_valid = True
     for i, path in enumerate(paths):
         b, counters = reduce_file(path)
+        impact_parameter_valid &= bool(np.all(b >= 0.0))
         pos = np.clip(np.digitize(b, edges) - 1, 0, nb - 1)
         n_files[i] = np.bincount(pos, minlength=nb)
         bsum_files[i] = np.bincount(pos, weights=b, minlength=nb)
@@ -108,6 +110,7 @@ def reduce_sample(root: Path, max_files: int | None) -> dict:
         "bsum": bsum_files,
         "counters": counter_files,
         "edges": edges,
+        "impact_parameter_valid": impact_parameter_valid,
     }
 
 
@@ -162,12 +165,21 @@ def analyse(samples: dict, n_boot: int, seed: int) -> dict:
             tag: {
                 "U_MeV": U_MEV[tag], "n_files": len(samples[tag]["paths"]),
                 "n_events": samples[tag]["n_events"],
+                "impact_parameter_valid": samples[tag]["impact_parameter_valid"],
             }
             for tag in SAMPLES
         },
         "n_boot": n_boot,
     }
-    for mode, do_reweight in (("raw", False), ("b_reweighted", True)):
+    modes = [("raw", False)]
+    if all(samples[tag]["impact_parameter_valid"] for tag in SAMPLES):
+        modes.append(("b_reweighted", True))
+    else:
+        output["definition"]["impact_parameter_note"] = (
+            "B is unavailable (negative sentinel) in at least one input sample; "
+            "only unweighted observables are reported"
+        )
+    for mode, do_reweight in modes:
         central, meta = evaluate(samples, unit, do_reweight)
         boot_values = {obs: {tag: [] for tag in SAMPLES} for obs in OBSERVABLES}
         boot_response = {obs: [] for obs in OBSERVABLES}

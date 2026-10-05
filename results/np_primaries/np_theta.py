@@ -1,14 +1,15 @@
 """n/p as a function of polar angle: where does the U_sym signal actually live,
 and is any of it inside the HGND acceptance?"""
-import glob, numpy as np, pandas as pd
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import numpy as np
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 EDG=np.array([0,1,2,3,4,6,8.9,13.1,18,25,40,90,180])
 d={}
 for ds in U:
     tn=[];tp=[];nev=0
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["Row","PDG","Pt","Pz"],engine="pyarrow")
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["Row","PDG","Pt","Pz"])
         nev+=int(x.Row.nunique())
         t=np.degrees(np.arctan2(x.Pt.to_numpy(),x.Pz.to_numpy()))
         tn.append(t[(x.PDG==2112).to_numpy()]); tp.append(t[(x.PDG==2212).to_numpy()])
@@ -37,7 +38,8 @@ for i in range(len(EDG)-1):
 
 print("\nsummary")
 best=max(rows,key=lambda r:r[2])
-print(f"  strongest bin      : theta [{best[0]:g},{best[1]:g}) at {best[2]:.1f} sigma, monotonic={best[3]}")
+print(f"  strongest bin      : theta [{best[0]:g},{best[1]:g}) at {best[2]:.1f} local sigma, monotonic={best[3]}")
+print("  note               : strongest-bin significance is post-selection and not trials-corrected")
 inband=[r for r in rows if r[0]==8.9][0]
 print(f"  HGND band [8.9,13.1): {inband[2]:.1f} sigma, monotonic={inband[3]}")
 # integrated forward cone vs band

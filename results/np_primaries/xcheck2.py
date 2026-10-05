@@ -2,15 +2,16 @@
 just statistics? Slides (500k events) show at |y|<0.5 a clear rise of n/p for
 S_pot=90 with Ekin, reaching ~1.40 at Ekin~1.5 GeV against ~1.15 for S_pot=0,
 i.e. a 90/0 double ratio of ~1.20."""
-import glob, numpy as np, pandas as pd
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import numpy as np
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 YS=0.9863
 d={}
 for ds in U:
     E=[];Y=[];P=[]
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["PDG","Ekin","Rapid"],engine="pyarrow")
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["PDG","Ekin","Rapid"])
         E.append(x.Ekin.to_numpy()); Y.append(x.Rapid.to_numpy()); P.append(x.PDG.to_numpy()); del x
     d[ds]=dict(E=np.concatenate(E),y=np.concatenate(Y)-YS,pdg=np.concatenate(P))
 
@@ -34,10 +35,11 @@ for lab,mid,e0,e1,slide in cases:
     r0=n0/p0; s0=r0*np.sqrt(1/n0+1/p0)
     r9=n9/p9; s9=r9*np.sqrt(1/n9+1/p9)
     dr=r9/r0; sdr=dr*np.sqrt(1/n0+1/p0+1/n9+1/p9)
-    tension=abs(dr-slide)/sdr
-    print(f"{lab:<28}{n0:>9,}{p0:>9,}{r0:>8.3f}{s0:>8.3f}{dr:>8.3f}{sdr:>8.3f}{slide:>9.2f}{tension:>8.1f}σ")
+    local_pull=abs(dr-slide)/sdr
+    print(f"{lab:<28}{n0:>9,}{p0:>9,}{r0:>8.3f}{s0:>8.3f}{dr:>8.3f}{sdr:>8.3f}{slide:>9.2f}{local_pull:>8.1f}σ")
 
 print("\ninterpretation")
 print("  'slides' column = double ratio read off slide 3 for that cell.")
-print("  tension = |my 90/0 - slide 90/0| / my statistical error.")
-print("  tension < 2 sigma => consistent, my sample is simply too small to resolve it.")
+print("  final column is a local pull using only this sample's statistical error.")
+print("  It is NOT a formal tension: the slide value was read approximately and its")
+print("  uncertainty, centrality, and final-state selection are not available.")

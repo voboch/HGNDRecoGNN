@@ -13,9 +13,10 @@ confined to the HGND acceptance region?
 Decomposition: R = n/p  =>  dR/R = dn/n - dp/p, so a ratio change is attributed
 to numerator or denominator directly.
 """
-import glob, numpy as np, pandas as pd
+import numpy as np
 
-SP = "/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+from _common import primary_files, read_primary
+
 U = {"zeroSpot": 0, "defaultSpot": 18, "bigSpot": 90}
 TH_LO, TH_HI = 8.9, 13.1
 EDGES = np.array([0, .25, .5, .75, 1., 1.5, 2., 3., 5., 8.])
@@ -23,11 +24,11 @@ EDGES = np.array([0, .25, .5, .75, 1., 1.5, 2., 3., 5., 8.])
 res = {}
 for ds in ("zeroSpot", "defaultSpot", "bigSpot"):
     ns4=[]; ps4=[]; nsA=[]; psA=[]; yA_n=[]; yA_p=[]; nev=0
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        d = pd.read_csv(f, usecols=["Row","PDG","Ekin","Pt","Pz","Rapid"], engine="pyarrow")
+    for f in primary_files(ds):
+        d = read_primary(f, usecols=["Row","PDG","Ekin","Pt","Pz","Rapid"])
         nev += int(d.Row.nunique())
         th = np.degrees(np.arctan2(d.Pt.to_numpy(), d.Pz.to_numpy()))
-        acc = (th >= TH_LO) & (th <= TH_HI)
+        acc = (th >= TH_LO) & (th < TH_HI)
         isn = (d.PDG==2112).to_numpy(); isp = (d.PDG==2212).to_numpy()
         E = d.Ekin.to_numpy(); y = d.Rapid.to_numpy()
         ns4.append(E[isn]); ps4.append(E[isp])

@@ -2,16 +2,17 @@
 Xe+Cs @ 2.5A GeV (= sqrt(s_NN) 2.87 GeV), n/p vs Ekin, |y|<0.5 and |y|>0.5,
 Ekin > 300 MeV. Slides report clear S_pot ordering 0 < 18 < 90 growing with Ekin.
 """
-import glob, numpy as np, pandas as pd
-SP="/private/tmp/claude-501/-Users-vovvy-Project-BM-N-HGND/14d99a58-559a-4867-a447-5040e9433acb/scratchpad"
+import numpy as np
+
+from _common import primary_files, read_primary
 U={"zeroSpot":0,"defaultSpot":18,"bigSpot":90}
 YSHIFT=0.9863                      # y_cm = y_lab - y_beam/2
 EDG=np.array([0.3,0.5,0.7,0.9,1.1,1.3,1.5,1.9,2.3,3.0])
 d={}
 for ds in U:
     E=[];Y=[];P=[]
-    for f in sorted(glob.glob(f"{SP}/npsample/{ds}_*_prim.csv")):
-        x=pd.read_csv(f,usecols=["PDG","Ekin","Rapid"],engine="pyarrow")
+    for f in primary_files(ds):
+        x=read_primary(f,usecols=["PDG","Ekin","Rapid"])
         E.append(x.Ekin.to_numpy()); Y.append(x.Rapid.to_numpy()); P.append(x.PDG.to_numpy())
         del x
     d[ds]=dict(E=np.concatenate(E),y=np.concatenate(Y),pdg=np.concatenate(P))

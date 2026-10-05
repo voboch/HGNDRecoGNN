@@ -1,9 +1,9 @@
-"""Impact-parameter reweighting and job-level uncertainties for the S_pot comparison.
+"""Impact-parameter reweighting and job-level uncertainties for the U_sym comparison.
 
 Why reweighting rather than percentile matching
 -----------------------------------------------
 Spectral hardness varies by a factor ~4 across centrality, so a per-cent-level
-difference in the samples' b distributions manufactures a large apparent S_pot
+difference in the samples' b distributions manufactures a large apparent U_sym
 signal.  Equal-percentile classes do not remove it: when the underlying b
 distributions differ, equal percentiles select unequal b.  Common b edges are a
 stratification check only, and leave a residual whenever the observable varies
@@ -12,7 +12,7 @@ density event by event, so the comparison is made at matched b by construction.
 
 Why job-level errors
 --------------------
-b carries job-file block structure: within a single sample, where no S_pot
+b carries job-file block structure: within a single sample, where no U_sym
 difference can exist, job-file means of b scatter at chi2/ndf = 6.7 over 30
 complete files, and the job-level error on <b> is 2.6x the per-event one.
 Per-event errors therefore understate the uncertainty on any b-dependent
@@ -207,7 +207,7 @@ def rel_90_0(res):
 
 def main(events_dir, out_dir, n_boot=400, samples=None):
     """`samples` restricts the comparison, e.g. when one production is still
-    being reduced.  The reference and the high-S_pot arm must both be present."""
+    being reduced.  The reference and the high-U_sym arm must both be present."""
     global SAMPLES
     if samples:
         SAMPLES = {k: v for k, v in SAMPLES.items() if k in samples}
@@ -325,7 +325,7 @@ def main(events_dir, out_dir, n_boot=400, samples=None):
 def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
     """Split one sample's own job files in two and run the identical pipeline.
 
-    Both halves have the same S_pot, so every apparent difference is manufactured
+    Both halves have the same U_sym, so every apparent difference is manufactured
     by the method.  The distribution of |sigma| over random splits is the
     procedure's false-positive rate: a calibrated procedure gives a median |sigma|
     near 0.7 and exceeds 3 sigma in about 0.3 % of splits.  This is the check
@@ -341,7 +341,7 @@ def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
 
     print("=" * 78)
     print(f"  NULL TEST: {sample}, {len(files)} job files, {len(df)} events")
-    print(f"  {n_splits} random half/half splits; both halves share the same S_pot")
+    print(f"  {n_splits} random half/half splits; both halves share the same U_sym")
     print("=" * 78)
     got = {o: [] for o in ALL_OBS}
     for _ in range(n_splits):
@@ -379,7 +379,7 @@ def null_test(events_dir, out_dir, sample="zeroSpot", n_splits=40, n_boot=200):
         print(f"{o:<17}{np.median(sg):>12.2f}{np.percentile(sg,90):>7.2f}{sg.max():>7.2f}"
               f"{(sg>=2).mean():>9.3f}{(sg>=3).mean():>9.3f}{np.nanmedian(rl):>+13.4f}")
     print("\n  Calibrated: median |sigma| ~ 0.7, frac>=3 ~ 0.003.  A larger frac>=3")
-    print("  means the quoted sigmas are too small and a 3-sigma S_pot result sits")
+    print("  means the quoted sigmas are too small and a 3-sigma U_sym result sits")
     print("  inside the method's own noise.")
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, f"null_test_{sample}.json"), "w") as f:
@@ -411,7 +411,7 @@ def injection_test(events_dir, out_dir, sample="zeroSpot", tilt=0.15, n_boot=300
     shows the converse: that it *removes* a b-induced difference that really is
     there.  One half of a single sample is subsampled with acceptance
     exp(-tilt * b), which pulls it towards central collisions by roughly the
-    offset claimed between productions.  Both halves still share the same S_pot,
+    offset claimed between productions.  Both halves still share the same U_sym,
     so the uncorrected comparison measures the size of the artefact and the
     reweighted comparison measures what survives correction.
     """

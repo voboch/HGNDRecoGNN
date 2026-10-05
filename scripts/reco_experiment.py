@@ -1,4 +1,4 @@
-"""GNN reconstruction vs Monte-Carlo truth for the S_pot hardness observables.
+"""GNN reconstruction vs Monte-Carlo truth for the U_sym hardness observables.
 
 HGND measures neutrons; it does not measure protons, which bend out of its
 acceptance in the BM@N field.  The proton arm of any n/p or double-ratio
@@ -42,7 +42,7 @@ def purity_locked_threshold(clusters, target=0.7, n_scan=400):
     """Smallest score threshold reaching `target` signal purity.
 
     A fixed threshold selects different physical purity in different datasets,
-    which would itself masquerade as an S_pot difference; locking purity
+    which would itself masquerade as an U_sym difference; locking purity
     removes that. Mirrors scripts/purity_locked_closure.py.
     """
     s = clusters.cl_score.to_numpy(float)
@@ -66,7 +66,7 @@ def fit_energy_calibration(clusters, n_bins=24):
     predicted energy, which is monotone and needs no functional form.
 
     It is fitted on ONE sample and applied to all of them.  Fitting per sample
-    would let the calibration absorb the very S_pot difference being measured.
+    would let the calibration absorb the very U_sym difference being measured.
     """
     s = clusters[clusters.cl_label == 1]
     q = np.quantile(s.e_pred, np.linspace(0, 1, n_bins + 1))
@@ -298,7 +298,7 @@ def main():
     cmp = compare(out, rng, a.n_boot)
     if cmp:
         print("\n" + "=" * 78)
-        print("  S_pot = 90 vs 0 MeV, same 20 job files per sample")
+        print("  U_sym = 90 vs 0 MeV, same 20 job files per sample")
         print("  errors from independent job-file bootstrap in each sample")
         print("=" * 78)
         print(f"{'observable':<24}{'U=0':>11}{'U=90':>11}{'90/0-1':>10}{'sigma':>8}")
