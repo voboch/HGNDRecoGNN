@@ -1,6 +1,6 @@
 """Stream the full B-enabled primary-nucleon production and reduce it per event.
 
-The primary CSV exports are ~8 GB compressed per S_pot sample and cannot be
+The primary CSV exports are ~8 GB compressed per U_sym sample and cannot be
 staged locally, so this reads each tarball as a single sequential gzip stream
 and emits two compact products per sample:
 
@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from hgnd_acceptance import in_acceptance
+from hgnd_acceptance import in_acceptance, kinematic_acceptance
 
 TH_LO, TH_HI = 8.9, 13.1          # legacy polar-angle band, kept for continuity
 # The real acceptance is the front-face rectangle, tested per particle by
@@ -53,6 +53,7 @@ HSHAPE_F = (2, len(E_EDGES) - 1, len(TH_EDGES) - 1)   # per-file: no b axis
 
 COUNTERS = [
     "acc_n", "acc_p", "acc_n_hi", "acc_n_lo", "acc_p_hi", "acc_p_lo",
+    "kin_n", "kin_p", "kin_n_hi", "kin_n_lo", "kin_p_hi", "kin_p_lo",
     "band_n", "band_p", "band_n_hi", "band_n_lo", "band_p_hi", "band_p_lo",
     "mid_n", "mid_p", "mid_n_hi", "mid_n_lo", "mid_p_hi", "mid_p_lo",
     "all_n", "all_p", "all_n_hi", "all_n_lo", "all_p_hi", "all_p_lo",
@@ -78,6 +79,16 @@ def reduce_member(fobj, file_idx):
     isn, isp = pdg == 2112, pdg == 2212
     acc = in_acceptance(d.Px.to_numpy(), d.Py.to_numpy(), pz,
                         d.vX.to_numpy(), d.vY.to_numpy(), d.vZ.to_numpy())
+    # Direction-only version of the same region. `acc` propagates a straight
+    # line from the vertex, which is the trajectory of a neutron and not of a
+    # proton: the analysing magnet bends the proton and nothing here models it.
+    # `kin` drops the vertex and keeps only the emission direction, so it is
+    # charge-independent and defines one kinematic region both species can be
+    # counted in. For a target-sized interaction region the two disagree on
+    # about 3 % of particles individually but only 0.3 % in the net count, the
+    # edge migrations largely cancelling
+    # (`hgnd_acceptance.vertex_sensitivity`).
+    kin = kinematic_acceptance(d.Px.to_numpy(), d.Py.to_numpy(), pz)
     inband = (th >= TH_LO) & (th < TH_HI)
     mid = np.abs(ycm) < 0.5
     hi, lo = ek >= EHI, ek < ELO
@@ -86,6 +97,9 @@ def reduce_member(fobj, file_idx):
         "acc_n": acc & isn, "acc_p": acc & isp,
         "acc_n_hi": acc & isn & hi, "acc_n_lo": acc & isn & lo,
         "acc_p_hi": acc & isp & hi, "acc_p_lo": acc & isp & lo,
+        "kin_n": kin & isn, "kin_p": kin & isp,
+        "kin_n_hi": kin & isn & hi, "kin_n_lo": kin & isn & lo,
+        "kin_p_hi": kin & isp & hi, "kin_p_lo": kin & isp & lo,
         "band_n": inband & isn, "band_p": inband & isp,
         "band_n_hi": inband & isn & hi, "band_n_lo": inband & isn & lo,
         "band_p_hi": inband & isp & hi, "band_p_lo": inband & isp & lo,

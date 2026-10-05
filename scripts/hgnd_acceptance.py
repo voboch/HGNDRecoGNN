@@ -93,3 +93,78 @@ if __name__ == "__main__":
           f"{2*np.pi*(np.cos(np.radians(8.9))-np.cos(np.radians(13.1))):.5f} sr")
     print(f"  the real acceptance is {s['solid_angle_sr']:.5f} sr "
           f"({s['solid_angle_sr']/(2*np.pi*(np.cos(np.radians(8.9))-np.cos(np.radians(13.1))))*100:.1f} % of it)")
+
+# ── Kinematic selection ──────────────────────────────────────────────────────
+#
+# `in_acceptance` propagates a straight line from the particle's vertex. That is
+# the right test for a neutron, which is neutral and travels straight, and it is
+# the wrong test for a proton, which the analysing magnet bends: a proton aimed
+# at the front face need not arrive, and one aimed elsewhere may. Nothing in
+# this file models that field.
+#
+# So the proton selection cannot be read as a proton acceptance. What it can be
+# is a *kinematic region*, defined in the emission direction alone, applied
+# identically to both species, so that a neutron numerator and a proton
+# denominator are formed over the same phase space. That is what the isovector
+# ratios need — they compare two species in one region — and it is what the
+# function below provides. Any statement about protons actually reaching a
+# detector needs the field map and the charged arm's own acceptance.
+
+
+def kinematic_acceptance(px, py, pz, ekin=None, ekin_lo=None, ekin_hi=None):
+    """The HGND front-face region as a cut on emission direction alone.
+
+    Charge- and vertex-independent: a particle is selected when a ray from the
+    origin along its momentum crosses the front-face rectangle. For neutrons
+    from a target-sized vertex this agrees with `in_acceptance` to the level
+    quantified by `vertex_sensitivity`; for protons it is a phase-space
+    definition rather than a trajectory, for the reason given above.
+
+    `ekin_lo` / `ekin_hi` optionally restrict the kinetic energy, so a single
+    call defines the full kinematic selection a ratio is formed over.
+    """
+    sel = in_acceptance(px, py, pz, 0.0, 0.0, 0.0)
+    if ekin is not None and (ekin_lo is not None or ekin_hi is not None):
+        ek = np.asarray(ekin, float)
+        if ekin_lo is not None:
+            sel = sel & (ek >= ekin_lo)
+        if ekin_hi is not None:
+            sel = sel & (ek < ekin_hi)
+    return sel
+
+
+def acceptance_bounds(n=20001):
+    """(theta_min, theta_max, phi_centre, phi_width) of the front face, degrees."""
+    xs = np.linspace(X_LO, X_HI, 401)
+    ys = np.linspace(Y_LO, Y_HI, 401)
+    X, Y = np.meshgrid(xs, ys)
+    r = np.hypot(X, Y)
+    th = np.degrees(np.arctan2(r, Z_FRONT))
+    ph = np.degrees(np.arctan2(Y, X)) % 360.0
+    return (float(th.min()), float(th.max()),
+            float(0.5 * (ph.min() + ph.max())), float(ph.max() - ph.min()))
+
+
+def vertex_sensitivity(sigma_xy=0.5, sigma_z=2.0, n=400000, seed=0):
+    """How often the direction-only cut and the vertex-aware test disagree.
+
+    The kinematic selection ignores the vertex. This measures what that costs
+    for a realistic target-sized interaction region, by throwing isotropic
+    directions, giving them vertices, and comparing the two selections.
+    """
+    rng = np.random.default_rng(seed)
+    cos_t = rng.uniform(0.90, 1.0, n)          # forward cone covering the face
+    sin_t = np.sqrt(1.0 - cos_t ** 2)
+    phi = rng.uniform(0.0, 2 * np.pi, n)
+    px, py, pz = sin_t * np.cos(phi), sin_t * np.sin(phi), cos_t
+    vx = rng.normal(0.0, sigma_xy, n)
+    vy = rng.normal(0.0, sigma_xy, n)
+    vz = rng.normal(0.0, sigma_z, n)
+
+    kin = kinematic_acceptance(px, py, pz)
+    geo = in_acceptance(px, py, pz, vx, vy, vz)
+    both = int((kin & geo).sum())
+    return {"n_kinematic": int(kin.sum()), "n_geometric": int(geo.sum()),
+            "n_both": both,
+            "disagree_frac": float((kin ^ geo).sum() / max(kin.sum(), 1)),
+            "net_bias": float(kin.sum() / max(geo.sum(), 1) - 1.0)}
