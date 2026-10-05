@@ -8,7 +8,7 @@
 #
 # The reduction now emits the per-particle front-face acceptance counters
 # (acc_*) alongside the legacy polar-angle band ones (band_*), which is what
-# the acceptance-corrected S_pot numbers need.
+# the acceptance-corrected U_sym numbers need.
 #
 # NOTE ON IMPACT PARAMETER.  This copy of the primaries predates the converter
 # fix and carries B = -1.  Its kinematics are intact -- the two copies are

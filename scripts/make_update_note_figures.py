@@ -51,24 +51,37 @@ def save(fig, out: Path, stem: str) -> None:
 
 
 def plot_global_np(csv_path: Path, out: Path) -> None:
+    """Primary-nucleon n/p against kinetic energy, at midrapidity.
+
+    The full-phase-space companion panel was removed. Two things were wrong
+    with it and neither was fixable by re-slicing. Above about 1.6 GeV the
+    inclusive sample is almost entirely beam-rapidity spectators — 19.7 M
+    counts at |y-y_cm| > 0.5 against 0.078 M at midrapidity in the 2.55 GeV
+    bin, a ratio of 254 — so the panel reported the projectile's N/Z and its
+    fragment composition rather than any response to the symmetry potential,
+    which is why its U_sym = 0 curve wandered non-monotonically and crossed
+    above the 18 and 90 MeV curves near 1.9 GeV. And its errors were not the
+    event-clustered ones the caption claimed: the `all_y` branch overwrote
+    them with a per-particle Poisson form, which is badly wrong for spectators
+    arriving in correlated fragments, so those excursions were drawn at a
+    thousandth of their true width and looked significant.
+
+    An earlier revision had already tried to repair the panel by switching it
+    from |y-y_cm| > 0.5 to inclusive rapidity. That could not help, because at
+    these energies the inclusive sample *is* the > 0.5 sample.
+
+    No statement in the note rested on the panel, and the analysis lives in a
+    0.0114 sr forward acceptance rather than in full phase space, so it is
+    dropped rather than repaired.
+    """
     d = pd.read_csv(csv_path)
-    panels = (("abs_y_lt_0p5", r"$|y-y_{\rm cm}|<0.5$"),
-              ("all_y", r"full phase space (all rapidities)"))
-    fig = plt.figure(figsize=(10.8, 6.3))
-    gs = fig.add_gridspec(2, 2, height_ratios=[3.0, 1.05], hspace=0.04, wspace=0.20)
+    panels = (("abs_y_lt_0p5", r"$|y-y_{\rm cm}|<0.5$"),)
+    fig = plt.figure(figsize=(5.6, 6.3))
+    gs = fig.add_gridspec(2, 1, height_ratios=[3.0, 1.05], hspace=0.04)
     for col, (panel, title) in enumerate(panels):
         ax = fig.add_subplot(gs[0, col])
         ar = fig.add_subplot(gs[1, col], sharex=ax)
-        if panel == "all_y":
-            q = d[(d.figure == "ekin") & d.valid].copy()
-            q = q.groupby(
-                ["dataset", "spot_mev", "bin_lo", "bin_hi", "bin_center"],
-                as_index=False,
-            )[["n", "p"]].sum()
-            q["ratio"] = q.n / q.p
-            q["stat_error"] = q.ratio * np.sqrt(1.0 / q.n + 1.0 / q.p)
-        else:
-            q = d[(d.figure == "ekin") & (d.panel == panel) & d.valid].copy()
+        q = d[(d.figure == "ekin") & (d.panel == panel) & d.valid].copy()
         q = q[(q.bin_center >= 0.3) & (q.bin_center <= 3.0)]
         base = q[q.dataset == "zeroSpot"].set_index("bin_center")
         for tag in SAMPLES:
@@ -90,16 +103,14 @@ def plot_global_np(csv_path: Path, out: Path) -> None:
                         color=COLORS[tag], capsize=1.5)
         ax.set_title(title, fontweight="bold")
         ax.set_ylabel(r"primary-nucleon yield ratio $n/p$")
-        ax.grid(alpha=0.16)
+        ax.grid(False)
         ax.legend(fontsize=8.5, loc="best")
         ax.tick_params(labelbottom=False)
         ar.axhline(1, color="0.45", lw=1)
         ar.set(xlabel=r"$E_{\rm kin}$ [GeV]",
                ylabel=r"ratio to $U_{\rm sym}=0$", ylim=(0.94, 1.10))
-        ar.grid(alpha=0.16)
+        ar.grid(False)
         stamp(ax, "Xe+Cs, 2.5 AGeV, full production")
-    fig.suptitle("Global n/p feasibility: strong differential structure, weak integrated leverage",
-                 fontsize=13, y=0.995)
     save(fig, out, "fig01_np_global_ekin")
 
 
@@ -188,13 +199,12 @@ def plot_acceptance_np(data_dir: Path, out: Path, n_boot: int, metrics: dict) ->
                 ms=4, color="#7F3C8D", capsize=2)
     ar.axhline(1, color="0.4", lw=1)
     ax.set_ylabel(r"primary-nucleon yield ratio $n/p$")
-    ax.grid(alpha=0.16)
+    ax.grid(False)
     ax.legend(fontsize=8.5)
     ax.tick_params(labelbottom=False)
     ar.set(xlabel=r"$E_{\rm kin}$ [GeV]", ylabel=r"$(n/p)_{90}/(n/p)_0$")
-    ar.grid(alpha=0.16)
+    ar.grid(False)
     stamp(ax, "exact HGND front-face acceptance; job-file bootstrap")
-    fig.suptitle("Differential n/p in the HGND acceptance", fontsize=13, y=0.995)
     # Version the corrected native-boundary rendering so Markdown and notebook
     # front ends cannot reuse a cached image under the former filename.
     save(fig, out, "fig02_np_hgnd_acceptance_ekin_v2")
@@ -334,6 +344,7 @@ def plot_separation_power(
     proton_window_report: dict,
     out: Path,
     metrics: dict,
+    threshold: float = 0.60,
 ) -> None:
     rows: list[dict[str, object]] = []
 
@@ -458,9 +469,9 @@ def plot_separation_power(
         )
     ax.axvline(0, color="0.4", lw=1)
     ax.set_yticks(y, table.observable)
-    ax.set_xlabel(r"relative response $90/0-1$ [\%]")
+    ax.set_xlabel(r"relative response $90/0-1$ [%]")
     ax.set_xlim(-8.2, 13.8)
-    ax.grid(axis="x", alpha=0.18)
+    ax.grid(False)
     # Keep significance labels in a fixed, dedicated column.  Positioning them
     # beside the points made the large truth effects collide with the frame and
     # the low-significance reconstruction rows collide with the legend.
@@ -482,10 +493,9 @@ def plot_separation_power(
         handles=handles, frameon=False, loc="upper center",
         bbox_to_anchor=(0.55, 1.12), ncol=3,
     )
-    stamp(ax, "one frozen GNN and q>0.45 for every reconstructed entry")
-    fig.suptitle("Truth and reconstructed observable separation power", fontsize=13)
+    stamp(ax, rf"one GNN and $q>{threshold:.2f}$ for every reconstructed entry")
     fig.tight_layout()
-    save(fig, out, "fig06_observable_separation_power_v4")
+    save(fig, out, "fig06_observable_separation_power_v5")
 
 
 def plot_reconstruction_performance(performance: dict, out: Path) -> None:
@@ -520,11 +530,11 @@ def plot_reconstruction_performance(performance: dict, out: Path) -> None:
     ax.legend(fontsize=8)
 
     for ax in axes:
-        ax.grid(alpha=0.16)
-    stamp(axes[0], rf"SMASH; one model; ROC AUC={performance['roc_auc']:.3f}")
-    fig.suptitle("HGND neutron reconstruction performance on SMASH", fontsize=13, y=1.01)
+        ax.grid(False)
+    stamp(axes[0], rf"SMASH; ROC AUC={performance['roc_auc']:.3f}; "
+                   rf"$q>{performance.get('working_threshold', 0.60):.2f}$")
     fig.tight_layout()
-    save(fig, out, "fig08_smash_reconstruction_performance")
+    save(fig, out, "fig08_smash_reconstruction_performance_v2")
 
 
 def plot_differential_yield_np(acceptance_summary: dict, out: Path) -> None:
@@ -537,7 +547,15 @@ def plot_differential_yield_np(acceptance_summary: dict, out: Path) -> None:
     xe = np.vstack((x - lo, hi - x))
     keep = hi <= 40
 
-    fig, (ay, ar) = plt.subplots(2, 1, figsize=(7.6, 6.3), sharex=True)
+    # Three rows, because the first two cannot answer the question the shape
+    # raises. The relative panels show the response changing sign near 2 and
+    # 4 degrees, but a per-bin ratio says nothing about how many nucleons
+    # actually moved: a large relative swing in a sparse bin and a small one in
+    # a dense bin look alike. The third row is the absolute difference per
+    # event, which is conserved — the symmetry potential redistributes
+    # nucleons in angle, it does not create them — so its running total is the
+    # closure test that the sign change balances.
+    fig, (ay, ar, ad) = plt.subplots(3, 1, figsize=(9.0, 7.8), sharex=True)
     for tag in ("defaultSpot", "bigSpot"):
         rows = datasets[tag]["theta"]
         n0 = np.array([row["n_per_event"] for row in zero], dtype=float)
@@ -554,6 +572,15 @@ def plot_differential_yield_np(acceptance_summary: dict, out: Path) -> None:
         yr = 100.0 * (r / r0 - 1.0)
         er = 100.0 * (r / r0) * np.sqrt((sr / r) ** 2 + (sr0 / r0) ** 2)
 
+        # absolute movement, and its running total
+        dn = n - n0
+        cum = np.cumsum(dn[keep])
+        ad.step(np.append(lo[keep], hi[keep][-1]),
+                np.append(dn[keep], dn[keep][-1]), where="post",
+                color=COLORS[tag], lw=1.2)
+        ad.plot(x[keep], cum, color=COLORS[tag], ls=":", lw=1.1,
+                marker=None, alpha=0.9)
+
         label = rf"$U_{{\rm sym}}={U_MEV[tag]}$ MeV"
         kw = dict(
             xerr=xe[:, keep], fmt=MARKERS[tag] + "-", ms=4.2, lw=1.0,
@@ -562,17 +589,28 @@ def plot_differential_yield_np(acceptance_summary: dict, out: Path) -> None:
         ay.errorbar(x[keep], yn[keep], yerr=en[keep], **kw)
         ar.errorbar(x[keep], yr[keep], yerr=er[keep], **kw)
 
-    for ax in (ay, ar):
+    for ax in (ay, ar, ad):
         ax.axhline(0, color="0.4", lw=1)
         ax.axvspan(8.9, 13.1, color="#F2C14E", alpha=0.24)
-        ax.grid(alpha=0.16)
-    ay.set_ylabel(r"neutron yield response to $U_{\rm sym}=0$ [\%]")
-    ar.set_ylabel(r"$n/p$ response to $U_{\rm sym}=0$ [\%]")
-    ar.set_xlabel(r"polar angle $\theta_{\rm lab}$ [deg]")
-    ar.set_xlim(0, 40)
+        ax.grid(False)
+    ay.set_ylabel(r"neutron yield response [%]")
+    ar.set_ylabel(r"$n/p$ response [%]")
+    ad.set_ylabel(r"$\Delta$ neutrons per event")
+    ad.set_xlabel(r"polar angle $\theta_{\rm lab}$ [deg]")
+    ad.set_xlim(0, 40)
     ay.legend(fontsize=8.5, ncol=2)
+
+    # name the two things drawn in the closure row
+    from matplotlib.lines import Line2D
+    ad.legend(handles=[Line2D([], [], color="0.3", lw=1.2),
+                       Line2D([], [], color="0.3", lw=1.1, ls=":")],
+              labels=["per bin", "running total"], fontsize=7.5, ncol=2,
+              loc="lower right")
+    net = float(np.cumsum((np.array([r["n_per_event"] for r in datasets["bigSpot"]["theta"]])
+                           - n0)[keep])[-1])
+    ad.text(0.03, 0.06, rf"net over $\theta\leq40^\circ$: {net:+.3f} per event",
+            transform=ad.transAxes, ha="left", va="bottom", fontsize=7.5)
     stamp(ay, "full production; event-clustered errors; HGND angular band shaded")
-    fig.suptitle("Differential neutron yield and n/p response", fontsize=13, y=0.995)
     fig.tight_layout()
     save(fig, out, "fig07_differential_neutron_yield_np_theta")
 
@@ -600,15 +638,13 @@ def plot_hardness(global_report: dict, acc_report: dict, out: Path) -> None:
         re = r * np.sqrt((e / y) ** 2 + (e[0] / y[0]) ** 2)
         ar.errorbar(u, r, yerr=re, fmt=mk + "-", color=c, capsize=3)
     ax.set_ylabel(r"neutron hardness $R_n=N(E>2)/N(E<1)$")
-    ax.grid(alpha=0.16)
+    ax.grid(False)
     ax.legend()
     ax.tick_params(labelbottom=False)
     ar.axhline(1, color="0.4", lw=1)
     ar.set(xlabel=r"$U_{\rm sym}$ [MeV]", ylabel=r"$R_n/R_n(0)$")
-    ar.grid(alpha=0.16)
+    ar.grid(False)
     stamp(ax, "b-reweighted full production; job-file bootstrap")
-    fig.suptitle("Spectral hardness localises the symmetry-potential response",
-                 fontsize=13, y=0.995)
     save(fig, out, "fig03_neutron_hardness_global_vs_hgnd")
 
 
@@ -637,14 +673,12 @@ def plot_observable_summary(global_report: dict, acc_report: dict, out: Path) ->
         ax.axhline(1, color="0.45", lw=1)
         ax.set_xlabel(r"$U_{\rm sym}$ [MeV]")
         ax.set_ylabel("ratio to 0 MeV")
-        ax.grid(alpha=0.16)
+        ax.grid(False)
         ax.legend(fontsize=8.5)
     ax0.set_title("Yield ratio: small or null response")
     ax1.set_title("Spectral shape: monotonic isovector response")
     stamp(ax0, "full production")
     stamp(ax1, "exact HGND front-face acceptance")
-    fig.suptitle("Observable choice, not event count, determines feasibility",
-                 fontsize=13, y=1.01)
     fig.tight_layout()
     save(fig, out, "fig04_observable_feasibility_summary")
 
@@ -665,10 +699,9 @@ def plot_centrality(acc_report: dict, out: Path) -> None:
     ax.axhline(0, color="0.4", lw=1)
     ax.set(xlabel=r"impact parameter class centre $b$ [fm]",
            ylabel=r"relative response $(90/0-1)$ [%]")
-    ax.grid(alpha=0.16)
+    ax.grid(False)
     ax.legend(ncol=2, fontsize=8.5)
     stamp(ax, "HGND front face; b reweighted within job bootstrap")
-    fig.suptitle("Centrality dependence of the truth-level response", fontsize=13)
     fig.tight_layout()
     save(fig, out, "fig05_hgnd_response_vs_centrality")
 
@@ -691,7 +724,9 @@ def main() -> None:
                     default=Path("results/retrain_eval/performance_v3_epoch3.json"))
     ap.add_argument("--proton-window-report", type=Path,
                     default=Path("results/update_note/proton_window_observables.json"))
-    ap.add_argument("--score-threshold", type=float, default=0.45)
+    ap.add_argument("--score-threshold", type=float, default=0.60,
+                    help="cluster score working point; 0.60 is the 87 percent "
+                         "energy-purity point fixed in Part III of the note")
     ap.add_argument("--out-dir", type=Path, default=Path("results/update_note"))
     ap.add_argument("--n-boot", type=int, default=400)
     args = ap.parse_args()
@@ -716,7 +751,7 @@ def main() -> None:
     plot_centrality(a, args.out_dir)
     plot_separation_power(
         a, acceptance_summary, reco_summary, proton_window_report,
-        args.out_dir, metrics,
+        args.out_dir, metrics, args.score_threshold,
     )
     plot_differential_yield_np(acceptance_summary, args.out_dir)
     plot_reconstruction_performance(performance, args.out_dir)

@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from plot_b_full import apply_style, assert_contained, save, FULL
 
 OLD = {"color": "#B22222", "marker": "s", "ls": "--", "label": "previous checkpoint"}
-NEW = {"color": "#1f77b4", "marker": "^", "ls": "-", "label": "retrained (4 epochs)"}
+NEW = {"color": "#1f77b4", "marker": "^", "ls": "-", "label": "converged, restandardised"}
 REFC = "#2b2b2b"
 
 
@@ -25,9 +25,10 @@ def fig_energy(old, new, out_dir):
     """Linearity and resolution against true energy, with the 10 % targets."""
     fig, (a, b) = plt.subplots(2, 1, figsize=(FULL, FULL / 1.55), sharex=True,
                                gridspec_kw={"height_ratios": [1.35, 1], "hspace": 0.08})
-    allv = []
+    allv, alle = [], []
     for d, st in ((old, OLD), (new, NEW)):
         e = np.array([r["e_mid"] for r in d["energy_performance"]])
+        alle += list(e)
         lin = np.array([r["linearity"] for r in d["energy_performance"]]) * 100
         res = np.array([r["resolution"] for r in d["energy_performance"]]) * 100
         a.plot(e, lin, color=st["color"], ls=st["ls"], marker=st["marker"], ms=3.5,
@@ -48,7 +49,11 @@ def fig_energy(old, new, out_dir):
     b.set_xlabel(r"$E_{\mathrm{true}}$  [GeV]")
     rr = [r["resolution"] * 100 for d in (old, new) for r in d["energy_performance"]]
     b.set_ylim(0, max(rr) * 1.15)
-    b.set_xlim(0.4, 5.2)
+    # x limits from the data, not a fixed 5.2: the converged checkpoint reports
+    # a 5.0-6.5 GeV bin that the hardcoded limit pushed outside the shared axis,
+    # which assert_contained then flagged on the linearity panel
+    xm = (max(alle) - min(alle)) * 0.04
+    b.set_xlim(min(alle) - xm, max(alle) + xm)
     for ax, nm in ((a, "lin"), (b, "res")):
         assert_contained(ax, nm)
     save(fig, out_dir, "fig1_energy_performance")
@@ -81,8 +86,14 @@ def fig_working_point(old, new, out_dir):
     save(fig, out_dir, "fig2_working_point")
 
 
-def fig_sensitivity(scan, out_dir, truth_effect=4.27):
-    """Test-set R_n against S_pot, with what the split could have resolved."""
+def fig_sensitivity(scan, out_dir, truth_effect=4.83):
+    """Test-set R_n against U_sym, with what the split could have resolved.
+
+    `truth_effect` is the neutron-only truth-level response measured by
+    scripts/hardness_threshold_opt.py --kind truth: +4.83 % at 90 MeV, held
+    out, 4.75 sigma. It is not the +10.5 % isovector double ratio R_n/R_p,
+    which is a different observable.
+    """
     t = scan.get("test")
     if not t:
         return

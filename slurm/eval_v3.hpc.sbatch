@@ -7,7 +7,7 @@
 # contributes its own held-out half and the three arms are treated identically.
 # For the sample the model was trained on this is a genuine holdout; for the
 # other two the split is arbitrary but keeps the selection and the event counts
-# uniform across the comparison, which is what the S_pot ratio needs.
+# uniform across the comparison, which is what the U_sym ratio needs.
 #
 #SBATCH --job-name=eval_v3
 #SBATCH --account=proj_1855
@@ -29,6 +29,14 @@ set -euo pipefail
 : "${NUM_SHARDS:=1200}"
 : "${CKPT:?set CKPT to the checkpoint to evaluate}"
 : "${OUTDIR:=$SCRATCH/hgnd/results/eval_${TAG}_${SLURM_JOB_ID:-local}}"
+# Each U_sym cache was standardised with a scaler fitted to its own sample, so
+# the same neutron reaches the network differently depending on the sample:
+# the eToF scale differs by 0.41 % across the three and its mean by 0.019 GeV,
+# biasing reconstructed energy by ~0.8 % in the direction that cancels the
+# U_sym signal. Point RESTD at the scaler the checkpoint was trained with and
+# the evaluator undoes it exactly (standardisation is affine). Empty = off,
+# which reproduces the earlier, biased runs.
+: "${RESTD:=}"
 
 module purge 2>/dev/null || true
 module load python/miniconda
@@ -43,6 +51,7 @@ mkdir -p "${SLURM_SUBMIT_DIR:-$HOME/HGNDRecoGNN}/logs" "$OUTDIR"
 echo "host: $(hostname)  gpu: ${CUDA_VISIBLE_DEVICES:-none}"
 echo "ckpt: $CKPT"
 echo "out:  $OUTDIR"
+echo "restd: ${RESTD:-<off>}"
 echo
 
 for DS in zeroSpot defaultSpot bigSpot; do
@@ -50,9 +59,12 @@ for DS in zeroSpot defaultSpot bigSpot; do
     [ -d "$ROOT/processed" ] || { echo "skip $DS: no cache"; continue; }
     if [ -f "$OUTDIR/$DS/pred_clusters_smash.pkl" ]; then echo "skip $DS: done"; continue; fi
     echo "=== inference $DS ==="
+    RESTD_ARG=()
+    [ -n "$RESTD" ] && RESTD_ARG=(--restandardise-to "$RESTD")
     python -u -m HGNDRecoGNN.scripts.evaluate \
         --root "$ROOT" --checkpoint "$CKPT" --out-dir "$OUTDIR/$DS" \
         --suffix smash --split test --num-shards "$NUM_SHARDS" \
+        "${RESTD_ARG[@]}" \
         --batch-size 512 --device auto
 done
 

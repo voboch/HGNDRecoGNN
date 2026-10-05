@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from plot_b_full import apply_style, save, FULL
+from plot_b_full import apply_style, save, FULL, hep_label
 
 
 def grid(surface, field):
@@ -100,23 +100,30 @@ def main():
     ax[0, 1].set_title("truth, significance", fontsize=7.5)
 
     rr, dr, zr, orr = grid(R["surface"], "rel")
+    chr_ = ((R["chosen"]["Rthr"], R["chosen"]["delta"])
+            if R.get("chosen") else None)
     panel(ax[1, 0], rr, dr, zr * 100, orr, cmap="RdBu_r",
-          label=r"$S_{90}/S_{0}-1$  [%]", diverging=True, mask_unordered=False)
+          label=r"$S_{90}/S_{0}-1$  [%]", diverging=True, chosen=chr_,
+          mask_unordered=orr.any())
     ax[1, 0].set_title("reconstructed, response", fontsize=7.5)
 
     _, _, sr, _ = grid(R["surface"], "sigma")
     panel(ax[1, 1], rr, dr, sr, orr, cmap="viridis", label=r"significance  [$\sigma$]",
-          diverging=False, mask_unordered=False)
+          diverging=False, chosen=chr_, mask_unordered=orr.any())
     ax[1, 1].set_title("reconstructed, significance", fontsize=7.5)
 
     # Notes go inside their own panels: placed above the axes they drifted onto
     # the row above and sat on its x-axis label.
     n_adm = int(np.isfinite(zr).sum())
+    n_ord = int(orr.sum())
+    note = (f"none of {n_adm} admissible windows\norders the three samples"
+            if n_ord == 0 else
+            f"{n_ord} of {n_adm} admissible windows\norder the three samples")
+    colour = "#9E2222" if n_ord == 0 else "#222222"
     for axx in (ax[1, 0], ax[1, 1]):
-        axx.text(0.03, 0.04, f"none of {n_adm} admissible windows\norders the "
-                             f"three samples",
+        axx.text(0.03, 0.04, note,
                  transform=axx.transAxes, ha="left", va="bottom", fontsize=6.3,
-                 color="#9E2222",
+                 color=colour,
                  bbox=dict(fc="white", ec="none", alpha=0.85, pad=1.6))
     # top-left: the star sits low and right in this panel
     ax[0, 1].text(0.03, 0.96, "star: selected on\ndevelopment units",
@@ -127,8 +134,14 @@ def main():
                   transform=ax[0, 0].transAxes, ha="left", va="bottom",
                   fontsize=6.3, color="#69727C",
                   bbox=dict(fc="white", ec="none", alpha=0.85, pad=1.6))
-    fig.suptitle("Hardness-window scan: response and significance over the "
-                 "centre and half-gap", fontsize=8, y=0.965)
+    # the scan description belongs in the caption. For a multi-panel figure
+    # the experiment label sits above the panels rather than inside one, where
+    # it would collide with the per-panel annotations.
+    fig.text(0.005, 0.995,
+             "BM@N HGND simulation      "
+             r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV      "
+             r"$U_{\rm sym}$ = 0, 18, 90 MeV",
+             ha="left", va="top", fontsize=6.8)
     save(fig, out, "fig_hardness_window_surface")
 
     summary = {

@@ -33,9 +33,46 @@ from plot_b_full import apply_style, assert_contained, save, FULL, DATASETS, REF
 # they justify. The y axis stays logarithmic where the yield spans more than
 # two decades, per docs/plotting_style_protocol.md section 5.
 SCAN_LO, SCAN_HI = 1.0, 3.0
+# The calibrated reconstructed hardness window (Part III): counts below
+# WINDOW_LO and at or above WINDOW_HI, with the gap between them discarded as
+# the migration-prone region. These replace the 1--2 GeV "candidate band" and
+# its 1.5 / 1.8 GeV splits, which belonged to the in-band shape ratios that the
+# window search superseded; those observables are in the Backup, so their
+# markers do not belong on a main-section figure.
+WINDOW_LO, WINDOW_HI = 1.20, 2.40
+CANDIDATE_LO, CANDIDATE_HI = WINDOW_LO, WINDOW_HI
+
+
+MARK_CALIBRATION = False   # set by --mark-calibration
+
+
+def mark_window(ax, label=False):
+    """Shade the gap the selected window discards, and mark its two edges."""
+    ax.axvspan(WINDOW_LO, WINDOW_HI, color="#8A8A8A", alpha=0.16, lw=0,
+               zorder=0)
+    for e in (WINDOW_LO, WINDOW_HI):
+        ax.axvline(e, color="#2b2b2b", lw=0.8, ls="--", alpha=0.9)
+    if label:
+        ax.text(0.5 * (WINDOW_LO + WINDOW_HI), 0.04, "discarded gap",
+                transform=ax.get_xaxis_transform(), ha="center", va="bottom",
+                fontsize=6.0, color="#444444")
 
 
 def mark_scan_range(ax, label=True, y=0.04, va="bottom"):
+    """Shade the R_thr search range.
+
+    Off by default. The search range and the selected window are *results of
+    the calibration*, and Parts I and II come before it; drawing them there
+    makes a reader take a conclusion from a figure that is not yet entitled to
+    it. Part III draws the same distributions with these overlays, which is
+    where the comparison belongs.
+    """
+    if not MARK_CALIBRATION:
+        return
+    _mark_scan_range(ax, label=label, y=y, va=va)
+
+
+def _mark_scan_range(ax, label=True, y=0.04, va="bottom"):
     ax.axvspan(SCAN_LO, SCAN_HI, color="#2b2b2b", alpha=0.07, lw=0, zorder=0)
     if label:
         ax.text(0.5 * (SCAN_LO + SCAN_HI), y, r"$R_{\mathrm{thr}}$ searched",
@@ -135,7 +172,7 @@ def fig_truth(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500):
         ax[1, col].axhline(1.0, color="#2b2b2b", lw=0.8)
         mark_scan_range(ax[1, col], label=False)
         ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
-        ax[1, col].set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
+        ax[1, col].set_ylabel(r"ratio to $U_{\mathrm{sym}}=0$", fontsize=7)
         ratio_span += fin
         panels[col] = None
         ax[0, col].set_xlim(emin, emax); ax[1, col].set_xlim(emin, emax)
@@ -188,7 +225,8 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500)
     a.set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
     a.set_ylabel(r"$n/p$  in the HGND acceptance")
     a.legend(loc="upper left", fontsize=6.4)
-    a.set_title("nucleon ratio against energy (MC truth)", fontsize=7.5)
+    a.text(0.97, 0.96, "MC truth", transform=a.transAxes, ha="right",
+           va="top", fontsize=6.5)
     v = np.concatenate([(npr[t] + npe[t])[keep] for t in npr]
                        + [(npr[t] - npe[t])[keep] for t in npr])
     v = v[np.isfinite(v)]
@@ -209,8 +247,9 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500)
     b.axhline(1.0, color="#2b2b2b", lw=0.8)
     mark_scan_range(b)
     b.set_xlabel(r"$E_{\mathrm{kin}}$ (MC truth)  [GeV]")
-    b.set_ylabel(r"$(n/p)$ relative to $S_{\mathrm{pot}}=0$")
-    b.set_title("the isovector signal, against energy (MC truth)", fontsize=7.5)
+    b.set_ylabel(r"$(n/p)$ relative to $U_{\mathrm{sym}}=0$")
+    b.text(0.03, 0.96, "MC truth", transform=b.transAxes, ha="left",
+           va="top", fontsize=6.5)
     m = max(abs(np.array(fin) - 1).max(), 0.01) * 1.15
     b.set_ylim(1 - m, 1 + m); b.set_xlim(emin, emax)
     for ax_, nm in ((a, "npr_a"), (b, "npr_b")):
@@ -220,7 +259,7 @@ def fig_np_relation(hist_dir, out_dir, rng, emin=0.15, emax=5.0, min_counts=500)
             "np_ratio": {t: npr[t][keep].tolist() for t in npr}}
 
 
-def reco_spectra(pred_dir, purity=0.7):
+def reco_spectra(pred_dir, purity=0.7, threshold=None):
     from reco_experiment import purity_locked_threshold
     out = {}
     for tag in DATASETS:
@@ -228,15 +267,19 @@ def reco_spectra(pred_dir, purity=0.7):
         if not p.exists():
             continue
         c = pd.read_pickle(p)
-        t, pur, _ = purity_locked_threshold(c, purity)
+        if threshold is None:
+            t, pur, _ = purity_locked_threshold(c, purity)
+        else:
+            t = float(threshold)
+            pur = float(c.cl_label[c.cl_score > t].mean())
         out[tag] = {"sel": c[c.cl_score > t], "threshold": t, "purity": pur,
                     "n_events": int(c.Row.nunique())}
     return out
 
 
 def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
-             min_counts=300):
-    sp = reco_spectra(pred_dir)
+             min_counts=300, threshold=None):
+    sp = reco_spectra(pred_dir, threshold=threshold)
     if REF not in sp:
         raise SystemExit("reco spectra need the reference sample")
     edges = np.linspace(emin, emax, 26)
@@ -277,10 +320,23 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
     # (docs/plotting_style_protocol.md section 5), and a log axis flattens the
     # shape difference between the samples, which is the point of the panel.
     a.set_ylabel(r"clusters per event  [GeV$^{-1}$]")
-    mark_scan_range(a)
-    mark_scan_range(b, label=False)
-    a.set_title("reconstructed neutron candidates, purity-locked selection "
-                "(reconstructed, not MC truth)", fontsize=7)
+    # The reconstructed plot is used to assess the finite-band alternatives,
+    # mark the window the result is actually quoted at: the two bands, and the
+    # gap between them that the half-gap delta discards
+    for ax in (a, b):
+        ax.axvspan(WINDOW_LO, WINDOW_HI, color="#8A8A8A", alpha=0.16,
+                   lw=0, zorder=0)
+        ax.axvline(WINDOW_LO, color="#2b2b2b", lw=0.8, ls="--", alpha=0.9)
+        ax.axvline(WINDOW_HI, color="#2b2b2b", lw=0.8, ls="--", alpha=0.9)
+    # low in the panel: the top-right corner carries the provenance stamp
+    b.text(0.5 * (WINDOW_LO + WINDOW_HI), 0.04,
+           "discarded gap", transform=b.get_xaxis_transform(),
+           ha="center", va="bottom", fontsize=6.0, color="#444444")
+    a.text(0.97, 0.96, "reconstructed neutron candidates\n"
+           rf"$q>{next(iter(sp.values()))['threshold']:.2f}$  "
+           r"(reconstructed, not MC truth)",
+           transform=a.transAxes, ha="right", va="top", fontsize=6.5,
+           linespacing=1.35)
     # limits must contain the error-bar ends, not only the points
     lo = np.concatenate([(dens[t] - err[t])[keep] for t in dens])
     hi = np.concatenate([(dens[t] + err[t])[keep] for t in dens])
@@ -303,14 +359,14 @@ def fig_reco(pred_dir, out_dir, rng, emin=0.3, emax=5.0, n_boot=300,
                 if np.isfinite(x)]
     b.axhline(1.0, color="#2b2b2b", lw=0.8)
     b.set_xlabel(r"$E_{\mathrm{reco}}$ (reconstructed)  [GeV]")
-    b.set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
+    b.set_ylabel(r"ratio to $U_{\mathrm{sym}}=0$", fontsize=7)
     m = max(abs(np.array(fin) - 1).max(), 0.02) * 1.15 if fin else 0.2
     b.set_ylim(1 - m, 1 + m)
     lo_e = max(ctr[keep].min() - 0.15, 0.0); hi_e = ctr[keep].max() + 0.15
     a.set_xlim(lo_e, hi_e); b.set_xlim(lo_e, hi_e)
     for ax, nm in ((a, "reco_a"), (b, "reco_b")):
         assert_contained(ax, nm)
-    save(fig, out_dir, "fig_reco_neutron_spectra")
+    save(fig, out_dir, "fig_reco_neutron_spectra_v2")
     return {t: {"threshold": sp[t]["threshold"], "purity": sp[t]["purity"],
                 "n_events": sp[t]["n_events"]} for t in sp}
 
@@ -320,13 +376,27 @@ def main():
     p.add_argument("--truth-hist-dir", required=True)
     p.add_argument("--pred-dir", required=True)
     p.add_argument("--output-dir", required=True)
+    p.add_argument("--mark-calibration", action="store_true",
+                   help="Overlay the R_thr search range and the selected "
+                        "window. Off by default: those are outputs of Part "
+                        "III, and drawing them on the Part I and II "
+                        "distributions asks the reader to accept a conclusion "
+                        "before it is derived.")
+    p.add_argument("--threshold", type=float, default=None,
+                   help="Fixed score cut for the reconstructed spectrum, "
+                        "overriding the purity lock. At q > 0.60 the three "
+                        "samples agree to 0.14 pp in count purity and 0.08 pp "
+                        "in recall, so the fixed cut does not import a "
+                        "per-sample purity difference. 0.60 is the 87 percent "
+                        "energy-purity working point.")
     a = p.parse_args()
+    globals()["MARK_CALIBRATION"] = a.mark_calibration
     apply_style()
     out = Path(a.output_dir); out.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(20260929)
     meta = {"truth": fig_truth(a.truth_hist_dir, out, rng),
             "np_relation": fig_np_relation(a.truth_hist_dir, out, rng),
-            "reco": fig_reco(a.pred_dir, out, rng)}
+            "reco": fig_reco(a.pred_dir, out, rng, threshold=a.threshold)}
     json.dump(meta, open(out / "spectra_figure_data.json", "w"), indent=1)
     print("spectra figures complete")
 

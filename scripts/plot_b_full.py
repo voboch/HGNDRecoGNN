@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figures for the full-statistics impact-parameter / S_pot sensitivity report.
+"""Figures for the full-statistics impact-parameter / U_sym sensitivity report.
 
 Follows docs/plotting_style_protocol.md: printed size with no rescale, 8 pt base
 type, vector PDF plus a 200 dpi PNG for the weekly report, colour never the only
@@ -19,9 +19,9 @@ import pandas as pd
 SINGLE, FULL = 3.30, 6.84            # inches (protocol sec. 1)
 SCOPE = "full production"            # sample-scope label, set from --scope
 DATASETS = {
-    "zeroSpot":    {"label": r"$S_{\mathrm{pot}}=0$ MeV",  "color": "#2b2b2b", "marker": "o", "ls": "-"},
-    "defaultSpot": {"label": r"$S_{\mathrm{pot}}=18$ MeV", "color": "#B22222", "marker": "s", "ls": "--"},
-    "bigSpot":     {"label": r"$S_{\mathrm{pot}}=90$ MeV", "color": "#1f77b4", "marker": "^", "ls": "-"},
+    "zeroSpot":    {"label": r"$U_{\mathrm{sym}}=0$ MeV",  "color": "#2b2b2b", "marker": "o", "ls": "-"},
+    "defaultSpot": {"label": r"$U_{\mathrm{sym}}=18$ MeV", "color": "#B22222", "marker": "s", "ls": "--"},
+    "bigSpot":     {"label": r"$U_{\mathrm{sym}}=90$ MeV", "color": "#1f77b4", "marker": "^", "ls": "-"},
 }
 REF = "zeroSpot"
 
@@ -37,6 +37,40 @@ def apply_style() -> None:
         "legend.frameon": False, "figure.dpi": 200,
         "axes.grid": False, "savefig.bbox": "tight",
     })
+
+
+def hep_label(ax, *, status="BM@N HGND simulation",
+              system=r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV",
+              extra=None, loc="upper left", fontsize=6.8):
+    """Stamp the three things `docs/PLOT_CONVENTIONS.md` §5 requires in-frame.
+
+    A plot that does not say what collided is not interpretable, and a
+    simulation figure that does not say it is simulation can be mistaken for
+    data. These belong inside the frame, not in a title: the title competes
+    with the axes for space and is lost when the figure is cropped into a
+    talk. Everything else belongs in the caption.
+
+    `extra` takes a further line, typically what is varied — `U_sym` in MeV,
+    never the repo's dataset codenames.
+    """
+    parts = [status]
+    if system:
+        parts.append(system)
+    if extra:
+        parts.append(extra)
+    x, ha = (0.03, "left") if "left" in loc else (0.97, "right")
+    y, va = (0.96, "top") if "upper" in loc else (0.04, "bottom")
+    ax.text(x, y, "\n".join(parts), transform=ax.transAxes, ha=ha, va=va,
+            fontsize=fontsize, linespacing=1.35, zorder=5)
+
+
+def no_grid(*axes):
+    """Drop grid lines. A grid is a spreadsheet convention (PLOT_CONVENTIONS §1).
+
+    Reference levels are drawn as single dashed lines instead, by the caller.
+    """
+    for ax in axes:
+        ax.grid(False)
 
 
 def snap_limits(values, pad=0.06, log=False):
@@ -150,7 +184,7 @@ def fig_b_distributions(data, out_dir, bw=0.5):
         b.errorbar(ctr, r, yerr=re, color=s["color"], ls=s["ls"], marker=s["marker"],
                    ms=3, mfc="none", mew=0.7, elinewidth=0.6, capsize=1.2)
     b.set_xlabel(r"$b$  [fm]")
-    b.set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$")
+    b.set_ylabel(r"ratio to $U_{\mathrm{sym}}=0$")
     fin = []
     for k in DATASETS:
         if k == REF:
@@ -369,7 +403,7 @@ def fig_spectra(hist_dir, out_dir, emin=0.1, emax=8.0):
         ax[1, col].axhline(1.0, color="#2b2b2b", lw=0.8)
         ax[1, col].set_xscale("log")
         ax[1, col].set_xlabel(r"$E_{\mathrm{kin}}$  [GeV]")
-        ax[1, col].set_ylabel(r"ratio to $S_{\mathrm{pot}}=0$", fontsize=7)
+        ax[1, col].set_ylabel(r"ratio to $U_{\mathrm{sym}}=0$", fontsize=7)
         ax[1, col].set_xlim(emin, emax); ax[0, col].set_xlim(emin, emax)
 
     # shared ratio limits across the row, so the two species compare by eye
@@ -385,7 +419,7 @@ def fig_spectra(hist_dir, out_dir, emin=0.1, emax=8.0):
 
 
 def fig_response(resp_json, out_dir):
-    """Fig: response to S_pot, every observable normalised to its own S_pot = 0 value.
+    """Fig: response to U_sym, every observable normalised to its own U_sym = 0 value.
 
     Plotting the relative change puts observables of very different size on one
     axis and makes the two things the three-point scan adds visible at once:
@@ -411,8 +445,8 @@ def fig_response(resp_json, out_dir):
                     mfc="none", mew=1.0, elinewidth=0.8, capsize=2.0, label=lab)
         ax.plot([x[0], x[2]], [r[0], r[2]], color=col, ls=ls, lw=0.9, alpha=0.75)
         allv += list(r + re) + list(r - re)
-    ax.set_xlabel(r"$S_{\mathrm{pot}}$  [MeV]")
-    ax.set_ylabel(r"change relative to $S_{\mathrm{pot}}=0$  [%]")
+    ax.set_xlabel(r"$U_{\mathrm{sym}}$  [MeV]")
+    ax.set_ylabel(r"change relative to $U_{\mathrm{sym}}=0$  [%]")
     ax.set_title("Three-point scan: dashed lines join the end points, "
                  "so a middle point off the line is curvature", fontsize=7)
     ax.legend(loc="upper left", fontsize=6.5, ncols=2)
