@@ -1,0 +1,189 @@
+{
+  "threshold": 0.6,
+  "rows": [
+    {
+      "key": "hardness_truth",
+      "label": "truth $R_n$",
+      "needs": "MC truth",
+      "hgnd_only": false,
+      "baseline": false,
+      "Rthr": 1.8,
+      "delta": 0.6,
+      "lo_edge": 1.2000000000000002,
+      "hi_edge": 2.4,
+      "dev_rel": 0.06909201628684691,
+      "dev_sigma": 8.645358664814097,
+      "slope": {
+        "slope_per_MeV": 0.0001659337955895323,
+        "slope_err": 2.9291307538516156e-05,
+        "rel_slope_per_MeV": 0.0005702765758213981,
+        "sigma_slope": 5.6649501006856795,
+        "chi2_linear_ndf1": 0.06617812597393674
+      },
+      "rel": 0.0505280734929765,
+      "err": 0.009655501382241288,
+      "sigma": 5.233086454309807,
+      "ordered": true,
+      "n_admissible": 207,
+      "n_ordered": 204,
+      "R": {
+        "zeroSpot": 0.29097073705075377,
+        "defaultSpot": 0.29326199292020994,
+        "bigSpot": 0.3056729278367598
+      },
+      "R_err": {
+        "zeroSpot": 0.0018660864775630036,
+        "defaultSpot": 0.0020029336133817843,
+        "bigSpot": 0.001985749331176686
+      }
+    },
+    {
+      "key": "truth_dr",
+      "label": "truth $R_n/R_p$",
+      "needs": "MC truth",
+      "hgnd_only": false,
+      "baseline": false,
+      "Rthr": 1.8,
+      "delta": 0.6,
+      "lo_edge": 1.2000000000000002,
+      "hi_edge": 2.4,
+      "dev_rel": 0.14080995141366515,
+      "dev_sigma": 11.005246871072863,
+      "slope": {
+        "slope_per_MeV": 0.0012413357630114202,
+        "slope_err": 0.000148412725930567,
+        "rel_slope_per_MeV": 0.0012130888517860243,
+        "sigma_slope": 8.364078991394333,
+        "chi2_linear_ndf1": 2.1930685614673178
+      },
+      "rel": 0.11606052278832113,
+      "err": 0.014506312611352276,
+      "sigma": 8.000690864575404,
+      "ordered": true,
+      "n_admissible": 207,
+      "n_ordered": 207,
+      "R": {
+        "zeroSpot": 1.0232851131916745,
+        "defaultSpot": 1.0667575165083927,
+        "bigSpot": 1.1420481183902065
+      },
+      "R_err": {
+        "zeroSpot": 0.009430021271604761,
+        "defaultSpot": 0.01095903833649855,
+        "bigSpot": 0.010079020195417798
+      }
+    },
+    {
+      "key": "hardness_q060",
+      "label": "reco $R_n$",
+      "needs": "HGND alone",
+      "hgnd_only": true,
+      "baseline": false,
+      "Rthr": 1.8,
+      "delta": 0.6,
+      "lo_edge": 1.2000000000000002,
+      "hi_edge": 2.4,
+      "dev_rel": 0.052007934891683316,
+      "dev_sigma": 3.347581991641714,
+      "slope": {
+        "slope_per_MeV": 0.00016463887903383603,
+        "slope_err": 0.00019489577003468028,
+        "rel_slope_per_MeV": 0.0002019315701735335,
+        "sigma_slope": 0.8447534751756784,
+        "chi2_linear_ndf1": 1.4682843194331472
+      },
+      "rel": 0.02708782626347528,
+      "err": 0.022908783124090892,
+      "sigma": 1.182421000572034,
+      "ordered": false,
+      "n_admissible": 134,
+      "n_ordered": 47,
+      "R": {
+        "zeroSpot": 0.8153201547056296,
+        "defaultSpot": 0.8400869092884302,
+        "bigSpot": 0.8374054054054054
+      },
+      "R_err": {
+        "zeroSpot": 0.012362491877055449,
+        "defaultSpot": 0.013376076718006611,
+        "bigSpot": 0.013174326235904834
+      }
+    },
+    {
+      "key": "hybrid_q060",
+      "label": "reco $R_n$ / truth $R_p$",
+      "needs": "HGND + proton measurement",
+      "hgnd_only": false,
+      "baseline": false,
+      "Rthr": 1.8,
+      "delta": 0.6,
+      "lo_edge": 1.2000000000000002,
+      "hi_edge": 2.4,
+      "dev_rel": 0.11907097074819473,
+      "dev_sigma": 6.461070170971738,
+      "slope": {
+        "slope_per_MeV": 0.002582058271090473,
+        "slope_err": 0.0007783804868681108,
+        "rel_slope_per_MeV": 0.000895818291787712,
+        "sigma_slope": 3.3172186541823963,
+        "chi2_linear_ndf1": 3.9948473931991417
+      },
+      "rel": 0.09730459411509917,
+      "err": 0.02591893667799295,
+      "sigma": 3.7541892757397646,
+      "ordered": true,
+      "n_admissible": 134,
+      "n_ordered": 98,
+      "R": {
+        "zeroSpot": 2.882346001149037,
+        "defaultSpot": 3.0730638400574977,
+        "bigSpot": 3.1628115088901234
+      },
+      "R_err": {
+        "zeroSpot": 0.04832692088110486,
+        "defaultSpot": 0.054634541685468,
+        "bigSpot": 0.05533297934834313
+      }
+    }
+  ],
+  "common_window": {
+    "window": [
+      1.6,
+      2.4
+    ],
+    "values": {
+      "truth_Rn": {
+        "zeroSpot": 0.2240222362516033,
+        "defaultSpot": 0.22734861006137821,
+        "bigSpot": 0.2377230416172451
+      },
+      "truth_Rp": {
+        "zeroSpot": 0.2172488498983631,
+        "defaultSpot": 0.21366172356356228,
+        "bigSpot": 0.2042879931780256
+      },
+      "truth_dr": {
+        "zeroSpot": 1.031178007876263,
+        "defaultSpot": 1.0640586730722699,
+        "bigSpot": 1.1636662435177125
+      },
+      "reco_Rn": {
+        "zeroSpot": 0.4043026013557676,
+        "defaultSpot": 0.40875762607511335,
+        "bigSpot": 0.4207198078510846
+      },
+      "hybrid": {
+        "zeroSpot": 1.861011469312335,
+        "defaultSpot": 1.9131064715646737,
+        "bigSpot": 2.0594446169161333
+      }
+    },
+    "response": {
+      "truth_Rn": 0.06115823855206126,
+      "truth_Rp": -0.05965903491043134,
+      "truth_dr": 0.1284824100489812,
+      "reco_Rn": 0.040606235132458535,
+      "hybrid": 0.10662650439071264
+    }
+  }
+}

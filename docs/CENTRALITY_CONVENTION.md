@@ -316,7 +316,7 @@ stratification.
 
 **Consequence for the physics.** With centrality matched and errors resampled at
 the job level, the spectral-hardness signal is present and isovector: R_n
-+4.26 % (23.5σ), R_p −5.83 % (33.8σ), the double ratio R_n/R_p +10.72 %
++4.27 % (21.7σ), R_p −5.84 % (33.4σ), the double ratio R_n/R_p +10.73 %
 (37.0σ) in 10 of 10 centrality classes, against a null-test noise floor of
 0.25 %. n/p in the same band is null at 1.0σ.
 

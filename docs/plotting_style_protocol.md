@@ -165,9 +165,12 @@ appear in the captions that quote them.
 
 **§5 — the b-window line is load-bearing.** "No figure in this project is
 window-independent" forces an explicit statement when the impact parameter is
-*unavailable*, which is the situation in the primary exports (`B = -1`). Writing
-"no impact-parameter selection (B unavailable)" on the panel surfaces the gap on
-the figure itself rather than leaving it to a systematics section.
+*unavailable*.  The primary exports used for the 2026-09-25 full-statistics
+acceptance report had `B = -1`; the converter now recovers
+`DstEventHeader.fB`, but those older results were not recomputed.  Each figure
+must therefore say whether it uses a B-enabled export or "no impact-parameter
+selection (B unavailable)" rather than leaving that distinction to a
+systematics section.
 
 **§9.7 — grouping beats a single ranked list.** The natural presentation of
 "which observable is most sensitive" is one sorted bar chart, but the candidates

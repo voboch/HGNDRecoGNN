@@ -198,75 +198,99 @@
   },
   {
    "observable": "reco candidate yield $\\widehat Y_n$",
-   "response_percent": 0.4176773353842478,
-   "error_percent": 0.46680742094139915,
-   "separation_sigma": 0.8947529894488996,
+   "response_percent": 0.8508349429109385,
+   "error_percent": 0.38807016709871334,
+   "separation_sigma": 2.192477069989541,
    "level": "reconstructed",
    "note": "all selected clusters; includes fakes"
   },
   {
    "observable": "reco matched yield $\\widehat Y_n^{\\rm match}$",
-   "response_percent": 0.905142216617616,
-   "error_percent": 0.511039297323069,
-   "separation_sigma": 1.7711792837829512,
+   "response_percent": 0.6920877025738736,
+   "error_percent": 0.4214808708408232,
+   "separation_sigma": 1.642038228670283,
    "level": "reconstructed",
    "note": "truth-matched closure diagnostic"
   },
   {
    "observable": "reco $d\\widehat N_n/dE$",
-   "response_percent": 1.726973684210531,
-   "error_percent": 2.9090836369615887,
-   "separation_sigma": 0.5936486879470677,
+   "response_percent": 2.768826828977211,
+   "error_percent": 1.5854253933099645,
+   "separation_sigma": 1.746425180687062,
    "level": "reconstructed",
    "note": "selected candidates; $2.6\\leq E_{\\rm reco}<3.0$ GeV"
   },
   {
    "observable": "reco safe-window $\\widehat R_n$",
-   "response_percent": -0.3911882499718522,
-   "error_percent": 2.862959444375547,
-   "separation_sigma": 0.1366377196646514,
+   "response_percent": 3.1030555041006602,
+   "error_percent": 1.4627763570954524,
+   "separation_sigma": 2.1213464991068163,
    "level": "reconstructed",
    "note": "$E_{\\rm reco}\\in[1.8,2.4)$ vs. $E_{\\rm reco}\\geq2.6$ GeV"
   },
   {
    "observable": "reco $R_n^{1{-}2}$ (equal bins)",
-   "response_percent": 1.0880485219886493,
-   "error_percent": 1.2844071978471006,
-   "separation_sigma": 0.8471211651666356,
+   "response_percent": 1.725599045933901,
+   "error_percent": 1.132425313631202,
+   "separation_sigma": 1.5238082592843547,
    "level": "reconstructed",
    "note": "$[1.5,2.0)/[1.0,1.5)$ GeV; not 0/18/90 ordered; exploratory"
   },
   {
    "observable": "reco $R_n^{1{-}2}$ (upper tail)",
-   "response_percent": 1.4940688336986252,
-   "error_percent": 1.3945972970226699,
-   "separation_sigma": 1.0713263512616276,
+   "response_percent": -0.045504243430238844,
+   "error_percent": 1.3824971823034395,
+   "separation_sigma": 0.03291452887768076,
    "level": "reconstructed",
    "note": "$[1.8,2.0)/[1.0,1.8)$ GeV; 0/18/90 ordered; exploratory"
   },
   {
    "observable": "reco $\\langle E\\rangle_{1{-}2}$",
-   "response_percent": 0.04299149610516029,
-   "error_percent": 0.10565767193629647,
-   "separation_sigma": 0.40689422090504596,
+   "response_percent": 0.11208084530465179,
+   "error_percent": 0.10410574826940683,
+   "separation_sigma": 1.0766057318430378,
    "level": "reconstructed",
    "note": "mean selected-candidate energy in $[1.0,2.0)$ GeV; not ordered; exploratory"
   },
   {
    "observable": "hybrid yield $\\widehat Y_n/Y_p^{\\rm MC}$",
-   "response_percent": 0.14940780069081505,
-   "error_percent": 0.4922586725348072,
-   "separation_sigma": 0.3035148165525729,
+   "response_percent": 0.5814082116670116,
+   "error_percent": 0.4190323887340135,
+   "separation_sigma": 1.3875018430522048,
    "level": "hybrid",
    "note": "reco candidates and MC-truth proton yield; independent-error estimate"
   },
   {
    "observable": "hybrid $\\widehat R_n/R_p^{\\rm MC}$",
-   "response_percent": 5.285079051342723,
-   "error_percent": 3.079803497350207,
-   "separation_sigma": 1.7160442397996771,
+   "response_percent": 8.978444361185222,
+   "error_percent": 1.6558387502191327,
+   "separation_sigma": 5.4222939039184945,
    "level": "hybrid",
    "note": "safe-window reco neutron and MC-truth proton; independent-error estimate"
+  },
+  {
+   "observable": "hybrid $R_{n,{\\rm eq}}^{1{-}2}/R_{p,{\\rm eq}}^{1{-}2,{\\rm MC}}$",
+   "response_percent": 2.5585477622477093,
+   "error_percent": 1.3168348268881924,
+   "separation_sigma": 1.9429526847294918,
+   "level": "hybrid",
+   "note": "equal-bin reco-neutron/MC-proton shape ratio; independent-error estimate; exploratory"
+  },
+  {
+   "observable": "hybrid $R_{n,{\\rm tail}}^{1{-}2}/R_{p,{\\rm tail}}^{1{-}2,{\\rm MC}}$",
+   "response_percent": 1.2393134164576658,
+   "error_percent": 1.6535553433022998,
+   "separation_sigma": 0.7494840868057339,
+   "level": "hybrid",
+   "note": "upper-tail reco-neutron/MC-proton shape ratio; independent-error estimate; exploratory"
+  },
+  {
+   "observable": "hybrid $\\langle E_n\\rangle_{1{-}2}/\\langle E_p\\rangle_{1{-}2}^{\\rm MC}$",
+   "response_percent": 0.21356134764118906,
+   "error_percent": 0.12093429785049363,
+   "separation_sigma": 1.7659287020891843,
+   "level": "hybrid",
+   "note": "reco-neutron/MC-proton in-band mean-energy ratio; independent-error estimate; exploratory"
   }
  ]
 }

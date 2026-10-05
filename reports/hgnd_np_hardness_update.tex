@@ -1,0 +1,552 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=18mm,headheight=14pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{siunitx}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black}
+\definecolor{noteBlue}{HTML}{2166AC}
+\definecolor{noteRed}{HTML}{B2182B}
+\definecolor{noteGray}{HTML}{4D4D4D}
+\newcommand{\Usym}{U_{\rm sym}}
+\newcommand{\Ekin}{E_{\rm kin}}
+\newcommand{\HGND}{HGND}
+\newcommand{\Rhard}{R=N(\Ekin>2\,\mathrm{GeV})/N(\Ekin<1\,\mathrm{GeV})}
+\newcommand{\notegraphic}[2][]{%
+  \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
+    \fbox{\parbox[c][42mm][c]{0.88\linewidth}{\centering
+      Figure file: \texttt{\detokenize{#2}}}}}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BM@N HGND internal analysis note}
+\rhead{29 September 2026}
+\cfoot{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Feasibility of neutron--proton observables and spectral hardness\\
+with the BM@N Highly-Granular Neutron Detector}\par
+\vspace{4mm}
+{\large Full-production truth study and reconstruction update}\par
+\vspace{3mm}
+{\color{noteRed}\bfseries Internal analysis note -- not for external distribution}\par
+\end{center}
+
+\begin{abstract}
+Three SMASH Xe+Cs samples with symmetry-potential strengths
+$\Usym=0$, 18 and 90~MeV provide 2,345,993 events in 568 independent
+generation jobs.  This note begins from the observable question.  The
+integrated neutron-to-proton yield ratio has differential kinematic structure,
+but it is effectively insensitive to $\Usym$ in the exact HGND front-face
+acceptance.  Spectral hardness is different: the neutron hardness rises by
+$4.52\%$ and the proton hardness falls by $5.39\%$ between 0 and 90~MeV,
+giving a $10.48\%$ truth-level double-ratio response.  These conclusions use
+impact-parameter reweighting and a bootstrap over production jobs.
+
+The reconstructed observable must be defined inside the detector-efficiency
+plateau.  With one frozen GNN and the same score threshold for all three SMASH
+samples, neither the raw neutron-candidate yield nor the detector-safe neutron
+hardness separates the 0 and 90~MeV samples significantly.  A hybrid
+reconstructed-neutron/truth-proton hardness reaches only $1.7\sigma$, compared
+with $13.8\sigma$ for the ideal truth double ratio, and is a feasibility test
+rather than a measurement.  An event-level study quantifies the efficiency for
+the first, second and subsequent true-neutron clusters rather than quoting only
+an inclusive average.
+\end{abstract}
+
+\section{Decision summary}
+
+\begin{center}
+\begin{tabular}{p{0.29\linewidth}p{0.25\linewidth}p{0.37\linewidth}}
+\toprule
+Question & Result & Analysis decision \\
+\midrule
+Integrated $n/p$ in HGND & $+0.06\%\pm0.28\%$ for 90/0 & Do not use as a
+symmetry-potential estimator. \\
+Differential $n/p(\Ekin,y,p_T)$ & Strong shape dependence & Retain as a
+transport-model and phase-space diagnostic. \\
+Neutron hardness in HGND & $+4.52\%\pm0.45\%$ & Primary detector-level
+physics target. \\
+Proton hardness in same window & $-5.39\%\pm0.51\%$ & Requires the charged
+tracking arm, not HGND alone. \\
+Hardness double ratio & $+10.48\%\pm0.76\%$ & Preferred truth-level
+isovector diagnostic. \\
+Conventional reconstructed $R_n$ & Denominator below 1~GeV has $\sim2\%$
+efficiency & Redefine the reconstructed window inside the efficiency plateau. \\
+Detector-safe reconstructed $\widehat R_n$ & $-0.39\%\pm2.86\%$ for 90/0 &
+Current reconstruction is statistically compatible with no response. \\
+Modified 1--2~GeV upper-tail hardness & $+1.49\%\pm1.39\%$ for 90/0 &
+Best ordered in-band ratio, but exploratory and only $1.07\sigma$. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Neutron-to-proton ratio feasibility}
+
+\subsection{Global phase space}
+
+The global primary-nucleon ratio reproduces the qualitative structure of the
+``n/p--SMASH check'' reference: $n/p$ separates most strongly at high kinetic
+energy and its shape depends on rapidity.  Figure~\ref{fig:globalnp} uses the
+complete available production rather than a file subset.  The lower panels
+show the ratio to the $\Usym=0$ sample so that the parameter response is not
+confused with the large common spectral shape.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=\linewidth]{../results/update_note/fig01_np_global_ekin.pdf}
+\caption{Primary-nucleon $n/p$ versus kinetic energy at midrapidity (left) and
+in full phase space (right).  All available production files are included.
+Statistical errors are evaluated with event clustering in the source reduction.}
+\label{fig:globalnp}
+\end{figure}
+
+The earlier right-hand panel used the disjoint selection
+$|y-y_{\rm cm}|>0.5$.  Its two kinematic branches exchange dominance near
+1.1~GeV, producing an abrupt, visually misleading structure.  The revised
+panel shows inclusive rapidity; all valid points are connected consistently in
+the spectrum and ratio panels.  The global differential separation is real but is not by itself an HGND
+measurement.  HGND covers a rectangular front face at negative $x$, only
+0.0114~sr, and the SMASH reaction plane is fixed.  A polar-angle-only selection
+therefore cannot replace the exact $(x,y)$ acceptance.
+
+\subsection{Exact HGND front-face acceptance}
+
+For a sample $s$, event weights $w_e$, a bin $B=[x_a,x_b)$ of width
+$\Delta x_B=x_b-x_a$, and particle species $a\in\{n,p\}$, the differential
+per-event yield used in this note is
+\[
+ Y_a^{(s)}(B)\equiv\left.\frac{dN_a}{dx}\right|_B
+ =\frac{\sum_e w_e N_{a,e}^{(s)}(B)}
+        {\Delta x_B\sum_e w_e}.
+\]
+The differential neutron-to-proton yield ratio is
+\[
+ \rho_{n/p}^{(s)}(B)\equiv\frac{Y_n^{(s)}(B)}{Y_p^{(s)}(B)}
+ =\frac{\sum_e w_eN_{n,e}^{(s)}(B)}
+        {\sum_e w_eN_{p,e}^{(s)}(B)},
+\]
+where the second equality is valid only when neutron and proton yields use the
+same events, weights, bin and acceptance.  An integrated yield is obtained by
+replacing $B$ by the declared phase-space region and omitting $\Delta x_B$.
+For any observable $O$, the quoted Spot response is
+$\Delta_O^{90/0}=O^{(90)}/O^{(0)}-1$.
+
+For selected reconstructed neutron candidates the corresponding raw yield is
+\[
+ \widehat Y_n^{(s)}(B)=
+ \frac{\sum_c w_{e(c)}\,\mathbf{1}(q_c>q_0)\,
+       \mathbf{1}(x_c^{\rm reco}\in B)}
+      {\Delta x_B\sum_e w_e}.
+\]
+It includes fake candidates unless a response model is applied.  The hybrid
+$\widehat\rho_{n/p}=\widehat Y_n/Y_p^{\rm MC}$ therefore tests feasibility
+with MC-truth protons; it is not a data-level $n/p$ measurement.
+
+Figure~\ref{fig:accnp} propagates both neutron and proton primaries from their
+production vertices to the detector front face.  The uncertainty is obtained by
+resampling whole generation files; treating all particles as independent would
+substantially underestimate it.  The energy-differential ratio separates above
+roughly 2~GeV, but its integral over the acceptance does not order the three
+$\Usym$ values.  The integrated 90/0 change is only $+0.06\%$ ($0.2\sigma$).
+The apparent 2--3~GeV gap in the previous rendering was not physical.  It came
+from assigning logarithmic native bins to coarse bins by their centres.  The
+revised plot merges complete native intervals using their exact boundaries,
+conserves all entries and connects all populated points.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=0.78\linewidth]{../results/update_note/fig02_np_hgnd_acceptance_ekin_v2.pdf}
+\caption{Differential primary-nucleon $n/p$ in the exact HGND front-face
+acceptance.  The lower panel is the 90/0 double ratio.  Error bars are from a
+400-replica generation-job bootstrap.}
+\label{fig:accnp}
+\end{figure}
+
+The conclusion is deliberately narrow: integrated $n/p$ is not a useful
+$\Usym$ observable for HGND.  Differential $n/p$ remains valuable for generator
+validation and for a combined neutron--charged-particle analysis with matched
+phase space.
+
+The angularly differential neutron yield and $n/p$ response provide a useful
+cross-check because they retain information that cancels in the integral.  In
+the HGND angular band, however, the truth neutron-yield response is only
+$+0.181\%\pm0.153\%$ ($1.18\sigma$).  The much larger changes below about
+$6^\circ$ are outside the HGND band and cannot be claimed as HGND sensitivity.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=0.92\linewidth]{../results/update_note/fig07_differential_neutron_yield_np_theta.pdf}
+\caption{Relative per-event neutron yield (top) and $n/p$ response (bottom)
+versus polar angle.  The HGND angular band is shaded; errors are
+event-clustered.}
+\label{fig:differential-yield}
+\end{figure}
+
+\section{Spectral hardness is the recommended observable}
+
+For the truth study we retain
+\[
+  \Rhard.
+\]
+It removes the overall yield normalisation and tests the energy redistribution
+that the symmetry potential produces.  The 18~MeV point lies between the two
+outer samples for $R_n$, $R_p$ and $R_n/R_p$.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=0.78\linewidth]{../results/update_note/fig03_neutron_hardness_global_vs_hgnd.pdf}
+\caption{Neutron spectral hardness globally and in the HGND front-face
+acceptance.  The response is localised in the forward detector window; the
+global spectrum changes little.}
+\label{fig:hardness}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=\linewidth]{../results/update_note/fig04_observable_feasibility_summary.pdf}
+\caption{Observable comparison.  Yield $n/p$ is small or null in the HGND
+acceptance, while the spectral-hardness observables show a monotonic isovector
+response.}
+\label{fig:summary}
+\end{figure}
+
+At full statistics the exact-acceptance responses are
+\begin{align*}
+  R_n(90)/R_n(0)-1 &= +4.52\%\pm0.45\%,\\
+  R_p(90)/R_p(0)-1 &= -5.39\%\pm0.51\%,\\
+  \frac{(R_n/R_p)_{90}}{(R_n/R_p)_0}-1 &= +10.48\%\pm0.76\%.
+\end{align*}
+The larger angular band gives $+10.73\%$ for the last quantity.  The agreement
+shows that the response is not created by the fiducial definition; the exact
+acceptance simply has 7.9 times fewer particles and hence larger uncertainty.
+
+The double-ratio response is not caused solely by protons.  In logarithmic
+response, the neutron hardening contributes
+$\ln(1.0452)=0.0442$ and the proton softening contributes
+$-\ln(0.9461)=0.0554$: approximately 44\% and 56\% of the total, respectively.
+The neutron spectra can look nearly coincident on a logarithmic yield plot
+while their high/low integrals still differ at more than $10\sigma$ because the
+full production sample makes a few-percent shape change statistically precise.
+
+\subsection{Separation power and hybrid feasibility estimates}
+
+Table~\ref{tab:separation} and Fig.~\ref{fig:separation} compare the 90/0
+response using $|\Delta|/\sigma_\Delta$ as a common separation metric.  Every
+reconstructed entry is derived from the same frozen GNN, common feature scaler
+and common selection $q>0.45$ on 409,600 represented events per Spot sample.
+The raw candidate quantities include fake clusters; the matched yield is shown
+only as a closure diagnostic.
+
+Three additional reconstructed shape observables test whether the populated
+1--2~GeV interval can provide a more precise hardness measurement:
+\begin{align*}
+ R_{n,{\rm eq}}^{1-2}
+ &=\frac{N(1.5\leq E_{\rm reco}<2.0)}
+          {N(1.0\leq E_{\rm reco}<1.5)},\\
+ R_{n,{\rm tail}}^{1-2}
+ &=\frac{N(1.8\leq E_{\rm reco}<2.0)}
+          {N(1.0\leq E_{\rm reco}<1.8)},\\
+ \langle E\rangle_{1-2}
+ &=\frac{\sum_c E_c^{\rm reco}\,
+          \mathbf{1}(1.0\leq E_c^{\rm reco}<2.0)}
+         {\sum_c\mathbf{1}(1.0\leq E_c^{\rm reco}<2.0)}.
+\end{align*}
+All sums use selected candidates with $q>0.45$.  These are raw,
+detector-folded quantities rather than efficiency-corrected spectra.
+For each shape definition
+$x\in\{{\rm eq},{\rm tail},\langle E\rangle\}$, the corresponding hybrid is
+\[
+ H_x=\frac{O_{n,x}^{\rm reco}}{O_{p,x}^{\rm MC}},\qquad
+ \Delta_{H_x}^{90/0}=\frac{(H_x)_{90}}{(H_x)_0}-1.
+\]
+The proton quantities use primary MC protons intersecting the exact HGND front
+face.  Their uncertainties come from a 400-replica production-file bootstrap.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrl}
+\toprule
+Observable & Response [\%] & Separation & Interpretation \\
+\midrule
+Truth differential $n$ yield & $+0.181\pm0.153$ & $1.18\sigma$ & weak in HGND band \\
+Truth yield $n/p$ & $+0.062\pm0.283$ & $0.22\sigma$ & not sensitive \\
+Truth $R_n$ & $+4.519\pm0.445$ & $10.15\sigma$ & neutron contribution \\
+Truth $R_p$ & $-5.391\pm0.515$ & $10.48\sigma$ & proton contribution \\
+Truth $R_n/R_p$ & $+10.475\pm0.758$ & $13.82\sigma$ & ideal combined observable \\
+Reco candidate $\widehat Y_n$ & $+0.418\pm0.467$ & $0.89\sigma$ & includes fakes \\
+Reco matched $\widehat Y_n^{\rm match}$ & $+0.905\pm0.511$ & $1.77\sigma$ & closure diagnostic \\
+Reco $d\widehat N_n/dE$ & $+1.727\pm2.909$ & $0.59\sigma$ & 2.6--3.0~GeV \\
+Reco safe $\widehat R_n$ & $-0.391\pm2.863$ & $0.14\sigma$ & detector-safe windows \\
+Reco $R_{n,{\rm eq}}^{1-2}$ & $+1.088\pm1.284$ & $0.85\sigma$ & not ordered \\
+Reco $R_{n,{\rm tail}}^{1-2}$ & $+1.494\pm1.395$ & $1.07\sigma$ & ordered, exploratory \\
+Reco $\langle E\rangle_{1-2}$ & $+0.043\pm0.106$ & $0.41\sigma$ & not ordered \\
+Hybrid $\widehat Y_n/Y_p^{\rm MC}$ & $+0.149\pm0.492$ & $0.30\sigma$ & provisional \\
+Hybrid $\widehat R_n/R_p^{\rm MC}$ & $+5.285\pm3.080$ & $1.72\sigma$ & provisional \\
+Hybrid $R_{n,{\rm eq}}^{1-2}/R_{p,{\rm eq}}^{1-2,{\rm MC}}$ & $+1.916\pm1.480$ & $1.29\sigma$ & equal-bin shape \\
+Hybrid $R_{n,{\rm tail}}^{1-2}/R_{p,{\rm tail}}^{1-2,{\rm MC}}$ & $+2.799\pm1.677$ & $1.67\sigma$ & upper-tail shape \\
+Hybrid $\langle E_n\rangle_{1-2}/\langle E_p\rangle_{1-2}^{\rm MC}$ & $+0.144\pm0.124$ & $1.17\sigma$ & mean-energy shape \\
+\bottomrule
+\end{tabular}
+\caption{Separation power of truth, reconstructed-neutron and hybrid
+reconstructed-neutron/truth-proton observables.  Hybrid uncertainties use an
+independent-error approximation and therefore are feasibility estimates only.}
+\label{tab:separation}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=0.94\linewidth]{../results/update_note/fig06_observable_separation_power_v5.pdf}
+\caption{Relative 90/0 response and separation power.  Reconstruction strongly
+reduces the neutron-only sensitivity.  All reconstructed-neutron and hybrid
+points use one frozen neutron model and one score threshold.}
+\label{fig:separation}
+\end{figure}
+
+The hybrid results establish feasibility, not final sensitivity.  The current
+neutron and proton products do not share an event-by-event sample, and the
+quoted uncertainty assumes independent inputs.  A publishable result requires
+reconstructed charged tracks in the same front-face-equivalent phase space and
+a common event/job bootstrap, including neutron--proton covariance.  No current
+reconstructed quantity reaches $2\sigma$; the apparent truth-level advantage
+of hardness is not yet retained by reconstruction.
+
+For the new proton components, the 90/0 responses are
+$-0.812\%\pm0.698\%$ for the equal-bin hardness,
+$-1.269\%\pm0.869\%$ for the upper-tail hardness, and
+$-0.101\%\pm0.064\%$ for the in-band mean energy.  Combining the opposite-sign
+neutron and proton changes raises the upper-tail hybrid to $1.67\sigma$, close
+to but not better than the $1.72\sigma$ conventional hybrid.  The neutron and
+proton samples are not event matched, so all hybrid errors use independent
+propagation and omit neutron--proton covariance.
+
+The full-production primary CSVs used for these exact proton windows contain
+the negative impact-parameter sentinel $B=-1$.  Consequently the new proton
+components are unweighted full-production results; no centrality reweighting
+is claimed for them.  Their file/event scope is nevertheless complete:
+195/200/173 files and 804,369/824,338/717,286 events for 0/18/90~MeV.
+
+The 1--2~GeV ratios nevertheless improve the reconstructed statistical
+precision.  The equal-bin definition has a non-monotonic central sequence
+$1.7279/1.7100/1.7467$ for 0/18/90~MeV.  The upper-tail definition is ordered,
+$0.3694/0.3707/0.3749$, but was selected after examining several boundaries;
+its nominal $1.07\sigma$ separation is therefore descriptive rather than a
+blind significance.  It should be frozen on development data and evaluated on
+an independent sample.  A forward-folded binned shape fit over 1--2~GeV
+remains preferable because it uses the full spectrum and explicitly models
+efficiency and energy migration.
+
+\subsection{SMASH reconstruction performance}
+
+The same model was evaluated on 1,831,257 SMASH cluster rows across the three
+Spot samples.  Its cluster-classification ROC AUC is 0.956.  At the fixed
+$q>0.45$ working point, count purity is 84.7\% and count efficiency is 64.9\%
+(energy-weighted purity and efficiency are 86.4\% and 72.0\%).  Energy
+resolution improves from about 21\% below 1~GeV to 9\% near 3.75~GeV, but the
+median energy response changes sign near 2~GeV and reaches a $-20\%$ bias at
+2.8~GeV.  This compression explains why a truth threshold cannot simply be
+copied into reconstructed energy.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=\linewidth]{../results/update_note/fig08_smash_reconstruction_performance.pdf}
+\caption{SMASH reconstruction performance for one model: purity--efficiency,
+median energy bias and robust energy resolution.  The star marks the common
+score working point used by every reconstructed observable in
+Fig.~\ref{fig:separation}.}
+\label{fig:recoperf}
+\end{figure}
+
+\subsection{Centrality}
+
+The production has job-level impact-parameter block structure.  The three full
+samples nevertheless have compatible means,
+$\Delta\langle b\rangle_{90-0}=+0.0034\pm0.0147$~fm.  Event-level reweighting
+reduces the residual spread in the three means to $9.5\times10^{-5}$~fm and
+costs 0.1\% in effective statistics.  Figure~\ref{fig:cent} demonstrates that
+the isovector response persists across centrality; the yield ratio does not
+provide a stable alternative.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=0.82\linewidth]{../results/update_note/fig05_hgnd_response_vs_centrality.pdf}
+\caption{Truth-level 90/0 response in ten impact-parameter classes after
+reweighting.  Every uncertainty is evaluated by resampling generation jobs and
+rebuilding the weights in each replica.}
+\label{fig:cent}
+\end{figure}
+
+\section{Reconstruction efficiency and neutron multiplicity}
+
+An inclusive cluster efficiency is insufficient when the physics sample
+contains two or more neutrons in the same event.  The relevant questions are
+conditional:
+\begin{align*}
+ \varepsilon_k &\equiv P(\text{$k$th-hardest true neutron selected}
+                  \mid N_n^{\rm true}\geq k),\\
+ C_k &\equiv P(N_n^{\rm selected,true}\geq k
+                  \mid N_n^{\rm true}\geq k).
+\end{align*}
+Truth here means a truth-matched reconstructable neutron cluster
+($\texttt{cl\_label}=1$), and true neutrons are ranked by decreasing true
+kinetic energy.  A single classifier working point is applied to all three
+samples.  The resulting rank efficiencies and the row-normalised multiplicity
+response are shown in Figs.~\ref{fig:rankeff} and~\ref{fig:multresponse}.
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=\linewidth]{../results/update_note/conditional_neutron_efficiency_v2.pdf}
+\caption{Conditional efficiency of the first through fourth true-neutron
+clusters and efficiency versus true event multiplicity.  Wilson intervals are
+statistical only, and plotted points require at least 20 eligible events.  The
+dashed curves require all neutrons through rank $k$ to be retained and expose
+compounding losses in multi-neutron events.}
+\label{fig:rankeff}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\notegraphic[width=\linewidth]{../results/update_note/multiplicity_response.pdf}
+\caption{Row-normalised response between reconstructable truth multiplicity and
+selected truth-matched multiplicity.  The last bin includes overflow.  Fake
+selected clusters are excluded here and are tracked separately through purity.}
+\label{fig:multresponse}
+\end{figure}
+
+At the common score threshold 0.45, the first-neutron rank efficiency is
+66.6--66.8\% across the three Spot samples.  Conditional on a second true
+neutron it is 46.4--47.7\%, and for a third it is 36.5--41.1\%.  The probability
+of retaining all truth-matched neutrons is only 31.9--33.7\% for true
+multiplicity two and 14.1--14.7\% for multiplicity three.  Fourth-neutron rank
+estimates are sample limited (24--35 eligible events) and are not yet suitable
+for architecture ranking.
+
+Within these uncertainties the three datasets are consistent for ranks 1--3;
+this is a response-closure check, not proof of identical efficiencies.  The
+former 90~MeV point at rank 5 (the horizontal axis is neutron rank, not energy)
+contained exactly one eligible event.  It is retained in the CSV/JSON audit
+products but omitted from the physics figure by the predeclared
+$N_{\rm event}\geq20$ display requirement.
+
+This decomposition should replace a single ``neutron efficiency'' number in
+algorithm comparisons.  The first-neutron efficiency mainly measures ordinary
+acceptance and classification.  The fall of $\varepsilon_k$ or $C_k$ with rank
+isolates overlap, cluster merging and low-energy losses.  The same curves must
+be shown for the baseline and every challenger architecture at a common purity
+or with their full purity--efficiency envelopes.
+
+These conditional probabilities are detector-response inputs, not candidate
+Spot observables.  Their purpose is to correct the neutron yield and energy
+spectrum.  In matrix form, the selected multiplicity/energy distribution is
+$m_i=\sum_j A_{ij}t_j+b_i$, where $A_{ij}$ includes the rank-dependent losses
+and migration and $b_i$ is the fake-cluster contribution.  A forward-folded fit
+of $t_j$, or a regularised inversion used only after closure tests, can recover
+neutrons lost preferentially in multiplicity-two and multiplicity-three
+events.  This matters for Spot sensitivity even when the efficiency curves are
+identical across samples: if Spot changes the joint energy--multiplicity
+composition, applying only one inclusive efficiency biases both the corrected
+yield and the high/low hardness ratio.  The response therefore has to be binned
+at least in true/reconstructed multiplicity and neutron energy, with its
+uncertainty propagated through the 90/0 comparison.
+
+\section{Energy response and observable definition}
+
+The efficiency for neutrons reaching the front face varies from 0.02 below
+0.5~GeV and begins its rapid rise only around 0.5--0.7~GeV, reaching
+approximately 0.80 around 2--3~GeV.  The measured threshold ratio is therefore
+not the truth ratio but
+\[
+ R_{\rm obs}=\frac{\int_H \epsilon(E)f(E)\,dE}
+                   {\int_L \epsilon(E)f(E)\,dE}.
+\]
+For $L:\Ekin<1$~GeV, the denominator is dominated by the accepted
+0.7--1.0~GeV tail rather than by the full truth population.  Direct inverse
+efficiency weights reach roughly 50 below 0.5~GeV, creating extreme variance
+and sensitivity to small modelling errors.  Energy migration through the
+1~GeV boundary adds a second bias, and cancellation between Spot samples is
+incomplete because their spectra are not identical where $\epsilon(E)$ is
+steep.  Thus the turn-on can attenuate, amplify or even reverse the measured
+90/0 response; it is not merely an overall loss of events.
+
+Consequently the denominator of the truth definition $\Rhard$ is not robustly
+recoverable by bin-by-bin unfolding.  The reconstructed hardness observable
+must either use two energy regions inside the validated efficiency plateau
+(the current held-out study uses 1.8--2.4 and $>2.6$~GeV) or be extracted from
+a forward-folded spectral fit with efficiency, energy-scale and migration
+nuisance parameters.  Thresholds are selected on training+validation only and
+frozen before the test sample is opened.
+
+The common feature normalisation is mandatory.  Fitting a separate scaler in
+each sample changed the scale of the time-of-flight energy feature by 1.9\% and
+removed part of the physical difference before inference.  Reusing one scaler
+reduced the differential high-energy response from
+$-30.7\pm8.6$ to $-11.4\pm9.8$~MeV and restored the sign and ordering of the
+reconstructed central values without changing the network weights.
+
+\section{Algorithm comparison and release criteria}
+
+The paper-facing analysis should describe a frozen baseline and one or more
+challenger architectures, not the chronological history of training.  Every
+model must use the same job-level train/calibration/test split, shared scaler,
+truth definition, front-face selection and pre-declared working points.  The
+minimum comparison is:
+\begin{enumerate}[leftmargin=*]
+\item cluster ROC and purity--efficiency curve;
+\item energy linearity and resolution versus true energy;
+\item $\varepsilon_k$ and $C_k$ through at least the fourth neutron;
+\item the complete multiplicity response matrix;
+\item reconstructed hardness on a blind, adequately powered test set;
+\item stability under seed, score threshold and energy-window variation.
+\end{enumerate}
+
+A challenger passes the physics gate only if reconstructed and truth 90/0
+effects have the same sign, their paired difference is below $2\sigma$ and
+below 25\% of the truth effect, the differential response is consistent with
+zero, and the 0/18/90 ordering survives.  If no architecture passes, the
+measurement should use a forward-folded spectral fit with response nuisance
+parameters instead of an unfolded threshold ratio.
+
+\section{Current internal status and next actions}
+
+The resumable end-to-end CUDA training has a validated checkpoint after ten
+epochs; the best validation loss is 0.7349 at epoch 9.  The resume-state defect
+that stopped the continuation was corrected and covered by a regression test,
+and a test-partition resume completed successfully before the rocky job was
+relaunched.  These operational details belong in this update note and are not
+paper content.
+
+The remaining ordered work is:
+\begin{enumerate}[leftmargin=*]
+\item train the challenger to the frozen stopping condition;
+\item evaluate all three samples and regenerate the multiplicity and response
+figures from that checkpoint;
+\item repeat the same plots for the baseline and at least one architecture
+challenger;
+\item freeze the blind test before any reconstructed sensitivity statement;
+\item move only the frozen baseline--challenger comparison into the paper.
+\end{enumerate}
+
+\section*{Reproducibility record}
+
+The truth reductions contain 195/200/173 generation files and
+804,369/824,338/717,286 events for $\Usym=0/18/90$~MeV.  Plot inputs and
+job-bootstrap products are stored under
+\path{results/np_ratio_smash_check_full}, \path{results/acceptance_full}, and
+\path{results/update_note}.  The reconstructed comparison contains 409,600
+represented events per Spot sample and is recorded in
+\path{results/update_note/smash_reconstructed_observables.json}.  The figure builder is
+\path{scripts/make_update_note_figures.py}; the multiplicity analysis is
+\path{scripts/multiplicity_efficiency.py}.
+
+\end{document}

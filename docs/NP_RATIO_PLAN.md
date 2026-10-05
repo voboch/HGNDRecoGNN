@@ -88,6 +88,14 @@ supersedes every numerical result from the earlier 2,225-event-per-Spot pilot.
 | 90 MeV (`bigSpot`) | 173 | 717,286 | 184,242,696 | 256.8609 |
 | **total** | **568** | **2,345,993** | **602,602,618** | — |
 
+**Centrality status update (2026-09-26).**  The converter now recovers impact
+parameter from `DstEventHeader.fB`.  The full-production numbers in this section
+were computed from the earlier exports with `B = -1` and therefore remain
+centrality-unmatched.  A B-enabled, approximately 1 % sequential feasibility
+subset has a demonstrably different b distribution across the three samples;
+the direct distributions and scope qualification are in
+[`CENTRALITY_CONVENTION.md`](CENTRALITY_CONVENTION.md).
+
 The near-identical total nucleons/event confirms that these exports contain
 almost the full Xe+Cs nucleon inventory, including spectators.  It is a sample-
 composition check, not a produced-nucleon multiplicity measurement.
@@ -176,9 +184,12 @@ free/emitted nucleons) and unmatched centrality.
 
 ### Physics-use decision
 
-`B = -1` and `NPrim = -1` throughout the production, generator weights are
-absent, and unit weighting is undocumented.  Therefore the full statistics
-make the descriptive angular pattern precise but do not remove the confounding:
+The analysed full-production export has `B = -1` and `NPrim = -1`, generator
+weights are absent, and unit weighting is undocumented.  B recovery is now
+implemented, but the full sample has not yet been reanalysed with common-b
+stratification or reweighting.  The B-enabled feasibility subset in fact shows
+a 2.93 % mean-b offset between 90 and 0 MeV.  Therefore the full statistics make
+the descriptive angular pattern precise but do not remove the confounding:
 
 - **Decline primary-nucleon n/p for HGND Spot reconstruction.**
 - **Decline the preliminary claim of a useful HGND-band single-species yield
@@ -311,8 +322,9 @@ Full output: `results/np_primaries/xcheck_vs_slides.txt`.
 
 ### Blocking caveat — centrality
 
-The converter wrote `B = -1` and `NPrim = -1` for every event: the
-`MCEventHeader.` branch was not found in this BmnRoot build. n/p depends
+The converter used for this historical pilot wrote `B = -1` and `NPrim = -1`
+for every event.  Impact parameter has since been recovered from
+`DstEventHeader.fB`, but this pilot itself remains unmatched.  n/p depends
 strongly on impact parameter, so a difference in the b-distribution between
 samples is indistinguishable from a U_sym effect. **No n/p number here is
 defensible until centrality can be matched.** The 0.2 % agreement of 4π yields
@@ -438,8 +450,8 @@ Item 4 stands.
 ### If n/p is revisited
 
 The blockers are no longer data availability but definition and control:
-centrality (`B = -1` throughout), generator weights (absent), and the
-free/emitted-nucleon definition that separates this export from the reference
-calculation. Until those three are settled, more statistics only sharpen an
-uncontrolled comparison — as the 131σ local pull against the reference slides
-demonstrates.
+centrality (B is now recoverable, but full-sample matching/reweighting is not
+done), generator weights (absent), and the free/emitted-nucleon definition that
+separates this export from the reference calculation. Until those three are
+settled, more statistics only sharpen an uncontrolled comparison — as the 131σ
+local pull against the reference slides demonstrates.

@@ -144,19 +144,19 @@
  },
  "reco": {
   "zeroSpot": {
-   "threshold": 0.22361152882205512,
-   "purity": 0.7017701958264441,
-   "n_events": 409600
+   "threshold": 0.6,
+   "purity": 0.8549098229057154,
+   "n_events": 614400
   },
   "defaultSpot": {
-   "threshold": 0.21860902255639098,
-   "purity": 0.7015380330506901,
-   "n_events": 409600
+   "threshold": 0.6,
+   "purity": 0.8572691440528134,
+   "n_events": 614400
   },
   "bigSpot": {
-   "threshold": 0.22111027568922306,
-   "purity": 0.7022526706920575,
-   "n_events": 409600
+   "threshold": 0.6,
+   "purity": 0.8535641268071145,
+   "n_events": 614400
   }
  }
 }

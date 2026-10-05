@@ -1,0 +1,197 @@
+{
+  "definition": {
+    "particle": "MC-truth primary protons intersecting the exact HGND front face",
+    "uncertainty": "production-file bootstrap; impact-parameter reweighting unavailable for these CSVs",
+    "impact_parameter_note": "The primary CSVs contain B=-1 sentinels. Use the raw block only; the b_reweighted block is an invalid duplicate retained solely as the original job output and is not used in any figure or report number.",
+    "observables": {
+      "R_p_1p0_1p5_vs_1p5_2p0": "eq_hi/eq_lo",
+      "R_p_1p0_1p8_vs_1p8_2p0": "tail_hi/tail_lo",
+      "mean_E_p_1p0_2p0": "band_esum/band_count",
+      "R_p_conventional": "conventional_hi/conventional_lo"
+    },
+    "b_bin_width_fm": 0.1,
+    "minimum_events_per_b_bin": 20
+  },
+  "scope": {
+    "zeroSpot": {
+      "U_MeV": 0,
+      "n_files": 195,
+      "n_events": 804369
+    },
+    "defaultSpot": {
+      "U_MeV": 18,
+      "n_files": 200,
+      "n_events": 824338
+    },
+    "bigSpot": {
+      "U_MeV": 90,
+      "n_files": 173,
+      "n_events": 717286
+    }
+  },
+  "n_boot": 400,
+  "raw": {
+    "samples": {
+      "zeroSpot": {
+        "mean_b": -1.0,
+        "effective_events": 804369.0
+      },
+      "defaultSpot": {
+        "mean_b": -1.0,
+        "effective_events": 824338.0
+      },
+      "bigSpot": {
+        "mean_b": -1.0,
+        "effective_events": 717286.0
+      }
+    },
+    "observables": {
+      "R_p_1p0_1p5_vs_1p5_2p0": {
+        "central": {
+          "zeroSpot": 0.8981147869126906,
+          "defaultSpot": 0.8904946850202999,
+          "bigSpot": 0.8908205771643664
+        },
+        "error": {
+          "zeroSpot": 0.004260953869651863,
+          "defaultSpot": 0.0037405011509942894,
+          "bigSpot": 0.00436356401767556
+        },
+        "relative_change_90_over_0": -0.008121689849243552,
+        "relative_error": 0.006978239893731624,
+        "separation_sigma": 1.163859364671464,
+        "ordered_0_18_90": false
+      },
+      "R_p_1p0_1p8_vs_1p8_2p0": {
+        "central": {
+          "zeroSpot": 0.21247239335115659,
+          "defaultSpot": 0.20829698010188286,
+          "bigSpot": 0.20977592817370866
+        },
+        "error": {
+          "zeroSpot": 0.0012853681368396215,
+          "defaultSpot": 0.0010965149252557956,
+          "bigSpot": 0.0012634748945553878
+        },
+        "relative_change_90_over_0": -0.012690896614467206,
+        "relative_error": 0.00868810110890343,
+        "separation_sigma": 1.4607215610626094,
+        "ordered_0_18_90": false
+      },
+      "mean_E_p_1p0_2p0": {
+        "central": {
+          "zeroSpot": 1.481936920390379,
+          "defaultSpot": 1.4806944325398304,
+          "bigSpot": 1.4804362482149775
+        },
+        "error": {
+          "zeroSpot": 0.0005937289561311215,
+          "defaultSpot": 0.0006122020309517926,
+          "bigSpot": 0.0006951210721849038
+        },
+        "relative_change_90_over_0": -0.0010126424105866283,
+        "relative_error": 0.0006422470280473289,
+        "separation_sigma": 1.5767179393035728,
+        "ordered_0_18_90": true
+      },
+      "R_p_conventional": {
+        "central": {
+          "zeroSpot": 0.6495969905796216,
+          "defaultSpot": 0.6384502736171416,
+          "bigSpot": 0.6137072559251378
+        },
+        "error": {
+          "zeroSpot": 0.002452268542044368,
+          "defaultSpot": 0.0026464316565034595,
+          "bigSpot": 0.0025019636874740498
+        },
+        "relative_change_90_over_0": -0.05524923171589857,
+        "relative_error": 0.005144256772849346,
+        "separation_sigma": 10.739983277564242,
+        "ordered_0_18_90": true
+      }
+    }
+  },
+  "b_reweighted": {
+    "samples": {
+      "zeroSpot": {
+        "mean_b": -1.0,
+        "effective_events": 804369.0
+      },
+      "defaultSpot": {
+        "mean_b": -1.0,
+        "effective_events": 824338.0
+      },
+      "bigSpot": {
+        "mean_b": -1.0,
+        "effective_events": 717286.0
+      }
+    },
+    "observables": {
+      "R_p_1p0_1p5_vs_1p5_2p0": {
+        "central": {
+          "zeroSpot": 0.8981147869126906,
+          "defaultSpot": 0.8904946850202999,
+          "bigSpot": 0.8908205771643664
+        },
+        "error": {
+          "zeroSpot": 0.004001235279966597,
+          "defaultSpot": 0.003649735741779349,
+          "bigSpot": 0.004199349222175182
+        },
+        "relative_change_90_over_0": -0.008121689849243552,
+        "relative_error": 0.0063461958633242626,
+        "separation_sigma": 1.2797729575571672,
+        "ordered_0_18_90": false
+      },
+      "R_p_1p0_1p8_vs_1p8_2p0": {
+        "central": {
+          "zeroSpot": 0.21247239335115659,
+          "defaultSpot": 0.20829698010188286,
+          "bigSpot": 0.20977592817370866
+        },
+        "error": {
+          "zeroSpot": 0.0012736490044747703,
+          "defaultSpot": 0.0011828192049351282,
+          "bigSpot": 0.0013426787506942957
+        },
+        "relative_change_90_over_0": -0.012690896614467206,
+        "relative_error": 0.008576948023605816,
+        "separation_sigma": 1.4796518038279838,
+        "ordered_0_18_90": false
+      },
+      "mean_E_p_1p0_2p0": {
+        "central": {
+          "zeroSpot": 1.481936920390379,
+          "defaultSpot": 1.4806944325398304,
+          "bigSpot": 1.4804362482149775
+        },
+        "error": {
+          "zeroSpot": 0.0005811047266897225,
+          "defaultSpot": 0.0005945069041371453,
+          "bigSpot": 0.0006960811299306415
+        },
+        "relative_change_90_over_0": -0.0010126424105866283,
+        "relative_error": 0.0006116775892275731,
+        "separation_sigma": 1.6555166127066938,
+        "ordered_0_18_90": true
+      },
+      "R_p_conventional": {
+        "central": {
+          "zeroSpot": 0.6495969905796216,
+          "defaultSpot": 0.6384502736171416,
+          "bigSpot": 0.6137072559251378
+        },
+        "error": {
+          "zeroSpot": 0.002413997174967304,
+          "defaultSpot": 0.002903435952753932,
+          "bigSpot": 0.0025909528612868974
+        },
+        "relative_change_90_over_0": -0.05524923171589857,
+        "relative_error": 0.005171806504923665,
+        "separation_sigma": 10.682772385877195,
+        "ordered_0_18_90": true
+      }
+    }
+  }
+}

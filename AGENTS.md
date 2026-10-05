@@ -1,3 +1,23 @@
+## Shared conventions (directive)
+
+Methodology, result representation, development process, the shared glossary and
+the thesis chapter map are **shared with the other thesis project** and live in
+`thesis-kb/conventions/`. They bind this repository. Where a document here
+contradicts one of them, the document here is stale.
+
+Read them before writing a figure, a results paragraph, a number into a draft,
+or a new convention document:
+
+```bash
+kb conventions                        # list every section
+kb conventions "<topic>"              # search only the binding layer
+kb search "<anything>"                # search both projects and the conventions
+```
+
+The `thesis-kb` MCP server exposes the same thing to a Claude Code session as
+`kb_conventions` and `kb_search`. A project may be stricter locally; it may not
+be looser. Written exceptions live next to the thing they excuse.
+
 
 ## Running training on HPC
 When running, submitting, or editing training jobs on the HSE cHARISMa
