@@ -25,6 +25,55 @@ def _add_package_to_path() -> None:
         sys.path.insert(0, pkg_root)
 
 
+def _with_energy_flattening(weights, dataset, bins: int,
+                            max_graphs: int = 200_000):
+    """Attach spectrum-flattening weights built from the dataset's clusters.
+
+    Built once over the cache rather than per batch: a batch of a few hundred
+    graphs holds too few high-energy clusters for its own occupancy to be
+    anything but noise, and weights that move between batches become gradient
+    noise on the head they are meant to correct.
+
+    Only `max_graphs` graphs are read, strided across the cache so the sample
+    spans every shard. The v3 caches hold up to 13.9 M graphs and walking all
+    of them would cost more than the epoch it precedes; 200 k graphs give tens
+    of thousands of signal clusters, which fixes ten bin occupancies well
+    inside the precision the weights are used to.
+    """
+    import dataclasses
+
+    import torch
+
+    from HGNDRecoGNN.training.losses import build_energy_flatten_weights
+
+    if not hasattr(weights, 'energy_flatten'):
+        raise SystemExit(
+            f'--energy-flatten is only defined for the default Net loss; '
+            f'{type(weights).__name__} has no energy term to reweight.')
+
+    n = len(dataset)
+    stride = max(1, n // max_graphs)
+    energies = []
+    for i in range(0, n, stride):
+        e = getattr(dataset[i], 'clenergy', None)
+        if e is not None:
+            e = e.flatten()
+            energies.append(e[e > 0])
+    if not energies:
+        raise SystemExit('--energy-flatten: no positive cluster energies found')
+    pooled = torch.cat(energies)
+
+    edges, bw = build_energy_flatten_weights(pooled, bins=bins)
+    out = dataclasses.replace(weights, energy_flatten=True,
+                              energy_bin_edges=edges, energy_bin_weights=bw)
+    print(f'Energy flattening: {pooled.numel():,} signal clusters from '
+          f'{len(range(0, n, stride)):,} of {n:,} graphs (stride {stride}), '
+          f'{bins} bins over [{float(edges[0]):.2f}, {float(edges[-1]):.2f}] GeV')
+    print('  bin weights: '
+          + ', '.join(f'{float(x):.2f}' for x in bw))
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description='Train an HGND model.')
     parser.add_argument('--root', required=True,
@@ -79,6 +128,18 @@ def main() -> int:
                              'train (default) preserves the 2026-08-26 '
                              'HPC run behaviour; val is the physics-'
                              'recommended choice for held-out generalisation.')
+    parser.add_argument('--energy-flatten', action='store_true',
+                        help='reweight the cluster-energy loss by the inverse '
+                             'occupancy of each true-energy bin, as the '
+                             'reference notebook does in its second training '
+                             'stage. Plain MSE on a falling spectrum pulls '
+                             'high-energy clusters down; see '
+                             'reports/dombay_reference_audit.md.')
+    parser.add_argument('--energy-flatten-bins', type=int, default=10,
+                        help='bins for --energy-flatten (reference: 10)')
+    parser.add_argument('--energy-flatten-sample', type=int, default=200_000,
+                        help='graphs read to build the --energy-flatten '
+                             'weights, strided across the cache')
     parser.add_argument('--scheduler-milestones', type=int, nargs='*',
                         default=None,
                         help='Override MultiStepLR milestones (e.g. 10 15 25).')
@@ -164,6 +225,10 @@ def main() -> int:
         loss_weights=spec.default_loss_weights,
         save_best_on=args.save_best_on,
     )
+    if args.energy_flatten:
+        cfg_kwargs['loss_weights'] = _with_energy_flattening(
+            spec.default_loss_weights, dataset, args.energy_flatten_bins,
+            args.energy_flatten_sample)
     if args.scheduler_milestones is not None:
         cfg_kwargs['scheduler_milestones'] = tuple(args.scheduler_milestones)
     cfg = TrainConfig(**cfg_kwargs)
