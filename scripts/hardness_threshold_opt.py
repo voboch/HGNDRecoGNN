@@ -125,12 +125,23 @@ def slope_response(vals, boot):
     err = float(np.nanstd(sl_b, ddof=1))
     norm = float(y[0]) if y[0] != 0 else np.nan
 
-    # linearity: residual of the three points about the fitted line, in units
-    # of each point's own bootstrap spread
-    coef = np.polyfit(u, y, 1)
-    resid = y - np.polyval(coef, u)
+    # Linearity: residual of the three points about the fitted line, in units
+    # of each point's own bootstrap spread. The line has to be the one that
+    # *minimises* this chi-square, i.e. weighted least squares, or the reported
+    # value is not a minimum and is biased high. The three per-point errors
+    # here differ by only 7-16 %, so the two fits agree to about 0.05 in
+    # chi-square, but scoring an unweighted fit against weighted residuals is
+    # wrong whatever the size of the effect.
     sig = np.array([np.nanstd(boot[t], ddof=1) for t, _ in TAGS])
-    chi2 = float(np.sum((resid / np.where(sig > 0, sig, np.nan)) ** 2))
+    if np.all(sig > 0):
+        w = 1.0 / sig ** 2
+        A = np.vstack([u, np.ones_like(u)]).T
+        WA = A * w[:, None]
+        coef = np.linalg.solve(A.T @ WA, WA.T @ y)
+        resid = y - A @ coef
+        chi2 = float(np.sum((resid / sig) ** 2))
+    else:
+        chi2 = float("nan")
 
     return {"slope_per_MeV": float(sl),
             "slope_err": err,

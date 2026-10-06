@@ -32,11 +32,11 @@ many nucleons arrive, and it is the floor against which everything else is read.
 
 Two observables clear it. The HGND alone, through the reconstructed
 neutron hardness $R_n$ at $q>0.60$, reaches $+2.71\%\pm2.29\%$
-(1.37$\sigma$) on held-out units against a truth-level $+4.83\%\pm1.02\%$:
+(1.18$\sigma$) on held-out units against a truth-level $+5.05\%\pm0.97\%$ at the same window:
 the effect is found — 47 of 134 admissible windows order the samples on
 development units — but the split is underpowered to resolve it. Pairing the
 same reconstructed neutrons with an external proton measurement gives
-$+9.61\%\pm2.37\%$ (4.05$\sigma$), because the proton hardness moves against
+$+9.73\%\pm2.59\%$ (3.75$\sigma$), because the proton hardness moves against
 the neutron hardness and the isovector response adds in the ratio rather than
 cancelling. An earlier evaluation found no ordered window at all; the cause was
 a per-sample standardisation defect, since corrected, which biased reconstructed
@@ -111,7 +111,7 @@ are defined where they appear in the Backup.
 
 | Question | Window | Result | Analysis decision |
 |---|---|---:|---|
-| **Baseline** truth $Y_n/Y_p$ | none | $-0.12\%\pm0.45\%$, $0.26\sigma$ | No response. Kept in the result table as the reference every other observable is measured against. |
+| **Baseline** truth $Y_n/Y_p$ | none | $-0.12\%\pm0.45\%$, $0.26\sigma$ | No response. Quoted as the floor the hardness ratios are read against; not a Part III row, since $R$ is itself a differential yield ratio. |
 | **Baseline** reconstructed $\widehat Y_n$ | none | $+0.43\%\pm0.65\%$, $0.67\sigma$ | Counted per event, including the 81% with no candidate. Ordered on the full sample ($+0.85\%$) but not on held-out units. |
 | **Baseline** $\widehat Y_n/Y_p^{\rm MC}$ | none | $-0.48\%\pm1.11\%$, $0.43\sigma$ | No response. |
 | Differential $n/p(E_{\mathrm{kin}},y,p_T)$ | — | Strong shape dependence | Retain as a transport-model and phase-space diagnostic. |
@@ -121,10 +121,10 @@ are defined where they appear in the Backup.
 | Legacy window at reconstruction level | legacy | Denominator below 1 GeV has $\sim2\%$ efficiency | Unusable. Motivates the calibrated window. |
 | Per-sample feature standardisation | — | Biases $E_{\rm reco}$ by 0.8%, monotonic in $U_{\rm sym}$ | Defect. Caches that are compared must share one scaler; corrected before any result below. |
 | Reconstruction at $q>0.60$ | — | AUC 0.9582; purity 87.3% at efficiency 71.5%; linearity $\pm1.1\%$, resolution 5.9–7.3% over 0.5–2.6 GeV | Meets the reference energy targets; efficiency at fixed purity still short of 0.80. |
-| Truth $R_n$, calibrated | calibrated | $+4.83\%\pm1.02\%$ held out, $4.75\sigma$ | $R_{\mathrm{thr}}=1.5$, $\delta=0.7$ (Part III). |
-| Truth $R_n/R_p$, calibrated | calibrated | $+6.34\%\pm1.07\%$ held out, $5.92\sigma$ | Upper bound of the chain. |
+| Truth $R_n$ at the reco window | calibrated | $+5.05\%\pm0.97\%$ held out, $5.23\sigma$ | Reference, evaluated where the measurement lives (Part III). |
+| Truth $R_n/R_p$ at the reco window | calibrated | $+11.61\%\pm1.45\%$ held out, $8.00\sigma$ | Upper bound of the chain. |
 | **$\widehat R_n$, HGND alone** | calibrated | $+2.71\%\pm2.29\%$ held out, $1.18\sigma$ | 47 of 134 windows ordered on development; the held-out split is underpowered. Feasibility, not a limit. |
-| **$\widehat R_n/R_p^{\rm MC}$** | calibrated | $+9.61\%\pm2.37\%$ held out, $4.05\sigma$ | Preferred target. Needs an external proton measurement; the species respond with opposite sign, so the ratio roughly doubles the response. |
+| **$\widehat R_n/R_p^{\rm MC}$** | calibrated | $+9.73\%\pm2.59\%$ held out, $3.75\sigma$ | Preferred target. Needs an external proton measurement; the species respond with opposite sign, so the ratio roughly doubles the response. |
 
 ## Statistical conventions
 
@@ -629,8 +629,9 @@ true energy while $R_n$ counts clusters by *reconstructed* energy. **Band
 assignment** (open diamonds) supplies the missing term: the fraction of selected
 signal clusters whose $E_{\mathrm{reco}}$ lands in the same region of the
 calibrated window as their $E_{\mathrm{true}}$ — below 1.20 GeV, at or above
-2.40 GeV, or in the discarded gap shaded here. **Final** (red) is the product,
-and it is the efficiency that gates the observable. Wilson intervals, bins with
+2.40 GeV, or in the discarded gap shaded here. **Final** (red) is the product. It is the
+*diagonal* of the response matrix times detection, not a complete correction —
+see below. Wilson intervals, bins with
 fewer than 25 clusters suppressed.*
 
 Band assignment is near unity wherever a bin lies clear of a window edge, 0.99
@@ -642,11 +643,23 @@ statistics, which is the trade the window scan makes. The final efficiency
 therefore follows detection in the band interiors and falls below it at the
 edges, reaching 0.57 in the low band and 0.72--0.76 in the high band.
 
-One term is missing from the curve and cannot be read off it. Band assignment
-measures migration *out* of the correct region only. Clusters migrating *in*
-from the gap contaminate a band without appearing here — at 2.10--2.50 GeV,
-inside the gap, 24 % of clusters are reconstructed into one of the two bands —
-and that contamination needs a response matrix rather than an efficiency curve.
+One term is missing from the curve, and it is now measured. Band assignment
+counts migration *out* of the correct region; a band's observed count also
+receives clusters migrating *in*, which no per-bin efficiency can represent.
+Measured directly, **6.1 % of the low band and 13.5 % of the high band is
+migrated-in contamination**. The product in Figure 8c is therefore the diagonal
+of the response matrix and would be the right correction only if those terms
+vanished, which they do not.
+
+What saves the response is that they barely move between samples: the inward
+fraction is 6.1 / 6.2 / 6.1 % in the low band and 13.5 / 13.6 / 13.6 % in the
+high band for $U_{\mathrm{sym}} = 0$, 18 and 90 MeV. A contamination common to
+the three cancels in a ratio of ratios, and the residual drift is about 0.1
+percentage point against a measured response of $+2.71\%$. So the omission is
+large for an absolute yield and small for this measurement — which is a
+statement about the ratio, not a licence to use the efficiency curve as a
+correction. Any absolute spectrum unfolded from these counts needs the full
+matrix.
 
 The detection and selection curves separate cleanly and answer different
 questions. Detection is
@@ -719,7 +732,7 @@ the samples. Scanning 207 windows at $q>0.60$ gives 134 admissible, of which
 development units, $R_{\mathrm{thr}}=2.5$ GeV with $\delta=0.3$ GeV, gives
 $+4.86\%$ at 2.77$\sigma$ there and, applied once to held-out units,
 $+2.71\% \pm 2.29\%$ (1.18$\sigma$). The truth-level target measured the same
-way is $+4.83\% \pm 1.02\%$ (4.75$\sigma$), so the reconstruction retains about
+way is $+5.05\% \pm 0.97\%$ (5.23$\sigma$), so the reconstruction retains about
 four fifths of the response.
 
 It is not yet a measurement. 1.37$\sigma$ on the held-out split is consistent
@@ -886,12 +899,17 @@ $R_{\mathrm{thr}}$ is searched; the signal crosses unity at roughly 1.75 GeV,
 inside it. Job-level bootstrap, 400 resamples; bins with fewer than 500
 reference entries of either species are suppressed.*
 
-The selected truth point is $R_{\mathrm{thr}}=1.5$ GeV, $\delta=0.7$ GeV. The
-held-out result shows what hand-picking conceals: the development estimate is
-$+7.31\%$ at $10.05\sigma$, and the same window on held-out jobs gives
-$+4.83\%\pm1.02\%$ at $4.75\sigma$. The drop from development to held out is
-the selection effect, and it is the reason the window is fixed before the
-held-out units are opened.
+The truth scan is shown because it is what places the search range, not because
+it selects anything: the window is taken from the reconstructed scan, and truth
+is evaluated there. At that window, $E<1.20$ |
+$E\geq2.40$ GeV, the held-out truth response is
+$+5.05\%\pm0.97\%$ at
+$5.23\sigma$.
+
+Had the truth scan been allowed to choose for itself it would have picked a
+different window and reported a larger development figure than it reproduces
+out of sample — which is the selection effect the held-out split exists to
+expose, and the reason the window is fixed before those units are opened.
 
 
 ## Final sensitivity
@@ -951,10 +969,13 @@ change how many nucleons reach the detector, so an observable that integrates
 over energy has nothing to see. Every comparison below is against this floor.
 
 Against it, the hardness ratios separate. At truth the single ratio moves from
-$0.25\sigma$ to $4.75\sigma$ and the double ratio to $5.92\sigma$ on the same
-units, which is the whole case for replacing the baseline. After reconstruction
-the double ratio keeps $4.05\sigma$ while the baseline's reconstructed
-counterpart stays at $0.75\sigma$.
+$0.26\sigma$ to $5.23\sigma$ and the double ratio to
+$8.00\sigma$ on the same held-out units, which is the
+whole case for adopting $R$. After reconstruction the double ratio keeps
+$3.75\sigma$ while the reconstructed
+yield stays at $0.67\sigma$. These yield figures are quoted here for that
+comparison only; they are not rows of the Part III table, for the reason given
+after Figure 0.
 
 ![Each observable against the symmetry potential, on its own scale.](../results/update_note/fig_absolute_vs_spot.png)
 
@@ -983,8 +1004,8 @@ reconstruction do not resolve $U_{\mathrm{sym}}$, not that the observable is
 insensitive.
 
 **The double ratio is worth an external proton measurement.** Pairing
-reconstructed neutrons with truth protons gives $+9.61\%\pm2.37\%$,
-$4.05\sigma$. The gain is physics, not bookkeeping: at a common window the
+reconstructed neutrons with truth protons gives $+9.73\%\pm2.59\%$,
+$3.75\sigma$. The gain is physics, not bookkeeping: at a common window the
 proton hardness moves *against* the neutron hardness, $-5.97\%$ against
 $+6.12\%$ for 90 against 0 MeV, so the isovector response adds in the ratio
 instead of cancelling. That is why the double ratio carries roughly twice the
@@ -1026,11 +1047,11 @@ a measured $+2.7\%$.
 |---|---|---|---|---|
 | 1 | Cluster-forming parameters | $(n\sigma, t_{\rm win})$ over the calibrated grid | **measured, not yet differential** | clustering biases $R$ by $+4.7\%$ at the production setting; the sample-to-sample drift is **not yet measured** and is the gap |
 | 2 | Energy scale and resolution | the response matrix, varied within its own uncertainty | not started | linearity $\pm1.1\%$ to 2.6 GeV, falling to $-17\%$ by 6 GeV; the high band is open-ended |
-| 3 | Band migration into the gap | response matrix, both directions | **partly measured** | 24 % of gap-region clusters migrate into a band; the outward term is in Figure 8c, the inward term is not |
+| 3 | Band migration | response matrix, both directions | **measured** | inward contamination is 6.1 % (low band) and 13.5 % (high); it varies by 0.1 pp across samples, so it cancels in the ratio |
 | 4 | Reconstruction efficiency drift | band assignment per sample | **measured** | 0.77 pp maximum spread, 0.10 pp median — the smallest term on this list |
 | 5 | Score working point | $q$ scanned about 0.60 | not started | purity agrees to 0.14 pp across samples at $q>0.60$ |
 | 6 | Feature standardisation | shared versus per-sample scaler | **measured and fixed** | per-sample scaling biased $E_{\rm reco}$ by 0.8 %, monotonic in $U_{\mathrm{sym}}$, and cancelled the signal |
-| 7 | Window selection | the selection rule itself | **measured by accident** | the headline moved $5.18\sigma \to 4.05\sigma$ under a correct change to the split, with no change to the physics |
+| 7 | Window selection | the selection rule itself | **measured by accident** | the headline moved $5.18\sigma \to 4.05\sigma \to 3.75\sigma$ across two corrections, neither of which touched the physics |
 | 8 | Impact parameter | reweighting onto a common $b$ distribution | **machinery exists, not applied to Part III** | the three samples' $\langle b\rangle$ agree to $0.23\sigma$ |
 | 9 | Generation-job clustering | bootstrap over jobs rather than events | not started | job-level error on $\langle b\rangle$ is 2.85 times the per-event one |
 
@@ -1178,8 +1199,10 @@ convenience. Items 1 and 2 can move the headline; the rest cannot.
    and the note says so rather than quoting them as results.
 2. **Replace the selection rule.** The window is chosen by maximising a
    significance built from 300 bootstrap replicates over 134 windows. That is
-   not stable: the headline moved from $5.18\sigma$ to $4.05\sigma$ under a
-   correction to the development/held-out split that changed no physics. Either
+   not stable: the headline moved from $5.18\sigma$ to $4.05\sigma$ to
+   $3.75\sigma$ across two corrections, one to the development/held-out split
+   and one moving every row onto the reconstruction-selected window, neither of
+   which touched the physics. Either
    raise the replicate count until the figure of merit is not dominated by its
    own noise, or select on $|\Delta|$ with the error estimated from one common
    replicate set, and report the held-out value for the ten best windows rather
