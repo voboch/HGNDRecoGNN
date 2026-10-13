@@ -121,21 +121,34 @@ configuration, not missing input.** On 2000 entries, 14 537 tracks:
 | TOF-400 matched / valid m² | 2079 (14.3 %) / 100 % |
 | TOF-700 matched / valid m² | 2754 (18.9 %) / 100 % |
 
-The chain, read off the installed source:
+`GetGemTrackIndex() >= 0` on **100 %** of tracks, so `SetGemTrackIndex` ran
+and `BmnGlobalTracking`'s `if (fStsTracks)` block was **not** skipped. An
+earlier version of this note blamed the `StsVector` / `StsTrack` branch-name
+default for the missing dE/dx; that measurement disproves it, and the claim is
+withdrawn. `CalcdQdn` sits inside the same block that demonstrably ran.
 
-1. This DST's inner tracks are in **`StsVector`** (written by
-   `BmnStsVectorFinder`), not `StsTrack`.
-2. `BmnGlobalTracking::fInnerTrackBranchName` **defaults to `"StsTrack"`** and
-   is only changed by an explicit `SetInnerTracksBranchName` call.
-3. So `fStsTracks` was null, and the whole `if (fStsTracks)` block was skipped.
-4. That block is where `SetGemTrackIndex`, the vertex DCA/χ² Kalman update
-   **and `CalcdQdn`** all live.
+What the numbers do establish, from `CalcdQdn`'s structure alone: its only
+write is `SetdQdNLower(dedx)`, with `dedx = -100` when it finds fewer than
+three usable GEM hits and a positive mean otherwise. **Not one track carries
+-100.** So this is not "ran and found no hits" — the write never executed, for
+all 12 079 positive tracks. (For the 2458 negative tracks `0.0` is expected:
+`CalcdQdn` returns early on `GetP() < 0`.)
 
-That is **one root cause with five symptoms** — absent dE/dx, no inner-track
-link, no inner hit count, no MC link through the inner track, and no vertex
-DCA/χ² — not five separate defects. The inputs dE/dx needs (`StsHit`,
-`BmnGemLowerCluster`) are both present in the file, so re-running global
-tracking with the correct inner-branch name should populate all five together.
+The remaining question is *why*, and this cannot be answered from the source
+read for these notes: the DST was produced by
+`/lhep/users/karpushkin/nica130T/bmnrootVersions/bmnroot_dev`, which is not on
+the SSHFS mount, whereas the notes were read from `/scratch2/vboch/bmnroot`.
+The API matches between them — the gate passed — but the *implementation* need
+not. One command settles it:
+
+```bash
+grep -n 'CalcdQdn' \
+  /lhep/users/karpushkin/nica130T/bmnrootVersions/bmnroot_dev/reconstruction/globaltracking/BmnGlobalTracking.cxx
+```
+
+A commented-out or absent call is the simplest explanation consistent with
+every number above — and note that the copy read for these notes already has
+one commented-out `CalcdQdn` call site alongside the live one.
 
 Two further traps this exposed:
 
@@ -145,12 +158,11 @@ Two further traps this exposed:
   must not be used as a primary cut here. The earlier claim in
   `docs/PROTON_PID_NCX_20261012.md` that it "supplies the primary association"
   is withdrawn for this production.
-- **My own `StsVector` → `StsTrack` correction was wrong**, or rather
-  half-right: `StsTrack` is the default name, but I generalised from
-  `CbmStsFindTracks`'s registration without checking a DST, and this production
-  uses the other spelling. The gate and the converter now try both and report
-  which one is in use. The element class is `CbmStsTrack` either way, so the
-  template type was never wrong.
+- **The inner-track branch name is `StsVector` here**, not the `StsTrack`
+  default. The gate and converter now try both and report which is in use; the
+  element class is `CbmStsTrack` either way, so the template type was never
+  wrong. This matters for reading the DST — but it is *not* the cause of the
+  missing dE/dx, as the 100 % inner-track link shows.
 
 **What is available instead:** m² from TOF on ~33 % of tracks, with m² valid on
 100 % of matched tracks. That supports a TOF-only PID, which is a *different
@@ -159,9 +171,10 @@ and weaker* observable than the specified combined one — no dE/dx means no
 and has to be declared, not substituted quietly. No calibration has been
 fitted, and none should be until the input question is settled.
 
-**Decision needed** before any further PID work: either re-reconstruct with
-`SetInnerTracksBranchName("StsVector")` so dE/dx is populated, or accept a
-declared TOF-only PID with its weaker separation. This is the user's call.
+**Decision needed** before any further PID work, once the `grep` above has
+identified whether `CalcdQdn` is called in the production build: either
+re-reconstruct with dE/dx actually enabled, or accept a declared TOF-only PID
+with its weaker separation. This is the user's call.
 
 ---
 
