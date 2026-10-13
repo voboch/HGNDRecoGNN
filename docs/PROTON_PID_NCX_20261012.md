@@ -14,7 +14,7 @@ TOF/PID response and cannot be used to reconstruct the proton arm.
 
 | Input content | Next step |
 |---|---|
-| `bmndata` + `BmnGlobalTrack` + `StsTrack` | inspect, extract and select |
+| `bmndata` + `BmnGlobalTrack` + (`StsTrack` or `StsVector`) | inspect, extract and select |
 | transport/digitisation ROOT file with tracker digits and TOF MC points | installed `run_reco_bmn.C`, then inspect the DST |
 | generator-only SMASH particles | full BM@N transport/digitisation is required first |
 | HGND CSV exports | return to the original ROOT production |
@@ -73,7 +73,7 @@ joint species-mixture fit.
 | signed rigidity | `GetParamFirst()->GetQp()` | sign gives reconstructed charge; $p/|q|=1/|q/p|$ |
 | $dE/dx$ | `BmnGlobalTrack::GetdQdNLower()` | **there is no `GetDedx()`** on the installed build. `BmnGlobalTracking::CalcdQdn` writes this. Units are calibrated GEM cluster charge (ADC-like), **not** MeV/cm. `0.0` = never ran, `-100` = ran with <3 usable GEM hits; both invalid |
 | $dE/dx$ availability | positive tracks only | `CalcdQdn` returns early on `GetP() < 0`, so **negative tracks never receive dE/dx**. A $\pi^-$ reference band is unavailable; the $r_\pi>3$ veto must use $\pi^+$ |
-| primary association | `BmnGlobalTrack::IsPrimary()` | set by the vertex finder. `CbmStsTrack` (the `StsTrack` class) has **no `FromVertex()`** |
+| primary association | `BmnGlobalTrack::IsPrimary()` | **carries no information on the SMASH DSTs**: the constructor sets `fIsPrimary(kTRUE)` and the measured rate is 100 %. `CbmStsTrack` has **no `FromVertex()`**. See runbook §1a |
 | inner hit count | `StsTrack[GetGemTrackIndex()]->GetNStsHits()` | `CbmStsTrack` has `GetNStsHits()`, **not** `GetNHits()` |
 | TOF match | `GetTof1HitIndex()` / `GetTof2HitIndex()` | common matching hypothesis, not a proton-specific match |
 | $m^2$ | `GetMass2(1/2)` | requires a valid matched hit; sentinel `-1000` is rejected |

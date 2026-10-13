@@ -96,6 +96,75 @@ python3 tests/test_proton_pid.py
 
 ---
 
+
+## 1a. First real DST: the combined PID is not available on this production
+
+Run on ncx102, 2026-10-13, against
+`/scratch2/shabanov/Simulation/Smash_defaultSpot_NoAbsorber/defaultSpot_0_200/bmndst_smash_xecs_2.87gev_hardSkyrme_defaultSpot_1573086_1.mcini.root`
+(1.70 GB, 4126 entries), BmnRoot `bmnroot_dev` at
+`/lhep/users/karpushkin/nica130T/...`, ROOT 6.30/08.
+
+**The API gate passed with zero failures.** Every getter the exporter calls
+exists with the assumed signature, which settles the question item 2 of the
+task was about. `GetQ`, `GetDedx` and `GetCharge` are confirmed absent.
+
+**The feasibility probe failed, and the cause is a reconstruction
+configuration, not missing input.** On 2000 entries, 14 537 tracks:
+
+| measurement | value |
+|---|---|
+| tracks per event | 7.27; 32.6 % of events have none |
+| positive / negative | 12 079 / 2458 |
+| dE/dx usable | **0 (0.00 %)** — all 14 537 are the `0.0` ctor default |
+| `GetGemTrackIndex() >= 0` | **0** |
+| `IsPrimary()` | **100.00 %** |
+| TOF-400 matched / valid m² | 2079 (14.3 %) / 100 % |
+| TOF-700 matched / valid m² | 2754 (18.9 %) / 100 % |
+
+The chain, read off the installed source:
+
+1. This DST's inner tracks are in **`StsVector`** (written by
+   `BmnStsVectorFinder`), not `StsTrack`.
+2. `BmnGlobalTracking::fInnerTrackBranchName` **defaults to `"StsTrack"`** and
+   is only changed by an explicit `SetInnerTracksBranchName` call.
+3. So `fStsTracks` was null, and the whole `if (fStsTracks)` block was skipped.
+4. That block is where `SetGemTrackIndex`, the vertex DCA/χ² Kalman update
+   **and `CalcdQdn`** all live.
+
+That is **one root cause with five symptoms** — absent dE/dx, no inner-track
+link, no inner hit count, no MC link through the inner track, and no vertex
+DCA/χ² — not five separate defects. The inputs dE/dx needs (`StsHit`,
+`BmnGemLowerCluster`) are both present in the file, so re-running global
+tracking with the correct inner-branch name should populate all five together.
+
+Two further traps this exposed:
+
+- **`IsPrimary()` is useless on this production.** `BmnGlobalTrack`'s
+  constructor sets `fIsPrimary(kTRUE)`, and nothing in the path that ran sets
+  it false, so the 100 % rate means "never set" rather than "all primary". It
+  must not be used as a primary cut here. The earlier claim in
+  `docs/PROTON_PID_NCX_20261012.md` that it "supplies the primary association"
+  is withdrawn for this production.
+- **My own `StsVector` → `StsTrack` correction was wrong**, or rather
+  half-right: `StsTrack` is the default name, but I generalised from
+  `CbmStsFindTracks`'s registration without checking a DST, and this production
+  uses the other spelling. The gate and the converter now try both and report
+  which one is in use. The element class is `CbmStsTrack` either way, so the
+  template type was never wrong.
+
+**What is available instead:** m² from TOF on ~33 % of tracks, with m² valid on
+100 % of matched tracks. That supports a TOF-only PID, which is a *different
+and weaker* observable than the specified combined one — no dE/dx means no
+`r_p` radius and no pion veto as defined. Adopting it is a change of method
+and has to be declared, not substituted quietly. No calibration has been
+fitted, and none should be until the input question is settled.
+
+**Decision needed** before any further PID work: either re-reconstruct with
+`SetInnerTracksBranchName("StsVector")` so dE/dx is populated, or accept a
+declared TOF-only PID with its weaker separation. This is the user's call.
+
+---
+
 ## 2. Extraction
 
 One event loop, all outputs:
