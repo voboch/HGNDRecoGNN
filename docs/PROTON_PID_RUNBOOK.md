@@ -182,6 +182,26 @@ Steps 1-5 are wrapped by `smoke_tracks.sh`, deployed to
 only into a fresh `smoke_<timestamp>/`, and leaves `out/` untouched. The
 originals it replaced are in `/scratch2/vboch/HGND/backup_20261013_153415/`.
 
+Four defects were found by the first real invocation on ncx102 and by
+exercising the macros against a local ROOT 6.36, before any DST was read:
+
+- `config.sh` appends to `DYLD_LIBRARY_PATH` without defining it. Under
+  `set -u` an unbound variable exits the **whole shell**, not just the sourced
+  file, so the run died with no message from the script at all. `run_convert.sh`
+  already dropped `-eu` around this; the smoke now does the same.
+- The gate reported every getter missing when the BmnRoot libraries were simply
+  not loaded — indistinguishable from a renamed API, and it would send the
+  reader to fix the wrong thing. It now locates the owning library by searching
+  the build's own `.rootmap` files for the class and loads it, so the library
+  name comes from the installed build rather than a guess.
+- The "getters the exporter deliberately does not use" check printed
+  `GetQ absent, as documented` when the class itself had no dictionary. That is
+  false reassurance; it now says the check was skipped.
+- `dynamic_cast<TTree*>(f->Get("bmndata"))` **segfaults** inside cling when the
+  key is not a `TTree` (an RNTuple, in the test fixture) instead of returning
+  null. Both macros use `TFile::GetObject` now and exit cleanly. Note
+  `inspect_branches.C` still has the original `dynamic_cast`.
+
 0. `./smoke_tracks.sh --self-test` — validates the validator. No ROOT, no DST,
    no allocation. Passes on the laptop; a failure here means the deployed copy
    is damaged.
