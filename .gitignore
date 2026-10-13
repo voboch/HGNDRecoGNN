@@ -109,3 +109,6 @@ id_ecdsa
 # --- ncx converter (runs on the ncx cluster, not here) ---
 ncx/
 ncx_refactor/
+
+# Standalone C++ test probes generate a source file at run time.
+tests/cpp/sourceid_probe.cc
