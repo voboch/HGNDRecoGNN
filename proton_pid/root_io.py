@@ -1,4 +1,18 @@
-"""Read reconstructed DST quantities through the installed BmnRoot dictionaries.
+"""Cross-check reader for reconstructed DST quantities, via PyROOT.
+
+NOT the production export path. Production tracks are written by the C++
+converter (ncx_refactor/Convert2Csv.C with write_tracks, using
+bmnx::FillTrackRow from BmnTrackExport.h) inside the same event loop that
+writes the HGND arm, so the two arms cannot drift apart in their event key.
+This module exists only to read the same quantities independently and compare,
+and to keep the small pure helpers the test-suite uses.
+
+Getter names below were verified against the installed BmnRoot source on ncx
+(/scratch2/vboch/bmnroot) on 2026-10-13. Three earlier assumptions were wrong
+and are corrected here: there is no GetDedx() (dE/dx is GetdQdNLower()), there
+is no GetQ() (GetZ() is a derived He flag, not a charge magnitude), and the
+inner-track branch is "StsTrack" of class CbmStsTrack, which has GetNStsHits()
+and no FromVertex() -- the primary decision lives on BmnGlobalTrack::IsPrimary.
 
 No dependency on numpy/pandas here: extraction uses the Python paired with the
 cluster ROOT build. Statistical calibration can use a separate Python runtime.
@@ -17,7 +31,7 @@ from pathlib import Path
 TRACK_FIELDS = ["source_id", "source_path", "entry", "Row", "event_id", "period",
                 "b_fm", "track_index", "inner_index", "charge_sign", "q_over_p",
                 "p", "px", "py", "pz", "pt", "theta_rad", "phi_rad",
-                "dedx", "charge_estimate", "from_vertex", "inner_hits",
+                "dedx", "dedx_status", "z_flag", "from_vertex", "inner_hits",
                 "chi2_ndf", "dca_cm", "vertex_chi2", "mc_index", "mc_pdg",
                 "mc_mother", "mc_p", "mc_px", "mc_py", "mc_pz", "mc_match_fraction"]
 for _tof in (400, 700):
@@ -102,18 +116,27 @@ def track_row(track, inner, i, identity, mc, tof400, tof700, match):
     mc_index = int(member(inner, ("GetTrkID",), -1)) if inner else -1
     truth = at(mc, mc_index)
     ndf = float(member(track, ("GetNDF",), 0))
-    if not inner or not hasattr(inner, "FromVertex"):
-        raise ValueError("Inner track / FromVertex missing: primary association cannot be evaluated")
+    # The primary decision is on the GLOBAL track (set by the vertex finder).
+    # CbmStsTrack has no FromVertex(); requiring one here rejected every track
+    # on a build where the inner class is CbmStsTrack, which is all of them.
+    if not hasattr(track, "IsPrimary"):
+        raise ValueError("BmnGlobalTrack::IsPrimary missing: primary association "
+                         "cannot be evaluated; run inspect_tracks.C on this build")
+    dedx_raw = float(member(track, ("GetdQdNLower",)))
     row = dict(identity)
     row.update({"track_index": i,
-                "inner_index": int(member(track, ("GetInnerTrackIndex", "GetGemTrackIndex"), -1)),
+                "inner_index": int(member(track, ("GetGemTrackIndex",), -1)),
                 "charge_sign": 1 if qp > 0 else -1, "q_over_p": qp,
                 "p": p, "px": px, "py": py, "pz": pz, "pt": math.hypot(px, py),
                 "theta_rad": math.atan2(math.hypot(px, py), pz), "phi_rad": math.atan2(py, px),
-                "dedx": float(member(track, ("GetDedx",))),
-                "charge_estimate": member(track, ("GetQ",), -1),
-                "from_vertex": int(bool(inner.FromVertex())),
-                "inner_hits": int(member(inner, ("GetNStsHits", "GetNHits"), -1)),
+                # 0.0 means CalcdQdn never ran, -100 means it ran with too few
+                # usable GEM hits. Both are missing, and dedx_status keeps them
+                # apart. Units are calibrated GEM cluster charge, not MeV/cm.
+                "dedx": dedx_raw if dedx_raw > 0 else float("nan"),
+                "dedx_status": dedx_raw,
+                "z_flag": member(track, ("GetZ",), -1),
+                "from_vertex": int(bool(track.IsPrimary())),
+                "inner_hits": int(member(inner, ("GetNStsHits",), -1)) if inner else -1,
                 "chi2_ndf": float(track.GetChi2())/ndf if ndf > 0 else float("nan"),
                 "dca_cm": member(track, ("GetDCAInVertex",)),
                 "vertex_chi2": member(track, ("GetChi2InVertex",)),
@@ -146,8 +169,12 @@ def open_root(path, load_libs=(), root_init=None):
         raise ValueError("No bmndata tree")
     if not tree.GetBranch("BmnGlobalTrack"):
         raise ValueError("No BmnGlobalTrack: input may be DIGI/transport rather than a reconstructed DST")
-    if not tree.GetBranch("StsVector"):
-        raise ValueError("No StsVector: this adapter targets the documented vector-tracking DST; inspect this build")
+    # CbmStsFindTracks registers the inner-track array as "StsTrack"; there is
+    # no "StsVector" branch in this build. Absence is not fatal -- only the
+    # inner hit count and the MC link are lost -- so warn rather than refuse.
+    if not tree.GetBranch("StsTrack"):
+        print("WARNING: no 'StsTrack' branch; inner hit count and the MC link "
+              "will be unknown. The primary flag is unaffected.")
     return ROOT, f, tree
 
 
@@ -175,7 +202,7 @@ def extract(path, prefix, max_events=0, require_mc=False, load_libs=(), root_ini
             "matched_mc_tracks": 0, "invalid_rigidity": 0, "mc_available": None,
             "entry_key": "(source_id, entry); Row == entry, zero-based, matching the "
                          "HGND CSVs written by ncx Convert2Csv.C",
-            "mc_matching": "StsVector[global inner index].GetTrkID(); never global.GetRefIndex()",
+            "mc_matching": "StsTrack[GetGemTrackIndex()].GetTrkID(); never global.GetRefIndex()",
             "tof_hypothesis": "kCommon", "completed": False}
     parts = [Path(str(p)+".part") for p in outputs[:3]]
     with gzip.open(parts[0], "wt", newline="") as ft, gzip.open(parts[1], "wt", newline="") as fe, gzip.open(parts[2], "wt", newline="") as fm:
@@ -187,7 +214,7 @@ def extract(path, prefix, max_events=0, require_mc=False, load_libs=(), root_ini
             if tree.GetEntry(entry) <= 0:
                 raise ValueError(f"Failed GetEntry({entry})")
             tracks = tree_object(tree, ("BmnGlobalTrack",))
-            inners = tree_object(tree, ("StsVector",))
+            inners = tree_object(tree, ("StsTrack",))
             vertex = tree_object(tree, ("MpdVertex.", "MpdVertex"))
             header = tree_object(tree, ("DstEventHeader.", "DstEventHeader"))
             mc = mc_array(tree)
@@ -229,7 +256,7 @@ def extract(path, prefix, max_events=0, require_mc=False, load_libs=(), root_ini
             matches = tree_object(tree, ("BmnGlobalTrackMatch",))
             for i in range(n_global):
                 tr = tracks.At(i)
-                ii = int(member(tr, ("GetInnerTrackIndex", "GetGemTrackIndex"), -1))
+                ii = int(member(tr, ("GetGemTrackIndex",), -1))
                 row = track_row(tr, at(inners, ii), i, identity, mc, hits400, hits700, at(matches, i))
                 if row is None:
                     meta["invalid_rigidity"] += 1

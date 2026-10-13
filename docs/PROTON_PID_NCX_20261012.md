@@ -14,7 +14,7 @@ TOF/PID response and cannot be used to reconstruct the proton arm.
 
 | Input content | Next step |
 |---|---|
-| `bmndata` + `BmnGlobalTrack` + `StsVector` | inspect, extract and select |
+| `bmndata` + `BmnGlobalTrack` + `StsTrack` | inspect, extract and select |
 | transport/digitisation ROOT file with tracker digits and TOF MC points | installed `run_reco_bmn.C`, then inspect the DST |
 | generator-only SMASH particles | full BM@N transport/digitisation is required first |
 | HGND CSV exports | return to the original ROOT production |
@@ -71,8 +71,10 @@ joint species-mixture fit.
 | Quantity | Implementation | Reason / failure check |
 |---|---|---|
 | signed rigidity | `GetParamFirst()->GetQp()` | sign gives reconstructed charge; $p/|q|=1/|q/p|$ |
-| $dE/dx$ | `BmnGlobalTrack::GetDedx()` | guide §5.2: filled by `BmnDedx` only for Run 8, zero otherwise |
-| primary association | `StsVector[GetInnerTrackIndex()/GetGemTrackIndex()]->FromVertex()` | reconstructed track used in the `MpdVertex.` fit |
+| $dE/dx$ | `BmnGlobalTrack::GetdQdNLower()` | **there is no `GetDedx()`** on the installed build. `BmnGlobalTracking::CalcdQdn` writes this. Units are calibrated GEM cluster charge (ADC-like), **not** MeV/cm. `0.0` = never ran, `-100` = ran with <3 usable GEM hits; both invalid |
+| $dE/dx$ availability | positive tracks only | `CalcdQdn` returns early on `GetP() < 0`, so **negative tracks never receive dE/dx**. A $\pi^-$ reference band is unavailable; the $r_\pi>3$ veto must use $\pi^+$ |
+| primary association | `BmnGlobalTrack::IsPrimary()` | set by the vertex finder. `CbmStsTrack` (the `StsTrack` class) has **no `FromVertex()`** |
+| inner hit count | `StsTrack[GetGemTrackIndex()]->GetNStsHits()` | `CbmStsTrack` has `GetNStsHits()`, **not** `GetNHits()` |
 | TOF match | `GetTof1HitIndex()` / `GetTof2HitIndex()` | common matching hypothesis, not a proton-specific match |
 | $m^2$ | `GetMass2(1/2)` | requires a valid matched hit; sentinel `-1000` is rejected |
 | older $m^2$ fallback | $p^2(1/\beta^2-1)$, $\beta=L/(ct)$ | use **matched TOF hit** `GetLength()` and `GetTimeStamp()`; global-track length ends at the tracker |
@@ -82,10 +84,17 @@ joint species-mixture fit.
 
 The current [BmnGlobalTrack header](https://git.jinr.ru/nica/bmnroot/-/blob/dev/base/data/BmnGlobalTrack.h)
 confirms the no-argument TOF getters are the common hypothesis, and TOF IDs
-for `GetMass2` are 1 and 2. Do not use `GetQ()` for the charge **sign**: it is
-the energy-loss charge-magnitude estimate. Do not count a TOF hit with
-`IsUsed()` as a match, or substitute the global track's `GetNHits()` for the
-inner hit count; the guide identifies both as unsafe for that purpose.
+for `GetMass2` are 1 and 2.
+
+Two charge traps, both confirmed by reading the installed source rather than
+the published header. There is **no `GetQ()`** on this build; `GetZ()` exists
+but `CalcdQdn` assigns it from a hardcoded He/Z=1 cut on the same $dE/dx$
+(`20000\exp(-2\sqrt{p})+600`), so it is a derived flag and never an
+independent charge magnitude. And `BmnTrack::GetP()` returns `1.0/GetQp()`,
+which is **signed**: the charge sign comes from the sign of $q/p$, the momentum
+magnitude from $1/|q/p|$, and the two must not be conflated. Do not count a TOF
+hit with `IsUsed()` as a match, or substitute the global track's `GetNHits()`
+for the inner hit count; the guide identifies both as unsafe for that purpose.
 
 The first smoke must show nonzero calibrated $dE/dx$ and matched TOF counts.
 If $dE/dx$ is unfilled, the combined slide PID is unavailable until the
@@ -239,7 +248,7 @@ Applying a calibration to its own source files is rejected unless
 can remove the response the hybrid observable is intended to measure.
 
 No extra numerical track-quality or DCA cuts are presumed from the slides.
-`FromVertex()` supplies the documented primary association; optional
+`BmnGlobalTrack::IsPrimary()` supplies the primary association; optional
 `--max-chi2-ndf` and `--max-dca-cm` remain analysis choices and require their own
 distribution/cut scans before a physics result.
 

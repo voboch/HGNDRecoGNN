@@ -9,17 +9,44 @@ CSVs. Python keeps the fitting, plotting and regression tests.
 
 ## 1. What is verified locally, and what is not
 
-This matters more than usual here: **no part of this has touched a real DST.**
-The ncx route refused non-interactive authentication
-(`ssh -J boch@sshgate.jinr.ru boch@ncx102.jinr.ru` →
-`Permission denied (keyboard-interactive)`), so the BmnRoot installation and a
-representative DST have not been inspected.
+**No part of this has executed against a real DST.** `ssh boch@ncx104.jinr.ru`
+times out from here, so there is no execution on ncx; the SSHFS mount at
+`/Users/vovvy/ncx` (= `/scratch2/vboch` on the cluster) gives filesystem access
+only.
+
+What the mount did make possible, on 2026-10-13, is reading the **installed
+BmnRoot source** instead of the published header. That moved the API from
+assumed to verified and corrected three errors that would each have been a
+hard failure:
+
+| Previously assumed | Installed build (`/scratch2/vboch/bmnroot`) |
+|---|---|
+| `GetDedx()` | does not exist. dE/dx is `GetdQdNLower()`, written by `BmnGlobalTracking::CalcdQdn`, in calibrated GEM cluster charge — not MeV/cm |
+| `GetQ()` charge magnitude | does not exist. `GetZ()` is assigned from a hardcoded He/Z=1 cut on the same dE/dx, so it is derived from it |
+| inner branch `StsVector` | the branch is `StsTrack`, class `CbmStsTrack`: `GetNStsHits()` not `GetNHits()`, and no `FromVertex()` — the primary flag is `BmnGlobalTrack::IsPrimary()` |
+
+Two further findings are physics-relevant rather than cosmetic:
+
+- `BmnTrack::GetP()` returns `1.0/GetQp()` and is therefore **signed**. The
+  exporter takes the sign from `q/p` and the magnitude from `1/|q/p|`.
+- `CalcdQdn` returns early when `GetP() < 0`, so **negative tracks never carry
+  dE/dx**. The π⁻ reference band the `r_π > 3` veto was to be built from is not
+  available from this branch; it has to come from π⁺ on the positive side. The
+  deep probe reports the negative-track dE/dx count so this is measured on the
+  production rather than taken on trust.
+
+A DST still has to be inspected: no reconstructed DST exists anywhere under
+the mount (the `smash_xecs_2.87gev_hardSkyrme_*` directories hold
+already-converted CSVs, and `data/bmnsim_p_99.root` is a simulation file), and
+`run_convert.sh` defaults `BMNROOT_CONFIG` to a **different** build
+(`/nica/bmn1/karpushkin/.../bmnroot_dev`) than the one read above. Every gate
+is therefore re-checked at run time by `inspect_tracks.C`.
 
 ### Verified locally, by tests that run in this repo
 
 | Behaviour | Test |
 |---|---|
-| charge sign comes from the sign of `q/p`, not from `GetQ()` | `tests/cpp/test_track_export.cc` |
+| charge sign comes from the sign of `q/p`, not from `GetZ()` (there is no `GetQ()`) | `tests/cpp/test_track_export.cc` |
 | momentum components reconstruct from slopes; `\|p\|` closes | same |
 | `dE/dx = 0` is recorded as missing, never as a measurement | same |
 | an unmatched TOF arm, and the DST's `m2 = -1000` sentinel, are rejected | same |
@@ -36,6 +63,10 @@ representative DST have not been inspected.
 | `r_p < 2` is a 2-D radius: 1.5σ in both coordinates fails | same |
 | the pion veto rejects a pion-like track | same |
 | no MC column appears in the PID schema | same |
+| the `-100` too-few-GEM-hits sentinel stays distinct from the `0.0` never-ran case | `tests/cpp/test_track_export.cc` |
+| a negative track is never given a dE/dx value | same |
+| the primary flag survives a missing inner-track array; the inner columns do not | same |
+| the smoke validator accepts a well-formed CSV pair and rejects a one-based `Row`, a missing or duplicated event ledger, a dangling track `Row`, a dropped `dedx_status` and an unprefixed truth column | `ncx_refactor/smoke_tracks.sh --self-test` (7 cases, no ROOT needed) |
 
 Run them:
 
@@ -43,6 +74,7 @@ Run them:
 g++ -std=c++17 -o /tmp/t1 tests/cpp/test_track_export.cc && /tmp/t1
 g++ -std=c++17 -o /tmp/t2 tests/cpp/test_proton_pid.cc   && /tmp/t2
 python3 tests/test_proton_event_keys.py
+./ncx_refactor/smoke_tracks.sh --self-test
 python3 tests/test_proton_pid.py
 ```
 
@@ -144,17 +176,36 @@ No MC quantity enters. The track table carries `mc_index`, `mc_pdg` and
 
 ## 5. First run on ncx, in order
 
-1. **Authenticate interactively** and confirm the route. Everything below
-   depends on it and none of it has been done.
-2. `inspect_branches.C` on one real DST. Confirm `BmnGlobalTrack`, the inner
-   track array and the TOF getters exist with the assumed names.
-3. Confirm non-zero `dE/dx` on some tracks and a non-zero matched-TOF count.
-   If `dE/dx` is empty, stop: the combined PID is not available.
-4. Convert **one** file with `--tracks` in a short compute-node allocation.
-   Never on a login node.
-5. Check `_events.csv` has exactly as many rows as the DST has entries, and
-   that `(source_id, Row)` joins 1:1 onto `_hits.csv` events.
-6. Only then fit the calibration, and only then run the array.
+Steps 1-5 are wrapped by `smoke_tracks.sh`, deployed to
+`/scratch2/vboch/HGND/` with `SMOKE_README.md`. It refuses to convert without
+`SLURM_JOB_ID`, so it cannot reconstruct on a login node by accident, writes
+only into a fresh `smoke_<timestamp>/`, and leaves `out/` untouched. The
+originals it replaced are in `/scratch2/vboch/HGND/backup_20261013_153415/`.
+
+0. `./smoke_tracks.sh --self-test` — validates the validator. No ROOT, no DST,
+   no allocation. Passes on the laptop; a failure here means the deployed copy
+   is damaged.
+1. **Locate a reconstructed DST.** There is none under `/scratch2/vboch`.
+2. `./smoke_tracks.sh --allow-login <dst>` — runs the two read-only probes and
+   stops before any conversion.
+   - `inspect_tracks.C` is the API gate. It touches no BmnRoot type, reaching
+     everything through `TClass` reflection, so a renamed getter is reported
+     with its signature instead of killing the interpreter at parse time. It
+     also reports if a `GetQ()` or `GetDedx()` has appeared on this build,
+     which is a reason to revisit the exporter's notes, not to start reading
+     them.
+   - `inspect_tracks_deep.C` measures feasibility: dE/dx occupancy split by
+     charge sign and by the two invalid cases, TOF match rate per arm, m²
+     validity given a match, the dE/dx+m² overlap that is the real combined-PID
+     denominator, and the dE/dx **percentiles** that fix the units the Bethe
+     fit must be done in. If dE/dx is empty on every track, it stops: `CalcdQdn`
+     did not run in that production and the combined PID is unavailable there.
+     That is an input problem, and the answer is not to fall back to m² alone
+     without saying so, nor to substitute MC truth.
+3. `srun -p <partition> -n1 -t 00:30:00 --pty bash`, then
+   `./smoke_tracks.sh --events 200 <dst>` — the full smoke, including the
+   conversion and the CSV validation.
+4. Only then fit the calibration, and only then run the array.
 
 Efficiency is measured against **all truth-primary protons in the declared
 fiducial region**, from `_prim.csv`, not against reconstructed tracks. Report

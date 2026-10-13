@@ -41,26 +41,33 @@ struct FakeParam {
   double GetTx() const { return tx; }
   double GetTy() const { return ty; }
 };
+// Mirrors CbmStsTrack: GetNStsHits (not GetNHits), no FromVertex, and
+// GetTrkID is a NON-const member in the real class.
 struct FakeInner {
-  bool fromv; int nhits; int trkid;
-  bool FromVertex() const { return fromv; }
-  int  GetNHits()   const { return nhits; }
-  int  GetTrkID()   const { return trkid; }
+  int nhits; int trkid;
+  int GetNStsHits() const { return nhits; }
+  int GetTrkID() { return trkid; }
 };
+// Mirrors BmnGlobalTrack. GetMass2 and GetZ are deliberately NON-const, as
+// they are in base/data/BmnGlobalTrack.h: a const track pointer in the
+// exporter would not compile against the real build, and this stub is what
+// catches that locally.
 struct FakeGlobal {
   FakeParam par; bool has_par = true;
-  double dedx = 0.0, q = 0.0, chi2 = 0.0; int ndf = 0;
+  double dedx = 0.0, chi2 = 0.0; int ndf = 0, z = 1;
+  bool primary = false;
   int inner = -1, tof1 = -1, tof2 = -1;
   double m2a = bmnx::kM2Invalid, m2b = bmnx::kM2Invalid;
-  const FakeParam* GetParamFirst() const { return has_par ? &par : nullptr; }
-  double GetDedx() const { return dedx; }
-  double GetQ()    const { return q; }
+  FakeParam* GetParamFirst() { return has_par ? &par : nullptr; }
+  double GetdQdNLower() const { return dedx; }
+  int    GetZ() { return z; }
   double GetChi2() const { return chi2; }
   int    GetNDF()  const { return ndf; }
-  int    GetInnerTrackIndex() const { return inner; }
-  int    GetTof1HitIndex()    const { return tof1; }
-  int    GetTof2HitIndex()    const { return tof2; }
-  double GetMass2(int id) const { return id == 1 ? m2a : m2b; }
+  bool   IsPrimary() const { return primary; }
+  int    GetGemTrackIndex() const { return inner; }
+  int    GetTof1HitIndex()  const { return tof1; }
+  int    GetTof2HitIndex()  const { return tof2; }
+  double GetMass2(int id) { return id == 1 ? m2a : m2b; }
 };
 
 static int fails = 0;
@@ -70,17 +77,17 @@ static bool close(double a, double b, double tol = 1e-9) { return std::fabs(a-b)
 int main() {
   using namespace bmnx;
 
-  // --- charge sign comes from the SIGN of q/p, never from GetQ() ----------
+  // --- charge sign comes from the SIGN of q/p, never from GetZ() ----------
   {
-    FakeGlobal pos; pos.par = {+0.5, 0.0, 0.0}; pos.q = 1.0;
-    FakeGlobal neg; neg.par = {-0.5, 0.0, 0.0}; neg.q = 1.0;  // same magnitude
+    FakeGlobal pos; pos.par = {+0.5, 0.0, 0.0}; pos.z = 1;
+    FakeGlobal neg; neg.par = {-0.5, 0.0, 0.0}; neg.z = 1;  // same Z flag
     auto rp = FillTrackRow<FakeGlobal, FakeInner>(&pos, 0, nullptr);
     auto rn = FillTrackRow<FakeGlobal, FakeInner>(&neg, 1, nullptr);
     CHECK(rp.charge_sign == +1, "q/p > 0 must give charge_sign +1");
     CHECK(rn.charge_sign == -1, "q/p < 0 must give charge_sign -1");
     CHECK(close(rp.p, 2.0) && close(rn.p, 2.0), "p = 1/|q/p|");
-    CHECK(close(rp.charge_estimate, rn.charge_estimate),
-          "GetQ() is a magnitude and cannot separate the two");
+    CHECK(close(rp.z_flag, rn.z_flag),
+          "GetZ() is a derived dE/dx flag and cannot separate the two");
   }
 
   // --- momentum components from the track slopes --------------------------
@@ -98,13 +105,30 @@ int main() {
 
   // --- missing dE/dx is missing, not zero ---------------------------------
   {
-    FakeGlobal t; t.par = {0.5, 0, 0}; t.dedx = 0.0;   // BmnDedx did not run
+    FakeGlobal t; t.par = {0.5, 0, 0}; t.dedx = 0.0;   // CalcdQdn never ran
     auto r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
     CHECK(r.dedx_valid == 0, "dedx=0 must not count as measured");
     CHECK(close(r.dedx, kNA), "unfilled dedx must be the missing sentinel");
-    t.dedx = 2.5;
+    CHECK(close(r.dedx_status, 0.0), "the raw 0.0 is preserved for diagnosis");
+
+    // CalcdQdn writes -100 when it ran but found fewer than 3 usable GEM hits.
+    // That is a different failure from "never ran" and must stay separable.
+    t.dedx = -100.0;
     r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
-    CHECK(r.dedx_valid == 1 && close(r.dedx, 2.5), "real dedx is kept");
+    CHECK(r.dedx_valid == 0, "the -100 too-few-GEM-hits sentinel is not a value");
+    CHECK(close(r.dedx_status, -100.0), "-100 must be distinguishable from 0");
+
+    t.dedx = 2500.0;                   // GEM cluster charge, ADC-like units
+    r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
+    CHECK(r.dedx_valid == 1 && close(r.dedx, 2500.0), "real dedx is kept");
+
+    // BmnGlobalTracking::CalcdQdn returns early for GetP() < 0, so negative
+    // tracks arrive with the ctor default. The exporter must report that as
+    // missing rather than inventing a value for the pi- reference band.
+    FakeGlobal neg; neg.par = {-0.5, 0, 0}; neg.dedx = 0.0;
+    auto rn = FillTrackRow<FakeGlobal, FakeInner>(&neg, 0, nullptr);
+    CHECK(rn.charge_sign == -1 && rn.dedx_valid == 0,
+          "negative tracks carry no dE/dx and must not be given one");
   }
 
   // --- TOF: unmatched arm, and the DST's own -1000 sentinel ---------------
@@ -124,17 +148,20 @@ int main() {
 
   // --- a null inner array leaves association unknown, never guessed -------
   {
-    FakeGlobal t; t.par = {0.5, 0, 0}; t.inner = 3;
+    FakeGlobal t; t.par = {0.5, 0, 0}; t.inner = 3; t.primary = true;
     auto r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
-    CHECK(r.from_vertex == -1, "no inner array -> vertex association unknown");
+    // IsPrimary lives on the global track, so it survives a missing inner
+    // array; the inner-track columns do not and must stay unknown.
+    CHECK(r.from_vertex == 1, "primary flag comes from the global track");
+    CHECK(r.inner_hits == -1, "no inner array -> hit count unknown");
     CHECK(r.mc_index == -1, "no inner array -> no MC association");
   }
 
   // --- MC fields are populated but cannot reach a selection --------------
   {
-    FakeInner inner{true, 12, 42};
+    FakeInner inner{12, 42};
     TClonesArray arr; arr.v = {nullptr, nullptr, nullptr, &inner};
-    FakeGlobal t; t.par = {0.5, 0, 0}; t.inner = 3;
+    FakeGlobal t; t.par = {0.5, 0, 0}; t.inner = 3; t.primary = true;
     auto r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, &arr);
     CHECK(r.from_vertex == 1 && r.inner_hits == 12, "inner track read");
     CHECK(r.mc_index == 42, "MC index recorded for validation");
