@@ -171,6 +171,32 @@ and weaker* observable than the specified combined one — no dE/dx means no
 and has to be declared, not substituted quietly. No calibration has been
 fitted, and none should be until the input question is settled.
 
+### Independent of that decision
+
+Two things were wrong regardless of how the dE/dx question resolves, and are
+fixed:
+
+- **`mc_pdg` and `mc_mother` were never filled on track rows.** `FillTrackRow`
+  set `mc_index` and nothing resolved it, so every track row carried
+  `mc_pdg = 0`. "Is this a truth proton" was therefore unanswerable and the
+  efficiency and purity denominators item 5 requires could not have been
+  computed at all. A reusable `bmnx::FillMcTruth<McTrack>()` now resolves the
+  link, kept separate from `FillTrackRow` so the reconstruction path never
+  touches the MC array, and an out-of-range link is recorded as unassociated
+  rather than read past. Tested, including that `motherId == -1` is *primary*
+  while `0` is a valid mother *index* — inverting those would count every
+  daughter of track 0 as a primary proton.
+- **Whether the MC link works at all on this production was unmeasured.** The
+  deep probe now reports `BmnMCInfo.fMCTracks` occupancy, the truth-primary
+  proton count (the efficiency denominator), how many reconstructed tracks
+  resolve to a truth particle, and how many of those are protons. If
+  `GetTrkID()` turns out unpopulated, `BmnGlobalTrackMatch` and `StsTrackMatch`
+  are both present in the DST as the alternative route, and the probe says so.
+
+The conversion and CSV validation (smoke steps 5-6) do **not** depend on dE/dx
+and can be run now in an allocation; they exercise the export path, the event
+ledger and the `(source_id, Row)` join on real data.
+
 **Decision needed** before any further PID work, once the `grep` above has
 identified whether `CalcdQdn` is called in the production build: either
 re-reconstruct with dE/dx actually enabled, or accept a declared TOF-only PID

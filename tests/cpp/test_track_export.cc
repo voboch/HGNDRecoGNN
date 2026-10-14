@@ -70,6 +70,12 @@ struct FakeGlobal {
   double GetMass2(int id) { return id == 1 ? m2a : m2b; }
 };
 
+struct FakeMc {
+  int pdg, mother;
+  int GetPdgCode() const { return pdg; }
+  int GetMotherId() const { return mother; }
+};
+
 static int fails = 0;
 #define CHECK(c, msg) do { if (!(c)) { printf("  FAIL %s\n", msg); ++fails; } } while (0)
 static bool close(double a, double b, double tol = 1e-9) { return std::fabs(a-b) < tol; }
@@ -181,6 +187,57 @@ int main() {
     t.ndf = 5;
     r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
     CHECK(close(r.chi2_ndf, 2.0), "chi2/ndf");
+  }
+
+  // --- MC truth resolution: validation only, and never invented ----------
+  {
+    // no MC array at all -> stays "not associated", never a particle
+    FakeGlobal t; t.par = {0.5, 0, 0};
+    auto r = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
+    FillMcTruth<FakeMc>(r, nullptr);
+    CHECK(r.mc_pdg == 0 && r.mc_mother == -2,
+          "no MC array must leave the row unassociated");
+
+    // a link of -1 is not a lookup
+    r.mc_index = -1;
+    FakeMc m0{2212, -1};
+    TClonesArray mc; mc.v = {&m0};
+    FillMcTruth<FakeMc>(r, &mc);
+    CHECK(r.mc_pdg == 0 && r.mc_mother == -2,
+          "mc_index = -1 must not resolve to the first MC track");
+
+    // an out-of-range link is a bug upstream, not a particle: it must not read
+    // past the array, and it must not silently alias some other track
+    r.mc_index = 7;
+    FillMcTruth<FakeMc>(r, &mc);
+    CHECK(r.mc_index == -1 && r.mc_pdg == 0 && r.mc_mother == -2,
+          "an out-of-range mc_index must be recorded as unassociated");
+
+    // a valid link resolves
+    r.mc_index = 0;
+    FillMcTruth<FakeMc>(r, &mc);
+    CHECK(r.mc_pdg == 2212, "a valid link must resolve the PDG code");
+    CHECK(r.mc_mother == -1, "GetMotherId() == -1 means PRIMARY");
+  }
+
+  // --- mother 0 is an INDEX, not a primary -------------------------------
+  {
+    // Getting this backwards would count every secondary whose mother happens
+    // to be track 0 as a primary proton, inflating the efficiency denominator.
+    FakeMc prim{2212, -1};
+    FakeMc seco{2212, 0};
+    TClonesArray mc; mc.v = {&prim, &seco};
+    FakeGlobal t; t.par = {0.5, 0, 0};
+
+    auto rp = FillTrackRow<FakeGlobal, FakeInner>(&t, 0, nullptr);
+    rp.mc_index = 0; FillMcTruth<FakeMc>(rp, &mc);
+    auto rs = FillTrackRow<FakeGlobal, FakeInner>(&t, 1, nullptr);
+    rs.mc_index = 1; FillMcTruth<FakeMc>(rs, &mc);
+
+    CHECK(rp.mc_mother == -1, "mother -1 is the primary marker");
+    CHECK(rs.mc_mother == 0,  "mother 0 is a track index and must survive as 0");
+    CHECK(rp.mc_mother != rs.mc_mother,
+          "a primary and a daughter of track 0 must not be conflated");
   }
 
   // --- source_id is stable, basename-only, and separates files -----------
