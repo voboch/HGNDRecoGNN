@@ -134,8 +134,27 @@ three usable GEM hits and a positive mean otherwise. **Not one track carries
 all 12 079 positive tracks. (For the 2458 negative tracks `0.0` is expected:
 `CalcdQdn` returns early on `GetP() < 0`.)
 
-The remaining question is *why*, and this cannot be answered from the source
-read for these notes: the DST was produced by
+**Localising it without the production source.** `CalcdQdn(&globTr)` is the
+*last* statement of that block. Immediately before it come two Kalman
+propagations that `continue` on error, the DCA computation and
+`SetChi2InVertex`. So `GetDCAInVertex()` and `GetChi2InVertex()` say whether
+the stored tracks reached the block's end:
+
+- **both constant across every track** → nothing wrote them, so the tracks left
+  the block early (a `continue` on a propagation, or a null `fVertexL1`) and
+  `CalcdQdn` was never reached. The missing dE/dx is then a *symptom*, and the
+  defect is in the vertex or the propagation, not in `CalcdQdn`.
+- **either varies** → the tracks did reach past `SetChi2InVertex`, so the
+  `CalcdQdn` call one line further on is itself what did not happen, and the
+  `grep` below is the confirmation.
+
+The probe now measures and reports this. Note the predicate treats
+non-finite values explicitly: `NaN != NaN`, so a naive all-equal test would
+report an all-NaN column as "varies" and invert the verdict. That case is
+covered by an isolated check of the predicate.
+
+The remaining question, if the second branch holds, cannot be answered from the
+source read for these notes: the DST was produced by
 `/lhep/users/karpushkin/nica130T/bmnrootVersions/bmnroot_dev`, which is not on
 the SSHFS mount, whereas the notes were read from `/scratch2/vboch/bmnroot`.
 The API matches between them — the gate passed — but the *implementation* need
