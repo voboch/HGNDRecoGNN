@@ -38,8 +38,19 @@ class TrainConfig:
     start_epoch: int = 0
     lr: float = 1e-3
     weight_decay: float = 1e-5
+    # 'multistep' is the reference notebook's schedule and stays the default so
+    # published numbers reproduce. 'cosine' decays smoothly to `lr_min` over the
+    # whole budget instead of dropping 10x at fixed epochs; with the default
+    # milestones and epochs=20 the LR is already 1e-5 by epoch 15, so a quarter
+    # of the budget trains at 1 % of the initial rate. 'plateau' decays only
+    # when validation stops improving.
+    scheduler: str = 'multistep'          # 'multistep' | 'cosine' | 'plateau'
     scheduler_milestones: tuple[int, ...] = (10, 15, 25)
     scheduler_gamma: float = 0.1
+    warmup_epochs: int = 0                # linear ramp from lr/warmup_factor
+    warmup_factor: float = 10.0
+    lr_min: float = 0.0                   # cosine floor
+    plateau_patience: int = 3
     grad_clip_norm: Optional[float] = None
 
     # ── Device ───────────────────────────────────────────────────────────
@@ -54,7 +65,12 @@ class TrainConfig:
     arch_kwargs: dict = field(default_factory=dict)
     checkpoint_dir: str = 'checkpoints'
     checkpoint_name: str = 'model.pt'
-    save_best_on: str = 'train'   # 'train' | 'val'
+    # 'val' selects the checkpoint that generalises; 'train' selects the one
+    # that fits the training split best, which on this model is the most
+    # overfit epoch (the converged SMASH run reports train 1.268 against val
+    # 1.354). The default was 'train' through every result in reports/; it is
+    # now 'val'. Pass save_best_on='train' to reproduce an older run exactly.
+    save_best_on: str = 'val'     # 'val' | 'train'
     verbose: bool = True
 
 
@@ -187,6 +203,66 @@ def eval_epoch(
 
 # ── Orchestrator ─────────────────────────────────────────────────────────
 
+def _build_scheduler(cfg, optimizer):
+    """Build the LR schedule. Returns (scheduler, needs_validation_metric).
+
+    All three options step once per epoch, which is what the training loop
+    does; a per-batch schedule such as OneCycle would need the inner loop
+    restructured and is deliberately not offered here rather than offered
+    half-working.
+    """
+    sched_name = str(cfg.scheduler).lower()
+    lrs = torch.optim.lr_scheduler
+
+    if sched_name == 'multistep':
+        dead = [m for m in cfg.scheduler_milestones if m >= cfg.epochs]
+        if dead and cfg.verbose:
+            # (10, 15, 25) against the default epochs=20 never reaches 25. The
+            # schedule was written for the reference's 25-epoch budget, so a
+            # shorter run silently truncates it.
+            print(f'fit(): WARNING milestones {dead} are >= epochs='
+                  f'{cfg.epochs} and will never fire. The schedule is being '
+                  f'truncated: with milestones {tuple(cfg.scheduler_milestones)} '
+                  f'the LR reaches {cfg.lr * cfg.scheduler_gamma ** 2:.1e} by '
+                  f'epoch {sorted(cfg.scheduler_milestones)[1]} and stays '
+                  f'there for the rest of the run.')
+        core = lrs.MultiStepLR(optimizer,
+                               milestones=list(cfg.scheduler_milestones),
+                               gamma=cfg.scheduler_gamma)
+        needs_metric = False
+
+    elif sched_name == 'cosine':
+        span = max(1, cfg.epochs - cfg.warmup_epochs)
+        core = lrs.CosineAnnealingLR(optimizer, T_max=span, eta_min=cfg.lr_min)
+        needs_metric = False
+
+    elif sched_name == 'plateau':
+        core = lrs.ReduceLROnPlateau(optimizer, mode='min',
+                                     factor=cfg.scheduler_gamma,
+                                     patience=cfg.plateau_patience)
+        needs_metric = True
+
+    else:
+        raise ValueError(
+            f"unknown scheduler {cfg.scheduler!r}; "
+            f"expected 'multistep', 'cosine' or 'plateau'")
+
+    if cfg.warmup_epochs > 0:
+        if needs_metric:
+            # SequentialLR cannot drive ReduceLROnPlateau, which needs a metric
+            # passed to step(). Refuse rather than silently drop the warmup.
+            raise ValueError("warmup_epochs is not supported with the "
+                             "'plateau' scheduler; use 'cosine' or 'multistep'")
+        warm = lrs.LinearLR(optimizer,
+                            start_factor=1.0 / cfg.warmup_factor,
+                            end_factor=1.0,
+                            total_iters=cfg.warmup_epochs)
+        core = lrs.SequentialLR(optimizer, schedulers=[warm, core],
+                                milestones=[cfg.warmup_epochs])
+    return core, needs_metric
+
+
+
 def fit(
     model,
     train_loader,
@@ -211,10 +287,7 @@ def fit(
 
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr,
                                  weight_decay=cfg.weight_decay)
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(
-        optimizer, milestones=list(cfg.scheduler_milestones),
-        gamma=cfg.scheduler_gamma,
-    )
+    scheduler, scheduler_needs_metric = _build_scheduler(cfg, optimizer)
 
     ckpt_path = os.path.join(cfg.checkpoint_dir, cfg.checkpoint_name)
 
@@ -254,11 +327,18 @@ def fit(
             forward_fn=forward_fn, loss_fn=loss_fn,
             verbose=cfg.verbose, grad_clip_norm=cfg.grad_clip_norm,
         )
-        scheduler.step()
         val_loss = eval_epoch(
             model, test_loader, plan, cfg.loss_weights,
             forward_fn=forward_fn, loss_fn=loss_fn, verbose=cfg.verbose,
         )
+        # Stepped AFTER validation so 'plateau' can see the metric it decays
+        # on. For the epoch-indexed schedules the order is immaterial, and the
+        # printed LR below now refers to the epoch just finished rather than
+        # the next one.
+        if scheduler_needs_metric:
+            scheduler.step(val_loss)
+        else:
+            scheduler.step()
         # Free accumulated MPS/CUDA cache before the next epoch — otherwise
         # long runs on MPS grow their allocator until unified memory is
         # exhausted and the kernel dies with no traceback.

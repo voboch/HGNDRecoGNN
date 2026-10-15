@@ -20,6 +20,8 @@ from torch_geometric.nn import (
     BatchNorm, DynamicEdgeConv, EdgeConv, GraphConv, SAGEConv, Sequential,
 )
 from torch_geometric.nn.pool import avg_pool_x
+from torch_geometric.nn.pool.consecutive import consecutive_cluster
+from torch_geometric.utils import scatter
 
 
 class Net(torch.nn.Module):
@@ -30,11 +32,48 @@ class Net(torch.nn.Module):
     applicable, matching the v1 loss expectations.
     """
 
-    def __init__(self, hidden_channels: int, num_layers: int, num_features: int):
+    def __init__(self, hidden_channels: int, num_layers: int, num_features: int,
+                 cluster_pooling: str = 'mean', cluster_size_feature: bool = False,
+                 hit_residual: bool = False):
+        """`cluster_pooling`, `cluster_size_feature` and `hit_residual` all
+        default to the v1 behaviour, so an existing checkpoint still loads and
+        every published number is reproduced unchanged. See the three blocks
+        below for why each one exists.
+
+        cluster_pooling: 'mean' (v1) or 'mean_max_sum'.
+            The cluster branch is fed `avg_pool_x`, i.e. the MEAN of its hits'
+            embeddings, which is invariant to how many hits the cluster has.
+            Measured on the SMASH defaultSpot cache, cluster size alone
+            separates signal from background with ROC AUC 0.729 (signal mean
+            6.53 hits, background 2.98; 48.5 % of background clusters are
+            single-hit against 15.5 % of signal). A mean cannot see that
+            directly -- it can only be inferred through the hit graph -- so
+            max and sum are concatenated alongside it.
+
+        cluster_size_feature: append log1p(cluster size) to the cluster vector.
+            The same quantity, stated explicitly rather than left to be
+            inferred. Note `graph['clusters'].x` exists in the cache but is
+            filled with zeros (data/graph_dataset.py) and is never read by this
+            model, so the size is computed here from the hit->cluster
+            assignment instead and no cache has to be rebuilt.
+
+        hit_residual: residual connections across the SAGEConv stack.
+            At the reference setting num_layers=8 the hit branch is eight
+            message-passing layers deep with no skip connection anywhere,
+            which is the regime where GNN node features oversmooth. Applied
+            only where the shapes already match, so it adds no parameters.
+        """
         super().__init__()
         self.hidden_channels = hidden_channels
         self.num_layers = num_layers
         self.num_features = num_features
+        if cluster_pooling not in ('mean', 'mean_max_sum'):
+            raise ValueError(
+                f"cluster_pooling must be 'mean' or 'mean_max_sum', "
+                f"got {cluster_pooling!r}")
+        self.cluster_pooling = cluster_pooling
+        self.cluster_size_feature = bool(cluster_size_feature)
+        self.hit_residual = bool(hit_residual)
 
         self.convs = torch.nn.ModuleList()
         self.batch_norms = torch.nn.ModuleList()
@@ -73,7 +112,13 @@ class Net(torch.nn.Module):
 
         # Cluster-level modules — pinned to CPU on MPS (DynamicEdgeConv/knn
         # is CPU-only there). The `_cpu` suffix is kept for state_dict stability.
-        nn_cl = Seq(Lin(hidden_channels * 2, hidden_channels * 4), ReLU(),
+        # Width of one pooled cluster vector before DynamicEdgeConv, which
+        # concatenates a pair of them and so sees twice this.
+        n_pool = 3 if self.cluster_pooling == 'mean_max_sum' else 1
+        cl_in = hidden_channels * n_pool + (1 if self.cluster_size_feature else 0)
+        self.cluster_in_channels = cl_in
+
+        nn_cl = Seq(Lin(cl_in * 2, hidden_channels * 4), ReLU(),
                     Lin(hidden_channels * 4, hidden_channels * 4), ReLU(),
                     Lin(hidden_channels * 4, hidden_channels), ReLU())
         self.cluster_conv_cpu = DynamicEdgeConv(nn_cl, k=100, aggr='sum')
@@ -135,12 +180,47 @@ class Net(torch.nn.Module):
         """
         return next(self.cluster_conv_cpu.parameters()).device != x.device
 
+    def _augment_cluster_features(self, cl_mean, cl_idx, cl_feat):
+        """Concatenate max/sum pooling and the cluster size onto the mean.
+
+        Row alignment is the whole difficulty here. `avg_pool_x` does not index
+        its output by the raw cluster id: it first RELABELS the ids to be
+        consecutive (`consecutive_cluster`) and returns one row per unique
+        cluster in that new order. Scattering with the raw ids therefore
+        misaligns every row as soon as the ids are non-consecutive or do not
+        start at zero -- silently, whenever max(id) happens to fit inside the
+        row count. The same relabelling is applied here so that row i of each
+        extra pool belongs to the same cluster as row i of the mean.
+
+        With both flags off this returns `cl_mean` untouched.
+        """
+        if self.cluster_pooling == 'mean' and not self.cluster_size_feature:
+            return cl_mean
+
+        idx, _ = consecutive_cluster(cl_idx)
+        n = cl_mean.size(0)
+        parts = [cl_mean]
+        if self.cluster_pooling == 'mean_max_sum':
+            parts.append(scatter(cl_feat, idx, dim=0, dim_size=n, reduce='max'))
+            parts.append(scatter(cl_feat, idx, dim=0, dim_size=n, reduce='sum'))
+        if self.cluster_size_feature:
+            ones = torch.ones(cl_feat.size(0), 1,
+                              dtype=cl_feat.dtype, device=cl_feat.device)
+            size = scatter(ones, idx, dim=0, dim_size=n, reduce='sum')
+            # log1p: sizes are heavy-tailed, and a raw count would enter the
+            # first Linear on a different scale from the standardised features.
+            parts.append(torch.log1p(size))
+        return torch.cat(parts, dim=-1)
+
     def forward(self, x, edge_index, edge_index_cl, clusters, batch):
         x = self.convs[0](x, edge_index).relu()
         x = self.convs[1](x, edge_index).relu()
 
         for conv, bn in zip(self.convs[2:-2], self.batch_norms):
-            x = bn(conv(x, edge_index)).relu()
+            h = bn(conv(x, edge_index)).relu()
+            # Only where the width already matches: the first SAGEConv widens
+            # 256 -> hidden_channels and has nothing to add to.
+            x = x + h if (self.hit_residual and h.shape == x.shape) else h
 
         row, col = edge_index
         new_edge_attr = self.edge_out(torch.cat([x[row], x[col]], dim=-1))
@@ -159,11 +239,11 @@ class Net(torch.nn.Module):
         # representation they consume — which is what "end-to-end" should mean.
         _split = self._cluster_split_from(x)
         if _split:
-            cl_x, cl_batch = avg_pool_x(clusters.cpu(),
-                                        x.detach().cpu(),
-                                        batch.cpu())
+            cl_idx, cl_feat, cl_b = clusters.cpu(), x.detach().cpu(), batch.cpu()
         else:
-            cl_x, cl_batch = avg_pool_x(clusters, x, batch)
+            cl_idx, cl_feat, cl_b = clusters, x, batch
+        cl_x, cl_batch = avg_pool_x(cl_idx, cl_feat, cl_b)
+        cl_x = self._augment_cluster_features(cl_x, cl_idx, cl_feat)
         cl_x = self.cluster_conv_cpu(cl_x, cl_batch)
 
         cl_cl = self.clclass_out_cpu(cl_x).sigmoid()
@@ -188,7 +268,7 @@ class Net(torch.nn.Module):
 
 
 def build_default_net(dataset, hidden_channels: int = 512,
-                      num_layers: int = 8) -> Net:
+                      num_layers: int = 8, **arch_kwargs) -> Net:
     """Construct and lazily-initialise the default Net.
 
     PyG's `SAGEConv(-1, ...)` defers parameter shape inference to the first
@@ -196,7 +276,7 @@ def build_default_net(dataset, hidden_channels: int = 512,
     optimizer sees fully-materialised parameters.
     """
     num_features = dataset[0]['hits'].num_features
-    model = Net(hidden_channels, num_layers, num_features)
+    model = Net(hidden_channels, num_layers, num_features, **arch_kwargs)
 
     with torch.no_grad():
         g0 = dataset[0].clone()

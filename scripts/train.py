@@ -122,12 +122,16 @@ def main() -> int:
                         help='Cap the preload footprint (GB). Trims shard '
                              'count if the estimate would exceed this. '
                              'Recommended on MPS / small-RAM machines.')
-    parser.add_argument('--save-best-on', default='train',
+    parser.add_argument('--save-best-on', default='val',
                         choices=['train', 'val'],
                         help='Which loss drives checkpoint selection. '
-                             'train (default) preserves the 2026-08-26 '
-                             'HPC run behaviour; val is the physics-'
-                             'recommended choice for held-out generalisation.')
+                             'val (default) keeps the epoch that generalises '
+                             'best. train selects the lowest training loss, '
+                             'which on this model is the most overfit epoch '
+                             '(the converged SMASH run reports train 1.268 '
+                             'against val 1.354); it was the default through '
+                             'every result in reports/, so pass it to '
+                             'reproduce one of those runs exactly.')
     parser.add_argument('--energy-flatten', action='store_true',
                         help='reweight the cluster-energy loss by the inverse '
                              'occupancy of each true-energy bin, as the '
@@ -143,6 +147,32 @@ def main() -> int:
     parser.add_argument('--scheduler-milestones', type=int, nargs='*',
                         default=None,
                         help='Override MultiStepLR milestones (e.g. 10 15 25).')
+    parser.add_argument('--scheduler', choices=('multistep', 'cosine', 'plateau'),
+                        default=None,
+                        help='LR schedule. multistep (default) is the '
+                             'reference notebook schedule; cosine decays '
+                             'smoothly over the whole budget; plateau decays '
+                             'only when validation stalls.')
+    parser.add_argument('--warmup-epochs', type=int, default=None,
+                        help='Linear LR warmup over this many epochs '
+                             '(cosine/multistep only).')
+    parser.add_argument('--lr-min', type=float, default=None,
+                        help='Cosine floor (default 0).')
+    parser.add_argument('--grad-clip-norm', type=float, default=None,
+                        help='Clip gradients to this global norm. Unset by '
+                             'default, matching every published run.')
+    parser.add_argument('--cluster-pooling', choices=('mean', 'mean_max_sum'),
+                        default=None,
+                        help="Cluster-branch pooling. 'mean' (default) is "
+                             "avg_pool_x alone and is invariant to cluster "
+                             "size; 'mean_max_sum' concatenates max and sum.")
+    parser.add_argument('--cluster-size-feature', action='store_true',
+                        help='Append log1p(cluster hit count) to the cluster '
+                             'vector. Cluster size alone separates signal '
+                             'from background at AUC 0.729.')
+    parser.add_argument('--hit-residual', action='store_true',
+                        help='Residual connections across the SAGEConv stack '
+                             '(parameter-free; helps at num_layers=8).')
     args = parser.parse_args()
 
     _add_package_to_path()
@@ -186,6 +216,20 @@ def main() -> int:
         arch_kwargs['heads'] = args.heads
     if args.model.startswith('spectral_'):
         arch_kwargs['k_pe'] = args.k_pe
+    # net_default's opt-in architecture flags. Folded in HERE, before the model
+    # is constructed, and not later beside the TrainConfig: arch_kwargs is both
+    # the constructor's argument list and what gets recorded in the checkpoint,
+    # so adding them afterwards would log a configuration the model never had.
+    if args.model == 'net_default':
+        if args.cluster_pooling is not None:
+            arch_kwargs['cluster_pooling'] = args.cluster_pooling
+        if args.cluster_size_feature:
+            arch_kwargs['cluster_size_feature'] = True
+        if args.hit_residual:
+            arch_kwargs['hit_residual'] = True
+    elif args.cluster_pooling or args.cluster_size_feature or args.hit_residual:
+        parser.error('--cluster-pooling, --cluster-size-feature and '
+                     '--hit-residual apply to --model net_default only')
 
     model, spec = model_registry.get(args.model, dataset, **arch_kwargs)
     print(f'Model: {args.model} — {spec.description}')
@@ -231,6 +275,13 @@ def main() -> int:
             args.energy_flatten_sample)
     if args.scheduler_milestones is not None:
         cfg_kwargs['scheduler_milestones'] = tuple(args.scheduler_milestones)
+    for flag, key in (('scheduler', 'scheduler'),
+                      ('warmup_epochs', 'warmup_epochs'),
+                      ('lr_min', 'lr_min'),
+                      ('grad_clip_norm', 'grad_clip_norm')):
+        val = getattr(args, flag)
+        if val is not None:
+            cfg_kwargs[key] = val
     cfg = TrainConfig(**cfg_kwargs)
     print(f'Checkpoint policy: save_best_on={cfg.save_best_on}')
 
