@@ -74,6 +74,41 @@ def _with_energy_flattening(weights, dataset, bins: int,
     return out
 
 
+def _net_default_arch_flags(args) -> dict:
+    """The opt-in net_default architecture kwargs implied by `args`.
+
+    Separated from main() so the mapping can be tested without a dataset, a
+    GPU or pyg-lib. A wrong flag here is only discovered after a GPU
+    allocation has been spent, which is the class of error
+    tests/test_train_cli.py exists to catch.
+    """
+    out: dict = {}
+    if getattr(args, 'cluster_pooling', None) is not None:
+        out['cluster_pooling'] = args.cluster_pooling
+    if getattr(args, 'cluster_size_feature', False):
+        out['cluster_size_feature'] = True
+    if getattr(args, 'hit_residual', False):
+        out['hit_residual'] = True
+    return out
+
+
+def _schedule_overrides(args) -> dict:
+    """TrainConfig overrides for the schedule / optimisation flags.
+
+    Only keys the user set explicitly are returned, so TrainConfig's own
+    defaults stay in force for everything else.
+    """
+    out: dict = {}
+    for attr, key in (('scheduler', 'scheduler'),
+                      ('warmup_epochs', 'warmup_epochs'),
+                      ('lr_min', 'lr_min'),
+                      ('grad_clip_norm', 'grad_clip_norm')):
+        val = getattr(args, attr, None)
+        if val is not None:
+            out[key] = val
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description='Train an HGND model.')
     parser.add_argument('--root', required=True,
@@ -221,12 +256,7 @@ def main() -> int:
     # the constructor's argument list and what gets recorded in the checkpoint,
     # so adding them afterwards would log a configuration the model never had.
     if args.model == 'net_default':
-        if args.cluster_pooling is not None:
-            arch_kwargs['cluster_pooling'] = args.cluster_pooling
-        if args.cluster_size_feature:
-            arch_kwargs['cluster_size_feature'] = True
-        if args.hit_residual:
-            arch_kwargs['hit_residual'] = True
+        arch_kwargs.update(_net_default_arch_flags(args))
     elif args.cluster_pooling or args.cluster_size_feature or args.hit_residual:
         parser.error('--cluster-pooling, --cluster-size-feature and '
                      '--hit-residual apply to --model net_default only')
@@ -275,13 +305,7 @@ def main() -> int:
             args.energy_flatten_sample)
     if args.scheduler_milestones is not None:
         cfg_kwargs['scheduler_milestones'] = tuple(args.scheduler_milestones)
-    for flag, key in (('scheduler', 'scheduler'),
-                      ('warmup_epochs', 'warmup_epochs'),
-                      ('lr_min', 'lr_min'),
-                      ('grad_clip_norm', 'grad_clip_norm')):
-        val = getattr(args, flag)
-        if val is not None:
-            cfg_kwargs[key] = val
+    cfg_kwargs.update(_schedule_overrides(args))
     cfg = TrainConfig(**cfg_kwargs)
     print(f'Checkpoint policy: save_best_on={cfg.save_best_on}')
 

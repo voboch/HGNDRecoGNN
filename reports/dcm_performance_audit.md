@@ -96,10 +96,19 @@ checkpoint records `epoch=18` of 20 with `train_loss=1.268`, `val_loss=1.354`.
 Best epoch 18 of 20, at LR 1e-5, is the signature of a run stopped early on a
 schedule that decayed early — not of a converged model.
 
-**Checkpoint selection compounds it.** `save_best_on` defaulted to `'train'`,
-so the epoch with the lowest *training* loss is kept. With train 1.268 below
-val 1.354 the model is overfitting, and selecting on train deliberately keeps
-the most overfit epoch.
+**Checkpoint selection compounds it — for the SMASH line, not necessarily for
+DCM.** `save_best_on` defaulted to `'train'`, so the epoch with the lowest
+*training* loss is kept; with train 1.268 below val 1.354 the model is
+overfitting and that policy deliberately keeps the most overfit epoch. The
+SMASH checkpoint in `checkpoints_hpc/` is demonstrably one of those.
+
+`slurm/train_dcm.hpc.sbatch`, however, already passes `--save-best-on val`
+(and batch 256, 25 epochs, `TWINDOW=1.0`), and says so in its header. The
+script is committed only as of 2026-10-06, after the 30 September DCM result,
+and the repository does not record which settings that earlier run used — so
+whether `'train'` selection touched the 0.9515 number is **undetermined**, not
+established. The changed default in §5 matters for every other entry point;
+for this job it was already correct.
 
 ## 4. Architectural findings
 
@@ -190,9 +199,11 @@ model change.
 1. **Find or re-run job 4366196** (batch 256, 25 epochs) and evaluate it. Until
    this exists, the premise of this audit — that DCM native underperforms — is
    untested at the reference settings.
-2. **Re-select the existing checkpoint on validation loss.** Free: no retrain,
-   just `--save-best-on val` on the next run, and it tells you how much the
-   `'train'` default was costing.
+2. **Note that validation selection is already in place for this job.**
+   `train_dcm.hpc.sbatch` passes `--save-best-on val`, so there is nothing to
+   change on the DCM path. The new `'val'` default in §5 affects the SMASH
+   entry points, where the committed checkpoint *is* train-selected; quantify
+   it there, not here.
 3. **Budget before architecture.** 30 epochs, `--scheduler cosine
    --warmup-epochs 3`, batch 256. This is the configuration the reference's
    2.5× step advantage implies, plus a schedule that does not idle.
@@ -203,6 +214,32 @@ model change.
    currently carries ~16 % of the total; the other heads are auxiliary.
 6. **Only then** revisit `DynamicEdgeConv(k=100, aggr='sum')` and the
    inconsistent normalisation.
+
+### Concrete commands
+
+Steps 3-4 are a ladder in `slurm/train_dcm_improve.hpc.sbatch`, one rung per
+submission, each adding to the one before. Run them from a cHARISMa login node
+and **evaluate between rungs** — if `budget` closes the gap there is no reason
+to touch the architecture:
+
+```bash
+# step 1 - baseline at the reference settings (existing script, unchanged)
+sbatch slurm/train_dcm.hpc.sbatch
+
+# step 3 - budget and schedule only
+VARIANT=budget   sbatch slurm/train_dcm_improve.hpc.sbatch
+CKPT=/scratch/$USER/hgnd/checkpoints/dcm_improve_budget_tw1p0_h512l8_30ep/model.pt     sbatch slurm/eval_dcm.hpc.sbatch
+
+# step 4 - cluster features, in increasing order of risk
+VARIANT=size     sbatch slurm/train_dcm_improve.hpc.sbatch
+VARIANT=pool     sbatch slurm/train_dcm_improve.hpc.sbatch
+VARIANT=residual sbatch slurm/train_dcm_improve.hpc.sbatch
+```
+
+Each variant writes to its own checkpoint directory, so rungs cannot overwrite
+each other, and the script refuses an unrecognised `VARIANT` rather than
+silently training the default. `EPOCHS` and the schedule flags are fixed per
+variant inside the script, so a submission cannot half-apply a rung.
 
 Changes from steps 3 onward alter the model or the optimisation, so each needs
 its own evaluation against the held-out split rather than being stacked
