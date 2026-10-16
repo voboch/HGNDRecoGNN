@@ -9,23 +9,32 @@
 # the ladder from that report's §6, one rung per submission, so each change is
 # evaluated on its own instead of being stacked blindly.
 #
-# Each rung ADDS to the one before it:
+# Each rung ADDS to the one before it, and the three optimisation factors are
+# separated rather than moved together. An earlier version of this script had
+# one `budget` rung that changed epochs, schedule shape and warmup at once; its
+# result could not attribute any difference to one of them. That rung is kept,
+# clearly labelled as a package, for when only the combined effect is wanted.
 #
-#   VARIANT=ref        reference settings, unchanged. Identical to
-#                      train_dcm.hpc.sbatch; run it here only to get a
+#   VARIANT=ref        reference settings, unchanged: 25 epochs, MultiStepLR.
+#                      Same as train_dcm.hpc.sbatch; run it here to get the
 #                      baseline in the same directory layout as the rest.
-#   VARIANT=budget     30 epochs, cosine schedule, 3 warmup epochs.
-#                      Addresses the two scheduler findings: the default
-#                      20-epoch budget is ~2.5x fewer optimiser steps than
-#                      the reference's 25 @ batch 256, and milestones
-#                      (10,15,25) leave the LR at 1e-5 from epoch 15 while
-#                      never reaching the third milestone.
-#   VARIANT=size       + --cluster-size-feature. Cluster size alone separates
-#                      signal from background at AUC 0.729; the cluster
-#                      branch is fed avg_pool_x and cannot see it directly.
+#   VARIANT=epochs     30 epochs, MultiStepLR unchanged.  <- step count only
+#   VARIANT=sched      30 epochs, cosine, no warmup.      <- schedule shape
+#   VARIANT=warmup     30 epochs, cosine, 3 warmup epochs. <- warmup only
+#   VARIANT=budget     the three above together, as one package. Use only if
+#                      the combined effect is what is being reported.
+#   VARIANT=size       warmup + --cluster-size-feature. Cluster size alone
+#                      separates signal from background at AUC 0.729; the
+#                      cluster branch is fed avg_pool_x and cannot see it.
 #   VARIANT=pool       + --cluster-pooling mean_max_sum.
-#   VARIANT=residual   + --hit-residual. Parameter-free; 8 message-passing
-#                      layers currently have no skip connection.
+#   VARIANT=residual   + --hit-residual. Parameter-free.
+#
+# Step-count arithmetic, since it is easy to quote the wrong comparison. At
+# batch 256 on fixed data, ref -> epochs changes optimiser steps by 30/25 =
+# 1.2x (up to the last partial batch). The ~2.5x figure in
+# reports/dcm_performance_audit.md is a DIFFERENT comparison -- the
+# reference's 25 epochs @ batch 256 against this pipeline's former default of
+# 20 @ batch 512 -- and does not describe any transition between these rungs.
 #
 # Checkpoints go to a per-variant directory, so rungs never overwrite each
 # other and each can be evaluated separately with eval_dcm.hpc.sbatch.
@@ -74,7 +83,18 @@ case "$VARIANT" in
   ref)
     EPOCHS=25
     ;;                                   # reference MultiStepLR, untouched
-  budget)
+  epochs)
+    EPOCHS=30
+    ;;                                   # step count only; schedule unchanged
+  sched)
+    EPOCHS=30
+    SCHED_ARG=(--scheduler cosine --warmup-epochs 0)
+    ;;
+  warmup)
+    EPOCHS=30
+    SCHED_ARG=(--scheduler cosine --warmup-epochs 3)
+    ;;
+  budget)                                # the package: all three at once
     EPOCHS=30
     SCHED_ARG=(--scheduler cosine --warmup-epochs 3)
     ;;
@@ -96,7 +116,7 @@ case "$VARIANT" in
     ;;
   *)
     echo "ERROR: unknown VARIANT='$VARIANT'." >&2
-    echo "       expected one of: ref budget size pool residual" >&2
+    echo "       expected one of: ref epochs sched warmup budget size pool residual" >&2
     exit 2
     ;;
 esac
@@ -114,7 +134,11 @@ mkdir -p "${SLURM_SUBMIT_DIR:-$HOME/HGNDRecoGNN}/logs"
 TW_TAG=${TWINDOW//./p}
 DATA_ROOT="$SCRATCH/hgnd/cache/ndet_dataset_dcm_xecs_${SCALER}_tw${TW_TAG}"
 if [ -z "$CKPT_DIR" ]; then
-    CKPT_DIR="$SCRATCH/hgnd/checkpoints/dcm_improve_${VARIANT}_tw${TW_TAG}_h${HIDDEN}l${LAYERS}_${EPOCHS}ep"
+    # SCALER, BATCH and NUM_SHARDS are all overridable and all change what the
+    # run is, so they belong in the path. Without them two different runs of
+    # one variant share a directory and auto-resume silently adopts the other
+    # run's optimizer and weights.
+    CKPT_DIR="$SCRATCH/hgnd/checkpoints/dcm_improve_${VARIANT}_${SCALER}_tw${TW_TAG}_h${HIDDEN}l${LAYERS}_b${BATCH}_s${NUM_SHARDS}_${EPOCHS}ep"
 fi
 
 if [ ! -d "$DATA_ROOT/processed" ]; then

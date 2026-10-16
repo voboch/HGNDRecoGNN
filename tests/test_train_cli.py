@@ -116,7 +116,14 @@ def test_grad_clip_zero_is_not_silently_dropped():
 # ── the exact invocations the sbatch scripts use ─────────────────────────
 
 @pytest.mark.parametrize("argv,expect_cfg,expect_arch", [
-    # step 3: budget and schedule only
+    # VARIANT=ref / epochs: no schedule flags at all
+    ([], {}, {}),
+    # VARIANT=sched: cosine with warmup explicitly disabled. The 0 must
+    # survive as 0 rather than being dropped as falsy, or this rung silently
+    # becomes the warmup rung and the control is lost.
+    (['--scheduler', 'cosine', '--warmup-epochs', '0'],
+     {'scheduler': 'cosine', 'warmup_epochs': 0}, {}),
+    # VARIANT=warmup / budget
     (['--scheduler', 'cosine', '--warmup-epochs', '3'],
      {'scheduler': 'cosine', 'warmup_epochs': 3}, {}),
     # step 4a: cluster size on top
@@ -181,3 +188,73 @@ def test_save_best_on_defaults_to_val_in_the_cli(monkeypatch):
     with pytest.raises(SystemExit):
         _cli.main()
     assert captured['ns'].save_best_on == 'val'
+
+
+# ── the registry hop ─────────────────────────────────────────────────────
+# The gap this section closes: the tests above check that the CLI flags map
+# into arch_kwargs and that their names match Net.__init__. Neither notices
+# that arch_kwargs has to pass through models.registry.get() -> the
+# net_default factory on the way, and that factory's signature used to accept
+# only hidden_channels and num_layers. Every ladder rung above `budget`
+# therefore died with
+#   TypeError: _factory() got an unexpected keyword argument
+#              'cluster_size_feature'
+# before a single batch was loaded. Both endpoints were verified and the route
+# between them was not.
+
+def test_registry_factory_accepts_every_arch_flag():
+    """Signature-level: the factory must bind the flags the CLI can emit."""
+    import inspect
+    from HGNDRecoGNN.models import default_net_registration as reg
+
+    flags = _cli._net_default_arch_flags(_Args(
+        cluster_pooling='mean_max_sum',
+        cluster_size_feature=True,
+        hit_residual=True))
+    sig = inspect.signature(reg._factory)
+    try:
+        sig.bind(object(), **flags)          # TypeError on the old signature
+    except TypeError as exc:
+        pytest.fail(f"net_default factory cannot accept CLI flags: {exc}")
+
+
+def test_registry_factory_forwards_arch_flags_to_the_builder(monkeypatch):
+    """Accepting them is not enough -- **kwargs could swallow them silently."""
+    from HGNDRecoGNN.models import default_net_registration as reg
+
+    seen: dict = {}
+
+    def _spy(dataset, **kw):
+        seen.update(kw)
+        return object()
+
+    monkeypatch.setattr(reg, 'build_default_net', _spy)
+    flags = _cli._net_default_arch_flags(_Args(
+        cluster_pooling='mean_max_sum',
+        cluster_size_feature=True,
+        hit_residual=True))
+    reg._factory(None, **flags)
+
+    for key, val in flags.items():
+        assert seen.get(key) == val, \
+            f"{key} did not reach build_default_net (got {seen.get(key)!r})"
+    assert seen.get('hidden_channels') == 512
+    assert seen.get('num_layers') == 8
+
+
+def test_whole_route_from_registry_get(monkeypatch):
+    """registry.get(name, dataset, **arch_kwargs) is what scripts/train.py calls."""
+    from HGNDRecoGNN import models as model_registry
+    from HGNDRecoGNN.models import default_net_registration as reg
+
+    seen: dict = {}
+
+    def _spy(dataset, **kw):
+        seen.update(kw)
+        return object()
+
+    monkeypatch.setattr(reg, 'build_default_net', _spy)
+    flags = _cli._net_default_arch_flags(_Args(cluster_size_feature=True))
+    model_registry.get('net_default', None, num_layers=8, **flags)
+    assert seen.get('cluster_size_feature') is True
+    assert seen.get('num_layers') == 8

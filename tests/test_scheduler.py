@@ -118,3 +118,46 @@ def test_default_checkpoint_selection_is_validation():
     assert TrainConfig().save_best_on == 'val', (
         "selecting on training loss keeps the most overfit epoch; 'train' "
         "must be an explicit opt-in for reproducing older runs")
+
+
+# ── the warning must not assume how many milestones there are ────────────
+# An earlier version indexed sorted(milestones)[1], which raised IndexError
+# on a single-milestone schedule. The CLI accepts --scheduler-milestones 25,
+# so that configuration is reachable and the diagnostic crashed the run it
+# was supposed to warn about.
+
+@pytest.mark.parametrize("milestones,epochs,expect_warning", [
+    ((25,), 20, True),            # one, unreachable -- used to raise
+    ((5,), 20, False),            # one, reachable
+    ((), 20, False),              # none at all
+    ((10, 15, 25), 20, True),     # the default: two fire, one does not
+    ((25, 30), 20, True),         # several, none reachable
+    ((10, 15), 20, False),        # all reachable
+])
+def test_milestone_warning_survives_any_milestone_count(
+        milestones, epochs, expect_warning, capsys):
+    cfg = TrainConfig(epochs=epochs, scheduler_milestones=milestones,
+                      verbose=True)
+    opt = torch.optim.Adam([torch.nn.Parameter(torch.zeros(1))], lr=cfg.lr)
+    _build_scheduler(cfg, opt)      # must not raise for any of these
+    out = capsys.readouterr().out
+    assert ('never fire' in out) is expect_warning, out
+
+
+def test_the_warning_quotes_the_rate_the_run_actually_ends_at(capsys):
+    """With (10, 15, 25) and 20 epochs two milestones fire: lr * gamma^2."""
+    cfg = TrainConfig(epochs=20, lr=1e-3, scheduler_gamma=0.1,
+                      scheduler_milestones=(10, 15, 25), verbose=True)
+    opt = torch.optim.Adam([torch.nn.Parameter(torch.zeros(1))], lr=cfg.lr)
+    _build_scheduler(cfg, opt)
+    out = capsys.readouterr().out
+    assert '1.0e-05' in out and 'epoch 15' in out, out
+
+
+def test_the_warning_says_so_when_no_milestone_fires(capsys):
+    cfg = TrainConfig(epochs=20, lr=1e-3, scheduler_milestones=(25, 30),
+                      verbose=True)
+    opt = torch.optim.Adam([torch.nn.Parameter(torch.zeros(1))], lr=cfg.lr)
+    _build_scheduler(cfg, opt)
+    out = capsys.readouterr().out
+    assert 'never drops' in out, out

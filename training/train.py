@@ -215,17 +215,26 @@ def _build_scheduler(cfg, optimizer):
     lrs = torch.optim.lr_scheduler
 
     if sched_name == 'multistep':
-        dead = [m for m in cfg.scheduler_milestones if m >= cfg.epochs]
+        dead = sorted(m for m in cfg.scheduler_milestones if m >= cfg.epochs)
+        fired = sorted(m for m in cfg.scheduler_milestones if m < cfg.epochs)
         if dead and cfg.verbose:
             # (10, 15, 25) against the default epochs=20 never reaches 25. The
             # schedule was written for the reference's 25-epoch budget, so a
             # shorter run silently truncates it.
+            #
+            # Everything quoted here is COMPUTED from the milestones that
+            # actually fire. An earlier version indexed [1] on the sorted
+            # list, which raised IndexError on a single-milestone schedule --
+            # a configuration the CLI accepts (--scheduler-milestones 25).
+            final_lr = cfg.lr * cfg.scheduler_gamma ** len(fired)
+            where = (f'reaches {final_lr:.1e} at epoch {fired[-1]}'
+                     if fired else
+                     f'never drops below {cfg.lr:.1e}')
             print(f'fit(): WARNING milestones {dead} are >= epochs='
                   f'{cfg.epochs} and will never fire. The schedule is being '
-                  f'truncated: with milestones {tuple(cfg.scheduler_milestones)} '
-                  f'the LR reaches {cfg.lr * cfg.scheduler_gamma ** 2:.1e} by '
-                  f'epoch {sorted(cfg.scheduler_milestones)[1]} and stays '
-                  f'there for the rest of the run.')
+                  f'truncated: of {tuple(cfg.scheduler_milestones)} only '
+                  f'{tuple(fired)} fire, so the LR {where} and stays there '
+                  f'for the rest of the run.')
         core = lrs.MultiStepLR(optimizer,
                                milestones=list(cfg.scheduler_milestones),
                                gamma=cfg.scheduler_gamma)

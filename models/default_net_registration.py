@@ -13,10 +13,21 @@ from ..training.train import _forward_default_net
 
 
 @register('net_default')
-def _factory(dataset, hidden_channels: int = 512, num_layers: int = 8):
+def _factory(dataset, hidden_channels: int = 512, num_layers: int = 8,
+             **arch_kwargs):
+    """`**arch_kwargs` is forwarded to `build_default_net` verbatim.
+
+    Without it this factory silently caps which architecture options can ever
+    reach the model: `registry.get()` passes every kwarg straight through, so
+    an option the model accepts but this signature does not raises TypeError
+    at construction. That is how the opt-in cluster-pooling, cluster-size and
+    residual flags were unreachable when first added -- they mapped correctly
+    into arch_kwargs and matched Net.__init__, but died on this hop.
+    """
     model = build_default_net(dataset,
                               hidden_channels=hidden_channels,
-                              num_layers=num_layers)
+                              num_layers=num_layers,
+                              **arch_kwargs)
     spec = ModelSpec(
         forward_fn=_forward_default_net,
         loss_fn=default_net_loss,
