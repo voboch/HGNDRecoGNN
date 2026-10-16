@@ -56,7 +56,19 @@ def save_checkpoint(
         epoch=epoch,
         metrics=dict(metrics or {}),
     )
-    torch.save(ckpt.__dict__, path)
+    # Written through a temporary file and renamed, because a job killed
+    # part-way through torch.save leaves a truncated checkpoint that only
+    # fails when something later tries to load it -- typically the next
+    # submission in a resume chain, hours later. os.replace is atomic within
+    # a filesystem, so a reader sees either the previous file or the new one.
+    tmp = f'{path}.tmp'
+    try:
+        torch.save(ckpt.__dict__, tmp)
+        os.replace(tmp, path)
+    except BaseException:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+        raise
 
 
 def load_checkpoint(path: str) -> Checkpoint:

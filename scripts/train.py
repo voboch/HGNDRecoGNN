@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import random
 import sys
 
 
@@ -102,7 +103,8 @@ def _schedule_overrides(args) -> dict:
     for attr, key in (('scheduler', 'scheduler'),
                       ('warmup_epochs', 'warmup_epochs'),
                       ('lr_min', 'lr_min'),
-                      ('grad_clip_norm', 'grad_clip_norm')):
+                      ('grad_clip_norm', 'grad_clip_norm'),
+                      ('split_seed', 'split_seed')):
         val = getattr(args, attr, None)
         if val is not None:
             out[key] = val
@@ -182,6 +184,11 @@ def main() -> int:
     parser.add_argument('--scheduler-milestones', type=int, nargs='*',
                         default=None,
                         help='Override MultiStepLR milestones (e.g. 10 15 25).')
+    parser.add_argument('--split-seed', type=int, default=None,
+                        help='Seed for the train/test split only. Defaults to '
+                             '--seed. Set it to repeat training with a '
+                             'different --seed while holding out the same '
+                             'events.')
     parser.add_argument('--scheduler', choices=('multistep', 'cosine', 'plateau'),
                         default=None,
                         help='LR schedule. multistep (default) is the '
@@ -212,12 +219,19 @@ def main() -> int:
 
     _add_package_to_path()
 
+    import numpy as np
     import torch
     from HGNDRecoGNN import device as device_mod
     from HGNDRecoGNN import models as model_registry
     from HGNDRecoGNN.data.graph_dataset import HGNDGraphDataset
     from HGNDRecoGNN.training import TrainConfig, fit
     from HGNDRecoGNN.training.train import build_loaders
+
+    # Seed before dataset construction and the builder's lazy initialisation.
+    # Seeding only in build_loaders()/fit() leaves the initial weights random.
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
 
     print(f'PyTorch {torch.__version__}')
 
@@ -261,6 +275,12 @@ def main() -> int:
         parser.error('--cluster-pooling, --cluster-size-feature and '
                      '--hit-residual apply to --model net_default only')
 
+    # Seed BEFORE constructing the model. fit() seeds on entry, but the
+    # weights -- and the lazy SAGEConv shapes materialised by
+    # build_default_net's dummy forward -- are created here, so without
+    # this two runs with the same --seed began from different weights.
+    from HGNDRecoGNN.training.train import seed_everything
+    seed_everything(args.seed)
     model, spec = model_registry.get(args.model, dataset, **arch_kwargs)
     print(f'Model: {args.model} — {spec.description}')
 

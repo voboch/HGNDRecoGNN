@@ -146,9 +146,32 @@ if [ ! -d "$DATA_ROOT/processed" ]; then
     exit 3
 fi
 
-# Same auto-resume contract as train_dcm: a chain of submissions sharing one
-# CKPT_DIR continues without anyone tracking epoch numbers.
-if [ "$START_EPOCH" -eq 0 ] && [ -f "$CKPT_DIR/optim.pt" ]; then
+# Auto-resume: a chain of submissions sharing one CKPT_DIR continues without
+# anyone tracking epoch numbers.
+#
+# resume.pt is preferred over the older optim.pt/last.pt pair. It is one
+# atomically-replaced file holding the weights, optimizer, scheduler, epoch and
+# RNG for a single epoch, and fit() writes it last, so it is the commit point.
+# The old pair was two files with optim.pt committed first, which left
+# next_epoch one ahead of the weights whenever a job was killed between the
+# writes; fit() now refuses such a pair rather than training on it.
+#
+# Note --init-from is deliberately NOT passed when resume.pt exists: the
+# weights come from inside that file, and pointing fit() at last.pt as well
+# would reintroduce the two-source problem this replaced.
+RESUME_FILE="$CKPT_DIR/resume.pt"
+if [ "$START_EPOCH" -eq 0 ] && [ -f "$RESUME_FILE" ]; then
+    START_EPOCH=$(python - "$RESUME_FILE" <<'EOF'
+import sys, torch
+try:
+    print(int(torch.load(sys.argv[1], map_location="cpu",
+                         weights_only=False).get("next_epoch", 0)))
+except Exception:
+    print(0)
+EOF
+)
+    echo "auto-resume: resume.pt reports next_epoch=$START_EPOCH"
+elif [ "$START_EPOCH" -eq 0 ] && [ -f "$CKPT_DIR/optim.pt" ]; then
     START_EPOCH=$(python - "$CKPT_DIR/optim.pt" <<'EOF'
 import sys, torch
 try:
@@ -158,10 +181,10 @@ except Exception:
     print(0)
 EOF
 )
-    echo "auto-resume: optim.pt reports next_epoch=$START_EPOCH"
-fi
-if [ "$START_EPOCH" -gt 0 ] && [ -z "$INIT_FROM" ] && [ -f "$CKPT_DIR/last.pt" ]; then
-    INIT_FROM="$CKPT_DIR/last.pt"
+    echo "auto-resume: legacy optim.pt reports next_epoch=$START_EPOCH"
+    if [ "$START_EPOCH" -gt 0 ] && [ -z "$INIT_FROM" ] && [ -f "$CKPT_DIR/last.pt" ]; then
+        INIT_FROM="$CKPT_DIR/last.pt"
+    fi
 fi
 if [ "$START_EPOCH" -ge "$EPOCHS" ]; then
     echo "already at epoch $START_EPOCH of $EPOCHS — nothing to do"

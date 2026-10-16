@@ -258,3 +258,42 @@ def test_whole_route_from_registry_get(monkeypatch):
     model_registry.get('net_default', None, num_layers=8, **flags)
     assert seen.get('cluster_size_feature') is True
     assert seen.get('num_layers') == 8
+
+
+def test_cli_seed_controls_initial_weights_before_the_factory(monkeypatch):
+    import random
+    import numpy as np
+    import torch
+    from HGNDRecoGNN import models
+    from HGNDRecoGNN.data import graph_dataset
+
+    class Dataset:
+        def __init__(self, **kw):
+            pass
+
+        def preload(self, **kw):
+            pass
+
+        def __len__(self):
+            return 1
+
+    class ReachedFactory(Exception):
+        pass
+
+    seen = []
+
+    def factory(*args, **kw):
+        seen.append((torch.nn.Linear(3, 2).weight.detach().clone(),
+                     np.random.random(), random.random()))
+        raise ReachedFactory
+
+    monkeypatch.setattr(graph_dataset, 'HGNDGraphDataset', Dataset)
+    monkeypatch.setattr(models, 'get', factory)
+    for seed in (42, 42, 43):
+        monkeypatch.setattr(sys, 'argv',
+                            ['train', '--root', '/unused', '--seed', str(seed)])
+        with pytest.raises(ReachedFactory):
+            _cli.main()
+    assert torch.equal(seen[0][0], seen[1][0])
+    assert seen[0][1:] == seen[1][1:]
+    assert not torch.equal(seen[0][0], seen[2][0])

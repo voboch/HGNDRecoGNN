@@ -32,6 +32,8 @@ class TrainConfig:
     num_workers_loader: int = 0
     train_frac: float = 0.5
     seed: int = 42
+    # None -> use `seed`. Set to pin the split while varying `seed`.
+    split_seed: Optional[int] = None
 
     # ── Optimizer / schedule ─────────────────────────────────────────────
     epochs: int = 20
@@ -54,6 +56,10 @@ class TrainConfig:
     grad_clip_norm: Optional[float] = None
 
     # ── Device ───────────────────────────────────────────────────────────
+    # Resume. A mismatched legacy optim.pt/last.pt pair is refused by default;
+    # see _legacy_resume_is_consistent.
+    resume_allow_mismatch: bool = False
+
     device: Optional[str] = None
     cpu_pinned: Optional[tuple[str, ...]] = None
 
@@ -132,9 +138,29 @@ def forward_hetero(model, graph):
 
 # ── Split / loader helpers ───────────────────────────────────────────────
 
+def seed_everything(seed: int) -> None:
+    # Seeds torch (CPU and all CUDA devices) and numpy together.
+    #
+    # Call this BEFORE the model is constructed. fit() and split_dataset()
+    # seed on entry, but by then scripts/train.py has already built the
+    # model, so the initial weights -- including the lazy SAGEConv shapes
+    # materialised by the dummy forward pass -- came from whatever RNG state
+    # the process happened to be in. Two runs with the same --seed therefore
+    # started from different weights.
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+
 def split_dataset(dataset, cfg: TrainConfig):
-    """Train/test random split. Uses cfg.seed for reproducibility."""
-    torch.manual_seed(cfg.seed)
+    """Train/test random split. Uses cfg.split_seed, else cfg.seed."""
+    # cfg.split_seed, when set, pins the split independently of cfg.seed,
+    # so repeating a training run with a different training seed does not
+    # also reshuffle which events are held out. It defaults to cfg.seed,
+    # the behaviour every result in reports/ was produced with.
+    seed = cfg.seed if getattr(cfg, "split_seed", None) is None else cfg.split_seed
+    torch.manual_seed(seed)
     n_total = len(dataset)
     n_train = int(round(n_total * cfg.train_frac))
     n_test  = n_total - n_train
@@ -202,6 +228,81 @@ def eval_epoch(
 
 
 # ── Orchestrator ─────────────────────────────────────────────────────────
+
+RESUME_NAME = 'resume.pt'
+
+
+def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
+                        min_loss, best_epoch, arch_name, arch_kwargs):
+    """Write model, optimizer, scheduler, epoch and RNG as ONE atomic file.
+
+    The previous contract wrote `optim.pt` (carrying next_epoch) and `last.pt`
+    (carrying the weights) as two separate files, with `optim.pt` committed
+    first. A job stopped between the two left next_epoch one ahead of the
+    weights on disk, and the resume path paired them without checking, so
+    training continued with an optimizer and a weight set from different
+    epochs. Keeping everything in one file replaced atomically removes the
+    window: a reader sees either the whole previous generation or the whole
+    new one.
+
+    RNG state is included so a resumed run draws the same batch order and the
+    same augmentation as an uninterrupted one would.
+    """
+    blob = {
+        'model': {k: v.detach().cpu() for k, v in model.state_dict().items()},
+        'optimizer': optimizer.state_dict(),
+        'scheduler': scheduler.state_dict(),
+        'next_epoch': int(next_epoch),
+        'min_loss': float(min_loss),
+        'best_epoch': int(best_epoch),
+        'arch_name': arch_name,
+        'arch_kwargs': dict(arch_kwargs or {}),
+        'rng': {
+            'torch': torch.get_rng_state(),
+            'numpy': np.random.get_state(),
+        },
+        'format_version': 1,
+    }
+    if torch.cuda.is_available():
+        blob['rng']['cuda'] = torch.cuda.get_rng_state_all()
+    tmp = f'{path}.tmp'
+    try:
+        torch.save(blob, tmp)
+        os.replace(tmp, path)
+    except BaseException:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+        raise
+
+
+def _legacy_resume_is_consistent(opt_blob, last_path):
+    """Does the old optim.pt / last.pt pair describe one generation?
+
+    Returns (ok, detail). `optim.pt` says which epoch to start at; `last.pt`
+    holds the weights from the epoch before that. Anything else means the run
+    was interrupted between the two writes.
+    """
+    # A MISSING last.pt is not an inconsistency. scripts/train.py
+    # --init-from loads the weights before fit() is called, and in that
+    # flow fit() needs only the optimizer state, so there is nothing on
+    # disk to disagree with. Only a last.pt that EXISTS and names a
+    # different generation is a fault.
+    if not os.path.exists(last_path):
+        return True, (f'{os.path.basename(last_path)} absent; weights '
+                      f'are the caller responsibility via --init-from')
+    try:
+        last = torch.load(last_path, map_location='cpu', weights_only=False)
+    except Exception as exc:                       # truncated by a kill
+        return False, f'{last_path} will not load ({exc})'
+    next_epoch = int(opt_blob.get('next_epoch', -1))
+    last_epoch = int(last.get('epoch', -1))
+    if last_epoch + 1 != next_epoch:
+        return False, (f'optim.pt says next_epoch={next_epoch} but last.pt '
+                       f'holds epoch={last_epoch}; expected '
+                       f'{next_epoch - 1}. The run was interrupted between '
+                       f'the two writes.')
+    return True, f'epoch {last_epoch} -> {next_epoch}'
+
 
 def _build_scheduler(cfg, optimizer):
     """Build the LR schedule. Returns (scheduler, needs_validation_metric).
@@ -291,8 +392,7 @@ def fit(
     if plan is None:
         plan = device_mod.plan_for(model, cfg.device, cfg.cpu_pinned)
 
-    torch.manual_seed(cfg.seed)
-    np.random.seed(cfg.seed)
+    seed_everything(cfg.seed)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr,
                                  weight_decay=cfg.weight_decay)
@@ -312,8 +412,40 @@ def fit(
     val_history: list[float] = []
     min_loss = float('inf')
     best_epoch = -1
-    if start_epoch and os.path.exists(opt_path):
+    resume_path = os.path.join(cfg.checkpoint_dir, RESUME_NAME)
+    last_path = os.path.join(cfg.checkpoint_dir, 'last.pt')
+    if start_epoch and os.path.exists(resume_path):
+        blob = torch.load(resume_path, map_location='cpu', weights_only=False)
+        model.load_state_dict(blob['model'])
+        optimizer.load_state_dict(blob['optimizer'])
+        scheduler.load_state_dict(blob['scheduler'])
+        min_loss = float(blob.get('min_loss', min_loss))
+        best_epoch = int(blob.get('best_epoch', best_epoch))
+        rng = blob.get('rng') or {}
+        if 'torch' in rng:
+            torch.set_rng_state(rng['torch'].cpu()
+                                if hasattr(rng['torch'], 'cpu')
+                                else rng['torch'])
+        if 'numpy' in rng:
+            np.random.set_state(rng['numpy'])
+        if cfg.verbose:
+            print(f'fit(): resumed model, optimizer, schedule and RNG from '
+                  f'{resume_path} at epoch {start_epoch} '
+                  f'(lr {scheduler.get_last_lr()[0]:.2e})')
+    elif start_epoch and os.path.exists(opt_path):
         blob = torch.load(opt_path, map_location='cpu', weights_only=False)
+        # Legacy two-file layout. It can describe two different epochs, so it
+        # is checked rather than trusted; see _legacy_resume_is_consistent.
+        ok, detail = _legacy_resume_is_consistent(blob, last_path)
+        if not ok and not getattr(cfg, 'resume_allow_mismatch', False):
+            raise RuntimeError(
+                f'inconsistent resume state in {cfg.checkpoint_dir}: {detail}\n'
+                f'Refusing to continue: the optimizer and the weights would '
+                f'come from different epochs. Delete {RESUME_NAME}/optim.pt to '
+                f'restart the run, or set resume_allow_mismatch=True to '
+                f'continue anyway and accept the mismatch.')
+        if not ok and cfg.verbose:
+            print(f'fit(): WARNING resuming despite {detail}')
         optimizer.load_state_dict(blob['optimizer'])
         scheduler.load_state_dict(blob['scheduler'])
         min_loss = float(blob.get('min_loss', min_loss))
@@ -369,6 +501,19 @@ def fit(
         # Written every epoch, not only on improvement: a job cancelled
         # mid-run must be resumable from where it stopped, which needs the
         # latest optimizer state and the next epoch index, not the best one.
+        #
+        # ORDER MATTERS. last.pt and optim.pt are kept for the existing job
+        # scripts and for anything that loads a plain checkpoint, but they are
+        # two files and cannot be committed together. resume.pt holds the same
+        # generation in ONE atomic file and is written LAST, so it is the
+        # commit point: if the job dies earlier, resume.pt still describes the
+        # previous complete epoch and nothing pairs mismatched state.
+        save_checkpoint(
+            os.path.join(cfg.checkpoint_dir, 'last.pt'), model,
+            arch_name=cfg.arch_name, arch_kwargs=cfg.arch_kwargs,
+            epoch=epoch,
+            metrics={'train_loss': train_loss, 'val_loss': val_loss},
+        )
         torch.save({'optimizer': optimizer.state_dict(),
                     'scheduler': scheduler.state_dict(),
                     'next_epoch': epoch + 1,
@@ -377,11 +522,11 @@ def fit(
                    os.path.join(cfg.checkpoint_dir, 'optim.pt.tmp'))
         os.replace(os.path.join(cfg.checkpoint_dir, 'optim.pt.tmp'),
                    os.path.join(cfg.checkpoint_dir, 'optim.pt'))
-        save_checkpoint(
-            os.path.join(cfg.checkpoint_dir, 'last.pt'), model,
+        _write_resume_state(
+            os.path.join(cfg.checkpoint_dir, RESUME_NAME),
+            model, optimizer, scheduler,
+            next_epoch=epoch + 1, min_loss=min_loss, best_epoch=best_epoch,
             arch_name=cfg.arch_name, arch_kwargs=cfg.arch_kwargs,
-            epoch=epoch,
-            metrics={'train_loss': train_loss, 'val_loss': val_loss},
         )
 
         if cfg.verbose:
