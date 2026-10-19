@@ -1,0 +1,10 @@
+{
+  "arm": "multistep",
+  "seed": 42,
+  "epochs": 1,
+  "selected_epoch": 0,
+  "checkpoint_sha256": "ccc1d0419ea21ee55b5508bf1f34057e8c1f9ae06b074910d7ed8d38370a4599",
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "validation_threshold": 0.0,
+  "test_opened": false
+}

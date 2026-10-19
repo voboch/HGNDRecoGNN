@@ -1,0 +1,262 @@
+{
+  "completed_validation_controls": [
+    {
+      "variant": "ref",
+      "epochs": 25,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/ref/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9514432160126182,
+      "working_point": {
+        "threshold": 0.7,
+        "n_selected": 24473,
+        "n_selected_signal": 21041,
+        "purity_count": 0.8597638213541454,
+        "efficiency_count": 0.5230826600372902,
+        "purity_energy": 0.8751374134227673,
+        "efficiency_energy": 0.629097566722615
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8
+      },
+      "n_parameters": 12479173,
+      "selected_epoch": 15,
+      "checkpoint_sha256": "16e28600c86521d1942a2cf44f866adaabc0dab05627146af6518cc35fb572f8",
+      "performance_sha256": "8f219329d61dcfd4011518b683937857c51a3b42ae0c767035d634cb2e56eef1",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "epochs",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/epochs/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9539113902936609,
+      "working_point": {
+        "threshold": 0.65,
+        "n_selected": 27338,
+        "n_selected_signal": 23330,
+        "purity_count": 0.853390884483137,
+        "efficiency_count": 0.5799875699192045,
+        "purity_energy": 0.8709720042757101,
+        "efficiency_energy": 0.6812320176251235
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8
+      },
+      "n_parameters": 12479173,
+      "selected_epoch": 22,
+      "checkpoint_sha256": "6c37cb51e390c7450b658e2fb1ca1e25160553307d2600609ac516a307e9de7c",
+      "performance_sha256": "322934fd66f5484cf3d19364cf01d4ae13f483439d8663f30ced4491e5520126",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "sched",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/sched/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9580321975906626,
+      "working_point": {
+        "threshold": 0.6,
+        "n_selected": 29594,
+        "n_selected_signal": 25197,
+        "purity_count": 0.8514225856592552,
+        "efficiency_count": 0.6264014916096955,
+        "purity_energy": 0.875377471913287,
+        "efficiency_energy": 0.7183108775018988
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8
+      },
+      "n_parameters": 12479173,
+      "selected_epoch": 19,
+      "checkpoint_sha256": "4f10f8f1525593c42ad58932aab9ab2dc8ddd29dd267b1d2df93573a91010d2d",
+      "performance_sha256": "5ce3f7be9f997bdd083ccdc77152ebe4dc48e3fa8770302057a8f66f08af1a54",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "warmup",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/warmup/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9558958640633395,
+      "working_point": {
+        "threshold": 0.6,
+        "n_selected": 29558,
+        "n_selected_signal": 25218,
+        "purity_count": 0.8531700385682387,
+        "efficiency_count": 0.6269235550031075,
+        "purity_energy": 0.8676778136060034,
+        "efficiency_energy": 0.7286024664149453
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8
+      },
+      "n_parameters": 12479173,
+      "selected_epoch": 20,
+      "checkpoint_sha256": "62a3f12a769efe61d6edc88e43f77123ee180d9b99eb40b8a63307c399c4914b",
+      "performance_sha256": "6fd1d5d0f592a68fe93ed039ba414d8fc2375cb6cf40b01e0a2878a154a29bb5",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "size",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/size/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9549972652573269,
+      "working_point": {
+        "threshold": 0.65,
+        "n_selected": 29273,
+        "n_selected_signal": 24831,
+        "purity_count": 0.8482560721483962,
+        "efficiency_count": 0.617302672467371,
+        "purity_energy": 0.8734675487194546,
+        "efficiency_energy": 0.6985920539335426
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "cluster_size_feature": true
+      },
+      "n_parameters": 12483269,
+      "selected_epoch": 22,
+      "checkpoint_sha256": "7bfb966c0f09a8d654001c75a72c6f024af355c8bde6efc9d0b1f8da209031b2",
+      "performance_sha256": "642044661ce6b28385c6d6a9c205379cc129b86b7e7bfade1386215d85b76724",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "pool",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/pool/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9620252569541758,
+      "working_point": {
+        "threshold": 0.55,
+        "n_selected": 32657,
+        "n_selected_signal": 27624,
+        "purity_count": 0.8458829653673026,
+        "efficiency_count": 0.6867371037911747,
+        "purity_energy": 0.8723879230646929,
+        "efficiency_energy": 0.7687480896812021
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "cluster_pooling": "mean_max_sum",
+        "cluster_size_feature": true
+      },
+      "n_parameters": 16677573,
+      "selected_epoch": 24,
+      "checkpoint_sha256": "a67da0e63c6f43669c2f5a9d6d598b32917644d423d73489bd3f0dc6031976a4",
+      "performance_sha256": "1cd9d3692ffd554da3f6af3bb8a3839faed25278a40abe4d8be541af7a7354a6",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    },
+    {
+      "variant": "residual",
+      "epochs": 30,
+      "training_seed": 42,
+      "scored_on": "reused graph-level validation",
+      "preprocessing_fit": "whole delivered DCM cache",
+      "checkpoint_selection": "validation loss",
+      "source": "results/dcm_diagnostic_20261016/current/residual/validation/performance.json",
+      "n_clusters": 241259,
+      "roc_auc": 0.9606159917675586,
+      "working_point": {
+        "threshold": 0.55,
+        "n_selected": 32567,
+        "n_selected_signal": 27457,
+        "purity_count": 0.8430927012006019,
+        "efficiency_count": 0.6825854568054692,
+        "purity_energy": 0.869888967073033,
+        "efficiency_energy": 0.768961153103154
+      },
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "cluster_pooling": "mean_max_sum",
+        "cluster_size_feature": true,
+        "hit_residual": true
+      },
+      "n_parameters": 16677573,
+      "selected_epoch": 24,
+      "checkpoint_sha256": "4e1d65ab062a535d69557f10b3ea7d25d8769ee35ec800c21c48fe08c214d216",
+      "performance_sha256": "83e3061abb42d39a70b0920e7a23ca9bcf06ece44b44c97fd704a924c163e96c",
+      "source_manifest_sha256": "39546c98b522e608503d405286da3eab1ab0ae2ef930b65115bad2619799b695"
+    }
+  ],
+  "latest_size_comparison": {
+    "arm": "size",
+    "control": "warmup",
+    "auc_difference": -0.0008985988060126182,
+    "comparison_type": "different weights; only one matched training seed; no SE/t test available",
+    "interpretation": "single-seed point contrast; no resolved advantage or disadvantage established",
+    "selected_checkpoint_epoch_zero_based": 22,
+    "effective_architecture": {
+      "hidden_channels": 512,
+      "num_layers": 8,
+      "cluster_size_feature": true
+    },
+    "training_epochs": 30,
+    "scheduler": "cosine",
+    "warmup_epochs": 3
+  },
+  "latest_pool_comparison": {
+    "arm": "pool",
+    "control": "size",
+    "auc_difference": 0.007027991696848979,
+    "comparison_type": "different weights; one matched training seed; no SE/t test available",
+    "interpretation": "higher single-seed point estimate; no resolved advantage established",
+    "selected_checkpoint_epoch_zero_based": 24,
+    "training_epochs": 30,
+    "scheduler": "cosine",
+    "warmup_epochs": 3,
+    "effective_architecture": {
+      "hidden_channels": 512,
+      "num_layers": 8,
+      "cluster_pooling": "mean_max_sum",
+      "cluster_size_feature": true
+    },
+    "n_parameters": 16677573,
+    "control_n_parameters": 12483269,
+    "capacity_limitation": "pooling and parameter count change together; not a capacity-matched pooling ablation",
+    "checkpoint_sha256": "a67da0e63c6f43669c2f5a9d6d598b32917644d423d73489bd3f0dc6031976a4"
+  },
+  "latest_residual_comparison": {
+    "arm": "residual",
+    "control": "pool",
+    "auc_difference": -0.0014092651866172146,
+    "arm_n_parameters": 16677573,
+    "control_n_parameters": 16677573,
+    "comparison_type": "different weights; one matched training seed; no resolved statistical comparison",
+    "selected_checkpoint_epoch_zero_based": 24,
+    "checkpoint_sha256": "4e1d65ab062a535d69557f10b3ea7d25d8769ee35ec800c21c48fe08c214d216"
+  },
+  "diagnostic_array_complete": true,
+  "validated_at_msk": "2026-10-17T05:03:55.450934+03:00"
+}

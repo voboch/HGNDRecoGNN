@@ -1,0 +1,498 @@
+{
+  "campaign_state": "closed authorized budget; incomplete cohort",
+  "train_array_job": "4413514",
+  "completed_runs": 10,
+  "incomplete_runs": 2,
+  "source_sha256": "7dcd849c18f8b496eedb99d7a4abb0c4c63faabd4e578d63583c07c0f7da0bb7",
+  "scored_on": "reused validation 988974; development only",
+  "test_evaluated": false,
+  "rows": [
+    {
+      "name": "reference_42",
+      "task": 0,
+      "recipe": "reference",
+      "training_seed": 42,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.9132589313390947,
+      "selected_epoch_zero_based": 6,
+      "validation_threshold": 0.32036,
+      "validation_working_point": {
+        "threshold": 0.32036,
+        "n_selected": 14901.0,
+        "n_selected_signal": 10447.0,
+        "purity_count": 0.7010938863163546,
+        "efficiency_count": 0.6190081175564378,
+        "purity_energy": 0.7353834932985366,
+        "efficiency_energy": 0.6720302381284544
+      },
+      "checkpoint_sha256": "ae15b5d1a28d7802567959ae14e686498191cebed124b29aaf34a9dcb0267648",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "layernorm_42",
+      "task": 1,
+      "recipe": "layernorm",
+      "training_seed": 42,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8551834757857325,
+      "selected_epoch_zero_based": 2,
+      "validation_threshold": 0.522455,
+      "validation_working_point": {
+        "threshold": 0.522455,
+        "n_selected": 4925.0,
+        "n_selected_signal": 3460.0,
+        "purity_count": 0.7025380710659899,
+        "efficiency_count": 0.20501273923090596,
+        "purity_energy": 0.7127507809638016,
+        "efficiency_energy": 0.3022452278550364
+      },
+      "checkpoint_sha256": "e83e564b14ca708c2a8bfcaa05d342b05ae8c9c1c45c75c42127555a67cb1912",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "pool_42",
+      "task": 2,
+      "recipe": "pool",
+      "training_seed": 42,
+      "state": "FAILED",
+      "epochs_completed": 16,
+      "parameters": 16673477,
+      "validation_roc_auc": null,
+      "selected_epoch_zero_based": null,
+      "validation_threshold": null,
+      "validation_working_point": null,
+      "checkpoint_sha256": null,
+      "scored_on": "reused validation 988974; development only",
+      "failure": "checkpoint I/O EACCES; stale raw status overridden by Slurm"
+    },
+    {
+      "name": "low_lr_42",
+      "task": 3,
+      "recipe": "low_lr",
+      "training_seed": 42,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8722491185341665,
+      "selected_epoch_zero_based": 2,
+      "validation_threshold": 0.552395,
+      "validation_working_point": {
+        "threshold": 0.552395,
+        "n_selected": 12334.0,
+        "n_selected_signal": 8641.0,
+        "purity_count": 0.7005837522296092,
+        "efficiency_count": 0.5119985779463174,
+        "purity_energy": 0.7228119361569089,
+        "efficiency_energy": 0.5894200115431929
+      },
+      "checkpoint_sha256": "a43d92a6767f9b0ccf330dd57b5eeedd693f0bc7cfd42b6d6257b203237da833",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "reference_123",
+      "task": 4,
+      "recipe": "reference",
+      "training_seed": 123,
+      "state": "FAILED",
+      "epochs_completed": 13,
+      "parameters": 12479173,
+      "validation_roc_auc": null,
+      "selected_epoch_zero_based": null,
+      "validation_threshold": null,
+      "validation_working_point": null,
+      "checkpoint_sha256": null,
+      "scored_on": "reused validation 988974; development only",
+      "failure": "checkpoint I/O EACCES; stale raw status overridden by Slurm"
+    },
+    {
+      "name": "layernorm_123",
+      "task": 5,
+      "recipe": "layernorm",
+      "training_seed": 123,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8628539402255585,
+      "selected_epoch_zero_based": 2,
+      "validation_threshold": 0.49999999999999994,
+      "validation_working_point": {
+        "threshold": 0.49999999999999994,
+        "n_selected": 4794.0,
+        "n_selected_signal": 3369.0,
+        "purity_count": 0.7027534418022529,
+        "efficiency_count": 0.1996207856846596,
+        "purity_energy": 0.7124202467604532,
+        "efficiency_energy": 0.2864964851294376
+      },
+      "checkpoint_sha256": "511b78c5317ab7b76785d245bdeac99a81d01f832cbc0c4db48658c7b26679b1",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "pool_123",
+      "task": 6,
+      "recipe": "pool",
+      "training_seed": 123,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 16673477,
+      "validation_roc_auc": 0.8781291647549913,
+      "selected_epoch_zero_based": 8,
+      "validation_threshold": 0.597305,
+      "validation_working_point": {
+        "threshold": 0.597305,
+        "n_selected": 11770.0,
+        "n_selected_signal": 8257.0,
+        "purity_count": 0.7015293118096857,
+        "efficiency_count": 0.4892457190258932,
+        "purity_energy": 0.7220693289453908,
+        "efficiency_energy": 0.5523663741007555
+      },
+      "checkpoint_sha256": "7c9a760100c68e49447c2b78e0e19dee159060829e3ee2b725146c7ba9b3e7c3",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "low_lr_123",
+      "task": 7,
+      "recipe": "low_lr",
+      "training_seed": 123,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8632810986961547,
+      "selected_epoch_zero_based": 2,
+      "validation_threshold": 0.47255499999999995,
+      "validation_working_point": {
+        "threshold": 0.47255499999999995,
+        "n_selected": 11745.0,
+        "n_selected_signal": 8222.0,
+        "purity_count": 0.7000425713069391,
+        "efficiency_count": 0.4871718907388754,
+        "purity_energy": 0.7138075537200326,
+        "efficiency_energy": 0.5667007938225426
+      },
+      "checkpoint_sha256": "6e882ed4498c8e27af74597ae705a941846c376ee5c1176a80c24ba7821e3169",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "reference_456",
+      "task": 8,
+      "recipe": "reference",
+      "training_seed": 456,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.9049998582181132,
+      "selected_epoch_zero_based": 1,
+      "validation_threshold": 0.49999999999999994,
+      "validation_working_point": {
+        "threshold": 0.49999999999999994,
+        "n_selected": 13381.0,
+        "n_selected_signal": 9389.0,
+        "purity_count": 0.7016665421119498,
+        "efficiency_count": 0.5563192510517272,
+        "purity_energy": 0.7214622355850819,
+        "efficiency_energy": 0.6302707862377367
+      },
+      "checkpoint_sha256": "449b3e086b7bf83f5891005141157849a45e759892f510d29ea9a94937e3d478",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "layernorm_456",
+      "task": 9,
+      "recipe": "layernorm",
+      "training_seed": 456,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8580934338201933,
+      "selected_epoch_zero_based": 1,
+      "validation_threshold": 0.57485,
+      "validation_working_point": {
+        "threshold": 0.57485,
+        "n_selected": 3297.0,
+        "n_selected_signal": 2311.0,
+        "purity_count": 0.7009402487109494,
+        "efficiency_count": 0.13693191917994904,
+        "purity_energy": 0.6997377461132788,
+        "efficiency_energy": 0.20242010125200677
+      },
+      "checkpoint_sha256": "f3194539d5a6fae7e6558986cfcd3432d2d381a61228f10987e93ffcfc861c15",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "pool_456",
+      "task": 10,
+      "recipe": "pool",
+      "training_seed": 456,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 16673477,
+      "validation_roc_auc": 0.9049071998333424,
+      "selected_epoch_zero_based": 10,
+      "validation_threshold": 0.47505,
+      "validation_working_point": {
+        "threshold": 0.47505,
+        "n_selected": 14036.0,
+        "n_selected_signal": 9833.0,
+        "purity_count": 0.7005557138785979,
+        "efficiency_count": 0.5826272441784678,
+        "purity_energy": 0.7259997111719648,
+        "efficiency_energy": 0.6726110317934895
+      },
+      "checkpoint_sha256": "dbba2eedb1f3371c2916733cfb1a7361f7c345d4f2c275ee6b4eec725057b37b",
+      "scored_on": "reused validation 988974; development only"
+    },
+    {
+      "name": "low_lr_456",
+      "task": 11,
+      "recipe": "low_lr",
+      "training_seed": 456,
+      "state": "COMPLETED",
+      "epochs_completed": 30,
+      "parameters": 12479173,
+      "validation_roc_auc": 0.8549932735029013,
+      "selected_epoch_zero_based": 4,
+      "validation_threshold": 0.40768499999999996,
+      "validation_working_point": {
+        "threshold": 0.40768499999999996,
+        "n_selected": 10885.0,
+        "n_selected_signal": 7627.0,
+        "purity_count": 0.7006890215893431,
+        "efficiency_count": 0.4519168098595722,
+        "purity_energy": 0.7480540148229512,
+        "efficiency_energy": 0.49681782449218453
+      },
+      "checkpoint_sha256": "a7898dd5abbb613a8f6ae385271563673919c6fce5f2c3fffe50095a3aae6421",
+      "scored_on": "reused validation 988974; development only"
+    }
+  ],
+  "contrasts": {
+    "layernorm": {
+      "role": "predeclared primary",
+      "available_descriptive_pairs": [
+        {
+          "training_seed": 42,
+          "candidate_minus_reference_auc": -0.05807545555336224
+        },
+        {
+          "training_seed": 456,
+          "candidate_minus_reference_auc": -0.04690642439791992
+        }
+      ],
+      "missing_pairs": [
+        {
+          "training_seed": 123,
+          "missing_runs": [
+            "reference_123"
+          ]
+        }
+      ],
+      "required_training_seeds": [
+        42,
+        123,
+        456
+      ],
+      "difference_mean": null,
+      "difference_se": null,
+      "t": null,
+      "df": null,
+      "status": "unavailable: incomplete predeclared cohort"
+    },
+    "pool": {
+      "role": "exploratory secondary",
+      "available_descriptive_pairs": [
+        {
+          "training_seed": 456,
+          "candidate_minus_reference_auc": -9.265838477079402e-05
+        }
+      ],
+      "missing_pairs": [
+        {
+          "training_seed": 42,
+          "missing_runs": [
+            "pool_42"
+          ]
+        },
+        {
+          "training_seed": 123,
+          "missing_runs": [
+            "reference_123"
+          ]
+        }
+      ],
+      "required_training_seeds": [
+        42,
+        123,
+        456
+      ],
+      "difference_mean": null,
+      "difference_se": null,
+      "t": null,
+      "df": null,
+      "status": "unavailable: incomplete predeclared cohort"
+    },
+    "low_lr": {
+      "role": "exploratory secondary",
+      "available_descriptive_pairs": [
+        {
+          "training_seed": 42,
+          "candidate_minus_reference_auc": -0.041009812804928214
+        },
+        {
+          "training_seed": 456,
+          "candidate_minus_reference_auc": -0.05000658471521191
+        }
+      ],
+      "missing_pairs": [
+        {
+          "training_seed": 123,
+          "missing_runs": [
+            "reference_123"
+          ]
+        }
+      ],
+      "required_training_seeds": [
+        42,
+        123,
+        456
+      ],
+      "difference_mean": null,
+      "difference_se": null,
+      "t": null,
+      "df": null,
+      "status": "unavailable: incomplete predeclared cohort"
+    }
+  },
+  "expected_per_head_counts": {
+    "train": {
+      "hit": 591740,
+      "link": 3072406,
+      "cluster_cls": 159085,
+      "cluster_energy": 26244,
+      "cluster_link": 6416
+    },
+    "validation": {
+      "hit": 362359,
+      "link": 1812177,
+      "cluster_cls": 101107,
+      "cluster_energy": 16877,
+      "cluster_link": 3690
+    }
+  },
+  "uncertainty": "No full paired three-seed SE/t is available; no imputation or unbalanced-cohort means.",
+  "recovery_authorization": "pending explicit human authorization; proposals not submitted",
+  "source_files_sha256": {
+    "results/dcm_development_20261017/current/completed_artifacts_verified.json": "09be3b8c9f64d4db12e93a39244272efad4e7e0d394981ed8a66f53a8515eab9",
+    "results/dcm_development_20261017/closure/terminal_status.json": "c92d7cf269b91a7371f1afcb2e6f1a18f7c7825dfa785852f29a3cf1d19a6b74",
+    "results/dcm_development_20261017/current/full_population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/data_manifest.json": "1722523f8708a10d3b6eac43c303fd4780ea31e4df671daf25d37ca69c7a7c29",
+    "results/dcm_development_20261017/current/source_manifest.json": "bf7db92b3f4469554b11e22311eee8c3c726f80ab17da2b47e1f494d1126ead9",
+    "results/dcm_development_20261017/current/reference_42/effective_config.json": "228a8ed4fdd9519fe6ed0c75d7c746c03d3fcc2b85508da67e2b2c40ef5cfc7f",
+    "results/dcm_development_20261017/current/reference_42/train_config.json": "e597e07e0fb0122f088901d6bc54e136c951afd0e78b693dc9ada1671f2df4a3",
+    "results/dcm_development_20261017/current/reference_42/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/reference_42/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/reference_42/checkpoints/history.json": "04f768bb13bb209d1b29b7b30babc0562bcd8aa9a85ecd74cd1bed4efdf6e2b8",
+    "results/dcm_development_20261017/current/reference_42/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/reference_42/complete.json": "fb4760c89e1275f43fb44d3e1056c3f81460c90cf8dbfa88c56a4503621067b0",
+    "results/dcm_development_20261017/current/reference_42/validation/performance.json": "9a92ccdc98d3b29948e39efe6805d35f720abed8df84d5a48045f3bc092a8379",
+    "results/dcm_development_20261017/current/reference_42/validation/threshold_scan.csv": "c88e625ef52f2f48d28ec1fae304044c99cde09570698f3197fc4ab9e47a1433",
+    "results/dcm_development_20261017/current/layernorm_42/effective_config.json": "c5559147bf5ebaf2d2cff79c542b51655078619002c104915e4a5c4c7063f4e1",
+    "results/dcm_development_20261017/current/layernorm_42/train_config.json": "4127123596f7d3a740f9287d2f92f4bbabc1f4c90ababf019c5d83a34c97944d",
+    "results/dcm_development_20261017/current/layernorm_42/model_manifest.json": "917a918015fe738fdd78f12721b42f771db07f79d53a33195878ca0afa013a46",
+    "results/dcm_development_20261017/current/layernorm_42/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/layernorm_42/checkpoints/history.json": "d9cb85d8f0b83b25882aa2ae213ef75ee0fb236700b6c5234946716e83fad255",
+    "results/dcm_development_20261017/current/layernorm_42/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/layernorm_42/complete.json": "aaeb6ac6c39fe2a8a1354ad819a500b0ab0f913a8c6d4ff18635878cbe02bb78",
+    "results/dcm_development_20261017/current/layernorm_42/validation/performance.json": "760e8e1c3d7452aaf3ed73abed859ea4b55fe962f2287080424f51bc02b3ef37",
+    "results/dcm_development_20261017/current/layernorm_42/validation/threshold_scan.csv": "dd3fd485c79fcec5b7ae0508c54fe78da2980dee74ac979bc53a91145e4ecc12",
+    "results/dcm_development_20261017/current/pool_42/effective_config.json": "7133eff525bd6a696464e7841fe2630d1a9f2a8f52581d2e01ac94ab0914f47f",
+    "results/dcm_development_20261017/current/pool_42/train_config.json": "8cebc5cd85ea56a6d5eff33553e00d0d97234535da827430aa6081257571262f",
+    "results/dcm_development_20261017/current/pool_42/model_manifest.json": "48ad016465646f1c7f473507c4a378d17fd686e72f3a852ea2b9c7af9b202678",
+    "results/dcm_development_20261017/current/pool_42/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/pool_42/checkpoints/history.json": "4537845f95504d6968d9099c67aa834dd2302e5e62a27e8caff29f8fb0f11671",
+    "results/dcm_development_20261017/current/pool_42/status.json": "044508b7b4deaaedcc819458e2b6ecf2b4f13cf62c068c904ef575fa27f2b4a0",
+    "results/dcm_development_20261017/current/low_lr_42/effective_config.json": "485e7efb4b923a490adc7df0f6958fe76b22ffe0ec261a7b596e092b03a30065",
+    "results/dcm_development_20261017/current/low_lr_42/train_config.json": "6a9448f823f7da64ded1dc9d00d625c5a600d81735a6cd3cf305031348531cdb",
+    "results/dcm_development_20261017/current/low_lr_42/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/low_lr_42/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/low_lr_42/checkpoints/history.json": "135ff0f6824b8cdef16d8fcd919f9df70ac152f8bad703222bd02f22d7c694c0",
+    "results/dcm_development_20261017/current/low_lr_42/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/low_lr_42/complete.json": "1f2031271c8bbd2b2a938eafbe643504fc018faa97a30cd9666c8d63119b8f17",
+    "results/dcm_development_20261017/current/low_lr_42/validation/performance.json": "0eb428ba616dc2cf6761155638cad684bbebfae2b5cc9d872e4bb0d74baa6cfc",
+    "results/dcm_development_20261017/current/low_lr_42/validation/threshold_scan.csv": "c0eb54122fb16f97842561f5c06592d21e221e45d82d02a7fa84fee0da987b4f",
+    "results/dcm_development_20261017/current/reference_123/effective_config.json": "b3adea1fddeee5312d99a7f9e0e754a39f10372f1ced4555cd9e7aa1755a952e",
+    "results/dcm_development_20261017/current/reference_123/train_config.json": "073c70f3a594bde2ebe9a1e22d859a812faf99c24e9ef5441c3bbf7105374b08",
+    "results/dcm_development_20261017/current/reference_123/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/reference_123/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/reference_123/checkpoints/history.json": "26b92a5ac5abbba46f38f5f1cd0e26d72e23126ae8595b0a544464bda4ebdae5",
+    "results/dcm_development_20261017/current/reference_123/status.json": "044508b7b4deaaedcc819458e2b6ecf2b4f13cf62c068c904ef575fa27f2b4a0",
+    "results/dcm_development_20261017/current/layernorm_123/effective_config.json": "75db1b3cb5b54dca9285374b20e0c3bd5df828e4883b13a376dc28c8e23c946d",
+    "results/dcm_development_20261017/current/layernorm_123/train_config.json": "fdaa43aa42e5d941ad52ee3910fe2b91fda945fcf25e16c28845776f97b8c682",
+    "results/dcm_development_20261017/current/layernorm_123/model_manifest.json": "917a918015fe738fdd78f12721b42f771db07f79d53a33195878ca0afa013a46",
+    "results/dcm_development_20261017/current/layernorm_123/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/layernorm_123/checkpoints/history.json": "39216207d60eef4218c8fd2e14af0aa8b33ca5d2964df828ae951975c695faef",
+    "results/dcm_development_20261017/current/layernorm_123/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/layernorm_123/complete.json": "002a750c8dc16d82a1a6a465ac1e1679c9b39637f7d6c08676a6e35a54a66bd7",
+    "results/dcm_development_20261017/current/layernorm_123/validation/performance.json": "8f475e613b89de2ac0782778bf1d1f1aa75c7e32f8c30bf8a11efecdbe42edc1",
+    "results/dcm_development_20261017/current/layernorm_123/validation/threshold_scan.csv": "0c9e62177f8162c3b24059c76d63044bb81bfe3629339df93571beb87de1aaa0",
+    "results/dcm_development_20261017/current/pool_123/effective_config.json": "576796c9b825dadb1b6deb44b45547a0b9a97140310ccab341448d95d4a0b171",
+    "results/dcm_development_20261017/current/pool_123/train_config.json": "547b636a64aa93274210360b994da6030395012dec4d7aef3279fd9d3b9f23f8",
+    "results/dcm_development_20261017/current/pool_123/model_manifest.json": "48ad016465646f1c7f473507c4a378d17fd686e72f3a852ea2b9c7af9b202678",
+    "results/dcm_development_20261017/current/pool_123/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/pool_123/checkpoints/history.json": "672e20b0922c8bc8804b9d0000ff9acacbad5392ce1950208fa195363a1a4696",
+    "results/dcm_development_20261017/current/pool_123/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/pool_123/complete.json": "59e0d3153bad9a3bf9e91d1a6c9c91089d4000486d63a374b22fa5a28a509f6c",
+    "results/dcm_development_20261017/current/pool_123/validation/performance.json": "d15be86422184f4b740a5ef240afe2b2e9cf645e214d843eee119b61df1b8f92",
+    "results/dcm_development_20261017/current/pool_123/validation/threshold_scan.csv": "bfe0de855ecadd67682fb1c0100b64cf89b1e0820d7d398e8020e37b0c1fc673",
+    "results/dcm_development_20261017/current/low_lr_123/effective_config.json": "8923ada235945f0a32b81eb38c634c9be7a2b27cd7391f6702dc2887d9758d9b",
+    "results/dcm_development_20261017/current/low_lr_123/train_config.json": "6828c2661966faafada214531fd0d2fb234890ffa4e2c1cb1ddfc454da2cb6f7",
+    "results/dcm_development_20261017/current/low_lr_123/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/low_lr_123/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/low_lr_123/checkpoints/history.json": "a0eb9b249a37a54e69f61b4de818e4cf96d21ab490a3809d868fd54b45668499",
+    "results/dcm_development_20261017/current/low_lr_123/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/low_lr_123/complete.json": "485ec9f27549f5c59f931919bf8ee5b7bea881e967cec2c1d30b4e2f0f540256",
+    "results/dcm_development_20261017/current/low_lr_123/validation/performance.json": "13fda50d24b85781106f73579a8511e05eaf2f1cd2ca6fb55a1e249dd94be8b4",
+    "results/dcm_development_20261017/current/low_lr_123/validation/threshold_scan.csv": "b9698b1fa4283c2c292b6ef9b0f44c4bc749a607ab19e81e749d470f0c0180df",
+    "results/dcm_development_20261017/current/reference_456/effective_config.json": "8bd525b4b5c99cb459618b29f1f4c56324db91e5de1a84ba1a7c32b8e5b7f89a",
+    "results/dcm_development_20261017/current/reference_456/train_config.json": "2667c15aee383e7627fd63cdd2dd00b9be9e878f6a06a92b26072d02b1b16a51",
+    "results/dcm_development_20261017/current/reference_456/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/reference_456/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/reference_456/checkpoints/history.json": "4708fd93d20c60eb778bd7af1ccac50dce1088ef760bd4bd020718b6f22a6ae5",
+    "results/dcm_development_20261017/current/reference_456/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/reference_456/complete.json": "786dd4a0ccd695b1b15ea727439d64821ac9c1717398b5d2f9bf81c22b2fa0cf",
+    "results/dcm_development_20261017/current/reference_456/validation/performance.json": "c7f26f5f8e9dbcd84362886b5bc8d7559924f37a97b733f298cb8cd0bd9df556",
+    "results/dcm_development_20261017/current/reference_456/validation/threshold_scan.csv": "10c92f7a30b14d1156fdf3fde40a3db6a34224d423f37b337ae8236d30a0933c",
+    "results/dcm_development_20261017/current/layernorm_456/effective_config.json": "cc22e5947595058604c1dd96372adff773fa79d35be4a080f46844cab04ab4b6",
+    "results/dcm_development_20261017/current/layernorm_456/train_config.json": "aa2434836bf54732038a486aecbaaccf115655b91d7c1949642ea59c2f3b5cfb",
+    "results/dcm_development_20261017/current/layernorm_456/model_manifest.json": "917a918015fe738fdd78f12721b42f771db07f79d53a33195878ca0afa013a46",
+    "results/dcm_development_20261017/current/layernorm_456/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/layernorm_456/checkpoints/history.json": "aabb9fb6080259b9e81fa215319d8b23f90ec022fc5a463f22c8b87a302420a0",
+    "results/dcm_development_20261017/current/layernorm_456/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/layernorm_456/complete.json": "d6ecbdf99e08d5df159f3646276c1452490dcdb58b19ebffc3ca14f730a99ce7",
+    "results/dcm_development_20261017/current/layernorm_456/validation/performance.json": "6eabe9de63337d5066bfeed9f6ba180c70590615379067fd42fb873fe76822b4",
+    "results/dcm_development_20261017/current/layernorm_456/validation/threshold_scan.csv": "243dba9d30711d4925f8c3db6f5fbe0e3cae9317a945d8053c7e9623df9a9063",
+    "results/dcm_development_20261017/current/pool_456/effective_config.json": "9c21bd01ed0ca53fd77c0c3238febdbcda64dd9eaff1eafde1f7393afa5d17a7",
+    "results/dcm_development_20261017/current/pool_456/train_config.json": "08ab10424002c16da69e68b4f5860cad3236bc3721de557b3ae007c8b38a8d0b",
+    "results/dcm_development_20261017/current/pool_456/model_manifest.json": "48ad016465646f1c7f473507c4a378d17fd686e72f3a852ea2b9c7af9b202678",
+    "results/dcm_development_20261017/current/pool_456/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/pool_456/checkpoints/history.json": "a60dec05db64abf287891c133c3f04294f69c276f513b5c1a622b49848eddad6",
+    "results/dcm_development_20261017/current/pool_456/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/pool_456/complete.json": "aaba4c744ac8746fbe411ddcf0eee140181cae53266f6a39c9d6de0d1ceea10c",
+    "results/dcm_development_20261017/current/pool_456/validation/performance.json": "1468dfd33870de06fef84cf93ac795a3fa46dd7d2655758d81a1f88908bc5f3f",
+    "results/dcm_development_20261017/current/pool_456/validation/threshold_scan.csv": "c4c2f2a00c8f2219e311340a1c5e831eb9bd91ea195e16f33cc7e16495f94f68",
+    "results/dcm_development_20261017/current/low_lr_456/effective_config.json": "a9e4205823fc20d8a9dc7fb633781be6fe4da2f435aef80bc6fe3964c0efc926",
+    "results/dcm_development_20261017/current/low_lr_456/train_config.json": "96355519d49465efff66b72882873f38721834b380719d4f1f309aa963a2173e",
+    "results/dcm_development_20261017/current/low_lr_456/model_manifest.json": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+    "results/dcm_development_20261017/current/low_lr_456/population_verified.json": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+    "results/dcm_development_20261017/current/low_lr_456/checkpoints/history.json": "d4bb98cce8a0b34b34f59060a5a3ab3e66034b50f00ce880241bea9dc1f866ff",
+    "results/dcm_development_20261017/current/low_lr_456/status.json": "f35ca03edcef1cf0098a31a4c92d1e6fceb649797580ed5059aef951ac98c1a8",
+    "results/dcm_development_20261017/current/low_lr_456/complete.json": "53f3049a55cb71c1d3cc3b1d0febadeaaa7ea071dc2038f30737515eb361e5d1",
+    "results/dcm_development_20261017/current/low_lr_456/validation/performance.json": "7d1ed44e253d117b673653622937e298bfa2d48fcd5df89b39c80f58718e066b",
+    "results/dcm_development_20261017/current/low_lr_456/validation/threshold_scan.csv": "aeee6d783f292d04e01c0ead6e34730debee8d8e44ee32536c20c47dc72be64b"
+  },
+  "export_script_sha256": "afe949025ea2cd71ff8eb7ee79a8bf585523a817ce6683ced1cf110abc44b51b"
+}

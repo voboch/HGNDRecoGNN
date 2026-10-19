@@ -1,0 +1,11 @@
+{
+  "recipe": "pool",
+  "seed": 456,
+  "epochs": 30,
+  "selected_epoch": 10,
+  "checkpoint_sha256": "dbba2eedb1f3371c2916733cfb1a7361f7c345d4f2c275ee6b4eec725057b37b",
+  "parameters": 16673477,
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "test_opened_by_this_campaign": false,
+  "smoke": false
+}

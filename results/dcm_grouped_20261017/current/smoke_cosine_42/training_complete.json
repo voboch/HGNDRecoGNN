@@ -1,0 +1,10 @@
+{
+  "arm": "cosine",
+  "seed": 42,
+  "epochs": 1,
+  "selected_epoch": 0,
+  "checkpoint_sha256": "c625141cccb2b628c871bf28a45b18b2ac39504038bbd1e00aa59388f2981300",
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "validation_threshold": 0.0,
+  "test_opened": false
+}

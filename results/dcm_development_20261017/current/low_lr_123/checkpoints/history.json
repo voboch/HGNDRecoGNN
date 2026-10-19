@@ -1,0 +1,1262 @@
+[
+  {
+    "epoch": 0,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 1.9177878195229,
+      "components": {
+        "hit": 0.33772256697078284,
+        "link": 0.36665644226405925,
+        "cluster_cls": 0.36179044141175404,
+        "cluster_energy": 0.5850829827946858,
+        "cluster_link": 0.27558578894481633
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 1.9177878195229
+    },
+    "validation": {
+      "total": 2.932972556491728,
+      "components": {
+        "hit": 0.398330117944003,
+        "link": 0.35027163965562846,
+        "cluster_cls": 0.3869391698425064,
+        "cluster_energy": 1.238786035783908,
+        "cluster_link": 0.5586455932656823
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.8983252231110916
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 1,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.9881705466730113,
+      "components": {
+        "hit": 0.2361481341015339,
+        "link": 0.30842431147920735,
+        "cluster_cls": 0.19644755398823058,
+        "cluster_energy": 0.15293681780746493,
+        "cluster_link": 0.09917558784572623
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.9881705466730113
+    },
+    "validation": {
+      "total": 3.917681713985056,
+      "components": {
+        "hit": 0.6688100934546606,
+        "link": 0.4167824359004261,
+        "cluster_cls": 0.6786705564364085,
+        "cluster_energy": 0.7007937016289063,
+        "cluster_link": 1.4526249265646547
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.8846750228963
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 2,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.8250038372842889,
+      "components": {
+        "hit": 0.21527941904572498,
+        "link": 0.28343412508948745,
+        "cluster_cls": 0.15415359713860968,
+        "cluster_energy": 0.10601526808617939,
+        "cluster_link": 0.05969959522731298
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.8250038372842889
+    },
+    "validation": {
+      "total": 2.265068718808913,
+      "components": {
+        "hit": 0.42885259935987713,
+        "link": 0.36683970034679875,
+        "cluster_cls": 0.41031347365223325,
+        "cluster_energy": 0.4734348374770816,
+        "cluster_link": 0.5856281079729226
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.249957796360584
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 3,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.6208833853128544,
+      "components": {
+        "hit": 0.18710494650402618,
+        "link": 0.24830067379258325,
+        "cluster_cls": 0.10909034433851136,
+        "cluster_energy": 0.06261692918590649,
+        "cluster_link": 0.017251384645900425
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.6208833853128544
+    },
+    "validation": {
+      "total": 2.6600783356959505,
+      "components": {
+        "hit": 0.5265023662773856,
+        "link": 0.40000825925599937,
+        "cluster_cls": 0.4935335436607464,
+        "cluster_energy": 0.44760898994899384,
+        "cluster_link": 0.792425176552825
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.6534722921696114
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 4,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.5483649507619007,
+      "components": {
+        "hit": 0.17769394285122464,
+        "link": 0.21716875166855057,
+        "cluster_cls": 0.09355873905545425,
+        "cluster_energy": 0.050446802451286785,
+        "cluster_link": 0.012678927065283717
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.5483649507619007
+    },
+    "validation": {
+      "total": 2.5838136234372464,
+      "components": {
+        "hit": 0.3865829516568912,
+        "link": 0.4122587078895245,
+        "cluster_cls": 0.4380611321570919,
+        "cluster_energy": 0.3390900649299425,
+        "cluster_link": 1.0078207668037964
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.534391891195419
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 5,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.43799798376342264,
+      "components": {
+        "hit": 0.16509176166685643,
+        "link": 0.16385052575983372,
+        "cluster_cls": 0.07378901663642985,
+        "cluster_energy": 0.033605495337118645,
+        "cluster_link": 0.002264891394808945
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.43799798376342264
+    },
+    "validation": {
+      "total": 2.9778696132428575,
+      "components": {
+        "hit": 0.5845548041107653,
+        "link": 0.4605603269827133,
+        "cluster_cls": 0.5439493160236154,
+        "cluster_energy": 0.3434511850624279,
+        "cluster_link": 1.0453539810633354
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.9512599508813087
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 6,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.8111116173690046,
+      "components": {
+        "hit": 0.20289990539063935,
+        "link": 0.22144900796212724,
+        "cluster_cls": 0.13446173520723798,
+        "cluster_energy": 0.13989859139842004,
+        "cluster_link": 0.09899451325148405
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.8111116173690046
+    },
+    "validation": {
+      "total": 2.3119056826247912,
+      "components": {
+        "hit": 0.35223484787648346,
+        "link": 0.40740860048258715,
+        "cluster_cls": 0.3712486290191382,
+        "cluster_energy": 0.3507001868731081,
+        "cluster_link": 0.8303134183734744
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.297127140836513
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 7,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.49748457344945446,
+      "components": {
+        "hit": 0.18000668258491745,
+        "link": 0.1457560020140865,
+        "cluster_cls": 0.09499682302351072,
+        "cluster_energy": 0.05525461952046589,
+        "cluster_link": 0.02048929674442952
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.49748457344945446
+    },
+    "validation": {
+      "total": 2.4143331886957236,
+      "components": {
+        "hit": 0.5101162907810166,
+        "link": 0.4500116058893002,
+        "cluster_cls": 0.4378989981611285,
+        "cluster_energy": 0.3413597327119728,
+        "cluster_link": 0.6749465611523053
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.4158259330911838
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 8,
+    "lr_used": 0.0001,
+    "lr_next": 0.0001,
+    "train": {
+      "total": 0.41820703962833267,
+      "components": {
+        "hit": 0.16823317036360041,
+        "link": 0.10238719216747035,
+        "cluster_cls": 0.0794300157266056,
+        "cluster_energy": 0.04867543205474071,
+        "cluster_link": 0.018792437675929856
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.41820703962833267
+    },
+    "validation": {
+      "total": 2.611669389021146,
+      "components": {
+        "hit": 0.4473839144320729,
+        "link": 0.5014545900755725,
+        "cluster_cls": 0.45681124472625884,
+        "cluster_energy": 0.32249717613920653,
+        "cluster_link": 0.8835224636480354
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.593157674403901
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 9,
+    "lr_used": 0.0001,
+    "lr_next": 1e-05,
+    "train": {
+      "total": 0.3403092631837998,
+      "components": {
+        "hit": 0.15660381918386448,
+        "link": 0.07391211159866283,
+        "cluster_cls": 0.06706153499267821,
+        "cluster_energy": 0.035773850211929296,
+        "cluster_link": 0.0069587548765664775
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.3403092631837998
+    },
+    "validation": {
+      "total": 2.699672733002611,
+      "components": {
+        "hit": 0.48469673193146795,
+        "link": 0.5703569592309453,
+        "cluster_cls": 0.47273206969423315,
+        "cluster_energy": 0.29767146914598747,
+        "cluster_link": 0.874215502999977
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.6885155363285795
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 10,
+    "lr_used": 1e-05,
+    "lr_next": 1e-05,
+    "train": {
+      "total": 0.26294938200398493,
+      "components": {
+        "hit": 0.1428112716147515,
+        "link": 0.052066324899013,
+        "cluster_cls": 0.05223144005284954,
+        "cluster_energy": 0.013575919542858096,
+        "cluster_link": 0.002004255456683989
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.26294938200398493
+    },
+    "validation": {
+      "total": 2.689975264130805,
+      "components": {
+        "hit": 0.4761714904402355,
+        "link": 0.5835461299690645,
+        "cluster_cls": 0.4950274260898525,
+        "cluster_energy": 0.2922249228859701,
+        "cluster_link": 0.8430052947456819
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.688681165208208
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 11,
+    "lr_used": 1e-05,
+    "lr_next": 1e-05,
+    "train": {
+      "total": 0.2514290017104215,
+      "components": {
+        "hit": 0.1401031409482594,
+        "link": 0.04785178665735809,
+        "cluster_cls": 0.049618374614435676,
+        "cluster_energy": 0.011996787981096612,
+        "cluster_link": 0.0016792721169179574
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2514290017104215
+    },
+    "validation": {
+      "total": 2.7251095214690593,
+      "components": {
+        "hit": 0.4757493590370027,
+        "link": 0.5980383517425445,
+        "cluster_cls": 0.5031071865847018,
+        "cluster_energy": 0.3020146537236412,
+        "cluster_link": 0.846199970381169
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.726108583998173
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 12,
+    "lr_used": 1e-05,
+    "lr_next": 1e-05,
+    "train": {
+      "total": 0.24456629276770964,
+      "components": {
+        "hit": 0.1384780524781979,
+        "link": 0.04501083372785466,
+        "cluster_cls": 0.0485345611378195,
+        "cluster_energy": 0.011449518226016262,
+        "cluster_link": 0.0007489956874034086
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.24456629276770964
+    },
+    "validation": {
+      "total": 2.8879214656662753,
+      "components": {
+        "hit": 0.5059602578808156,
+        "link": 0.6336682212773352,
+        "cluster_cls": 0.5322956627453068,
+        "cluster_energy": 0.3131706750521115,
+        "cluster_link": 0.9028266487107063
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.8799812458931133
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 13,
+    "lr_used": 1e-05,
+    "lr_next": 1e-05,
+    "train": {
+      "total": 0.23718441647175606,
+      "components": {
+        "hit": 0.13648192892115793,
+        "link": 0.04191941217563158,
+        "cluster_cls": 0.046893273152720794,
+        "cluster_energy": 0.010956846756709155,
+        "cluster_link": 0.0009459392127530398
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.23718441647175606
+    },
+    "validation": {
+      "total": 2.856049159608292,
+      "components": {
+        "hit": 0.5059560440230416,
+        "link": 0.6601379948981173,
+        "cluster_cls": 0.5491316660752169,
+        "cluster_energy": 0.3045937912683779,
+        "cluster_link": 0.8362296633435382
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 2.865379906715231
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 14,
+    "lr_used": 1e-05,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.2297306569329259,
+      "components": {
+        "hit": 0.13468522185721438,
+        "link": 0.0392142929086033,
+        "cluster_cls": 0.04558882667473278,
+        "cluster_energy": 0.00982243184923911,
+        "cluster_link": 0.00046403750977590057
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2297306569329259
+    },
+    "validation": {
+      "total": 3.0256624075356413,
+      "components": {
+        "hit": 0.507254720865476,
+        "link": 0.6673785930808855,
+        "cluster_cls": 0.5643831982646991,
+        "cluster_energy": 0.3029431046673795,
+        "cluster_link": 0.9837027906572013
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.0112663329915796
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 15,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.22273168438359311,
+      "components": {
+        "hit": 0.13274399696565328,
+        "link": 0.036874358069999856,
+        "cluster_cls": 0.043898460963030184,
+        "cluster_energy": 0.00892882969135592,
+        "cluster_link": 0.0004003945477362633
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.22273168438359311
+    },
+    "validation": {
+      "total": 3.0506902361318073,
+      "components": {
+        "hit": 0.5139786021894408,
+        "link": 0.680308551203836,
+        "cluster_cls": 0.5628660945467078,
+        "cluster_energy": 0.30669286162625303,
+        "cluster_link": 0.9868441265655697
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.03520155105185
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 16,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.22150088124328043,
+      "components": {
+        "hit": 0.1322658006116956,
+        "link": 0.03630527026747349,
+        "cluster_cls": 0.04359618613530553,
+        "cluster_energy": 0.008855628060358165,
+        "cluster_link": 0.00035826771136010657
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.22150088124328043
+    },
+    "validation": {
+      "total": 3.0867348867797384,
+      "components": {
+        "hit": 0.528699519754019,
+        "link": 0.6688367002007558,
+        "cluster_cls": 0.5774380812226328,
+        "cluster_energy": 0.3072115737010484,
+        "cluster_link": 1.0045490119012823
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.069007659972982
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 17,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.22009461424687563,
+      "components": {
+        "hit": 0.13197573955044364,
+        "link": 0.03589486022783438,
+        "cluster_cls": 0.043233730610308184,
+        "cluster_energy": 0.008736391817581879,
+        "cluster_link": 0.0003514391262889808
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.22009461424687563
+    },
+    "validation": {
+      "total": 3.0839183776787467,
+      "components": {
+        "hit": 0.5208949586147263,
+        "link": 0.6729862186792579,
+        "cluster_cls": 0.572565214317098,
+        "cluster_energy": 0.30534806033866685,
+        "cluster_link": 1.012123925728998
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.0669335862423512
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 18,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.2190204541769054,
+      "components": {
+        "hit": 0.1317711039786093,
+        "link": 0.03526097587300584,
+        "cluster_cls": 0.04313735847146272,
+        "cluster_energy": 0.00846751892210199,
+        "cluster_link": 0.0003601694729683225
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2190204541769054
+    },
+    "validation": {
+      "total": 3.1143921050925476,
+      "components": {
+        "hit": 0.5230448426704977,
+        "link": 0.6918304995136066,
+        "cluster_cls": 0.5792090132443002,
+        "cluster_energy": 0.3087685059588505,
+        "cluster_link": 1.0115392437052926
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.0975325848193878
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 19,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.21881809128948856,
+      "components": {
+        "hit": 0.1316077243934963,
+        "link": 0.03510247325437995,
+        "cluster_cls": 0.043061577866809496,
+        "cluster_energy": 0.008638139249636773,
+        "cluster_link": 0.0004031578912531559
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21881809128948856
+    },
+    "validation": {
+      "total": 3.1209283196133026,
+      "components": {
+        "hit": 0.5269095899981541,
+        "link": 0.6826837586138357,
+        "cluster_cls": 0.5843954568988322,
+        "cluster_energy": 0.30422858481941656,
+        "cluster_link": 1.0227109292830638
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.10294812943073
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 20,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.21866303232403012,
+      "components": {
+        "hit": 0.13127826053897104,
+        "link": 0.03481681280501611,
+        "cluster_cls": 0.04290819244172589,
+        "cluster_energy": 0.0086816085899854,
+        "cluster_link": 0.00039906951394807377
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21866303232403012
+    },
+    "validation": {
+      "total": 3.1523213851182943,
+      "components": {
+        "hit": 0.5163262354844793,
+        "link": 0.6787231875944223,
+        "cluster_cls": 0.5767531756207789,
+        "cluster_energy": 0.3067295050216829,
+        "cluster_link": 1.0737892813969305
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.1310821827421798
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 21,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.2168401964318389,
+      "components": {
+        "hit": 0.13098915764026303,
+        "link": 0.034407545963124085,
+        "cluster_cls": 0.04259264803323428,
+        "cluster_energy": 0.008477280869739106,
+        "cluster_link": 0.0003446197965214869
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2168401964318389
+    },
+    "validation": {
+      "total": 3.1898501210400196,
+      "components": {
+        "hit": 0.5319973672264257,
+        "link": 0.7043134127596063,
+        "cluster_cls": 0.5949490561578623,
+        "cluster_energy": 0.30312592008397177,
+        "cluster_link": 1.0554643648121536
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.1716824663446306
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 22,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.2153052892793909,
+      "components": {
+        "hit": 0.1304928741538667,
+        "link": 0.033960058119658576,
+        "cluster_cls": 0.04228906503052178,
+        "cluster_energy": 0.00821210371075122,
+        "cluster_link": 0.000323579086500121
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2153052892793909
+    },
+    "validation": {
+      "total": 3.1776963457210785,
+      "components": {
+        "hit": 0.5237093290191384,
+        "link": 0.6982400046650172,
+        "cluster_cls": 0.5857389631459254,
+        "cluster_energy": 0.30764462223783406,
+        "cluster_link": 1.0623634266531634
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.158404448184561
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 23,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-06,
+    "train": {
+      "total": 0.21566399940163145,
+      "components": {
+        "hit": 0.13058774510161356,
+        "link": 0.0336504581773895,
+        "cluster_cls": 0.042381649141542334,
+        "cluster_energy": 0.00849632010323198,
+        "cluster_link": 0.00044357716471902196
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21566399940163145
+    },
+    "validation": {
+      "total": 3.2349449220305324,
+      "components": {
+        "hit": 0.5370092037039853,
+        "link": 0.7175920164483144,
+        "cluster_cls": 0.5998450992887492,
+        "cluster_energy": 0.30877415402516756,
+        "cluster_link": 1.0717244485643163
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.2132810562214953
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 24,
+    "lr_used": 1.0000000000000002e-06,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.21323572871097238,
+      "components": {
+        "hit": 0.12986475696798758,
+        "link": 0.03309331853257312,
+        "cluster_cls": 0.041750266850165606,
+        "cluster_energy": 0.008060129456261944,
+        "cluster_link": 0.0002809404653325158
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21323572871097238
+    },
+    "validation": {
+      "total": 3.2078905778851112,
+      "components": {
+        "hit": 0.5354102161535965,
+        "link": 0.708182454668934,
+        "cluster_cls": 0.5980860819306135,
+        "cluster_energy": 0.30174089242305957,
+        "cluster_link": 1.0644709327089075
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.1908057846921554
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 25,
+    "lr_used": 1.0000000000000002e-07,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.2128234717819499,
+      "components": {
+        "hit": 0.12981705396053483,
+        "link": 0.03275375466823552,
+        "cluster_cls": 0.0417215416000962,
+        "cluster_energy": 0.008092082174661439,
+        "cluster_link": 0.0003774617182755684
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2128234717819499
+    },
+    "validation": {
+      "total": 3.2131209979250266,
+      "components": {
+        "hit": 0.5336828216582162,
+        "link": 0.7150809350904325,
+        "cluster_cls": 0.5931236225629459,
+        "cluster_energy": 0.3039223264825353,
+        "cluster_link": 1.0673112921308965
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.196203201375109
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 26,
+    "lr_used": 1.0000000000000002e-07,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.21217280502464633,
+      "components": {
+        "hit": 0.12965460602691037,
+        "link": 0.03263487263520384,
+        "cluster_cls": 0.04161412974651934,
+        "cluster_energy": 0.008012043080044445,
+        "cluster_link": 0.0003071874877619268
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21217280502464633
+    },
+    "validation": {
+      "total": 3.241452136708628,
+      "components": {
+        "hit": 0.5378424295354899,
+        "link": 0.7196617642344132,
+        "cluster_cls": 0.6005364205308992,
+        "cluster_energy": 0.31041128865135303,
+        "cluster_link": 1.0730002337564726
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.223197580398397
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 27,
+    "lr_used": 1.0000000000000002e-07,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.2123197443432425,
+      "components": {
+        "hit": 0.1295413865734602,
+        "link": 0.03270580449121464,
+        "cluster_cls": 0.04171619575132193,
+        "cluster_energy": 0.007943119044603238,
+        "cluster_link": 0.00036091941940942014
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2123197443432425
+    },
+    "validation": {
+      "total": 3.210843140552014,
+      "components": {
+        "hit": 0.5202647325795584,
+        "link": 0.7301023992798579,
+        "cluster_cls": 0.5874060122907012,
+        "cluster_energy": 0.3168481400565047,
+        "cluster_link": 1.0562218563453916
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.1963968789323847
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 28,
+    "lr_used": 1.0000000000000002e-07,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.21199877423923102,
+      "components": {
+        "hit": 0.1295548172935873,
+        "link": 0.03282536285618802,
+        "cluster_cls": 0.041366847703613825,
+        "cluster_energy": 0.0077237109905432455,
+        "cluster_link": 0.00026994898757801177
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.21199877423923102
+    },
+    "validation": {
+      "total": 3.232066367129189,
+      "components": {
+        "hit": 0.5409499451207295,
+        "link": 0.7197731142132079,
+        "cluster_cls": 0.6014672852833388,
+        "cluster_energy": 0.3119757699193516,
+        "cluster_link": 1.057900252592561
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.216025292112472
+    },
+    "validation_aggregation": "population"
+  },
+  {
+    "epoch": 29,
+    "lr_used": 1.0000000000000002e-07,
+    "lr_next": 1.0000000000000002e-07,
+    "train": {
+      "total": 0.2124527079411821,
+      "components": {
+        "hit": 0.12958130819006772,
+        "link": 0.03250843835749877,
+        "cluster_cls": 0.04167058970885142,
+        "cluster_energy": 0.008073482187604652,
+        "cluster_link": 0.0002723886022272419
+      },
+      "counts": {
+        "hit": 591740,
+        "link": 3072406,
+        "cluster_cls": 159085,
+        "cluster_energy": 26244,
+        "cluster_link": 6416
+      },
+      "batch_mean": 0.2124527079411821
+    },
+    "validation": {
+      "total": 3.2506956671828613,
+      "components": {
+        "hit": 0.5416448534115162,
+        "link": 0.7226066213529633,
+        "cluster_cls": 0.6036254157266683,
+        "cluster_energy": 0.3094460088917484,
+        "cluster_link": 1.0733727677999647
+      },
+      "counts": {
+        "hit": 362359,
+        "link": 1812177,
+        "cluster_cls": 101107,
+        "cluster_energy": 16877,
+        "cluster_link": 3690
+      },
+      "batch_mean": 3.229939852876866
+    },
+    "validation_aggregation": "population"
+  }
+]

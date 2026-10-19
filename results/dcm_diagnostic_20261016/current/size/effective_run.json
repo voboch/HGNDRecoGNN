@@ -1,0 +1,12 @@
+{
+  "variant": "size",
+  "data_root": "/scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0",
+  "shards": 277,
+  "seed": 42,
+  "batch_size": 256,
+  "split": "legacy_graph_validation",
+  "independent_test": false,
+  "slurm_job_id": "4412142",
+  "slurm_array_job_id": "4411340",
+  "started_at_unix": 1792177583.9482787
+}

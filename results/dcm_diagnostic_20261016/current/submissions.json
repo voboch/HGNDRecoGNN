@@ -1,0 +1,19 @@
+{
+  "submitted_at_unix": 1792150732.3936145,
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_diag_20261016_c36680aba5",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5",
+  "smoke_job": 4411325,
+  "gpu_check_job": 4411318,
+  "variants": [
+    "ref",
+    "epochs",
+    "sched",
+    "warmup",
+    "size",
+    "pool",
+    "residual"
+  ],
+  "independent_test": false,
+  "capped_eval_job": 4411339,
+  "array_job": 4411340
+}

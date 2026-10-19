@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Preserve the exact bytes covered by campaign SHA256 manifests.
+results/dcm_diagnostic_20261016/** -text
+results/dcm_grouped_20261017/** -text
+results/dcm_development_20261017/** -text

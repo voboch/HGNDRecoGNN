@@ -1,0 +1,17 @@
+{
+  "verified_at_msk": "2026-10-17T21:44:37.243761+03:00",
+  "run": "low_lr_456",
+  "epochs_verified": 15,
+  "sequential_epochs": true,
+  "finite_component_losses": true,
+  "per_head_counts_match": true,
+  "population_matches_passed_smoke": true,
+  "model_and_configs_match_fixed_recipe": true,
+  "source_data_split_manifest_hashes_match": true,
+  "lr_used_and_next_match_fixed_schedule": true,
+  "completed_small_artifact_hashes_reverified": 72,
+  "completed_runs_reverified": 9,
+  "test_evaluated": false,
+  "new_jobs_submitted": false,
+  "new_failures": []
+}

@@ -1,0 +1,54 @@
+{
+  "created_at_msk": "2026-10-17T17:06:30.009966+03:00",
+  "source_run": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123",
+  "files": {
+    "checkpoints/history.json": {
+      "sha256": "26b92a5ac5abbba46f38f5f1cd0e26d72e23126ae8595b0a544464bda4ebdae5",
+      "bytes": 14515
+    },
+    "checkpoints/last.pt": {
+      "sha256": "8f6fbdcdb8d7cded20f014393775183069ad602de5da6b8dd914ac8c8fb17c42",
+      "bytes": 49959124
+    },
+    "checkpoints/live_status.json": {
+      "sha256": "2b00d6790abe5496c07020462ab8442d38a345b3323a4253f757b24dfcc852c0",
+      "bytes": 200
+    },
+    "checkpoints/model.pt": {
+      "sha256": "e45f083f58ecfdd3a810efa1a468b495d206ce67a66fcdab254be16e5c4d7258",
+      "bytes": 49959534
+    },
+    "checkpoints/optim.pt": {
+      "sha256": "904f92ffa58adaa28aa9532d0d0ad53f541160c50595afb9077a1d97496f65ae",
+      "bytes": 99895576
+    },
+    "checkpoints/resume.pt": {
+      "sha256": "8f4015167ce9d2bfef2e846f17b2905965b6cef5a50ab8356fdb6916733072de",
+      "bytes": 149875194
+    },
+    "checkpoints/resume.pt.tmp": {
+      "sha256": "57b57cfd8e860babf034d0a55a7f23adf44350b314cc50ea2b6f9a80cffb2a3d",
+      "bytes": 149875642
+    },
+    "effective_config.json": {
+      "sha256": "b3adea1fddeee5312d99a7f9e0e754a39f10372f1ced4555cd9e7aa1755a952e",
+      "bytes": 991
+    },
+    "model_manifest.json": {
+      "sha256": "bbb457e1d00330bd87788b916a57dd9f434fc4896f642e4d79cde79aaac7a90b",
+      "bytes": 337
+    },
+    "population_verified.json": {
+      "sha256": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+      "bytes": 548
+    },
+    "status.json": {
+      "sha256": "044508b7b4deaaedcc819458e2b6ecf2b4f13cf62c068c904ef575fa27f2b4a0",
+      "bytes": 67
+    },
+    "train_config.json": {
+      "sha256": "073c70f3a594bde2ebe9a1e22d859a812faf99c24e9ef5441c3bbf7105374b08",
+      "bytes": 1178
+    }
+  }
+}

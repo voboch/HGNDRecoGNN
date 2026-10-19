@@ -1,0 +1,14 @@
+{
+  "checked_at_msk": "2026-10-17T23:53:23.764178+03:00",
+  "source_files_reverified": 180,
+  "source_read_only": true,
+  "no_active_array_tasks": true,
+  "completed_tasks": 10,
+  "failed_tasks": [
+    "4413514_2",
+    "4413514_4"
+  ],
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4413514_0|COMPLETED|01:23:06|0:0\n4413514_1|COMPLETED|01:20:46|0:0\n4413514_2|FAILED|00:52:31|1:0\n4413514_3|COMPLETED|01:21:45|0:0\n4413514_4|FAILED|00:41:18|1:0\n4413514_5|COMPLETED|01:30:43|0:0\n4413514_6|COMPLETED|01:26:28|0:0\n4413514_7|COMPLETED|01:27:42|0:0\n4413514_8|COMPLETED|01:25:57|0:0\n4413514_9|COMPLETED|01:20:26|0:0\n4413514_10|COMPLETED|01:25:40|0:0\n4413514_11|COMPLETED|01:19:42|0:0\n",
+  "new_submissions": false,
+  "recovery_proposals_submitted": false
+}

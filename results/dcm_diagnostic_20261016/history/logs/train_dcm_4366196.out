@@ -1,0 +1,47 @@
+host:  cn-043   gpu: 0
+date:  Wed Sep 30 08:24:53 PM MSK 2026
+NVIDIA A100-SXM4-80GB, 81920 MiB
+torch 2.5.1+cu121 cuda True
+root:  /scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0
+ckpt:  /scratch/vbocharnikov/hgnd/checkpoints/dcm_own_tw1p0_h512l8_25ep
+arch:  net_default H=512 L=8  epochs=25 batch=256
+eflat: 0
+
+PyTorch 2.5.1+cu121
+Preloading 277 shards into memory … 283398 graphs loaded in 333.7s (~54 MB tensor data)
+Dataset: 283398 graphs
+Model: net_default — v1 hit-branch (EdgeConv+SAGE+GraphConv) + cluster-branch DynamicEdgeConv
+device=cuda
+Params: 12,479,173
+Checkpoint policy: save_best_on=val
+fit(): device=cuda  epochs=25  batch=256  lr=0.001
+epoch 000  train 2.6663  val 1.6175  lr 1.00e-03  [best]
+epoch 001  train 1.4450  val 1.3834  lr 1.00e-03  [best]
+epoch 002  train 1.3453  val 1.2625  lr 1.00e-03  [best]
+epoch 003  train 1.2657  val 1.2477  lr 1.00e-03  [best]
+epoch 004  train 1.2325  val 1.6594  lr 1.00e-03
+epoch 005  train 1.2389  val 1.3893  lr 1.00e-03
+epoch 006  train 1.1962  val 1.2612  lr 1.00e-03
+epoch 007  train 1.2495  val 1.2022  lr 1.00e-03  [best]
+epoch 008  train 1.2425  val 1.1468  lr 1.00e-03  [best]
+epoch 009  train 1.2296  val 1.1914  lr 1.00e-04
+epoch 010  train 1.0604  val 1.0541  lr 1.00e-04  [best]
+epoch 011  train 1.0144  val 1.0312  lr 1.00e-04  [best]
+epoch 012  train 0.9906  val 1.0178  lr 1.00e-04  [best]
+epoch 013  train 0.9796  val 1.0238  lr 1.00e-04
+epoch 014  train 0.9508  val 1.0065  lr 1.00e-05  [best]
+epoch 015  train 0.9226  val 0.9934  lr 1.00e-05  [best]
+epoch 016  train 0.9136  val 0.9916  lr 1.00e-05  [best]
+epoch 017  train 0.9119  val 0.9932  lr 1.00e-05
+epoch 018  train 0.9119  val 0.9933  lr 1.00e-05
+epoch 019  train 0.9065  val 0.9889  lr 1.00e-05  [best]
+epoch 020  train 0.9071  val 0.9886  lr 1.00e-05  [best]
+epoch 021  train 0.9026  val 0.9923  lr 1.00e-05
+epoch 022  train 0.9045  val 0.9830  lr 1.00e-05  [best]
+epoch 023  train 0.8938  val 0.9828  lr 1.00e-05  [best]
+epoch 024  train 0.8932  val 0.9880  lr 1.00e-06
+
+done: best epoch 23 (loss 0.9828)  checkpoint: /scratch/vbocharnikov/hgnd/checkpoints/dcm_own_tw1p0_h512l8_25ep/model.pt  elapsed: 5438.1s
+
+train done: Wed Sep 30 10:04:59 PM MSK 2026
+checkpoint: /scratch/vbocharnikov/hgnd/checkpoints/dcm_own_tw1p0_h512l8_25ep/model.pt

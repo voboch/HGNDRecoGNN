@@ -1,0 +1,32 @@
+fit(): device=cuda  epochs=30  batch=256  lr=0.001
+epoch 000  train 2.8283  val 2.2623  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 001  train 1.5267  val 1.8886  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 002  train 1.4785  val 1.6642  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 003  train 1.4384  val 1.7019  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 004  train 1.2443  val 1.8555  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 005  train 1.1209  val 1.8126  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 006  train 1.2382  val 2.5844  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 007  train 1.3562  val 1.8696  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 008  train 1.0822  val 2.4807  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 009  train 0.9605  val 1.8481  lr_used 1.00e-03  lr_next 1.00e-04
+epoch 010  train 0.8370  val 2.1222  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 011  train 0.7978  val 2.4405  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 012  train 0.7768  val 2.7207  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 013  train 0.7602  val 3.5551  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 014  train 0.7479  val 3.2033  lr_used 1.00e-04  lr_next 1.00e-05
+epoch 015  train 0.7282  val 3.1207  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 016  train 0.7261  val 3.1314  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 017  train 0.7241  val 3.1426  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 018  train 0.7224  val 3.1557  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 019  train 0.7195  val 3.1687  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 020  train 0.7186  val 3.2808  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 021  train 0.7154  val 3.2216  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 022  train 0.7144  val 3.3089  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 023  train 0.7112  val 3.2526  lr_used 1.00e-05  lr_next 1.00e-05
+epoch 024  train 0.7101  val 3.3377  lr_used 1.00e-05  lr_next 1.00e-06
+epoch 025  train 0.7077  val 3.3854  lr_used 1.00e-06  lr_next 1.00e-06
+epoch 026  train 0.7070  val 3.3866  lr_used 1.00e-06  lr_next 1.00e-06
+epoch 027  train 0.7070  val 3.3899  lr_used 1.00e-06  lr_next 1.00e-06
+epoch 028  train 0.7066  val 3.3920  lr_used 1.00e-06  lr_next 1.00e-06
+epoch 029  train 0.7070  val 3.4177  lr_used 1.00e-06  lr_next 1.00e-06
+predict(): 362359 hits  101107 clusters  1812177 edges  (61.3s)

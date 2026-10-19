@@ -1,0 +1,15 @@
+{
+  "n_clusters": 416,
+  "roc_auc": 0.5432385638782578,
+  "working_threshold": 0.0,
+  "working_point": {
+    "threshold": 0.0,
+    "n_selected": 416.0,
+    "n_selected_signal": 62.0,
+    "purity_count": 0.14903846153846154,
+    "efficiency_count": 1.0,
+    "purity_energy": 0.15063581462188658,
+    "efficiency_energy": 1.0
+  },
+  "energy_performance": []
+}

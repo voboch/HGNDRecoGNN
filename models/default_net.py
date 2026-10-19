@@ -34,7 +34,7 @@ class Net(torch.nn.Module):
 
     def __init__(self, hidden_channels: int, num_layers: int, num_features: int,
                  cluster_pooling: str = 'mean', cluster_size_feature: bool = False,
-                 hit_residual: bool = False):
+                 hit_residual: bool = False, hit_normalization: str = 'batch'):
         """`cluster_pooling`, `cluster_size_feature` and `hit_residual` all
         default to the v1 behaviour, so an existing checkpoint still loads and
         every published number is reproduced unchanged. See the three blocks
@@ -74,6 +74,9 @@ class Net(torch.nn.Module):
         self.cluster_pooling = cluster_pooling
         self.cluster_size_feature = bool(cluster_size_feature)
         self.hit_residual = bool(hit_residual)
+        if hit_normalization not in ('batch', 'layer'):
+            raise ValueError(f'Unknown hit normalization: {hit_normalization}')
+        self.hit_normalization = hit_normalization
 
         self.convs = torch.nn.ModuleList()
         self.batch_norms = torch.nn.ModuleList()
@@ -90,7 +93,11 @@ class Net(torch.nn.Module):
 
         for _ in range(num_layers - 4):
             self.convs.append(SAGEConv(-1, hidden_channels))
-            self.batch_norms.append(BatchNorm(hidden_channels))
+            # LayerNorm uses no running statistics from training batches.
+            # This is an opt-in source-shift control, not an established fix.
+            norm = (BatchNorm(hidden_channels) if hit_normalization == 'batch'
+                    else torch.nn.LayerNorm(hidden_channels))
+            self.batch_norms.append(norm)
         self.convs.append(GraphConv(hidden_channels, hidden_channels))
         self.convs.append(GraphConv(hidden_channels, hidden_channels))
 

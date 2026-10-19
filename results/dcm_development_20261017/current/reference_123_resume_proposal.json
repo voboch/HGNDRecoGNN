@@ -1,0 +1,41 @@
+{
+  "state": "PROPOSAL_ONLY_NOT_SUBMITTED",
+  "requires_human_approval": true,
+  "reason_for_approval": "Current heartbeat explicitly forbids a further automatic retry after the one bounded correction already used.",
+  "task": 4,
+  "recipe": "reference",
+  "seed": 123,
+  "source_sha256": "7dcd849c18f8b496eedb99d7a4abb0c4c63faabd4e578d63583c07c0f7da0bb7",
+  "environment": {
+    "PROJECT_DIR": "/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18",
+    "CAMPAIGN_ROOT": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18",
+    "PREPARED_DIR": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+    "PHASE": "train"
+  },
+  "argv": [
+    "sbatch",
+    "--parsable",
+    "--job-name=dcm_dev_resume",
+    "--array=4%1",
+    "--dependency=afterany:4413514",
+    "--account=proj_1855",
+    "--partition=rocky",
+    "--constraint=type_a",
+    "--gpus=1",
+    "--cpus-per-task=8",
+    "--mem=0",
+    "--time=01:30:00",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/logs/%x_%A_%a.out",
+    "--error=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/logs/%x_%A_%a.err",
+    "/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/slurm/dcm_development.hpc.sbatch"
+  ],
+  "resume_next_epoch": 13,
+  "remaining_epochs": 17,
+  "total_epoch_budget": 30,
+  "walltime_justification": "13 committed epochs plus loading consumed41:18;90min allows margin for remaining17, reload and validation.",
+  "concurrency_justification": "afterany:4413514 waits until every original array task is terminal, avoiding a third simultaneous campaign task.",
+  "immutable_backup": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/recovery_backups/reference_123_before_resume_4413514_4",
+  "backup_bytes": 499582906,
+  "snapshot_or_recipe_changes": false,
+  "test_evaluation": false
+}

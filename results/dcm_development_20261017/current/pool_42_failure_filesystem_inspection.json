@@ -1,0 +1,96 @@
+{
+  "checked_at_msk": "2026-10-17T16:24:57.843772+03:00",
+  "files": [
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18",
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 61440,
+      "modified_msk": "2026-10-17T16:05:26+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42",
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 81408,
+      "modified_msk": "2026-10-17T15:21:49+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints",
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 81408,
+      "modified_msk": "2026-10-17T16:04:22+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/last.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 66736340,
+      "modified_msk": "2026-10-17T16:04:22+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/live_status.json",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 198,
+      "modified_msk": "2026-10-17T16:01:45+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/optim.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 133450008,
+      "modified_msk": "2026-10-17T16:04:22+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/history.json",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 17884,
+      "modified_msk": "2026-10-17T16:01:45+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/resume.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 200208122,
+      "modified_msk": "2026-10-17T16:01:45+03:00",
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints/model.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 66736750,
+      "modified_msk": "2026-10-17T15:35:00+03:00",
+      "readable": true,
+      "writable": true
+    }
+  ],
+  "traceback": "Traceback (most recent call last):\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 326, in main\n    try:run(args, name, seed, manifest, bundle, frozen)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 196, in run\n    return _run(args, name, seed, manifest, bundle, frozen, graphs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 250, in _run\n    fit(model, loaders['train'], loaders['validation'], cfg, plan,\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/training/train.py\", line 562, in fit\n    _write_resume_state(\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/training/train.py\", line 286, in _write_resume_state\n    torch.save(blob, tmp)\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/site-packages/torch/serialization.py\", line 849, in save\n    with _open_zipfile_writer(f) as opened_zipfile:\n         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/site-packages/torch/serialization.py\", line 716, in _open_zipfile_writer\n    return container(name_or_buffer)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/site-packages/torch/serialization.py\", line 687, in __init__\n    super().__init__(torch._C.PyTorchFileWriter(self.name))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Parent directory /scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42/checkpoints does not exist.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 333, in <module>\n    if __name__ == '__main__':main()\n                              ^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 329, in main\n    if out.is_dir():write_json(out/'status.json', {'state': 'failed', 'error': repr(exc)})\n       ^^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/pathlib.py\", line 1250, in is_dir\n    return S_ISDIR(self.stat().st_mode)\n                   ^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/pathlib.py\", line 1013, in stat\n    return os.stat(self, follow_symlinks=follow_symlinks)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42'\n"
+}

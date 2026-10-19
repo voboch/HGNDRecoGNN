@@ -1,5 +1,15 @@
 # Audit against the Dombay reference notebook
 
+> Review update, 2026-10-16: [the reconstruction review](reconstruction_review_20261016.md)
+> documents unresolved differences in metric definitions and effective model
+> architecture (DCM-02–03), plus split and reproducibility defects (DCM-04–07).
+> The claimed reproduction of the reference settings needs those differences
+> and the provenance of the published checkpoint to be checked. This document
+> is retained as the earlier analysis record.
+> A [live cluster check on 2026-10-16](dcm_experiment_launch_20261016.md) found
+> baseline 4366196 and evaluation 4366562 completed on 2026-09-30. The later
+> section describing job 4366196 as still running is superseded.
+
 Reference: `EgdeClass_Cluster_Jan25-xecs.ipynb`, the notebook that produced the
 Dombay benchmarks on DCM-QGSM-SMM Xe+CsI at 3.26 AGeV. A copy sits at
 `NeutronRecoGNN/notebooks/`; the cluster copy is

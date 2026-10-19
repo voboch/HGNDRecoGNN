@@ -1,0 +1,44 @@
+[
+  {
+    "epoch": 0,
+    "lr_used": 0.001,
+    "lr_next": 0.001,
+    "train": {
+      "total": 32.92525863647461,
+      "components": {
+        "hit": 1.027907866030595,
+        "link": 0.5796807080285945,
+        "cluster_cls": 0.7025764981227524,
+        "cluster_energy": 26.56166582358511,
+        "cluster_link": 1.4703842997550964
+      },
+      "counts": {
+        "hit": 3366,
+        "link": 17639,
+        "cluster_cls": 879,
+        "cluster_energy": 152,
+        "cluster_link": 32
+      },
+      "batch_mean": 32.92525863647461
+    },
+    "validation": {
+      "total": 6.249287366867065,
+      "components": {
+        "hit": 0.582639753818512,
+        "link": 0.6031020283699036,
+        "cluster_cls": 0.6741849184036255,
+        "cluster_energy": 3.7777750492095947,
+        "cluster_link": 0.6115856170654297
+      },
+      "counts": {
+        "hit": 1465,
+        "link": 7083,
+        "cluster_cls": 416,
+        "cluster_energy": 62,
+        "cluster_link": 6
+      },
+      "batch_mean": 6.2492876052856445
+    },
+    "validation_aggregation": "population"
+  }
+]

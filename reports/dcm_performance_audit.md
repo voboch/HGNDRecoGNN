@@ -1,8 +1,12 @@
 # Why DCM reconstruction misses the Dombay benchmarks — audit and fixes
 
 > Review update, 2026-10-16: [the reconstruction review](reconstruction_review_20261016.md)
-> records open defects in the proposed experiments. New architecture variants
-> fail at the model factory (DCM-01). The efficiency/purity comparison uses
+> records defects in the proposed experiments. The model-factory failure
+> (DCM-01) and scheduler warning (DCM-11) were fixed in `53ff00d`.
+> A subsequent [live cluster check](dcm_experiment_launch_20261016.md) found
+> baseline job 4366196 and evaluation 4366562 completed on 2026-09-30;
+> the claim below that their output was missing is superseded.
+> The efficiency/purity comparison uses
 > different estimators and selections from the reference (DCM-02), and the
 > proposed baseline differs from the named reference notebook (DCM-03).
 > The numerical efficiency gap and causal explanations below require those

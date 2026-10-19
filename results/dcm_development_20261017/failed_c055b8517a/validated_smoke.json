@@ -1,0 +1,40 @@
+{
+  "job": 4413427,
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:03:52",
+  "checks": [
+    {
+      "recipe": "reference",
+      "checkpoint_sha256": "5121e77f9b16096920aa42bd64abd3b0cf503bee3ac645f586119e82545a7ee4",
+      "parameters": 12479173,
+      "complete_receipt_sha256": "f5f50ea12014f8f186575034e459a5d4e42d3b797420cf4fa3545f682603cea0",
+      "history_sha256": "745c496aeb204fbc106dc7ce6f44e74049a7061a033220dc24161de7f24a1e3a"
+    },
+    {
+      "recipe": "layernorm",
+      "checkpoint_sha256": "e45a38d936d93439f46bc37938a4634efe47c71f6d5f93096ef31800d4869916",
+      "parameters": 12479173,
+      "complete_receipt_sha256": "895477823419b9aff32b4033b7643032e767f000d35074e58fd235621a9c2d13",
+      "history_sha256": "d1cf9d3bbc775f14064ce8f6db58b12a615d7ddca5826b340cacac04bcf49406"
+    },
+    {
+      "recipe": "pool",
+      "checkpoint_sha256": "1d1c523f2cde02afba1e1de490edf6b9ad342e78e9689bd17a6f39d87cf67ca7",
+      "parameters": 16673477,
+      "complete_receipt_sha256": "91dba8235ce5c3365738d60bc5916335e6dba5fd4dfb5cf45f46d184adfc1d64",
+      "history_sha256": "a28693543491df67a36ee938e47db6d0cf15bf8ebd896ca668dd5c5eca92c566"
+    },
+    {
+      "recipe": "low_lr",
+      "checkpoint_sha256": "af50c9be6c10c5b7a3f88ade141c4aee584118ba1a43c2de7d0b7fdc87c671d3",
+      "parameters": 12479173,
+      "complete_receipt_sha256": "ab9b2d7ad1f9249b24f2f6764c099b97f50904a4cef43c1e9ecae70cfedea6df",
+      "history_sha256": "3a066fb241751b573f1c522ed0e0b21c80f9a1a563c462f6a2ca5abcb8f9361f"
+    }
+  ],
+  "source_files_checked": 180,
+  "cuda_rng_replay": true,
+  "real_knn_batch_invariance": true,
+  "test_evaluation": false
+}

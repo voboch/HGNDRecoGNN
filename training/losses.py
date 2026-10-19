@@ -220,3 +220,21 @@ def hetero_cluster_loss(
         'cluster_energy': cluster_energy_loss,
         'total': total,
     }
+
+
+def _default_normalizers(graph):
+    return {'hit': graph['hits'].y.numel(), 'link': graph.true_links.numel(),
+            'cluster_cls': graph.cllabel.numel(),
+            'cluster_energy': int(graph.cllabel.bool().sum()),
+            'cluster_link': int(graph['clusters'].connection_mask.bool().sum())}
+
+
+def _hetero_normalizers(graph):
+    return {'cluster_cls': graph.cllabel.numel(),
+            'cluster_energy': int(graph.cllabel.bool().sum())}
+
+
+# Means from different heads have different populations. Epoch validation
+# must aggregate each numerator/denominator before applying loss weights.
+default_net_loss.normalizers = _default_normalizers
+hetero_cluster_loss.normalizers = _hetero_normalizers

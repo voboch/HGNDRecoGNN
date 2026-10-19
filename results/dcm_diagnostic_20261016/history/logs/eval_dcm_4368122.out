@@ -1,0 +1,63 @@
+host: cn-047  gpu: 0
+date: Thu Oct  1 01:39:06 PM MSK 2026
+ckpt: /scratch/vbocharnikov/hgnd/checkpoints/dcm_own_tw1p0_h512l8_25ep_eflat/model.pt
+root: /scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0   (scaler=own, twindow=1.0)
+out:  /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat
+
+ckpt: arch=net_default  kwargs={'hidden_channels': 512, 'num_layers': 8}  epoch=24  metrics={'train_loss': 3.1332409554009835, 'val_loss': 4.08421956201753}
+Preloading 277 shards into memory … 283398 graphs loaded in 221.6s (~54 MB tensor data)
+predict(): 874330 hits  241259 clusters  4435865 edges  (97.6s)
+  hits         874,330 rows  →  /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat/pred_hits_dcm.pkl
+  clusters     241,259 rows  →  /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat/pred_clusters_dcm.pkl
+  edges      4,435,865 rows  →  /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat/pred_edges_dcm.pkl
+
+=== cluster performance against the reference benchmarks ===
+clusters: 241,259   signal: 40,225 (16.7 %)
+ROC AUC = 0.7676   (reference ~0.97)
+
+  threshold   purity(N)  eff(N)   purity(E)  eff(E)
+       0.05      0.195   0.950       0.198   0.967
+       0.10      0.260   0.867       0.254   0.905
+       0.15      0.299   0.786       0.298   0.832
+       0.20      0.350   0.626       0.364   0.665
+       0.25      0.422   0.430       0.453   0.478
+       0.30      0.463   0.323       0.501   0.370
+       0.35      0.506   0.207       0.546   0.249
+       0.40      0.549   0.154       0.593   0.196
+       0.45      0.598   0.122       0.636   0.163
+       0.50      0.634   0.097       0.664   0.138
+       0.55      0.679   0.081       0.699   0.119
+       0.60      0.747   0.065       0.750   0.099
+       0.65      0.780   0.053       0.773   0.081
+       0.70      0.776   0.038       0.765   0.058
+       0.75      0.758   0.025       0.750   0.039
+       0.80      0.793   0.015       0.784   0.025
+       0.85      0.835   0.011       0.822   0.018
+       0.90      0.813   0.005       0.809   0.009
+       0.95      0.538   0.001       0.553   0.001
+
+  working point closest to 87 % energy purity: threshold 0.85  -> purity 0.822, efficiency 0.018
+
+  energy performance at threshold 0.85
+  E_true [GeV]         N   linearity  resolution
+  1.4-1.8           60.0     +206.2%       14.8%  >10%  res>10%
+  1.8-2.2           46.0      +75.5%        4.0%  >10%
+  2.6-3.0           52.0      +59.8%       35.7%  >10%  res>10%
+  3.0-3.5           50.0      +38.3%       18.0%  >10%  res>10%
+  3.5-4.0           53.0      +26.7%       15.2%  >10%  res>10%
+  4.0-5.0           76.0      +13.1%       14.2%  >10%  res>10%
+  5.0-6.5           71.0       -4.7%       16.8%  res>10%
+
+  above 0.7 GeV: max |linearity| = 206.2 %, max resolution = 35.7 %   (reference: both under 10 %)
+
+wrote /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat/performance.json
+
+outputs in /scratch/vbocharnikov/hgnd/results/eval_dcm_eflat
+total 181
+drwxr-xr-x  2 vbocharnikov users    81408 Oct  1 13:47 .
+drwxr-xr-x 17 vbocharnikov users   101376 Oct  1 13:39 ..
+-rw-r--r--  1 vbocharnikov users     6175 Oct  1 13:47 performance.json
+-rw-r--r--  1 vbocharnikov users     1897 Oct  1 13:47 performance.txt
+-rw-r--r--  1 vbocharnikov users 13511793 Oct  1 13:47 pred_clusters_dcm.pkl
+-rw-r--r--  1 vbocharnikov users 70974765 Oct  1 13:47 pred_edges_dcm.pkl
+-rw-r--r--  1 vbocharnikov users 41969049 Oct  1 13:47 pred_hits_dcm.pkl

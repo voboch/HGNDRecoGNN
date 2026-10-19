@@ -40,7 +40,7 @@ def apply_style() -> None:
 
 
 def hep_label(ax, *, status="BM@N HGND simulation",
-              system=r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV",
+              system=r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV",
               extra=None, loc="upper left", fontsize=6.8):
     """Stamp the three things `docs/PLOT_CONVENTIONS.md` §5 requires in-frame.
 
@@ -170,7 +170,7 @@ def fig_b_distributions(data, out_dir, bw=0.5):
     a.set_ylim(*snap_limits([v for k in dens
                              for v in np.concatenate([dens[k] + err[k], dens[k] - err[k]])]))
     a.legend(loc="upper left", ncols=1)
-    a.set_title("Xe+CsI, $\\sqrt{s_{NN}}=2.87$ GeV, SMASH hard Skyrme, "
+    a.set_title("MC truth: Xe+Cs, $E_{\\mathrm{kin}}/A=2.87$ GeV, SMASH hard Skyrme, "
                 f"minimum bias, {SCOPE}", fontsize=7)
 
     for k, s in DATASETS.items():

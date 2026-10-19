@@ -1,0 +1,38 @@
+{
+  "recipe": "pool",
+  "seed": 42,
+  "epochs": 30,
+  "batch_size": 256,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "scheduler": "multistep",
+  "scheduler_milestones": [
+    10,
+    15,
+    25
+  ],
+  "scheduler_gamma": 0.1,
+  "warmup_epochs": 0,
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8,
+    "hit_normalization": "batch",
+    "cluster_pooling": "mean_max_sum",
+    "cluster_size_feature": false,
+    "hit_residual": false
+  },
+  "loss_weights": {
+    "hit": 1.0,
+    "link": 1.0,
+    "cluster_cls": 1.0,
+    "cluster_energy": 1.0,
+    "cluster_link": 1.0
+  },
+  "grad_clip_norm": null,
+  "save_best_on": "val",
+  "validation_aggregation": "population",
+  "test_evaluation": false,
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "data_manifest_sha256": "247795508141052f6ed9ba95609cfa3c905075ab8b4966ec90b0bfd2a3eef853",
+  "source_manifest_sha256": "6455ae181db7f88313519d754dcc42f203a9d217f4e127f22c2199fb39a45998"
+}

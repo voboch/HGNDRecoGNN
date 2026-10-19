@@ -1,0 +1,94 @@
+{
+  "argv": [
+    "sbatch",
+    "--parsable",
+    "--job-name=dcm_dev_train",
+    "--array=0-11%2",
+    "--account=proj_1855",
+    "--partition=rocky",
+    "--constraint=type_a",
+    "--gpus=1",
+    "--cpus-per-task=8",
+    "--mem=0",
+    "--time=05:00:00",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/logs/%x_%A_%a.out",
+    "--error=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/logs/%x_%A_%a.err",
+    "/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/slurm/dcm_development.hpc.sbatch"
+  ],
+  "mapping": [
+    {
+      "task": 0,
+      "recipe": "reference",
+      "seed": 42
+    },
+    {
+      "task": 1,
+      "recipe": "layernorm",
+      "seed": 42
+    },
+    {
+      "task": 2,
+      "recipe": "pool",
+      "seed": 42
+    },
+    {
+      "task": 3,
+      "recipe": "low_lr",
+      "seed": 42
+    },
+    {
+      "task": 4,
+      "recipe": "reference",
+      "seed": 123
+    },
+    {
+      "task": 5,
+      "recipe": "layernorm",
+      "seed": 123
+    },
+    {
+      "task": 6,
+      "recipe": "pool",
+      "seed": 123
+    },
+    {
+      "task": 7,
+      "recipe": "low_lr",
+      "seed": 123
+    },
+    {
+      "task": 8,
+      "recipe": "reference",
+      "seed": 456
+    },
+    {
+      "task": 9,
+      "recipe": "layernorm",
+      "seed": 456
+    },
+    {
+      "task": 10,
+      "recipe": "pool",
+      "seed": 456
+    },
+    {
+      "task": 11,
+      "recipe": "low_lr",
+      "seed": 456
+    }
+  ],
+  "environment": {
+    "PROJECT_DIR": "/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18",
+    "CAMPAIGN_ROOT": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18",
+    "PREPARED_DIR": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+    "PHASE": "train"
+  },
+  "validated_smoke_job": "4413503",
+  "source_sha256": "7dcd849c18f8b496eedb99d7a4abb0c4c63faabd4e578d63583c07c0f7da0bb7",
+  "checked_no_duplicate": true,
+  "returncode": 0,
+  "stdout": "4413514\n",
+  "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "submitted_at_msk": "2026-10-17T13:25:28.641124+03:00",
+  "train_array_job": "4413514"
+}

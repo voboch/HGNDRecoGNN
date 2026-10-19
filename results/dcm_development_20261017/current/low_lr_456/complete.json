@@ -1,0 +1,11 @@
+{
+  "recipe": "low_lr",
+  "seed": 456,
+  "epochs": 30,
+  "selected_epoch": 4,
+  "checkpoint_sha256": "a7898dd5abbb613a8f6ae385271563673919c6fce5f2c3fffe50095a3aae6421",
+  "parameters": 12479173,
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "test_opened_by_this_campaign": false,
+  "smoke": false
+}

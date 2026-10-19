@@ -1,0 +1,8 @@
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 753.8208  val 6.7287  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 32.9253  val 6.2493  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 63.6077  val 7.0823  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.0001
+epoch 000  train 7.7838  val 6.8487  lr_used 1.00e-04  lr_next 1.00e-04  [best]

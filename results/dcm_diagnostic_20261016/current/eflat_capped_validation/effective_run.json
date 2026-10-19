@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/scratch/vbocharnikov/hgnd/checkpoints/dcm_eflat_capped/model.pt",
+  "split": "legacy_graph_validation",
+  "independent_test": false,
+  "data_root": "/scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0",
+  "num_shards": 277,
+  "historical_training_job": 4368152
+}

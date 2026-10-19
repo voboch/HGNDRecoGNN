@@ -1,0 +1,14 @@
+{
+  "parameters": 12479173,
+  "actual_hit_normalization": "layer",
+  "actual_cluster_pooling": "mean",
+  "cluster_input_channels": 512,
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8,
+    "hit_normalization": "layer",
+    "cluster_pooling": "mean",
+    "cluster_size_feature": false,
+    "hit_residual": false
+  }
+}

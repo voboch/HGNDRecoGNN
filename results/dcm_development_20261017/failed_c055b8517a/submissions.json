@@ -1,0 +1,78 @@
+{
+  "submitted_at_msk": "2026-10-17T11:05:04.672802+03:00",
+  "smoke_job": "4413427",
+  "train_array_job": "4413448",
+  "array_mapping": [
+    [
+      "reference",
+      42
+    ],
+    [
+      "layernorm",
+      42
+    ],
+    [
+      "pool",
+      42
+    ],
+    [
+      "low_lr",
+      42
+    ],
+    [
+      "reference",
+      123
+    ],
+    [
+      "layernorm",
+      123
+    ],
+    [
+      "pool",
+      123
+    ],
+    [
+      "low_lr",
+      123
+    ],
+    [
+      "reference",
+      456
+    ],
+    [
+      "layernorm",
+      456
+    ],
+    [
+      "pool",
+      456
+    ],
+    [
+      "low_lr",
+      456
+    ]
+  ],
+  "array_concurrency": 2,
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_dev_20261017_c055b8517a",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a",
+  "source_sha256": "c055b8517afbd8bf0ffa726882550a014e99bacb6c3ed6ffb8f54390539e7d1a",
+  "prepared_dir": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+  "test_evaluation": false,
+  "sbatch_argv": [
+    "sbatch",
+    "--parsable",
+    "--account=proj_1855",
+    "--partition=rocky",
+    "--constraint=type_a",
+    "--gpus=1",
+    "--cpus-per-task=8",
+    "--mem=0",
+    "--time=05:00:00",
+    "--array=0-11%2",
+    "--job-name=dcm_dev_train",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/%x_%A_%a.out",
+    "--error=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/%x_%A_%a.err",
+    "--export=ALL,PROJECT_DIR=/home/vbocharnikov/hgnd_experiments/dcm_dev_20261017_c055b8517a,CAMPAIGN_ROOT=/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a,PREPARED_DIR=/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared,PHASE=train",
+    "/home/vbocharnikov/hgnd_experiments/dcm_dev_20261017_c055b8517a/HGNDRecoGNN/slurm/dcm_development.hpc.sbatch"
+  ]
+}

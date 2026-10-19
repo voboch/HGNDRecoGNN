@@ -1,0 +1,188 @@
+{
+  "checked_at_msk": "2026-10-17T23:54:05.333893+03:00",
+  "canonical_input_hashes_verified": 107,
+  "immutable_source_files_reverified": 180,
+  "completed_runs": 10,
+  "incomplete_runs": [
+    "pool_42",
+    "reference_123"
+  ],
+  "no_active_tasks": true,
+  "test_evaluated": false,
+  "recovery_proposals_submitted": false,
+  "full_cohort_statistics_unavailable": true,
+  "history_figures_visually_inspected": 12,
+  "threshold_figures_visually_inspected": 4,
+  "data_and_annotation_bounds_asserted": true,
+  "vector_pdfs_with_embedded_truetype": 16,
+  "png_dpi": 200,
+  "visual_review": "All sixteen figures inspected; five final changed renderings re-inspected, other eleven PNGs pixel-identical to the immediately preceding review. Legends/annotations placed clear of curves; partial histories and absent evaluations explicitly labelled. Thresholds printed at six decimals to retain the original grid points.",
+  "fonts": {
+    "histories/layernorm_123.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/layernorm_42.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/layernorm_456.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/low_lr_123.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/low_lr_42.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/low_lr_456.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/pool_123.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/pool_42.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/pool_456.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/reference_123.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/reference_42.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "histories/reference_456.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "thresholds/layernorm.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "thresholds/low_lr.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "thresholds/pool.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ],
+    "thresholds/reference.pdf": [
+      {
+        "font": "/BMQQDV+DejaVuSans",
+        "subtype": "/CIDFontType2",
+        "embedded_truetype": true
+      }
+    ]
+  },
+  "files_sha256": {
+    "summary.json": "01db426c7b831b5cabfaee84eaa7937d454c046e07d66bbf361a174d4474e9a7",
+    "per_seed.csv": "61f9e8c5e8130faa588a2d7f797df6c9a74276cecb288570e1c85139714f353a",
+    "terminal_status.json": "c92d7cf269b91a7371f1afcb2e6f1a18f7c7825dfa785852f29a3cf1d19a6b74",
+    "thresholds/pool.png": "608e90570d87545a6c8c430fd867f97082026c83a8113317e02faa6ce8a02063",
+    "thresholds/reference.png": "471a776d13925b8f7d6268de054eab3953fddd3c567ff2a67590d88b9d6d71ea",
+    "thresholds/pool.pdf": "dffe48b9a60ad9a7a87c0f92db74ca7cc32525c7f7d5086982c00e70a2b47a09",
+    "thresholds/reference.pdf": "4279e55bcef1df97f3c998f6297f735645cdc7fe4830d5a3a72f04158af7c1a2",
+    "thresholds/low_lr.pdf": "604213a03abedd133bf0addae599c5399e902d4284c6f031cd0283bd5a98a4c7",
+    "thresholds/low_lr.png": "e98462b490a47ec3539c04e637fd549456f8829614ce125975c1394d9ceb09e7",
+    "thresholds/layernorm.pdf": "22e8923ef789a09bb1405ab61635cc7136ee02f97e25df73407a494c360eb53b",
+    "thresholds/layernorm.png": "3f197f59db359fb51066231f5fa089f04b9a055e59ca67e41d831f8c834bb953",
+    "histories/pool_123.pdf": "ad4c3f6f9118714000636392a641031e58c6202af28ae7e92006a588c5b21ea8",
+    "histories/pool_123.png": "b604f6a372305256b3000ace7954d3a34f844522631863a6392422e8d350c42b",
+    "histories/pool_456.png": "b59b4f7dbcef2c3f90ef305c5b0bbb9e94f0297ae890f15184e1d2f256ed0513",
+    "histories/pool_42.png": "c3cddb856812d1e505f8cb51ef49d8d8268e37ce48142e06d9511bcf0ef0c33f",
+    "histories/pool_456.pdf": "0ea7b8a858e2c9e58a9991b2cdc19cde99ae20b27039c979eab56e0be7fe388b",
+    "histories/pool_42.pdf": "9dab265dd71f351a4a4dbc230794adb139993ca7832d4b45c7edbcdeedce4b6d",
+    "histories/layernorm_456.png": "3170334d6bd0a91a2a63aee3710575a178c6a13fe5803ca374931f1ec71b899d",
+    "histories/layernorm_456.pdf": "0764af7e39784808056c66ec4b7b5df2530b1c6f84aacb4eec8bd14f1775d00c",
+    "histories/layernorm_123.pdf": "55402a7d49ee4934004ec863358d08da96930e35c05edfb13b5ea1e36638908b",
+    "histories/layernorm_123.png": "e8776fe0f082f5d91279a9d396cb9065a73ec7aeab4e47ec2d2a287c39dd2eb9",
+    "histories/layernorm_42.pdf": "73839b277d2417bce9014572214f3034edcfacf7dbc2fab256ef9fff38b118f3",
+    "histories/low_lr_456.png": "b827d9a48f806574d49a583a90b2a7c25af51edc0f1b8be97fdc242e5c17d1c0",
+    "histories/reference_42.pdf": "12f034b090cb099609ad6612eea5f54dac209a6d4235160ff5c9fb685742adaa",
+    "histories/reference_123.pdf": "7ffd7e20b2a13d70120d0d4e5bf47aa9b5a9600303a5d6dec8faefcd74dfaf5b",
+    "histories/reference_42.png": "3d239c43b5c8c2104be729a1cff314c4764dd33ba99e88e7fce14dcfd7161084",
+    "histories/reference_123.png": "f2a4c3eb36dea24784ea3d225e6a7f3c47231f76defa41f3ccfbeb92d388f344",
+    "histories/layernorm_42.png": "fd117cf565571150007544130c359ff5789298ba68b898dacae62fa573b10a95",
+    "histories/low_lr_456.pdf": "0911a108267d8d9ec4ab59c11b9a8a01ba11356b8f98b40366b85934cea0ff84",
+    "histories/reference_456.png": "d81446d5832dbd1ddf96277ebfd7fbd4c8019b68a27e3e3558a29296ff8b1917",
+    "histories/low_lr_42.pdf": "719cd73d37525dc8a43db8c24561d14977559e58acfc8e2e02489b6e950afe80",
+    "histories/low_lr_123.pdf": "fb318b9dba488fe04558edcf8aa8de975e30dc56c4439a6205de87df426c79a1",
+    "histories/low_lr_123.png": "b0412a65e5ab18f6ff0b3ba52054bc50674d86d2be3f8971a3ec2fb2a04500d5",
+    "histories/low_lr_42.png": "2821556c5b937cdde34776bd7555e805da28ec9784b5bd02eeb819d23a32bef7",
+    "histories/reference_456.pdf": "dc73e0abcc0f6c917c4e55fce6eaf8784c90f6d6b883be97810a151a19a4a7a3"
+  },
+  "old_grouped_input_hashes_verified": 45,
+  "manuscript_main_tex_and_pdf_unchanged": true,
+  "manuscript_pdf_sha256": "cdf4528d0bbfe1afc7db1c364d95a208e61af9e1869fa6ae162844063a59cf52",
+  "table_lint": "0 problems in results, protocol, pipeline audit and manuscript correction log",
+  "new_export_script_ast": "passed; full input assertions passed; training code unchanged",
+  "automation": {
+    "id": "finish-hgnd-note-and-paper",
+    "status": "PAUSED",
+    "app_updated_at_unix_ms": 1792270492849
+  },
+  "final_report_sha256": {
+    "HGNDRecoGNN/reports/dcm_development_results_20261017.md": "5bfbf0e55db9ff312c95a674e03a369339cca85b82b7592f5b5e4551a1ea5438",
+    "HGNDRecoGNN/reports/dcm_development_protocol_20261017.md": "bf31882cd92043738a00c489f24c93ed300c1726f5c692cd121407addae18909",
+    "HGNDRecoGNN/reports/pipeline_reaudit_20261017.md": "54ca510901a977460784e2f12c3fdb3cca88bd47f6a7224cc9294964a6a8c380",
+    "HGNDPaper/manuscript_corrections_20261017.md": "e2498609de370a0a5eb25d26018ad2fb75dfd28d7f07106754ea04fd3b4a53ee"
+  },
+  "final_live_status_sha256": "16afde620aa9c934fef9534bdd46ee498a7ebe6567bcb3505c188fc96dc3f4d9"
+}

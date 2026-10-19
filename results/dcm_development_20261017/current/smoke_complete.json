@@ -1,0 +1,13 @@
+{
+  "recipes": [
+    "reference",
+    "layernorm",
+    "pool",
+    "low_lr"
+  ],
+  "cuda_rng_replay": true,
+  "real_knn_batch_invariance": true,
+  "full_train_validation_coverage": true,
+  "full_training_loader_replay": true,
+  "data_manifest_sha256": "1722523f8708a10d3b6eac43c303fd4780ea31e4df671daf25d37ca69c7a7c29"
+}

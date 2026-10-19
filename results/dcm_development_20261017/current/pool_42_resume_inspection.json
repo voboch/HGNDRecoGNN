@@ -1,0 +1,40 @@
+{
+  "checked_at_msk": "2026-10-17T16:26:15.596086+03:00",
+  "task": 2,
+  "recipe": "pool",
+  "seed": 42,
+  "slurm_job": "4413514_2",
+  "state": "FAILED_DURING_RESUME_SAVE",
+  "atomic_resume_readable": true,
+  "next_epoch": 16,
+  "committed_epochs": 16,
+  "best_epoch_zero_based": 5,
+  "last_checkpoint_epoch": 16,
+  "separate_optimizer_next_epoch": 17,
+  "rng_keys": [
+    "cuda",
+    "numpy",
+    "python",
+    "torch"
+  ],
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8,
+    "hit_normalization": "batch",
+    "cluster_pooling": "mean_max_sum",
+    "cluster_size_feature": false,
+    "hit_residual": false
+  },
+  "sha256": {
+    "resume.pt": "a3a9c68c1caa64d11c0d09e7ba4f40447dea33e15675e70e516839461101689c",
+    "model.pt": "24ae7c9d50691401942219727c70eab1c1bd110f3b0ec418d81fc457648021b6",
+    "last.pt": "49e796603525ce534dc1a11ee06f8a3f78facaf8b30f5fb020bebc5376f30aa3",
+    "optim.pt": "f9c3f19c719ec75eefaa6039558e250ed0263e654c7554605d403b5c7c7df595",
+    "history.json": "4537845f95504d6968d9099c67aa834dd2302e5e62a27e8caff29f8fb0f11671"
+  },
+  "resume_uses": "resume.pt only; last.pt and optim.pt are ahead by one epoch and must not be paired with it",
+  "diagnosis": "Checkpoint directory exists and is readable/writable now; traceback contains parent-directory RuntimeError followed by EACCES. Consistent with transient Lustre accessibility failure, not proven permanent deletion or full disk.",
+  "automatic_retry_submitted": false,
+  "future_single_task_resume_requires_user_authorization": true,
+  "remaining_epochs_if_authorized": 14
+}

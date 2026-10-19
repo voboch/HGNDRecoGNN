@@ -1,0 +1,22 @@
+{
+  "train": {
+    "graphs": 92252,
+    "physical_events": 64138,
+    "clusters": 159085,
+    "signal_clusters": 26244,
+    "source_runs": [
+      "988975"
+    ],
+    "ordered_index_row_side_sha256": "36793058d099f97f4e7fdbd04acdfe2513da8e00713cd282afb464c8359b2a83"
+  },
+  "validation": {
+    "graphs": 59973,
+    "physical_events": 41808,
+    "clusters": 101107,
+    "signal_clusters": 16877,
+    "source_runs": [
+      "988974"
+    ],
+    "ordered_index_row_side_sha256": "09c466c0ba87e399d04eab140f8521b92450a3bc1984ac9a22f4c7b37ffbb444"
+  }
+}

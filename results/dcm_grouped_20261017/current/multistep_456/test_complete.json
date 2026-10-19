@@ -1,0 +1,11 @@
+{
+  "arm": "multistep",
+  "seed": 456,
+  "threshold_source": "validation only",
+  "n_test_graphs": 131173,
+  "test_source_runs": [
+    "988976"
+  ],
+  "checkpoint_sha256": "495d055bf83dcd43e4126a0e74a91e7b81fbe94c504d0291ec58d5fd31e021b6",
+  "roc_auc": 0.8763559471359927
+}

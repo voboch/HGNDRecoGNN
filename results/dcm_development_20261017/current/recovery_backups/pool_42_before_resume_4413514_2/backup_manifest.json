@@ -1,0 +1,50 @@
+{
+  "created_at_msk": "2026-10-17T16:27:40.911439+03:00",
+  "source_run": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/pool_42",
+  "files": {
+    "checkpoints/history.json": {
+      "sha256": "4537845f95504d6968d9099c67aa834dd2302e5e62a27e8caff29f8fb0f11671",
+      "bytes": 17884
+    },
+    "checkpoints/last.pt": {
+      "sha256": "49e796603525ce534dc1a11ee06f8a3f78facaf8b30f5fb020bebc5376f30aa3",
+      "bytes": 66736340
+    },
+    "checkpoints/live_status.json": {
+      "sha256": "67c4eb94192bf1693054fbce01ba929ffd30aed760c30670b6514de1202d5824",
+      "bytes": 198
+    },
+    "checkpoints/model.pt": {
+      "sha256": "24ae7c9d50691401942219727c70eab1c1bd110f3b0ec418d81fc457648021b6",
+      "bytes": 66736750
+    },
+    "checkpoints/optim.pt": {
+      "sha256": "f9c3f19c719ec75eefaa6039558e250ed0263e654c7554605d403b5c7c7df595",
+      "bytes": 133450008
+    },
+    "checkpoints/resume.pt": {
+      "sha256": "a3a9c68c1caa64d11c0d09e7ba4f40447dea33e15675e70e516839461101689c",
+      "bytes": 200208122
+    },
+    "effective_config.json": {
+      "sha256": "7133eff525bd6a696464e7841fe2630d1a9f2a8f52581d2e01ac94ab0914f47f",
+      "bytes": 993
+    },
+    "model_manifest.json": {
+      "sha256": "48ad016465646f1c7f473507c4a378d17fd686e72f3a852ea2b9c7af9b202678",
+      "bytes": 354
+    },
+    "population_verified.json": {
+      "sha256": "4e7249e2914ee4a9a868583e03e0d9bb2de4fa0efeef54b8e46e8408632fc0ef",
+      "bytes": 548
+    },
+    "status.json": {
+      "sha256": "044508b7b4deaaedcc819458e2b6ecf2b4f13cf62c068c904ef575fa27f2b4a0",
+      "bytes": 67
+    },
+    "train_config.json": {
+      "sha256": "8cebc5cd85ea56a6d5eff33553e00d0d97234535da827430aa6081257571262f",
+      "bytes": 1179
+    }
+  }
+}

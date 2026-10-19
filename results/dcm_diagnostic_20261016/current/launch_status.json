@@ -1,0 +1,134 @@
+{
+  "checked_at_msk": "2026-10-17T05:08:30.776487+03:00",
+  "submissions": {
+    "submitted_at_unix": 1792150732.3936145,
+    "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_diag_20261016_c36680aba5",
+    "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5",
+    "smoke_job": 4411325,
+    "gpu_check_job": 4411318,
+    "variants": [
+      "ref",
+      "epochs",
+      "sched",
+      "warmup",
+      "size",
+      "pool",
+      "residual"
+    ],
+    "independent_test": false,
+    "capped_eval_job": 4411339,
+    "array_job": 4411340
+  },
+  "queue": [],
+  "smoke": {
+    "status": "passed",
+    "gpu": "Tesla V100-SXM2-32GB",
+    "torch": "2.5.1+cu121",
+    "batch_size": 256,
+    "variants": [
+      {
+        "variant": "ref",
+        "loss": 6.9961724281311035,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/ref/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "epochs",
+        "loss": 6.9961724281311035,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/epochs/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "sched",
+        "loss": 6.9961724281311035,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/sched/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "warmup",
+        "loss": 6.996172904968262,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/warmup/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "size",
+        "loss": 7.423095703125,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/size/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "pool",
+        "loss": 8.115304946899414,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/pool/model.pt",
+        "round_trip": true
+      },
+      {
+        "variant": "residual",
+        "loss": 12.322760581970215,
+        "checkpoint": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/smoke/residual/model.pt",
+        "round_trip": true
+      }
+    ]
+  },
+  "initial_launch_queue": [
+    {
+      "job_id": "4411340_0",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_1",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_2",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_3",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_4",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_5",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411340_6",
+      "name": "dcm_diag",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    },
+    {
+      "job_id": "4411339",
+      "name": "dcm_eval_capped",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(Priority)"
+    }
+  ],
+  "initial_launch_checked_at_msk": "2026-10-16T14:40:55+03:00",
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4411339|COMPLETED|00:12:45|0:0\n4411340_0|COMPLETED|02:12:50|0:0\n4411340_1|COMPLETED|02:22:53|0:0\n4411340_2|COMPLETED|02:33:42|0:0\n4411340_3|COMPLETED|02:22:11|0:0\n4411340_4|COMPLETED|02:43:54|0:0\n4411340_5|COMPLETED|02:28:07|0:0\n4411340_6|COMPLETED|02:39:09|0:0\n",
+  "diagnostic_array_complete": true
+}

@@ -1,0 +1,11 @@
+{
+  "arm": "cosine",
+  "seed": 123,
+  "threshold_source": "validation only",
+  "n_test_graphs": 131173,
+  "test_source_runs": [
+    "988976"
+  ],
+  "checkpoint_sha256": "7b2643fd6b1ce9cf3499c74707971acb53f9cfec0626c8b564d0b12dc08c0e0c",
+  "roc_auc": 0.9007693618766125
+}

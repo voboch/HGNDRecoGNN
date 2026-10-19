@@ -1,0 +1,86 @@
+{
+  "checked_at_msk": "2026-10-17T07:21:06.947162+03:00",
+  "checks": [
+    {
+      "arm": "multistep",
+      "seed": 42,
+      "selected_epoch": 3,
+      "validation_threshold": 0.5149699999999999,
+      "checkpoint_sha256": "c86938802550268e51686b9f526104e7df0d39d7c9953b335a67e509e8b48f8f",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "570ca64db04cad5e945e236174accf0bc1813018e76ac64978ebb0bff331fce2",
+      "validation_performance_sha256": "b40a5f4c85fb590f32c75bb41db49f505119f46ef1ed0ff47ccf698172757dc0",
+      "threshold_scan_sha256": "e544c25063787c2041cbe558270028e16604f6b1ba3246b164b5353fd8c4e6c4",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    },
+    {
+      "arm": "cosine",
+      "seed": 42,
+      "selected_epoch": 5,
+      "validation_threshold": 0.48003999999999997,
+      "checkpoint_sha256": "3b1e85786d48a86e280981d6711d988fd82804159bfb97811849e50878b24bff",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "ab1e6bfa1ddab8f59d272a74be50aea14dbd4c886b25983c278ec2b14e7bd0ca",
+      "validation_performance_sha256": "1de725295f85362450c03d8b1eaa5732d0a0411e3d4556b169750e82a276e109",
+      "threshold_scan_sha256": "93bb0759720334d46db98d656a9f64832045d2326449371b7b66b43c88348ddc",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    },
+    {
+      "arm": "multistep",
+      "seed": 123,
+      "selected_epoch": 3,
+      "validation_threshold": 0.46008,
+      "checkpoint_sha256": "18042d6491c345922b2fa7da0e3f0bdd0e5a9514746e69ff3d654be20f7f5d41",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "b86ce97f8119ae5d8cedb195dbe077659343001d1113ec40a915ff27c7461628",
+      "validation_performance_sha256": "d81308da75ca08509f9dab2906cba2c9c0addb1df4b23b14e9bba79ee9220336",
+      "threshold_scan_sha256": "171863f53f45e8e5756a9b3822dab6a57a2b72e39460e8381775d5838017c07b",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    },
+    {
+      "arm": "cosine",
+      "seed": 123,
+      "selected_epoch": 5,
+      "validation_threshold": 0.587325,
+      "checkpoint_sha256": "7b2643fd6b1ce9cf3499c74707971acb53f9cfec0626c8b564d0b12dc08c0e0c",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "86e70e0565ec1a7d4c61c3fc63b4c4b30b714fb282da5bfbc72b3ff039678ac9",
+      "validation_performance_sha256": "cfa8613255126bd768bb65b6f4473da3e2f91bea656e45d80b09da709f0d7064",
+      "threshold_scan_sha256": "e46a793d9d7a09150d5c5a5f14c183db0b57e6267809ac22d608b84ee4201ee6",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    },
+    {
+      "arm": "multistep",
+      "seed": 456,
+      "selected_epoch": 3,
+      "validation_threshold": 0.42016,
+      "checkpoint_sha256": "495d055bf83dcd43e4126a0e74a91e7b81fbe94c504d0291ec58d5fd31e021b6",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "f283728d671e7c311d4441fb501eb5b2a113534f7e3acd8dc52823327b851ba0",
+      "validation_performance_sha256": "6f610c5690e4f5ee6e088bfee80e0f9f8123d713ada05f98f7b032fb50fcf2bf",
+      "threshold_scan_sha256": "c17eb9224c34fcd3f12a75c4832360a3fa499a94f9b18b895a0ebec843253c32",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    },
+    {
+      "arm": "cosine",
+      "seed": 456,
+      "selected_epoch": 4,
+      "validation_threshold": 0.3503,
+      "checkpoint_sha256": "273faade12d65512c2f5904d8813b0e778661ad8a90b5e0d4bc568333b18b6cd",
+      "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+      "training_receipt_sha256": "4dd582c043e1fcf172219c3c446c0699f294b0b293d42d15a9b3898a7e936952",
+      "validation_performance_sha256": "4e6c31ff33f687156b509213a96fcf00a24893f21a2e657d23b447beda2d4464",
+      "threshold_scan_sha256": "ae6f7b4c0a5dc36acd4e632db36104b064d421850fdf7c2abcf9837f17fbf555",
+      "first_grid_point_reaching_count_purity_070": true,
+      "epochs_in_log": 30
+    }
+  ],
+  "test_opened_at_check": true,
+  "training_receipts_record_test_opened": false,
+  "all_six_training_jobs_completed_before_test": true
+}

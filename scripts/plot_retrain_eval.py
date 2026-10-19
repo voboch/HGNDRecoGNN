@@ -17,7 +17,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from plot_b_full import apply_style, assert_contained, save, FULL
 
 OLD = {"color": "#B22222", "marker": "s", "ls": "--", "label": "previous checkpoint"}
-NEW = {"color": "#1f77b4", "marker": "^", "ls": "-", "label": "converged, restandardised"}
+# This utility accepts arbitrary evaluation JSONs. They do not establish
+# convergence or isolate scaling; give the selected checkpoint a factual label.
+NEW = {"color": "#1f77b4", "marker": "^", "ls": "-", "label": "retrained checkpoint"}
 REFC = "#2b2b2b"
 
 
@@ -49,7 +51,7 @@ def fig_energy(old, new, out_dir):
     b.set_xlabel(r"$E_{\mathrm{true}}$  [GeV]")
     rr = [r["resolution"] * 100 for d in (old, new) for r in d["energy_performance"]]
     b.set_ylim(0, max(rr) * 1.15)
-    # x limits from the data, not a fixed 5.2: the converged checkpoint reports
+    # x limits from the data, not a fixed 5.2: a checkpoint can report
     # a 5.0-6.5 GeV bin that the hardcoded limit pushed outside the shared axis,
     # which assert_contained then flagged on the linearity panel
     xm = (max(alle) - min(alle)) * 0.04

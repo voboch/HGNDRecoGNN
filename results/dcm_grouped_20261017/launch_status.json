@@ -1,0 +1,100 @@
+{
+  "submitted_at_msk": "2026-10-17T00:30:18.476300+03:00",
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_grouped_20261017_767a0e6f2e",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2",
+  "source_sha256": "767a0e6f2ebe1a1c443bd69ec23ed2e6847f1537019722e34eda9a803c09b07b",
+  "smoke_job": 4412696,
+  "smoke_state": "COMPLETED",
+  "test_opened": true,
+  "array_mapping": [
+    [
+      "multistep",
+      42
+    ],
+    [
+      "cosine",
+      42
+    ],
+    [
+      "multistep",
+      123
+    ],
+    [
+      "cosine",
+      123
+    ],
+    [
+      "multistep",
+      456
+    ],
+    [
+      "cosine",
+      456
+    ]
+  ],
+  "train_array_job": "4412700",
+  "test_array_job": "4412701",
+  "checked_at_msk": "2026-10-17T08:00:34.864551+03:00",
+  "smoke_elapsed": "00:01:09",
+  "train_array_state": "COMPLETED",
+  "test_array_state": "COMPLETED",
+  "protocol": "reports/dcm_grouped_protocol_20261017.md",
+  "preparation_job": 4412667,
+  "preparation_job_state": "CANCELLED_AFTER_PREPARATION",
+  "planned_arms": [
+    "multistep",
+    "cosine"
+  ],
+  "planned_seeds": [
+    42,
+    123,
+    456
+  ],
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4411339|COMPLETED|00:12:45|0:0\n4411340_0|COMPLETED|02:12:50|0:0\n4411340_1|COMPLETED|02:22:53|0:0\n4411340_2|COMPLETED|02:33:42|0:0\n4411340_3|COMPLETED|02:22:11|0:0\n4411340_4|COMPLETED|02:43:54|0:0\n4411340_5|COMPLETED|02:28:07|0:0\n4411340_6|COMPLETED|02:39:09|0:0\n4412700_0|COMPLETED|01:42:10|0:0\n4412700_1|COMPLETED|01:40:41|0:0\n4412700_2|COMPLETED|01:44:25|0:0\n4412700_3|COMPLETED|01:40:35|0:0\n4412700_4|COMPLETED|01:52:39|0:0\n4412700_5|COMPLETED|01:42:10|0:0\n4412701_0|COMPLETED|00:13:53|0:0\n4412701_1|COMPLETED|00:13:39|0:0\n4412701_2|COMPLETED|00:10:52|0:0\n4412701_3|COMPLETED|00:10:37|0:0\n4412701_4|COMPLETED|00:10:38|0:0\n4412701_5|COMPLETED|00:13:41|0:0\n",
+  "queue": [],
+  "test_execution_started": true,
+  "completed_training_arms": [
+    "cosine_123",
+    "cosine_42",
+    "cosine_456",
+    "multistep_123",
+    "multistep_42",
+    "multistep_456"
+  ],
+  "monitoring_incidents": [
+    {
+      "checked_at_msk": "2026-10-17T06:40:51.283410+03:00",
+      "kind": "transient_scratch_permission_error",
+      "resolved": true,
+      "impact": "One monitoring directory traversal failed; immediate directory listing and explicit-path retry succeeded. Both training logs advanced without failure signatures; test remains pending."
+    }
+  ],
+  "completed_test_arms": [
+    "cosine_123",
+    "cosine_42",
+    "cosine_456",
+    "multistep_123",
+    "multistep_42",
+    "multistep_456"
+  ],
+  "validated_test_arms": [
+    "multistep_42",
+    "cosine_42",
+    "multistep_123",
+    "cosine_123",
+    "multistep_456",
+    "cosine_456"
+  ],
+  "recorded_campaign_complete": true,
+  "primary_comparison": "results/dcm_grouped_20261017/summary.json",
+  "manuscript_pdf_sha256": "c5cf883e66cb569c7030f3c32146ba46027ed5c01c23ff9cdb4aca50064aa788",
+  "manuscript_correction_checks_complete": true,
+  "scientific_controls_remaining": [
+    "between-generation test variance",
+    "primary-truth to corrected-detector lineage and complete DCM collision settings",
+    "independent neutron-track response and energy/background calibration",
+    "complete immutable public release"
+  ],
+  "heartbeat_status": "PAUSED",
+  "completed_at_msk": "2026-10-17T08:10:00.070076+03:00"
+}

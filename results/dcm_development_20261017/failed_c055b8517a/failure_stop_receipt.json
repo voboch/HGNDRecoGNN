@@ -1,0 +1,47 @@
+{
+  "checked_at_msk": "2026-10-17T12:48:34.063268+03:00",
+  "failures": [
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_0.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_1.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_2.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_3.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_4.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_5.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    }
+  ],
+  "cancellation": {
+    "array": "4413448",
+    "reason": "Repeated selected-loader failure before first epoch; stopped remaining tasks only",
+    "accounting_after_cancel": "JobID|State|Elapsed|ExitCode\n4413448_0|FAILED|00:05:52|1:0\n4413448_1|FAILED|00:04:11|1:0\n4413448_2|FAILED|00:04:10|1:0\n4413448_3|FAILED|00:04:11|1:0\n4413448_4|FAILED|00:04:54|1:0\n4413448_5|FAILED|00:04:20|1:0\n4413448_6|CANCELLED by 2761|00:01:53|0:0\n4413448_[7-11%2]|CANCELLED by 2761|00:00:00|0:0\n"
+  },
+  "completion_receipts": [
+    "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/smoke_low_lr_42/complete.json",
+    "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/smoke_reference_42/complete.json",
+    "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/smoke_pool_42/complete.json",
+    "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/smoke_layernorm_42/complete.json"
+  ],
+  "training_histories": []
+}

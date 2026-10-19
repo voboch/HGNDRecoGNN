@@ -1,0 +1,226 @@
+{
+  "recipes": {
+    "reference": {
+      "recipe": "reference",
+      "seed": 42,
+      "epochs": 30,
+      "batch_size": 256,
+      "lr": 0.001,
+      "weight_decay": 1e-05,
+      "scheduler": "multistep",
+      "scheduler_milestones": [
+        10,
+        15,
+        25
+      ],
+      "scheduler_gamma": 0.1,
+      "warmup_epochs": 0,
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "hit_normalization": "batch",
+        "cluster_pooling": "mean",
+        "cluster_size_feature": false,
+        "hit_residual": false
+      },
+      "loss_weights": {
+        "hit": 1.0,
+        "link": 1.0,
+        "cluster_cls": 1.0,
+        "cluster_energy": 1.0,
+        "cluster_link": 1.0
+      },
+      "grad_clip_norm": null,
+      "save_best_on": "val",
+      "validation_aggregation": "population",
+      "test_evaluation": false
+    },
+    "layernorm": {
+      "recipe": "layernorm",
+      "seed": 42,
+      "epochs": 30,
+      "batch_size": 256,
+      "lr": 0.001,
+      "weight_decay": 1e-05,
+      "scheduler": "multistep",
+      "scheduler_milestones": [
+        10,
+        15,
+        25
+      ],
+      "scheduler_gamma": 0.1,
+      "warmup_epochs": 0,
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "hit_normalization": "layer",
+        "cluster_pooling": "mean",
+        "cluster_size_feature": false,
+        "hit_residual": false
+      },
+      "loss_weights": {
+        "hit": 1.0,
+        "link": 1.0,
+        "cluster_cls": 1.0,
+        "cluster_energy": 1.0,
+        "cluster_link": 1.0
+      },
+      "grad_clip_norm": null,
+      "save_best_on": "val",
+      "validation_aggregation": "population",
+      "test_evaluation": false
+    },
+    "pool": {
+      "recipe": "pool",
+      "seed": 42,
+      "epochs": 30,
+      "batch_size": 256,
+      "lr": 0.001,
+      "weight_decay": 1e-05,
+      "scheduler": "multistep",
+      "scheduler_milestones": [
+        10,
+        15,
+        25
+      ],
+      "scheduler_gamma": 0.1,
+      "warmup_epochs": 0,
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "hit_normalization": "batch",
+        "cluster_pooling": "mean_max_sum",
+        "cluster_size_feature": false,
+        "hit_residual": false
+      },
+      "loss_weights": {
+        "hit": 1.0,
+        "link": 1.0,
+        "cluster_cls": 1.0,
+        "cluster_energy": 1.0,
+        "cluster_link": 1.0
+      },
+      "grad_clip_norm": null,
+      "save_best_on": "val",
+      "validation_aggregation": "population",
+      "test_evaluation": false
+    },
+    "low_lr": {
+      "recipe": "low_lr",
+      "seed": 42,
+      "epochs": 30,
+      "batch_size": 256,
+      "lr": 0.0001,
+      "weight_decay": 1e-05,
+      "scheduler": "multistep",
+      "scheduler_milestones": [
+        10,
+        15,
+        25
+      ],
+      "scheduler_gamma": 0.1,
+      "warmup_epochs": 0,
+      "architecture": {
+        "hidden_channels": 512,
+        "num_layers": 8,
+        "hit_normalization": "batch",
+        "cluster_pooling": "mean",
+        "cluster_size_feature": false,
+        "hit_residual": false
+      },
+      "loss_weights": {
+        "hit": 1.0,
+        "link": 1.0,
+        "cluster_cls": 1.0,
+        "cluster_energy": 1.0,
+        "cluster_link": 1.0
+      },
+      "grad_clip_norm": null,
+      "save_best_on": "val",
+      "validation_aggregation": "population",
+      "test_evaluation": false
+    }
+  },
+  "learning_rates_used": {
+    "reference": [
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06
+    ],
+    "low_lr": [
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      0.0001,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1e-05,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-06,
+      1.0000000000000002e-07,
+      1.0000000000000002e-07,
+      1.0000000000000002e-07,
+      1.0000000000000002e-07,
+      1.0000000000000002e-07
+    ]
+  },
+  "preceding_validation_best_epochs": {
+    "multistep_42": 3,
+    "cosine_42": 5,
+    "multistep_123": 3,
+    "cosine_123": 5,
+    "multistep_456": 3,
+    "cosine_456": 4
+  },
+  "sources_sha256": {
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_0.out": "15f87fec1c46a979fb9b72c58ce977ecf98709f0691772695e65edda2e0f906e",
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_1.out": "c8b01a4b59d5314da1910a654c38fd93f2b9fe27ef9ab916f98d3ba25fb4ce39",
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_2.out": "d457d99d42be569483add516b835f335db138eb8903ca05b5cd0717c382e63d1",
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_3.out": "fe542ce44cb6ef6b9abfa9c21ee01e9bc73ee95814c7e91820c264257fc5892d",
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_4.out": "26d4d4e7bf00f83bd000c36e22d9244c87601dc5801c044ee1ab8340165abb1b",
+    "results/dcm_grouped_20261017/current/logs/dcm_group_train_4412700_5.out": "092d8a5e36b4a948bd4f10dc471ab785389b4c563cff591b263c26c6e5931890"
+  }
+}

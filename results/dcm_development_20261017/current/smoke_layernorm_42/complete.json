@@ -1,0 +1,11 @@
+{
+  "recipe": "layernorm",
+  "seed": 42,
+  "epochs": 1,
+  "selected_epoch": 0,
+  "checkpoint_sha256": "9372f0e0a015f6b0b87210e6cc5ff5c07be91f18be4653b4f8fa72e01d1bb185",
+  "parameters": 12479173,
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "test_opened_by_this_campaign": false,
+  "smoke": true
+}

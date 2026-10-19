@@ -1,0 +1,60 @@
+{
+  "submitted_at_msk": "2026-10-17T00:30:18.476300+03:00",
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_grouped_20261017_767a0e6f2e",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2",
+  "source_sha256": "767a0e6f2ebe1a1c443bd69ec23ed2e6847f1537019722e34eda9a803c09b07b",
+  "smoke_job": 4412696,
+  "smoke_state": "COMPLETED",
+  "test_opened": true,
+  "array_mapping": [
+    [
+      "multistep",
+      42
+    ],
+    [
+      "cosine",
+      42
+    ],
+    [
+      "multistep",
+      123
+    ],
+    [
+      "cosine",
+      123
+    ],
+    [
+      "multistep",
+      456
+    ],
+    [
+      "cosine",
+      456
+    ]
+  ],
+  "train_array_job": "4412700",
+  "test_array_job": "4412701",
+  "checked_at_msk": "2026-10-17T08:00:34.864551+03:00",
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4411339|COMPLETED|00:12:45|0:0\n4411340_0|COMPLETED|02:12:50|0:0\n4411340_1|COMPLETED|02:22:53|0:0\n4411340_2|COMPLETED|02:33:42|0:0\n4411340_3|COMPLETED|02:22:11|0:0\n4411340_4|COMPLETED|02:43:54|0:0\n4411340_5|COMPLETED|02:28:07|0:0\n4411340_6|COMPLETED|02:39:09|0:0\n4412700_0|COMPLETED|01:42:10|0:0\n4412700_1|COMPLETED|01:40:41|0:0\n4412700_2|COMPLETED|01:44:25|0:0\n4412700_3|COMPLETED|01:40:35|0:0\n4412700_4|COMPLETED|01:52:39|0:0\n4412700_5|COMPLETED|01:42:10|0:0\n4412701_0|COMPLETED|00:13:53|0:0\n4412701_1|COMPLETED|00:13:39|0:0\n4412701_2|COMPLETED|00:10:52|0:0\n4412701_3|COMPLETED|00:10:37|0:0\n4412701_4|COMPLETED|00:10:38|0:0\n4412701_5|COMPLETED|00:13:41|0:0\n",
+  "queue": [],
+  "train_array_state": "COMPLETED",
+  "test_array_state": "COMPLETED",
+  "protocol": "reports/dcm_grouped_protocol_20261017.md",
+  "test_execution_started": true,
+  "completed_training_arms": [
+    "cosine_123",
+    "cosine_42",
+    "cosine_456",
+    "multistep_123",
+    "multistep_42",
+    "multistep_456"
+  ],
+  "completed_test_arms": [
+    "cosine_123",
+    "cosine_42",
+    "cosine_456",
+    "multistep_123",
+    "multistep_42",
+    "multistep_456"
+  ]
+}

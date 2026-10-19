@@ -1,0 +1,34 @@
+{
+  "recipe": "layernorm",
+  "seed": 42,
+  "epochs": 1,
+  "batch_size": 256,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "scheduler": "multistep",
+  "scheduler_milestones": [],
+  "scheduler_gamma": 0.1,
+  "warmup_epochs": 0,
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8,
+    "hit_normalization": "layer",
+    "cluster_pooling": "mean",
+    "cluster_size_feature": false,
+    "hit_residual": false
+  },
+  "loss_weights": {
+    "hit": 1.0,
+    "link": 1.0,
+    "cluster_cls": 1.0,
+    "cluster_energy": 1.0,
+    "cluster_link": 1.0
+  },
+  "grad_clip_norm": null,
+  "save_best_on": "val",
+  "validation_aggregation": "population",
+  "test_evaluation": false,
+  "split_manifest_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "data_manifest_sha256": "1722523f8708a10d3b6eac43c303fd4780ea31e4df671daf25d37ca69c7a7c29",
+  "source_manifest_sha256": "bf7db92b3f4469554b11e22311eee8c3c726f80ab17da2b47e1f494d1126ead9"
+}

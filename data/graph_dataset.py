@@ -1078,7 +1078,7 @@ class HGNDGraphDataset(Dataset):
         if verbose:
             mem_mb = sum(
                 sum(v.nelement() * v.element_size()
-                    for v in g.stores[0].values() if isinstance(v, torch.Tensor))
+                    for store in g.stores for v in store.values() if isinstance(v, torch.Tensor))
                 for g in self._preloaded
             ) / 1024**2
             print(f'{len(self._preloaded)} graphs loaded in {elapsed:.1f}s '

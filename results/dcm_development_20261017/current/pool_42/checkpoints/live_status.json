@@ -1,0 +1,1 @@
+{"state": "training", "epoch": 15, "best_epoch": 5, "best_loss": 1.8571562750899266, "validation_loss": 2.485560257057439, "validation_aggregation": "population", "lr_used": 1e-05, "lr_next": 1e-05}

@@ -1,0 +1,6 @@
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 753.8216  val 6.7287  lr 1.00e-03  [best]
+predict(): 1465 hits  416 clusters  7083 edges  (0.4s)
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 753.7570  val 6.7286  lr 0.00e+00  [best]
+predict(): 1465 hits  416 clusters  7083 edges  (0.2s)

@@ -1,0 +1,337 @@
+{
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18",
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18",
+  "source_sha256": "7dcd849c18f8b496eedb99d7a4abb0c4c63faabd4e578d63583c07c0f7da0bb7",
+  "prepared_dir": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+  "state": "TERMINAL_WITH_TWO_INCOMPLETE_RUNS",
+  "retry_number": 1,
+  "retry_of": "4413448",
+  "test_evaluation": false,
+  "planned_trainings": 12,
+  "max_simultaneous_jobs": 2,
+  "python_tests_passed": 120,
+  "checked_at_msk": "2026-10-17T23:44:43.407091+03:00",
+  "next_action": "Verify/export the ten completed runs and preserve two incomplete runs; no recovery submission without explicit human authorization.",
+  "smoke_job": "4413503",
+  "smoke_state": "COMPLETED",
+  "queue": "",
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4413514_0|COMPLETED|01:23:06|0:0\n4413514_1|COMPLETED|01:20:46|0:0\n4413514_2|FAILED|00:52:31|1:0\n4413514_3|COMPLETED|01:21:45|0:0\n4413514_4|FAILED|00:41:18|1:0\n4413514_5|COMPLETED|01:30:43|0:0\n4413514_6|COMPLETED|01:26:28|0:0\n4413514_7|COMPLETED|01:27:42|0:0\n4413514_8|COMPLETED|01:25:57|0:0\n4413514_9|COMPLETED|01:20:26|0:0\n4413514_10|COMPLETED|01:25:40|0:0\n4413514_11|COMPLETED|01:19:42|0:0\n",
+  "smoke_estimated_start_msk": "2026-10-17T13:10:55+03:00",
+  "heartbeat_status": "ACTIVE",
+  "pipeline_audit": "reports/pipeline_reaudit_20261017.md",
+  "protocol": "reports/dcm_development_protocol_20261017.md",
+  "train_array_job": "4413514",
+  "train_array_state": "TERMINAL_WITH_FAILED_TASKS",
+  "smoke_elapsed": "00:11:13",
+  "submitted_at_msk": "2026-10-17T13:25:28.641124+03:00",
+  "array_mapping": [
+    {
+      "task": 0,
+      "recipe": "reference",
+      "seed": 42
+    },
+    {
+      "task": 1,
+      "recipe": "layernorm",
+      "seed": 42
+    },
+    {
+      "task": 2,
+      "recipe": "pool",
+      "seed": 42
+    },
+    {
+      "task": 3,
+      "recipe": "low_lr",
+      "seed": 42
+    },
+    {
+      "task": 4,
+      "recipe": "reference",
+      "seed": 123
+    },
+    {
+      "task": 5,
+      "recipe": "layernorm",
+      "seed": 123
+    },
+    {
+      "task": 6,
+      "recipe": "pool",
+      "seed": 123
+    },
+    {
+      "task": 7,
+      "recipe": "low_lr",
+      "seed": 123
+    },
+    {
+      "task": 8,
+      "recipe": "reference",
+      "seed": 456
+    },
+    {
+      "task": 9,
+      "recipe": "layernorm",
+      "seed": 456
+    },
+    {
+      "task": 10,
+      "recipe": "pool",
+      "seed": 456
+    },
+    {
+      "task": 11,
+      "recipe": "low_lr",
+      "seed": 456
+    }
+  ],
+  "completed_training_arms": [
+    {
+      "task": 0,
+      "recipe": "reference",
+      "seed": 42
+    },
+    {
+      "task": 1,
+      "recipe": "layernorm",
+      "seed": 42
+    },
+    {
+      "task": 3,
+      "recipe": "low_lr",
+      "seed": 42
+    },
+    {
+      "task": 5,
+      "recipe": "layernorm",
+      "seed": 123
+    },
+    {
+      "task": 6,
+      "recipe": "pool",
+      "seed": 123
+    },
+    {
+      "task": 7,
+      "recipe": "low_lr",
+      "seed": 123
+    },
+    {
+      "task": 8,
+      "recipe": "reference",
+      "seed": 456
+    },
+    {
+      "task": 9,
+      "recipe": "layernorm",
+      "seed": 456
+    },
+    {
+      "task": 10,
+      "recipe": "pool",
+      "seed": 456
+    },
+    {
+      "task": 11,
+      "recipe": "low_lr",
+      "seed": 456
+    }
+  ],
+  "failure_signatures": [
+    {
+      "job": "4413514_2",
+      "state": "FAILED",
+      "already_notified": true
+    },
+    {
+      "job": "4413514_4",
+      "state": "FAILED",
+      "already_notified": true
+    }
+  ],
+  "progress": [
+    {
+      "task": 0,
+      "recipe": "reference",
+      "seed": 42,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.6068652489343839,
+      "last_validation_total": 5.611678793071899,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 1,
+      "recipe": "layernorm",
+      "seed": 42,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.7070124885712304,
+      "last_validation_total": 3.4176534993501013,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 2,
+      "recipe": "pool",
+      "seed": 42,
+      "state": "failed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 16,
+      "last_epoch": 15,
+      "last_train_total": 0.6533158982889804,
+      "last_validation_total": 2.485560257057439,
+      "population_matches_smoke": true,
+      "reported_run_state": "training",
+      "slurm_state": "FAILED"
+    },
+    {
+      "task": 3,
+      "recipe": "low_lr",
+      "seed": 42,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.19490964200935865,
+      "last_validation_total": 3.316364898208654,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 4,
+      "recipe": "reference",
+      "seed": 123,
+      "state": "failed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 13,
+      "last_epoch": 12,
+      "last_train_total": 0.7432816406696457,
+      "last_validation_total": 2.254552325739308,
+      "population_matches_smoke": true,
+      "reported_run_state": "training",
+      "slurm_state": "FAILED"
+    },
+    {
+      "task": 5,
+      "recipe": "layernorm",
+      "seed": 123,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.7051269882603696,
+      "last_validation_total": 2.97637829272753,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 6,
+      "recipe": "pool",
+      "seed": 123,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.6502022900079426,
+      "last_validation_total": 2.6889982561324173,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 7,
+      "recipe": "low_lr",
+      "seed": 123,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.2124527079411821,
+      "last_validation_total": 3.2506956671828613,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 8,
+      "recipe": "reference",
+      "seed": 456,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.5456601680150653,
+      "last_validation_total": 2.917034408336021,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 9,
+      "recipe": "layernorm",
+      "seed": 456,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.6880191711507676,
+      "last_validation_total": 2.855191171356201,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 10,
+      "recipe": "pool",
+      "seed": 456,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.6175167211370125,
+      "last_validation_total": 2.276151325559632,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    },
+    {
+      "task": 11,
+      "recipe": "low_lr",
+      "seed": 456,
+      "state": "completed",
+      "test_opened_by_this_campaign": false,
+      "epochs_completed": 30,
+      "last_epoch": 29,
+      "last_train_total": 0.1729071425929294,
+      "last_validation_total": 3.944136391794154,
+      "population_matches_smoke": true,
+      "completion_verified": true
+    }
+  ],
+  "verified_completed_training_arms": [
+    "reference_42",
+    "layernorm_42",
+    "low_lr_42",
+    "layernorm_123",
+    "pool_123",
+    "low_lr_123",
+    "reference_456",
+    "layernorm_456",
+    "pool_456",
+    "low_lr_456"
+  ],
+  "notified_failures": [
+    "4413514_2",
+    "4413514_4"
+  ],
+  "recovery_pending_user_approval": true,
+  "recovery_proposal": "pool_42_resume_proposal.json",
+  "pending_placement_exclusion": "cn-008",
+  "pending_placement_change_receipt": "placement_exclusion_20261017.json",
+  "recovery_proposals": [
+    "pool_42_resume_proposal.json",
+    "reference_123_resume_proposal.json"
+  ]
+}

@@ -1,0 +1,49 @@
+host:  cn-047   gpu: 0
+date:  Thu Oct  1 02:03:27 PM MSK 2026
+NVIDIA H100 PCIe, 81559 MiB
+torch 2.5.1+cu121 cuda True
+root:  /scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0
+ckpt:  /scratch/vbocharnikov/hgnd/checkpoints/dcm_eflat_capped
+arch:  net_default H=512 L=8  epochs=25 batch=256
+eflat: 1
+
+PyTorch 2.5.1+cu121
+Preloading 277 shards into memory … 283398 graphs loaded in 225.6s (~54 MB tensor data)
+Dataset: 283398 graphs
+Model: net_default — v1 hit-branch (EdgeConv+SAGE+GraphConv) + cluster-branch DynamicEdgeConv
+device=cuda
+Params: 12,479,173
+Energy flattening: 79,834 signal clusters from 283,398 of 283,398 graphs (stride 1), 10 bins over [0.30, 8.19] GeV
+  bin weights: 0.59, 0.43, 0.52, 0.84, 1.58, 5.25, 14.80, 49.28, 49.28, 49.28
+Checkpoint policy: save_best_on=val
+fit(): device=cuda  epochs=25  batch=256  lr=0.001
+epoch 000  train 8.5874  val 8.2849  lr 1.00e-03  [best]
+epoch 001  train 5.7479  val 5.9979  lr 1.00e-03  [best]
+epoch 002  train 4.0282  val 4.0508  lr 1.00e-03  [best]
+epoch 003  train 5.5415  val 4.4088  lr 1.00e-03
+epoch 004  train 3.9284  val 3.9476  lr 1.00e-03  [best]
+epoch 005  train 2.8570  val 6.0173  lr 1.00e-03
+epoch 006  train 3.2864  val 5.5132  lr 1.00e-03
+epoch 007  train 1.9276  val 3.5011  lr 1.00e-03  [best]
+epoch 008  train 2.1708  val 2.5579  lr 1.00e-03  [best]
+epoch 009  train 1.9638  val 5.9304  lr 1.00e-04
+epoch 010  train 1.7048  val 4.2814  lr 1.00e-04
+epoch 011  train 1.5998  val 4.1411  lr 1.00e-04
+epoch 012  train 1.5605  val 5.0765  lr 1.00e-04
+epoch 013  train 1.5543  val 3.6242  lr 1.00e-04
+epoch 014  train 1.5385  val 2.2552  lr 1.00e-05  [best]
+epoch 015  train 1.5058  val 2.4146  lr 1.00e-05
+epoch 016  train 1.4924  val 4.3443  lr 1.00e-05
+epoch 017  train 1.4748  val 3.1887  lr 1.00e-05
+epoch 018  train 1.4748  val 4.0488  lr 1.00e-05
+epoch 019  train 1.4728  val 4.1600  lr 1.00e-05
+epoch 020  train 1.4697  val 3.1725  lr 1.00e-05
+epoch 021  train 1.4754  val 3.3749  lr 1.00e-05
+epoch 022  train 1.4722  val 3.3645  lr 1.00e-05
+epoch 023  train 1.4675  val 3.7654  lr 1.00e-05
+epoch 024  train 1.4520  val 3.0330  lr 1.00e-06
+
+done: best epoch 14 (loss 2.2552)  checkpoint: /scratch/vbocharnikov/hgnd/checkpoints/dcm_eflat_capped/model.pt  elapsed: 3649.0s
+
+train done: Thu Oct  1 03:09:05 PM MSK 2026
+checkpoint: /scratch/vbocharnikov/hgnd/checkpoints/dcm_eflat_capped/model.pt

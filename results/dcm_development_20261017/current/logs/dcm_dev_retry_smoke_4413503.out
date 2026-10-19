@@ -1,0 +1,21 @@
+Cache inventory: 1/277 shards, 1024 flat graphs
+Cache inventory: 26/277 shards, 26624 flat graphs
+Cache inventory: 51/277 shards, 52224 flat graphs
+Cache inventory: 76/277 shards, 77824 flat graphs
+Cache inventory: 101/277 shards, 103424 flat graphs
+Cache inventory: 126/277 shards, 129024 flat graphs
+Cache inventory: 151/277 shards, 154407 flat graphs
+Cache inventory: 176/277 shards, 180007 flat graphs
+Cache inventory: 201/277 shards, 205607 flat graphs
+Cache inventory: 226/277 shards, 231207 flat graphs
+Cache inventory: 251/277 shards, 256807 flat graphs
+Cache inventory: 276/277 shards, 282407 flat graphs
+Cache inventory: 277/277 shards, 283398 flat graphs
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 753.8021  val 6.7286  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 32.9273  val 6.2488  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.001
+epoch 000  train 63.6045  val 7.0818  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+fit(): device=cuda  epochs=1  batch=256  lr=0.0001
+epoch 000  train 7.7838  val 6.8487  lr_used 1.00e-04  lr_next 1.00e-04  [best]

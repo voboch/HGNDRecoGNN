@@ -1,0 +1,115 @@
+{
+  "checked_at_msk": "2026-10-17T17:06:30.009966+03:00",
+  "task": 4,
+  "recipe": "reference",
+  "seed": 123,
+  "slurm_job": "4413514_4",
+  "state": "FAILED_DURING_ATOMIC_RENAME",
+  "atomic_resume_readable": true,
+  "next_epoch": 13,
+  "committed_epochs": 13,
+  "remaining_epochs": 17,
+  "best_epoch_zero_based": 5,
+  "last_checkpoint_epoch": 13,
+  "separate_optimizer_next_epoch": 14,
+  "rng_keys": [
+    "cuda",
+    "numpy",
+    "python",
+    "torch"
+  ],
+  "sha256": {
+    "resume.pt": "8f4015167ce9d2bfef2e846f17b2905965b6cef5a50ab8356fdb6916733072de",
+    "model.pt": "e45f083f58ecfdd3a810efa1a468b495d206ce67a66fcdab254be16e5c4d7258",
+    "last.pt": "8f6fbdcdb8d7cded20f014393775183069ad602de5da6b8dd914ac8c8fb17c42",
+    "optim.pt": "904f92ffa58adaa28aa9532d0d0ad53f541160c50595afb9077a1d97496f65ae",
+    "history.json": "26b92a5ac5abbba46f38f5f1cd0e26d72e23126ae8595b0a544464bda4ebdae5"
+  },
+  "filesystem_inspection": [
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123",
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 81408,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints",
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 81408,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/history.json",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 14515,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/last.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 49959124,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/live_status.json",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 200,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/model.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 49959534,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/optim.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 99895576,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/resume.pt",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 149875194,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/resume.pt.tmp",
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 149875642,
+      "readable": true,
+      "writable": true
+    }
+  ],
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode|NodeList|MaxRSS\n4413514_4|FAILED|00:41:18|1:0|cn-008|\n4413514_4.batch|FAILED|00:41:18|1:0|cn-008|6170524K\n4413514_4.extern|COMPLETED|00:41:18|0:0|cn-008|1760K\n",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 326, in main\n    try:run(args, name, seed, manifest, bundle, frozen)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 196, in run\n    return _run(args, name, seed, manifest, bundle, frozen, graphs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 250, in _run\n    fit(model, loaders['train'], loaders['validation'], cfg, plan,\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/training/train.py\", line 562, in fit\n    _write_resume_state(\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/training/train.py\", line 287, in _write_resume_state\n    os.replace(tmp, path)\nPermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/resume.pt.tmp' -> '/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123/checkpoints/resume.pt'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 333, in <module>\n    if __name__ == '__main__':main()\n                              ^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/dcm_dev_retry_20261017_7dcd849c18/HGNDRecoGNN/scripts/dcm_development.py\", line 329, in main\n    if out.is_dir():write_json(out/'status.json', {'state': 'failed', 'error': repr(exc)})\n       ^^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/pathlib.py\", line 1250, in is_dir\n    return S_ISDIR(self.stat().st_mode)\n                   ^^^^^^^^^^^\n  File \"/home/vbocharnikov/.conda/envs/hgnd-env/lib/python3.11/pathlib.py\", line 1013, in stat\n    return os.stat(self, follow_symlinks=follow_symlinks)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/reference_123'\n",
+  "automatic_retry_submitted": false,
+  "requires_human_authorization": true
+}

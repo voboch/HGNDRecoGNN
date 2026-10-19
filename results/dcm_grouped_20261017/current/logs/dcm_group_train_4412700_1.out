@@ -1,0 +1,33 @@
+Preloading 277 shards into memory … 283398 graphs loaded in 386.9s (~54 MB tensor data)
+fit(): device=cuda  epochs=30  batch=256  lr=0.001
+epoch 000  train 5.1786  val 2.1796  lr 9.97e-04  [best]
+epoch 001  train 1.4162  val 1.8584  lr 9.89e-04  [best]
+epoch 002  train 1.2857  val 2.2605  lr 9.76e-04
+epoch 003  train 1.2222  val 1.9352  lr 9.57e-04
+epoch 004  train 1.1633  val 1.9700  lr 9.33e-04
+epoch 005  train 1.2048  val 1.7788  lr 9.05e-04  [best]
+epoch 006  train 1.0398  val 1.8091  lr 8.72e-04
+epoch 007  train 0.8762  val 4.9430  lr 8.35e-04
+epoch 008  train 1.1898  val 2.4603  lr 7.94e-04
+epoch 009  train 1.0081  val 2.2711  lr 7.50e-04
+epoch 010  train 0.9414  val 2.0646  lr 7.03e-04
+epoch 011  train 0.7500  val 2.2438  lr 6.55e-04
+epoch 012  train 0.7454  val 2.6894  lr 6.04e-04
+epoch 013  train 0.7489  val 2.2735  lr 5.52e-04
+epoch 014  train 0.6914  val 2.2060  lr 5.00e-04
+epoch 015  train 0.6734  val 2.7889  lr 4.48e-04
+epoch 016  train 0.5126  val 3.2859  lr 3.96e-04
+epoch 017  train 0.4313  val 5.7286  lr 3.45e-04
+epoch 018  train 0.3881  val 4.1290  lr 2.97e-04
+epoch 019  train 0.3251  val 4.4895  lr 2.50e-04
+epoch 020  train 0.2881  val 3.8841  lr 2.06e-04
+epoch 021  train 0.2682  val 4.3709  lr 1.65e-04
+epoch 022  train 0.2425  val 4.5064  lr 1.28e-04
+epoch 023  train 0.2544  val 4.3992  lr 9.55e-05
+epoch 024  train 0.2322  val 4.5458  lr 6.70e-05
+epoch 025  train 0.2108  val 4.7405  lr 4.32e-05
+epoch 026  train 0.2092  val 4.7148  lr 2.45e-05
+epoch 027  train 0.2002  val 5.0019  lr 1.09e-05
+epoch 028  train 0.1829  val 4.9520  lr 2.74e-06
+epoch 029  train 0.1976  val 5.0004  lr 0.00e+00
+predict(): 362359 hits  101107 clusters  1812177 edges  (64.1s)

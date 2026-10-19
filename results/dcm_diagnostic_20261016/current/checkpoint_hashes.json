@@ -1,0 +1,37 @@
+{
+  "ref": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/ref/checkpoints/model.pt",
+    "sha256": "16e28600c86521d1942a2cf44f866adaabc0dab05627146af6518cc35fb572f8",
+    "size_bytes": 49954208
+  },
+  "epochs": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/epochs/checkpoints/model.pt",
+    "sha256": "6c37cb51e390c7450b658e2fb1ca1e25160553307d2600609ac516a307e9de7c",
+    "size_bytes": 49954208
+  },
+  "sched": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/sched/checkpoints/model.pt",
+    "sha256": "4f10f8f1525593c42ad58932aab9ab2dc8ddd29dd267b1d2df93573a91010d2d",
+    "size_bytes": 49954208
+  },
+  "warmup": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/warmup/checkpoints/model.pt",
+    "sha256": "62a3f12a769efe61d6edc88e43f77123ee180d9b99eb40b8a63307c399c4914b",
+    "size_bytes": 49954208
+  },
+  "size": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/size/checkpoints/model.pt",
+    "sha256": "7bfb966c0f09a8d654001c75a72c6f024af355c8bde6efc9d0b1f8da209031b2",
+    "size_bytes": 49970656
+  },
+  "pool": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/pool/checkpoints/model.pt",
+    "sha256": "a67da0e63c6f43669c2f5a9d6d598b32917644d423d73489bd3f0dc6031976a4",
+    "size_bytes": 66747872
+  },
+  "residual": {
+    "path": "/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/checkpoints/model.pt",
+    "sha256": "4e1d65ab062a535d69557f10b3ea7d25d8769ee35ec800c21c48fe08c214d216",
+    "size_bytes": 66747936
+  }
+}

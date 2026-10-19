@@ -8,6 +8,8 @@ point drives everything and is called identically by the notebook, by
 from __future__ import annotations
 
 import os
+import json
+import random
 import time
 from dataclasses import dataclass, field
 from typing import Callable, Optional
@@ -21,6 +23,7 @@ from tqdm import tqdm
 from .. import device as device_mod
 from .checkpoint import save_checkpoint
 from .losses import LossWeights, default_net_loss
+from .metrics import LossAccumulator
 
 
 @dataclass
@@ -77,6 +80,9 @@ class TrainConfig:
     # 1.354). The default was 'train' through every result in reports/; it is
     # now 'val'. Pass save_best_on='train' to reproduce an older run exactly.
     save_best_on: str = 'val'     # 'val' | 'train'
+    # Native losses: aggregate each head over its full scored population.
+    # 'batch_mean' reproduces the historical checkpoint-selection statistic.
+    validation_aggregation: str = 'population'
     verbose: bool = True
 
 
@@ -148,6 +154,7 @@ def seed_everything(seed: int) -> None:
     # the process happened to be in. Two runs with the same --seed therefore
     # started from different weights.
     torch.manual_seed(seed)
+    random.seed(seed)
     np.random.seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
@@ -188,9 +195,11 @@ def train_epoch(
     loss_fn: Callable = default_net_loss,
     verbose: bool = True,
     grad_clip_norm: Optional[float] = None,
+    return_components: bool = False,
 ) -> float:
     model.train()
     losses = []
+    stats = LossAccumulator(loss_fn, loss_weights)
     iterator = tqdm(loader, desc='train') if verbose else loader
     for graph in iterator:
         graph = graph.to(plan.main)
@@ -203,7 +212,9 @@ def train_epoch(
             torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip_norm)
         optimizer.step()
         losses.append(loss.item())
-    return float(np.mean(losses)) if losses else float('nan')
+        if return_components:
+            stats.update(loss_dict, graph)
+    return stats.result('batch_mean') if return_components else (float(np.mean(losses)) if losses else float('nan'))
 
 
 @torch.no_grad()
@@ -215,16 +226,19 @@ def eval_epoch(
     forward_fn: Callable = _forward_default_net,
     loss_fn: Callable = default_net_loss,
     verbose: bool = True,
+    aggregation: str = 'population',
+    return_components: bool = False,
 ) -> float:
     model.eval()
-    losses = []
+    stats = LossAccumulator(loss_fn, loss_weights)
     iterator = tqdm(loader, desc='eval') if verbose else loader
     for graph in iterator:
         graph = graph.to(plan.main)
         preds = forward_fn(model, graph)
         loss_dict = loss_fn(preds, graph, loss_weights)
-        losses.append(loss_dict['total'].item())
-    return float(np.mean(losses)) if losses else float('nan')
+        stats.update(loss_dict, graph)
+    result = stats.result(aggregation)
+    return result if return_components else result['total']
 
 
 # ── Orchestrator ─────────────────────────────────────────────────────────
@@ -233,7 +247,7 @@ RESUME_NAME = 'resume.pt'
 
 
 def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
-                        min_loss, best_epoch, arch_name, arch_kwargs):
+                        min_loss, best_epoch, arch_name, arch_kwargs, history=None):
     """Write model, optimizer, scheduler, epoch and RNG as ONE atomic file.
 
     The previous contract wrote `optim.pt` (carrying next_epoch) and `last.pt`
@@ -257,9 +271,11 @@ def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
         'best_epoch': int(best_epoch),
         'arch_name': arch_name,
         'arch_kwargs': dict(arch_kwargs or {}),
+        'history': list(history or []),
         'rng': {
             'torch': torch.get_rng_state(),
             'numpy': np.random.get_state(),
+            'python': random.getstate(),
         },
         'format_version': 1,
     }
@@ -273,6 +289,17 @@ def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
         if os.path.exists(tmp):
             os.unlink(tmp)
         raise
+
+
+def _restore_rng_state(rng):
+    if 'torch' in rng:
+        torch.set_rng_state(rng['torch'].cpu())
+    if 'numpy' in rng:
+        np.random.set_state(rng['numpy'])
+    if 'python' in rng:
+        random.setstate(rng['python'])
+    if 'cuda' in rng and torch.cuda.is_available():
+        torch.cuda.set_rng_state_all([state.cpu() for state in rng['cuda']])
 
 
 def _legacy_resume_is_consistent(opt_blob, last_path):
@@ -414,20 +441,20 @@ def fit(
     best_epoch = -1
     resume_path = os.path.join(cfg.checkpoint_dir, RESUME_NAME)
     last_path = os.path.join(cfg.checkpoint_dir, 'last.pt')
+    history = []
     if start_epoch and os.path.exists(resume_path):
         blob = torch.load(resume_path, map_location='cpu', weights_only=False)
+        if int(blob['next_epoch']) != start_epoch:
+            raise ValueError('start_epoch differs from atomic resume next_epoch')
+        if blob['arch_name'] != cfg.arch_name or blob['arch_kwargs'] != cfg.arch_kwargs:
+            raise ValueError('Resume architecture differs from requested model')
         model.load_state_dict(blob['model'])
         optimizer.load_state_dict(blob['optimizer'])
         scheduler.load_state_dict(blob['scheduler'])
         min_loss = float(blob.get('min_loss', min_loss))
         best_epoch = int(blob.get('best_epoch', best_epoch))
-        rng = blob.get('rng') or {}
-        if 'torch' in rng:
-            torch.set_rng_state(rng['torch'].cpu()
-                                if hasattr(rng['torch'], 'cpu')
-                                else rng['torch'])
-        if 'numpy' in rng:
-            np.random.set_state(rng['numpy'])
+        _restore_rng_state(blob.get('rng') or {})
+        history = blob.get('history', [])
         if cfg.verbose:
             print(f'fit(): resumed model, optimizer, schedule and RNG from '
                   f'{resume_path} at epoch {start_epoch} '
@@ -463,15 +490,21 @@ def fit(
 
     t0 = time.time()
     for epoch in range(start_epoch, cfg.epochs):
-        train_loss = train_epoch(
+        lr_used = optimizer.param_groups[0]['lr']
+        train_result = train_epoch(
             model, train_loader, optimizer, plan, cfg.loss_weights,
             forward_fn=forward_fn, loss_fn=loss_fn,
-            verbose=cfg.verbose, grad_clip_norm=cfg.grad_clip_norm,
+            verbose=cfg.verbose, grad_clip_norm=cfg.grad_clip_norm, return_components=True,
         )
-        val_loss = eval_epoch(
+        val_result = eval_epoch(
             model, test_loader, plan, cfg.loss_weights,
             forward_fn=forward_fn, loss_fn=loss_fn, verbose=cfg.verbose,
+            aggregation=cfg.validation_aggregation, return_components=True,
         )
+        train_loss = train_result['total'] if isinstance(train_result, dict) else train_result
+        val_loss = val_result['total'] if isinstance(val_result, dict) else val_result
+        if not np.isfinite(train_loss) or not np.isfinite(val_loss):
+            raise ValueError('Nonfinite epoch loss; refusing a checkpoint')
         # Stepped AFTER validation so 'plateau' can see the metric it decays
         # on. For the epoch-indexed schedules the order is immaterial, and the
         # printed LR below now refers to the epoch just finished rather than
@@ -486,6 +519,10 @@ def fit(
         device_mod.empty_cache(plan.main)
         train_history.append(train_loss)
         val_history.append(val_loss)
+        history.append({'epoch': epoch, 'lr_used': lr_used,
+                        'lr_next': optimizer.param_groups[0]['lr'],
+                        'train': train_result, 'validation': val_result,
+                        'validation_aggregation': cfg.validation_aggregation})
 
         watch = train_loss if cfg.save_best_on == 'train' else val_loss
         if watch < min_loss:
@@ -527,12 +564,25 @@ def fit(
             model, optimizer, scheduler,
             next_epoch=epoch + 1, min_loss=min_loss, best_epoch=best_epoch,
             arch_name=cfg.arch_name, arch_kwargs=cfg.arch_kwargs,
+            history=history,
         )
+
+        history_path = os.path.join(cfg.checkpoint_dir, 'history.json')
+        with open(history_path + '.tmp', 'w') as f:
+            json.dump(history, f, indent=2, allow_nan=False)
+        os.replace(history_path + '.tmp', history_path)
+        status_path = os.path.join(cfg.checkpoint_dir, 'live_status.json')
+        with open(status_path + '.tmp', 'w') as f:
+            json.dump({'state': 'training', 'epoch': epoch, 'best_epoch': best_epoch,
+                       'best_loss': min_loss, 'validation_loss': val_loss,
+                       'validation_aggregation': cfg.validation_aggregation,
+                       'lr_used': lr_used, 'lr_next': optimizer.param_groups[0]['lr']}, f)
+        os.replace(status_path + '.tmp', status_path)
 
         if cfg.verbose:
             lr_now = optimizer.param_groups[0]['lr']
             print(f'epoch {epoch:03d}  train {train_loss:.4f}  '
-                  f'val {val_loss:.4f}  lr {lr_now:.2e}'
+                  f'val {val_loss:.4f}  lr_used {lr_used:.2e}  lr_next {lr_now:.2e}'
                   + ('  [best]' if epoch == best_epoch else ''))
 
     return {

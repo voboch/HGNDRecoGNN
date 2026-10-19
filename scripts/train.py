@@ -30,7 +30,7 @@ def _with_energy_flattening(weights, dataset, bins: int,
                             max_graphs: int = 200_000):
     """Attach spectrum-flattening weights built from the dataset's clusters.
 
-    Built once over the cache rather than per batch: a batch of a few hundred
+    Built once over the training partition rather than per batch: a batch of a few hundred
     graphs holds too few high-energy clusters for its own occupancy to be
     anything but noise, and weights that move between batches become gradient
     noise on the head they are meant to correct.
@@ -90,6 +90,8 @@ def _net_default_arch_flags(args) -> dict:
         out['cluster_size_feature'] = True
     if getattr(args, 'hit_residual', False):
         out['hit_residual'] = True
+    if getattr(args, 'hit_normalization', None) is not None:
+        out['hit_normalization'] = args.hit_normalization
     return out
 
 
@@ -215,6 +217,11 @@ def main() -> int:
     parser.add_argument('--hit-residual', action='store_true',
                         help='Residual connections across the SAGEConv stack '
                              '(parameter-free; helps at num_layers=8).')
+    parser.add_argument('--hit-normalization', choices=('batch', 'layer'), default=None,
+                        help='SAGE hit-layer normalization; batch preserves legacy weights.')
+    parser.add_argument('--validation-aggregation', choices=('population', 'batch_mean'),
+                        default='population', help='Native per-head population means; '
+                        'batch_mean reproduces historical checkpoint selection.')
     args = parser.parse_args()
 
     _add_package_to_path()
@@ -271,7 +278,7 @@ def main() -> int:
     # so adding them afterwards would log a configuration the model never had.
     if args.model == 'net_default':
         arch_kwargs.update(_net_default_arch_flags(args))
-    elif args.cluster_pooling or args.cluster_size_feature or args.hit_residual:
+    elif args.cluster_pooling or args.cluster_size_feature or args.hit_residual or args.hit_normalization:
         parser.error('--cluster-pooling, --cluster-size-feature and '
                      '--hit-residual apply to --model net_default only')
 
@@ -318,11 +325,8 @@ def main() -> int:
         checkpoint_name=args.checkpoint_name,
         loss_weights=spec.default_loss_weights,
         save_best_on=args.save_best_on,
+        validation_aggregation=args.validation_aggregation,
     )
-    if args.energy_flatten:
-        cfg_kwargs['loss_weights'] = _with_energy_flattening(
-            spec.default_loss_weights, dataset, args.energy_flatten_bins,
-            args.energy_flatten_sample)
     if args.scheduler_milestones is not None:
         cfg_kwargs['scheduler_milestones'] = tuple(args.scheduler_milestones)
     cfg_kwargs.update(_schedule_overrides(args))
@@ -330,6 +334,10 @@ def main() -> int:
     print(f'Checkpoint policy: save_best_on={cfg.save_best_on}')
 
     train_loader, test_loader = build_loaders(dataset, cfg)
+    if args.energy_flatten:
+        cfg.loss_weights = _with_energy_flattening(
+            spec.default_loss_weights, train_loader.dataset, args.energy_flatten_bins,
+            args.energy_flatten_sample)
     result = fit(model, train_loader, test_loader, cfg, plan=plan,
                  forward_fn=spec.forward_fn, loss_fn=spec.loss_fn)
 

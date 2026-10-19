@@ -63,24 +63,31 @@ def predict(
     for graph in iterator:
         graph = graph.to(plan.main)
         preds = forward_fn(model, graph)
-        link_scores, hit_scores, cl_scores, cl_energy, _cl_link, cl_batch = preds
+        cluster_only = len(preds) == 2
+        if cluster_only:
+            cls_logits, cl_energy = preds
+            cl_scores = cls_logits.sigmoid()
+            cl_batch = graph.batch_dict['clusters']
+        else:
+            link_scores, hit_scores, cl_scores, cl_energy, _cl_link, cl_batch = preds
 
         hit_batch = graph.batch_dict['hits']
         n_graphs  = int(hit_batch.max().item()) + 1
         _, hit_counts = hit_batch.unique(return_counts=True)
 
-        for gi in range(n_graphs):
-            n_h = int(hit_counts[gi].item())
-            all_hit_rows.extend([int(graph.Row[gi].item())] * n_h)
-            all_hit_istop.extend([int(graph.istop[gi].item())] * n_h)
-            all_hit_inst.extend(range(n_h))
-
-        all_hit_cl.extend(graph.cluster.squeeze(-1).cpu().tolist())
-        all_hit_label.extend(graph['hits'].y.cpu().long().tolist())
-        all_hit_score.extend(hit_scores.cpu().tolist())
-
-        all_link_label.extend(graph.true_links.cpu().long().tolist())
-        all_link_score.extend(link_scores.cpu().tolist())
+        # Cluster-only registered models do not predict hit/link scores.
+        # Export empty tables for those heads rather than invented values.
+        if not cluster_only:
+            for gi in range(n_graphs):
+                n_h = int(hit_counts[gi].item())
+                all_hit_rows.extend([int(graph.Row[gi].item())] * n_h)
+                all_hit_istop.extend([int(graph.istop[gi].item())] * n_h)
+                all_hit_inst.extend(range(n_h))
+            all_hit_cl.extend(graph.cluster.squeeze(-1).cpu().tolist())
+            all_hit_label.extend(graph['hits'].y.cpu().long().tolist())
+            all_hit_score.extend(hit_scores.cpu().tolist())
+            all_link_label.extend(graph.true_links.cpu().long().tolist())
+            all_link_score.extend(link_scores.cpu().tolist())
 
         _, cl_counts = cl_batch.unique(return_counts=True)
         for gi in range(n_graphs):

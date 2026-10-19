@@ -1,0 +1,57 @@
+{
+  "protocol": "dcm_source_run_holdout_v1",
+  "data_root": "/scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0",
+  "raw_root": "/home/vbocharnikov/het_nDetHalf/data/ndet_links_Jan_26",
+  "split_seed": 42,
+  "partition_source_runs": {
+    "train": [
+      "988975"
+    ],
+    "validation": [
+      "988974"
+    ],
+    "test": [
+      "988976"
+    ]
+  },
+  "graphs": {
+    "train": 92252,
+    "validation": 59973,
+    "test": 131173
+  },
+  "physical_events": {
+    "train": 64138,
+    "validation": 41808,
+    "test": 91081
+  },
+  "scaler_fit": "training hits only; recovered from frozen float32 features",
+  "frozen_graphs_and_time_noise": true,
+  "training_seeds": [
+    42,
+    123,
+    456
+  ],
+  "arms": [
+    "multistep",
+    "cosine"
+  ],
+  "epochs_both_arms": 30,
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8
+  },
+  "threshold_policy": "first validation threshold reaching count purity 0.70",
+  "threshold_grid": {
+    "start": 0.001,
+    "stop": 0.999,
+    "count": 401
+  },
+  "threshold_justification": "0.70 is the published comparison convention; the full validation purity/efficiency scan is retained and plotted",
+  "limits": "One source run per partition. No between-run test variance. New initialization; no legacy checkpoint is reused. No independent claim of reproducing the published event estimator.",
+  "sha256": {
+    "scaler_top.pkl": "b714b8e4700d950c2843c75bd1d3e0544f43c29bbfd613aad85092aee80150c1",
+    "indices_and_scaling.npz": "65f771928a04e651ea3024f33a1e5e5ec39913cc055b7e092ffc1778c1cb076e",
+    "source_row_offsets.csv": "f7e4b42e0bd99cceba913913d300878f8f31a8128aa70e5172596d697d5a0bf0",
+    "scaler_bot.pkl": "6aa843c7cb894a4b816d0a1916be840a177d217f8f3117c3e2955541f1855d20"
+  }
+}

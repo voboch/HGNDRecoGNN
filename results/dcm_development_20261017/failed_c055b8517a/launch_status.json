@@ -1,0 +1,204 @@
+{
+  "smoke_job": "4413427",
+  "smoke_state": "COMPLETED",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a",
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_dev_20261017_c055b8517a",
+  "source_sha256": "c055b8517afbd8bf0ffa726882550a014e99bacb6c3ed6ffb8f54390539e7d1a",
+  "test_evaluation": false,
+  "slurm_memory_request": 0,
+  "checked_at_msk": "2026-10-17T12:48:34.063268+03:00",
+  "planned_trainings": 12,
+  "max_simultaneous_jobs": 2,
+  "array_mapping": [
+    [
+      "reference",
+      42
+    ],
+    [
+      "layernorm",
+      42
+    ],
+    [
+      "pool",
+      42
+    ],
+    [
+      "low_lr",
+      42
+    ],
+    [
+      "reference",
+      123
+    ],
+    [
+      "layernorm",
+      123
+    ],
+    [
+      "pool",
+      123
+    ],
+    [
+      "low_lr",
+      123
+    ],
+    [
+      "reference",
+      456
+    ],
+    [
+      "layernorm",
+      456
+    ],
+    [
+      "pool",
+      456
+    ],
+    [
+      "low_lr",
+      456
+    ]
+  ],
+  "primary_comparison": "layernorm minus reference; paired validation AUC over three training seeds",
+  "validation_aggregation": "population",
+  "pipeline_audit": "reports/pipeline_reaudit_20261017.md",
+  "protocol": "reports/dcm_development_protocol_20261017.md",
+  "python_tests_passed": 119,
+  "submission_correction": "Initial fixed-GB memory request rejected before job creation; no allocation consumed. Corrected immutable snapshot uses --mem=0.",
+  "heartbeat_status": "ACTIVE",
+  "next_action": "Preserve failed campaign. One bounded I/O-index correction in a new immutable snapshot; require full-population GPU smoke before replacement array.",
+  "smoke_elapsed": "00:03:52",
+  "train_array_job": "4413448",
+  "train_array_state": "FAILED_AND_REMAINDER_CANCELLED",
+  "submitted_at_msk": "2026-10-17T11:05:04.672802+03:00",
+  "queue": [
+    {
+      "job_id": "4413448_6",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_7",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_8",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_9",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_10",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_11",
+      "state": "PENDING",
+      "elapsed": "0:00",
+      "reason_or_node": "(JobArrayTaskLimit)"
+    },
+    {
+      "job_id": "4413448_5",
+      "state": "RUNNING",
+      "elapsed": "2:13",
+      "reason_or_node": "cn-008"
+    }
+  ],
+  "slurm_accounting": "JobID|State|Elapsed|ExitCode\n4413448_0|FAILED|00:05:52|1:0\n4413448_1|FAILED|00:04:11|1:0\n4413448_2|FAILED|00:04:10|1:0\n4413448_3|FAILED|00:04:11|1:0\n4413448_4|FAILED|00:04:54|1:0\n4413448_5|FAILED|00:04:20|1:0\n4413448_6|CANCELLED by 2761|00:01:53|0:0\n4413448_[7-11%2]|CANCELLED by 2761|00:00:00|0:0\n",
+  "completed_training_arms": [],
+  "failure_signatures": [
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_0.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_1.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_2.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_3.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_4.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    },
+    {
+      "log": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_20261017_c055b8517a/logs/dcm_dev_train_4413448_5.err",
+      "error": "Incomplete selected graph population",
+      "epochs_completed": 0
+    }
+  ],
+  "progress": [
+    {
+      "task": 0,
+      "recipe": "reference",
+      "seed": 42,
+      "state": "failed",
+      "epochs_finished": 0
+    },
+    {
+      "task": 1,
+      "recipe": "layernorm",
+      "seed": 42,
+      "state": "failed",
+      "epochs_finished": 0
+    },
+    {
+      "task": 2,
+      "recipe": "pool",
+      "seed": 42,
+      "state": "failed",
+      "epochs_finished": 0
+    },
+    {
+      "task": 3,
+      "recipe": "low_lr",
+      "seed": 42,
+      "state": "failed",
+      "epochs_finished": 0
+    },
+    {
+      "task": 4,
+      "recipe": "reference",
+      "seed": 123,
+      "state": "failed",
+      "epochs_finished": 0
+    },
+    {
+      "task": 5,
+      "recipe": "layernorm",
+      "seed": 123,
+      "state": "loading",
+      "epochs_finished": 0
+    }
+  ],
+  "train_estimated_start_msk": "2026-10-17T12:44:50+03:00",
+  "train_estimate_checked_at_msk": "2026-10-17T12:24:09.695558+03:00",
+  "queue_diagnosis": "Eligible, no dependency/hold, backfill estimate available; pending normally. Slurm short reason is None.",
+  "cancellation": {
+    "array": "4413448",
+    "reason": "Repeated selected-loader failure before first epoch; stopped remaining tasks only",
+    "accounting_after_cancel": "JobID|State|Elapsed|ExitCode\n4413448_0|FAILED|00:05:52|1:0\n4413448_1|FAILED|00:04:11|1:0\n4413448_2|FAILED|00:04:10|1:0\n4413448_3|FAILED|00:04:11|1:0\n4413448_4|FAILED|00:04:54|1:0\n4413448_5|FAILED|00:04:20|1:0\n4413448_6|CANCELLED by 2761|00:01:53|0:0\n4413448_[7-11%2]|CANCELLED by 2761|00:00:00|0:0\n"
+  }
+}

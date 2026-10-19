@@ -1,0 +1,92 @@
+{
+  "scored_on": "reused validation source run 988974; development only",
+  "n_clusters": 101107,
+  "n_signal_clusters": 16877,
+  "roc_auc": 0.8551834757857325,
+  "working_threshold": 0.522455,
+  "working_point": {
+    "threshold": 0.522455,
+    "n_selected": 4925.0,
+    "n_selected_signal": 3460.0,
+    "purity_count": 0.7025380710659899,
+    "efficiency_count": 0.20501273923090596,
+    "purity_energy": 0.7127507809638016,
+    "efficiency_energy": 0.3022452278550364
+  },
+  "threshold_policy": "first validation grid point reaching count purity 0.70; conventional target",
+  "energy_performance": [
+    {
+      "e_lo": 1.4,
+      "e_hi": 1.8,
+      "e_mid": 1.6,
+      "n": 139,
+      "median_e_reco": 1.8577637672424316,
+      "linearity": 0.12043355215345741,
+      "resolution": 0.15399194953318499
+    },
+    {
+      "e_lo": 1.8,
+      "e_hi": 2.2,
+      "e_mid": 2.0,
+      "n": 432,
+      "median_e_reco": 2.1086169481277466,
+      "linearity": 0.04436735369679816,
+      "resolution": 0.12493538255985649
+    },
+    {
+      "e_lo": 2.2,
+      "e_hi": 2.6,
+      "e_mid": 2.4000000000000004,
+      "n": 651,
+      "median_e_reco": 2.436068296432495,
+      "linearity": 0.018696938636996,
+      "resolution": 0.134607680383082
+    },
+    {
+      "e_lo": 2.6,
+      "e_hi": 3.0,
+      "e_mid": 2.8,
+      "n": 686,
+      "median_e_reco": 2.7894458770751953,
+      "linearity": -0.0023851159175682854,
+      "resolution": 0.14891233344715507
+    },
+    {
+      "e_lo": 3.0,
+      "e_hi": 3.5,
+      "e_mid": 3.25,
+      "n": 662,
+      "median_e_reco": 3.296109676361084,
+      "linearity": 0.015938128277899005,
+      "resolution": 0.17456838555464127
+    },
+    {
+      "e_lo": 3.5,
+      "e_hi": 4.0,
+      "e_mid": 3.75,
+      "n": 422,
+      "median_e_reco": 3.7929677963256836,
+      "linearity": 0.023932730023772716,
+      "resolution": 0.17574207216561755
+    },
+    {
+      "e_lo": 4.0,
+      "e_hi": 5.0,
+      "e_mid": 4.5,
+      "n": 363,
+      "median_e_reco": 4.256541728973389,
+      "linearity": -0.029823803626856105,
+      "resolution": 0.1691801229672416
+    },
+    {
+      "e_lo": 5.0,
+      "e_hi": 6.5,
+      "e_mid": 5.75,
+      "n": 81,
+      "median_e_reco": 4.713525295257568,
+      "linearity": -0.11339475307247543,
+      "resolution": 0.1295226408805554
+    }
+  ],
+  "test_opened_by_this_campaign": false
+}

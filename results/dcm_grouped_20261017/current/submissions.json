@@ -1,0 +1,37 @@
+{
+  "submitted_at_msk": "2026-10-17T00:30:18.476300+03:00",
+  "source_parent": "/home/vbocharnikov/hgnd_experiments/dcm_grouped_20261017_767a0e6f2e",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2",
+  "source_sha256": "767a0e6f2ebe1a1c443bd69ec23ed2e6847f1537019722e34eda9a803c09b07b",
+  "smoke_job": 4412696,
+  "smoke_state": "COMPLETED",
+  "test_opened": false,
+  "array_mapping": [
+    [
+      "multistep",
+      42
+    ],
+    [
+      "cosine",
+      42
+    ],
+    [
+      "multistep",
+      123
+    ],
+    [
+      "cosine",
+      123
+    ],
+    [
+      "multistep",
+      456
+    ],
+    [
+      "cosine",
+      456
+    ]
+  ],
+  "train_array_job": "4412700",
+  "test_array_job": "4412701"
+}

@@ -1,0 +1,13 @@
+name,task,recipe,training_seed,state,epochs_completed,parameters,validation_roc_auc,selected_epoch_zero_based,validation_threshold,checkpoint_sha256,scored_on
+reference_42,0,reference,42,COMPLETED,30,12479173,0.9132589313390947,6,0.32036,ae15b5d1a28d7802567959ae14e686498191cebed124b29aaf34a9dcb0267648,reused validation 988974; development only
+layernorm_42,1,layernorm,42,COMPLETED,30,12479173,0.8551834757857325,2,0.522455,e83e564b14ca708c2a8bfcaa05d342b05ae8c9c1c45c75c42127555a67cb1912,reused validation 988974; development only
+pool_42,2,pool,42,FAILED,16,16673477,,,,,reused validation 988974; development only
+low_lr_42,3,low_lr,42,COMPLETED,30,12479173,0.8722491185341665,2,0.552395,a43d92a6767f9b0ccf330dd57b5eeedd693f0bc7cfd42b6d6257b203237da833,reused validation 988974; development only
+reference_123,4,reference,123,FAILED,13,12479173,,,,,reused validation 988974; development only
+layernorm_123,5,layernorm,123,COMPLETED,30,12479173,0.8628539402255585,2,0.49999999999999994,511b78c5317ab7b76785d245bdeac99a81d01f832cbc0c4db48658c7b26679b1,reused validation 988974; development only
+pool_123,6,pool,123,COMPLETED,30,16673477,0.8781291647549913,8,0.597305,7c9a760100c68e49447c2b78e0e19dee159060829e3ee2b725146c7ba9b3e7c3,reused validation 988974; development only
+low_lr_123,7,low_lr,123,COMPLETED,30,12479173,0.8632810986961547,2,0.47255499999999995,6e882ed4498c8e27af74597ae705a941846c376ee5c1176a80c24ba7821e3169,reused validation 988974; development only
+reference_456,8,reference,456,COMPLETED,30,12479173,0.9049998582181132,1,0.49999999999999994,449b3e086b7bf83f5891005141157849a45e759892f510d29ea9a94937e3d478,reused validation 988974; development only
+layernorm_456,9,layernorm,456,COMPLETED,30,12479173,0.8580934338201933,1,0.57485,f3194539d5a6fae7e6558986cfcd3432d2d381a61228f10987e93ffcfc861c15,reused validation 988974; development only
+pool_456,10,pool,456,COMPLETED,30,16673477,0.9049071998333424,10,0.47505,dbba2eedb1f3371c2916733cfb1a7361f7c345d4f2c275ee6b4eec725057b37b,reused validation 988974; development only
+low_lr_456,11,low_lr,456,COMPLETED,30,12479173,0.8549932735029013,4,0.40768499999999996,a7898dd5abbb613a8f6ae385271563673919c6fce5f2c3fffe50095a3aae6421,reused validation 988974; development only

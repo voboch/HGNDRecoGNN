@@ -83,6 +83,28 @@ results/
 !/results/hardness_opt_converged/
 !/results/hardness_opt_converged/*.json
 
+# Retain the closed DCM campaigns' compact inputs, receipts and figures.
+# Checkpoints, prediction pickles and progress stderr remain ignored.
+!/results/dcm_diagnostic_20261016/
+!/results/dcm_diagnostic_20261016/**/
+!/results/dcm_diagnostic_20261016/**/*.json
+!/results/dcm_diagnostic_20261016/**/*.txt
+!/results/dcm_diagnostic_20261016/current/logs/*.out
+!/results/dcm_diagnostic_20261016/history/logs/*.out
+!/results/dcm_grouped_20261017/
+!/results/dcm_grouped_20261017/**/
+!/results/dcm_grouped_20261017/**/*.json
+!/results/dcm_grouped_20261017/**/*.csv
+!/results/dcm_grouped_20261017/current/logs/*.out
+!/results/dcm_development_20261017/
+!/results/dcm_development_20261017/**/
+!/results/dcm_development_20261017/**/*.json
+!/results/dcm_development_20261017/**/*.csv
+!/results/dcm_development_20261017/**/*.png
+!/results/dcm_development_20261017/**/*.pdf
+!/results/dcm_development_20261017/current/logs/*.out
+!/results/dcm_development_20261017/failed_c055b8517a/logs/*.out
+
 # Scratch and intermediate render output; not analysis products.
 tmp/
 output/

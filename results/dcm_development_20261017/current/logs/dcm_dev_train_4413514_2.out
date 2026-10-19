@@ -1,0 +1,17 @@
+fit(): device=cuda  epochs=30  batch=256  lr=0.001
+epoch 000  train 4.0906  val 2.5774  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 001  train 1.5710  val 2.1950  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 002  train 1.5024  val 1.9937  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 003  train 1.1726  val 1.9025  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 004  train 1.1907  val 2.0899  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 005  train 1.2192  val 1.8572  lr_used 1.00e-03  lr_next 1.00e-03  [best]
+epoch 006  train 1.0193  val 1.9717  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 007  train 0.9763  val 2.4473  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 008  train 0.9634  val 2.1751  lr_used 1.00e-03  lr_next 1.00e-03
+epoch 009  train 0.8548  val 2.0104  lr_used 1.00e-03  lr_next 1.00e-04
+epoch 010  train 1.0489  val 1.8665  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 011  train 0.8488  val 1.9335  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 012  train 0.7760  val 2.4268  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 013  train 0.7348  val 2.5827  lr_used 1.00e-04  lr_next 1.00e-04
+epoch 014  train 0.6885  val 2.4449  lr_used 1.00e-04  lr_next 1.00e-05
+epoch 015  train 0.6533  val 2.4856  lr_used 1.00e-05  lr_next 1.00e-05

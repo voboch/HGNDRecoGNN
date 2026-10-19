@@ -1,0 +1,108 @@
+2.5.1+cu121 Tesla V100-SXM2-32GB
+host:    cn-007   gpu: 0
+date:    Sat Oct 17 12:49:26 AM MSK 2026
+Tesla V100-SXM2-32GB, 32768 MiB
+torch 2.5.1+cu121 cuda True
+variant: residual
+root:    /scratch/vbocharnikov/hgnd/cache/ndet_dataset_dcm_xecs_own_tw1p0
+ckpt:    /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/checkpoints
+arch:    net_default H=512 L=8  epochs=30 batch=256
+sched:   --scheduler cosine --warmup-epochs 3
+archflg: --cluster-size-feature --cluster-pooling mean_max_sum --hit-residual
+
+PyTorch 2.5.1+cu121
+Preloading 277 shards into memory … 283398 graphs loaded in 416.3s (~54 MB tensor data)
+Dataset: 283398 graphs
+Model: net_default — v1 hit-branch (EdgeConv+SAGE+GraphConv) + cluster-branch DynamicEdgeConv
+device=cuda
+Params: 16,677,573
+Checkpoint policy: save_best_on=val
+fit(): device=cuda  epochs=30  batch=256  lr=0.001
+epoch 000  train 2.6428  val 1.7028  lr 4.00e-04  [best]
+epoch 001  train 1.9512  val 1.3670  lr 7.00e-04  [best]
+epoch 002  train 1.4089  val 1.2360  lr 1.00e-03  [best]
+epoch 003  train 1.4282  val 1.4575  lr 9.97e-04
+epoch 004  train 1.2797  val 1.5856  lr 9.87e-04
+epoch 005  train 1.3161  val 1.2794  lr 9.70e-04
+epoch 006  train 1.2066  val 1.1965  lr 9.47e-04  [best]
+epoch 007  train 1.1906  val 1.2193  lr 9.18e-04
+epoch 008  train 1.1734  val 1.1273  lr 8.83e-04  [best]
+epoch 009  train 1.1375  val 1.2855  lr 8.43e-04
+epoch 010  train 1.0691  val 1.2017  lr 7.99e-04
+epoch 011  train 1.0344  val 1.6499  lr 7.50e-04
+epoch 012  train 1.1604  val 1.2975  lr 6.98e-04
+epoch 013  train 1.0348  val 1.0555  lr 6.43e-04  [best]
+epoch 014  train 0.9623  val 1.1440  lr 5.87e-04
+epoch 015  train 0.9496  val 0.9732  lr 5.29e-04  [best]
+epoch 016  train 0.9099  val 0.9203  lr 4.71e-04  [best]
+epoch 017  train 0.8888  val 0.9349  lr 4.13e-04
+epoch 018  train 0.8588  val 0.9372  lr 3.57e-04
+epoch 019  train 0.8257  val 0.8841  lr 3.02e-04  [best]
+epoch 020  train 0.7926  val 0.8732  lr 2.50e-04  [best]
+epoch 021  train 0.7557  val 0.8530  lr 2.01e-04  [best]
+epoch 022  train 0.7258  val 0.8481  lr 1.57e-04  [best]
+epoch 023  train 0.6938  val 0.8997  lr 1.17e-04
+epoch 024  train 0.6881  val 0.8443  lr 8.23e-05  [best]
+epoch 025  train 0.6583  val 0.9159  lr 5.32e-05
+epoch 026  train 0.6435  val 0.9478  lr 3.02e-05
+epoch 027  train 0.6280  val 0.9215  lr 1.35e-05
+epoch 028  train 0.6228  val 0.9398  lr 3.38e-06
+epoch 029  train 0.6202  val 0.9451  lr 0.00e+00
+
+done: best epoch 24 (loss 0.8443)  checkpoint: /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/checkpoints/model.pt  elapsed: 8480.4s
+
+train done: Sat Oct 17 03:18:14 AM MSK 2026
+checkpoint: /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/checkpoints/model.pt
+
+next: evaluate this rung before submitting the following one, e.g.
+  CKPT=/scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/checkpoints/model.pt sbatch slurm/eval_dcm.hpc.sbatch
+ckpt: arch=net_default  kwargs={'hidden_channels': 512, 'num_layers': 8, 'cluster_pooling': 'mean_max_sum', 'cluster_size_feature': True, 'hit_residual': True}  epoch=24  metrics={'train_loss': 0.6881296429177914, 'val_loss': 0.8442960281449535}
+Preloading 277 shards into memory … 283398 graphs loaded in 407.4s (~54 MB tensor data)
+predict(): 874330 hits  241259 clusters  4435865 edges  (166.7s)
+  hits         874,330 rows  →  /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/validation/pred_hits_dcm.pkl
+  clusters     241,259 rows  →  /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/validation/pred_clusters_dcm.pkl
+  edges      4,435,865 rows  →  /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/validation/pred_edges_dcm.pkl
+clusters: 241,259   signal: 40,225 (16.7 %)
+ROC AUC = 0.9606   (reference ~0.97)
+
+  threshold   purity(N)  eff(N)   purity(E)  eff(E)
+       0.05      0.430   0.967       0.509   0.973
+       0.10      0.551   0.928       0.624   0.944
+       0.15      0.616   0.898       0.686   0.922
+       0.20      0.662   0.871       0.728   0.904
+       0.25      0.703   0.842       0.763   0.883
+       0.30      0.741   0.815       0.792   0.864
+       0.35      0.764   0.789       0.811   0.845
+       0.40      0.785   0.765       0.827   0.828
+       0.45      0.804   0.741       0.842   0.811
+       0.50      0.824   0.713       0.856   0.791
+       0.55      0.843   0.683       0.870   0.769
+       0.60      0.861   0.650       0.884   0.745
+       0.65      0.876   0.609       0.897   0.712
+       0.70      0.898   0.565       0.914   0.674
+       0.75      0.921   0.511       0.931   0.627
+       0.80      0.940   0.446       0.946   0.566
+       0.85      0.956   0.378       0.959   0.501
+       0.90      0.969   0.305       0.971   0.423
+       0.95      0.983   0.217       0.983   0.323
+
+  working point closest to 87 % energy purity: threshold 0.55  -> purity 0.870, efficiency 0.769
+
+  energy performance at threshold 0.55
+  E_true [GeV]         N   linearity  resolution
+  0.3-0.5          229.0      +15.4%        7.5%  >10%
+  0.5-0.7          189.0       +8.7%        7.7%
+  0.7-1.0        1,642.0       +1.5%        6.2%
+  1.0-1.4        3,580.0       -0.2%        7.8%
+  1.4-1.8        3,911.0       +0.4%        7.0%
+  1.8-2.2        4,592.0       +0.3%        6.8%
+  2.2-2.6        3,639.0       +0.8%        7.4%
+  2.6-3.0        3,505.0       +1.4%        7.7%
+  3.0-3.5        2,644.0       +0.2%        8.8%
+  3.5-4.0        1,749.0       -1.0%        8.4%
+  4.0-5.0        1,384.0       -2.9%        7.7%
+  5.0-6.5          368.0       -1.6%       10.8%  res>10%
+
+  above 0.7 GeV: max |linearity| = 2.9 %, max resolution = 10.8 %   (reference: both under 10 %)
+
+wrote /scratch/vbocharnikov/hgnd/experiments/dcm_diag_20261016_c36680aba5/residual/validation/performance.json

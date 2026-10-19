@@ -1,0 +1,10 @@
+{
+  "recipes": [
+    "reference",
+    "layernorm",
+    "pool",
+    "low_lr"
+  ],
+  "cuda_rng_replay": true,
+  "real_knn_batch_invariance": true
+}

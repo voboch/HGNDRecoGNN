@@ -1,16 +1,15 @@
 """Cluster reconstruction performance: purity, efficiency, linearity, resolution.
 
-Definitions follow the 26.02.2026 Dombay report so the numbers are directly
-comparable with its benchmarks:
+These internal cluster-level diagnostics have their own populations and
+estimators; they are not a reproduction of the Dombay event-level benchmark:
 
   energy weighted   purity     = 1 - E_fake / E_predicted
                     efficiency = E_true(selected signal) / E_true(all signal)
   count based       purity     = N_selected_signal / N_selected
                     efficiency = N_selected_signal / N_signal
 
-Reference values on 3.2 AGeV Xe+CsI DCM-QGSM-SMM: ROC AUC about 0.97, a working
-point near 80 % efficiency at 87 % purity, linearity within 10 % from 0.7 to
-about 5 GeV, and resolution under 10 % at feasible energies.
+See reports/reconstruction_review_20261016.md, DCM-02, for the different
+cluster selection, neutron denominator and resolution conventions.
 
 Linearity is the fractional departure of the median reconstructed energy from
 the true energy in bins of true energy; resolution is the half 16-84 percentile
@@ -103,7 +102,7 @@ def main():
     print(f"clusters: {len(cl):,}   signal: {int(cl.cl_label.sum()):,} "
           f"({cl.cl_label.mean()*100:.1f} %)")
     auc = roc_auc(cl.cl_score.to_numpy(), cl.cl_label.to_numpy())
-    print(f"ROC AUC = {auc:.4f}   (reference ~0.97)")
+    print(f"Cluster ROC AUC = {auc:.4f} (internal population)")
 
     scan = threshold_scan(cl, np.round(np.arange(0.05, 0.96, 0.05), 2))
     print("\n  threshold   purity(N)  eff(N)   purity(E)  eff(E)")

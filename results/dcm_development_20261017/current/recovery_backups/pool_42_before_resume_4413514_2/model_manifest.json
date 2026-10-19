@@ -1,0 +1,14 @@
+{
+  "parameters": 16673477,
+  "actual_hit_normalization": "batch",
+  "actual_cluster_pooling": "mean_max_sum",
+  "cluster_input_channels": 1536,
+  "architecture": {
+    "hidden_channels": 512,
+    "num_layers": 8,
+    "hit_normalization": "batch",
+    "cluster_pooling": "mean_max_sum",
+    "cluster_size_feature": false,
+    "hit_residual": false
+  }
+}
