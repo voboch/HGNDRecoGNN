@@ -1,4 +1,14 @@
 """Leakage guards for the source-run protocol; GPU behavior uses Slurm smoke."""
+from pathlib import Path
+import sys
+
+# Bootstrap the package parent onto sys.path, as every other test
+# module here does. Without it `python -m pytest tests/` from the
+# repository root fails at collection with ModuleNotFoundError and the
+# suite only runs under PYTHONPATH=.. .
+_REPO_PARENT = Path(__file__).resolve().parents[2]
+if str(_REPO_PARENT) not in sys.path:
+    sys.path.insert(0, str(_REPO_PARENT))
 import numpy as np
 import pytest
 from HGNDRecoGNN.scripts.dcm_grouped import group_partition, split_indices

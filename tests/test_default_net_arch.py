@@ -172,3 +172,57 @@ def test_bad_pooling_name_is_refused():
     with pytest.raises(ValueError, match="cluster_pooling"):
         Net(hidden_channels=32, num_layers=8,
             num_features=g['hits'].x.size(1), cluster_pooling='sum')
+
+
+# ── near-fixed-capacity pooling ──────────────────────────────────────────
+# The 2026-10-17 `pool` recipe could not separate a pooling gain from a
+# capacity gain: 'mean_max_sum' triples the DynamicEdgeConv input and so adds
+# 4,194,304 parameters at H=512, which is 34 % more than the whole v1 model
+# (reference 12,479,173 -> pool 16,673,477). 'mean_max_sum_proj' projects the
+# concatenation back to hidden_channels first, leaving that layer's shape
+# identical to the 'mean' baseline.
+
+def test_proj_pooling_restores_the_baseline_cluster_width():
+    g = _one_graph()
+    base = _build(g)
+    proj = _build(g, cluster_pooling='mean_max_sum_proj')
+    assert proj.cluster_in_channels == base.cluster_in_channels == 32
+    assert proj.cluster_cat_channels == 96, 'the concat is still 3 x hidden'
+    assert proj.cluster_conv_cpu.nn[0].in_features == \
+        base.cluster_conv_cpu.nn[0].in_features, \
+        'DynamicEdgeConv must see the same width as the mean baseline'
+
+
+def test_proj_pooling_costs_far_less_than_plain_concatenation():
+    g = _one_graph()
+    n = lambda m: sum(p.numel() for p in m.parameters())
+    base = n(_build(g))
+    wide = n(_build(g, cluster_pooling='mean_max_sum'))
+    proj = n(_build(g, cluster_pooling='mean_max_sum_proj'))
+    assert wide > proj > base, (base, proj, wide)
+    # the projection must be the cheaper way to get max+sum information
+    assert (proj - base) < 0.5 * (wide - base), \
+        f'projection adds {proj - base}, concatenation adds {wide - base}'
+
+
+def test_proj_pooling_still_sees_max_and_sum():
+    """The projection must consume the wide concat, not discard it."""
+    g = _one_graph()
+    m = _build(g, cluster_pooling='mean_max_sum_proj')
+    cl_idx = torch.tensor([0, 0, 1])
+    feat_a = torch.zeros(3, 32)
+    feat_b = feat_a.clone()
+    feat_b[1, 0] = 5.0            # changes max and sum of cluster 0, not its mean
+    mean = torch.zeros(2, 32)
+    out_a = m._augment_cluster_features(mean, cl_idx, feat_a)
+    out_b = m._augment_cluster_features(mean, cl_idx, feat_b)
+    assert out_a.shape == (2, 32), out_a.shape
+    assert not torch.allclose(out_a, out_b), \
+        'the projected vector ignores max/sum information'
+
+
+def test_proj_pooling_with_size_feature_keeps_the_baseline_width():
+    g = _one_graph()
+    m = _build(g, cluster_pooling='mean_max_sum_proj', cluster_size_feature=True)
+    assert m.cluster_cat_channels == 97
+    assert m.cluster_in_channels == 32

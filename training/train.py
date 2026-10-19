@@ -503,6 +503,18 @@ def fit(
         )
         train_loss = train_result['total'] if isinstance(train_result, dict) else train_result
         val_loss = val_result['total'] if isinstance(val_result, dict) else val_result
+        # Say so if the requested per-head aggregation could not be applied:
+        # the checkpoint selector would otherwise be a different statistic from
+        # the one the config names, with nothing on the record.
+        if (isinstance(val_result, dict)
+                and val_result.get('aggregation', cfg.validation_aggregation)
+                != cfg.validation_aggregation and epoch == start_epoch
+                and cfg.verbose):
+            print(f'fit(): WARNING validation_aggregation='
+                  f'{cfg.validation_aggregation!r} requested but '
+                  f'{val_result["aggregation"]!r} used; the loss function '
+                  f'exposes no per-head normalizers, so checkpoint selection '
+                  f'is on the batch mean.')
         if not np.isfinite(train_loss) or not np.isfinite(val_loss):
             raise ValueError('Nonfinite epoch loss; refusing a checkpoint')
         # Stepped AFTER validation so 'plateau' can see the metric it decays

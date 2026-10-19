@@ -27,8 +27,16 @@ class LossAccumulator:
             raise ValueError(f'Unknown loss aggregation: {aggregation}')
         parts = {k: self.sums[k] / n for k, n in self.counts.items() if n}
         batch_mean = sum(self.batch_totals) / len(self.batch_totals) if self.batch_totals else float('nan')
+        # A loss_fn with no `normalizers` cannot be aggregated per head, so the
+        # population request degrades to the batch mean. That is a different
+        # statistic, and silently substituting it would make a run's selector
+        # disagree with its own configuration -- so the key below records which
+        # one was actually used, and fit() reports a downgrade.
+        population_ok = (self.normalizers is not None and bool(self.batch_totals)
+                         and bool(parts))
+        used = 'population' if (aggregation == 'population' and population_ok) \
+            else 'batch_mean'
         total = (sum(getattr(self.weights, k) * v for k, v in parts.items())
-                 if aggregation == 'population' and self.normalizers is not None and self.batch_totals
-                 else batch_mean)
+                 if used == 'population' else batch_mean)
         return {'total': total, 'components': parts, 'counts': dict(self.counts),
-                'batch_mean': batch_mean}
+                'batch_mean': batch_mean, 'aggregation': used}

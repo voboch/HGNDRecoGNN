@@ -40,7 +40,7 @@ class Net(torch.nn.Module):
         every published number is reproduced unchanged. See the three blocks
         below for why each one exists.
 
-        cluster_pooling: 'mean' (v1) or 'mean_max_sum'.
+        cluster_pooling: 'mean' (v1), 'mean_max_sum' or 'mean_max_sum_proj'.
             The cluster branch is fed `avg_pool_x`, i.e. the MEAN of its hits'
             embeddings, which is invariant to how many hits the cluster has.
             Measured on the SMASH defaultSpot cache, cluster size alone
@@ -67,10 +67,10 @@ class Net(torch.nn.Module):
         self.hidden_channels = hidden_channels
         self.num_layers = num_layers
         self.num_features = num_features
-        if cluster_pooling not in ('mean', 'mean_max_sum'):
+        if cluster_pooling not in ('mean', 'mean_max_sum', 'mean_max_sum_proj'):
             raise ValueError(
-                f"cluster_pooling must be 'mean' or 'mean_max_sum', "
-                f"got {cluster_pooling!r}")
+                f"cluster_pooling must be 'mean', 'mean_max_sum' or "
+                f"'mean_max_sum_proj', got {cluster_pooling!r}")
         self.cluster_pooling = cluster_pooling
         self.cluster_size_feature = bool(cluster_size_feature)
         self.hit_residual = bool(hit_residual)
@@ -121,8 +121,28 @@ class Net(torch.nn.Module):
         # is CPU-only there). The `_cpu` suffix is kept for state_dict stability.
         # Width of one pooled cluster vector before DynamicEdgeConv, which
         # concatenates a pair of them and so sees twice this.
-        n_pool = 3 if self.cluster_pooling == 'mean_max_sum' else 1
-        cl_in = hidden_channels * n_pool + (1 if self.cluster_size_feature else 0)
+        n_pool = 3 if self.cluster_pooling in ('mean_max_sum',
+                                               'mean_max_sum_proj') else 1
+        cl_cat = hidden_channels * n_pool + (1 if self.cluster_size_feature else 0)
+        self.cluster_cat_channels = cl_cat
+        # 'mean_max_sum' feeds the concatenation straight into DynamicEdgeConv,
+        # which triples that layer's input width and so adds 4,194,304
+        # parameters at H=512 -- 34 % more than the whole v1 model. Any gain it
+        # shows is then confounded with capacity, which is exactly what the
+        # 2026-10-17 `pool` recipe could not separate.
+        #
+        # 'mean_max_sum_proj' projects the concatenation back to
+        # hidden_channels first, so DynamicEdgeConv is bit-identical in shape
+        # to the 'mean' baseline and the only addition is the projection
+        # itself (cl_cat x hidden + hidden). It is not parameter-free either,
+        # so a capacity-matched control is still the honest comparison -- but
+        # it is 787k rather than 4.19M.
+        if self.cluster_pooling == 'mean_max_sum_proj':
+            self.cluster_proj = Lin(cl_cat, hidden_channels)
+            cl_in = hidden_channels
+        else:
+            self.cluster_proj = None
+            cl_in = cl_cat
         self.cluster_in_channels = cl_in
 
         nn_cl = Seq(Lin(cl_in * 2, hidden_channels * 4), ReLU(),
@@ -203,11 +223,13 @@ class Net(torch.nn.Module):
         """
         if self.cluster_pooling == 'mean' and not self.cluster_size_feature:
             return cl_mean
+        # note: with 'mean' + size feature there is nothing to project, so the
+        # projection is applied only where the concatenation was widened.
 
         idx, _ = consecutive_cluster(cl_idx)
         n = cl_mean.size(0)
         parts = [cl_mean]
-        if self.cluster_pooling == 'mean_max_sum':
+        if self.cluster_pooling in ('mean_max_sum', 'mean_max_sum_proj'):
             parts.append(scatter(cl_feat, idx, dim=0, dim_size=n, reduce='max'))
             parts.append(scatter(cl_feat, idx, dim=0, dim_size=n, reduce='sum'))
         if self.cluster_size_feature:
@@ -217,7 +239,10 @@ class Net(torch.nn.Module):
             # log1p: sizes are heavy-tailed, and a raw count would enter the
             # first Linear on a different scale from the standardised features.
             parts.append(torch.log1p(size))
-        return torch.cat(parts, dim=-1)
+        out = torch.cat(parts, dim=-1) if len(parts) > 1 else parts[0]
+        if self.cluster_proj is not None:
+            out = self.cluster_proj(out).relu()
+        return out
 
     def forward(self, x, edge_index, edge_index_cl, clusters, batch):
         x = self.convs[0](x, edge_index).relu()

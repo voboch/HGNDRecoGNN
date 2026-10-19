@@ -205,11 +205,17 @@ def main() -> int:
     parser.add_argument('--grad-clip-norm', type=float, default=None,
                         help='Clip gradients to this global norm. Unset by '
                              'default, matching every published run.')
-    parser.add_argument('--cluster-pooling', choices=('mean', 'mean_max_sum'),
+    parser.add_argument('--cluster-pooling',
+                        choices=('mean', 'mean_max_sum', 'mean_max_sum_proj'),
                         default=None,
                         help="Cluster-branch pooling. 'mean' (default) is "
                              "avg_pool_x alone and is invariant to cluster "
-                             "size; 'mean_max_sum' concatenates max and sum.")
+                             "size; 'mean_max_sum' concatenates max and sum, "
+                             "which triples the DynamicEdgeConv input and adds "
+                             "4.19M parameters at H=512, confounding any gain "
+                             "with capacity; 'mean_max_sum_proj' projects the "
+                             "concatenation back to hidden_channels first, "
+                             "keeping that layer's shape identical to 'mean'.")
     parser.add_argument('--cluster-size-feature', action='store_true',
                         help='Append log1p(cluster hit count) to the cluster '
                              'vector. Cluster size alone separates signal '
