@@ -68,6 +68,43 @@ SMASH samples), funding.
 - **The energy annotation `√s_NN = 2.87 GeV` on figures is wrong:** the
   sample is `E_kin/A = 2.87 GeV`.
 
+## Preflight (read by `preflight-reviewer`)
+
+- **Launchers:** `slurm/*.hpc.sbatch`, `slurm/hpcjob.sh`; Python entry
+  points in `scripts/` (DCM development and grouping, acceptance,
+  systematics).
+- **HPC:** `HPC.md` and `HPC_DATA.md` are directive. Smoke on the test
+  partition first; never train on the login node.
+- **Local rule (`AGENTS.md`):** every fixed parameter (cut, threshold,
+  binning, fit range) needs a plot of the objective or feature and a written
+  justification at the point of use. A launch that introduces an
+  unjustified constant is a finding.
+- **Data hazards to check:**
+  - a shared `StandardScaler` across compared datasets (a per-dataset fit is
+    a domain leak);
+  - selection in the real detector acceptance, not a polar-angle band;
+  - truth information in the purity lock and calibration.
+- **State:** there is no single state file. Read the newest `HANDOFF_*.md`
+  and `logs/`.
+
+## Number sources (read by `number-auditor`)
+
+- **Canonical chain.** HGND has no single canonical-results builder. The
+  paper `\input`s tables from `../HGNDPaper/tables/*.tex`
+  (`dcm_grouped_numbers.tex`, `dcm_grouped_points.tex`,
+  `dcm_validation_20261016.tex`, `truth_scan.tex`, `archived_ladder.tex`).
+  Their data and provenance are in `../HGNDPaper/data/*.json`
+  (`manuscript_provenance.json`, `dcm_grouped_20261017.json`,
+  `historical_validation_selector_20261017.json`).
+  The absence of one builder is itself a finding under the thesis-kb
+  canonical-table rule.
+- **Typed numbers.** Look them up in `docs/HGND_PROGRESS_GUIDE.md`,
+  `../HGNDPaper/manuscript_corrections_20261017.md`, `reports/`, `results/`
+  and `output/`.
+- **Figures:** `../HGNDPaper/figs/`; label fixes are in
+  `../HGNDPaper/data/figure_label_corrections.json`.
+- **Precision rules:** the HIC `SCIENTIFIC_WRITING_POLICY.md`, by reference.
+
 ## Reviews
 
 - **`reviews_dir`:** `../HGNDPaper/`
