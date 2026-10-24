@@ -21,15 +21,15 @@ mkdir "$STAGE"
 cd "$CENSUS_SOURCE"
 sha256sum -c SHA256SUMS
 ARGS=(--dcm-root "$CENSUS_DCM" --smash-inventory original_inventory.json --output "$STAGE/result")
+[[ ${CENSUS_MODE:-smoke} == smoke || ${CENSUS_MODE:-smoke} == full ]] || exit 2
 if [[ ${CENSUS_MODE:-smoke} == smoke ]]; then
   ARGS+=(--smoke)
 else
   : "${CENSUS_SMOKE_RECEIPT:?successful smoke receipt required}"
-  "$CENSUS_ENV/bin/python" - "$CENSUS_SMOKE_RECEIPT" <<'PY'
-import json,sys
-x=json.load(open(sys.argv[1]))
-assert x['status']=='complete' and x['smoke'] is True
-assert len(x['files'])==6
+  "$CENSUS_ENV/bin/python" - "$CENSUS_SMOKE_RECEIPT" "$CENSUS_DCM" <<'PY'
+import sys
+from content_census import validate_smoke
+validate_smoke(sys.argv[1], 'original_inventory.json', sys.argv[2])
 PY
 fi
 "$CENSUS_ENV/bin/python" -u content_census.py "${ARGS[@]}"

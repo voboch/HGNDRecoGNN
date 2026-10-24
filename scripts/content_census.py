@@ -91,6 +91,31 @@ def write_index(path, records):
             f.write(','.join(map(str, item)) + '\n')
 
 
+def validate_smoke(receipt, inventory_path, dcm_root):
+    """A passed smoke is usable only for the exact current code and inputs."""
+    x = json.loads(Path(receipt).read_text())
+    inventory = json.loads(Path(inventory_path).read_text())
+    if (x.get('status') != 'complete' or x.get('smoke') is not True
+            or x.get('code_sha256') != sha256(__file__)
+            or x.get('smash_inventory_sha256') != sha256(inventory_path)):
+        raise ValueError('Smoke receipt is incomplete or belongs to different code/inventory')
+    expected = {str(sorted((Path(dcm_root) / run).glob('*_hits.csv'))[0])
+                for run in ('988974', '988975', '988976')}
+    expected.update(str(Path(info['primary_root']) / f'{info["common_primary_pair_names"][0]}_prim.csv')
+                    for info in inventory['tags'].values())
+    if len(x['files']) != 6 or {v['path'] for v in x['files']} != expected:
+        raise ValueError('Smoke did not cover the declared input roots')
+    for item in x['files']:
+        if item['events'] <= 0 or item['records'] <= 0 or sha256(item['path']) != item['sha256']:
+            raise ValueError('Smoke input is empty or changed')
+    required = {'dcm_hits', 'dcm_retained_hits', 'smash_full', 'smash_without_vertex'}
+    if set(x['identities']) != required:
+        raise ValueError('Smoke skipped an identity definition')
+    for name in required:
+        if sha256(Path(receipt).parent / f'{name}.csv.gz') != x['identities'][name]['index_sha256']:
+            raise ValueError('Smoke identity index missing or corrupt')
+
+
 def run(args):
     started = time.monotonic()
     args.output.mkdir(parents=True, exist_ok=False)
