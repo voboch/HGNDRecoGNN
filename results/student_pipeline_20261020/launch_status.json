@@ -1,0 +1,88 @@
+{
+  "state": "complete",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206",
+  "source_root": "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206",
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "source_files": 113,
+  "archive_local": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/student_pipeline_20261020_56bcc48206.tar.gz",
+  "archive_sha256": "81ee9def26c718736e8755b570de513275c00f918a85436c8d9424524f597577",
+  "prepared_dir": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+  "frozen_data": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/data_manifest.json",
+  "python_tests_passed": 161,
+  "training_runs": 12,
+  "max_simultaneous_tasks": 2,
+  "no_gatv2": true,
+  "reused_test_source": "988976",
+  "test_job_submitted": true,
+  "smoke_job": "4424014",
+  "training_submitted": true,
+  "checked_at_msk": "2026-10-21T13:20:08.652550+03:00",
+  "smoke_state": "COMPLETED",
+  "smoke_exit_code": "0:0",
+  "smoke_elapsed": "00:12:30",
+  "train_array_job": "4424084",
+  "train_array_state": "COMPLETED",
+  "train_pending_reason": "Priority",
+  "test_job": "4424085",
+  "test_state": "COMPLETED",
+  "test_pending_reason": "Dependency",
+  "test_dependency": "afterok:4424084",
+  "array_mapping": [
+    [
+      "student_sage",
+      42
+    ],
+    [
+      "student_dynedge",
+      42
+    ],
+    [
+      "student_spectral_sage",
+      42
+    ],
+    [
+      "student_spectral_dynedge",
+      42
+    ],
+    [
+      "student_sage",
+      123
+    ],
+    [
+      "student_dynedge",
+      123
+    ],
+    [
+      "student_spectral_sage",
+      123
+    ],
+    [
+      "student_spectral_dynedge",
+      123
+    ],
+    [
+      "student_sage",
+      456
+    ],
+    [
+      "student_dynedge",
+      456
+    ],
+    [
+      "student_spectral_sage",
+      456
+    ],
+    [
+      "student_spectral_dynedge",
+      456
+    ]
+  ],
+  "prepared_sha256": "0e3269fc4b422a137dc0fb3d1f2a5961417019b6864a8d14dab5ca772f91640b",
+  "test_opened_by_this_campaign": true,
+  "completed_training_runs": 12,
+  "completed_test_runs": 12,
+  "test_scope": "previously opened source run 988976; not an independent confirmatory test",
+  "slurm_accounting": "4424085|COMPLETED|0:0|00:11:53|cn-011\n4424085.batch|COMPLETED|0:0|00:11:53|cn-011\n4424085.extern|COMPLETED|0:0|00:11:53|cn-011\n4424084_0|COMPLETED|0:0|00:22:17|cn-010\n4424084_0.batch|COMPLETED|0:0|00:22:17|cn-010\n4424084_0.extern|COMPLETED|0:0|00:22:17|cn-010\n4424084_1|COMPLETED|0:0|00:21:18|cn-011\n4424084_1.batch|COMPLETED|0:0|00:21:18|cn-011\n4424084_1.extern|COMPLETED|0:0|00:21:18|cn-011\n4424084_2|COMPLETED|0:0|00:19:51|cn-010\n4424084_2.batch|COMPLETED|0:0|00:19:51|cn-010\n4424084_2.extern|COMPLETED|0:0|00:19:51|cn-010\n4424084_3|COMPLETED|0:0|00:20:00|cn-011\n4424084_3.batch|COMPLETED|0:0|00:20:00|cn-011\n4424084_3.extern|COMPLETED|0:0|00:20:00|cn-011\n4424084_4|COMPLETED|0:0|00:19:10|cn-010\n4424084_4.batch|COMPLETED|0:0|00:19:10|cn-010\n4424084_4.extern|COMPLETED|0:0|00:19:10|cn-010\n4424084_5|COMPLETED|0:0|00:19:24|cn-011\n4424084_5.batch|COMPLETED|0:0|00:19:24|cn-011\n4424084_5.extern|COMPLETED|0:0|00:19:24|cn-011\n4424084_6|COMPLETED|0:0|00:19:54|cn-010\n4424084_6.batch|COMPLETED|0:0|00:19:54|cn-010\n4424084_6.extern|COMPLETED|0:0|00:19:54|cn-010\n4424084_7|COMPLETED|0:0|00:19:53|cn-011\n4424084_7.batch|COMPLETED|0:0|00:19:53|cn-011\n4424084_7.extern|COMPLETED|0:0|00:19:53|cn-011\n4424084_8|COMPLETED|0:0|00:19:24|cn-010\n4424084_8.batch|COMPLETED|0:0|00:19:24|cn-010\n4424084_8.extern|COMPLETED|0:0|00:19:24|cn-010\n4424084_9|COMPLETED|0:0|00:19:05|cn-011\n4424084_9.batch|COMPLETED|0:0|00:19:05|cn-011\n4424084_9.extern|COMPLETED|0:0|00:19:05|cn-011\n4424084_10|COMPLETED|0:0|00:19:36|cn-010\n4424084_10.batch|COMPLETED|0:0|00:19:36|cn-010\n4424084_10.extern|COMPLETED|0:0|00:19:36|cn-010\n4424084_11|COMPLETED|0:0|00:19:29|cn-011\n4424084_11.batch|COMPLETED|0:0|00:19:29|cn-011\n4424084_11.extern|COMPLETED|0:0|00:19:29|cn-011\n",
+  "summary_local": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/evaluation_summary_20261021.json",
+  "completion_validation_local": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/completion_validation_20261021.json"
+}

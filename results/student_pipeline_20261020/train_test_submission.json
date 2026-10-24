@@ -1,0 +1,82 @@
+{
+  "state": "training_and_test_submitted",
+  "smoke_job": "4424014",
+  "smoke_accounting": "4424014|COMPLETED|0:0\n4424014.batch|COMPLETED|0:0\n4424014.extern|COMPLETED|0:0\n",
+  "smoke_complete_sha256": "f3bef56f6ebbe3b821a2e7102a463bc55017d02b4229dbf6ab2e99d8c4c7d351",
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206",
+  "array_mapping": [
+    [
+      "student_sage",
+      42
+    ],
+    [
+      "student_dynedge",
+      42
+    ],
+    [
+      "student_spectral_sage",
+      42
+    ],
+    [
+      "student_spectral_dynedge",
+      42
+    ],
+    [
+      "student_sage",
+      123
+    ],
+    [
+      "student_dynedge",
+      123
+    ],
+    [
+      "student_spectral_sage",
+      123
+    ],
+    [
+      "student_spectral_dynedge",
+      123
+    ],
+    [
+      "student_sage",
+      456
+    ],
+    [
+      "student_dynedge",
+      456
+    ],
+    [
+      "student_spectral_sage",
+      456
+    ],
+    [
+      "student_spectral_dynedge",
+      456
+    ]
+  ],
+  "max_simultaneous_tasks": 2,
+  "train_array_job": "4424084",
+  "train_command": [
+    "sbatch",
+    "--parsable",
+    "--array=0-11%2",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206_submission/train_%A_%a.out",
+    "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206/HGNDRecoGNN/slurm/student_pipeline.hpc.sbatch"
+  ],
+  "train_stdout": "4424084\n",
+  "train_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "test_job": "4424085",
+  "test_command": [
+    "sbatch",
+    "--parsable",
+    "--time=02:00:00",
+    "--dependency=afterok:4424084",
+    "--kill-on-invalid-dep=yes",
+    "--job-name=student-native-test",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206_submission/test_%j.out",
+    "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206/HGNDRecoGNN/slurm/student_pipeline.hpc.sbatch"
+  ],
+  "test_stdout": "4424085\n",
+  "test_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n"
+}

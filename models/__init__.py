@@ -81,6 +81,7 @@ from . import hetero_gat                               # noqa: E402,F401
 from . import hetero_hgt                               # noqa: E402,F401
 from . import thesis_baselines                        # noqa: E402,F401
 from . import spectral                                 # noqa: E402,F401
+from . import student_pipeline                         # noqa: E402,F401
 
 __all__ = [
     'ModelSpec', 'REGISTRY', 'register', 'get', 'available',

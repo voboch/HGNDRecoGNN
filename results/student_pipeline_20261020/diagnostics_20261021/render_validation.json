@@ -1,0 +1,98 @@
+{
+  "pdfs_rendered": 28,
+  "fonts": {
+    "student_dynedge_123_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_123_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_42_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_42_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_456_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_456_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_dynedge_energy_response.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_123_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_123_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_42_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_42_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_456_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_456_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_sage_energy_response.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_123_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_123_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_42_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_42_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_456_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_456_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_dynedge_energy_response.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_123_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_123_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_42_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_42_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_456_history.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_456_threshold.pdf": [
+      "embedded TrueType"
+    ],
+    "student_spectral_sage_energy_response.pdf": [
+      "embedded TrueType"
+    ]
+  },
+  "contacts": [
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_history_1.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_history_2.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_history_3.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_threshold_1.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_threshold_2.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_threshold_3.png",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/student_pipeline_20261020/diagnostics_20261021/rendered/contact_energy_response_1.png"
+  ]
+}

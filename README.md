@@ -160,6 +160,18 @@ print(models.available())
 | `spectral_gat`    | thesis spectral | Spectral-Gated GATv2                                        |
 | `spectral_dynedge`| thesis spectral | Spectral-Gated DynamicEdgeConv (thesis top-performing)      |
 
+The faithful student backbones also register as `student_sage`,
+`student_dynedge`, `student_spectral_sage` and `student_spectral_dynedge`.
+They use native ten-feature HGND hits and frozen component candidates with
+the original attention/mean/max/sum pooling and both output heads. The
+source-run driver `scripts/student_pipeline.py` supplies topology-only PE,
+uses the shared `training.train.fit` and `training.eval.predict`, and guards
+the approved split. Its finite campaign and reused-test limitation are
+recorded in `reports/student_pipeline_protocol_20261020.md`. Use that driver
+for this check: the generic random-split CLI does not implement this protocol.
+The six-feature notebook checkpoints belong to the separate student UFC
+reproduction and cannot initialise these ten-feature models.
+
 Adding a new model:
 
 ```python

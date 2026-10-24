@@ -1,0 +1,23 @@
+{
+  "training_runs_verified": 12,
+  "epochs_each": 30,
+  "test_runs_verified": 12,
+  "selected_checkpoint_hashes_verified": true,
+  "atomic_resume_and_history_hashes_verified": true,
+  "test_prediction_hashes_verified": 12,
+  "validation_thresholds_unchanged": true,
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "summary_sha256": "38abedb7dfe2ed58dfc8e2af928d5a04e14e21e45579ecd517aea096defe3f4a",
+  "per_seed_sha256": "7b7ef5725a5143e493119337b10c8c6ee902cc2a45ffd18bbe2b1b5701c75236",
+  "slurm_accounting": "4424085|COMPLETED|0:0|00:11:53|cn-011\n4424085.batch|COMPLETED|0:0|00:11:53|cn-011\n4424085.extern|COMPLETED|0:0|00:11:53|cn-011\n4424084_0|COMPLETED|0:0|00:22:17|cn-010\n4424084_0.batch|COMPLETED|0:0|00:22:17|cn-010\n4424084_0.extern|COMPLETED|0:0|00:22:17|cn-010\n4424084_1|COMPLETED|0:0|00:21:18|cn-011\n4424084_1.batch|COMPLETED|0:0|00:21:18|cn-011\n4424084_1.extern|COMPLETED|0:0|00:21:18|cn-011\n4424084_2|COMPLETED|0:0|00:19:51|cn-010\n4424084_2.batch|COMPLETED|0:0|00:19:51|cn-010\n4424084_2.extern|COMPLETED|0:0|00:19:51|cn-010\n4424084_3|COMPLETED|0:0|00:20:00|cn-011\n4424084_3.batch|COMPLETED|0:0|00:20:00|cn-011\n4424084_3.extern|COMPLETED|0:0|00:20:00|cn-011\n4424084_4|COMPLETED|0:0|00:19:10|cn-010\n4424084_4.batch|COMPLETED|0:0|00:19:10|cn-010\n4424084_4.extern|COMPLETED|0:0|00:19:10|cn-010\n4424084_5|COMPLETED|0:0|00:19:24|cn-011\n4424084_5.batch|COMPLETED|0:0|00:19:24|cn-011\n4424084_5.extern|COMPLETED|0:0|00:19:24|cn-011\n4424084_6|COMPLETED|0:0|00:19:54|cn-010\n4424084_6.batch|COMPLETED|0:0|00:19:54|cn-010\n4424084_6.extern|COMPLETED|0:0|00:19:54|cn-010\n4424084_7|COMPLETED|0:0|00:19:53|cn-011\n4424084_7.batch|COMPLETED|0:0|00:19:53|cn-011\n4424084_7.extern|COMPLETED|0:0|00:19:53|cn-011\n4424084_8|COMPLETED|0:0|00:19:24|cn-010\n4424084_8.batch|COMPLETED|0:0|00:19:24|cn-010\n4424084_8.extern|COMPLETED|0:0|00:19:24|cn-010\n4424084_9|COMPLETED|0:0|00:19:05|cn-011\n4424084_9.batch|COMPLETED|0:0|00:19:05|cn-011\n4424084_9.extern|COMPLETED|0:0|00:19:05|cn-011\n4424084_10|COMPLETED|0:0|00:19:36|cn-010\n4424084_10.batch|COMPLETED|0:0|00:19:36|cn-010\n4424084_10.extern|COMPLETED|0:0|00:19:36|cn-010\n4424084_11|COMPLETED|0:0|00:19:29|cn-011\n4424084_11.batch|COMPLETED|0:0|00:19:29|cn-011\n4424084_11.extern|COMPLETED|0:0|00:19:29|cn-011\n",
+  "test_population": {
+    "graphs": 131173,
+    "physical_events": 91081,
+    "clusters": 222251,
+    "signal_clusters": 36713,
+    "ordered_index_row_side_sha256": "2c190c3ae8282d54a4ad25991d7c768136c0b1ad28cdf2fd191e87e9f117df51"
+  },
+  "test_scope": "previously opened source run 988976; not an independent confirmatory test",
+  "no_jobs_submitted": true
+}

@@ -1,0 +1,16 @@
+{
+  "suite": "161 passed, 13 warnings",
+  "new_tests": 7,
+  "ruff": "passed",
+  "python_compile": "passed",
+  "shell_syntax": "passed",
+  "protocol_table_lint": "passed",
+  "source_manifest_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "models": [
+    "student_sage",
+    "student_dynedge",
+    "student_spectral_sage",
+    "student_spectral_dynedge"
+  ],
+  "test_not_opened_by_local_checks": true
+}

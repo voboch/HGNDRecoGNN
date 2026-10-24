@@ -1,0 +1,124 @@
+{
+  "models": {
+    "student_sage": {
+      "roc_auc": {
+        "mean": 0.9079840853419667,
+        "sample_sd": 0.00768364090364682,
+        "n_seeds": 3
+      },
+      "average_precision": {
+        "mean": 0.7014131355226113,
+        "sample_sd": 0.010489404311261467,
+        "n_seeds": 3
+      },
+      "mae_GeV": {
+        "mean": 0.24928854652128837,
+        "sample_sd": 0.026020366171071688,
+        "n_seeds": 3
+      },
+      "rmse_GeV": {
+        "mean": 0.41124299391072716,
+        "sample_sd": 0.03513838207161664,
+        "n_seeds": 3
+      },
+      "bias_GeV": {
+        "mean": -0.1033611533270871,
+        "sample_sd": 0.07861918125697713,
+        "n_seeds": 3
+      }
+    },
+    "student_dynedge": {
+      "roc_auc": {
+        "mean": 0.9095490404087547,
+        "sample_sd": 0.005963028276358771,
+        "n_seeds": 3
+      },
+      "average_precision": {
+        "mean": 0.7094505613969234,
+        "sample_sd": 0.014257559626519735,
+        "n_seeds": 3
+      },
+      "mae_GeV": {
+        "mean": 0.26102814943239366,
+        "sample_sd": 0.018758812351024393,
+        "n_seeds": 3
+      },
+      "rmse_GeV": {
+        "mean": 0.4090664485826902,
+        "sample_sd": 0.030349441441654683,
+        "n_seeds": 3
+      },
+      "bias_GeV": {
+        "mean": -0.03555079909616068,
+        "sample_sd": 0.03476017108785436,
+        "n_seeds": 3
+      }
+    },
+    "student_spectral_sage": {
+      "roc_auc": {
+        "mean": 0.9059789904758079,
+        "sample_sd": 0.004253901332982103,
+        "n_seeds": 3
+      },
+      "average_precision": {
+        "mean": 0.6933678506637101,
+        "sample_sd": 0.01035255803106113,
+        "n_seeds": 3
+      },
+      "mae_GeV": {
+        "mean": 0.24421637992439735,
+        "sample_sd": 0.006452702008404414,
+        "n_seeds": 3
+      },
+      "rmse_GeV": {
+        "mean": 0.40571679540072814,
+        "sample_sd": 0.01469252366563873,
+        "n_seeds": 3
+      },
+      "bias_GeV": {
+        "mean": -0.06866414198743792,
+        "sample_sd": 0.027044305229390532,
+        "n_seeds": 3
+      }
+    },
+    "student_spectral_dynedge": {
+      "roc_auc": {
+        "mean": 0.9062010247410113,
+        "sample_sd": 0.005368265080996099,
+        "n_seeds": 3
+      },
+      "average_precision": {
+        "mean": 0.708463241870326,
+        "sample_sd": 0.009770495139016698,
+        "n_seeds": 3
+      },
+      "mae_GeV": {
+        "mean": 0.2561799995178721,
+        "sample_sd": 0.014686277349955616,
+        "n_seeds": 3
+      },
+      "rmse_GeV": {
+        "mean": 0.4119555744344882,
+        "sample_sd": 0.02199918319863727,
+        "n_seeds": 3
+      },
+      "bias_GeV": {
+        "mean": -0.08321442900110165,
+        "sample_sd": 0.06088387186689296,
+        "n_seeds": 3
+      }
+    }
+  },
+  "population": {
+    "graphs": 131173,
+    "physical_events": 91081,
+    "clusters": 222251,
+    "signal_clusters": 36713,
+    "ordered_index_row_side_sha256": "2c190c3ae8282d54a4ad25991d7c768136c0b1ad28cdf2fd191e87e9f117df51"
+  },
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "uncertainty": "sample SD over training seeds; no between-source variance",
+  "test_scope": "previously opened source run 988976; not an independent confirmatory test",
+  "test_threshold_tuning": false
+}

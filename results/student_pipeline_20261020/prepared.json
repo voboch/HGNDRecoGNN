@@ -1,0 +1,43 @@
+{
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "cache_inventory_sha256": "1722523f8708a10d3b6eac43c303fd4780ea31e4df671daf25d37ca69c7a7c29",
+  "population": {
+    "train": {
+      "graphs": 92252,
+      "physical_events": 64138,
+      "clusters": 159085,
+      "signal_clusters": 26244,
+      "source_runs": [
+        "988975"
+      ],
+      "ordered_index_row_side_sha256": "36793058d099f97f4e7fdbd04acdfe2513da8e00713cd282afb464c8359b2a83"
+    },
+    "validation": {
+      "graphs": 59973,
+      "physical_events": 41808,
+      "clusters": 101107,
+      "signal_clusters": 16877,
+      "source_runs": [
+        "988974"
+      ],
+      "ordered_index_row_side_sha256": "09c466c0ba87e399d04eab140f8521b92450a3bc1984ac9a22f4c7b37ffbb444"
+    }
+  },
+  "partition_source_runs": {
+    "train": [
+      "988975"
+    ],
+    "validation": [
+      "988974"
+    ],
+    "test": [
+      "988976"
+    ]
+  },
+  "test_read_or_scored": false,
+  "files": {
+    "train.pt": "b070cdd8ac1711351a2317950a89a632fc48081f4dadbb2d3e20ba207bdfe01e",
+    "validation.pt": "dd78cb592f77b00da3ad2e66f6aaedd00db0476a21f9a1089a789c100408ed49"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206",
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206",
+  "smoke_job": "4424014",
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--partition=test",
+    "--time=00:30:00",
+    "--job-name=student-native-smoke",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206_submission/smoke_%j.out",
+    "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206/HGNDRecoGNN/slurm/student_pipeline.hpc.sbatch"
+  ],
+  "stdout": "4424014\n",
+  "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "env": {
+    "NATIVE_SOURCE": "/home/vbocharnikov/hgnd_experiments/student_pipeline_20261020_56bcc48206",
+    "NATIVE_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/student_pipeline_20261020_56bcc48206",
+    "NATIVE_ENV": "/home/vbocharnikov/.conda/envs/student-ufc-240",
+    "NATIVE_PREPARED": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2/prepared",
+    "NATIVE_FROZEN": "/scratch/vbocharnikov/hgnd/experiments/dcm_dev_retry_20261017_7dcd849c18/data_manifest.json",
+    "NATIVE_PHASE": "prepare_smoke"
+  }
+}
