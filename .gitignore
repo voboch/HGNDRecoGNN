@@ -104,6 +104,34 @@ results/
 !/results/dcm_development_20261017/**/*.pdf
 !/results/dcm_development_20261017/current/logs/*.out
 !/results/dcm_development_20261017/failed_c055b8517a/logs/*.out
+!/results/student_notebook_audit_20261019/
+!/results/student_notebook_audit_20261019/*.json
+!/results/student_ufc_reproduce_20261019/
+/results/student_ufc_reproduce_20261019/*
+!/results/student_ufc_reproduce_20261019/*.json
+!/results/student_ufc_reproduce_20261019/receipts/
+!/results/student_ufc_reproduce_20261019/receipts/*.json
+
+# Native student models: retain compact receipts, not packs/checkpoints.
+!/results/student_pipeline_20261020/
+/results/student_pipeline_20261020/*
+!/results/student_pipeline_20261020/*.json
+!/results/student_pipeline_20261020/diagnostics_20261021/
+/results/student_pipeline_20261020/diagnostics_20261021/*
+!/results/student_pipeline_20261020/diagnostics_20261021/*.json
+!/results/student_pipeline_20261020/diagnostics_20261021/figures/
+!/results/student_pipeline_20261020/diagnostics_20261021/figures/*.png
+!/results/student_pipeline_20261020/diagnostics_20261021/figures/*.pdf
+
+# Bounded SMASH source audit: compact receipts only, no raw exports/archives.
+!/results/smash_audit_20261021/
+/results/smash_audit_20261021/*
+!/results/smash_audit_20261021/*.json
+!/results/smash_audit_20261021/smoke_4430110.out
+!/results/smash_transfer_20261021/
+/results/smash_transfer_20261021/*
+!/results/smash_transfer_20261021/*.json
+!/results/smash_transfer_20261021/smoke_4430367.out
 
 # Scratch and intermediate render output; not analysis products.
 tmp/
@@ -129,8 +157,20 @@ id_ecdsa
 .env.*
 
 # --- ncx converter (runs on the ncx cluster, not here) ---
+!/results/smash_transfer_staged_20261022/
+/results/smash_transfer_staged_20261022/*
+!/results/smash_transfer_staged_20261022/*.json
+
 ncx/
 ncx_refactor/
 
 # Standalone C++ test probes generate a source file at run time.
 tests/cpp/sourceid_probe.cc
+
+# Compact records for the Oct23 corrected-SMASH source/accounting stage.
+# Raw prediction data, mapping archives and partial tar inputs stay ignored.
+!/results/smash_full_transfer_20261023/
+/results/smash_full_transfer_20261023/*
+!/results/smash_full_transfer_20261023/*.json
+!/results/smash_full_transfer_20261023/*.md
+!/results/smash_full_transfer_20261023/*.log
