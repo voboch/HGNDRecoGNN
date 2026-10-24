@@ -11,6 +11,7 @@ from collections import Counter, defaultdict
 import gzip
 import hashlib
 import json
+import platform
 from pathlib import Path
 import time
 
@@ -131,6 +132,8 @@ def run(args):
     args.output.mkdir(parents=True, exist_ok=False)
     summary = {'schema': 'export-content-census-v1', 'code_sha256': sha256(__file__),
                'smoke': args.smoke, 'files': [], 'identities': {},
+               'environment': {'python': platform.python_version(), 'pandas': pd.__version__,
+                               'numpy': np.__version__},
                'limits': 'Exact represented export contents only; absent collisions and generator lineage unknown.'}
     collections = defaultdict(list)
     if args.pickle:
