@@ -1,0 +1,106 @@
+{
+  "schema": "student-ufc-prepared-v1",
+  "raw_sha256": "183e38f1d22829dc4ed0979b53d82a0db803aa6fd3b5795122fc1c5c664fa4df",
+  "recipe": {
+    "time_column": "fTime_nonoise",
+    "edep_threshold_GeV": 0.003,
+    "radius_cells": 5.0,
+    "edge_dt_ns": 2.5,
+    "max_radius_neighbors": 32,
+    "min_hits": 2,
+    "layer_max": 8.0,
+    "row_max": 11.0,
+    "col_max": 11.0,
+    "k_pe": 4
+  },
+  "recipe_sha256": "e1858d1d9cf2b704c1e7406507726475a2830684406fe87b84cfc42d7537b396",
+  "split_seed": 42,
+  "split_row_sha256": {
+    "train": "9e2dff768de5da3b98fe42bf2926a8a6d2470d1ef6c0dec073906edd14514ed2",
+    "val": "a8328f8b77be10043cf5809d56d2954cbdf9220a75e8f80163d68c3c25159edc",
+    "test": "047140e3bbcb0a9bdd899cda581872d76c089b1f7b0be1bf2b21f4e5c76191a8"
+  },
+  "counts": {
+    "train": {
+      "events": 137918,
+      "events_with_candidates": 115492,
+      "graphs": 168108,
+      "positives": 45740
+    },
+    "val": {
+      "events": 29554,
+      "events_with_candidates": 24849,
+      "graphs": 36269,
+      "positives": 9924
+    },
+    "test": {
+      "events": 29555,
+      "events_with_candidates": 24811,
+      "graphs": 36343,
+      "positives": 9857
+    }
+  },
+  "parts": {
+    "train": [
+      {
+        "file": "train_0000.pt",
+        "sha256": "14bca1264ac8202fff842311f2f07a2ceaa84e2587ff11c2cdf59bff28398021",
+        "graphs": 100000,
+        "nodes": 686174,
+        "edges": 4998578,
+        "positives": 27286
+      },
+      {
+        "file": "train_0001.pt",
+        "sha256": "a8eb7c6dfe0d7ce1241505619315932d323a07e5a97bd106be3d04a669045057",
+        "graphs": 68108,
+        "nodes": 449340,
+        "edges": 3141604,
+        "positives": 18454
+      }
+    ],
+    "val": [
+      {
+        "file": "val_0000.pt",
+        "sha256": "35d2e098966b71595369b6345c6a7dde7a4b809fd635e22652566da68a02a3a7",
+        "graphs": 36269,
+        "nodes": 242853,
+        "edges": 1729244,
+        "positives": 9924
+      }
+    ],
+    "test": [
+      {
+        "file": "test_0000.pt",
+        "sha256": "667aba219b2faa4c46b073b0d0c4723e7afbd338dcbb2da64969b490ff7c2e37",
+        "graphs": 36343,
+        "nodes": 240842,
+        "edges": 1700496,
+        "positives": 9857
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "packages": {
+      "torch": "2.7.1",
+      "torch-geometric": "2.7.0",
+      "torch-cluster": "1.6.3",
+      "torch-scatter": "2.1.1",
+      "numpy": "2.3.5",
+      "pandas": "3.0.2",
+      "scipy": "1.16.3",
+      "scikit-learn": "1.8.0"
+    },
+    "cuda_runtime": null,
+    "gpu": null,
+    "slurm_job_id": null,
+    "slurm_array_job_id": null,
+    "slurm_array_task_id": null,
+    "hostname": "MacBook-Pro-30.local"
+  },
+  "seconds": 160.1547933750553,
+  "scientific_parameter_policy": "Inherited notebook conventions; no tuning in this campaign",
+  "test_policy": "No test scoring until all 18 train/validation runs complete"
+}

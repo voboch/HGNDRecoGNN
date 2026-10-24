@@ -1,0 +1,8 @@
+{
+  "input_sha256": "183e38f1d22829dc4ed0979b53d82a0db803aa6fd3b5795122fc1c5c664fa4df",
+  "id_min": 1,
+  "id_max": 368440,
+  "Ids_fit_int32": true,
+  "saved_metric_recomputation": false,
+  "new_checkpoint_files_found": false
+}

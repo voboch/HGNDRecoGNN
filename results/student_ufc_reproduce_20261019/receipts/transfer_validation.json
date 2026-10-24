@@ -1,0 +1,10 @@
+{
+  "state": "passed",
+  "source_files": 142,
+  "prepared_parts": 4,
+  "all_sha256_verified": true,
+  "source_read_only": true,
+  "prepared_read_only": true,
+  "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+  "prepared_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5"
+}

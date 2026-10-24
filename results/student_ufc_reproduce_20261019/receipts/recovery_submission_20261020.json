@@ -1,0 +1,11 @@
+{
+  "original_failed_task": "4421231_13",
+  "resume_job_id": 4423612,
+  "resume_from_committed_epoch": 61,
+  "next_epoch": 62,
+  "max_total_epochs": 100,
+  "time_limit": "01:30:00",
+  "requeue_enabled": false,
+  "evaluation_job_id": 4423613,
+  "evaluation_dependency": "afterok:4423612"
+}

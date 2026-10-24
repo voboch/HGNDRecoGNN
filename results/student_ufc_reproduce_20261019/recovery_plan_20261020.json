@@ -1,0 +1,192 @@
+{
+  "state": "prepared",
+  "original_array": 4421231,
+  "original_evaluation_cancelled": 4421232,
+  "original_slurm_states": {
+    "0": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "1": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "2": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "3": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "4": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "5": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "6": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "7": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "8": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "9": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "10": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "11": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "12": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "13": [
+      "FAILED",
+      "1:0"
+    ],
+    "14": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "15": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "16": [
+      "COMPLETED",
+      "0:0"
+    ],
+    "17": [
+      "COMPLETED",
+      "0:0"
+    ]
+  },
+  "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+  "prepared_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+  "max_total_epochs": 100,
+  "max_additional_epochs": 39,
+  "per_task_time_limit": "01:30:00",
+  "automatic_requeue": false,
+  "prior_passed_gpu_smoke": 4421223,
+  "configuration_changed": false,
+  "lineage": {
+    "baseline_dynamicedgeconv_seed21": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_dynamicedgeconv_seed21",
+      "complete_receipt_sha256": "17ac13c062c3894f17252fb6b45b29717797557557f6ef88e44da0d1cd2261cc"
+    },
+    "baseline_dynamicedgeconv_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_dynamicedgeconv_seed42",
+      "complete_receipt_sha256": "167183e14a8b40163f4cf979ea5c213ed6eef5d3ee56f3ee9b95b6dd50b35e5c"
+    },
+    "baseline_dynamicedgeconv_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_dynamicedgeconv_seed7",
+      "complete_receipt_sha256": "651583fe259789406b237169be64c3d484a0f5b32cfbe9fae368ef9acf86734a"
+    },
+    "baseline_gatv2_seed21": {
+      "kind": "atomic_resume_copy",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_gatv2_seed21",
+      "checkpoint_sha256": "e0565c83f6717650b897aee8562f59ed1b1e719d5d2962d34b95143a6fe3cd7c",
+      "resume_from_epoch": 61,
+      "next_epoch": 62
+    },
+    "baseline_gatv2_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_gatv2_seed42",
+      "complete_receipt_sha256": "0741834519b8d8be052ed21edad1c927118011dd416090460f05d965f53179b2"
+    },
+    "baseline_gatv2_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_gatv2_seed7",
+      "complete_receipt_sha256": "b4432f92237ad84a2cf07299692f0324306930d0106dff24bf684b88e555701f"
+    },
+    "baseline_graphsage_seed21": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_graphsage_seed21",
+      "complete_receipt_sha256": "823b62422237bba80b8a0ef6bfb46dc0e99a177b90f6565ea6d00af7b3a412b6"
+    },
+    "baseline_graphsage_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_graphsage_seed42",
+      "complete_receipt_sha256": "64be7fe40e770bb074dbb8089c5745e8b5c25905886afb68a539893422cc4a0f"
+    },
+    "baseline_graphsage_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/baseline_graphsage_seed7",
+      "complete_receipt_sha256": "b3e4498794e2be63fef4b6d3e8b63eca1a5431b668b5e0cf6cf44742c9e06bf8"
+    },
+    "spectral_gated_dynamicedgeconv_seed21": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_dynamicedgeconv_seed21",
+      "complete_receipt_sha256": "4a854755c32b77e6693f5ed3741f298d49bfb060250647ace6ec69f3f263318d"
+    },
+    "spectral_gated_dynamicedgeconv_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_dynamicedgeconv_seed42",
+      "complete_receipt_sha256": "adba5043ad634b5cc5e45568a30725eaf277e0cb909b7b733a683fbfa0a05c1f"
+    },
+    "spectral_gated_dynamicedgeconv_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_dynamicedgeconv_seed7",
+      "complete_receipt_sha256": "b9c89d697bfb66e82d703890e2084c78820700e5989f14691535c25ba8b8aa05"
+    },
+    "spectral_gated_gatv2_seed21": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_gatv2_seed21",
+      "complete_receipt_sha256": "2a3a99187142904611462c56082ca4e62002f4b5a5c7a366818ad84e08311cf1"
+    },
+    "spectral_gated_gatv2_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_gatv2_seed42",
+      "complete_receipt_sha256": "5bf628914c68d00d6279436cad9a46ac5a02fe3ca7301bca2ad6aa9b50daada6"
+    },
+    "spectral_gated_gatv2_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_gatv2_seed7",
+      "complete_receipt_sha256": "d724a6d36aaf15b06a27de2f8bc03fc4f336457f029fce8185296655c0dc37c4"
+    },
+    "spectral_gated_graphsage_seed21": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_graphsage_seed21",
+      "complete_receipt_sha256": "4e240d1ae553ae44515e8e495020a0df91bb3977076d77e2b5f6fa4adacb674f"
+    },
+    "spectral_gated_graphsage_seed42": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_graphsage_seed42",
+      "complete_receipt_sha256": "d76f5622ab848731296e67caff6c4f2cdf8f3017bef132d1ca8f6b250f2acc83"
+    },
+    "spectral_gated_graphsage_seed7": {
+      "kind": "original_complete_symlink",
+      "original": "/scratch/vbocharnikov/hgnd/experiments/student_ufc_reproduce_20261019_cff5033e9a/runs/spectral_gated_graphsage_seed7",
+      "complete_receipt_sha256": "b04de0873e0821efe9b2c7483756ad51c09c8d0cd8354cebcd6c039a0acaf5a2"
+    }
+  },
+  "backup_sha256": {
+    "history.json.tmp": "3dfc5125783fa55bfc8aa2ae70e08fbad593fb021b11017c1e7695424b6dfd6b",
+    "resume.pt": "e0565c83f6717650b897aee8562f59ed1b1e719d5d2962d34b95143a6fe3cd7c",
+    "history.json": "4e25d94ac33aa98a34d1bbff0ede9090f7b02d0c2e1c00895a7754b9cb5629a0",
+    "identity.json": "079a0c131346ba3156c1b9729c5c3e3d5dfffdc4254de2015d5f76c33a454208",
+    "status.json": "2204b04c28779f8bf2dcfd78aada5e2ba94874cd4c400b51be1b7148c196914e",
+    "environment.json": "c8d6fb5acea2886c79e511a889a6de5da87288aee7ddef200bd50fedc95ad683",
+    "best.pt": "add8c147adc63febc35a19cea5c1fda4b9d6a1b306c937886cb1475915d1f81b",
+    "failure.json": "61c14611274e93d9d146ebbf818f302c3beecb1678d3ebfc53b032e54ae308b8"
+  },
+  "test_barrier": "17 original Slurm COMPLETED 0:0 + successful task13 continuation + all18 complete receipts/hash checks; original FAILED retained"
+}

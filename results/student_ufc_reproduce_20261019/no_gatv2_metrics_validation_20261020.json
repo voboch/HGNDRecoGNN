@@ -1,0 +1,17 @@
+{
+  "state": "passed",
+  "metrics_json_sha256": "c6265cb9184c5169626a8b0de77ada9f7f153973c072143cab02f8f983e26571",
+  "model_seed_rows": 12,
+  "models": 4,
+  "seeds_per_model": 3,
+  "test_candidates_per_seed": 36343,
+  "mc_positive_energy_candidates_per_seed": 9857,
+  "three_mechanism_tests": "passed: truth ID alignment, MC-positive energy population, complete-seed sample SD",
+  "max_upstream_classification_metric_difference": {
+    "roc_auc": 1.1102230246251565e-16,
+    "pr_auc": 2.220446049250313e-16
+  },
+  "all_exported_run_and_prediction_hashes_verified_on_cluster": 18,
+  "source_training_code_unchanged": true,
+  "new_test_inference_runs": 0
+}

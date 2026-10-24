@@ -1,0 +1,174 @@
+{
+  "observed_at_utc": "2026-10-20T08:25:27.665539+00:00",
+  "original_train_array_job_id": 4421231,
+  "original_evaluation_job_id": 4421232,
+  "slurm_accounting": [
+    "4421232|CANCELLED|0:0|00:00:00|None assigned",
+    "4421231_0|COMPLETED|0:0|00:51:20|cn-011",
+    "4421231_1|COMPLETED|0:0|00:46:00|cn-006",
+    "4421231_2|COMPLETED|0:0|00:50:33|cn-001",
+    "4421231_3|COMPLETED|0:0|00:42:58|cn-012",
+    "4421231_4|COMPLETED|0:0|00:49:53|cn-012",
+    "4421231_5|COMPLETED|0:0|00:40:23|cn-001",
+    "4421231_6|COMPLETED|0:0|00:36:26|cn-001",
+    "4421231_7|COMPLETED|0:0|00:46:58|cn-013",
+    "4421231_8|COMPLETED|0:0|00:48:38|cn-001",
+    "4421231_9|COMPLETED|0:0|00:35:59|cn-013",
+    "4421231_10|COMPLETED|0:0|00:48:03|cn-001",
+    "4421231_11|COMPLETED|0:0|00:49:18|cn-013",
+    "4421231_12|COMPLETED|0:0|00:44:34|cn-001",
+    "4421231_13|FAILED|1:0|00:46:20|cn-007",
+    "4421231_14|COMPLETED|0:0|00:44:55|cn-001",
+    "4421231_15|COMPLETED|0:0|00:40:52|cn-007",
+    "4421231_16|COMPLETED|0:0|00:41:53|cn-001",
+    "4421231_17|COMPLETED|0:0|00:55:38|cn-007"
+  ],
+  "runs": [
+    {
+      "run": "baseline_dynamicedgeconv_seed21",
+      "epochs": 71,
+      "best_epoch": 59,
+      "complete": true,
+      "selected_val_auc": 0.9845655488067254,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_dynamicedgeconv_seed42",
+      "epochs": 63,
+      "best_epoch": 51,
+      "complete": true,
+      "selected_val_auc": 0.9838065234288851,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_dynamicedgeconv_seed7",
+      "epochs": 78,
+      "best_epoch": 66,
+      "complete": true,
+      "selected_val_auc": 0.9837290968773955,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_gatv2_seed21",
+      "epochs": 60,
+      "best_epoch": 56,
+      "complete": false,
+      "selected_val_auc": null,
+      "artifact_hashes_match_receipt": null
+    },
+    {
+      "run": "baseline_gatv2_seed42",
+      "epochs": 76,
+      "best_epoch": 64,
+      "complete": true,
+      "selected_val_auc": 0.9818554473860899,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_gatv2_seed7",
+      "epochs": 75,
+      "best_epoch": 63,
+      "complete": true,
+      "selected_val_auc": 0.9814485343880143,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_graphsage_seed21",
+      "epochs": 84,
+      "best_epoch": 72,
+      "complete": true,
+      "selected_val_auc": 0.9827272658425327,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_graphsage_seed42",
+      "epochs": 96,
+      "best_epoch": 84,
+      "complete": true,
+      "selected_val_auc": 0.9835697935549501,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "baseline_graphsage_seed7",
+      "epochs": 69,
+      "best_epoch": 57,
+      "complete": true,
+      "selected_val_auc": 0.9833013460661245,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_dynamicedgeconv_seed21",
+      "epochs": 76,
+      "best_epoch": 64,
+      "complete": true,
+      "selected_val_auc": 0.9846316882094007,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_dynamicedgeconv_seed42",
+      "epochs": 58,
+      "best_epoch": 46,
+      "complete": true,
+      "selected_val_auc": 0.9831463896920448,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_dynamicedgeconv_seed7",
+      "epochs": 77,
+      "best_epoch": 65,
+      "complete": true,
+      "selected_val_auc": 0.9845591498233414,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_gatv2_seed21",
+      "epochs": 69,
+      "best_epoch": 57,
+      "complete": true,
+      "selected_val_auc": 0.980812223764149,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_gatv2_seed42",
+      "epochs": 76,
+      "best_epoch": 64,
+      "complete": true,
+      "selected_val_auc": 0.9812502232759445,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_gatv2_seed7",
+      "epochs": 79,
+      "best_epoch": 67,
+      "complete": true,
+      "selected_val_auc": 0.9811184952497971,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_graphsage_seed21",
+      "epochs": 69,
+      "best_epoch": 57,
+      "complete": true,
+      "selected_val_auc": 0.9826356490768444,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_graphsage_seed42",
+      "epochs": 56,
+      "best_epoch": 44,
+      "complete": true,
+      "selected_val_auc": 0.9831304515188464,
+      "artifact_hashes_match_receipt": true
+    },
+    {
+      "run": "spectral_gated_graphsage_seed7",
+      "epochs": 67,
+      "best_epoch": 55,
+      "complete": true,
+      "selected_val_auc": 0.9820438808086265,
+      "artifact_hashes_match_receipt": true
+    }
+  ],
+  "complete_runs": 17,
+  "test_evaluation_exists": false
+}

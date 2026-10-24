@@ -1,0 +1,131 @@
+{
+  "baseline_graphsage": {
+    "notebook": "baseline_GraphSAGE.ipynb",
+    "sha256": "c75e776a9cad6bfd196e45272403fc54efe8e4e4e914c2fbc7cfa6c96eb5e4d6",
+    "classes": [
+      {
+        "original_class": "BaselineResidualSAGEBlock",
+        "ported_class": "BaselineResidualSAGEBlock",
+        "cell_zero_based": 26
+      },
+      {
+        "original_class": "BaselineClusterGNN_GraphSAGE_UFC",
+        "ported_class": "BaselineClusterGNN_GraphSAGE_UFC",
+        "cell_zero_based": 26
+      },
+      {
+        "syntax_repairs": "none"
+      }
+    ]
+  },
+  "baseline_gatv2": {
+    "notebook": "baseline_ufc_GAT.ipynb",
+    "sha256": "91d699226ad5e626dce168dadded119f55dafb7f14ac75509c158007626503f8",
+    "classes": [
+      {
+        "original_class": "BaselineResidualGATv2Block",
+        "ported_class": "BaselineResidualGATv2Block",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "BaselineClusterGNN_GATv2_UFC",
+        "ported_class": "BaselineClusterGNN_GATv2_UFC",
+        "cell_zero_based": 23
+      },
+      {
+        "syntax_repairs": "Removed 1 dangling assertion commas"
+      }
+    ]
+  },
+  "baseline_dynamicedgeconv": {
+    "notebook": "baseline_DynamicEdgeConv.ipynb",
+    "sha256": "53af25f322f32bd800a6a4882b97ce60b4f3b7f38d586b57040ac4301fd505a9",
+    "classes": [
+      {
+        "original_class": "BaselineResidualDynamicEdgeConvBlock",
+        "ported_class": "BaselineResidualDynamicEdgeConvBlock",
+        "cell_zero_based": 25
+      },
+      {
+        "original_class": "BaselineClusterGNN_DynamicEdgeConv_UFC",
+        "ported_class": "BaselineClusterGNN_DynamicEdgeConv_UFC",
+        "cell_zero_based": 25
+      },
+      {
+        "syntax_repairs": "none"
+      }
+    ]
+  },
+  "spectral_gated_graphsage": {
+    "notebook": "Challenger_ufc_GraphSAGE.ipynb",
+    "sha256": "b3d06efa5d5ca66358719cb8c043941f6caa44800bebaf6f1dfc1ea35c01ce23",
+    "classes": [
+      {
+        "original_class": "ResidualSAGEBlock",
+        "ported_class": "ResidualSAGEBlock",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "SpectralMultiplicativeGate",
+        "ported_class": "SpectralGate_spectral_gated_graphsage",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "ClusterGNN_GraphSAGE_UFC_SpectralGated",
+        "ported_class": "ClusterGNN_GraphSAGE_UFC_SpectralGated",
+        "cell_zero_based": 23
+      },
+      {
+        "syntax_repairs": "none"
+      }
+    ]
+  },
+  "spectral_gated_gatv2": {
+    "notebook": "Challenger_ufc_GAT.ipynb",
+    "sha256": "a3450a9d2906747937e3a2147282371714596e221e508968101e26e5a0023c74",
+    "classes": [
+      {
+        "original_class": "SpectralMultiplicativeGate",
+        "ported_class": "SpectralGate_spectral_gated_gatv2",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "ResidualGATv2Block",
+        "ported_class": "ResidualGATv2Block",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "ClusterGNN_GATv2_UFC_SpectralGated",
+        "ported_class": "ClusterGNN_GATv2_UFC_SpectralGated",
+        "cell_zero_based": 23
+      },
+      {
+        "syntax_repairs": "Removed 2 dangling assertion commas"
+      }
+    ]
+  },
+  "spectral_gated_dynamicedgeconv": {
+    "notebook": "Challenger_ufc_DynamicEdgeConv.ipynb",
+    "sha256": "7c1b79244d8c34b89f57fd9f363feede970ce9020aa3853cba6afcc129328ea0",
+    "classes": [
+      {
+        "original_class": "SpectralMultiplicativeGate",
+        "ported_class": "SpectralGate_spectral_gated_dynamicedgeconv",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "ResidualDynamicEdgeConvBlock",
+        "ported_class": "ResidualDynamicEdgeConvBlock",
+        "cell_zero_based": 23
+      },
+      {
+        "original_class": "ClusterGNN_DynamicEdgeConv_UFC_SpectralGated",
+        "ported_class": "ClusterGNN_DynamicEdgeConv_UFC_SpectralGated",
+        "cell_zero_based": 23
+      },
+      {
+        "syntax_repairs": "none"
+      }
+    ]
+  }
+}

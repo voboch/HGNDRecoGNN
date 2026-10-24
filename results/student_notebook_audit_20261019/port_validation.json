@@ -1,0 +1,72 @@
+{
+  "input_sha256": "183e38f1d22829dc4ed0979b53d82a0db803aa6fd3b5795122fc1c5c664fa4df",
+  "training_sample_events": 32,
+  "sample_candidates": 33,
+  "feature_max_abs_error": 0.0,
+  "lap_pe_max_abs_error": 0.0,
+  "six_model_parity": {
+    "baseline_graphsage": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 290691
+    },
+    "baseline_gatv2": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 292227
+    },
+    "baseline_dynamicedgeconv": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 357763
+    },
+    "spectral_gated_graphsage": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 299331
+    },
+    "spectral_gated_gatv2": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 300867
+    },
+    "spectral_gated_dynamicedgeconv": {
+      "max_abs_error": 0.0,
+      "state_dict_keys_identical": true,
+      "parameters": 366403
+    }
+  },
+  "observable_only_cli_smoke": true,
+  "trained_auc_reproduced": false,
+  "weights_in_parity_test": "seeded random engineering fixture, not student trained weights",
+  "jobs_submitted": 0,
+  "source_988976_evaluated": false,
+  "full_population": {
+    "train": {
+      "events": 137918,
+      "events_with_candidates": 115492,
+      "candidates": 168108,
+      "positives": 45740
+    },
+    "val": {
+      "events": 29554,
+      "events_with_candidates": 24849,
+      "candidates": 36269,
+      "positives": 9924
+    },
+    "test": {
+      "events": 29555,
+      "events_with_candidates": 24811,
+      "candidates": 36343,
+      "positives": 9857
+    }
+  },
+  "execution_source_sha256": {
+    "HGNDRecoGNN/scripts/validate_student_ufc.py": "45808dc14fbf18d462ac9b152dc975a16ac32430fed25f0fc6a55980488b7085",
+    "HGNDRecoGNN/scripts/student_ufc.py": "ae3683840c30a38a10172b41fa3cea61cb161b1d1ed987dcebf6d36cb486d378",
+    "HGNDRecoGNN/data/student_ufc.py": "7f1ef5c106ee04fb8a45a28bab5a81cbc794cccf8724df7f7dc7632d55a785fd",
+    "HGNDRecoGNN/models/student_ufc.py": "848278c9082e91d841516d5a3d9fc02afd881f79aac7d1cb6fb1c53bf23801fc",
+    "HGNDRecoGNN/models/student_ufc_sources.json": "f6cc914e87cfde705f11dae8a3eb249c3c979a042cd2348a581cb854b2e530ab",
+    "HGNDRecoGNN/training/student_ufc.py": "b53634f652369c141583ca887f5927786d457105cb71fbe47082430491f24c60"
+  }
+}

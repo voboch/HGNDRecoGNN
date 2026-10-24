@@ -1,0 +1,15 @@
+{
+  "gpu_probe_job_id": 4421206,
+  "gpu_probe_state": "COMPLETED",
+  "gpu_probe_exit_code": "0:0",
+  "smoke_job_id": 4421223,
+  "smoke_state_at_submission": "SUBMITTED",
+  "train_array_job_id": 4421231,
+  "evaluation_job_id": 4421232,
+  "smoke_state": "COMPLETED",
+  "smoke_exit_code": "0:0",
+  "train_array_spec": "0-17%2",
+  "per_task_time_limit": "04:00:00",
+  "evaluation_dependency": "afterok:4421231",
+  "requeue_enabled": false
+}

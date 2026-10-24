@@ -1,0 +1,24 @@
+{
+  "checked_at_utc": "2026-10-19T15:10:34.140563+00:00",
+  "pytest": "140 passed, 13 existing warnings",
+  "new_mechanism_tests": 16,
+  "ruff_new_audit_and_port_files": "passed",
+  "compileall_new_files": "passed",
+  "strict_table_lint": "0 problems in both new reports",
+  "csv_cli_synthetic_fixture": "passed; no trained performance measured",
+  "six_model_state_forward_parity": "max_abs_error=0.0 on sampled graphs",
+  "observable_builder_full_counts_match": true,
+  "input_without_MC_cli_smoke": true,
+  "existing_152_campaign_input_hashes_unchanged": true,
+  "manuscript_source_and_pdf_unchanged": true,
+  "student_notebooks_unchanged": true,
+  "trained_0p98_auc_reproduced": false,
+  "jobs_submitted": 0,
+  "source_988976_evaluated": false,
+  "files_sha256": {
+    "reports/student_ufc_integration_protocol_20261019.md": "0335410440149d7f16fefaea8f05fe6df010be2633f5806885732c6637d64e44",
+    "reports/student_ufc_integration_results_20261019.md": "cca969e3a6817cd51827f8c76b8287a6bd9710c3306a3abc7fd425f08a2d3308",
+    "tests/test_student_ufc.py": "3fd8cd936f42880a84b16dc37b50de205e852efed7e1e4636024affc9f8504c9",
+    "results/student_notebook_audit_20261019/port_validation.json": "b49ea18012a74061b34560ae471d2ab91607304d7d39f5539d6a0f10664ebbf6"
+  }
+}

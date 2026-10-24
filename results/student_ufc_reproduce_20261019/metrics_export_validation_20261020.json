@@ -1,0 +1,12 @@
+{
+  "state": "verified",
+  "archive_sha256": "b6e5901bcaaf9ad6a0cf31d372d176f8774ab3644a5f5e30b9908f25e280c741",
+  "test_prediction_csvs": 18,
+  "complete_run_artifact_hashes_verified_on_cluster": 18,
+  "evaluation_job_id": 4423613,
+  "evaluation_state": "COMPLETED",
+  "evaluation_exit_code": "0:0",
+  "recovery_job_id": 4423612,
+  "recovery_state": "COMPLETED",
+  "recovery_exit_code": "0:0"
+}

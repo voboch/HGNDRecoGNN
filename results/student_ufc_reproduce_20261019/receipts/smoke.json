@@ -1,0 +1,82 @@
+{
+  "state": "passed",
+  "environment": {
+    "python": "3.12.15 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:20:25) [GCC 14.3.0]",
+    "platform": "Linux-5.14.0-687.42.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "packages": {
+      "torch": "2.4.0+cu121",
+      "torch-geometric": "2.7.0",
+      "torch-cluster": "1.6.3+pt24cu121",
+      "torch-scatter": "2.1.2+pt24cu121",
+      "numpy": "2.1.2",
+      "pandas": "2.2.3",
+      "scipy": "1.14.1",
+      "scikit-learn": "1.5.2"
+    },
+    "cuda_runtime": "12.1",
+    "gpu": "Tesla V100-SXM2-32GB",
+    "slurm_job_id": "4421223",
+    "slurm_array_job_id": null,
+    "slurm_array_task_id": null,
+    "hostname": "cn-006"
+  },
+  "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+  "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+  "scope": "engineering train/validation only, no quality claim",
+  "models": {
+    "baseline_graphsage": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        1.6100999820046127,
+        0.7334496991243213
+      ]
+    },
+    "baseline_gatv2": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        0.7664968629833311,
+        0.7414806068409234
+      ]
+    },
+    "baseline_dynamicedgeconv": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        0.8005435930099338,
+        0.7700721949804574
+      ]
+    },
+    "spectral_gated_graphsage": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        0.7639333789702505,
+        0.7391471760347486
+      ]
+    },
+    "spectral_gated_gatv2": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        0.7872322988696396,
+        0.7790390108712018
+      ]
+    },
+    "spectral_gated_dynamicedgeconv": {
+      "epochs": 2,
+      "atomic_resume_verified": true,
+      "checkpoint_reload_verified": true,
+      "epoch_seconds": [
+        0.8171082641929388,
+        0.7928520748391747
+      ]
+    }
+  }
+}

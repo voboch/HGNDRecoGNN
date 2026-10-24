@@ -1,0 +1,13 @@
+# Student notebook install evidence: Python 3.12, torch2.4.0+cu121, PyG2.7.0.
+# Other versions below pin this replay; their original Colab versions are unknown.
+torch==2.4.0+cu121
+torch-geometric==2.7.0
+torch-cluster==1.6.3+pt24cu121
+torch-scatter==2.1.2+pt24cu121
+torch-sparse==0.6.18+pt24cu121
+torch-spline-conv==1.2.2+pt24cu121
+numpy==2.1.2
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.5.2
+matplotlib==3.9.2

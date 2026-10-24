@@ -1,0 +1,348 @@
+{
+  "source": "GNN_for_neutron_reconstruction/Extra_plots.ipynb",
+  "source_sha256": "28947f1e24d27e9f52ea95a94746eb74a47ba7749353c7829171789bea8e01cd",
+  "cell_numbering": "zero based",
+  "precision": "as rendered in saved HTML, not original prediction precision",
+  "limitations": "Pandas display elides some columns as ...; NaN strings retained as printed",
+  "tables_by_cell": {
+    "5": [
+      {
+        "model_key": "baseline_gatv2",
+        "model": "Baseline GATv2",
+        "roc_auc_pooled": "0.979119",
+        "pr_auc_pooled": "0.947928",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      },
+      {
+        "model_key": "baseline_graphsage",
+        "model": "baseline_graphsage",
+        "roc_auc_pooled": "0.981632",
+        "pr_auc_pooled": "0.953470",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      },
+      {
+        "model_key": "spectral_gated_gatv2",
+        "model": "Spectral-Gated GATv2",
+        "roc_auc_pooled": "0.980327",
+        "pr_auc_pooled": "0.950316",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      },
+      {
+        "model_key": "spectral_gated_graphsage",
+        "model": "Spectral-Gated GraphSAGE",
+        "roc_auc_pooled": "0.981941",
+        "pr_auc_pooled": "0.955569",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      },
+      {
+        "model_key": "baseline_dynamicedgeconv",
+        "model": "Baseline Dynamic EdgeConv",
+        "roc_auc_pooled": "0.982906",
+        "pr_auc_pooled": "0.956041",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      },
+      {
+        "model_key": "spectral_gated_dynamicedgeconv",
+        "model": "Spectral-Gated Dynamic EdgeConv",
+        "roc_auc_pooled": "0.983395",
+        "pr_auc_pooled": "0.957762",
+        "n_candidates": "109029",
+        "positive_rate": "0.271221"
+      }
+    ],
+    "7": [
+      {
+        "model_key": "baseline_gatv2",
+        "model": "Baseline GATv2",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.979274",
+        "roc_auc_std": "0.000936",
+        "pr_auc_mean": "0.948119",
+        "pr_auc_std": "0.002804",
+        "graph_f1_mean": "0.881797",
+        "graph_f1_std": "0.003428",
+        "event_purity_mean": "0.879517",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.166334",
+        "energy_selected_signal_mae_std": "0.012763",
+        "energy_selected_signal_rmse_mean": "0.286342",
+        "energy_selected_signal_rmse_std": "0.015052",
+        "energy_selected_signal_bias_mean": "-0.023362",
+        "energy_selected_signal_bias_std": "0.044060",
+        "energy_selected_signal_rel_mae_mean": "0.079564",
+        "energy_selected_signal_rel_mae_std": "0.005546",
+        "duplicate_fraction_proxy_mean": "NaN",
+        "duplicate_fraction_proxy_std": "NaN"
+      },
+      {
+        "model_key": "baseline_graphsage",
+        "model": "baseline_graphsage",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.981736",
+        "roc_auc_std": "0.000463",
+        "pr_auc_mean": "0.953707",
+        "pr_auc_std": "0.001207",
+        "graph_f1_mean": "0.891074",
+        "graph_f1_std": "0.001181",
+        "event_purity_mean": "0.883473",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.168419",
+        "energy_selected_signal_mae_std": "0.014926",
+        "energy_selected_signal_rmse_mean": "0.294654",
+        "energy_selected_signal_rmse_std": "0.011089",
+        "energy_selected_signal_bias_mean": "0.052334",
+        "energy_selected_signal_bias_std": "0.054017",
+        "energy_selected_signal_rel_mae_mean": "0.081971",
+        "energy_selected_signal_rel_mae_std": "0.006707",
+        "duplicate_fraction_proxy_mean": "NaN",
+        "duplicate_fraction_proxy_std": "NaN"
+      },
+      {
+        "model_key": "spectral_gated_gatv2",
+        "model": "Spectral-Gated GATv2",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.980426",
+        "roc_auc_std": "0.000251",
+        "pr_auc_mean": "0.950764",
+        "pr_auc_std": "0.000455",
+        "graph_f1_mean": "0.887226",
+        "graph_f1_std": "0.001868",
+        "event_purity_mean": "0.875694",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.192067",
+        "energy_selected_signal_mae_std": "0.034631",
+        "energy_selected_signal_rmse_mean": "0.308902",
+        "energy_selected_signal_rmse_std": "0.029278",
+        "energy_selected_signal_bias_mean": "-0.108442",
+        "energy_selected_signal_bias_std": "0.058179",
+        "energy_selected_signal_rel_mae_mean": "0.092104",
+        "energy_selected_signal_rel_mae_std": "0.016325",
+        "duplicate_fraction_proxy_mean": "NaN",
+        "duplicate_fraction_proxy_std": "NaN"
+      },
+      {
+        "model_key": "spectral_gated_graphsage",
+        "model": "Spectral-Gated GraphSAGE",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.982000",
+        "roc_auc_std": "0.000650",
+        "pr_auc_mean": "0.955603",
+        "pr_auc_std": "0.002238",
+        "graph_f1_mean": "0.893623",
+        "graph_f1_std": "0.001395",
+        "event_purity_mean": "0.884862",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.159246",
+        "energy_selected_signal_mae_std": "0.005567",
+        "energy_selected_signal_rmse_mean": "0.285111",
+        "energy_selected_signal_rmse_std": "0.006552",
+        "energy_selected_signal_bias_mean": "0.015846",
+        "energy_selected_signal_bias_std": "0.033277",
+        "energy_selected_signal_rel_mae_mean": "0.078690",
+        "energy_selected_signal_rel_mae_std": "0.002476",
+        "duplicate_fraction_proxy_mean": "NaN",
+        "duplicate_fraction_proxy_std": "NaN"
+      },
+      {
+        "model_key": "baseline_dynamicedgeconv",
+        "model": "Baseline Dynamic EdgeConv",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.983018",
+        "roc_auc_std": "0.000427",
+        "pr_auc_mean": "0.956226",
+        "pr_auc_std": "0.001344",
+        "graph_f1_mean": "0.895061",
+        "graph_f1_std": "0.003154",
+        "event_purity_mean": "0.878847",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.157746",
+        "energy_selected_signal_mae_std": "0.013843",
+        "energy_selected_signal_rmse_mean": "0.274101",
+        "energy_selected_signal_rmse_std": "0.019696",
+        "energy_selected_signal_bias_mean": "0.015896",
+        "energy_selected_signal_bias_std": "0.066670",
+        "energy_selected_signal_rel_mae_mean": "0.079533",
+        "energy_selected_signal_rel_mae_std": "0.008232",
+        "duplicate_fraction_proxy_mean": "0.0",
+        "duplicate_fraction_proxy_std": "0.0"
+      },
+      {
+        "model_key": "spectral_gated_dynamicedgeconv",
+        "model": "Spectral-Gated Dynamic EdgeConv",
+        "threshold": "0.7",
+        "roc_auc_mean": "0.983714",
+        "roc_auc_std": "0.000390",
+        "pr_auc_mean": "0.958666",
+        "pr_auc_std": "0.000241",
+        "graph_f1_mean": "0.899043",
+        "graph_f1_std": "0.001931",
+        "event_purity_mean": "0.885166",
+        "...": "...",
+        "energy_selected_signal_mae_mean": "0.136517",
+        "energy_selected_signal_mae_std": "0.004035",
+        "energy_selected_signal_rmse_mean": "0.254381",
+        "energy_selected_signal_rmse_std": "0.006775",
+        "energy_selected_signal_bias_mean": "0.015333",
+        "energy_selected_signal_bias_std": "0.021609",
+        "energy_selected_signal_rel_mae_mean": "0.069912",
+        "energy_selected_signal_rel_mae_std": "0.002336",
+        "duplicate_fraction_proxy_mean": "NaN",
+        "duplicate_fraction_proxy_std": "NaN"
+      }
+    ],
+    "13": [
+      {
+        "backbone": "GraphSAGE",
+        "metric": "selection_score",
+        "baseline": "0.796640",
+        "spectral_gated": "0.798685",
+        "delta_spectral_minus_baseline": "0.002046"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "event_purity",
+        "baseline": "0.883473",
+        "spectral_gated": "0.884862",
+        "delta_spectral_minus_baseline": "0.001389"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "event_efficiency",
+        "baseline": "0.912732",
+        "spectral_gated": "0.915580",
+        "delta_spectral_minus_baseline": "0.002848"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "event_fake_fraction",
+        "baseline": "0.116527",
+        "spectral_gated": "0.115138",
+        "delta_spectral_minus_baseline": "-0.001389"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "graph_f1",
+        "baseline": "0.891074",
+        "spectral_gated": "0.893623",
+        "delta_spectral_minus_baseline": "0.002549"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "pr_auc",
+        "baseline": "0.953707",
+        "spectral_gated": "0.955603",
+        "delta_spectral_minus_baseline": "0.001896"
+      },
+      {
+        "backbone": "GraphSAGE",
+        "metric": "roc_auc",
+        "baseline": "0.981736",
+        "spectral_gated": "0.982000",
+        "delta_spectral_minus_baseline": "0.000263"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "selection_score",
+        "baseline": "0.788483",
+        "spectral_gated": "0.792723",
+        "delta_spectral_minus_baseline": "0.004240"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "event_purity",
+        "baseline": "0.879517",
+        "spectral_gated": "0.875694",
+        "delta_spectral_minus_baseline": "-0.003823"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "event_efficiency",
+        "baseline": "0.899441",
+        "spectral_gated": "0.913536",
+        "delta_spectral_minus_baseline": "0.014094"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "event_fake_fraction",
+        "baseline": "0.120483",
+        "spectral_gated": "0.124306",
+        "delta_spectral_minus_baseline": "0.003823"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "graph_f1",
+        "baseline": "0.881797",
+        "spectral_gated": "0.887226",
+        "delta_spectral_minus_baseline": "0.005429"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "pr_auc",
+        "baseline": "0.948119",
+        "spectral_gated": "0.950764",
+        "delta_spectral_minus_baseline": "0.002645"
+      },
+      {
+        "backbone": "GATv2",
+        "metric": "roc_auc",
+        "baseline": "0.979274",
+        "spectral_gated": "0.980426",
+        "delta_spectral_minus_baseline": "0.001152"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "selection_score",
+        "baseline": "0.793856",
+        "spectral_gated": "0.803585",
+        "delta_spectral_minus_baseline": "0.009729"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "event_purity",
+        "baseline": "0.878847",
+        "spectral_gated": "0.885166",
+        "delta_spectral_minus_baseline": "0.006319"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "event_efficiency",
+        "baseline": "0.912201",
+        "spectral_gated": "0.926096",
+        "delta_spectral_minus_baseline": "0.013896"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "event_fake_fraction",
+        "baseline": "0.121153",
+        "spectral_gated": "0.114834",
+        "delta_spectral_minus_baseline": "-0.006319"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "graph_f1",
+        "baseline": "0.895061",
+        "spectral_gated": "0.899043",
+        "delta_spectral_minus_baseline": "0.003982"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "pr_auc",
+        "baseline": "0.956226",
+        "spectral_gated": "0.958666",
+        "delta_spectral_minus_baseline": "0.002440"
+      },
+      {
+        "backbone": "Dynamic EdgeConv",
+        "metric": "roc_auc",
+        "baseline": "0.983018",
+        "spectral_gated": "0.983714",
+        "delta_spectral_minus_baseline": "0.000697"
+      }
+    ]
+  }
+}

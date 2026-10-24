@@ -1,0 +1,25 @@
+{
+  "state": "passed",
+  "pytest": {
+    "passed": 151,
+    "warnings": 13,
+    "seconds": 42.96
+  },
+  "notebook_training_parity": {
+    "models": [
+      "baseline_graphsage",
+      "baseline_gatv2",
+      "baseline_dynamicedgeconv",
+      "spectral_gated_graphsage",
+      "spectral_gated_gatv2",
+      "spectral_gated_dynamicedgeconv"
+    ],
+    "epochs": 2,
+    "shards": 2,
+    "metrics_exactly_equal": true,
+    "selected_weights_exactly_equal": true
+  },
+  "resume_continuity": "exact metrics and weights across interrupted/continuous training",
+  "prepared_population": "all three splits match audited counts; original train shard boundary retained",
+  "test_scoring_performed": false
+}

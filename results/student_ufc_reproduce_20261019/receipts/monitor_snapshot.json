@@ -1,0 +1,114 @@
+{
+  "observed_at_utc": "2026-10-19T15:57:40.314826+00:00",
+  "scope": "intermediate training/validation monitoring; no test results",
+  "queue": [
+    "4421231_[2-17%2] PENDING 0:00 (JobArrayTaskLimit)",
+    "4421232 PENDING 0:00 (Dependency)",
+    "4421231_1 RUNNING 2:06 cn-006",
+    "4421231_0 RUNNING 2:37 cn-011"
+  ],
+  "runs": {
+    "baseline_gatv2_seed42": {
+      "epochs_observed": 2,
+      "latest_epoch": {
+        "epoch": 2,
+        "train_total": 0.4974530543468521,
+        "train_cls": 0.47402862186284617,
+        "train_rank": 0.015256722824877646,
+        "train_reg": 0.40746176305231213,
+        "train_roc_auc": 0.9335547710609458,
+        "train_pr_auc": 0.8490057080788113,
+        "train_score_sep_mean_diff": 0.5897914657873661,
+        "train_score_sep_z": 1.6909854179614956,
+        "train_graphs": 168108,
+        "val_total": 0.4996890506931996,
+        "val_cls": 0.4637678057845241,
+        "val_rank": 0.09896990450153496,
+        "val_reg": 0.32254528792423964,
+        "val_roc_auc": 0.9411019496895328,
+        "val_pr_auc": 0.8622860251455352,
+        "val_score_sep_mean_diff": 0.5603966502779095,
+        "val_score_sep_z": 1.761094032608327,
+        "val_graphs": 36269,
+        "seconds": 36.07827913900837
+      },
+      "identity": {
+        "config": {
+          "model_key": "baseline_gatv2",
+          "seed": 42,
+          "max_epochs": 100,
+          "batch_size": 256,
+          "learning_rate": 0.001,
+          "weight_decay": 0.01,
+          "lambda_reg": 0.05,
+          "lambda_rank": 0.2,
+          "rank_margin": 0.2,
+          "grad_clip": 1.0,
+          "patience": 12,
+          "min_delta": 0.0001,
+          "pos_weight": 2.675295146480105
+        },
+        "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+        "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+        "identity_hash": "ef8af4176b73b5fbd9ddd972da4f2f662dad8971d78da805f1920eaf695fa6e3"
+      },
+      "committed_files": {
+        "resume.pt": 4777530,
+        "best.pt": 1189486
+      },
+      "failure_receipt_present": false,
+      "complete_receipt_present": false
+    },
+    "baseline_graphsage_seed42": {
+      "epochs_observed": 3,
+      "latest_epoch": {
+        "epoch": 3,
+        "train_total": 0.44116999189248984,
+        "train_cls": 0.4225075042661616,
+        "train_rank": 0.0063747750288028655,
+        "train_reg": 0.3477506412497526,
+        "train_roc_auc": 0.9476067859220663,
+        "train_pr_auc": 0.8771765819769219,
+        "train_score_sep_mean_diff": 0.6398621698382079,
+        "train_score_sep_z": 1.8770775599564993,
+        "train_graphs": 168108,
+        "val_total": 0.45704229289891324,
+        "val_cls": 0.42184296922578013,
+        "val_rank": 0.09620447085786735,
+        "val_reg": 0.3191685660395388,
+        "val_roc_auc": 0.9500821578978409,
+        "val_pr_auc": 0.8837307105980996,
+        "val_score_sep_mean_diff": 0.6214839684701595,
+        "val_score_sep_z": 1.8927188079097157,
+        "val_graphs": 36269,
+        "seconds": 31.882441320922226
+      },
+      "identity": {
+        "config": {
+          "model_key": "baseline_graphsage",
+          "seed": 42,
+          "max_epochs": 100,
+          "batch_size": 256,
+          "learning_rate": 0.001,
+          "weight_decay": 0.01,
+          "lambda_reg": 0.05,
+          "lambda_rank": 0.2,
+          "rank_margin": 0.2,
+          "grad_clip": 1.0,
+          "patience": 12,
+          "min_delta": 0.0001,
+          "pos_weight": 2.675295146480105
+        },
+        "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+        "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+        "identity_hash": "8a2fb326fb901e47300f0a996d5f3f364075fdc88c8e21c290c2f9beddb5c99c"
+      },
+      "committed_files": {
+        "best.pt": 1179666,
+        "resume.pt": 4735994
+      },
+      "failure_receipt_present": false,
+      "complete_receipt_present": false
+    }
+  }
+}

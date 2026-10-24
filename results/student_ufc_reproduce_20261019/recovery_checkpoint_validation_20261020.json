@@ -1,0 +1,40 @@
+{
+  "state": "coherent_atomic_resume_verified",
+  "next_epoch": 62,
+  "committed_epochs": 61,
+  "external_history_epochs": 60,
+  "patience": 0,
+  "best_epoch": 61,
+  "selected_validation_roc_auc": 0.9803601162725496,
+  "terminal": false,
+  "identity": {
+    "config": {
+      "model_key": "baseline_gatv2",
+      "seed": 21,
+      "max_epochs": 100,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "lambda_reg": 0.05,
+      "lambda_rank": 0.2,
+      "rank_margin": 0.2,
+      "grad_clip": 1.0,
+      "patience": 12,
+      "min_delta": 0.0001,
+      "pos_weight": 2.675295146480105
+    },
+    "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+    "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+    "identity_hash": "3c666cadc1eee0c17654830433fd1ebec19db28896628fb8004a1c75c2ec4814"
+  },
+  "rng_cuda_devices": 1,
+  "optimizer_state_parameters": 56,
+  "original_file_sha256": {
+    "best.pt": "add8c147adc63febc35a19cea5c1fda4b9d6a1b306c937886cb1475915d1f81b",
+    "history.json": "4e25d94ac33aa98a34d1bbff0ede9090f7b02d0c2e1c00895a7754b9cb5629a0",
+    "identity.json": "079a0c131346ba3156c1b9729c5c3e3d5dfffdc4254de2015d5f76c33a454208",
+    "resume.pt": "e0565c83f6717650b897aee8562f59ed1b1e719d5d2962d34b95143a6fe3cd7c",
+    "failure.json": "61c14611274e93d9d146ebbf818f302c3beecb1678d3ebfc53b032e54ae308b8",
+    "status.json": "2204b04c28779f8bf2dcfd78aada5e2ba94874cd4c400b51be1b7148c196914e"
+  }
+}

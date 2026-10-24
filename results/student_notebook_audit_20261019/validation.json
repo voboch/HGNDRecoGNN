@@ -1,0 +1,24 @@
+{
+  "checked_at_utc": "2026-10-19T13:25:27.605939+00:00",
+  "notebooks_unchanged": true,
+  "six_cpu_architecture_probes_passed": true,
+  "full_population_matches_saved_counts": true,
+  "event_batch_dependence_confirmed_in_original_function": true,
+  "ruff": "passed for new audit script",
+  "python_compile": "passed",
+  "strict_table_headers": "0 problems in 2 reports",
+  "old_campaign_input_hashes_unchanged": 152,
+  "manuscript_source_pdf_unchanged": true,
+  "trained_roc_auc_independently_reproduced": false,
+  "missing": "Student original checkpoints and per-seed predictions; raw-source/split manifests",
+  "jobs_submitted": 0,
+  "source_988976_evaluations": 0,
+  "files_sha256": {
+    "results/student_notebook_audit_20261019/additional_checks.json": "76bb3e03cabd4dea8c03116d15cdc04b753c5785baac209a265bb90441b6555e",
+    "results/student_notebook_audit_20261019/audit.json": "1abdd40e6abe84a62f3fdcb6a4cc99ce95b9ed7312a98bd7025f7568f34db535",
+    "results/student_notebook_audit_20261019/saved_comparison_tables.json": "2786b09c460ce2d6d847661b41371fa1707b8d1772ed89f28623ef768eb3a5ec",
+    "reports/student_notebook_audit_20261019.md": "96343176074bba3f0d20221db40c5866d3c19ec6119633d5108dd89e22135946",
+    "reports/student_notebook_audit_plan_20261019.md": "966df515e4dd220a2fbc7a5e9aaf8acad67d359d9117c300f915f8ce293fd1b7",
+    "scripts/audit_student_notebooks.py": "99c122c9475f0cd260601c251e5c9dfdc96b829b92edcd28d81c363216717bd5"
+  }
+}
