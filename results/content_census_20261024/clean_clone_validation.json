@@ -1,0 +1,10 @@
+{
+  "code_commit": "db1d2d1",
+  "tests_passed": 190,
+  "tests_skipped": 22,
+  "tests_failed": 0,
+  "skips": "Optional tests require external prediction, detector, or conversion data omitted from the clean clone. Missing-input integration tests use pytest.skip explicitly.",
+  "working_copy_tests_before_clone_fix": 212,
+  "compact_smash_export_rows": 24,
+  "clone_root": "/private/tmp/hgnd-v9-clean/HGNDRecoGNN"
+}
