@@ -133,7 +133,8 @@ def run(args):
         summary['smash_inventory_sha256'] = sha256(args.smash_inventory)
         for tag, info in inventory['tags'].items():
             # Name membership is fixed by the pre-existing inventory, not by glob outcomes.
-            files = [Path(info['primary_root']) / f'{name}_prim.csv' for name in info['all_pair_names']]
+            files = [Path(info['primary_root']) / f'{name}_prim.csv'
+                     for name in info['common_primary_pair_names']]
             expected = {'zeroSpot': 195, 'defaultSpot': 200, 'bigSpot': 173}[tag]
             if len(files) != expected or len(set(files)) != expected:
                 raise ValueError(f'Incorrect declared primary membership: {tag}')
