@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-10-23T08:06:23.282218+00:00",
+  "slurm": "4436974|FAILED|1:0|00:08:19|cn-031\n4436974.batch|FAILED|1:0|00:08:19|cn-031\n4436974.extern|COMPLETED|0:0|00:08:19|cn-031\n4436975|COMPLETED|0:0|00:09:03|cn-031\n4436975.batch|COMPLETED|0:0|00:09:03|cn-031\n4436975.extern|COMPLETED|0:0|00:09:03|cn-031\n",
+  "queue": "",
+  "primary_bundle_state": "failed_incomplete_do_not_use",
+  "primary_bundle_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/primary_zeroSpot",
+  "manifest_exists": false,
+  "partial_archive_exists": true,
+  "packaging_failure": "EACCES on source.stat() after copying zeroSpot/10943245/0071_prim.csv; original log preserved locally",
+  "recovery_submitted": false,
+  "model_transfer_submitted": false
+}

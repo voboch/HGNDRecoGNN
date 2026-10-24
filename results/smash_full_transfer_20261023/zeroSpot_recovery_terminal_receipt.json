@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-10-23T08:25:10.186896+00:00",
+  "job_id": "4437145",
+  "slurm": "4437145|FAILED|1:0|00:07:49|cn-030\n4437145.batch|FAILED|1:0|00:07:49|cn-030\n4437145.extern|COMPLETED|0:0|00:07:49|cn-030\n",
+  "queue": "",
+  "outputs": {
+    "progress.json": {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json",
+      "sha256": "05f4e9747aaf82a14f69f1d9a8e0c111e7597f908c8515b6add6a80f5068eeba",
+      "gzip_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/zeroSpot_recovery_progress_json.gz",
+      "gzip_sha256": "27e34e3f43ac04894b824c9de92f670737db43df1d72e66c1e34c000f92b9fd1",
+      "bytes": 32951397
+    },
+    "progress.json.tmp": {
+      "path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json.tmp",
+      "sha256": "a23fe48b097159b5d59f83af189ca2eceeda89e83ec6755ce8a937c50a045799",
+      "gzip_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/zeroSpot_recovery_progress_json_tmp.gz",
+      "gzip_sha256": "3f6f2ae66341810423695199163400dd94e240614c49e57987f4b7941bee3e0b",
+      "bytes": 35151523
+    }
+  },
+  "postmortem_metadata": {
+    "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery": {
+      "mode": "0o755",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 81408
+    },
+    "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json": {
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 32951397
+    },
+    "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json.tmp": {
+      "mode": "0o644",
+      "uid": 2761,
+      "gid": 100,
+      "bytes": 35151523
+    }
+  },
+  "error": "EACCES atomic replace progress.json.tmp -> progress.json on scratch; no complete summary",
+  "complete_summary_exists": false,
+  "temporary_progress_promoted": false,
+  "further_retry_authorized": false
+}

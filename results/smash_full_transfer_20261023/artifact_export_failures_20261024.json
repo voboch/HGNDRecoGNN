@@ -1,0 +1,14 @@
+{
+  "stage": "retrieval_of_already_complete_outputs",
+  "initial_sftp": {
+    "zeroSpot": "inputs.tar Permission denied; exit1",
+    "defaultSpot": "success",
+    "bigSpot": "glob lookup No such file or directory; exit1"
+  },
+  "diagnostic": "export_access_diagnostic_20261024.json",
+  "fallback": "artifact_stream_retrieval_20261024.json",
+  "all_original_archive_hashes_preserved": true,
+  "new_compute_jobs_or_retries": false,
+  "infrastructure_cause_established": false,
+  "RA09_closed": false
+}

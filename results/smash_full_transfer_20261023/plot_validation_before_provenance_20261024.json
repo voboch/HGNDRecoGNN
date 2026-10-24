@@ -1,0 +1,23 @@
+{
+  "scope": "Full canonical-file retrospective SMASH development; no MC-statistical intervals estimated",
+  "figures": [
+    {
+      "path": "results/smash_full_transfer_20261023/figures/roc.png",
+      "sha256": "9215cadc1c145033b19f358fd28a4ae1d5f6e5795c8634a7a819ec8af2b14f06",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed",
+      "visually_inspected": true,
+      "visual_qa": "passed: three seed curves, complete probability/residual domains, native MC labels and sample counts, no clipped text or overlapping legend"
+    },
+    {
+      "path": "results/smash_full_transfer_20261023/figures/energy_residual_cdf.png",
+      "sha256": "0863367aade854832d1b390e729d2666b5699e53d97b588d1d4ea05684872bc1",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed",
+      "visually_inspected": true,
+      "visual_qa": "passed: three seed curves, complete probability/residual domains, native MC labels and sample counts, no clipped text or overlapping legend"
+    }
+  ],
+  "visually_inspected_utc": "2026-10-24T08:27:26.222652+00:00",
+  "publication_ready_pdf": false
+}

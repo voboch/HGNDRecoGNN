@@ -1,0 +1,18 @@
+{
+  "progress.json": {
+    "state": "running",
+    "primary_files_read": 76,
+    "target_records": 236519,
+    "matches": 91322,
+    "complete_summary": false,
+    "used_for_full_binding": false
+  },
+  "progress.json.tmp": {
+    "state": "running",
+    "primary_files_read": 81,
+    "target_records": 236519,
+    "matches": 97424,
+    "complete_summary": false,
+    "used_for_full_binding": false
+  }
+}

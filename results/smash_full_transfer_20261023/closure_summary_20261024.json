@@ -1,0 +1,121 @@
+{
+  "state": "complete",
+  "closed_utc": "2026-10-24T08:34:56.016219+00:00",
+  "gate": "full corrected-SMASH source audit and frozen native-DCM conditional cluster transfer",
+  "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+  "bound_inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+  "jobs": {
+    "4437503": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T12:03:01",
+      "end_cluster_local": "2026-10-23T12:22:34",
+      "elapsed": "00:19:33",
+      "node": "cn-032"
+    },
+    "4437504": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T12:03:01",
+      "end_cluster_local": "2026-10-23T12:22:02",
+      "elapsed": "00:19:01",
+      "node": "cn-035"
+    },
+    "4437505": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T12:22:38",
+      "end_cluster_local": "2026-10-23T12:25:28",
+      "elapsed": "00:02:50",
+      "node": "cn-032"
+    },
+    "4437645": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T13:25:18",
+      "end_cluster_local": "2026-10-23T13:28:28",
+      "elapsed": "00:03:10",
+      "node": "cn-011"
+    },
+    "4437674": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T13:54:11",
+      "end_cluster_local": "2026-10-23T14:10:04",
+      "elapsed": "00:15:53",
+      "node": "cn-010"
+    },
+    "4437675": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T14:01:20",
+      "end_cluster_local": "2026-10-23T14:12:49",
+      "elapsed": "00:11:29",
+      "node": "cn-015"
+    },
+    "4437676": {
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T14:10:29",
+      "end_cluster_local": "2026-10-23T14:14:19",
+      "elapsed": "00:03:50",
+      "node": "cn-010"
+    }
+  },
+  "observed_max_concurrent_campaign_tasks": 2,
+  "campaign_jobs_outstanding": 0,
+  "original_detector_members": 568,
+  "canonical_nonempty_detector_pairs": 432,
+  "header_only_pairs": 100,
+  "excluded_exact_byte_aliases": 36,
+  "prediction_csvs_verified": 1296,
+  "per_potential_population": {
+    "zeroSpot": {
+      "clusters": 1220632,
+      "MC_positive_clusters": 218410,
+      "events_with_candidates": 594190
+    },
+    "defaultSpot": {
+      "clusters": 1160155,
+      "MC_positive_clusters": 208101,
+      "events_with_candidates": 563287
+    },
+    "bigSpot": {
+      "clusters": 322049,
+      "MC_positive_clusters": 57959,
+      "events_with_candidates": 156757
+    }
+  },
+  "canonical_metrics_path": "results/smash_full_transfer_20261023/full_metrics_verified.json",
+  "canonical_metrics_sha256": "a39482afaf0285ab8e634d4196e7acaf99e691022911ac5afe667902e04ab8e1",
+  "figures_verified": [
+    {
+      "path": "results/smash_full_transfer_20261023/figures/roc.png",
+      "sha256": "440d129ac8d5e6da42061e232680d670fc34bb9bb7e754b79cdd76b6e83a27a4",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed",
+      "visually_inspected": true,
+      "visual_qa": "passed: reconstruction and MC-target provenance on each panel; n and signal counts; full data domains; no text/curve overlap or clipping"
+    },
+    {
+      "path": "results/smash_full_transfer_20261023/figures/energy_residual_cdf.png",
+      "sha256": "94fbb5b913f469c993ddd8a1e387ce2cd3362b5effd607322e662fe8a236d104",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed",
+      "visually_inspected": true,
+      "visual_qa": "passed: reconstruction and MC-target provenance on each panel; n and signal counts; full data domains; no text/curve overlap or clipping"
+    }
+  ],
+  "fresh_holdout_available": false,
+  "smash_training_or_calibration_performed": false,
+  "symmetry_potential_sensitivity_measured": false,
+  "generated_neutron_efficiency_measured": false,
+  "RA09_status": "OPEN; source of intermittent accessibility failures unproven",
+  "new_compute_jobs_or_retries_on_20261024": false,
+  "manuscript_edited": false,
+  "next_gate_prerequisites": [
+    "production job/seed/ROOT lineage",
+    "processed entry ranges including zero-response events",
+    "source-grouped split and separate protocol before SMASH training or physical response measurement"
+  ]
+}

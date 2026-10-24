@@ -1,0 +1,15 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_probe_bundles/all_4437645",
+  "manifest_sha256": "5d39e0761d07400f071fb1d309016d2acef9bff58c88011e64f42a06ecbeb353",
+  "archive_sha256": "5016f7042478936eac7dbe1860c9cb115f68fcd297ddc6566f8a6fdabb86d6f1",
+  "archive_bytes": 1781760,
+  "files": 18,
+  "summary_files": {
+    "transfer_probe/bigSpot/summary.json": "84fed705006bdb78626bba96dc145a910aa880f5c101ece2f0a9523322ac63c0",
+    "transfer_probe/defaultSpot/summary.json": "d5719fbb5bfd4be222f3f03f9cd2c32a95b893f2cf5a509fafc72a016deec682",
+    "transfer_probe/zeroSpot/summary.json": "1befef8915e4cb416d2aa5077b1ac7b6c69660e15f2c4077dde43b992ae1b587"
+  },
+  "publisher_sha256": "af25d3c9f2e9706d1da6e99d88f0f5202a4aae50cc351d50521b3a55e980753c",
+  "scratch_atomic_replace": false
+}

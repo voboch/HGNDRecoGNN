@@ -1,0 +1,27 @@
+{
+  "scope": "Single-file engineering binding probe, not detection efficiency",
+  "inputs": {
+    "results/smash_audit_20261021/probe_zero_0001_vacs.csv": "4d4473d072bedf34fc9cfe0365fc2dd46b164ae50965e1271b28765148ca94ce",
+    "results/smash_audit_20261021/probe_zero_0001_prim.csv": "e57ca1851139672e2966fd88b8eafa28481b8d7bfa6a5785a10267c9848842e3"
+  },
+  "primary_rows": 1073443,
+  "primary_events": 4179,
+  "vacs_export_events": 3084,
+  "primary_particle_counts": {
+    "2112": 604291,
+    "2212": 469152
+  },
+  "front_face_primary_detector_records": 1435,
+  "missing_primary_id": 171,
+  "missing_pdg_counts": {
+    "-211": 153,
+    "211": 17,
+    "321": 1
+  },
+  "missing_rows_outside_primary_events": 0,
+  "missing_neutron_ids": 0,
+  "neutron_records": 923,
+  "neutron_matched_ids": 923,
+  "neutron_pdg_and_vertex_agree": 923,
+  "source_script_sha256": "c5bfcb28d056800a5441202784d001b8e43dd6454b3f5e2645fd8c3de9d0cb70"
+}

@@ -1,0 +1,9 @@
+{
+  "created_at_utc": "2026-10-23T09:09:26.124655+00:00",
+  "job_id": "4437505",
+  "operation": "scontrol show job before optional dependency optimization",
+  "error": "slurm_load_jobs Socket timed out on send/recv operation",
+  "dependency_update_executed": false,
+  "original_dependency_preserved": "afterany:4437503",
+  "new_jobs_submitted": false
+}

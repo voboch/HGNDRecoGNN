@@ -1,0 +1,122 @@
+{
+  "scope": "Engineering probe, zeroSpot corrected10943245/0001 only; not efficiency estimate",
+  "inputs": {
+    "probe_zero_0001_vacs.csv": "4d4473d072bedf34fc9cfe0365fc2dd46b164ae50965e1271b28765148ca94ce",
+    "probe_zero_0001_prim.csv": "e57ca1851139672e2966fd88b8eafa28481b8d7bfa6a5785a10267c9848842e3"
+  },
+  "primary_rows": 1073443,
+  "primary_events": 4179,
+  "vacs_export_events": 3084,
+  "front_face_primary_detector_records": 1435,
+  "missing_primary_id": 171,
+  "missing_pdg_counts": {
+    "-211": 153,
+    "211": 17,
+    "321": 1
+  },
+  "missing_rows_outside_primary_events": 0,
+  "missing_id_range": [
+    18.0,
+    405.0
+  ],
+  "unmatched_examples": [
+    {
+      "Row": 36,
+      "Id": 34,
+      "PDG_det": -211,
+      "Ekin_det": 0.949849,
+      "vX_det": 0.218997,
+      "vY_det": -0.024277,
+      "vZ_det": -0.037945
+    },
+    {
+      "Row": 38,
+      "Id": 157,
+      "PDG_det": -211,
+      "Ekin_det": 0.816951,
+      "vX_det": -0.486316,
+      "vY_det": 0.050247,
+      "vZ_det": 0.015711
+    },
+    {
+      "Row": 94,
+      "Id": 327,
+      "PDG_det": -211,
+      "Ekin_det": 1.456758,
+      "vX_det": 0.603436,
+      "vY_det": 0.4862,
+      "vZ_det": -0.004041
+    },
+    {
+      "Row": 96,
+      "Id": 341,
+      "PDG_det": -211,
+      "Ekin_det": 0.567712,
+      "vX_det": 0.311064,
+      "vY_det": -0.774121,
+      "vZ_det": 0.059838
+    },
+    {
+      "Row": 104,
+      "Id": 265,
+      "PDG_det": -211,
+      "Ekin_det": 0.848386,
+      "vX_det": 0.248595,
+      "vY_det": -1.314266,
+      "vZ_det": 0.043285
+    },
+    {
+      "Row": 122,
+      "Id": 405,
+      "PDG_det": 211,
+      "Ekin_det": 0.692364,
+      "vX_det": 0.263642,
+      "vY_det": 0.025789,
+      "vZ_det": -0.092038
+    },
+    {
+      "Row": 130,
+      "Id": 262,
+      "PDG_det": -211,
+      "Ekin_det": 1.541558,
+      "vX_det": 0.224587,
+      "vY_det": -1.020948,
+      "vZ_det": 0.067579
+    },
+    {
+      "Row": 160,
+      "Id": 265,
+      "PDG_det": -211,
+      "Ekin_det": 1.700819,
+      "vX_det": 1.214113,
+      "vY_det": -0.3977,
+      "vZ_det": -0.022994
+    },
+    {
+      "Row": 177,
+      "Id": 284,
+      "PDG_det": -211,
+      "Ekin_det": 0.78084,
+      "vX_det": 1.448893,
+      "vY_det": -0.619935,
+      "vZ_det": -0.093136
+    },
+    {
+      "Row": 226,
+      "Id": 281,
+      "PDG_det": 211,
+      "Ekin_det": 2.637905,
+      "vX_det": 0.13105,
+      "vY_det": 0.661972,
+      "vZ_det": 0.026569
+    }
+  ],
+  "missing_neutron_ids": 0,
+  "primary_particle_counts": {
+    "2112": 604291,
+    "2212": 469152
+  },
+  "neutron_records": 923,
+  "neutron_matched_ids": 923,
+  "neutron_pdg_and_vertex_agree": 923
+}

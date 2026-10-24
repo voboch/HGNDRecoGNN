@@ -1,0 +1,67 @@
+{
+  "checked_utc": "2026-10-24T08:21:14.661273+00:00",
+  "uid": 2761,
+  "gid": 100,
+  "artifacts": {
+    "zeroSpot": {
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/zeroSpot_4437674": {
+        "mode": "0o755",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 81408
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/zeroSpot_4437674/manifest.json": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 172959
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/zeroSpot_4437674/inputs.tar": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 151715840
+      }
+    },
+    "defaultSpot": {
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/defaultSpot_4437675": {
+        "mode": "0o755",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 81408
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/defaultSpot_4437675/manifest.json": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 168399
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/defaultSpot_4437675/inputs.tar": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 144209920
+      }
+    },
+    "bigSpot": {
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/bigSpot_4437676": {
+        "mode": "0o755",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 81408
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/bigSpot_4437676/manifest.json": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 45925
+      },
+      "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/transfer_bundles/bigSpot_4437676/inputs.tar": {
+        "mode": "0o644",
+        "uid": 2761,
+        "gid": 100,
+        "bytes": 40058880
+      }
+    }
+  }
+}

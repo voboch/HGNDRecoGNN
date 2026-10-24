@@ -1,0 +1,38 @@
+{
+  "scope": "Single-file engineering binding probe, not detection efficiency",
+  "primary_rows": 1070602,
+  "primary_events": 4168,
+  "vacs_export_events": 3148,
+  "primary_particle_counts": {
+    "2112": 604257,
+    "2212": 466345
+  },
+  "front_face_primary_detector_records": 1370,
+  "missing_primary_id": 154,
+  "missing_pdg_counts": {
+    "-211": 137,
+    "211": 17
+  },
+  "missing_rows_outside_primary_events": 0,
+  "missing_neutron_ids": 0,
+  "neutron_records": 933,
+  "neutron_matched_ids": 933,
+  "neutron_pdg_and_vertex_agree": 933,
+  "source_script_sha256": "80a3a4fb68f6e41c46a6c5d2b571926da0ded0f82c8131fe464e7825ecc13974",
+  "nucleon_binding": {
+    "eligible": 1216,
+    "matched_ids": 1216,
+    "pdg_agree": 1216,
+    "pdg_vertex_agree": 1216,
+    "missing_pdg_counts": {}
+  },
+  "exact_signature_search": {
+    "scope": "same supplied primary file; exact exported numbers; no fitted alignment",
+    "detector_nucleons_with_momentum_energy_match": 1216,
+    "detector_events_with_vertex_match": 892
+  },
+  "inputs": {
+    "results/smash_transfer_20261021/big_0001_vacs.csv": "358de8545807993e4c15de6283ad9ed55684cf7ecd5abc31bd79899925add4ad",
+    "results/smash_transfer_20261021/big_0001_prim.csv": "33681207d27bda4f22399da3657ca6235714174674825cf970e461df4a23564d"
+  }
+}

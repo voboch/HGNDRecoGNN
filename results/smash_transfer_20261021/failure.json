@@ -1,0 +1,5 @@
+{
+  "state": "failed",
+  "error": "ValueError('Primary nucleon binding failed: /scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_prim.csv')",
+  "source_script_sha256": "069de80d0383e9cbbb4c9a8ea6b232630841626b35c73ca573a9383929e57ba6"
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "Exact exported six-decimal signatures, no fitted tolerance or remapping",
+  "eligible_detector_nucleons": 334,
+  "momentum_energy_signature_join_rows": 0,
+  "detector_records_with_signature": 0,
+  "vertex_join_rows": 0,
+  "detector_events_with_vertex_match": 0
+}

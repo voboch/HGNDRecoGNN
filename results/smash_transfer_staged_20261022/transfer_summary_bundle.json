@@ -1,0 +1,610 @@
+{
+  "state": "complete",
+  "scope": "first-file engineering DCM-to-SMASH transfer, not full population or independent test",
+  "job_id": "4435668",
+  "summaries": {
+    "zeroSpot": {
+      "state": "complete",
+      "scope": "retrospective common-file SMASH development; not independent test",
+      "tag": "zeroSpot",
+      "smoke": true,
+      "audit_summary_sha256": "dc7a7f729d8bd92ef553552fde2fcc92e7c3e0e38af9c6e9180d2d9097b99b75",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "native_source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+      "graph_recipe": {
+        "radius_cells": 3.6,
+        "time_ns": 1.0,
+        "scalers": "frozen DCM training"
+      },
+      "no_training_or_calibration": true,
+      "files": [
+        {
+          "member": "10943245/0001",
+          "observation_sha256": "4f2aa85096f626d28be418d19ebd6b113f5e1c7d94e1ef0d5a480f165ad350d9",
+          "graphs": 4124,
+          "clusters": 6233,
+          "signal": 1116,
+          "outputs": {
+            "42": {
+              "path": "seed_42/10943245/0001.csv",
+              "sha256": "6962a263bbce2ba3acdcf0394a17e4114cf3a977d04ead6d27862271625e5cdc",
+              "threshold": 0.46507,
+              "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+              "metrics": {
+                "n": 6233,
+                "signal": 1116,
+                "selected": 927,
+                "selected_signal": 645,
+                "auc": 0.9051478555913488,
+                "ap": 0.7043458779214424,
+                "purity": 0.6957928802588996,
+                "efficiency": 0.5779569892473119,
+                "bias_GeV": -0.07040899491278074,
+                "mae_GeV": 0.15971749589701706,
+                "selected_bias_GeV": -0.06602479981821636,
+                "selected_mae_GeV": 0.16439580626265948
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 905,
+                  "signal_clusters": 1075,
+                  "matched_objects": 901,
+                  "merged_clusters": 10,
+                  "split_objects": 157
+                },
+                "selected_candidates": {
+                  "eligible_objects": 490,
+                  "signal_clusters": 491,
+                  "matched_objects": 482,
+                  "merged_clusters": 10,
+                  "split_objects": 11
+                },
+                "selected_without_direct_primary_neutron": 436
+              }
+            },
+            "123": {
+              "path": "seed_123/10943245/0001.csv",
+              "sha256": "29a9c66c9ffc2f979cd164d985acc65cdadb58a1719fc6149a4d39fc688c5ed0",
+              "threshold": 0.35778499999999996,
+              "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+              "metrics": {
+                "n": 6233,
+                "signal": 1116,
+                "selected": 918,
+                "selected_signal": 648,
+                "auc": 0.9010668283317327,
+                "ap": 0.7139192052167672,
+                "purity": 0.7058823529411765,
+                "efficiency": 0.5806451612903226,
+                "bias_GeV": 0.011418186261662445,
+                "mae_GeV": 0.14397084061390183,
+                "selected_bias_GeV": 0.025709516564269126,
+                "selected_mae_GeV": 0.14802726008641867
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 905,
+                  "signal_clusters": 1075,
+                  "matched_objects": 901,
+                  "merged_clusters": 10,
+                  "split_objects": 157
+                },
+                "selected_candidates": {
+                  "eligible_objects": 487,
+                  "signal_clusters": 493,
+                  "matched_objects": 481,
+                  "merged_clusters": 9,
+                  "split_objects": 15
+                },
+                "selected_without_direct_primary_neutron": 425
+              }
+            },
+            "456": {
+              "path": "seed_456/10943245/0001.csv",
+              "sha256": "f0fb517aaa60aca0cfe77b5b868fb67cf4f883717267c00187e7ad969a3b01cf",
+              "threshold": 0.397705,
+              "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+              "metrics": {
+                "n": 6233,
+                "signal": 1116,
+                "selected": 872,
+                "selected_signal": 624,
+                "auc": 0.8907753899259128,
+                "ap": 0.7010939964820045,
+                "purity": 0.7155963302752294,
+                "efficiency": 0.5591397849462365,
+                "bias_GeV": -0.08821526247220228,
+                "mae_GeV": 0.17569431018978893,
+                "selected_bias_GeV": -0.12817363259501946,
+                "selected_mae_GeV": 0.18202683396446398
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 905,
+                  "signal_clusters": 1075,
+                  "matched_objects": 901,
+                  "merged_clusters": 10,
+                  "split_objects": 157
+                },
+                "selected_candidates": {
+                  "eligible_objects": 474,
+                  "signal_clusters": 478,
+                  "matched_objects": 466,
+                  "merged_clusters": 9,
+                  "split_objects": 12
+                },
+                "selected_without_direct_primary_neutron": 394
+              }
+            }
+          }
+        }
+      ],
+      "per_seed": {
+        "42": {
+          "threshold": 0.46507,
+          "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+          "metrics": {
+            "n": 6233,
+            "signal": 1116,
+            "selected": 927,
+            "selected_signal": 645,
+            "auc": 0.9051478555913488,
+            "ap": 0.7043458779214424,
+            "purity": 0.6957928802588996,
+            "efficiency": 0.5779569892473119,
+            "bias_GeV": -0.07040899491278074,
+            "mae_GeV": 0.15971749589701706,
+            "selected_bias_GeV": -0.06602479981821636,
+            "selected_mae_GeV": 0.16439580626265948
+          }
+        },
+        "123": {
+          "threshold": 0.35778499999999996,
+          "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+          "metrics": {
+            "n": 6233,
+            "signal": 1116,
+            "selected": 918,
+            "selected_signal": 648,
+            "auc": 0.9010668283317327,
+            "ap": 0.7139192052167672,
+            "purity": 0.7058823529411765,
+            "efficiency": 0.5806451612903226,
+            "bias_GeV": 0.011418186261662445,
+            "mae_GeV": 0.14397084061390183,
+            "selected_bias_GeV": 0.025709516564269126,
+            "selected_mae_GeV": 0.14802726008641867
+          }
+        },
+        "456": {
+          "threshold": 0.397705,
+          "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+          "metrics": {
+            "n": 6233,
+            "signal": 1116,
+            "selected": 872,
+            "selected_signal": 624,
+            "auc": 0.8907753899259128,
+            "ap": 0.7010939964820045,
+            "purity": 0.7155963302752294,
+            "efficiency": 0.5591397849462365,
+            "bias_GeV": -0.08821526247220228,
+            "mae_GeV": 0.17569431018978893,
+            "selected_bias_GeV": -0.12817363259501946,
+            "selected_mae_GeV": 0.18202683396446398
+          }
+        }
+      },
+      "device_requested": "cuda",
+      "model_device": "cuda:0",
+      "elapsed_seconds": 15.643881702795625
+    },
+    "defaultSpot": {
+      "state": "complete",
+      "scope": "retrospective common-file SMASH development; not independent test",
+      "tag": "defaultSpot",
+      "smoke": true,
+      "audit_summary_sha256": "f47f09299455b9b3832948d88c79fa0ba7b4a1c814ff14a610081edcc4b655cd",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "native_source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+      "graph_recipe": {
+        "radius_cells": 3.6,
+        "time_ns": 1.0,
+        "scalers": "frozen DCM training"
+      },
+      "no_training_or_calibration": true,
+      "files": [
+        {
+          "member": "10943245/0001",
+          "observation_sha256": "1bdab34ca2395475176da96b0268e09335867a27e21dcd8af18cd13e503339eb",
+          "graphs": 1056,
+          "clusters": 1611,
+          "signal": 329,
+          "outputs": {
+            "42": {
+              "path": "seed_42/10943245/0001.csv",
+              "sha256": "b75519dc8f2e6409ab1e339c87c38ea4f8931dc544c5694bffd9dfacf774d9c0",
+              "threshold": 0.46507,
+              "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+              "metrics": {
+                "n": 1611,
+                "signal": 329,
+                "selected": 243,
+                "selected_signal": 180,
+                "auc": 0.9153512037138021,
+                "ap": 0.7489166247459362,
+                "purity": 0.7407407407407407,
+                "efficiency": 0.547112462006079,
+                "bias_GeV": -0.07402196562761232,
+                "mae_GeV": 0.17618754850332496,
+                "selected_bias_GeV": -0.08723577641778522,
+                "selected_mae_GeV": 0.19409029136101405
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 270,
+                  "signal_clusters": 301,
+                  "matched_objects": 264,
+                  "merged_clusters": 5,
+                  "split_objects": 36
+                },
+                "selected_candidates": {
+                  "eligible_objects": 151,
+                  "signal_clusters": 147,
+                  "matched_objects": 144,
+                  "merged_clusters": 5,
+                  "split_objects": 3
+                },
+                "selected_without_direct_primary_neutron": 96
+              }
+            },
+            "123": {
+              "path": "seed_123/10943245/0001.csv",
+              "sha256": "827de4ce25747271c1970385639f1d689e63bab70b696120568223c399c5592c",
+              "threshold": 0.35778499999999996,
+              "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+              "metrics": {
+                "n": 1611,
+                "signal": 329,
+                "selected": 238,
+                "selected_signal": 183,
+                "auc": 0.9089829246665307,
+                "ap": 0.7427796003004551,
+                "purity": 0.7689075630252101,
+                "efficiency": 0.5562310030395137,
+                "bias_GeV": 0.004115147340623803,
+                "mae_GeV": 0.14867643445820794,
+                "selected_bias_GeV": -0.002213720089750863,
+                "selected_mae_GeV": 0.15772304346001215
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 270,
+                  "signal_clusters": 301,
+                  "matched_objects": 264,
+                  "merged_clusters": 5,
+                  "split_objects": 36
+                },
+                "selected_candidates": {
+                  "eligible_objects": 150,
+                  "signal_clusters": 145,
+                  "matched_objects": 143,
+                  "merged_clusters": 5,
+                  "split_objects": 2
+                },
+                "selected_without_direct_primary_neutron": 93
+              }
+            },
+            "456": {
+              "path": "seed_456/10943245/0001.csv",
+              "sha256": "5a2ebc1b0bd023a98586b9d969be81557e77889e2601ae3a02c7e1b2cb68b44b",
+              "threshold": 0.397705,
+              "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+              "metrics": {
+                "n": 1611,
+                "signal": 329,
+                "selected": 240,
+                "selected_signal": 178,
+                "auc": 0.9022850883640209,
+                "ap": 0.7378928310896458,
+                "purity": 0.7416666666666667,
+                "efficiency": 0.541033434650456,
+                "bias_GeV": -0.10501498590849091,
+                "mae_GeV": 0.1978538243785093,
+                "selected_bias_GeV": -0.15176312742608317,
+                "selected_mae_GeV": 0.22916060585654183
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 270,
+                  "signal_clusters": 301,
+                  "matched_objects": 264,
+                  "merged_clusters": 5,
+                  "split_objects": 36
+                },
+                "selected_candidates": {
+                  "eligible_objects": 146,
+                  "signal_clusters": 140,
+                  "matched_objects": 139,
+                  "merged_clusters": 5,
+                  "split_objects": 1
+                },
+                "selected_without_direct_primary_neutron": 100
+              }
+            }
+          }
+        }
+      ],
+      "per_seed": {
+        "42": {
+          "threshold": 0.46507,
+          "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+          "metrics": {
+            "n": 1611,
+            "signal": 329,
+            "selected": 243,
+            "selected_signal": 180,
+            "auc": 0.9153512037138021,
+            "ap": 0.7489166247459362,
+            "purity": 0.7407407407407407,
+            "efficiency": 0.547112462006079,
+            "bias_GeV": -0.07402196562761232,
+            "mae_GeV": 0.17618754850332496,
+            "selected_bias_GeV": -0.08723577641778522,
+            "selected_mae_GeV": 0.19409029136101405
+          }
+        },
+        "123": {
+          "threshold": 0.35778499999999996,
+          "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+          "metrics": {
+            "n": 1611,
+            "signal": 329,
+            "selected": 238,
+            "selected_signal": 183,
+            "auc": 0.9089829246665307,
+            "ap": 0.7427796003004551,
+            "purity": 0.7689075630252101,
+            "efficiency": 0.5562310030395137,
+            "bias_GeV": 0.004115147340623803,
+            "mae_GeV": 0.14867643445820794,
+            "selected_bias_GeV": -0.002213720089750863,
+            "selected_mae_GeV": 0.15772304346001215
+          }
+        },
+        "456": {
+          "threshold": 0.397705,
+          "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+          "metrics": {
+            "n": 1611,
+            "signal": 329,
+            "selected": 240,
+            "selected_signal": 178,
+            "auc": 0.9022850883640209,
+            "ap": 0.7378928310896458,
+            "purity": 0.7416666666666667,
+            "efficiency": 0.541033434650456,
+            "bias_GeV": -0.10501498590849091,
+            "mae_GeV": 0.1978538243785093,
+            "selected_bias_GeV": -0.15176312742608317,
+            "selected_mae_GeV": 0.22916060585654183
+          }
+        }
+      },
+      "device_requested": "cuda",
+      "model_device": "cuda:0",
+      "elapsed_seconds": 1.708280511200428
+    },
+    "bigSpot": {
+      "state": "complete",
+      "scope": "retrospective common-file SMASH development; not independent test",
+      "tag": "bigSpot",
+      "smoke": true,
+      "audit_summary_sha256": "9d5e0d6008f08c2a3a7e035c89607377b07d77f0a5dfc3584d5058ed0654f77b",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "native_source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+      "graph_recipe": {
+        "radius_cells": 3.6,
+        "time_ns": 1.0,
+        "scalers": "frozen DCM training"
+      },
+      "no_training_or_calibration": true,
+      "files": [
+        {
+          "member": "10943245/0001",
+          "observation_sha256": "4ffd1fca93d5b75fd35cf26bc19d8a520be82ec64b9799db4c82f0594a224148",
+          "graphs": 4154,
+          "clusters": 6302,
+          "signal": 1137,
+          "outputs": {
+            "42": {
+              "path": "seed_42/10943245/0001.csv",
+              "sha256": "2e84c9d1e236d1373c34debca38b4b9e3fe20889e7534c17af2ca2b2eac37a68",
+              "threshold": 0.46507,
+              "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+              "metrics": {
+                "n": 6302,
+                "signal": 1137,
+                "selected": 897,
+                "selected_signal": 632,
+                "auc": 0.9046601976465298,
+                "ap": 0.6947518512383306,
+                "purity": 0.7045707915273133,
+                "efficiency": 0.55584872471416,
+                "bias_GeV": -0.06200275053135009,
+                "mae_GeV": 0.16934367686693566,
+                "selected_bias_GeV": -0.04269704444310333,
+                "selected_mae_GeV": 0.17516390503018717
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 919,
+                  "signal_clusters": 1091,
+                  "matched_objects": 909,
+                  "merged_clusters": 21,
+                  "split_objects": 175
+                },
+                "selected_candidates": {
+                  "eligible_objects": 493,
+                  "signal_clusters": 484,
+                  "matched_objects": 479,
+                  "merged_clusters": 17,
+                  "split_objects": 10
+                },
+                "selected_without_direct_primary_neutron": 413
+              }
+            },
+            "123": {
+              "path": "seed_123/10943245/0001.csv",
+              "sha256": "26ffc77acaa0b0378e3dcadb805a59517563b2e5961b4eb3e9801167dcb9469c",
+              "threshold": 0.35778499999999996,
+              "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+              "metrics": {
+                "n": 6302,
+                "signal": 1137,
+                "selected": 900,
+                "selected_signal": 639,
+                "auc": 0.9018805964303745,
+                "ap": 0.7111286438757839,
+                "purity": 0.71,
+                "efficiency": 0.5620052770448549,
+                "bias_GeV": 0.014531270075808938,
+                "mae_GeV": 0.16027743080360593,
+                "selected_bias_GeV": 0.03945633591807131,
+                "selected_mae_GeV": 0.16894885151412378
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 919,
+                  "signal_clusters": 1091,
+                  "matched_objects": 909,
+                  "merged_clusters": 21,
+                  "split_objects": 175
+                },
+                "selected_candidates": {
+                  "eligible_objects": 503,
+                  "signal_clusters": 494,
+                  "matched_objects": 486,
+                  "merged_clusters": 18,
+                  "split_objects": 11
+                },
+                "selected_without_direct_primary_neutron": 406
+              }
+            },
+            "456": {
+              "path": "seed_456/10943245/0001.csv",
+              "sha256": "80b7b4d8e05835f18cb5a8dce0caf21a8cb60e207f505bf1b50a7ff89cb750b5",
+              "threshold": 0.397705,
+              "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+              "metrics": {
+                "n": 6302,
+                "signal": 1137,
+                "selected": 857,
+                "selected_signal": 596,
+                "auc": 0.8921088682109558,
+                "ap": 0.6903422354016256,
+                "purity": 0.6954492415402567,
+                "efficiency": 0.5241864555848724,
+                "bias_GeV": -0.08471534274708523,
+                "mae_GeV": 0.18880418152691716,
+                "selected_bias_GeV": -0.10689937668358719,
+                "selected_mae_GeV": 0.19214187012422804
+              },
+              "direct_primary": {
+                "scope": "direct primary-front-face neutron associations after hit cut; no ancestry closure",
+                "all_candidates": {
+                  "eligible_objects": 919,
+                  "signal_clusters": 1091,
+                  "matched_objects": 909,
+                  "merged_clusters": 21,
+                  "split_objects": 175
+                },
+                "selected_candidates": {
+                  "eligible_objects": 482,
+                  "signal_clusters": 473,
+                  "matched_objects": 467,
+                  "merged_clusters": 17,
+                  "split_objects": 10
+                },
+                "selected_without_direct_primary_neutron": 384
+              }
+            }
+          }
+        }
+      ],
+      "per_seed": {
+        "42": {
+          "threshold": 0.46507,
+          "checkpoint_sha256": "58fd03679d5c48797a303dec4c34d761fd0faa7f9aeaaaa4de27e190bdc04836",
+          "metrics": {
+            "n": 6302,
+            "signal": 1137,
+            "selected": 897,
+            "selected_signal": 632,
+            "auc": 0.9046601976465298,
+            "ap": 0.6947518512383306,
+            "purity": 0.7045707915273133,
+            "efficiency": 0.55584872471416,
+            "bias_GeV": -0.06200275053135009,
+            "mae_GeV": 0.16934367686693566,
+            "selected_bias_GeV": -0.04269704444310333,
+            "selected_mae_GeV": 0.17516390503018717
+          }
+        },
+        "123": {
+          "threshold": 0.35778499999999996,
+          "checkpoint_sha256": "78dc29eb45478b175b106becf797006b0ea03e8c5a6462d9a8fd75d7f9d1e699",
+          "metrics": {
+            "n": 6302,
+            "signal": 1137,
+            "selected": 900,
+            "selected_signal": 639,
+            "auc": 0.9018805964303745,
+            "ap": 0.7111286438757839,
+            "purity": 0.71,
+            "efficiency": 0.5620052770448549,
+            "bias_GeV": 0.014531270075808938,
+            "mae_GeV": 0.16027743080360593,
+            "selected_bias_GeV": 0.03945633591807131,
+            "selected_mae_GeV": 0.16894885151412378
+          }
+        },
+        "456": {
+          "threshold": 0.397705,
+          "checkpoint_sha256": "8ef19d67369da30ac4c25d23f0a9156c479bdebee34198658bc51371727b67e6",
+          "metrics": {
+            "n": 6302,
+            "signal": 1137,
+            "selected": 857,
+            "selected_signal": 596,
+            "auc": 0.8921088682109558,
+            "ap": 0.6903422354016256,
+            "purity": 0.6954492415402567,
+            "efficiency": 0.5241864555848724,
+            "bias_GeV": -0.08471534274708523,
+            "mae_GeV": 0.18880418152691716,
+            "selected_bias_GeV": -0.10689937668358719,
+            "selected_mae_GeV": 0.19214187012422804
+          }
+        }
+      },
+      "device_requested": "cuda",
+      "model_device": "cuda:0",
+      "elapsed_seconds": 4.308895733207464
+    }
+  },
+  "summary_sha256": {
+    "zeroSpot": "5b60f00eea8bd5f7e0ebc037770a284b573487605611d2c20088fe65d23cf89b",
+    "defaultSpot": "2a4e9370aac1ccfbcee77df761804cfda96ac231c5b097797ced90bf0ac52458",
+    "bigSpot": "7624410fdbaff87eab9e94bd23063477f9f9c7ed3e93297dce0ba11185ab7d25"
+  },
+  "slurm_accounting": "4435668|COMPLETED|0:0|00:01:38|cn-015|test\n4435668.batch|COMPLETED|0:0|00:01:38|cn-015|\n4435668.extern|COMPLETED|0:0|00:01:38|cn-015|\n"
+}

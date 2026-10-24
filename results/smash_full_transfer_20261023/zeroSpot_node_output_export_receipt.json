@@ -1,0 +1,12 @@
+{
+  "state": "complete",
+  "source_summary_sha256": "0ff2e011fe636c9fafb2c1fcc1898743e9b4d78765e793b78134997affbc0e51",
+  "gzip_sha256": "908ab331af15061e2b8df391b45d45c6d8e9dd7cadaf03333b239f46ac00d012",
+  "gzip_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_node_output_4437449/summary.json.gz",
+  "gzip_bytes": 10284624,
+  "mapping_source_sha256": "9f9c2bdb90754deaa35d29cd2277ed0f5f6f771d92503128c582d0d49644b815",
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "source_primary_files": 195,
+  "publisher_sha256": "8b141a46fcd400b7dfccfe4c37cc0f9714892417997a2acb722eb541a5b85331",
+  "atomic_replace_on_scratch": false
+}

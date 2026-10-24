@@ -1,0 +1,34 @@
+{
+  "state": "prepared_not_submitted",
+  "human_authorization_received": true,
+  "continuation_of_job": "4436974",
+  "failed_slurm_state": "FAILED",
+  "failed_elapsed": "00:08:19",
+  "failure": "EACCES opening zeroSpot/10943245/0131_prim.csv on cn-031; later login packaging failed EACCES stat zeroSpot/10943245/0071_prim.csv",
+  "scope": "one bounded zeroSpot source-binding recovery after primary access permits a complete byte-verified bundle; no fitting or model evaluation",
+  "preconditions": [
+    "All195 frozen primary exports copied with per-file hashes; previous126 successful read hashes preserved",
+    "Complete verified primary archive/manifest, never the partial tar",
+    "Read original job receipts/Slurm and preserve failed output",
+    "Explicit human authorization before sbatch"
+  ],
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "raw_bundle_manifest_sha256": "b52a64a040fb9452c40189bc7cf42b90ced008b1375fee8a250a010a9b884d76",
+  "primary_plan_sha256": "f6ac6949de94d868b1d541faa6e195ccfccb1ad3ed6d3e6edca97a5460ee3f53",
+  "mapper_sha256": "9f9c2bdb90754deaa35d29cd2277ed0f5f6f771d92503128c582d0d49644b815",
+  "submission_script_sha256": "cc130dbe26964ba9bf8e3ed9beb971d22c263be8bb69f06a6d8f0c838188558d",
+  "limits": {
+    "jobs": 1,
+    "cpus": 4,
+    "gpus": 0,
+    "time": "00:30:00",
+    "mem": 0,
+    "no_requeue": true,
+    "further_automatic_retry": false
+  },
+  "identity_recipe_split_changes": false,
+  "new_smash_training": false,
+  "human_authorization_text": "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u044c \u043e\u0434\u0438\u043d \u043f\u043e\u0432\u0442\u043e\u0440",
+  "authorized_at_utc": "2026-10-23T08:11:42.052706+00:00",
+  "input_bundle_helper_sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd"
+}

@@ -1,0 +1,218 @@
+{
+  "state": "complete",
+  "inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+  "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+  "slurm_accounting": "JobID|JobName|Partition|State|ExitCode|Elapsed|NodeList\n4437503|smash-audit-zeroSpot|rocky|COMPLETED|0:0|00:19:33|cn-032\n4437503.batch|batch||COMPLETED|0:0|00:19:33|cn-032\n4437503.extern|extern||COMPLETED|0:0|00:19:33|cn-032\n4437504|smash-audit-defaultSpot|rocky|COMPLETED|0:0|00:19:01|cn-035\n4437504.batch|batch||COMPLETED|0:0|00:19:01|cn-035\n4437504.extern|extern||COMPLETED|0:0|00:19:01|cn-035\n4437505|smash-audit-bigSpot|rocky|COMPLETED|0:0|00:02:50|cn-032\n4437505.batch|batch||COMPLETED|0:0|00:02:50|cn-032\n4437505.extern|extern||COMPLETED|0:0|00:02:50|cn-032\n",
+  "tags": {
+    "zeroSpot": {
+      "job_id": "4437503",
+      "summary_sha256": "92296c6b3f009232ecca5e59bc6ac46a01b95fbcb8dce6409a810ae0038c9f5d",
+      "file_accounting": {
+        "bound_nonempty_files": 195,
+        "header_only_exports": 0,
+        "duplicate_byte_aliases": 0,
+        "nonempty_exports": 195,
+        "nonempty_exports_empty_after_cuts": 0,
+        "processed_root_events": null,
+        "generated_event_count": null
+      },
+      "binding": {
+        "eligible_records": 236519,
+        "matched_ids": 236519,
+        "pdg_and_vertex_agree": 236519,
+        "eligible_neutrons": 178664,
+        "matched_neutrons": 178664,
+        "neutron_pdg_and_vertex_agree": 178664,
+        "pdg_vertex_kinematics_agree": 236519
+      },
+      "totals": {
+        "observed_hits": 3957055,
+        "clusters": 1194556,
+        "native_signal_hits": 667993,
+        "relaxed_signal_hits": 672281,
+        "added_soft_hits": 4288,
+        "native_signal_clusters": 217215,
+        "relaxed_signal_clusters": 220881,
+        "added_soft_clusters": 3666,
+        "added_soft_singletons": 2665,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 218723,
+          "signal_clusters": 217215,
+          "matched_objects": 213499,
+          "merged_clusters": 5120,
+          "split_objects": 3883
+        },
+        "relaxed_matching": {
+          "eligible_objects": 222383,
+          "signal_clusters": 220881,
+          "matched_objects": 217159,
+          "merged_clusters": 5120,
+          "split_objects": 3889
+        },
+        "export_events": 602635,
+        "exported_hits": 4194026,
+        "exported_truth_records": 4194026,
+        "detector_export_neutron_objects": 337570,
+        "detector_export_neutron_objects_above_floor": 280470,
+        "observed_hit_threshold_pass": 3957055,
+        "native_rejected_hits_pdg0": 0
+      },
+      "geometry_bounds": {
+        "LayerId": [
+          1.0,
+          8.0
+        ],
+        "RowId": [
+          1.0,
+          11.0
+        ],
+        "ColumnId": [
+          1.0,
+          11.0
+        ]
+      },
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference"
+    },
+    "defaultSpot": {
+      "job_id": "4437504",
+      "summary_sha256": "f081dd7c3769a25a0920c0aba9377e93a1b2ded80406ce0f50a7513a25d5b4c5",
+      "file_accounting": {
+        "bound_nonempty_files": 186,
+        "header_only_exports": 14,
+        "duplicate_byte_aliases": 0,
+        "nonempty_exports": 186,
+        "nonempty_exports_empty_after_cuts": 0,
+        "processed_root_events": null,
+        "generated_event_count": null
+      },
+      "binding": {
+        "eligible_records": 225844,
+        "matched_ids": 225844,
+        "pdg_and_vertex_agree": 225844,
+        "eligible_neutrons": 171074,
+        "matched_neutrons": 171074,
+        "neutron_pdg_and_vertex_agree": 171074,
+        "pdg_vertex_kinematics_agree": 225844
+      },
+      "totals": {
+        "observed_hits": 3758336,
+        "clusters": 1135419,
+        "native_signal_hits": 634436,
+        "relaxed_signal_hits": 638555,
+        "added_soft_hits": 4119,
+        "native_signal_clusters": 207007,
+        "relaxed_signal_clusters": 210535,
+        "added_soft_clusters": 3528,
+        "added_soft_singletons": 2593,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 208345,
+          "signal_clusters": 207007,
+          "matched_objects": 203427,
+          "merged_clusters": 4851,
+          "split_objects": 3747
+        },
+        "relaxed_matching": {
+          "eligible_objects": 211867,
+          "signal_clusters": 210535,
+          "matched_objects": 206949,
+          "merged_clusters": 4851,
+          "split_objects": 3753
+        },
+        "export_events": 571163,
+        "exported_hits": 3984050,
+        "exported_truth_records": 3984050,
+        "detector_export_neutron_objects": 322068,
+        "detector_export_neutron_objects_above_floor": 267539,
+        "observed_hit_threshold_pass": 3758336,
+        "native_rejected_hits_pdg0": 0
+      },
+      "geometry_bounds": {
+        "LayerId": [
+          1.0,
+          8.0
+        ],
+        "RowId": [
+          1.0,
+          11.0
+        ],
+        "ColumnId": [
+          1.0,
+          11.0
+        ]
+      },
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference"
+    },
+    "bigSpot": {
+      "job_id": "4437505",
+      "summary_sha256": "5975ee7f43ec2adcf2106236e043d03074b56f1cb4fdc85e1df21f19afc916cc",
+      "file_accounting": {
+        "bound_nonempty_files": 51,
+        "header_only_exports": 86,
+        "duplicate_byte_aliases": 36,
+        "nonempty_exports": 51,
+        "nonempty_exports_empty_after_cuts": 0,
+        "processed_root_events": null,
+        "generated_event_count": null
+      },
+      "binding": {
+        "eligible_records": 62133,
+        "matched_ids": 62133,
+        "pdg_and_vertex_agree": 62133,
+        "eligible_neutrons": 47267,
+        "matched_neutrons": 47267,
+        "neutron_pdg_and_vertex_agree": 47267,
+        "pdg_vertex_kinematics_agree": 62133
+      },
+      "totals": {
+        "observed_hits": 1045345,
+        "clusters": 315356,
+        "native_signal_hits": 177650,
+        "relaxed_signal_hits": 178803,
+        "added_soft_hits": 1153,
+        "native_signal_clusters": 57662,
+        "relaxed_signal_clusters": 58644,
+        "added_soft_clusters": 982,
+        "added_soft_singletons": 732,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 58096,
+          "signal_clusters": 57662,
+          "matched_objects": 56644,
+          "merged_clusters": 1412,
+          "split_objects": 1066
+        },
+        "relaxed_matching": {
+          "eligible_objects": 59076,
+          "signal_clusters": 58644,
+          "matched_objects": 57624,
+          "merged_clusters": 1412,
+          "split_objects": 1068
+        },
+        "export_events": 158970,
+        "exported_hits": 1108076,
+        "exported_truth_records": 1108076,
+        "detector_export_neutron_objects": 89567,
+        "detector_export_neutron_objects_above_floor": 74356,
+        "observed_hit_threshold_pass": 1045345,
+        "native_rejected_hits_pdg0": 0
+      },
+      "geometry_bounds": {
+        "LayerId": [
+          1.0,
+          8.0
+        ],
+        "RowId": [
+          1.0,
+          11.0
+        ],
+        "ColumnId": [
+          1.0,
+          11.0
+        ]
+      },
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference"
+    }
+  }
+}

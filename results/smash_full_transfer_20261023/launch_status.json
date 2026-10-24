@@ -1,0 +1,134 @@
+{
+  "stage": "complete_full_audit_and_frozen_transfer_gate_passed",
+  "protocol": "reports/smash_full_transfer_protocol_20261023.md",
+  "protocol_sha256": "9458a568c19a85cce9dc02d7e3eb28aaa83bce6259dec22c62e21940b5d07e01",
+  "jobs": {
+    "zeroSpot": {
+      "id": "4436974",
+      "state": "FAILED",
+      "exit_code": "1:0"
+    },
+    "bigSpot": {
+      "id": "4436975",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    }
+  },
+  "smash_training_authorized": false,
+  "fresh_holdout_available": false,
+  "max_concurrent_tasks": 2,
+  "blocking_conditions": [],
+  "full_audits_submitted": true,
+  "full_transfer_submitted": true,
+  "recovery_proposal_submitted": true,
+  "human_recovery_approval_received": true,
+  "authorized_recovery": {
+    "job_id": "4437145",
+    "state": "FAILED",
+    "exit_code": "1:0",
+    "elapsed": "00:07:49",
+    "error": "EACCES atomic replace of progress.json on scratch"
+  },
+  "additional_local_output_recovery_submitted": true,
+  "additional_local_output_recovery_human_approval_received": true,
+  "bigSpot_alias_policy": "pre-score canonicalization applied;36 exact aliases retained in ledger,51 unique nonempty pairs scored",
+  "full_source_snapshot": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+  "local_output_recovery": {
+    "job_id": "4437449",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:15:02"
+  },
+  "audit_jobs": {
+    "zeroSpot": "4437503",
+    "defaultSpot": "4437504",
+    "bigSpot": "4437505"
+  },
+  "campaign_jobs_outstanding": 0,
+  "source_binding_complete": true,
+  "bound_inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+  "audit_validation": "full_audit_validation.json",
+  "audit_job_outcomes": {
+    "zeroSpot": {
+      "job_id": "4437503",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "summary_sha256": "92296c6b3f009232ecca5e59bc6ac46a01b95fbcb8dce6409a810ae0038c9f5d"
+    },
+    "defaultSpot": {
+      "job_id": "4437504",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "summary_sha256": "f081dd7c3769a25a0920c0aba9377e93a1b2ded80406ce0f50a7513a25d5b4c5"
+    },
+    "bigSpot": {
+      "job_id": "4437505",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "summary_sha256": "5975ee7f43ec2adcf2106236e043d03074b56f1cb4fdc85e1df21f19afc916cc"
+    }
+  },
+  "gpu_smoke_job": "4437645",
+  "gpu_smoke_validation": "gpu_smoke_validation.json",
+  "gpu_smoke_outcome": {
+    "job_id": "4437645",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:03:10",
+    "first_file_auc_exact": true,
+    "selected_sets_exact": true,
+    "bitwise_prediction_match": false
+  },
+  "transfer_jobs": {
+    "zeroSpot": "4437674",
+    "defaultSpot": "4437675",
+    "bigSpot": "4437676"
+  },
+  "full_transfer_recipe_changed": false,
+  "updated_at_utc": "2026-10-24T08:34:56.016219+00:00",
+  "queue_status": "full_transfer_latest_status.json",
+  "full_transfer_complete": true,
+  "full_transfer_metrics_available": true,
+  "walltime_limits": {
+    "4437674": "01:00:00",
+    "4437675": "01:00:00",
+    "4437676": "00:30:00"
+  },
+  "transfer_job_outcomes": {
+    "zeroSpot": {
+      "job_id": "4437674",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T13:54:11",
+      "end_cluster_local": "2026-10-23T14:10:04",
+      "elapsed": "00:15:53",
+      "node": "cn-010",
+      "summary_sha256": "6c8c4534539783beb22431f3804c573bd3eeac4c41ae720cdbb17219148a6632"
+    },
+    "defaultSpot": {
+      "job_id": "4437675",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T14:01:20",
+      "end_cluster_local": "2026-10-23T14:12:49",
+      "elapsed": "00:11:29",
+      "node": "cn-015",
+      "summary_sha256": "333d93d692696bc2d4bc94527200afcd0aa8d34854f83912e6c13345361167ab"
+    },
+    "bigSpot": {
+      "job_id": "4437676",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "start_cluster_local": "2026-10-23T14:10:29",
+      "end_cluster_local": "2026-10-23T14:14:19",
+      "elapsed": "00:03:50",
+      "node": "cn-010",
+      "summary_sha256": "e38ed27d8adee791d9d130ec2bc51a07423c2fecb768a5c3b3ab58aa7cdd22e0"
+    }
+  },
+  "full_transfer_verified": true,
+  "figures_visually_inspected": 2,
+  "results_report": "reports/smash_full_transfer_results_20261024.md",
+  "next_gate": "production lineage and processed-event ledger; source-grouped split and physical-observable response protocol",
+  "next_gate_complete": false
+}

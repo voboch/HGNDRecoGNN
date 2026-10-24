@@ -1,0 +1,59 @@
+{
+  "created_at_utc": "2026-10-23T09:02:33.453809+00:00",
+  "max_simultaneous_tasks": 2,
+  "jobs": {
+    "zeroSpot": "4437503",
+    "defaultSpot": "4437504",
+    "bigSpot": "4437505"
+  },
+  "submissions": [
+    {
+      "tag": "zeroSpot",
+      "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+      "inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+      "raw_or_combined_manifest_sha256": "b52a64a040fb9452c40189bc7cf42b90ced008b1375fee8a250a010a9b884d76",
+      "primary_manifest_sha256": "726bcc5c87ed5199f26f3bb6aa87e5edd3a8252d077696e74c704732c635e27f",
+      "time_limit": "02:00:00",
+      "cpus": 4,
+      "gpus": 0,
+      "no_requeue": true,
+      "sbatch_returncode": 0,
+      "sbatch_stdout": "4437503\n",
+      "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "dependency": null,
+      "job_id": "4437503"
+    },
+    {
+      "tag": "defaultSpot",
+      "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+      "inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+      "raw_or_combined_manifest_sha256": "9491e84960c40e629628a94691702325a5af642a5bc26fb9265938bc1b070953",
+      "primary_manifest_sha256": null,
+      "time_limit": "02:00:00",
+      "cpus": 4,
+      "gpus": 0,
+      "no_requeue": true,
+      "sbatch_returncode": 0,
+      "sbatch_stdout": "4437504\n",
+      "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "dependency": null,
+      "job_id": "4437504"
+    },
+    {
+      "tag": "bigSpot",
+      "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+      "inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+      "raw_or_combined_manifest_sha256": "476e1bde2671f363af5b106082d62e2e4553fffcc1c24ad43641bcf1dddec46f",
+      "primary_manifest_sha256": null,
+      "time_limit": "02:00:00",
+      "cpus": 4,
+      "gpus": 0,
+      "no_requeue": true,
+      "sbatch_returncode": 0,
+      "sbatch_stdout": "4437505\n",
+      "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "dependency": "--dependency=afterany:4437503",
+      "job_id": "4437505"
+    }
+  ]
+}

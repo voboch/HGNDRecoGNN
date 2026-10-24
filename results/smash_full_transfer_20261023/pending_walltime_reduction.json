@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-10-23T10:39:03.294424+00:00",
+  "reason": "Measured first-file CUDA durations 1.8-4.5 seconds after 27.4-second initial checkpoint setup; 195/186/51 canonical nonempty files plus verified archive reads. Pending walltime reduced within authorized two-hour upper bounds, with at least factor-three margin over linear first-file timing. No new jobs, requeue, scientific configuration or population change.",
+  "changes": [
+    {
+      "job_id": "4437674",
+      "requested_limit": "01:00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "job_id": "4437675",
+      "requested_limit": "01:00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "job_id": "4437676",
+      "requested_limit": "00:30:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

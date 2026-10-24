@@ -1,0 +1,92 @@
+{
+  "phase": "full_frozen_DCM_transfer",
+  "source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+  "gpu_smoke_job": "4437645",
+  "gpu_smoke_validation_sha256": "3132899fce4bf1b5d491fe3aad581256cc2bebf981e0ee950e1db418fe696a3c",
+  "max_concurrent_tasks": 2,
+  "no_training_or_calibration": true,
+  "jobs": [
+    {
+      "tag": "zeroSpot",
+      "submitted_utc": "2026-10-23T10:35:59.290718+00:00",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--partition=rocky",
+        "--time=02:00:00",
+        "--job-name=smash-transfer-zeroSpot",
+        "--output=/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/logs/%x_%j.out",
+        "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9/HGNDRecoGNN/slurm/smash_full_transfer.hpc.sbatch"
+      ],
+      "environment": {
+        "SMASH_SOURCE": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_INVENTORY": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/bound_inventory.json",
+        "SMASH_INVENTORY_SHA": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+        "SMASH_AUDIT_BUNDLES": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/audit_bundles.json",
+        "SMASH_RECEIPT_DIR": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission",
+        "SMASH_TAG": "zeroSpot",
+        "SMASH_PROBE_FIRST": "0"
+      },
+      "returncode": 0,
+      "stdout": "4437674\n",
+      "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "job_id": "4437674"
+    },
+    {
+      "tag": "defaultSpot",
+      "submitted_utc": "2026-10-23T10:35:59.366687+00:00",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--partition=rocky",
+        "--time=02:00:00",
+        "--job-name=smash-transfer-defaultSpot",
+        "--output=/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/logs/%x_%j.out",
+        "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9/HGNDRecoGNN/slurm/smash_full_transfer.hpc.sbatch"
+      ],
+      "environment": {
+        "SMASH_SOURCE": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_INVENTORY": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/bound_inventory.json",
+        "SMASH_INVENTORY_SHA": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+        "SMASH_AUDIT_BUNDLES": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/audit_bundles.json",
+        "SMASH_RECEIPT_DIR": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission",
+        "SMASH_TAG": "defaultSpot",
+        "SMASH_PROBE_FIRST": "0"
+      },
+      "returncode": 0,
+      "stdout": "4437675\n",
+      "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "job_id": "4437675"
+    },
+    {
+      "tag": "bigSpot",
+      "submitted_utc": "2026-10-23T10:35:59.391025+00:00",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--partition=rocky",
+        "--time=02:00:00",
+        "--job-name=smash-transfer-bigSpot",
+        "--output=/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/logs/%x_%j.out",
+        "--dependency=afterany:4437674",
+        "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9/HGNDRecoGNN/slurm/smash_full_transfer.hpc.sbatch"
+      ],
+      "environment": {
+        "SMASH_SOURCE": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9",
+        "SMASH_INVENTORY": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/bound_inventory.json",
+        "SMASH_INVENTORY_SHA": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+        "SMASH_AUDIT_BUNDLES": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission/audit_bundles.json",
+        "SMASH_RECEIPT_DIR": "/home/vbocharnikov/hgnd_experiments/smash_full_20261023_c206ad68c9_submission",
+        "SMASH_TAG": "bigSpot",
+        "SMASH_PROBE_FIRST": "0"
+      },
+      "returncode": 0,
+      "stdout": "4437676\n",
+      "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "job_id": "4437676"
+    }
+  ]
+}

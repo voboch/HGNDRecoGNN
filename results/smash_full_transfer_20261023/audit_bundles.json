@@ -1,0 +1,17 @@
+{
+  "zeroSpot": {
+    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/audit_bundles/zeroSpot_4437503",
+    "manifest_sha256": "2039e75e48371027a81c7385b5a6383ef6da8e432eb5c9cfdf3cfd5f897201dd",
+    "archive_sha256": "1668b46dd744401650da1b02859e9d036efb513bc46b0d0c076a64940c215187"
+  },
+  "defaultSpot": {
+    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/audit_bundles/defaultSpot_4437504",
+    "manifest_sha256": "06c78f0788f7dce62759354929872ba5cf6db87d5a9e76afec3e7435a1200ce5",
+    "archive_sha256": "8cc4c4deede26ce7d9f69c9e487a106da991024d785c712d478a297653a15bed"
+  },
+  "bigSpot": {
+    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_c206ad68c9/audit_bundles/bigSpot_4437505",
+    "manifest_sha256": "d524a559e835cf76123c3b855d62cee1e5c5f4c20b8b44a7e0779ce566bac9f2",
+    "archive_sha256": "28b57e2896bcb99b8d7ddec14e6fb8797bff63bcaae085648683bc88a4668cad"
+  }
+}

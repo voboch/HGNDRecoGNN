@@ -1,0 +1,15 @@
+{
+  "state": "verified",
+  "scope": "exact source association for one detector file only, no reconstruction metric",
+  "summary_sha256": "c72f7e938d95c3dbf350a13acf2a18aca36c30cd0a98dbd96cd5e9938e043bf4",
+  "files_checked": 200,
+  "target_records": 334,
+  "matches": 334,
+  "all_detector_records_unique": true,
+  "all_vertices_exact": true,
+  "all_row_id_equal": true,
+  "primary_members": [
+    "10943245/0002"
+  ],
+  "full_population_binding_established": false
+}

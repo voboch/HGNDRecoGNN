@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-10-23T08:14:39.937938+00:00",
+  "state": "submitted",
+  "authorization": "Human explicitly replied \u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u044c \u043e\u0434\u0438\u043d \u043f\u043e\u0432\u0442\u043e\u0440",
+  "source_sha256": "9f9c2bdb90754deaa35d29cd2277ed0f5f6f771d92503128c582d0d49644b815",
+  "raw_manifest_sha256": "b52a64a040fb9452c40189bc7cf42b90ced008b1375fee8a250a010a9b884d76",
+  "primary_manifest_sha256": "726bcc5c87ed5199f26f3bb6aa87e5edd3a8252d077696e74c704732c635e27f",
+  "primary_archive_sha256": "733506636e15628645ef812e4c25bd1e1ae22c1ff977aef1fef212b41d48272a",
+  "primary_archive_bytes": 30490818560,
+  "proposal_sha256": "248c66ddfe8b416d482f9a34107e050e02118ecc076f1ce774cd386095ad6c63",
+  "time_limit": "00:30:00",
+  "cpus": 4,
+  "gpus": 0,
+  "no_requeue": true,
+  "further_automatic_retry_authorized": false,
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4437145\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4437145"
+}

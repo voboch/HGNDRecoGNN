@@ -1,0 +1,23 @@
+{
+  "state": "smoke_submitted",
+  "source_sha256": "f7c5049eed3ddc0cf40a3abaf8e689591a97a7c3a377fbd2ee54d955c0ec935b",
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_audit_20261021_f7c5049eed",
+  "env": {
+    "SMASH_AUDIT_SOURCE": "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed",
+    "SMASH_AUDIT_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/smash_audit_20261021_f7c5049eed",
+    "SMASH_AUDIT_PHASE": "smoke"
+  },
+  "smoke_job": "4430110",
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--partition=test",
+    "--time=00:10:00",
+    "--job-name=smash-audit-smoke",
+    "--output=/scratch/vbocharnikov/hgnd/experiments/smash_audit_20261021_f7c5049eed/submission/smoke_%j.out",
+    "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed/HGNDRecoGNN/slurm/smash_audit.hpc.sbatch"
+  ],
+  "stdout": "4430110\n",
+  "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n"
+}

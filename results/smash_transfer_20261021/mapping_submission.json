@@ -1,0 +1,24 @@
+{
+  "state": "submitted",
+  "created_at_utc": "2026-10-22T19:42:12.549234+00:00",
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_primary_map_20261022_964ac9f7ed.py",
+  "source_sha256": "964ac9f7ed03078a151f9f8ecf89f94da0989a4b91348effeb6a06ea7a033e39",
+  "inventory": "/home/vbocharnikov/hgnd_experiments/smash_transfer_20261021_9b3eed1f0b/input_inventory.json",
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "output": "/scratch/vbocharnikov/hgnd/experiments/smash_primary_map_20261022_964ac9f7ed",
+  "prior_locator_job": "4435586",
+  "prior_locator_summary_sha256": "c72f7e938d95c3dbf350a13acf2a18aca36c30cd0a98dbd96cd5e9938e043bf4",
+  "submission_script_sha256": "f8ecb3f869c0c264c76fed1c5c1c22e7f652e9ea99330e50998875aa91a61ed8",
+  "limits": {
+    "partition": "rocky",
+    "cpus": 4,
+    "gpus": 0,
+    "time": "00:45:00",
+    "no_requeue": true
+  },
+  "scope": "exact source mapping for 200 frozen candidate detector files defaultSpot; no model evaluation or training",
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4435592\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4435592"
+}

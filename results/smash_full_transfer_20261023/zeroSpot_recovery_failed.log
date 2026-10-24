@@ -1,0 +1,28 @@
+1 / 195 matches 1264 seconds 3.6
+6 / 195 matches 7004 seconds 19.8
+11 / 195 matches 12827 seconds 37.6
+16 / 195 matches 18796 seconds 55.4
+21 / 195 matches 24881 seconds 72.1
+26 / 195 matches 30751 seconds 88.2
+31 / 195 matches 36852 seconds 104.4
+36 / 195 matches 42854 seconds 120.5
+41 / 195 matches 48825 seconds 136.6
+46 / 195 matches 54919 seconds 152.8
+51 / 195 matches 60555 seconds 169.0
+56 / 195 matches 66583 seconds 185.5
+61 / 195 matches 73029 seconds 202.0
+66 / 195 matches 79021 seconds 218.7
+71 / 195 matches 85094 seconds 235.4
+76 / 195 matches 91322 seconds 252.1
+Traceback (most recent call last):
+  File "/home/vbocharnikov/hgnd_experiments/smash_primary_map_staged_9f9c2bdb90.py", line 136, in <module>
+    main()
+  File "/home/vbocharnikov/hgnd_experiments/smash_primary_map_staged_9f9c2bdb90.py", line 132, in main
+    run(args.inventory, args.output, args.tag, args.staged_root, args.staged_primary_root)
+  File "/home/vbocharnikov/hgnd_experiments/smash_primary_map_staged_9f9c2bdb90.py", line 108, in run
+    write(output / 'progress.json', result)
+  File "/home/vbocharnikov/hgnd_experiments/smash_primary_map_staged_9f9c2bdb90.py", line 30, in write
+    tmp.replace(path)
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/pathlib.py", line 1376, in replace
+    os.replace(self, target)
+PermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json.tmp' -> '/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot_recovery/progress.json'

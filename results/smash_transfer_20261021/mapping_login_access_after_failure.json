@@ -1,0 +1,30 @@
+{
+  "host": "login-02",
+  "checks": [
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0144_vacs.csv",
+      "mode": "-rw-r--r--",
+      "uid": 2761,
+      "gid": 100,
+      "size": 2798093,
+      "read_header_bytes": 256
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0145_vacs.csv",
+      "mode": "-rw-r--r--",
+      "uid": 2761,
+      "gid": 100,
+      "size": 3051462,
+      "read_header_bytes": 256
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0146_vacs.csv",
+      "mode": "-rw-r--r--",
+      "uid": 2761,
+      "gid": 100,
+      "size": 2911977,
+      "read_header_bytes": 256
+    }
+  ],
+  "scope": "login-node read probe after compute EACCES; does not validate compute access or diagnose infrastructure cause"
+}

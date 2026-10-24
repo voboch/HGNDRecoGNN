@@ -1,0 +1,45 @@
+{
+  "scope": "Directory-name inventory on login node; file contents not fully hashed",
+  "generator_job_identity_established": false,
+  "fresh_blind_holdout_established": false,
+  "tags": {
+    "zeroSpot": {
+      "corrected_raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "hits_files": 3123,
+      "vacs_files": 3123,
+      "paired_files": 3123,
+      "unpaired_stems": [],
+      "primary_files": 195,
+      "paired_files_with_primary_name": 195,
+      "sorted_pair_names_sha256": "4aa4f5e80f813375975d03b40df63d93ca63469c61a5ccc968f26b612273e9a2",
+      "archive_bytes": 1607473954
+    },
+    "defaultSpot": {
+      "corrected_raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "hits_files": 2383,
+      "vacs_files": 2383,
+      "paired_files": 2383,
+      "unpaired_stems": [],
+      "primary_files": 200,
+      "paired_files_with_primary_name": 200,
+      "sorted_pair_names_sha256": "131f16d5870376ce33ebb80f16901402dd6e52d86fbd3ed281926acb772bda36",
+      "archive_bytes": 3750448539
+    },
+    "bigSpot": {
+      "corrected_raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "hits_files": 1865,
+      "vacs_files": 1865,
+      "paired_files": 1865,
+      "unpaired_stems": [],
+      "primary_files": 173,
+      "paired_files_with_primary_name": 173,
+      "sorted_pair_names_sha256": "eddab521c8c8aebdfc37506a3c944e35e247b3a61ec6c8facbf9d1364f6251e6",
+      "archive_bytes": 938104891
+    }
+  },
+  "slurm_accounting": "4430110|FAILED|1:0|00:05:22|cn-034\n4430110.batch|FAILED|1:0|00:05:22|cn-034\n4430110.extern|COMPLETED|0:0|00:05:22|cn-034\n4430110.0|COMPLETED|0:0|00:00:01|cn-034\n",
+  "campaign_queue": ""
+}

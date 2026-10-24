@@ -1,0 +1,8 @@
+{
+  "script_sha256": "964ac9f7ed03078a151f9f8ecf89f94da0989a4b91348effeb6a06ea7a033e39",
+  "remote_source": "/home/vbocharnikov/hgnd_experiments/smash_primary_map_20261022_964ac9f7ed.py",
+  "output": "/scratch/vbocharnikov/hgnd/experiments/smash_primary_map_20261022_964ac9f7ed",
+  "requires_complete_locator_job": "4435586",
+  "population": "200 frozen candidate detector files defaultSpot, searched in the 200 frozen primary files",
+  "training_or_evaluation": false
+}

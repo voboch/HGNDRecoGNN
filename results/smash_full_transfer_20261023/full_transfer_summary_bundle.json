@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "job_ids": {
+    "zeroSpot": "4437674",
+    "defaultSpot": "4437675",
+    "bigSpot": "4437676"
+  },
+  "slurm_accounting": "JobID|State|ExitCode|Elapsed|NodeList|Timelimit\n4437674|COMPLETED|0:0|00:15:53|cn-010|01:00:00\n4437674.batch|COMPLETED|0:0|00:15:53|cn-010|\n4437674.extern|COMPLETED|0:0|00:15:53|cn-010|\n4437675|COMPLETED|0:0|00:11:29|cn-015|01:00:00\n4437675.batch|COMPLETED|0:0|00:11:29|cn-015|\n4437675.extern|COMPLETED|0:0|00:11:29|cn-015|\n4437676|COMPLETED|0:0|00:03:50|cn-010|00:30:00\n4437676.batch|COMPLETED|0:0|00:03:50|cn-010|\n4437676.extern|COMPLETED|0:0|00:03:52|cn-010|\n",
+  "summary_sha256": {
+    "zeroSpot": "6c8c4534539783beb22431f3804c573bd3eeac4c41ae720cdbb17219148a6632",
+    "defaultSpot": "333d93d692696bc2d4bc94527200afcd0aa8d34854f83912e6c13345361167ab",
+    "bigSpot": "e38ed27d8adee791d9d130ec2bc51a07423c2fecb768a5c3b3ab58aa7cdd22e0"
+  }
+}

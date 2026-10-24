@@ -1,0 +1,18 @@
+{
+  "scope": "engineering PNG figures; no MC-statistical intervals estimated",
+  "figures": [
+    {
+      "path": "results/smash_transfer_staged_20261022/figures/roc.png",
+      "sha256": "fb80ea82caa879c6dc9d1a6fe890ac5e91252f734b9316872e8a8dca18fda7f4",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed"
+    },
+    {
+      "path": "results/smash_transfer_staged_20261022/figures/energy_residual_cdf.png",
+      "sha256": "92b8ed95d82e24795114413d48cc14c1586d2feb2b0185cc483117f71b78c644",
+      "data_bounds": "passed",
+      "annotation_bounds": "passed"
+    }
+  ],
+  "visual_inspection": "passed: both final PNG figures inspected; annotations separated from curves, full data tails retained"
+}

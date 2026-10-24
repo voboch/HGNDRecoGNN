@@ -1,0 +1,26 @@
+{
+  "scope": "byte-level audit of 200 frozen defaultSpot candidate detector pairs; excludes exact header-only vacs from nonempty duplicate count; no event independence claim",
+  "bundle_manifest_sha256": "ad7bcfe7132b1d516458a47b2d001f28cc0b9e597e0b209786b1392943c43ea6",
+  "pair_count": 200,
+  "header_only_vacs_count": 14,
+  "header_only_vacs_members": [
+    "10943245/0187",
+    "10943245/0188",
+    "10943245/0189",
+    "10943245/0190",
+    "10943245/0191",
+    "10943245/0192",
+    "10943245/0193",
+    "10943245/0194",
+    "10943245/0195",
+    "10943245/0196",
+    "10943245/0197",
+    "10943245/0198",
+    "10943245/0199",
+    "10943245/0200"
+  ],
+  "nonempty_pair_count": 186,
+  "distinct_nonempty_pair_hashes": 186,
+  "duplicate_nonempty_pair_groups": [],
+  "header_only_vacs_sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084"
+}

@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-10-23T07:57:30.564180+00:00",
+  "job_id": "4436974",
+  "tag": "zeroSpot",
+  "slurm": "4436974|FAILED|1:0|00:08:19|cn-031\n4436974.batch|FAILED|1:0|00:08:19|cn-031\n4436974.extern|COMPLETED|0:0|00:08:19|cn-031\n4436975|RUNNING|0:0|00:08:50|cn-031\n4436975.batch|RUNNING|0:0|00:08:50|cn-031\n4436975.extern|RUNNING|0:0|00:08:50|cn-031\n",
+  "summary_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/zeroSpot/progress.json",
+  "summary_sha256": "1e7d99180218c2e0ecb5245344d071c57317cff57f91bc25704a249af6c5bfd8",
+  "gzip_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/zeroSpot_mapping_partial.json.gz",
+  "gzip_sha256": "49605c34c33a5af9b7bf64915e8e2f9120b97d52ac516d0f79c895a824584b14",
+  "summary_is_complete": false
+}

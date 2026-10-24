@@ -1,0 +1,51 @@
+{
+  "state": "verified",
+  "tags": {
+    "zeroSpot": {
+      "job_id": "4437674",
+      "state": "verified",
+      "original_members": 195,
+      "header_only_exports": 0,
+      "exact_byte_aliases": 0,
+      "scored_nonempty_files": 195,
+      "prediction_files_verified": 585,
+      "clusters": 1220632,
+      "MC_positive_clusters": 218410,
+      "summary_sha256": "6c8c4534539783beb22431f3804c573bd3eeac4c41ae720cdbb17219148a6632",
+      "archive_sha256": "9e4b6c13023d574a9f7749b181b79e7d3e5a3cccd290123484ac7010631563c4",
+      "all_dcm_inputs_identical_to_passed_smoke": true,
+      "checkpoint_and_threshold_provenance": "passed"
+    },
+    "defaultSpot": {
+      "job_id": "4437675",
+      "state": "verified",
+      "original_members": 200,
+      "header_only_exports": 14,
+      "exact_byte_aliases": 0,
+      "scored_nonempty_files": 186,
+      "prediction_files_verified": 558,
+      "clusters": 1160155,
+      "MC_positive_clusters": 208101,
+      "summary_sha256": "333d93d692696bc2d4bc94527200afcd0aa8d34854f83912e6c13345361167ab",
+      "archive_sha256": "2168a4dac50479439a6c2d3e103f3c24a490efb00218056b29b99af8816e5ff0",
+      "all_dcm_inputs_identical_to_passed_smoke": true,
+      "checkpoint_and_threshold_provenance": "passed"
+    },
+    "bigSpot": {
+      "job_id": "4437676",
+      "state": "verified",
+      "original_members": 173,
+      "header_only_exports": 86,
+      "exact_byte_aliases": 36,
+      "scored_nonempty_files": 51,
+      "prediction_files_verified": 153,
+      "clusters": 322049,
+      "MC_positive_clusters": 57959,
+      "summary_sha256": "e38ed27d8adee791d9d130ec2bc51a07423c2fecb768a5c3b3ab58aa7cdd22e0",
+      "archive_sha256": "a74834f7452c18b48c1a212ce5453892e730ffeb2a77d5d7e2856af604406244",
+      "all_dcm_inputs_identical_to_passed_smoke": true,
+      "checkpoint_and_threshold_provenance": "passed"
+    }
+  },
+  "no_compute_retry": true
+}

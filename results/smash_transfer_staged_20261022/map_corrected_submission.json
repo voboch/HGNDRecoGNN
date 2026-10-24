@@ -1,0 +1,21 @@
+{
+  "state": "submitted",
+  "created_at_utc": "2026-10-22T20:05:09.439720+00:00",
+  "source_script": "/home/vbocharnikov/hgnd_experiments/smash_primary_map_emptyfix_cd8eea6184.py",
+  "source_script_sha256": "cd8eea61841e7e57a6a8ea646e218bc1bd8fdc693e718baa142d234e985f943d",
+  "submission_script_sha256": "4eb2244c734f67628a9d9bc127d71731c06ac21041591e9d70ed57960640343f",
+  "continuation_of_job": "4435627",
+  "reason": "Header-only CSV object dtype causes np.isfinite TypeError; explicit float conversion tested on exact empty CSV schema. No scientific recipe change. One correction within original 45min allocation bound.",
+  "limits": {
+    "cpus": 4,
+    "gpus": 0,
+    "time": "00:44:30",
+    "no_requeue": true
+  },
+  "output": "/scratch/vbocharnikov/hgnd/experiments/smash_staged_20261022_521a10aa44/source_mapping_corrected",
+  "further_retry_authorized": false,
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4435670\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4435670"
+}

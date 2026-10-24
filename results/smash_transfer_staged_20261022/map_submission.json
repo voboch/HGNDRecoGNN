@@ -1,0 +1,19 @@
+{
+  "state": "submitted",
+  "phase": "map",
+  "created_at_utc": "2026-10-22T19:59:46.194445+00:00",
+  "source_root": "/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44",
+  "source_sha256": "521a10aa4480868dc25614d742650e7cd8948c637807e73bb39e8b39b11a4af2",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/smash_staged_20261022_521a10aa44",
+  "partition": "rocky",
+  "cpus": 4,
+  "gpus": 0,
+  "time_limit": "00:45:00",
+  "no_requeue": true,
+  "bundle_manifest_sha256": "ad7bcfe7132b1d516458a47b2d001f28cc0b9e597e0b209786b1392943c43ea6",
+  "source_files_verified": 136,
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4435627\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4435627"
+}

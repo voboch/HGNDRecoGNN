@@ -1,0 +1,1182 @@
+{
+  "state": "complete",
+  "scope": "Byte copy for a proposed single node-local zeroSpot binding recovery; submission requires explicit approval",
+  "plan_sha256": "f6ac6949de94d868b1d541faa6e195ccfccb1ad3ed6d3e6edca97a5460ee3f53",
+  "source_stat_method": "fstat on the same read descriptor before and after copying",
+  "source_script_sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd",
+  "archive_sha256": "733506636e15628645ef812e4c25bd1e1ae22c1ff977aef1fef212b41d48272a",
+  "archive_bytes": 30490818560,
+  "unpacked_bytes": 30490664659,
+  "files": [
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_prim.csv",
+      "member": "primary/zeroSpot/10943245/0001_prim.csv",
+      "sha256": "e57ca1851139672e2966fd88b8eafa28481b8d7bfa6a5785a10267c9848842e3",
+      "bytes": 158373850
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0002_prim.csv",
+      "member": "primary/zeroSpot/10943245/0002_prim.csv",
+      "sha256": "a9417de2067364d4d1c6ad2c0f2ab866db7633e3816b454ad27d113ae0ab4053",
+      "bytes": 153559520
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0003_prim.csv",
+      "member": "primary/zeroSpot/10943245/0003_prim.csv",
+      "sha256": "686d954d6c2e2dacccb03cc9b5d97d3a818e896ceb6cc9dab887639021c2a840",
+      "bytes": 151691379
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0004_prim.csv",
+      "member": "primary/zeroSpot/10943245/0004_prim.csv",
+      "sha256": "b57e525bb4bc4a3ca2b8e2d19316df145fe190cee7e36f704b0abdbb450107f4",
+      "bytes": 151901522
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0005_prim.csv",
+      "member": "primary/zeroSpot/10943245/0005_prim.csv",
+      "sha256": "f8744d889fc63bbdd6c6e1576dcfdc54ad9b8c31536fdca0c5814f72512f8d24",
+      "bytes": 154759372
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0006_prim.csv",
+      "member": "primary/zeroSpot/10943245/0006_prim.csv",
+      "sha256": "b008be76c188687541675072c9923a68d8708bd7170f1f2ce98d05809ce9b63c",
+      "bytes": 155890913
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0007_prim.csv",
+      "member": "primary/zeroSpot/10943245/0007_prim.csv",
+      "sha256": "5c2b80ab665ed8c86fceace668d0a5226fac255c36e4b0f7e029f965695943a4",
+      "bytes": 156635646
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0008_prim.csv",
+      "member": "primary/zeroSpot/10943245/0008_prim.csv",
+      "sha256": "8f72038de84f606a4446cb15649e8102a8e4237eb47e8adca27a7aa81f11c0b3",
+      "bytes": 155755832
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0009_prim.csv",
+      "member": "primary/zeroSpot/10943245/0009_prim.csv",
+      "sha256": "7696d3a189dfe84014ed8fce5645f55a1c5bba4bb8786d6188bed89f05b8b0e7",
+      "bytes": 154320133
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0010_prim.csv",
+      "member": "primary/zeroSpot/10943245/0010_prim.csv",
+      "sha256": "16c783f9e6e4436b3062f53ba165069781dbc5e6e565f9889e05827d4ebe92d2",
+      "bytes": 158737718
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0011_prim.csv",
+      "member": "primary/zeroSpot/10943245/0011_prim.csv",
+      "sha256": "f05e861f42a88a15adaa11d36a205e5b51de663905d5a1e6733fa0994997f2b0",
+      "bytes": 155479969
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0012_prim.csv",
+      "member": "primary/zeroSpot/10943245/0012_prim.csv",
+      "sha256": "7b0e783fb089823ded4a87909d8b21f93eb3173c651349af29b5588e491a2f10",
+      "bytes": 155941100
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0013_prim.csv",
+      "member": "primary/zeroSpot/10943245/0013_prim.csv",
+      "sha256": "bba7089041819803c7036edbfab4366fc464a8006631b4fcf63a80cef0599958",
+      "bytes": 159676832
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0014_prim.csv",
+      "member": "primary/zeroSpot/10943245/0014_prim.csv",
+      "sha256": "2c7f72c32e1f9a108a6d7d40a84b3d3b0e3a2ce841ed1b157170f8540570b972",
+      "bytes": 152775286
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0015_prim.csv",
+      "member": "primary/zeroSpot/10943245/0015_prim.csv",
+      "sha256": "b51a7586b7fe11d364bc67806c806415d63298ca5eb50259520a1be0bf8472a9",
+      "bytes": 157251132
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0016_prim.csv",
+      "member": "primary/zeroSpot/10943245/0016_prim.csv",
+      "sha256": "eaa12c446f2ebf8230c3524b9e90ff566213aadfbc2c36cfe4872c1415f48b7b",
+      "bytes": 157649694
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0017_prim.csv",
+      "member": "primary/zeroSpot/10943245/0017_prim.csv",
+      "sha256": "332f9aed3fcebd1030a1e70bde27d37fcc2861d6f01fa7d45482f4f2a7fd4efd",
+      "bytes": 154743566
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0018_prim.csv",
+      "member": "primary/zeroSpot/10943245/0018_prim.csv",
+      "sha256": "67bdbe5da0c782f25ef160d250197111d5ee182b81d33728dadbfb163521598c",
+      "bytes": 155017798
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0019_prim.csv",
+      "member": "primary/zeroSpot/10943245/0019_prim.csv",
+      "sha256": "8f804d6a444f0ded9593227844b2d702eaefa186cd7c966ecdacd3dd37517d9e",
+      "bytes": 159045397
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0020_prim.csv",
+      "member": "primary/zeroSpot/10943245/0020_prim.csv",
+      "sha256": "9a1f9f4ef8f0471282f761ed9356943e2234910735d29e168a7d59736afee4ba",
+      "bytes": 153944051
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0021_prim.csv",
+      "member": "primary/zeroSpot/10943245/0021_prim.csv",
+      "sha256": "86696b5bd9fbea2c999438d6e35e2c037eab4073f042354fd30407f5c03bdd39",
+      "bytes": 158870559
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0022_prim.csv",
+      "member": "primary/zeroSpot/10943245/0022_prim.csv",
+      "sha256": "20e0bd22562b9686b941ccd3d91d098b6056a2d23354f13a4f25ed1da9b14174",
+      "bytes": 156335782
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0023_prim.csv",
+      "member": "primary/zeroSpot/10943245/0023_prim.csv",
+      "sha256": "84cdc243b4dc40d831e71e7a0c092eb21ced1d1b8dc41b55fff181d33e25110a",
+      "bytes": 158546296
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0024_prim.csv",
+      "member": "primary/zeroSpot/10943245/0024_prim.csv",
+      "sha256": "545ebb50bce7bf46655ed997c63a5b07031ac03515770d1badcb5b33194011f1",
+      "bytes": 157622702
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0025_prim.csv",
+      "member": "primary/zeroSpot/10943245/0025_prim.csv",
+      "sha256": "c6d01e2e35e3aaccad5af528137959a5d48ab834e136f1e2ea7ec57ed7805fc9",
+      "bytes": 150687767
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0026_prim.csv",
+      "member": "primary/zeroSpot/10943245/0026_prim.csv",
+      "sha256": "b766a3663e2d986ca8fe889cad92db7e42febb52834b6b758942ac0a81419de8",
+      "bytes": 153037266
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0027_prim.csv",
+      "member": "primary/zeroSpot/10943245/0027_prim.csv",
+      "sha256": "6c5cfdc0da98f213950b25472b666fbc310e2d540f19fc3f46934461b4ab6a5d",
+      "bytes": 159304146
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0028_prim.csv",
+      "member": "primary/zeroSpot/10943245/0028_prim.csv",
+      "sha256": "514b92a9d4313fd6c47e53e6c3d58bebbbdfff849231aafc070b2f4e4f545cd9",
+      "bytes": 155628972
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0029_prim.csv",
+      "member": "primary/zeroSpot/10943245/0029_prim.csv",
+      "sha256": "72db17c0bd1253da851fe7dfe05804662ba02cfe6cc6f16e4977ce394a4db4bd",
+      "bytes": 158549727
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0030_prim.csv",
+      "member": "primary/zeroSpot/10943245/0030_prim.csv",
+      "sha256": "e6e7d1f042a8240c2366dda2f5497c825589eabb1e322cc5e6a2feb2a9f1897d",
+      "bytes": 159063408
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0031_prim.csv",
+      "member": "primary/zeroSpot/10943245/0031_prim.csv",
+      "sha256": "33c10ba937853773ba5186892ae942b89c2dce538daa3234a277e6e6f5a0436f",
+      "bytes": 156286102
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0032_prim.csv",
+      "member": "primary/zeroSpot/10943245/0032_prim.csv",
+      "sha256": "1115fbf162e9940ca0bee62a96729751267e7d63e5b542cd0b57a5868e79e5b5",
+      "bytes": 153275007
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0033_prim.csv",
+      "member": "primary/zeroSpot/10943245/0033_prim.csv",
+      "sha256": "dffed926584d4db7bd3c3ab11988a708e9abfa1752a51872cb1cc110d56f4449",
+      "bytes": 157977956
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0034_prim.csv",
+      "member": "primary/zeroSpot/10943245/0034_prim.csv",
+      "sha256": "551fd5eafef34e7d376af9fb580a8285bff2fa86540ac90ccbce8250d3e18aab",
+      "bytes": 153400428
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0035_prim.csv",
+      "member": "primary/zeroSpot/10943245/0035_prim.csv",
+      "sha256": "4d1e8f98a2fd0ee7a106a83b9e0a6b426bd1b6f9a8b692695b4ca44ebc93771a",
+      "bytes": 158608666
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0036_prim.csv",
+      "member": "primary/zeroSpot/10943245/0036_prim.csv",
+      "sha256": "0fee34a8f20b84416823bd3970202700029ec7a963be628394d1a5ba98b93583",
+      "bytes": 156339065
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0037_prim.csv",
+      "member": "primary/zeroSpot/10943245/0037_prim.csv",
+      "sha256": "c90343205582355aa933ccfe75c4385708798bc3722ba0b4d572d693786de685",
+      "bytes": 158226472
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0038_prim.csv",
+      "member": "primary/zeroSpot/10943245/0038_prim.csv",
+      "sha256": "40dc3127b39cb6bbe952fe9fa25ad302cd870d65d4607bf4e64f9a3a5ba10771",
+      "bytes": 151756972
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0039_prim.csv",
+      "member": "primary/zeroSpot/10943245/0039_prim.csv",
+      "sha256": "fd25ebdabd58e9db82af43c64cd660b4ace79e31701f216a625081fca6c19c36",
+      "bytes": 158304350
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0040_prim.csv",
+      "member": "primary/zeroSpot/10943245/0040_prim.csv",
+      "sha256": "0adc2cea5cf5e2d3954a73f70d034ec2128555779432da4efb3fc2d6ac79c736",
+      "bytes": 153988226
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0041_prim.csv",
+      "member": "primary/zeroSpot/10943245/0041_prim.csv",
+      "sha256": "9d4f053a52ef3bed6c048515f873445446900c23d643ad6d7f8a964668ab8a06",
+      "bytes": 159872804
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0042_prim.csv",
+      "member": "primary/zeroSpot/10943245/0042_prim.csv",
+      "sha256": "4092d9552bf75650340cc4dd511ad67add2aa8ebaa6e37bd66efc6ff1c84a0c5",
+      "bytes": 158266031
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0043_prim.csv",
+      "member": "primary/zeroSpot/10943245/0043_prim.csv",
+      "sha256": "f1ca140385c218e6d7af1dac640d7f2c8f3169eb60f8fd4776f81c1a3e516a36",
+      "bytes": 157711003
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0044_prim.csv",
+      "member": "primary/zeroSpot/10943245/0044_prim.csv",
+      "sha256": "091a84a042e6281c950347ef858adfa7b8e8bca71a3017743f165578e5edbd17",
+      "bytes": 154553047
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0045_prim.csv",
+      "member": "primary/zeroSpot/10943245/0045_prim.csv",
+      "sha256": "77506a15892d83881d34b51704f193b6d8b761ad33b2904eaa7ff7788e0a1335",
+      "bytes": 156771732
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0046_prim.csv",
+      "member": "primary/zeroSpot/10943245/0046_prim.csv",
+      "sha256": "9871fd6693d5deb9940cb8bfe2dbf8618416c051733351b24f844f5bc1164b45",
+      "bytes": 156785123
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0047_prim.csv",
+      "member": "primary/zeroSpot/10943245/0047_prim.csv",
+      "sha256": "c1937aeb055ade2bd4c9ab6a4e5bc64da86e175dbf945b34e3c1bf201e713f2e",
+      "bytes": 155288403
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0048_prim.csv",
+      "member": "primary/zeroSpot/10943245/0048_prim.csv",
+      "sha256": "031f5d8a041d40c142708bc6c1184ec4fe238cefdb41728ccd46ae56ab0a2266",
+      "bytes": 153350541
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0049_prim.csv",
+      "member": "primary/zeroSpot/10943245/0049_prim.csv",
+      "sha256": "401c511bc2a3391fa027364bbec52871ae051ad20240b4c19f02808f2c7fe06b",
+      "bytes": 152167881
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0050_prim.csv",
+      "member": "primary/zeroSpot/10943245/0050_prim.csv",
+      "sha256": "58a7525cb340a6823a0ea8bea8c7c7218fb0430cf9534067221112212b50e76d",
+      "bytes": 159014218
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0051_prim.csv",
+      "member": "primary/zeroSpot/10943245/0051_prim.csv",
+      "sha256": "a3bb48515f7b5be1d81a974e90f2cc8606b5add6ad832402e0e733f860dfb46f",
+      "bytes": 153720920
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0052_prim.csv",
+      "member": "primary/zeroSpot/10943245/0052_prim.csv",
+      "sha256": "5cff11c04ed16daf28126490bc1fae87f13fe78e1af5da411b024c74d6564ba0",
+      "bytes": 156747909
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0053_prim.csv",
+      "member": "primary/zeroSpot/10943245/0053_prim.csv",
+      "sha256": "0f8eb1e5abda8a76dd5f2a4a984370cbde14f822e36880ab2c420e515c957ddc",
+      "bytes": 156626165
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0054_prim.csv",
+      "member": "primary/zeroSpot/10943245/0054_prim.csv",
+      "sha256": "aa21a985de6afc86b07dd06b34e032205780c276fd05f6ea0f8e1fbcd6490da0",
+      "bytes": 154080359
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0055_prim.csv",
+      "member": "primary/zeroSpot/10943245/0055_prim.csv",
+      "sha256": "6605d4c1218a902aca62dbf8fc03380c6a72293a5e1570aa32824e303abf8819",
+      "bytes": 159454276
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0056_prim.csv",
+      "member": "primary/zeroSpot/10943245/0056_prim.csv",
+      "sha256": "a691669c0dd42369e48df637b4ccba0e4ef56f844a3545d4d4d792b14c2f94cb",
+      "bytes": 154444318
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0057_prim.csv",
+      "member": "primary/zeroSpot/10943245/0057_prim.csv",
+      "sha256": "7e758e5ba997778be709bf1513a97281253712d21e8c95a4e8e9b7eca4c25b93",
+      "bytes": 158126868
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0058_prim.csv",
+      "member": "primary/zeroSpot/10943245/0058_prim.csv",
+      "sha256": "bb146652e846a6e6b3396f56999e4c93af0c43ec7c0fdc6d5aeb70cacccd41a5",
+      "bytes": 154426049
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0059_prim.csv",
+      "member": "primary/zeroSpot/10943245/0059_prim.csv",
+      "sha256": "102c2d0c2a4e414aee7c7f5bd8fca275c82f32b0cbb3cc7fd694c56c9d7f1d22",
+      "bytes": 152362450
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0060_prim.csv",
+      "member": "primary/zeroSpot/10943245/0060_prim.csv",
+      "sha256": "13af3bd5c7abce9a9c42394a22e62890a7b6a537ca5dc62e023ea20c1c6e9a1b",
+      "bytes": 157423241
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0061_prim.csv",
+      "member": "primary/zeroSpot/10943245/0061_prim.csv",
+      "sha256": "7bcbc46d1ce7d5c7637c1d3b2522f71ef23d21292a105ccee70d0c1d8b2701dd",
+      "bytes": 160392850
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0062_prim.csv",
+      "member": "primary/zeroSpot/10943245/0062_prim.csv",
+      "sha256": "3617a8a7274117b1e3b8792244e536bd0c0fef9211ff59f087dc7625103a64eb",
+      "bytes": 156397935
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0063_prim.csv",
+      "member": "primary/zeroSpot/10943245/0063_prim.csv",
+      "sha256": "06dc63c5c0dffa83395bb980c680dc473120d1570bbc00d982dc6f3e3913edf6",
+      "bytes": 156090869
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0064_prim.csv",
+      "member": "primary/zeroSpot/10943245/0064_prim.csv",
+      "sha256": "5795e9ea4386175e5a77fbc62189e5b3a3735eb01b120bf66746fa40f7a908d2",
+      "bytes": 155773529
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0065_prim.csv",
+      "member": "primary/zeroSpot/10943245/0065_prim.csv",
+      "sha256": "ca78da3224190ca6d4cb2e0cfda643b6849ba119e1431c90250596c56c548a22",
+      "bytes": 156130143
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0066_prim.csv",
+      "member": "primary/zeroSpot/10943245/0066_prim.csv",
+      "sha256": "69e2457ddfb2567d41956c53d3ee2db0b8e1956fe4e756b5d081c65749b6798c",
+      "bytes": 158542179
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0067_prim.csv",
+      "member": "primary/zeroSpot/10943245/0067_prim.csv",
+      "sha256": "47d9fbecfb4258cf4da229d01ec4ef784d7438cd41b7b9ee635bd308ab949e7e",
+      "bytes": 157836817
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0068_prim.csv",
+      "member": "primary/zeroSpot/10943245/0068_prim.csv",
+      "sha256": "f1e62422be67b1c5fe3903bfbaedc8c669fc2bc5cdb0a7abda3c70d089994f8a",
+      "bytes": 153771094
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0069_prim.csv",
+      "member": "primary/zeroSpot/10943245/0069_prim.csv",
+      "sha256": "8015ef0e947f711c2677f56752934a42878e6c5dbbd761845fb8752648bc4e85",
+      "bytes": 153927388
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0070_prim.csv",
+      "member": "primary/zeroSpot/10943245/0070_prim.csv",
+      "sha256": "81b378adde24a5ea24878482bebfcff96a98dcae31724042865cf83d3ed8c4be",
+      "bytes": 160200050
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0071_prim.csv",
+      "member": "primary/zeroSpot/10943245/0071_prim.csv",
+      "sha256": "d53df4f6335a7275082a57418fa874a95739760b1b0b9fd3f6b6a4951ea9e2d2",
+      "bytes": 161320015
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0072_prim.csv",
+      "member": "primary/zeroSpot/10943245/0072_prim.csv",
+      "sha256": "371f5e5c97387b5f8986c6b48c32b9928e09204fda5f43d80b96f582f6cca6ab",
+      "bytes": 158060314
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0073_prim.csv",
+      "member": "primary/zeroSpot/10943245/0073_prim.csv",
+      "sha256": "fc318efdb59ca16ea87eb1b406f0cab3c6b82fde6082a5512eb94a672833cac1",
+      "bytes": 153858004
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0074_prim.csv",
+      "member": "primary/zeroSpot/10943245/0074_prim.csv",
+      "sha256": "a6e2f3a43df89239b3c973e3a50f3aaa20960df7e786e26a14e0147c5f6fe0bd",
+      "bytes": 159043666
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0075_prim.csv",
+      "member": "primary/zeroSpot/10943245/0075_prim.csv",
+      "sha256": "f8e9cd815c1a0b840cf8ba94c5c5639f0cb639478149687f738fa5642d585459",
+      "bytes": 157544863
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0076_prim.csv",
+      "member": "primary/zeroSpot/10943245/0076_prim.csv",
+      "sha256": "7c9c86058a0d4bb90ee4d797acf227025b15e101f547afd5666df708f329a7a4",
+      "bytes": 156450218
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0077_prim.csv",
+      "member": "primary/zeroSpot/10943245/0077_prim.csv",
+      "sha256": "a85445d6e35129aa76636379487d51dbbf8c8b2af640b24301704abe3dbb45b0",
+      "bytes": 156434804
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0078_prim.csv",
+      "member": "primary/zeroSpot/10943245/0078_prim.csv",
+      "sha256": "8059065d5d723a3753443b7db2c92aa968eeff89c246040bd77b2b66df1a27d6",
+      "bytes": 155396450
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0079_prim.csv",
+      "member": "primary/zeroSpot/10943245/0079_prim.csv",
+      "sha256": "4c177415abdc03dffa333aef8c204965fa743444eb6b6d35f45203b3363ecdb8",
+      "bytes": 157993388
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0080_prim.csv",
+      "member": "primary/zeroSpot/10943245/0080_prim.csv",
+      "sha256": "87949b474e4e44bfb6c8bc2afc5c8ae632beab302850718fa6feab08d606e88b",
+      "bytes": 158306497
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_prim.csv",
+      "member": "primary/zeroSpot/10943245/0081_prim.csv",
+      "sha256": "0f4cecd6a3e204924700c0b4e2ecb1974fadf4e21f5ad40eba49c0c377948c30",
+      "bytes": 149827869
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0082_prim.csv",
+      "member": "primary/zeroSpot/10943245/0082_prim.csv",
+      "sha256": "ab52dfdc0aea432d18a9978efd4bb58bdf4497cc38162d768ceb4439d715639b",
+      "bytes": 156569636
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0083_prim.csv",
+      "member": "primary/zeroSpot/10943245/0083_prim.csv",
+      "sha256": "d9886483a67b54e863ad1bb6aff4bef01931865f9e3187c6ab8cc456cee1ab8b",
+      "bytes": 154784500
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0084_prim.csv",
+      "member": "primary/zeroSpot/10943245/0084_prim.csv",
+      "sha256": "810e80c686d9189a51db16179baa31bb6e1d27f9fd47249157374d2801672373",
+      "bytes": 154842700
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0085_prim.csv",
+      "member": "primary/zeroSpot/10943245/0085_prim.csv",
+      "sha256": "ce2c60b3ebed3b61487ff1525792805ff11687e1a7a7865d14e84465a952fad8",
+      "bytes": 153542109
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0086_prim.csv",
+      "member": "primary/zeroSpot/10943245/0086_prim.csv",
+      "sha256": "35f1b243c2e8ab3450e4d6ad5d6fc84bf272012a8fcc3e66f2bb074da1f973cd",
+      "bytes": 158426474
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0087_prim.csv",
+      "member": "primary/zeroSpot/10943245/0087_prim.csv",
+      "sha256": "85d417fb9b9e06a8a782ec5e7483cbd5a1a8c41c77b9461faf7603e1a931e6ff",
+      "bytes": 158355030
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0088_prim.csv",
+      "member": "primary/zeroSpot/10943245/0088_prim.csv",
+      "sha256": "ee923167671eb53a9ea737525d61ec77935c5cb2e613c18ca67fa418b8eb7aaf",
+      "bytes": 155065910
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0089_prim.csv",
+      "member": "primary/zeroSpot/10943245/0089_prim.csv",
+      "sha256": "d3cff2fbf2c730e5d87b7c40a714a755342d77401b57322c7b84160dd03411b4",
+      "bytes": 160596274
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0090_prim.csv",
+      "member": "primary/zeroSpot/10943245/0090_prim.csv",
+      "sha256": "d13487fd83d809bdfdb8e5f779d8b18b2fe929353883a9afc681ba7686853d56",
+      "bytes": 157345483
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0091_prim.csv",
+      "member": "primary/zeroSpot/10943245/0091_prim.csv",
+      "sha256": "f677de0c61685dcc91148a3450aee157da1fa165726e52b5de6762ada8336361",
+      "bytes": 154374797
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0092_prim.csv",
+      "member": "primary/zeroSpot/10943245/0092_prim.csv",
+      "sha256": "0cdbfa7a9fca46873dc9681da51a0a209472c3dc0285440f588bca293f2641ae",
+      "bytes": 156768467
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0093_prim.csv",
+      "member": "primary/zeroSpot/10943245/0093_prim.csv",
+      "sha256": "fb0f145c3f5f00b88521aec6fe4e4dfc16f4377f54d6dba089bdbfb8f348e6b5",
+      "bytes": 157336732
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0094_prim.csv",
+      "member": "primary/zeroSpot/10943245/0094_prim.csv",
+      "sha256": "c342f0497b640007bd0c68505a1af4242626e6ade9503550f43a6bfb2b934a06",
+      "bytes": 156576369
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0095_prim.csv",
+      "member": "primary/zeroSpot/10943245/0095_prim.csv",
+      "sha256": "cbd80a281634dcd27472d8da4b45f4193076ec08020f0fe4fe9292c0e8e4ec63",
+      "bytes": 155016007
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0096_prim.csv",
+      "member": "primary/zeroSpot/10943245/0096_prim.csv",
+      "sha256": "24bfef180a7a43305eb7845adeb86aa66001446dfde88b23d823ea1ac7602ab8",
+      "bytes": 155343642
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0097_prim.csv",
+      "member": "primary/zeroSpot/10943245/0097_prim.csv",
+      "sha256": "5b9bf794b0db459b46302672f78ab5482df0c14c3745a0cbd0ee01b5def97366",
+      "bytes": 158914952
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0098_prim.csv",
+      "member": "primary/zeroSpot/10943245/0098_prim.csv",
+      "sha256": "4be092943c6a143061f3bdcab59ee9384a25830cd68593dea5ed7346a937aa95",
+      "bytes": 154893011
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0099_prim.csv",
+      "member": "primary/zeroSpot/10943245/0099_prim.csv",
+      "sha256": "6c2c8b5908bab210e06feabf140d2367703b68c48c1fd84002847471d2caf570",
+      "bytes": 157768572
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0100_prim.csv",
+      "member": "primary/zeroSpot/10943245/0100_prim.csv",
+      "sha256": "984844841e68ecd27e52eb8e2c07b2743394d26ed3d842ee36f1f4a4b0a147aa",
+      "bytes": 157423615
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0101_prim.csv",
+      "member": "primary/zeroSpot/10943245/0101_prim.csv",
+      "sha256": "4f540dfbb2587ab5662298b12b71af627a1c9466742b2c633d71fa1433453be3",
+      "bytes": 156905934
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0102_prim.csv",
+      "member": "primary/zeroSpot/10943245/0102_prim.csv",
+      "sha256": "330c9eeb6de913b49d9b70e39b3af9ec19c218c76aa0916748028b9e42bc0163",
+      "bytes": 157954498
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0103_prim.csv",
+      "member": "primary/zeroSpot/10943245/0103_prim.csv",
+      "sha256": "319469840c57a0369ec3f65cb1e78c3e9166ce58948015aa679665872543c0a0",
+      "bytes": 156214762
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0104_prim.csv",
+      "member": "primary/zeroSpot/10943245/0104_prim.csv",
+      "sha256": "3a3b1e400ac0f9c1b488efa7ccea2f171e5c59f020bd81888edd81ec97858346",
+      "bytes": 154969282
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0105_prim.csv",
+      "member": "primary/zeroSpot/10943245/0105_prim.csv",
+      "sha256": "368c99de77ded480b13ae1d78d13c430a6a543041bdfa5df3784e08cc8cdd2e0",
+      "bytes": 155679230
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0106_prim.csv",
+      "member": "primary/zeroSpot/10943245/0106_prim.csv",
+      "sha256": "a00de89b3af4418e731d340d9630910f0ca65089a22499c2145a09e147f6fe79",
+      "bytes": 159360663
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0107_prim.csv",
+      "member": "primary/zeroSpot/10943245/0107_prim.csv",
+      "sha256": "142e787a478158d3dfcb76fb1db454a294248a95af41049d9e6b1ac697c57f44",
+      "bytes": 156857611
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0108_prim.csv",
+      "member": "primary/zeroSpot/10943245/0108_prim.csv",
+      "sha256": "5d444edfb4ff89e453af41cdce75c33c307cb72380b2f7b242616226ea7ddd29",
+      "bytes": 156629702
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0109_prim.csv",
+      "member": "primary/zeroSpot/10943245/0109_prim.csv",
+      "sha256": "98c6bb87e858e2a88ae397ba99c4d8140f4722fa4aca635b3e14e9c17b92e27c",
+      "bytes": 158673070
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0110_prim.csv",
+      "member": "primary/zeroSpot/10943245/0110_prim.csv",
+      "sha256": "6e39fcf6821f98c09998664e330a767120192c422b773eca3871d19a20c45d74",
+      "bytes": 154584166
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0111_prim.csv",
+      "member": "primary/zeroSpot/10943245/0111_prim.csv",
+      "sha256": "7944cb4165245a15cba47366f97847de62a94be901bacf9609869efd8a28fb7f",
+      "bytes": 152558002
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0112_prim.csv",
+      "member": "primary/zeroSpot/10943245/0112_prim.csv",
+      "sha256": "89c214108e8824b56043a57204505d74e09f8409187c1ce16d54bcbf02d7425e",
+      "bytes": 154873438
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0113_prim.csv",
+      "member": "primary/zeroSpot/10943245/0113_prim.csv",
+      "sha256": "ed35694ce76b3d7abd9a94067f47830f67ead4c9363053410502da31e8946f20",
+      "bytes": 155098102
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0114_prim.csv",
+      "member": "primary/zeroSpot/10943245/0114_prim.csv",
+      "sha256": "451fe59c3ac9ea268018b3149a6e4c1a18603e4f104ae60ff84cd1a8c0ab1628",
+      "bytes": 153386216
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0115_prim.csv",
+      "member": "primary/zeroSpot/10943245/0115_prim.csv",
+      "sha256": "f093b256d986fbae34d86b993bb58d0e3cd0ad1cf83469f4438dd29aa4118dea",
+      "bytes": 158315804
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0116_prim.csv",
+      "member": "primary/zeroSpot/10943245/0116_prim.csv",
+      "sha256": "ba778bbd47152e9908d5d061f56a8788dc327b7612c01d9c5f330bcbfc072f59",
+      "bytes": 155554796
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0117_prim.csv",
+      "member": "primary/zeroSpot/10943245/0117_prim.csv",
+      "sha256": "8b166a08d245795a7556384aa0632d5cc240ac760448e606376fa964f64c6ba5",
+      "bytes": 157968368
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0118_prim.csv",
+      "member": "primary/zeroSpot/10943245/0118_prim.csv",
+      "sha256": "d3eb9bd4c0022c51aabfd30430549b876d0ddb5a1241f6e0336e44fe091ce5db",
+      "bytes": 160777400
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0119_prim.csv",
+      "member": "primary/zeroSpot/10943245/0119_prim.csv",
+      "sha256": "3986d9e4bca16c79c1611040d5ea31d72e448c3087284b8fb4491323b1b24326",
+      "bytes": 159058722
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0120_prim.csv",
+      "member": "primary/zeroSpot/10943245/0120_prim.csv",
+      "sha256": "12fd031c17d63e13ffbb1cdbe4755ad7f381678d546d5e426131394d1133fd1e",
+      "bytes": 157863285
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0121_prim.csv",
+      "member": "primary/zeroSpot/10943245/0121_prim.csv",
+      "sha256": "3bdcd0f16ad34b671a3113441de5c7b3064ef93221ff31a39ecb471e4a45205e",
+      "bytes": 153167089
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0122_prim.csv",
+      "member": "primary/zeroSpot/10943245/0122_prim.csv",
+      "sha256": "b89ff658f94733f8d9cd2d65b897825ca83d3bc05abef6a182a9f7d608882fce",
+      "bytes": 153631372
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0123_prim.csv",
+      "member": "primary/zeroSpot/10943245/0123_prim.csv",
+      "sha256": "821e8968e678fca99b0b63c662f9d31fc2497008cf9dd935ca9776ca688b0356",
+      "bytes": 155916800
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0124_prim.csv",
+      "member": "primary/zeroSpot/10943245/0124_prim.csv",
+      "sha256": "d66e856ff3faa5349b3ed3360c6edcd954a5b4a0e5b0859734b8f093d91d0278",
+      "bytes": 154863390
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0125_prim.csv",
+      "member": "primary/zeroSpot/10943245/0125_prim.csv",
+      "sha256": "8c24ac8821dadf3c8f6347318eb6b3a095ff087d8da9679d96e000d711536e47",
+      "bytes": 156466531
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0126_prim.csv",
+      "member": "primary/zeroSpot/10943245/0126_prim.csv",
+      "sha256": "69f287cb5fcc98a5d08c0c8994e7c0682ca5a082c0ba039fd2f1fa7b2d02b125",
+      "bytes": 156404830
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0127_prim.csv",
+      "member": "primary/zeroSpot/10943245/0127_prim.csv",
+      "sha256": "f3aabd4ba38135b64861a03f58164dc234e726200a33e3ca8a06cabcc6202aad",
+      "bytes": 156622086
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0128_prim.csv",
+      "member": "primary/zeroSpot/10943245/0128_prim.csv",
+      "sha256": "8088df901ad51f284ea0e619119e227bd2f0bbc36e6814c4953e083356c0c688",
+      "bytes": 153157577
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0129_prim.csv",
+      "member": "primary/zeroSpot/10943245/0129_prim.csv",
+      "sha256": "458d6a53d568bf3457625c32cbad662d73abb7a8e997ccbc8958cd396dc3ac45",
+      "bytes": 157715425
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0130_prim.csv",
+      "member": "primary/zeroSpot/10943245/0130_prim.csv",
+      "sha256": "09c19157ca19813a1bdb53d48c10bdc6a80a067e5bce8223d104b98261761c48",
+      "bytes": 160145858
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0131_prim.csv",
+      "member": "primary/zeroSpot/10943245/0131_prim.csv",
+      "sha256": "9759e2fa29c6ebd8201073adb68f5891502490777435b1f8628d8d38c36595c3",
+      "bytes": 154028861
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0132_prim.csv",
+      "member": "primary/zeroSpot/10943245/0132_prim.csv",
+      "sha256": "234db1f6f4b220a892de21b211eaecb980f8390ad4309afa253c58aba649a35e",
+      "bytes": 155205466
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0133_prim.csv",
+      "member": "primary/zeroSpot/10943245/0133_prim.csv",
+      "sha256": "afa9eb26792a061ef247b0ae214edd0b9908745c1d337e2996dbac2eb0d27383",
+      "bytes": 161383522
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0134_prim.csv",
+      "member": "primary/zeroSpot/10943245/0134_prim.csv",
+      "sha256": "4d16a7813bdc9de03d5c223afc4c4625dcb58943b98def8f42481316bd1dee17",
+      "bytes": 158310973
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0135_prim.csv",
+      "member": "primary/zeroSpot/10943245/0135_prim.csv",
+      "sha256": "d1b91a7a2a60277b21d5f9c067584dea8a3b4a90de29123637ff470fc473c8ab",
+      "bytes": 158000602
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0136_prim.csv",
+      "member": "primary/zeroSpot/10943245/0136_prim.csv",
+      "sha256": "3b87ca51888ae70f7797e87d3851db13edebc237a44e447140705bd45442afb7",
+      "bytes": 157984185
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0137_prim.csv",
+      "member": "primary/zeroSpot/10943245/0137_prim.csv",
+      "sha256": "83119ecc6e6790fc5459f2cdad3305429b8871fc5a2cba7a91a62fc10672b4f1",
+      "bytes": 156809915
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0138_prim.csv",
+      "member": "primary/zeroSpot/10943245/0138_prim.csv",
+      "sha256": "eac5664967ec1c9b8cf7685453cb6574af8ed4c7ef6a48a63b0b3ae0d56d3f47",
+      "bytes": 152458325
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0139_prim.csv",
+      "member": "primary/zeroSpot/10943245/0139_prim.csv",
+      "sha256": "f178e417c67e0b93173d9ddcb2c90e0d091d9a3f10fcf0e21eccb24d6bbc9f58",
+      "bytes": 159163419
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0140_prim.csv",
+      "member": "primary/zeroSpot/10943245/0140_prim.csv",
+      "sha256": "5cbe7648957118ae322950d8d860ac1bc0b397b4e2255a147c0b86a526f4846a",
+      "bytes": 154742732
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0141_prim.csv",
+      "member": "primary/zeroSpot/10943245/0141_prim.csv",
+      "sha256": "1f739a9c848be753af1f5330680c2628b79db6e03ab1002981b92f97244025cd",
+      "bytes": 154934397
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0142_prim.csv",
+      "member": "primary/zeroSpot/10943245/0142_prim.csv",
+      "sha256": "6d3a2b6048b9e649d8c01246413ca5c48d6dbb42253be8d2dc2cacaca67afe01",
+      "bytes": 161951942
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0143_prim.csv",
+      "member": "primary/zeroSpot/10943245/0143_prim.csv",
+      "sha256": "2b946a244d332eecd2ef2a7cf95630b6760798a5c66df5ca8cfae8dc342e1c2d",
+      "bytes": 158269857
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0144_prim.csv",
+      "member": "primary/zeroSpot/10943245/0144_prim.csv",
+      "sha256": "a7151183a8af1131543586598bb72a3fb8b3fe7200bd64e7c290f8793ad2aad4",
+      "bytes": 154012470
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0145_prim.csv",
+      "member": "primary/zeroSpot/10943245/0145_prim.csv",
+      "sha256": "31c34876e16669c593c5e248d3d49fe197d09fd9beb936c8a8bab669787af461",
+      "bytes": 156551280
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0146_prim.csv",
+      "member": "primary/zeroSpot/10943245/0146_prim.csv",
+      "sha256": "d777d6bc73ae159dad46e22b661ed12bc0fe2c05d7df4f069eab8245e76bb3f2",
+      "bytes": 152522095
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0147_prim.csv",
+      "member": "primary/zeroSpot/10943245/0147_prim.csv",
+      "sha256": "4532d5f310617c908f2cb4c1f9c4e8927d160504b43b9c15c4ee43a8529441ca",
+      "bytes": 158320952
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0148_prim.csv",
+      "member": "primary/zeroSpot/10943245/0148_prim.csv",
+      "sha256": "491c91e196989e825b04763a5a87d492f8d7c44babb8d5d03c5625d0875af344",
+      "bytes": 157394401
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0149_prim.csv",
+      "member": "primary/zeroSpot/10943245/0149_prim.csv",
+      "sha256": "ab8144f6e8eb9498a626b31e52e683415c0938ce1e83eafd99b1997705d4a2e3",
+      "bytes": 155012500
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0150_prim.csv",
+      "member": "primary/zeroSpot/10943245/0150_prim.csv",
+      "sha256": "841bc64d990a77968b5ee5b8e847ba1f87f39d41cbf5b12b85619f347a435420",
+      "bytes": 162649166
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0151_prim.csv",
+      "member": "primary/zeroSpot/10943245/0151_prim.csv",
+      "sha256": "d336fa1b379b1b22c1d7ed4036a5e66329944c27c753f640f1dcf3fd9a3dee57",
+      "bytes": 157003872
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0152_prim.csv",
+      "member": "primary/zeroSpot/10943245/0152_prim.csv",
+      "sha256": "dde18b1d866adc8eb3de2945c7d853938a20d844b581cca780c5f510e11b4c09",
+      "bytes": 157357788
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0153_prim.csv",
+      "member": "primary/zeroSpot/10943245/0153_prim.csv",
+      "sha256": "d9807dfca768c8698c0aba030a0f97257f20d48b305a6a2b0e6f72e1832afe28",
+      "bytes": 154966325
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0154_prim.csv",
+      "member": "primary/zeroSpot/10943245/0154_prim.csv",
+      "sha256": "3e0d47e982af35d5baf7e7c9a07f504974d58033e07d92c2ec8ba8116f289e60",
+      "bytes": 154160716
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0155_prim.csv",
+      "member": "primary/zeroSpot/10943245/0155_prim.csv",
+      "sha256": "e1c905b5f44c25f30a0520c444960678873ebfaf233595296f49c0aab7db7804",
+      "bytes": 157385098
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0156_prim.csv",
+      "member": "primary/zeroSpot/10943245/0156_prim.csv",
+      "sha256": "95ef8220bfc8cedae6bec42722ddf7859904301c3099516c1f96a604de0326a8",
+      "bytes": 150798719
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0157_prim.csv",
+      "member": "primary/zeroSpot/10943245/0157_prim.csv",
+      "sha256": "7b9d5e9964e46284c4b0f4bc61311133bb35253d106ea80e5aedc0a4fde23f76",
+      "bytes": 155392379
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0158_prim.csv",
+      "member": "primary/zeroSpot/10943245/0158_prim.csv",
+      "sha256": "27d350fa82398bc11ec0587d729f9f8f51d1407e38b30418f96bbce1cf72c001",
+      "bytes": 157732932
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0159_prim.csv",
+      "member": "primary/zeroSpot/10943245/0159_prim.csv",
+      "sha256": "414f5dc196a59fe51d441cf83b8aa04738b5856f2ec736242feb7698d1603193",
+      "bytes": 152230321
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0160_prim.csv",
+      "member": "primary/zeroSpot/10943245/0160_prim.csv",
+      "sha256": "8b108995f95258132770f52877e1665d912fb40edc79f4e887cfadf351b42596",
+      "bytes": 154778088
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0161_prim.csv",
+      "member": "primary/zeroSpot/10943245/0161_prim.csv",
+      "sha256": "994b625be7bc6b01bf8f4a6d9ac1cbad6dbf81e27110e0cd25f200c2b6877823",
+      "bytes": 151484190
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0162_prim.csv",
+      "member": "primary/zeroSpot/10943245/0162_prim.csv",
+      "sha256": "854e2f020076120c6f7e34fc7bb4533f2c02ae7412bf3571527e05ab4d86d6a9",
+      "bytes": 158384435
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0163_prim.csv",
+      "member": "primary/zeroSpot/10943245/0163_prim.csv",
+      "sha256": "2f7be9e2e2380101b70676ed25ddfc90be84242d7a1b2168b9a2ae50104cd121",
+      "bytes": 158503687
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0164_prim.csv",
+      "member": "primary/zeroSpot/10943245/0164_prim.csv",
+      "sha256": "fb917e7c4d2d9ceb1494e1a3a1ea1c211a98587658245c51b6eb0396c9242fc5",
+      "bytes": 159968345
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0165_prim.csv",
+      "member": "primary/zeroSpot/10943245/0165_prim.csv",
+      "sha256": "c352b31fbd26eed92d83494a37692c9ac42228ae7a49cb582ddc99893e5d5b8d",
+      "bytes": 154452317
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0166_prim.csv",
+      "member": "primary/zeroSpot/10943245/0166_prim.csv",
+      "sha256": "ad92ce95aacfb690cc45261929a26b981a5ec8984686f0eaa792f094fc61fa80",
+      "bytes": 155839816
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0167_prim.csv",
+      "member": "primary/zeroSpot/10943245/0167_prim.csv",
+      "sha256": "c437af995818256631671a2a2051bbde8c61279fa6014f16ed6b5044bc4a241b",
+      "bytes": 154362724
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0168_prim.csv",
+      "member": "primary/zeroSpot/10943245/0168_prim.csv",
+      "sha256": "ef8173db19e3abcbe1bdc5ad5f83fe98667e6311deea6063582bfd1e6f4a3a50",
+      "bytes": 157003350
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0169_prim.csv",
+      "member": "primary/zeroSpot/10943245/0169_prim.csv",
+      "sha256": "0068b1e2eb8eea7533ae43f3c5333870436a793ec88582e7426298d0305db0b2",
+      "bytes": 158814082
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0170_prim.csv",
+      "member": "primary/zeroSpot/10943245/0170_prim.csv",
+      "sha256": "37d359e49bc15e7931025131a8e7949d4d59e329bdbe36d8289dd72632dbf332",
+      "bytes": 158330127
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0171_prim.csv",
+      "member": "primary/zeroSpot/10943245/0171_prim.csv",
+      "sha256": "896236a09164b466b47ccea389d4dcc28b72608c971a8ae98e6a50c96396ddc5",
+      "bytes": 153618646
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0172_prim.csv",
+      "member": "primary/zeroSpot/10943245/0172_prim.csv",
+      "sha256": "f4e2abc2d0be06f931976aa4e9210e64f0d50011edc203c267570de5a9e763e0",
+      "bytes": 159738693
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0173_prim.csv",
+      "member": "primary/zeroSpot/10943245/0173_prim.csv",
+      "sha256": "e7d34b88832f22b0d96b644f3d6c935ea601dcef459d986b34cbda66df6befbc",
+      "bytes": 155311063
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0174_prim.csv",
+      "member": "primary/zeroSpot/10943245/0174_prim.csv",
+      "sha256": "5ff9737bf716a3ec80228ccf906ec3c0cc0367b59cd509a2d5372d6f46a161e8",
+      "bytes": 158019974
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0175_prim.csv",
+      "member": "primary/zeroSpot/10943245/0175_prim.csv",
+      "sha256": "aba926deea847b1b96f61aea13c06c2dad7f752148e897a11dbf395fd90962bd",
+      "bytes": 155381184
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0176_prim.csv",
+      "member": "primary/zeroSpot/10943245/0176_prim.csv",
+      "sha256": "f8394ae7b2fc8435746e29f3fbf7e49c7712ec4981b7cd02ea0e6d6d49d0b549",
+      "bytes": 161414157
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0177_prim.csv",
+      "member": "primary/zeroSpot/10943245/0177_prim.csv",
+      "sha256": "d954c7de8f9cb1c1c3be72c457e0012353afbceabce876b01d4d4572cd94279d",
+      "bytes": 157201202
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0178_prim.csv",
+      "member": "primary/zeroSpot/10943245/0178_prim.csv",
+      "sha256": "223f561aec37af0bb70dcfbf7fd0bd892ce95b0de3601d9be9dddf6a79baf137",
+      "bytes": 157409657
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0179_prim.csv",
+      "member": "primary/zeroSpot/10943245/0179_prim.csv",
+      "sha256": "218612b13706255c022d9a479711a1efb28ae4089b938182cbc091ef645b0c60",
+      "bytes": 152735591
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0180_prim.csv",
+      "member": "primary/zeroSpot/10943245/0180_prim.csv",
+      "sha256": "bd33ca7c4c75e1b43188b60033a824b88246a6d5a533f64a4c018e98aa7d160d",
+      "bytes": 155902277
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0181_prim.csv",
+      "member": "primary/zeroSpot/10943245/0181_prim.csv",
+      "sha256": "89fc2814cdc991a7b60d2d156d8b393b42c3e29bdce78d34459ac64f0dcad1f2",
+      "bytes": 154149712
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0182_prim.csv",
+      "member": "primary/zeroSpot/10943245/0182_prim.csv",
+      "sha256": "534bc43e0c0e05e9bac00efb23e6d4525e5f1e779a1eb33ba38ffc5899fb775d",
+      "bytes": 156313915
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0183_prim.csv",
+      "member": "primary/zeroSpot/10943245/0183_prim.csv",
+      "sha256": "13497111053f2d468d55b2db0bc41bc095ff20a575fadef21d6380d6cff94dce",
+      "bytes": 155356956
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0184_prim.csv",
+      "member": "primary/zeroSpot/10943245/0184_prim.csv",
+      "sha256": "0e815ee10ab89272f0bf5f1d93b22952696cc625d262ec7f301fcdd1282b4ce1",
+      "bytes": 158817545
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0185_prim.csv",
+      "member": "primary/zeroSpot/10943245/0185_prim.csv",
+      "sha256": "83727139841db95f9b7e780bfadb3037870bd97111ced50bf9fb92d187b64447",
+      "bytes": 153603548
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0186_prim.csv",
+      "member": "primary/zeroSpot/10943245/0186_prim.csv",
+      "sha256": "f47aaa7c4246d83c70feb479ee4824a72754667c450337053faaa917bf4fcfa4",
+      "bytes": 159790244
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0187_prim.csv",
+      "member": "primary/zeroSpot/10943245/0187_prim.csv",
+      "sha256": "94fd7fe3d900be53c5bf8c4b0a13eb65de4be79678bff26b48228022910ea5dc",
+      "bytes": 150873783
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0188_prim.csv",
+      "member": "primary/zeroSpot/10943245/0188_prim.csv",
+      "sha256": "b2dc0ed0d613103788c675586c5552b196cf254d9495952d01b6407b4e1b4b8e",
+      "bytes": 156279422
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0189_prim.csv",
+      "member": "primary/zeroSpot/10943245/0189_prim.csv",
+      "sha256": "b4bdd7a6db726b46f3cdcdd8c59c7e5f9b3c4340b443420180fcd63d9df1985e",
+      "bytes": 161674273
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0190_prim.csv",
+      "member": "primary/zeroSpot/10943245/0190_prim.csv",
+      "sha256": "f44a8f1517ea150329826d54c3f9449f66f4746efe753a10d3e6983946cd75bb",
+      "bytes": 156714731
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0191_prim.csv",
+      "member": "primary/zeroSpot/10943245/0191_prim.csv",
+      "sha256": "e4ecc66f26d9aed3a70428e8386d794fa6f094423d413f9ff93b0654125c9809",
+      "bytes": 157972456
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0192_prim.csv",
+      "member": "primary/zeroSpot/10943245/0192_prim.csv",
+      "sha256": "e9afe79481d6ebbc880e10b5ec5d2256cdc4be9822ba4029252df9e080403c35",
+      "bytes": 156984299
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0193_prim.csv",
+      "member": "primary/zeroSpot/10943245/0193_prim.csv",
+      "sha256": "22db17caeb8ed94e35217f0c01a95b4c315f08d6f8bac8e68dc82cf44a89bd58",
+      "bytes": 158267489
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0194_prim.csv",
+      "member": "primary/zeroSpot/10943245/0194_prim.csv",
+      "sha256": "46e39c88da7f4641bda83d79c467f4028c4c8956d45e709b042d09e5935ad887",
+      "bytes": 156253011
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0195_prim.csv",
+      "member": "primary/zeroSpot/10943245/0195_prim.csv",
+      "sha256": "8ba5e240b8d7a94b5e27aa6fa75dfe103dd82ad2ec6015d010d90e47e42fd1b4",
+      "bytes": 153453312
+    }
+  ]
+}

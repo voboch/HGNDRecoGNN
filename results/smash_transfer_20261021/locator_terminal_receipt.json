@@ -1,0 +1,21 @@
+{
+  "job_id": "4435586",
+  "checked_at_utc": "2026-10-22T19:41:43.391655+00:00",
+  "queue": "",
+  "slurm_accounting": "4435586|COMPLETED|0:0|00:06:49|cn-039\n4435586.batch|COMPLETED|0:0|00:06:49|cn-039\n4435586.extern|COMPLETED|0:0|00:06:49|cn-039\n",
+  "result": {
+    "state": "complete",
+    "scope": "exact source lookup for first failed defaultSpot file; no model evaluation",
+    "detector_file": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_vacs.csv",
+    "detector_sha256": "775a598509f748956f92260881957c7ffa0cd171c0467fe841adb6908553c3db",
+    "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+    "target_nucleons": 334,
+    "files_expected": 200,
+    "elapsed_seconds": 379.2928430372849,
+    "matched_detector_records": 334,
+    "matched_detector_records_with_exact_vertex": 334,
+    "source_script_sha256": "285dfe9838d3cfd3ef48ffb4cebf4f739af5f3844b324e81db4835c948775038",
+    "files_checked": 200,
+    "matches": 334
+  }
+}

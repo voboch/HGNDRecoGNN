@@ -1,0 +1,15 @@
+{
+  "scope": "local source-code provenance inspection only, not a receipt of the commands that generated the present exports",
+  "files": {
+    "ncx/convert2csv.cc": "63667009c7d00f6c9f30dbe171effbc9cabb8d40cd6378143cdeee376154ce49",
+    "ncx/run_batch.sh": "0d302e5c0a201431e33fe1702cfe725cc80a47d511ef1574292fc46ba1bd62b7",
+    "ncx_refactor/Convert2Csv.C": "686123597fd296856810a0bbfb5846bcc9013fca38fe6a9e32a27b9c441204f1",
+    "ncx_refactor/run_convert.sh": "c599a35c6f9ba67cac9ff93f3ade5049cb1f5d10e6b403c28e1fa21303286ddd"
+  },
+  "vacs_and_primary_fields": "initial CbmMCTrack Ekin=GetEnergy()-GetMass(), Px/Py/Pz, production vertex; vacs track Id from surface-point GetTrackID, primary Id from MCTrack index; Row is ROOT event index",
+  "vacs_Ekin_is_transport_arrival_energy": false,
+  "legacy_wrapper_enumeration": "nested substring glob per extracted id; output counter increments for each path encountered",
+  "refactored_wrapper_enumeration": "stable sorted ROOT path list, one prefix per path",
+  "actual_production_command_established": false,
+  "filename_mismatch_cause_attributed_to_wrapper": false
+}

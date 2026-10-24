@@ -1,0 +1,16 @@
+{
+  "scope": "first corrected defaultSpot detector-to-primary source association only; generated event-processing coverage remains unknown",
+  "detector_member": "10943245/0001",
+  "detector_vacs_sha256": "775a598509f748956f92260881957c7ffa0cd171c0467fe841adb6908553c3db",
+  "detector_vacs_export_events": 781,
+  "detector_vacs_max_Row": 1021,
+  "detector_coverage_source": "primary_generation_crosscheck.json: corrected_default__default raw metadata",
+  "primary_member": "10943245/0002",
+  "primary_sha256": "d25ef6b14548a472fbc31b44c0e3226413f14de6f7e83cfd780bb8eca14b04f7",
+  "primary_last_exported_Row": 4067,
+  "primary_last_Row_provenance": "read-only last-line metadata probe on charisma login-02, 2026-10-22",
+  "detector_processed_ROOT_event_range": null,
+  "detector_processed_ROOT_event_count": null,
+  "generated_efficiency_denominator_established": false,
+  "reason": "Detector hit/vacs exports omit events with no response; observed max Row does not establish processed ROOT range."
+}

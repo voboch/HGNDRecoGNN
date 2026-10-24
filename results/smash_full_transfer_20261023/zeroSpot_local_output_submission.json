@@ -1,0 +1,28 @@
+{
+  "created_at_utc": "2026-10-23T08:42:45.760789+00:00",
+  "authorization": "Human explicitly replied \u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u044c \u043e\u0434\u0438\u043d \u0437\u0430\u043f\u0443\u0441\u043a",
+  "proposal_sha256": "fd47880c79019ab39181956a2f53f11ec166460d99e162f625ef521366765b30",
+  "state": "submitted",
+  "source_sha256": "9f9c2bdb90754deaa35d29cd2277ed0f5f6f771d92503128c582d0d49644b815",
+  "publisher_sha256": "8b141a46fcd400b7dfccfe4c37cc0f9714892417997a2acb722eb541a5b85331",
+  "submission_script_sha256": "54765b28fc31eb1daced7426243f68ad64d16fdde3bf00cac3bc148f85695888",
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "raw_manifest_sha256": "b52a64a040fb9452c40189bc7cf42b90ced008b1375fee8a250a010a9b884d76",
+  "primary_manifest_sha256": "726bcc5c87ed5199f26f3bb6aa87e5edd3a8252d077696e74c704732c635e27f",
+  "limits": {
+    "jobs": 1,
+    "cpus": 4,
+    "gpus": 0,
+    "time": "00:30:00",
+    "mem": 0,
+    "no_requeue": true,
+    "further_automatic_retry": false
+  },
+  "work_filesystem": "explicit /tmp; runtime filesystem type checked",
+  "intermediate_results_on_scratch": false,
+  "further_automatic_retry_authorized": false,
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4437449\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4437449"
+}

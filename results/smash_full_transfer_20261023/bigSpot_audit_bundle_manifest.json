@@ -1,0 +1,2394 @@
+{
+  "state": "complete",
+  "scope": "Full corrected SMASH conditional-cluster audit; exact-byte aliases explicit; no model fitting",
+  "plan_sha256": "a647a53348b57b4a2718489c6b9d9edcba30570fb83a6376d68686576e64daa9",
+  "source_stat_method": "fstat on the same read descriptor before and after copying",
+  "source_script_sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd",
+  "archive_sha256": "79a4fa4c396f1124fb9bfec3a849d7f01ea869c3e5603fa034d90a475ead0fff",
+  "archive_bytes": 8427386880,
+  "unpacked_bytes": 8427052161,
+  "files": [
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_hits.csv",
+      "member": "raw/bigSpot/10943245/0001_hits.csv",
+      "sha256": "fcf2a5a419de48635f1f933128e6d1a6db81a90c7399dbcf73fa79173dba657e",
+      "bytes": 1469611
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_vacs.csv",
+      "member": "raw/bigSpot/10943245/0001_vacs.csv",
+      "sha256": "358de8545807993e4c15de6283ad9ed55684cf7ecd5abc31bd79899925add4ad",
+      "bytes": 3091328
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0002_hits.csv",
+      "member": "raw/bigSpot/10943245/0002_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0002_vacs.csv",
+      "member": "raw/bigSpot/10943245/0002_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0003_hits.csv",
+      "member": "raw/bigSpot/10943245/0003_hits.csv",
+      "sha256": "c3908337b96c7b37808fa8997e49a54a42503097c7b9497a8f9bb3fcb5f901b8",
+      "bytes": 1488372
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0003_vacs.csv",
+      "member": "raw/bigSpot/10943245/0003_vacs.csv",
+      "sha256": "064bb0ce52fbe3a83524ebf37ccce4e2333874d0aac2b51940c6cb69f472ccc6",
+      "bytes": 3129332
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0004_hits.csv",
+      "member": "raw/bigSpot/10943245/0004_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0004_vacs.csv",
+      "member": "raw/bigSpot/10943245/0004_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0005_hits.csv",
+      "member": "raw/bigSpot/10943245/0005_hits.csv",
+      "sha256": "09fd12a907b746924591241349810fa51cf65015e22fe680c3c83364059302c5",
+      "bytes": 1464705
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0005_vacs.csv",
+      "member": "raw/bigSpot/10943245/0005_vacs.csv",
+      "sha256": "6899254eb4904b133560bf87779ca93976cbe11d3adc031c45a759d8309cf5db",
+      "bytes": 3079445
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0006_hits.csv",
+      "member": "raw/bigSpot/10943245/0006_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0006_vacs.csv",
+      "member": "raw/bigSpot/10943245/0006_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0007_hits.csv",
+      "member": "raw/bigSpot/10943245/0007_hits.csv",
+      "sha256": "6dcf05e6a119336ba24ad47afef66ffced9b54ad145bc76cadfb1416abeddeba",
+      "bytes": 1369243
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0007_vacs.csv",
+      "member": "raw/bigSpot/10943245/0007_vacs.csv",
+      "sha256": "1b553b8b0f57a68bda4f9e07ee3e1e4c6cec939411f7478abd34e29b567b54e5",
+      "bytes": 2885037
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0008_hits.csv",
+      "member": "raw/bigSpot/10943245/0008_hits.csv",
+      "sha256": "bdc2a8ed483dbc0897208de2ba571aecf8197f027db65bd93b5b7f891231800b",
+      "bytes": 1516135
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0008_vacs.csv",
+      "member": "raw/bigSpot/10943245/0008_vacs.csv",
+      "sha256": "3653ae8ad7b69c69007f8a9a99b32272db16eb9753cda5fe983892707d4743e2",
+      "bytes": 3187287
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0009_hits.csv",
+      "member": "raw/bigSpot/10943245/0009_hits.csv",
+      "sha256": "a0fd3f3526cb079b3cb893faeb190d2f0fe1fb73d754a3251ee52904e98b884b",
+      "bytes": 1476075
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0009_vacs.csv",
+      "member": "raw/bigSpot/10943245/0009_vacs.csv",
+      "sha256": "12fa56f1929cf136538a28170523b0716de2d23713e22dfcb21e9b10a2817391",
+      "bytes": 3103103
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0010_hits.csv",
+      "member": "raw/bigSpot/10943245/0010_hits.csv",
+      "sha256": "2fbbf2fcefbbdafecb391e5298c3ce3f5231d7cba37c91de9c55024d4201e20d",
+      "bytes": 1500003
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0010_vacs.csv",
+      "member": "raw/bigSpot/10943245/0010_vacs.csv",
+      "sha256": "e751916580680b8f28821489a8fd851cd480ddcbe328bfe80a3c762881df97ba",
+      "bytes": 3156454
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0011_hits.csv",
+      "member": "raw/bigSpot/10943245/0011_hits.csv",
+      "sha256": "82a4657ea44d7e30efac5b9f5a8bc5f0b3972072bbd9e9be9a6df6087568f48f",
+      "bytes": 1472444
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0011_vacs.csv",
+      "member": "raw/bigSpot/10943245/0011_vacs.csv",
+      "sha256": "66a4dabb93210e8b32039dec449f2268770a2b97ba9ac2d3be7a5614822358f1",
+      "bytes": 3098833
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0012_hits.csv",
+      "member": "raw/bigSpot/10943245/0012_hits.csv",
+      "sha256": "aa181fc8dfc66c538bef4d0305056942945669c1d58eb2e96dc957ce9582ba36",
+      "bytes": 1482568
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0012_vacs.csv",
+      "member": "raw/bigSpot/10943245/0012_vacs.csv",
+      "sha256": "67dc318718d489a395dee887050ce5bfcade0ada4ad751da622f628f6563ce43",
+      "bytes": 3118312
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0013_hits.csv",
+      "member": "raw/bigSpot/10943245/0013_hits.csv",
+      "sha256": "4e9067466bc01bf152917984329583b624db7369aacc622ca434dd69496e2fc7",
+      "bytes": 1514897
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0013_vacs.csv",
+      "member": "raw/bigSpot/10943245/0013_vacs.csv",
+      "sha256": "e6257e52fdd5f00405788e8e63826a98126bc6e6271af761c4f87d012de769aa",
+      "bytes": 3183774
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0014_hits.csv",
+      "member": "raw/bigSpot/10943245/0014_hits.csv",
+      "sha256": "d13217c1ed1be9ac33f8b595298b61bd3abfc8e50e1bea0dd184911cb72b6dbf",
+      "bytes": 1461872
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0014_vacs.csv",
+      "member": "raw/bigSpot/10943245/0014_vacs.csv",
+      "sha256": "68dab166e4c866b9bcda33d66d20faefd6c48e766f8912d4f2389fee8c0bb71f",
+      "bytes": 3076333
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0015_hits.csv",
+      "member": "raw/bigSpot/10943245/0015_hits.csv",
+      "sha256": "746ad0872b887b88b33b0ed5025a1431c4e3dd3f04f8362cd42e7f6ff6b56ad7",
+      "bytes": 1517659
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0015_vacs.csv",
+      "member": "raw/bigSpot/10943245/0015_vacs.csv",
+      "sha256": "2878c8e21370bf63e084c813d384ba8103062e5def851596c9e7a99e1efd831d",
+      "bytes": 3190973
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0016_hits.csv",
+      "member": "raw/bigSpot/10943245/0016_hits.csv",
+      "sha256": "4ed08d47d84159f6faf505c941fc34df365605c3168999a8bb1fdc5cc18b1f2d",
+      "bytes": 1521209
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0016_vacs.csv",
+      "member": "raw/bigSpot/10943245/0016_vacs.csv",
+      "sha256": "ce55e8e7b268fd6e3fcddc8a6e0d304d54f26508a17e01a5a66c363fde679314",
+      "bytes": 3201575
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0017_hits.csv",
+      "member": "raw/bigSpot/10943245/0017_hits.csv",
+      "sha256": "c77bf69fd876accd13b6d7ed1cc53855ac9f80e8d2954f21ce8f574d58991e2f",
+      "bytes": 1468364
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0017_vacs.csv",
+      "member": "raw/bigSpot/10943245/0017_vacs.csv",
+      "sha256": "9766a03f493a03fc76de4d98dc5f7f89ff49eb6d6118e751bfbdb5cc6cdb571c",
+      "bytes": 3087656
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0018_hits.csv",
+      "member": "raw/bigSpot/10943245/0018_hits.csv",
+      "sha256": "bd6c17ef25bbd5ae4024303dc461bc6dc4b46d7f6e3fd1bbd41d50ef993b8d3c",
+      "bytes": 1447088
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0018_vacs.csv",
+      "member": "raw/bigSpot/10943245/0018_vacs.csv",
+      "sha256": "4cf054385d4da3b0f502512737fbd18ebe5941d999b430018229d0f477ea6904",
+      "bytes": 3043100
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0019_hits.csv",
+      "member": "raw/bigSpot/10943245/0019_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0019_vacs.csv",
+      "member": "raw/bigSpot/10943245/0019_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0020_hits.csv",
+      "member": "raw/bigSpot/10943245/0020_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0020_vacs.csv",
+      "member": "raw/bigSpot/10943245/0020_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0021_hits.csv",
+      "member": "raw/bigSpot/10943245/0021_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0021_vacs.csv",
+      "member": "raw/bigSpot/10943245/0021_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0022_hits.csv",
+      "member": "raw/bigSpot/10943245/0022_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0022_vacs.csv",
+      "member": "raw/bigSpot/10943245/0022_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0023_hits.csv",
+      "member": "raw/bigSpot/10943245/0023_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0023_vacs.csv",
+      "member": "raw/bigSpot/10943245/0023_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0024_hits.csv",
+      "member": "raw/bigSpot/10943245/0024_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0024_vacs.csv",
+      "member": "raw/bigSpot/10943245/0024_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0025_hits.csv",
+      "member": "raw/bigSpot/10943245/0025_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0025_vacs.csv",
+      "member": "raw/bigSpot/10943245/0025_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0026_hits.csv",
+      "member": "raw/bigSpot/10943245/0026_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0026_vacs.csv",
+      "member": "raw/bigSpot/10943245/0026_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0027_hits.csv",
+      "member": "raw/bigSpot/10943245/0027_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0027_vacs.csv",
+      "member": "raw/bigSpot/10943245/0027_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0028_hits.csv",
+      "member": "raw/bigSpot/10943245/0028_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0028_vacs.csv",
+      "member": "raw/bigSpot/10943245/0028_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0029_hits.csv",
+      "member": "raw/bigSpot/10943245/0029_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0029_vacs.csv",
+      "member": "raw/bigSpot/10943245/0029_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0030_hits.csv",
+      "member": "raw/bigSpot/10943245/0030_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0030_vacs.csv",
+      "member": "raw/bigSpot/10943245/0030_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0031_hits.csv",
+      "member": "raw/bigSpot/10943245/0031_hits.csv",
+      "sha256": "bdc2a8ed483dbc0897208de2ba571aecf8197f027db65bd93b5b7f891231800b",
+      "bytes": 1516135
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0031_vacs.csv",
+      "member": "raw/bigSpot/10943245/0031_vacs.csv",
+      "sha256": "3653ae8ad7b69c69007f8a9a99b32272db16eb9753cda5fe983892707d4743e2",
+      "bytes": 3187287
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0032_hits.csv",
+      "member": "raw/bigSpot/10943245/0032_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0032_vacs.csv",
+      "member": "raw/bigSpot/10943245/0032_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0033_hits.csv",
+      "member": "raw/bigSpot/10943245/0033_hits.csv",
+      "sha256": "a0fd3f3526cb079b3cb893faeb190d2f0fe1fb73d754a3251ee52904e98b884b",
+      "bytes": 1476075
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0033_vacs.csv",
+      "member": "raw/bigSpot/10943245/0033_vacs.csv",
+      "sha256": "12fa56f1929cf136538a28170523b0716de2d23713e22dfcb21e9b10a2817391",
+      "bytes": 3103103
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0034_hits.csv",
+      "member": "raw/bigSpot/10943245/0034_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0034_vacs.csv",
+      "member": "raw/bigSpot/10943245/0034_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0035_hits.csv",
+      "member": "raw/bigSpot/10943245/0035_hits.csv",
+      "sha256": "2fbbf2fcefbbdafecb391e5298c3ce3f5231d7cba37c91de9c55024d4201e20d",
+      "bytes": 1500003
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0035_vacs.csv",
+      "member": "raw/bigSpot/10943245/0035_vacs.csv",
+      "sha256": "e751916580680b8f28821489a8fd851cd480ddcbe328bfe80a3c762881df97ba",
+      "bytes": 3156454
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0036_hits.csv",
+      "member": "raw/bigSpot/10943245/0036_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0036_vacs.csv",
+      "member": "raw/bigSpot/10943245/0036_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0037_hits.csv",
+      "member": "raw/bigSpot/10943245/0037_hits.csv",
+      "sha256": "82a4657ea44d7e30efac5b9f5a8bc5f0b3972072bbd9e9be9a6df6087568f48f",
+      "bytes": 1472444
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0037_vacs.csv",
+      "member": "raw/bigSpot/10943245/0037_vacs.csv",
+      "sha256": "66a4dabb93210e8b32039dec449f2268770a2b97ba9ac2d3be7a5614822358f1",
+      "bytes": 3098833
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0038_hits.csv",
+      "member": "raw/bigSpot/10943245/0038_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0038_vacs.csv",
+      "member": "raw/bigSpot/10943245/0038_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0039_hits.csv",
+      "member": "raw/bigSpot/10943245/0039_hits.csv",
+      "sha256": "aa181fc8dfc66c538bef4d0305056942945669c1d58eb2e96dc957ce9582ba36",
+      "bytes": 1482568
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0039_vacs.csv",
+      "member": "raw/bigSpot/10943245/0039_vacs.csv",
+      "sha256": "67dc318718d489a395dee887050ce5bfcade0ada4ad751da622f628f6563ce43",
+      "bytes": 3118312
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0040_hits.csv",
+      "member": "raw/bigSpot/10943245/0040_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0040_vacs.csv",
+      "member": "raw/bigSpot/10943245/0040_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0041_hits.csv",
+      "member": "raw/bigSpot/10943245/0041_hits.csv",
+      "sha256": "4e9067466bc01bf152917984329583b624db7369aacc622ca434dd69496e2fc7",
+      "bytes": 1514897
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0041_vacs.csv",
+      "member": "raw/bigSpot/10943245/0041_vacs.csv",
+      "sha256": "e6257e52fdd5f00405788e8e63826a98126bc6e6271af761c4f87d012de769aa",
+      "bytes": 3183774
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0042_hits.csv",
+      "member": "raw/bigSpot/10943245/0042_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0042_vacs.csv",
+      "member": "raw/bigSpot/10943245/0042_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0043_hits.csv",
+      "member": "raw/bigSpot/10943245/0043_hits.csv",
+      "sha256": "d13217c1ed1be9ac33f8b595298b61bd3abfc8e50e1bea0dd184911cb72b6dbf",
+      "bytes": 1461872
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0043_vacs.csv",
+      "member": "raw/bigSpot/10943245/0043_vacs.csv",
+      "sha256": "68dab166e4c866b9bcda33d66d20faefd6c48e766f8912d4f2389fee8c0bb71f",
+      "bytes": 3076333
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0044_hits.csv",
+      "member": "raw/bigSpot/10943245/0044_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0044_vacs.csv",
+      "member": "raw/bigSpot/10943245/0044_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0045_hits.csv",
+      "member": "raw/bigSpot/10943245/0045_hits.csv",
+      "sha256": "746ad0872b887b88b33b0ed5025a1431c4e3dd3f04f8362cd42e7f6ff6b56ad7",
+      "bytes": 1517659
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0045_vacs.csv",
+      "member": "raw/bigSpot/10943245/0045_vacs.csv",
+      "sha256": "2878c8e21370bf63e084c813d384ba8103062e5def851596c9e7a99e1efd831d",
+      "bytes": 3190973
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0046_hits.csv",
+      "member": "raw/bigSpot/10943245/0046_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0046_vacs.csv",
+      "member": "raw/bigSpot/10943245/0046_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0047_hits.csv",
+      "member": "raw/bigSpot/10943245/0047_hits.csv",
+      "sha256": "4ed08d47d84159f6faf505c941fc34df365605c3168999a8bb1fdc5cc18b1f2d",
+      "bytes": 1521209
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0047_vacs.csv",
+      "member": "raw/bigSpot/10943245/0047_vacs.csv",
+      "sha256": "ce55e8e7b268fd6e3fcddc8a6e0d304d54f26508a17e01a5a66c363fde679314",
+      "bytes": 3201575
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0048_hits.csv",
+      "member": "raw/bigSpot/10943245/0048_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0048_vacs.csv",
+      "member": "raw/bigSpot/10943245/0048_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0049_hits.csv",
+      "member": "raw/bigSpot/10943245/0049_hits.csv",
+      "sha256": "c77bf69fd876accd13b6d7ed1cc53855ac9f80e8d2954f21ce8f574d58991e2f",
+      "bytes": 1468364
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0049_vacs.csv",
+      "member": "raw/bigSpot/10943245/0049_vacs.csv",
+      "sha256": "9766a03f493a03fc76de4d98dc5f7f89ff49eb6d6118e751bfbdb5cc6cdb571c",
+      "bytes": 3087656
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0050_hits.csv",
+      "member": "raw/bigSpot/10943245/0050_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0050_vacs.csv",
+      "member": "raw/bigSpot/10943245/0050_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0051_hits.csv",
+      "member": "raw/bigSpot/10943245/0051_hits.csv",
+      "sha256": "2fbbf2fcefbbdafecb391e5298c3ce3f5231d7cba37c91de9c55024d4201e20d",
+      "bytes": 1500003
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0051_vacs.csv",
+      "member": "raw/bigSpot/10943245/0051_vacs.csv",
+      "sha256": "e751916580680b8f28821489a8fd851cd480ddcbe328bfe80a3c762881df97ba",
+      "bytes": 3156454
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0052_hits.csv",
+      "member": "raw/bigSpot/10943245/0052_hits.csv",
+      "sha256": "fdc7f5f7947ed1f105ac21d9c38b85dab4bf8aeb23c049e92e76f4da079abecb",
+      "bytes": 1506993
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0052_vacs.csv",
+      "member": "raw/bigSpot/10943245/0052_vacs.csv",
+      "sha256": "861b32225368d0a6faa9a37d9061cd6eb3ab852c5f51bfd967e129245738c623",
+      "bytes": 3169902
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0053_hits.csv",
+      "member": "raw/bigSpot/10943245/0053_hits.csv",
+      "sha256": "89f73ea79d15f0f694d8020134ac0e08f7bb8d4c97e74867d55c1a6846c16f70",
+      "bytes": 1445758
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0053_vacs.csv",
+      "member": "raw/bigSpot/10943245/0053_vacs.csv",
+      "sha256": "2412a55372073c4178f1d39280157aaf08305a9c382ad4100b453241bb477aa9",
+      "bytes": 3041403
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0054_hits.csv",
+      "member": "raw/bigSpot/10943245/0054_hits.csv",
+      "sha256": "74dbdb625e9996c5a92ba81e5583fd8ef4ebac6274d53c8eb8f3679227de23a1",
+      "bytes": 1406369
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0054_vacs.csv",
+      "member": "raw/bigSpot/10943245/0054_vacs.csv",
+      "sha256": "ed34a9b8aec93a13a40ce88c74a72a0e252bdffcf5fab22a0e27bd451bd4423b",
+      "bytes": 2961833
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0055_hits.csv",
+      "member": "raw/bigSpot/10943245/0055_hits.csv",
+      "sha256": "d97905cebd8603bb08b1b02542a78ad1cb7f6d403119dbe1fff46cf8992b4ce2",
+      "bytes": 1514214
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0055_vacs.csv",
+      "member": "raw/bigSpot/10943245/0055_vacs.csv",
+      "sha256": "8fab2038ef1b4c777e6fb75a93c38f2cb148ba6c45c2efcc0130dcda20a8cd22",
+      "bytes": 3185744
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0056_hits.csv",
+      "member": "raw/bigSpot/10943245/0056_hits.csv",
+      "sha256": "e5de1df5e46dfa684577041bb4980df26382a6754382f355c3abc95efad964b8",
+      "bytes": 1549244
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0056_vacs.csv",
+      "member": "raw/bigSpot/10943245/0056_vacs.csv",
+      "sha256": "b617722c4d6ad734ebfc7d6b2a2998a9cf85f99bfc52c29783695dabd2024da2",
+      "bytes": 3258382
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0057_hits.csv",
+      "member": "raw/bigSpot/10943245/0057_hits.csv",
+      "sha256": "574d615a7bbaaa1e8f98e5c73f1f16ab7c3d4a1175c14c902758ab596447cb36",
+      "bytes": 1474000
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0057_vacs.csv",
+      "member": "raw/bigSpot/10943245/0057_vacs.csv",
+      "sha256": "08a69808f68615f0ad8156dc6a191a8b1e6854b0544d1a32478b91f16579b3c8",
+      "bytes": 3101509
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0058_hits.csv",
+      "member": "raw/bigSpot/10943245/0058_hits.csv",
+      "sha256": "9455191a026be5bb681d524b1295c2fd480af9bf7e8e99fbc403ff0302d452f7",
+      "bytes": 1492960
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0058_vacs.csv",
+      "member": "raw/bigSpot/10943245/0058_vacs.csv",
+      "sha256": "508d06e7f3ee3843e3a1514032a35ab2eba68b10371e93361a588f7f1cadd4a1",
+      "bytes": 3138406
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0059_hits.csv",
+      "member": "raw/bigSpot/10943245/0059_hits.csv",
+      "sha256": "36c36a954a05858fefaf3d83d5062c9eea9a467ff1f27823febb27b3a2fe0950",
+      "bytes": 1466230
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0059_vacs.csv",
+      "member": "raw/bigSpot/10943245/0059_vacs.csv",
+      "sha256": "4c51163244ebd180c0b7118cb73b0f9ca5b196c6cdc1268652d576ec9e8fea1e",
+      "bytes": 3086591
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0060_hits.csv",
+      "member": "raw/bigSpot/10943245/0060_hits.csv",
+      "sha256": "2d7fc1b9a7437165e9c5769d551d3e448eba4324dba2630f1690d3e0be4e3690",
+      "bytes": 1468092
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0060_vacs.csv",
+      "member": "raw/bigSpot/10943245/0060_vacs.csv",
+      "sha256": "674d1e1ae7a2d33b4a25c9de1c237615ca6ef0a2a3a1fc122e4c979b0946eb7d",
+      "bytes": 3087841
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0061_hits.csv",
+      "member": "raw/bigSpot/10943245/0061_hits.csv",
+      "sha256": "c13cf01bc727dcd937289d14514caa90260a4514b75bf489245f0d593882505c",
+      "bytes": 1371873
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0061_vacs.csv",
+      "member": "raw/bigSpot/10943245/0061_vacs.csv",
+      "sha256": "148cb8dfbb1525b4d11154d0b94810154765dabb2709d1c21dc56da72990f8c6",
+      "bytes": 2886852
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0062_hits.csv",
+      "member": "raw/bigSpot/10943245/0062_hits.csv",
+      "sha256": "f32ca35b1aa2c7553d3b95236940d64d4e16c8c9fc783dc89782578932551b4a",
+      "bytes": 1490810
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0062_vacs.csv",
+      "member": "raw/bigSpot/10943245/0062_vacs.csv",
+      "sha256": "23e7bf15d5daf8e4279ad6d2e12e7f564648412d0a0f35d2459b64258820b3a6",
+      "bytes": 3135071
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0063_hits.csv",
+      "member": "raw/bigSpot/10943245/0063_hits.csv",
+      "sha256": "a8de0a129a275f3e5b8f87f751d2c742f1336492544fabed6ab5d0e5bfe6643b",
+      "bytes": 1460873
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0063_vacs.csv",
+      "member": "raw/bigSpot/10943245/0063_vacs.csv",
+      "sha256": "ffb12252d63363e3ece0ec0cc1e15f6f564df826aabb3774ec37a46c8f930cbc",
+      "bytes": 3072954
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0064_hits.csv",
+      "member": "raw/bigSpot/10943245/0064_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0064_vacs.csv",
+      "member": "raw/bigSpot/10943245/0064_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0065_hits.csv",
+      "member": "raw/bigSpot/10943245/0065_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0065_vacs.csv",
+      "member": "raw/bigSpot/10943245/0065_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0066_hits.csv",
+      "member": "raw/bigSpot/10943245/0066_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0066_vacs.csv",
+      "member": "raw/bigSpot/10943245/0066_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0067_hits.csv",
+      "member": "raw/bigSpot/10943245/0067_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0067_vacs.csv",
+      "member": "raw/bigSpot/10943245/0067_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0068_hits.csv",
+      "member": "raw/bigSpot/10943245/0068_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0068_vacs.csv",
+      "member": "raw/bigSpot/10943245/0068_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0069_hits.csv",
+      "member": "raw/bigSpot/10943245/0069_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0069_vacs.csv",
+      "member": "raw/bigSpot/10943245/0069_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0070_hits.csv",
+      "member": "raw/bigSpot/10943245/0070_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0070_vacs.csv",
+      "member": "raw/bigSpot/10943245/0070_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0071_hits.csv",
+      "member": "raw/bigSpot/10943245/0071_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0071_vacs.csv",
+      "member": "raw/bigSpot/10943245/0071_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0072_hits.csv",
+      "member": "raw/bigSpot/10943245/0072_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0072_vacs.csv",
+      "member": "raw/bigSpot/10943245/0072_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0073_hits.csv",
+      "member": "raw/bigSpot/10943245/0073_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0073_vacs.csv",
+      "member": "raw/bigSpot/10943245/0073_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0074_hits.csv",
+      "member": "raw/bigSpot/10943245/0074_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0074_vacs.csv",
+      "member": "raw/bigSpot/10943245/0074_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0075_hits.csv",
+      "member": "raw/bigSpot/10943245/0075_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0075_vacs.csv",
+      "member": "raw/bigSpot/10943245/0075_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0076_hits.csv",
+      "member": "raw/bigSpot/10943245/0076_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0076_vacs.csv",
+      "member": "raw/bigSpot/10943245/0076_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0077_hits.csv",
+      "member": "raw/bigSpot/10943245/0077_hits.csv",
+      "sha256": "89f73ea79d15f0f694d8020134ac0e08f7bb8d4c97e74867d55c1a6846c16f70",
+      "bytes": 1445758
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0077_vacs.csv",
+      "member": "raw/bigSpot/10943245/0077_vacs.csv",
+      "sha256": "2412a55372073c4178f1d39280157aaf08305a9c382ad4100b453241bb477aa9",
+      "bytes": 3041403
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0078_hits.csv",
+      "member": "raw/bigSpot/10943245/0078_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0078_vacs.csv",
+      "member": "raw/bigSpot/10943245/0078_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0079_hits.csv",
+      "member": "raw/bigSpot/10943245/0079_hits.csv",
+      "sha256": "74dbdb625e9996c5a92ba81e5583fd8ef4ebac6274d53c8eb8f3679227de23a1",
+      "bytes": 1406369
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0079_vacs.csv",
+      "member": "raw/bigSpot/10943245/0079_vacs.csv",
+      "sha256": "ed34a9b8aec93a13a40ce88c74a72a0e252bdffcf5fab22a0e27bd451bd4423b",
+      "bytes": 2961833
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0080_hits.csv",
+      "member": "raw/bigSpot/10943245/0080_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0080_vacs.csv",
+      "member": "raw/bigSpot/10943245/0080_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0081_hits.csv",
+      "member": "raw/bigSpot/10943245/0081_hits.csv",
+      "sha256": "d97905cebd8603bb08b1b02542a78ad1cb7f6d403119dbe1fff46cf8992b4ce2",
+      "bytes": 1514214
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0081_vacs.csv",
+      "member": "raw/bigSpot/10943245/0081_vacs.csv",
+      "sha256": "8fab2038ef1b4c777e6fb75a93c38f2cb148ba6c45c2efcc0130dcda20a8cd22",
+      "bytes": 3185744
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0082_hits.csv",
+      "member": "raw/bigSpot/10943245/0082_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0082_vacs.csv",
+      "member": "raw/bigSpot/10943245/0082_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0083_hits.csv",
+      "member": "raw/bigSpot/10943245/0083_hits.csv",
+      "sha256": "e5de1df5e46dfa684577041bb4980df26382a6754382f355c3abc95efad964b8",
+      "bytes": 1549244
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0083_vacs.csv",
+      "member": "raw/bigSpot/10943245/0083_vacs.csv",
+      "sha256": "b617722c4d6ad734ebfc7d6b2a2998a9cf85f99bfc52c29783695dabd2024da2",
+      "bytes": 3258382
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0084_hits.csv",
+      "member": "raw/bigSpot/10943245/0084_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0084_vacs.csv",
+      "member": "raw/bigSpot/10943245/0084_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0085_hits.csv",
+      "member": "raw/bigSpot/10943245/0085_hits.csv",
+      "sha256": "574d615a7bbaaa1e8f98e5c73f1f16ab7c3d4a1175c14c902758ab596447cb36",
+      "bytes": 1474000
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0085_vacs.csv",
+      "member": "raw/bigSpot/10943245/0085_vacs.csv",
+      "sha256": "08a69808f68615f0ad8156dc6a191a8b1e6854b0544d1a32478b91f16579b3c8",
+      "bytes": 3101509
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0086_hits.csv",
+      "member": "raw/bigSpot/10943245/0086_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0086_vacs.csv",
+      "member": "raw/bigSpot/10943245/0086_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0087_hits.csv",
+      "member": "raw/bigSpot/10943245/0087_hits.csv",
+      "sha256": "9455191a026be5bb681d524b1295c2fd480af9bf7e8e99fbc403ff0302d452f7",
+      "bytes": 1492960
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0087_vacs.csv",
+      "member": "raw/bigSpot/10943245/0087_vacs.csv",
+      "sha256": "508d06e7f3ee3843e3a1514032a35ab2eba68b10371e93361a588f7f1cadd4a1",
+      "bytes": 3138406
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0088_hits.csv",
+      "member": "raw/bigSpot/10943245/0088_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0088_vacs.csv",
+      "member": "raw/bigSpot/10943245/0088_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0089_hits.csv",
+      "member": "raw/bigSpot/10943245/0089_hits.csv",
+      "sha256": "36c36a954a05858fefaf3d83d5062c9eea9a467ff1f27823febb27b3a2fe0950",
+      "bytes": 1466230
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0089_vacs.csv",
+      "member": "raw/bigSpot/10943245/0089_vacs.csv",
+      "sha256": "4c51163244ebd180c0b7118cb73b0f9ca5b196c6cdc1268652d576ec9e8fea1e",
+      "bytes": 3086591
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0090_hits.csv",
+      "member": "raw/bigSpot/10943245/0090_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0090_vacs.csv",
+      "member": "raw/bigSpot/10943245/0090_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0091_hits.csv",
+      "member": "raw/bigSpot/10943245/0091_hits.csv",
+      "sha256": "2d7fc1b9a7437165e9c5769d551d3e448eba4324dba2630f1690d3e0be4e3690",
+      "bytes": 1468092
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0091_vacs.csv",
+      "member": "raw/bigSpot/10943245/0091_vacs.csv",
+      "sha256": "674d1e1ae7a2d33b4a25c9de1c237615ca6ef0a2a3a1fc122e4c979b0946eb7d",
+      "bytes": 3087841
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0092_hits.csv",
+      "member": "raw/bigSpot/10943245/0092_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0092_vacs.csv",
+      "member": "raw/bigSpot/10943245/0092_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0093_hits.csv",
+      "member": "raw/bigSpot/10943245/0093_hits.csv",
+      "sha256": "c13cf01bc727dcd937289d14514caa90260a4514b75bf489245f0d593882505c",
+      "bytes": 1371873
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0093_vacs.csv",
+      "member": "raw/bigSpot/10943245/0093_vacs.csv",
+      "sha256": "148cb8dfbb1525b4d11154d0b94810154765dabb2709d1c21dc56da72990f8c6",
+      "bytes": 2886852
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0094_hits.csv",
+      "member": "raw/bigSpot/10943245/0094_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0094_vacs.csv",
+      "member": "raw/bigSpot/10943245/0094_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0095_hits.csv",
+      "member": "raw/bigSpot/10943245/0095_hits.csv",
+      "sha256": "f32ca35b1aa2c7553d3b95236940d64d4e16c8c9fc783dc89782578932551b4a",
+      "bytes": 1490810
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0095_vacs.csv",
+      "member": "raw/bigSpot/10943245/0095_vacs.csv",
+      "sha256": "23e7bf15d5daf8e4279ad6d2e12e7f564648412d0a0f35d2459b64258820b3a6",
+      "bytes": 3135071
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0096_hits.csv",
+      "member": "raw/bigSpot/10943245/0096_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0096_vacs.csv",
+      "member": "raw/bigSpot/10943245/0096_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0097_hits.csv",
+      "member": "raw/bigSpot/10943245/0097_hits.csv",
+      "sha256": "82a4657ea44d7e30efac5b9f5a8bc5f0b3972072bbd9e9be9a6df6087568f48f",
+      "bytes": 1472444
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0097_vacs.csv",
+      "member": "raw/bigSpot/10943245/0097_vacs.csv",
+      "sha256": "66a4dabb93210e8b32039dec449f2268770a2b97ba9ac2d3be7a5614822358f1",
+      "bytes": 3098833
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0098_hits.csv",
+      "member": "raw/bigSpot/10943245/0098_hits.csv",
+      "sha256": "20d68a1c2c140c942c0368333302b8551bb4b751a5922badaea5b9e17eb94ff9",
+      "bytes": 1525695
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0098_vacs.csv",
+      "member": "raw/bigSpot/10943245/0098_vacs.csv",
+      "sha256": "da2fda739414d0df0d26596db06d0a51d938c538b842dc953069a91d572354c4",
+      "bytes": 3210849
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0099_hits.csv",
+      "member": "raw/bigSpot/10943245/0099_hits.csv",
+      "sha256": "2c759e10ee21f967c085f8864da52524cb78f5a66c0d988809b01116176f0d43",
+      "bytes": 1520697
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0099_vacs.csv",
+      "member": "raw/bigSpot/10943245/0099_vacs.csv",
+      "sha256": "eb2e67f23655765e39b2537a9ae7a381fa1f21413b0b651051a0d14b3419ee62",
+      "bytes": 3197913
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0100_hits.csv",
+      "member": "raw/bigSpot/10943245/0100_hits.csv",
+      "sha256": "56a3e77198e2284cbd121f6db7337dddbd5284f9014fca7eb47fbfc75b78c185",
+      "bytes": 1448472
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0100_vacs.csv",
+      "member": "raw/bigSpot/10943245/0100_vacs.csv",
+      "sha256": "9bb35845822db7c9c0200eb90957ed848dee2d7ec7507d725a5cb6391371c48a",
+      "bytes": 3046584
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0101_hits.csv",
+      "member": "raw/bigSpot/10943245/0101_hits.csv",
+      "sha256": "5171e226a152ff1f660a503439c86b1c909da26fae00083f8c639354fd96e6c2",
+      "bytes": 1513665
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0101_vacs.csv",
+      "member": "raw/bigSpot/10943245/0101_vacs.csv",
+      "sha256": "165cf0a2301601adfb58119490b37917fbdc4d54f0116e38ea89c32fff71634e",
+      "bytes": 3185672
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0102_hits.csv",
+      "member": "raw/bigSpot/10943245/0102_hits.csv",
+      "sha256": "2756fd0a79f7183c466d28c4757f94fb61a450c78f4b9db3f32477ae67876a1e",
+      "bytes": 1405951
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0102_vacs.csv",
+      "member": "raw/bigSpot/10943245/0102_vacs.csv",
+      "sha256": "c7511857b0ba67fd9d36db022c17374961b27da367d8973ddbfbce9cf194f22c",
+      "bytes": 2959123
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0103_hits.csv",
+      "member": "raw/bigSpot/10943245/0103_hits.csv",
+      "sha256": "74678f0eda4906a95ffe9520b6e64a7573ec677c95a30871101843706db10434",
+      "bytes": 1419854
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0103_vacs.csv",
+      "member": "raw/bigSpot/10943245/0103_vacs.csv",
+      "sha256": "1098e2e42c7f3523b061577e367da69f5fafb5450e39db1f2416954f741c7a85",
+      "bytes": 2988754
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0104_hits.csv",
+      "member": "raw/bigSpot/10943245/0104_hits.csv",
+      "sha256": "51b5e3e356d54fb414803cac65906a69ea8575c3d0f9204591622453ceba481c",
+      "bytes": 1544884
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0104_vacs.csv",
+      "member": "raw/bigSpot/10943245/0104_vacs.csv",
+      "sha256": "e25aa3dd09dee4a5f198536967b36499aa8e59f44e33a40a2623d1cd1cf394de",
+      "bytes": 3248946
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0105_hits.csv",
+      "member": "raw/bigSpot/10943245/0105_hits.csv",
+      "sha256": "cba8fe72c6900d656ddfa5761c3e71fc1b1e55b753c919a15cd161182714f3c3",
+      "bytes": 1527940
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0105_vacs.csv",
+      "member": "raw/bigSpot/10943245/0105_vacs.csv",
+      "sha256": "b0f6363e76c49dd20d5cfbc73a695a32efc15c89da163913fb8fae8ff2dd0a9b",
+      "bytes": 3213282
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0106_hits.csv",
+      "member": "raw/bigSpot/10943245/0106_hits.csv",
+      "sha256": "6ad2b3aa96fc02969df59520c4afbb3bce3aac1f3afeffb1d21a0e09c979395e",
+      "bytes": 1416006
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0106_vacs.csv",
+      "member": "raw/bigSpot/10943245/0106_vacs.csv",
+      "sha256": "94079727089b98bba3918f53e7199d42279022b132976332ec67cec0f5920c0f",
+      "bytes": 2980792
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0107_hits.csv",
+      "member": "raw/bigSpot/10943245/0107_hits.csv",
+      "sha256": "fb41381f7b990fc2a332ec8b3eff7aa813805a340100531c5fc4728eefde0d57",
+      "bytes": 1426410
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0107_vacs.csv",
+      "member": "raw/bigSpot/10943245/0107_vacs.csv",
+      "sha256": "8dbcef4aa712400bf5b80a630f3da627b8fcf1a2a6d069dc5c8a275f098d910e",
+      "bytes": 3002414
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0108_hits.csv",
+      "member": "raw/bigSpot/10943245/0108_hits.csv",
+      "sha256": "16818b7cfdf6e86ba5895ce560cc1d5ba7047e9698947e279a814e8d81b1d8d6",
+      "bytes": 1469508
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0108_vacs.csv",
+      "member": "raw/bigSpot/10943245/0108_vacs.csv",
+      "sha256": "f6b1b68c4413f390a56f0ed5fdcff148cbcdecd340528d8cc8d863b77bfcd6ff",
+      "bytes": 3093389
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0109_hits.csv",
+      "member": "raw/bigSpot/10943245/0109_hits.csv",
+      "sha256": "a8317d387b66ccf39efbb293456583ddfe3b81a77e26cf5333fd8da02d09ed39",
+      "bytes": 1465851
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0109_vacs.csv",
+      "member": "raw/bigSpot/10943245/0109_vacs.csv",
+      "sha256": "f49ae0a1e9ea9d1c42f04eaceb884bb68181e494de5dfab42af07ed5d0342ae3",
+      "bytes": 3082821
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0110_hits.csv",
+      "member": "raw/bigSpot/10943245/0110_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0110_vacs.csv",
+      "member": "raw/bigSpot/10943245/0110_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0111_hits.csv",
+      "member": "raw/bigSpot/10943245/0111_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0111_vacs.csv",
+      "member": "raw/bigSpot/10943245/0111_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0112_hits.csv",
+      "member": "raw/bigSpot/10943245/0112_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0112_vacs.csv",
+      "member": "raw/bigSpot/10943245/0112_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0113_hits.csv",
+      "member": "raw/bigSpot/10943245/0113_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0113_vacs.csv",
+      "member": "raw/bigSpot/10943245/0113_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0114_hits.csv",
+      "member": "raw/bigSpot/10943245/0114_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0114_vacs.csv",
+      "member": "raw/bigSpot/10943245/0114_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0115_hits.csv",
+      "member": "raw/bigSpot/10943245/0115_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0115_vacs.csv",
+      "member": "raw/bigSpot/10943245/0115_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0116_hits.csv",
+      "member": "raw/bigSpot/10943245/0116_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0116_vacs.csv",
+      "member": "raw/bigSpot/10943245/0116_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0117_hits.csv",
+      "member": "raw/bigSpot/10943245/0117_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0117_vacs.csv",
+      "member": "raw/bigSpot/10943245/0117_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0118_hits.csv",
+      "member": "raw/bigSpot/10943245/0118_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0118_vacs.csv",
+      "member": "raw/bigSpot/10943245/0118_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0119_hits.csv",
+      "member": "raw/bigSpot/10943245/0119_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0119_vacs.csv",
+      "member": "raw/bigSpot/10943245/0119_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0120_hits.csv",
+      "member": "raw/bigSpot/10943245/0120_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0120_vacs.csv",
+      "member": "raw/bigSpot/10943245/0120_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0121_hits.csv",
+      "member": "raw/bigSpot/10943245/0121_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0121_vacs.csv",
+      "member": "raw/bigSpot/10943245/0121_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0122_hits.csv",
+      "member": "raw/bigSpot/10943245/0122_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0122_vacs.csv",
+      "member": "raw/bigSpot/10943245/0122_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0123_hits.csv",
+      "member": "raw/bigSpot/10943245/0123_hits.csv",
+      "sha256": "2c759e10ee21f967c085f8864da52524cb78f5a66c0d988809b01116176f0d43",
+      "bytes": 1520697
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0123_vacs.csv",
+      "member": "raw/bigSpot/10943245/0123_vacs.csv",
+      "sha256": "eb2e67f23655765e39b2537a9ae7a381fa1f21413b0b651051a0d14b3419ee62",
+      "bytes": 3197913
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0124_hits.csv",
+      "member": "raw/bigSpot/10943245/0124_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0124_vacs.csv",
+      "member": "raw/bigSpot/10943245/0124_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0125_hits.csv",
+      "member": "raw/bigSpot/10943245/0125_hits.csv",
+      "sha256": "56a3e77198e2284cbd121f6db7337dddbd5284f9014fca7eb47fbfc75b78c185",
+      "bytes": 1448472
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0125_vacs.csv",
+      "member": "raw/bigSpot/10943245/0125_vacs.csv",
+      "sha256": "9bb35845822db7c9c0200eb90957ed848dee2d7ec7507d725a5cb6391371c48a",
+      "bytes": 3046584
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0126_hits.csv",
+      "member": "raw/bigSpot/10943245/0126_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0126_vacs.csv",
+      "member": "raw/bigSpot/10943245/0126_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0127_hits.csv",
+      "member": "raw/bigSpot/10943245/0127_hits.csv",
+      "sha256": "5171e226a152ff1f660a503439c86b1c909da26fae00083f8c639354fd96e6c2",
+      "bytes": 1513665
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0127_vacs.csv",
+      "member": "raw/bigSpot/10943245/0127_vacs.csv",
+      "sha256": "165cf0a2301601adfb58119490b37917fbdc4d54f0116e38ea89c32fff71634e",
+      "bytes": 3185672
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0128_hits.csv",
+      "member": "raw/bigSpot/10943245/0128_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0128_vacs.csv",
+      "member": "raw/bigSpot/10943245/0128_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0129_hits.csv",
+      "member": "raw/bigSpot/10943245/0129_hits.csv",
+      "sha256": "2756fd0a79f7183c466d28c4757f94fb61a450c78f4b9db3f32477ae67876a1e",
+      "bytes": 1405951
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0129_vacs.csv",
+      "member": "raw/bigSpot/10943245/0129_vacs.csv",
+      "sha256": "c7511857b0ba67fd9d36db022c17374961b27da367d8973ddbfbce9cf194f22c",
+      "bytes": 2959123
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0130_hits.csv",
+      "member": "raw/bigSpot/10943245/0130_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0130_vacs.csv",
+      "member": "raw/bigSpot/10943245/0130_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0131_hits.csv",
+      "member": "raw/bigSpot/10943245/0131_hits.csv",
+      "sha256": "74678f0eda4906a95ffe9520b6e64a7573ec677c95a30871101843706db10434",
+      "bytes": 1419854
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0131_vacs.csv",
+      "member": "raw/bigSpot/10943245/0131_vacs.csv",
+      "sha256": "1098e2e42c7f3523b061577e367da69f5fafb5450e39db1f2416954f741c7a85",
+      "bytes": 2988754
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0132_hits.csv",
+      "member": "raw/bigSpot/10943245/0132_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0132_vacs.csv",
+      "member": "raw/bigSpot/10943245/0132_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0133_hits.csv",
+      "member": "raw/bigSpot/10943245/0133_hits.csv",
+      "sha256": "51b5e3e356d54fb414803cac65906a69ea8575c3d0f9204591622453ceba481c",
+      "bytes": 1544884
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0133_vacs.csv",
+      "member": "raw/bigSpot/10943245/0133_vacs.csv",
+      "sha256": "e25aa3dd09dee4a5f198536967b36499aa8e59f44e33a40a2623d1cd1cf394de",
+      "bytes": 3248946
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0134_hits.csv",
+      "member": "raw/bigSpot/10943245/0134_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0134_vacs.csv",
+      "member": "raw/bigSpot/10943245/0134_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0135_hits.csv",
+      "member": "raw/bigSpot/10943245/0135_hits.csv",
+      "sha256": "cba8fe72c6900d656ddfa5761c3e71fc1b1e55b753c919a15cd161182714f3c3",
+      "bytes": 1527940
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0135_vacs.csv",
+      "member": "raw/bigSpot/10943245/0135_vacs.csv",
+      "sha256": "b0f6363e76c49dd20d5cfbc73a695a32efc15c89da163913fb8fae8ff2dd0a9b",
+      "bytes": 3213282
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0136_hits.csv",
+      "member": "raw/bigSpot/10943245/0136_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0136_vacs.csv",
+      "member": "raw/bigSpot/10943245/0136_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0137_hits.csv",
+      "member": "raw/bigSpot/10943245/0137_hits.csv",
+      "sha256": "6ad2b3aa96fc02969df59520c4afbb3bce3aac1f3afeffb1d21a0e09c979395e",
+      "bytes": 1416006
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0137_vacs.csv",
+      "member": "raw/bigSpot/10943245/0137_vacs.csv",
+      "sha256": "94079727089b98bba3918f53e7199d42279022b132976332ec67cec0f5920c0f",
+      "bytes": 2980792
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0138_hits.csv",
+      "member": "raw/bigSpot/10943245/0138_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0138_vacs.csv",
+      "member": "raw/bigSpot/10943245/0138_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0139_hits.csv",
+      "member": "raw/bigSpot/10943245/0139_hits.csv",
+      "sha256": "fb41381f7b990fc2a332ec8b3eff7aa813805a340100531c5fc4728eefde0d57",
+      "bytes": 1426410
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0139_vacs.csv",
+      "member": "raw/bigSpot/10943245/0139_vacs.csv",
+      "sha256": "8dbcef4aa712400bf5b80a630f3da627b8fcf1a2a6d069dc5c8a275f098d910e",
+      "bytes": 3002414
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0140_hits.csv",
+      "member": "raw/bigSpot/10943245/0140_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0140_vacs.csv",
+      "member": "raw/bigSpot/10943245/0140_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0141_hits.csv",
+      "member": "raw/bigSpot/10943245/0141_hits.csv",
+      "sha256": "16818b7cfdf6e86ba5895ce560cc1d5ba7047e9698947e279a814e8d81b1d8d6",
+      "bytes": 1469508
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0141_vacs.csv",
+      "member": "raw/bigSpot/10943245/0141_vacs.csv",
+      "sha256": "f6b1b68c4413f390a56f0ed5fdcff148cbcdecd340528d8cc8d863b77bfcd6ff",
+      "bytes": 3093389
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0142_hits.csv",
+      "member": "raw/bigSpot/10943245/0142_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0142_vacs.csv",
+      "member": "raw/bigSpot/10943245/0142_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0143_hits.csv",
+      "member": "raw/bigSpot/10943245/0143_hits.csv",
+      "sha256": "aa181fc8dfc66c538bef4d0305056942945669c1d58eb2e96dc957ce9582ba36",
+      "bytes": 1482568
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0143_vacs.csv",
+      "member": "raw/bigSpot/10943245/0143_vacs.csv",
+      "sha256": "67dc318718d489a395dee887050ce5bfcade0ada4ad751da622f628f6563ce43",
+      "bytes": 3118312
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0144_hits.csv",
+      "member": "raw/bigSpot/10943245/0144_hits.csv",
+      "sha256": "4a2f1ffe6653d8f2ff5196bb3b948fbf65da1598f6c4cf907ad37fd217ade385",
+      "bytes": 1422019
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0144_vacs.csv",
+      "member": "raw/bigSpot/10943245/0144_vacs.csv",
+      "sha256": "bc04728ca6a11403c624d8aed1a66a4b677a7ab6bcf1653c6d51f7213ff58593",
+      "bytes": 2994521
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0145_hits.csv",
+      "member": "raw/bigSpot/10943245/0145_hits.csv",
+      "sha256": "fb168825617cffc344afb3afe8e5f4f3e1ff42d028c816a910d9f379b9cc31d1",
+      "bytes": 1491898
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0145_vacs.csv",
+      "member": "raw/bigSpot/10943245/0145_vacs.csv",
+      "sha256": "2fe4095d57b885f85493f9296db0b91d3bfcef33ddc0f36399fefd51b4ab039b",
+      "bytes": 3137920
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0146_hits.csv",
+      "member": "raw/bigSpot/10943245/0146_hits.csv",
+      "sha256": "1e7526264d90e540fe6f4489e4eb4796ace521d31150ddf0f9b0e49e54b9e806",
+      "bytes": 1505931
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0146_vacs.csv",
+      "member": "raw/bigSpot/10943245/0146_vacs.csv",
+      "sha256": "68625e5cd5c7b303e34b98e959d8e5f0a57e15806fd11ade92d5a7f3233b0540",
+      "bytes": 3166173
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0147_hits.csv",
+      "member": "raw/bigSpot/10943245/0147_hits.csv",
+      "sha256": "297032d07c9580b7b1dddfdf1662833f5898fef8e0389035bd91db7eb297510b",
+      "bytes": 1426390
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0147_vacs.csv",
+      "member": "raw/bigSpot/10943245/0147_vacs.csv",
+      "sha256": "561c36105598de5f8252a8c35602452369fe437a6cfc9b6536e515750ae71984",
+      "bytes": 3001031
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0148_hits.csv",
+      "member": "raw/bigSpot/10943245/0148_hits.csv",
+      "sha256": "fdcaa90c60ebe0678fa9f4b3290bfa08898dfc3fa24df44ae22d2e9bdaaab4b8",
+      "bytes": 1444627
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0148_vacs.csv",
+      "member": "raw/bigSpot/10943245/0148_vacs.csv",
+      "sha256": "8d29a4349e1524c8f283e45a60211277c7054ed1eb4e06b7c791cd0472329c5c",
+      "bytes": 3040633
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0149_hits.csv",
+      "member": "raw/bigSpot/10943245/0149_hits.csv",
+      "sha256": "47e7cd065164b5011d8f0a0715c246169bc0a7e8e88ef77da78098fe7d1abb00",
+      "bytes": 1411040
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0149_vacs.csv",
+      "member": "raw/bigSpot/10943245/0149_vacs.csv",
+      "sha256": "db2ad25c8338ee3c0c5f5e8f0e08b113a0e7536232c81776fd2b42788ff18501",
+      "bytes": 2970633
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0150_hits.csv",
+      "member": "raw/bigSpot/10943245/0150_hits.csv",
+      "sha256": "e6e38548d074d72fe02f8a3182e7f0a04d1d287e6f752afe0ccdf89be3696271",
+      "bytes": 1486128
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0150_vacs.csv",
+      "member": "raw/bigSpot/10943245/0150_vacs.csv",
+      "sha256": "c27d23566f21f379bea5c2504e2473f62e125b30388615830d66dff7199d47a1",
+      "bytes": 3126828
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0151_hits.csv",
+      "member": "raw/bigSpot/10943245/0151_hits.csv",
+      "sha256": "541469f11d758d5740c66c4e2aff021a0fc23e440a6913b0033e8559927c5ef3",
+      "bytes": 1464996
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0151_vacs.csv",
+      "member": "raw/bigSpot/10943245/0151_vacs.csv",
+      "sha256": "667bf3bec591363e892303ce9d3278034b34d5fdc1f8b17519d335b209d52fed",
+      "bytes": 3083285
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0152_hits.csv",
+      "member": "raw/bigSpot/10943245/0152_hits.csv",
+      "sha256": "512f26a2264e9cbd5ccb00f0e131fe99f87f1957d28581f2fbe729022600c1aa",
+      "bytes": 1498841
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0152_vacs.csv",
+      "member": "raw/bigSpot/10943245/0152_vacs.csv",
+      "sha256": "2e9c5dd9099e2625a1ea8ba86017cde33df024e5c04de06f8eb2162844cf096d",
+      "bytes": 3153176
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0153_hits.csv",
+      "member": "raw/bigSpot/10943245/0153_hits.csv",
+      "sha256": "4ed6f427403244c8797848c0176e2e207de8e211ed6859f77cfc402b5ead70e8",
+      "bytes": 1447481
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0153_vacs.csv",
+      "member": "raw/bigSpot/10943245/0153_vacs.csv",
+      "sha256": "7f40976b3fbd7cf8169d08f55d5c1768596ffbb53beb44207e8a20153c212b23",
+      "bytes": 3048060
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0154_hits.csv",
+      "member": "raw/bigSpot/10943245/0154_hits.csv",
+      "sha256": "a2dde123133ed078d011690ac24d4f2a9955d8372223414d3bc0ec852fe71193",
+      "bytes": 1586568
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0154_vacs.csv",
+      "member": "raw/bigSpot/10943245/0154_vacs.csv",
+      "sha256": "2a509861235b5bf60b32b5ea8db6035c01829f4d54c334adb54d211b8fa0c9ff",
+      "bytes": 3337120
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0155_hits.csv",
+      "member": "raw/bigSpot/10943245/0155_hits.csv",
+      "sha256": "fa56defbaed669d901d7452d2145261686a0f5401e87bee444292c4eb1afc8d0",
+      "bytes": 1490376
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0155_vacs.csv",
+      "member": "raw/bigSpot/10943245/0155_vacs.csv",
+      "sha256": "6e9d42ecc3b589e0808df58d53649cfd1d8ab55d433becce8ad85b2f52e8d747",
+      "bytes": 3134054
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0156_hits.csv",
+      "member": "raw/bigSpot/10943245/0156_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0156_vacs.csv",
+      "member": "raw/bigSpot/10943245/0156_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0157_hits.csv",
+      "member": "raw/bigSpot/10943245/0157_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0157_vacs.csv",
+      "member": "raw/bigSpot/10943245/0157_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0158_hits.csv",
+      "member": "raw/bigSpot/10943245/0158_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0158_vacs.csv",
+      "member": "raw/bigSpot/10943245/0158_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0159_hits.csv",
+      "member": "raw/bigSpot/10943245/0159_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0159_vacs.csv",
+      "member": "raw/bigSpot/10943245/0159_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0160_hits.csv",
+      "member": "raw/bigSpot/10943245/0160_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0160_vacs.csv",
+      "member": "raw/bigSpot/10943245/0160_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0161_hits.csv",
+      "member": "raw/bigSpot/10943245/0161_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0161_vacs.csv",
+      "member": "raw/bigSpot/10943245/0161_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0162_hits.csv",
+      "member": "raw/bigSpot/10943245/0162_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0162_vacs.csv",
+      "member": "raw/bigSpot/10943245/0162_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0163_hits.csv",
+      "member": "raw/bigSpot/10943245/0163_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0163_vacs.csv",
+      "member": "raw/bigSpot/10943245/0163_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0164_hits.csv",
+      "member": "raw/bigSpot/10943245/0164_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0164_vacs.csv",
+      "member": "raw/bigSpot/10943245/0164_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0165_hits.csv",
+      "member": "raw/bigSpot/10943245/0165_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0165_vacs.csv",
+      "member": "raw/bigSpot/10943245/0165_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0166_hits.csv",
+      "member": "raw/bigSpot/10943245/0166_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0166_vacs.csv",
+      "member": "raw/bigSpot/10943245/0166_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0167_hits.csv",
+      "member": "raw/bigSpot/10943245/0167_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0167_vacs.csv",
+      "member": "raw/bigSpot/10943245/0167_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0168_hits.csv",
+      "member": "raw/bigSpot/10943245/0168_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0168_vacs.csv",
+      "member": "raw/bigSpot/10943245/0168_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0169_hits.csv",
+      "member": "raw/bigSpot/10943245/0169_hits.csv",
+      "sha256": "fb168825617cffc344afb3afe8e5f4f3e1ff42d028c816a910d9f379b9cc31d1",
+      "bytes": 1491898
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0169_vacs.csv",
+      "member": "raw/bigSpot/10943245/0169_vacs.csv",
+      "sha256": "2fe4095d57b885f85493f9296db0b91d3bfcef33ddc0f36399fefd51b4ab039b",
+      "bytes": 3137920
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0170_hits.csv",
+      "member": "raw/bigSpot/10943245/0170_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0170_vacs.csv",
+      "member": "raw/bigSpot/10943245/0170_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0171_hits.csv",
+      "member": "raw/bigSpot/10943245/0171_hits.csv",
+      "sha256": "1e7526264d90e540fe6f4489e4eb4796ace521d31150ddf0f9b0e49e54b9e806",
+      "bytes": 1505931
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0171_vacs.csv",
+      "member": "raw/bigSpot/10943245/0171_vacs.csv",
+      "sha256": "68625e5cd5c7b303e34b98e959d8e5f0a57e15806fd11ade92d5a7f3233b0540",
+      "bytes": 3166173
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0172_hits.csv",
+      "member": "raw/bigSpot/10943245/0172_hits.csv",
+      "sha256": "8cdfe6636b8691b82cb22c94eba1d6aaecdf66bd66c5f5c234060dd7984b0617",
+      "bytes": 69
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0172_vacs.csv",
+      "member": "raw/bigSpot/10943245/0172_vacs.csv",
+      "sha256": "ec748ac207cff811d7a0b59e6860cd7f9b3e09201cea10ae67ec1f29194b5084",
+      "bytes": 88
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0173_hits.csv",
+      "member": "raw/bigSpot/10943245/0173_hits.csv",
+      "sha256": "297032d07c9580b7b1dddfdf1662833f5898fef8e0389035bd91db7eb297510b",
+      "bytes": 1426390
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0173_vacs.csv",
+      "member": "raw/bigSpot/10943245/0173_vacs.csv",
+      "sha256": "561c36105598de5f8252a8c35602452369fe437a6cfc9b6536e515750ae71984",
+      "bytes": 3001031
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_prim.csv",
+      "member": "primary/bigSpot/10943245/0001_prim.csv",
+      "sha256": "33681207d27bda4f22399da3657ca6235714174674825cf970e461df4a23564d",
+      "bytes": 158009739
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0002_prim.csv",
+      "member": "primary/bigSpot/10943245/0002_prim.csv",
+      "sha256": "44cdd685a129728f9a921b01dcfb4ea5b050e10899895028f2cb3c3c6f9e41f3",
+      "bytes": 154933806
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0003_prim.csv",
+      "member": "primary/bigSpot/10943245/0003_prim.csv",
+      "sha256": "bccea1bd918a56f75ee110ce866f43e4f226243452bfe99c99b13b238d540d81",
+      "bytes": 156638976
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0004_prim.csv",
+      "member": "primary/bigSpot/10943245/0004_prim.csv",
+      "sha256": "9b30605da1f8a6d54fab464b09083925fa58f11446fb12fd22ecf1fc1f371859",
+      "bytes": 154390598
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0005_prim.csv",
+      "member": "primary/bigSpot/10943245/0005_prim.csv",
+      "sha256": "aeb8870f1a284eb309089a74a330b8ff2baf9d6919a1c897a3bf24cec032bd91",
+      "bytes": 158124724
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0006_prim.csv",
+      "member": "primary/bigSpot/10943245/0006_prim.csv",
+      "sha256": "e0b16e81cbcac4b8a4b3c7290cd119ae8b5c12130098270db8d4b7997c2ec107",
+      "bytes": 154797511
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0007_prim.csv",
+      "member": "primary/bigSpot/10943245/0007_prim.csv",
+      "sha256": "013817f5efc994aedfb73e6355c6becb49558a8334b8ac07257449cade4c1dfd",
+      "bytes": 156898493
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0008_prim.csv",
+      "member": "primary/bigSpot/10943245/0008_prim.csv",
+      "sha256": "8c1400bcce870a0880266bc48abd2738507f982bde90386e1dfa6cd553622327",
+      "bytes": 156918342
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0009_prim.csv",
+      "member": "primary/bigSpot/10943245/0009_prim.csv",
+      "sha256": "656a929ce17fc4142e6c814e4b1174521bec1bae4b8d2e22c63dd0cec30c2aaf",
+      "bytes": 159647577
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0010_prim.csv",
+      "member": "primary/bigSpot/10943245/0010_prim.csv",
+      "sha256": "5d6a62218606a1da221fb3c4c33e5faa5c098723e1dc7be4ebb4511b804d84f9",
+      "bytes": 160234251
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0011_prim.csv",
+      "member": "primary/bigSpot/10943245/0011_prim.csv",
+      "sha256": "75c9055fdf9e791a64379444efeb74fa222913b552e155ce1a347c4fcd590d08",
+      "bytes": 155349129
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0012_prim.csv",
+      "member": "primary/bigSpot/10943245/0012_prim.csv",
+      "sha256": "78c4aceb2bb141aa824e687890333835018af7add7e24d07836215d19e6828b3",
+      "bytes": 160431869
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0013_prim.csv",
+      "member": "primary/bigSpot/10943245/0013_prim.csv",
+      "sha256": "507335913c2eabbf7a1c27964a2afcdf26ff654cce6866a6201c6871d7d0febb",
+      "bytes": 158570656
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0014_prim.csv",
+      "member": "primary/bigSpot/10943245/0014_prim.csv",
+      "sha256": "9cdb64a27fbbe5c8abbc39a8d8d3210ed7f2bab7b4151a1c1713d677f2b9c35b",
+      "bytes": 157710249
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0015_prim.csv",
+      "member": "primary/bigSpot/10943245/0015_prim.csv",
+      "sha256": "3e3de6307f50991d24d3ce8f1cc893767181119027f4eb0d3cc2fc9608e9ba01",
+      "bytes": 155192007
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0016_prim.csv",
+      "member": "primary/bigSpot/10943245/0016_prim.csv",
+      "sha256": "9707bc715dd24c902a4b48fa010a64f311f94fbb7a84d7e9fb7b483f1d66f52f",
+      "bytes": 159544724
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0017_prim.csv",
+      "member": "primary/bigSpot/10943245/0017_prim.csv",
+      "sha256": "1f868ffd97e4c06d2e24e9a9047de636b0cb531104c53a21ef1dfd2eda73cf4b",
+      "bytes": 154186502
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0018_prim.csv",
+      "member": "primary/bigSpot/10943245/0018_prim.csv",
+      "sha256": "5e8df54e0c6b9c9ebd13c7cd0eac56016ca7472025e41deeff44fcbff260cd8d",
+      "bytes": 158403345
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0019_prim.csv",
+      "member": "primary/bigSpot/10943245/0019_prim.csv",
+      "sha256": "cd0807676f41f5e0b50ca7468f4c4833d10dffcdbce72977ea3bcec5fff5d469",
+      "bytes": 158032624
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0020_prim.csv",
+      "member": "primary/bigSpot/10943245/0020_prim.csv",
+      "sha256": "ba313835822f0190a90bafd22c44e7e61ae1b4309741e97bb31bc4688fc2e674",
+      "bytes": 163336298
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0021_prim.csv",
+      "member": "primary/bigSpot/10943245/0021_prim.csv",
+      "sha256": "f5f5f1ea9f4f947798f2da522607f6cf671440bb084a9be5a7654fe8cfa9e6ca",
+      "bytes": 155971984
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0022_prim.csv",
+      "member": "primary/bigSpot/10943245/0022_prim.csv",
+      "sha256": "cad09b17833f84cfbd5bf22a658ccd8ef3fb1f0fa1cb86393a2ba04621f70a71",
+      "bytes": 156520795
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0023_prim.csv",
+      "member": "primary/bigSpot/10943245/0023_prim.csv",
+      "sha256": "b70a2fe1a4e8980ef03497a7ff6162dfb1cb1eea3d90bba10f4079d6fcd53ff0",
+      "bytes": 157747570
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0024_prim.csv",
+      "member": "primary/bigSpot/10943245/0024_prim.csv",
+      "sha256": "2ac24d5bf4a84934d687b170a46a8fb3cb56acf57dc5c94855a158457524e71f",
+      "bytes": 158872028
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0025_prim.csv",
+      "member": "primary/bigSpot/10943245/0025_prim.csv",
+      "sha256": "15e3b18eeafa622709bc4a03cf4dcdd0c36152f1c1238c34c3544bf4eef5aab2",
+      "bytes": 158858978
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0026_prim.csv",
+      "member": "primary/bigSpot/10943245/0026_prim.csv",
+      "sha256": "ff85f4b68f59699341e1b1c47d90ee8addcc447507a7cca5d671b8b1d3965f65",
+      "bytes": 156759427
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0027_prim.csv",
+      "member": "primary/bigSpot/10943245/0027_prim.csv",
+      "sha256": "49cb7ed13a74957d29eece51f7be0483815ee298d4fb261dd637cd3eaf19793a",
+      "bytes": 160242161
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0028_prim.csv",
+      "member": "primary/bigSpot/10943245/0028_prim.csv",
+      "sha256": "8e7a32dd41c5d5451a780eefcf16768f0f863c6fc9d4eca10bd18b2673244033",
+      "bytes": 159244919
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0029_prim.csv",
+      "member": "primary/bigSpot/10943245/0029_prim.csv",
+      "sha256": "6f3ed9f50b636f1eff5eb702b633fb9191a17b6df1947aeff2f92bc5a6ba2b8e",
+      "bytes": 159885627
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0030_prim.csv",
+      "member": "primary/bigSpot/10943245/0030_prim.csv",
+      "sha256": "b4af071e0f48f8049b943fe67a4db97468d42e8c65426e0ecb78f700d0df01a6",
+      "bytes": 152766149
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0031_prim.csv",
+      "member": "primary/bigSpot/10943245/0031_prim.csv",
+      "sha256": "9ccabdfdf3e00a3a610344b1ecd462af34253dadecfa6666217414a9c2824f9b",
+      "bytes": 156566111
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0032_prim.csv",
+      "member": "primary/bigSpot/10943245/0032_prim.csv",
+      "sha256": "aab6cc3a0e8f21b4c6b94874c45a44570bc4dad582d3c32df652a38cf47d360b",
+      "bytes": 156650177
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0033_prim.csv",
+      "member": "primary/bigSpot/10943245/0033_prim.csv",
+      "sha256": "b961bf45968f5d5b7038ac0ce0aa640194acd2b68dd8c346521de2bb50ebd5a5",
+      "bytes": 158502829
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0034_prim.csv",
+      "member": "primary/bigSpot/10943245/0034_prim.csv",
+      "sha256": "49ccde6679ebdf92d87386040c64506df6c11373f31357e727e32c5d899620c6",
+      "bytes": 157102546
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0035_prim.csv",
+      "member": "primary/bigSpot/10943245/0035_prim.csv",
+      "sha256": "2c0bf6f778d40429abf96bd2d31349b3de94cc2066361c036171bf55bcff9dac",
+      "bytes": 153798979
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0036_prim.csv",
+      "member": "primary/bigSpot/10943245/0036_prim.csv",
+      "sha256": "393f79451320d78c7b4a25f59d1c7ae825e0394e19ccdb88c31fd6ff9c19aa79",
+      "bytes": 155055047
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0037_prim.csv",
+      "member": "primary/bigSpot/10943245/0037_prim.csv",
+      "sha256": "a24a80a31e0c7a86bc05eeb79c2cb6688d4534d60abd8ee95a5e1b4dd8390a92",
+      "bytes": 158991195
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0038_prim.csv",
+      "member": "primary/bigSpot/10943245/0038_prim.csv",
+      "sha256": "96a35b219e90beed9a713cbe47ae873ff62552c7dc866bd5c59f90ee09df40ae",
+      "bytes": 156841815
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0039_prim.csv",
+      "member": "primary/bigSpot/10943245/0039_prim.csv",
+      "sha256": "1e1a1b6e588a6b5441c7dd475349f175c2a451325f75e389dbfbd2370114ced7",
+      "bytes": 157911072
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0040_prim.csv",
+      "member": "primary/bigSpot/10943245/0040_prim.csv",
+      "sha256": "93620d8d30ab117f04c313be7e34d81bf76327158a92b27929d466bfad3d12f4",
+      "bytes": 157703300
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0041_prim.csv",
+      "member": "primary/bigSpot/10943245/0041_prim.csv",
+      "sha256": "15132b93308adc981e1b07cbf13ecf44693836a88a7594e5bfffb0f0917cea2f",
+      "bytes": 156996905
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0042_prim.csv",
+      "member": "primary/bigSpot/10943245/0042_prim.csv",
+      "sha256": "0620893b3c13f4c196e32082fca5a6345cded7dbe151716ce48024e1c916eaa5",
+      "bytes": 155302074
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0043_prim.csv",
+      "member": "primary/bigSpot/10943245/0043_prim.csv",
+      "sha256": "9fddb2217c65268dec49868c40d76e33fcc9872f51dbbea1fe2c1a5a2317c6ed",
+      "bytes": 159272100
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0044_prim.csv",
+      "member": "primary/bigSpot/10943245/0044_prim.csv",
+      "sha256": "bb87c7a5d1aa5384bc24bb1d3906eab653f4ba5202da1a5c5f752b4fb54411b3",
+      "bytes": 156779322
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0045_prim.csv",
+      "member": "primary/bigSpot/10943245/0045_prim.csv",
+      "sha256": "750d188da6597b02c66fdce006ca34261e037064d22ab773bbfd3f4338daae2c",
+      "bytes": 157957864
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0046_prim.csv",
+      "member": "primary/bigSpot/10943245/0046_prim.csv",
+      "sha256": "c9926410f54d2a90d50d003c35cc47c2c2a7c294897936205de293724042b166",
+      "bytes": 157480265
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0047_prim.csv",
+      "member": "primary/bigSpot/10943245/0047_prim.csv",
+      "sha256": "38e84dc46183969bb06dc8829102ba1c133e4edf8d72ff7c13d67db16f52b76c",
+      "bytes": 162720809
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0103_prim.csv",
+      "member": "primary/bigSpot/10943245/0103_prim.csv",
+      "sha256": "81ffab321576f846a85b0dedf4173073f7ac5e1104191749ca494386fb79366b",
+      "bytes": 154107255
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0104_prim.csv",
+      "member": "primary/bigSpot/10943245/0104_prim.csv",
+      "sha256": "505fb8905e14597563380a6ea51e8f64dd5f7e171b9ab002a77ce398777f3be3",
+      "bytes": 155551648
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0105_prim.csv",
+      "member": "primary/bigSpot/10943245/0105_prim.csv",
+      "sha256": "dfa663068f73533a81631a8ed2b8a26869dbca8bec52d0461a2aec807c1473c2",
+      "bytes": 155487693
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0106_prim.csv",
+      "member": "primary/bigSpot/10943245/0106_prim.csv",
+      "sha256": "a962371efb683ac3a23297dc524c13cbb9b9e8816d9f553d5b25a0b3e5dd67b2",
+      "bytes": 159629782
+    }
+  ]
+}

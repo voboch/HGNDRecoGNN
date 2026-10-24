@@ -1,0 +1,85 @@
+{
+  "tag": "zeroSpot",
+  "U_sym_MeV": 0,
+  "state": "complete",
+  "policy": {
+    "edep_GeV": 0.003,
+    "sigma_time_ns": 0.15,
+    "noise_seed": 42,
+    "radius_cells": 3.6,
+    "edge_time_ns": 1.5,
+    "max_neighbors": 32,
+    "native_floor_GeV": 0.3,
+    "prompt_half_width_ns": 0.3
+  },
+  "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+  "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+  "files_expected": 1,
+  "files_processed": 1,
+  "files_total_in_source": 3123,
+  "limited_engineering_probe": true,
+  "totals": {
+    "observed_hits": 20277,
+    "clusters": 6107,
+    "native_signal_hits": 3443,
+    "relaxed_signal_hits": 3465,
+    "added_soft_hits": 22,
+    "native_signal_clusters": 1111,
+    "relaxed_signal_clusters": 1129,
+    "added_soft_clusters": 18,
+    "added_soft_singletons": 12,
+    "native_target_changes_above_floor": 0,
+    "native_matching": {
+      "eligible_objects": 1100,
+      "signal_clusters": 1111,
+      "matched_objects": 1087,
+      "merged_clusters": 15,
+      "split_objects": 26
+    },
+    "relaxed_matching": {
+      "eligible_objects": 1118,
+      "signal_clusters": 1129,
+      "matched_objects": 1105,
+      "merged_clusters": 15,
+      "split_objects": 26
+    },
+    "export_events": 3084,
+    "exported_hits": 21404,
+    "exported_truth_records": 21404,
+    "detector_export_neutron_objects": 1684,
+    "detector_export_neutron_objects_above_floor": 1415,
+    "observed_hit_threshold_pass": 20277,
+    "native_rejected_hits_pdg0": 0
+  },
+  "primary_binding_probe": {
+    "eligible_records": 1435,
+    "matched_ids": 1264,
+    "pdg_and_vertex_agree": 1264
+  },
+  "files": [
+    {
+      "run": "10943245",
+      "stem": "0001",
+      "sha256": {
+        "hits": "c2fa38e27c39dc1eb5092162ba798c3739059ed8d6aa1b825b208944d8563382",
+        "vacs": "4d4473d072bedf34fc9cfe0365fc2dd46b164ae50965e1271b28765148ca94ce"
+      },
+      "observed_export_events": 3084,
+      "primary_file_available": true,
+      "primary_probe": {
+        "eligible_records": 1435,
+        "matched_ids": 1264,
+        "pdg_and_vertex_agree": 1264
+      },
+      "added_soft_hits": 22,
+      "added_soft_clusters": 18
+    }
+  ],
+  "scope": "corrected detector-export observable view; no generated-neutron closure or model inference",
+  "noise": "new deterministic 0.15ns audit view; identical for both label definitions",
+  "generator_job_identity_established": false,
+  "fresh_blind_holdout_established": false,
+  "primary_probe_files": 1,
+  "elapsed_seconds": 4.6641213321127,
+  "source_script_sha256": "0a1eba12dcb72ba5a02544c986033e4aff7881ff2886a0fa9de66d0fe2fd369e"
+}

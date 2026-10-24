@@ -1,0 +1,30 @@
+zeroSpot 1 / 1 seconds 4.7
+Traceback (most recent call last):
+  File "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed/HGNDRecoGNN/scripts/audit_smash_sources.py", line 256, in main
+    run(args)
+  File "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed/HGNDRecoGNN/scripts/audit_smash_sources.py", line 164, in run
+    if not v.is_file():
+           ^^^^^^^^^^^
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/pathlib.py", line 892, in is_file
+    return S_ISREG(self.stat().st_mode)
+                   ^^^^^^^^^^^
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/pathlib.py", line 840, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/1054_vacs.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed/HGNDRecoGNN/scripts/audit_smash_sources.py", line 265, in <module>
+    main()
+  File "/home/vbocharnikov/hgnd_experiments/smash_audit_20261021_f7c5049eed/HGNDRecoGNN/scripts/audit_smash_sources.py", line 258, in main
+    if args.output.is_dir() and not (args.output/'summary.json').exists():
+       ^^^^^^^^^^^^^^^^^^^^
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/pathlib.py", line 875, in is_dir
+    return S_ISDIR(self.stat().st_mode)
+                   ^^^^^^^^^^^
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/pathlib.py", line 840, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/scratch/vbocharnikov/hgnd/experiments/smash_audit_20261021_f7c5049eed/smoke/defaultSpot'

@@ -1,0 +1,10 @@
+{
+  "mapper": {
+    "sha256": "9f9c2bdb90754deaa35d29cd2277ed0f5f6f771d92503128c582d0d49644b815",
+    "remote_path": "/home/vbocharnikov/hgnd_experiments/smash_primary_map_staged_9f9c2bdb90.py"
+  },
+  "bundle_helper": {
+    "sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd",
+    "remote_path": "/home/vbocharnikov/hgnd_experiments/smash_bundle_fd_e32b176331.py"
+  }
+}

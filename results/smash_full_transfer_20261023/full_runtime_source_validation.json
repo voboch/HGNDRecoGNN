@@ -1,0 +1,22 @@
+{
+  "state": "runtime_components_unchanged",
+  "frozen_source_sha256": "c206ad68c9146c087f72e18bcc2473923cd2490e4d86890cb1ca560ce5cc89d1",
+  "local_identical_files": 147,
+  "local_changed_nonexecuted_documents": [
+    "HGNDRecoGNN/reports/smash_staged_transfer_protocol_20261022.md"
+  ],
+  "snapshot_only_files": [
+    "original_inventory.json",
+    "protocol.md"
+  ],
+  "remote_all_151_hashes_verified_before_smoke_and_full_submissions": true,
+  "runtime_source_mutated": false,
+  "frozen_local_archive_all_151_hashes_verified": true,
+  "source_manifest_digest_verified": true,
+  "archive_metadata_member": "source_manifest.json; excluded from its own file-hash map",
+  "remote_all_151_hashes_verified_at_closure": true,
+  "remote_all_source_files_read_only": true,
+  "local_postprocessing_only_changes": {
+    "HGNDRecoGNN/scripts/summarize_smash_transfer.py": "plot provenance annotations and plotting metadata only; canonical metrics SHA unchanged"
+  }
+}

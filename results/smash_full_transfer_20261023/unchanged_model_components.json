@@ -1,0 +1,13 @@
+{
+  "compared_with": "smash_staged_20261022_521a10aa44",
+  "files": {
+    "models/student_ufc.py": "848278c9082e91d841516d5a3d9fc02afd881f79aac7d1cb6fb1c53bf23801fc",
+    "models/student_pipeline.py": "e2039c1dbbf98c8bcc18eaa25c5078ce1e437b1b367366f8540988e33f874203",
+    "data/student_pipeline.py": "847e2e558bcd02eb979af1d6804104e88033f5360229f037e8fbbb92efac1f7c",
+    "data/smash_transfer.py": "4c946424ec9267ab6d6f9a66a9d96950feb42beff5ca3fdff8e2a4c97a80ad4d",
+    "training/eval.py": "569983dff0621f9e5adf80f6d21eff242a041fc5879ef53254b925aded2a62c1",
+    "training/checkpoint.py": "e91220dd96491efb9653081f299f4c79f1e9d4b19295b6472a62537bcfff372e",
+    "models/__init__.py": "0ec91147f18c36c521b33b88db6a548872995a5035d8a5f4a34a212163bc2e8e"
+  },
+  "all_listed_unchanged": true
+}

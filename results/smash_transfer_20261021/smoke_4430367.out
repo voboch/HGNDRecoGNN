@@ -1,0 +1,57 @@
+Node cn-038, phase smoke
+{
+  "node": "cn-038",
+  "state": "complete",
+  "checks": [
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_hits.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_vacs.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_prim.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_hits.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_vacs.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_prim.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/1054_vacs.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_hits.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_vacs.csv",
+      "read": true
+    },
+    {
+      "path": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0001_prim.csv",
+      "read": true
+    }
+  ],
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110"
+}
+zeroSpot 1 / 1 seconds 7.0
+Traceback (most recent call last):
+  File "/home/vbocharnikov/hgnd_experiments/smash_transfer_20261021_9b3eed1f0b/HGNDRecoGNN/scripts/audit_smash_sources.py", line 310, in <module>
+    main()
+  File "/home/vbocharnikov/hgnd_experiments/smash_transfer_20261021_9b3eed1f0b/HGNDRecoGNN/scripts/audit_smash_sources.py", line 303, in main
+    run(args)
+  File "/home/vbocharnikov/hgnd_experiments/smash_transfer_20261021_9b3eed1f0b/HGNDRecoGNN/scripts/audit_smash_sources.py", line 247, in run
+    raise ValueError(f'Primary nucleon binding failed: {primary}')
+ValueError: Primary nucleon binding failed: /scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0001_prim.csv

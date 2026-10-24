@@ -1,0 +1,10 @@
+{
+  "created_at_utc": "2026-10-23T08:00:08.195500+00:00",
+  "job_id": "4436975",
+  "slurm": "4436974|FAILED|1:0|00:08:19|cn-031\n4436974.batch|FAILED|1:0|00:08:19|cn-031\n4436974.extern|COMPLETED|0:0|00:08:19|cn-031\n4436975|COMPLETED|0:0|00:09:03|cn-031\n4436975.batch|COMPLETED|0:0|00:09:03|cn-031\n4436975.extern|COMPLETED|0:0|00:09:03|cn-031\n",
+  "summary_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/mapping/bigSpot/summary.json",
+  "summary_sha256": "e2f5d23471fa8a03bbe294f7bdefcdc08ff8ce081e98e7deac1993624e2d122c",
+  "gzip_path": "/scratch/vbocharnikov/hgnd/experiments/smash_full_20261023_mapping_cd8eea6184/bigSpot_mapping_complete.json.gz",
+  "gzip_sha256": "9016953b2c7eeaddcc368048ee1a22e0ff1637dc74c56845a789fc9218ee44b8",
+  "summary_is_complete": true
+}

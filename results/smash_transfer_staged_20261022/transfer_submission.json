@@ -1,0 +1,26 @@
+{
+  "state": "submitted",
+  "created_at_utc": "2026-10-22T20:04:29.984504+00:00",
+  "scope": "first-file retrospective frozen GraphSAGE transfer smoke only; no training",
+  "source_root": "/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44",
+  "campaign_root": "/scratch/vbocharnikov/hgnd/experiments/smash_staged_20261022_521a10aa44",
+  "audit_job": "4435628",
+  "audit_summaries_sha256": {
+    "zeroSpot": "dc7a7f729d8bd92ef553552fde2fcc92e7c3e0e38af9c6e9180d2d9097b99b75",
+    "defaultSpot": "f47f09299455b9b3832948d88c79fa0ba7b4a1c814ff14a610081edcc4b655cd",
+    "bigSpot": "9d5e0d6008f08c2a3a7e035c89607377b07d77f0a5dfc3584d5058ed0654f77b"
+  },
+  "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+  "limits": {
+    "partition": "test",
+    "constraint": "type_a",
+    "gpus": 1,
+    "cpus": 4,
+    "time": "00:20:00",
+    "no_requeue": true
+  },
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4435668\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4435668"
+}

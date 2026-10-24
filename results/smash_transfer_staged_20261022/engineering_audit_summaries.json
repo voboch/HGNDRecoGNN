@@ -1,0 +1,349 @@
+{
+  "scope": "first-file engineering MC audit only, not model performance",
+  "summaries": {
+    "zeroSpot": {
+      "tag": "zeroSpot",
+      "U_sym_MeV": 0,
+      "state": "complete",
+      "policy": {
+        "edep_GeV": 0.003,
+        "sigma_time_ns": 0.15,
+        "noise_seed": 42,
+        "radius_cells": 3.6,
+        "edge_time_ns": 1.5,
+        "max_neighbors": 32,
+        "native_floor_GeV": 0.3,
+        "prompt_half_width_ns": 0.3
+      },
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "files_expected": 1,
+      "files_processed": 1,
+      "files_total_in_source": 1,
+      "limited_engineering_probe": true,
+      "population": "frozen corrected/primary common-file development population",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "totals": {
+        "observed_hits": 20277,
+        "clusters": 6107,
+        "native_signal_hits": 3443,
+        "relaxed_signal_hits": 3465,
+        "added_soft_hits": 22,
+        "native_signal_clusters": 1111,
+        "relaxed_signal_clusters": 1129,
+        "added_soft_clusters": 18,
+        "added_soft_singletons": 12,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 1100,
+          "signal_clusters": 1111,
+          "matched_objects": 1087,
+          "merged_clusters": 15,
+          "split_objects": 26
+        },
+        "relaxed_matching": {
+          "eligible_objects": 1118,
+          "signal_clusters": 1129,
+          "matched_objects": 1105,
+          "merged_clusters": 15,
+          "split_objects": 26
+        },
+        "export_events": 3084,
+        "exported_hits": 21404,
+        "exported_truth_records": 21404,
+        "detector_export_neutron_objects": 1684,
+        "detector_export_neutron_objects_above_floor": 1415,
+        "observed_hit_threshold_pass": 20277,
+        "native_rejected_hits_pdg0": 0
+      },
+      "primary_binding_probe": {
+        "eligible_records": 1264,
+        "matched_ids": 1264,
+        "pdg_and_vertex_agree": 1264,
+        "eligible_neutrons": 923,
+        "matched_neutrons": 923,
+        "neutron_pdg_and_vertex_agree": 923
+      },
+      "files": [
+        {
+          "run": "10943245",
+          "stem": "0001",
+          "sha256": {
+            "hits": "c2fa38e27c39dc1eb5092162ba798c3739059ed8d6aa1b825b208944d8563382",
+            "vacs": "4d4473d072bedf34fc9cfe0365fc2dd46b164ae50965e1271b28765148ca94ce"
+          },
+          "observed_export_events": 3084,
+          "primary_file_available": true,
+          "primary_probe": {
+            "eligible_records": 1264,
+            "matched_ids": 1264,
+            "pdg_and_vertex_agree": 1264,
+            "eligible_neutrons": 923,
+            "matched_neutrons": 923,
+            "neutron_pdg_and_vertex_agree": 923
+          },
+          "primary_probe_sha256": "e57ca1851139672e2966fd88b8eafa28481b8d7bfa6a5785a10267c9848842e3",
+          "primary_source_member": "10943245/0001",
+          "geometry_bounds": {
+            "LayerId": [
+              1.0,
+              8.0
+            ],
+            "RowId": [
+              1.0,
+              11.0
+            ],
+            "ColumnId": [
+              1.0,
+              11.0
+            ]
+          },
+          "observations": {
+            "path": "observations/10943245/0001.pt",
+            "sha256": "4f2aa85096f626d28be418d19ebd6b113f5e1c7d94e1ef0d5a480f165ad350d9"
+          },
+          "added_soft_hits": 22,
+          "added_soft_clusters": 18
+        }
+      ],
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference",
+      "noise": "new deterministic 0.15ns audit view; identical for both label definitions",
+      "generator_job_identity_established": false,
+      "fresh_blind_holdout_established": false,
+      "primary_probe_files": 1,
+      "elapsed_seconds": 5.11832418711856,
+      "source_script_sha256": "fdd4f953729ef2f5a73c15fb8c17d120f435b1c88fab81514afeb1bf368de19f"
+    },
+    "defaultSpot": {
+      "tag": "defaultSpot",
+      "U_sym_MeV": 18,
+      "state": "complete",
+      "policy": {
+        "edep_GeV": 0.003,
+        "sigma_time_ns": 0.15,
+        "noise_seed": 42,
+        "radius_cells": 3.6,
+        "edge_time_ns": 1.5,
+        "max_neighbors": 32,
+        "native_floor_GeV": 0.3,
+        "prompt_half_width_ns": 0.3
+      },
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "files_expected": 1,
+      "files_processed": 1,
+      "files_total_in_source": 1,
+      "limited_engineering_probe": true,
+      "population": "frozen corrected/primary common-file development population",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "totals": {
+        "observed_hits": 5414,
+        "clusters": 1579,
+        "native_signal_hits": 1046,
+        "relaxed_signal_hits": 1051,
+        "added_soft_hits": 5,
+        "native_signal_clusters": 326,
+        "relaxed_signal_clusters": 329,
+        "added_soft_clusters": 3,
+        "added_soft_singletons": 2,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 328,
+          "signal_clusters": 326,
+          "matched_objects": 316,
+          "merged_clusters": 11,
+          "split_objects": 10
+        },
+        "relaxed_matching": {
+          "eligible_objects": 331,
+          "signal_clusters": 329,
+          "matched_objects": 319,
+          "merged_clusters": 11,
+          "split_objects": 10
+        },
+        "export_events": 781,
+        "exported_hits": 5713,
+        "exported_truth_records": 5713,
+        "detector_export_neutron_objects": 484,
+        "detector_export_neutron_objects_above_floor": 410,
+        "observed_hit_threshold_pass": 5414,
+        "native_rejected_hits_pdg0": 0
+      },
+      "primary_binding_probe": {
+        "eligible_records": 334,
+        "matched_ids": 334,
+        "pdg_and_vertex_agree": 334,
+        "eligible_neutrons": 272,
+        "matched_neutrons": 272,
+        "neutron_pdg_and_vertex_agree": 272
+      },
+      "files": [
+        {
+          "run": "10943245",
+          "stem": "0001",
+          "sha256": {
+            "hits": "72f8aa1b7311dd4ce388c54b3c10b538b5ac8a1f4126b979a844c8d898108959",
+            "vacs": "775a598509f748956f92260881957c7ffa0cd171c0467fe841adb6908553c3db"
+          },
+          "observed_export_events": 781,
+          "primary_file_available": true,
+          "primary_probe": {
+            "eligible_records": 334,
+            "matched_ids": 334,
+            "pdg_and_vertex_agree": 334,
+            "eligible_neutrons": 272,
+            "matched_neutrons": 272,
+            "neutron_pdg_and_vertex_agree": 272
+          },
+          "primary_probe_sha256": "d25ef6b14548a472fbc31b44c0e3226413f14de6f7e83cfd780bb8eca14b04f7",
+          "primary_source_member": "10943245/0002",
+          "geometry_bounds": {
+            "LayerId": [
+              1.0,
+              8.0
+            ],
+            "RowId": [
+              1.0,
+              11.0
+            ],
+            "ColumnId": [
+              1.0,
+              11.0
+            ]
+          },
+          "observations": {
+            "path": "observations/10943245/0001.pt",
+            "sha256": "1bdab34ca2395475176da96b0268e09335867a27e21dcd8af18cd13e503339eb"
+          },
+          "added_soft_hits": 5,
+          "added_soft_clusters": 3
+        }
+      ],
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference",
+      "noise": "new deterministic 0.15ns audit view; identical for both label definitions",
+      "generator_job_identity_established": false,
+      "fresh_blind_holdout_established": false,
+      "primary_probe_files": 1,
+      "elapsed_seconds": 1.5534322271123528,
+      "source_script_sha256": "fdd4f953729ef2f5a73c15fb8c17d120f435b1c88fab81514afeb1bf368de19f"
+    },
+    "bigSpot": {
+      "tag": "bigSpot",
+      "U_sym_MeV": 90,
+      "state": "complete",
+      "policy": {
+        "edep_GeV": 0.003,
+        "sigma_time_ns": 0.15,
+        "noise_seed": 42,
+        "radius_cells": 3.6,
+        "edge_time_ns": 1.5,
+        "max_neighbors": 32,
+        "native_floor_GeV": 0.3,
+        "prompt_half_width_ns": 0.3
+      },
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "primary_root": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "files_expected": 1,
+      "files_processed": 1,
+      "files_total_in_source": 1,
+      "limited_engineering_probe": true,
+      "population": "frozen corrected/primary common-file development population",
+      "inventory_sha256": "e1d4e92891e89ef635637d92ac8017ace32814dbe7b9c888db8f982c29786966",
+      "totals": {
+        "observed_hits": 20463,
+        "clusters": 6185,
+        "native_signal_hits": 3514,
+        "relaxed_signal_hits": 3548,
+        "added_soft_hits": 34,
+        "native_signal_clusters": 1133,
+        "relaxed_signal_clusters": 1161,
+        "added_soft_clusters": 28,
+        "added_soft_singletons": 19,
+        "native_target_changes_above_floor": 0,
+        "native_matching": {
+          "eligible_objects": 1127,
+          "signal_clusters": 1133,
+          "matched_objects": 1106,
+          "merged_clusters": 20,
+          "split_objects": 27
+        },
+        "relaxed_matching": {
+          "eligible_objects": 1155,
+          "signal_clusters": 1161,
+          "matched_objects": 1134,
+          "merged_clusters": 20,
+          "split_objects": 27
+        },
+        "export_events": 3148,
+        "exported_hits": 21663,
+        "exported_truth_records": 21663,
+        "detector_export_neutron_objects": 1714,
+        "detector_export_neutron_objects_above_floor": 1430,
+        "observed_hit_threshold_pass": 20463,
+        "native_rejected_hits_pdg0": 0
+      },
+      "primary_binding_probe": {
+        "eligible_records": 1216,
+        "matched_ids": 1216,
+        "pdg_and_vertex_agree": 1216,
+        "eligible_neutrons": 933,
+        "matched_neutrons": 933,
+        "neutron_pdg_and_vertex_agree": 933
+      },
+      "files": [
+        {
+          "run": "10943245",
+          "stem": "0001",
+          "sha256": {
+            "hits": "fcf2a5a419de48635f1f933128e6d1a6db81a90c7399dbcf73fa79173dba657e",
+            "vacs": "358de8545807993e4c15de6283ad9ed55684cf7ecd5abc31bd79899925add4ad"
+          },
+          "observed_export_events": 3148,
+          "primary_file_available": true,
+          "primary_probe": {
+            "eligible_records": 1216,
+            "matched_ids": 1216,
+            "pdg_and_vertex_agree": 1216,
+            "eligible_neutrons": 933,
+            "matched_neutrons": 933,
+            "neutron_pdg_and_vertex_agree": 933
+          },
+          "primary_probe_sha256": "33681207d27bda4f22399da3657ca6235714174674825cf970e461df4a23564d",
+          "primary_source_member": "10943245/0001",
+          "geometry_bounds": {
+            "LayerId": [
+              1.0,
+              8.0
+            ],
+            "RowId": [
+              1.0,
+              11.0
+            ],
+            "ColumnId": [
+              1.0,
+              11.0
+            ]
+          },
+          "observations": {
+            "path": "observations/10943245/0001.pt",
+            "sha256": "4ffd1fca93d5b75fd35cf26bc19d8a520be82ec64b9799db4c82f0594a224148"
+          },
+          "added_soft_hits": 34,
+          "added_soft_clusters": 28
+        }
+      ],
+      "scope": "corrected detector-export observable view; no generated-neutron closure or model inference",
+      "noise": "new deterministic 0.15ns audit view; identical for both label definitions",
+      "generator_job_identity_established": false,
+      "fresh_blind_holdout_established": false,
+      "primary_probe_files": 1,
+      "elapsed_seconds": 1.820880369283259,
+      "source_script_sha256": "fdd4f953729ef2f5a73c15fb8c17d120f435b1c88fab81514afeb1bf368de19f"
+    }
+  },
+  "sha256": {
+    "zeroSpot": "dc7a7f729d8bd92ef553552fde2fcc92e7c3e0e38af9c6e9180d2d9097b99b75",
+    "defaultSpot": "f47f09299455b9b3832948d88c79fa0ba7b4a1c814ff14a610081edcc4b655cd",
+    "bigSpot": "9d5e0d6008f08c2a3a7e035c89607377b07d77f0a5dfc3584d5058ed0654f77b"
+  }
+}

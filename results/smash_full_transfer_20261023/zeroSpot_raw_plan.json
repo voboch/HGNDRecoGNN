@@ -1,0 +1,1568 @@
+{
+  "scope": "Frozen corrected raw inputs for complete exact primary-source mapping; no model evaluation or fitting",
+  "original_inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "files": [
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_hits.csv",
+      "member": "raw/zeroSpot/10943245/0001_hits.csv",
+      "sha256": "c2fa38e27c39dc1eb5092162ba798c3739059ed8d6aa1b825b208944d8563382"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0001_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0001_vacs.csv",
+      "sha256": "4d4473d072bedf34fc9cfe0365fc2dd46b164ae50965e1271b28765148ca94ce"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0002_hits.csv",
+      "member": "raw/zeroSpot/10943245/0002_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0002_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0002_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0003_hits.csv",
+      "member": "raw/zeroSpot/10943245/0003_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0003_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0003_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0004_hits.csv",
+      "member": "raw/zeroSpot/10943245/0004_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0004_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0004_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0005_hits.csv",
+      "member": "raw/zeroSpot/10943245/0005_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0005_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0005_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0006_hits.csv",
+      "member": "raw/zeroSpot/10943245/0006_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0006_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0006_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0007_hits.csv",
+      "member": "raw/zeroSpot/10943245/0007_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0007_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0007_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0008_hits.csv",
+      "member": "raw/zeroSpot/10943245/0008_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0008_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0008_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0009_hits.csv",
+      "member": "raw/zeroSpot/10943245/0009_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0009_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0009_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0010_hits.csv",
+      "member": "raw/zeroSpot/10943245/0010_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0010_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0010_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0011_hits.csv",
+      "member": "raw/zeroSpot/10943245/0011_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0011_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0011_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0012_hits.csv",
+      "member": "raw/zeroSpot/10943245/0012_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0012_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0012_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0013_hits.csv",
+      "member": "raw/zeroSpot/10943245/0013_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0013_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0013_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0014_hits.csv",
+      "member": "raw/zeroSpot/10943245/0014_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0014_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0014_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0015_hits.csv",
+      "member": "raw/zeroSpot/10943245/0015_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0015_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0015_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0016_hits.csv",
+      "member": "raw/zeroSpot/10943245/0016_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0016_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0016_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0017_hits.csv",
+      "member": "raw/zeroSpot/10943245/0017_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0017_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0017_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0018_hits.csv",
+      "member": "raw/zeroSpot/10943245/0018_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0018_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0018_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0019_hits.csv",
+      "member": "raw/zeroSpot/10943245/0019_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0019_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0019_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0020_hits.csv",
+      "member": "raw/zeroSpot/10943245/0020_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0020_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0020_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0021_hits.csv",
+      "member": "raw/zeroSpot/10943245/0021_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0021_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0021_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0022_hits.csv",
+      "member": "raw/zeroSpot/10943245/0022_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0022_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0022_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0023_hits.csv",
+      "member": "raw/zeroSpot/10943245/0023_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0023_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0023_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0024_hits.csv",
+      "member": "raw/zeroSpot/10943245/0024_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0024_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0024_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0025_hits.csv",
+      "member": "raw/zeroSpot/10943245/0025_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0025_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0025_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0026_hits.csv",
+      "member": "raw/zeroSpot/10943245/0026_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0026_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0026_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0027_hits.csv",
+      "member": "raw/zeroSpot/10943245/0027_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0027_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0027_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0028_hits.csv",
+      "member": "raw/zeroSpot/10943245/0028_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0028_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0028_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0029_hits.csv",
+      "member": "raw/zeroSpot/10943245/0029_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0029_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0029_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0030_hits.csv",
+      "member": "raw/zeroSpot/10943245/0030_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0030_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0030_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0031_hits.csv",
+      "member": "raw/zeroSpot/10943245/0031_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0031_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0031_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0032_hits.csv",
+      "member": "raw/zeroSpot/10943245/0032_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0032_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0032_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0033_hits.csv",
+      "member": "raw/zeroSpot/10943245/0033_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0033_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0033_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0034_hits.csv",
+      "member": "raw/zeroSpot/10943245/0034_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0034_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0034_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0035_hits.csv",
+      "member": "raw/zeroSpot/10943245/0035_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0035_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0035_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0036_hits.csv",
+      "member": "raw/zeroSpot/10943245/0036_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0036_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0036_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0037_hits.csv",
+      "member": "raw/zeroSpot/10943245/0037_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0037_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0037_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0038_hits.csv",
+      "member": "raw/zeroSpot/10943245/0038_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0038_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0038_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0039_hits.csv",
+      "member": "raw/zeroSpot/10943245/0039_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0039_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0039_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0040_hits.csv",
+      "member": "raw/zeroSpot/10943245/0040_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0040_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0040_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0041_hits.csv",
+      "member": "raw/zeroSpot/10943245/0041_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0041_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0041_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0042_hits.csv",
+      "member": "raw/zeroSpot/10943245/0042_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0042_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0042_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0043_hits.csv",
+      "member": "raw/zeroSpot/10943245/0043_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0043_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0043_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0044_hits.csv",
+      "member": "raw/zeroSpot/10943245/0044_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0044_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0044_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0045_hits.csv",
+      "member": "raw/zeroSpot/10943245/0045_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0045_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0045_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0046_hits.csv",
+      "member": "raw/zeroSpot/10943245/0046_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0046_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0046_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0047_hits.csv",
+      "member": "raw/zeroSpot/10943245/0047_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0047_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0047_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0048_hits.csv",
+      "member": "raw/zeroSpot/10943245/0048_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0048_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0048_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0049_hits.csv",
+      "member": "raw/zeroSpot/10943245/0049_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0049_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0049_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0050_hits.csv",
+      "member": "raw/zeroSpot/10943245/0050_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0050_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0050_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0051_hits.csv",
+      "member": "raw/zeroSpot/10943245/0051_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0051_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0051_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0052_hits.csv",
+      "member": "raw/zeroSpot/10943245/0052_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0052_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0052_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0053_hits.csv",
+      "member": "raw/zeroSpot/10943245/0053_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0053_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0053_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0054_hits.csv",
+      "member": "raw/zeroSpot/10943245/0054_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0054_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0054_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0055_hits.csv",
+      "member": "raw/zeroSpot/10943245/0055_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0055_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0055_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0056_hits.csv",
+      "member": "raw/zeroSpot/10943245/0056_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0056_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0056_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0057_hits.csv",
+      "member": "raw/zeroSpot/10943245/0057_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0057_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0057_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0058_hits.csv",
+      "member": "raw/zeroSpot/10943245/0058_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0058_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0058_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0059_hits.csv",
+      "member": "raw/zeroSpot/10943245/0059_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0059_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0059_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0060_hits.csv",
+      "member": "raw/zeroSpot/10943245/0060_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0060_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0060_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0061_hits.csv",
+      "member": "raw/zeroSpot/10943245/0061_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0061_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0061_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0062_hits.csv",
+      "member": "raw/zeroSpot/10943245/0062_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0062_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0062_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0063_hits.csv",
+      "member": "raw/zeroSpot/10943245/0063_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0063_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0063_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0064_hits.csv",
+      "member": "raw/zeroSpot/10943245/0064_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0064_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0064_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0065_hits.csv",
+      "member": "raw/zeroSpot/10943245/0065_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0065_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0065_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0066_hits.csv",
+      "member": "raw/zeroSpot/10943245/0066_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0066_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0066_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0067_hits.csv",
+      "member": "raw/zeroSpot/10943245/0067_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0067_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0067_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0068_hits.csv",
+      "member": "raw/zeroSpot/10943245/0068_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0068_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0068_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0069_hits.csv",
+      "member": "raw/zeroSpot/10943245/0069_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0069_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0069_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0070_hits.csv",
+      "member": "raw/zeroSpot/10943245/0070_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0070_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0070_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0071_hits.csv",
+      "member": "raw/zeroSpot/10943245/0071_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0071_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0071_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0072_hits.csv",
+      "member": "raw/zeroSpot/10943245/0072_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0072_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0072_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0073_hits.csv",
+      "member": "raw/zeroSpot/10943245/0073_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0073_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0073_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0074_hits.csv",
+      "member": "raw/zeroSpot/10943245/0074_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0074_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0074_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0075_hits.csv",
+      "member": "raw/zeroSpot/10943245/0075_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0075_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0075_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0076_hits.csv",
+      "member": "raw/zeroSpot/10943245/0076_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0076_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0076_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0077_hits.csv",
+      "member": "raw/zeroSpot/10943245/0077_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0077_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0077_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0078_hits.csv",
+      "member": "raw/zeroSpot/10943245/0078_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0078_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0078_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0079_hits.csv",
+      "member": "raw/zeroSpot/10943245/0079_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0079_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0079_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0080_hits.csv",
+      "member": "raw/zeroSpot/10943245/0080_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0080_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0080_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_hits.csv",
+      "member": "raw/zeroSpot/10943245/0081_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0081_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0082_hits.csv",
+      "member": "raw/zeroSpot/10943245/0082_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0082_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0082_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0083_hits.csv",
+      "member": "raw/zeroSpot/10943245/0083_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0083_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0083_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0084_hits.csv",
+      "member": "raw/zeroSpot/10943245/0084_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0084_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0084_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0085_hits.csv",
+      "member": "raw/zeroSpot/10943245/0085_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0085_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0085_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0086_hits.csv",
+      "member": "raw/zeroSpot/10943245/0086_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0086_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0086_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0087_hits.csv",
+      "member": "raw/zeroSpot/10943245/0087_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0087_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0087_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0088_hits.csv",
+      "member": "raw/zeroSpot/10943245/0088_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0088_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0088_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0089_hits.csv",
+      "member": "raw/zeroSpot/10943245/0089_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0089_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0089_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0090_hits.csv",
+      "member": "raw/zeroSpot/10943245/0090_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0090_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0090_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0091_hits.csv",
+      "member": "raw/zeroSpot/10943245/0091_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0091_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0091_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0092_hits.csv",
+      "member": "raw/zeroSpot/10943245/0092_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0092_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0092_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0093_hits.csv",
+      "member": "raw/zeroSpot/10943245/0093_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0093_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0093_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0094_hits.csv",
+      "member": "raw/zeroSpot/10943245/0094_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0094_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0094_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0095_hits.csv",
+      "member": "raw/zeroSpot/10943245/0095_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0095_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0095_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0096_hits.csv",
+      "member": "raw/zeroSpot/10943245/0096_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0096_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0096_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0097_hits.csv",
+      "member": "raw/zeroSpot/10943245/0097_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0097_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0097_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0098_hits.csv",
+      "member": "raw/zeroSpot/10943245/0098_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0098_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0098_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0099_hits.csv",
+      "member": "raw/zeroSpot/10943245/0099_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0099_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0099_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0100_hits.csv",
+      "member": "raw/zeroSpot/10943245/0100_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0100_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0100_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0101_hits.csv",
+      "member": "raw/zeroSpot/10943245/0101_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0101_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0101_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0102_hits.csv",
+      "member": "raw/zeroSpot/10943245/0102_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0102_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0102_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0103_hits.csv",
+      "member": "raw/zeroSpot/10943245/0103_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0103_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0103_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0104_hits.csv",
+      "member": "raw/zeroSpot/10943245/0104_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0104_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0104_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0105_hits.csv",
+      "member": "raw/zeroSpot/10943245/0105_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0105_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0105_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0106_hits.csv",
+      "member": "raw/zeroSpot/10943245/0106_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0106_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0106_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0107_hits.csv",
+      "member": "raw/zeroSpot/10943245/0107_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0107_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0107_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0108_hits.csv",
+      "member": "raw/zeroSpot/10943245/0108_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0108_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0108_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0109_hits.csv",
+      "member": "raw/zeroSpot/10943245/0109_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0109_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0109_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0110_hits.csv",
+      "member": "raw/zeroSpot/10943245/0110_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0110_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0110_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0111_hits.csv",
+      "member": "raw/zeroSpot/10943245/0111_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0111_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0111_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0112_hits.csv",
+      "member": "raw/zeroSpot/10943245/0112_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0112_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0112_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0113_hits.csv",
+      "member": "raw/zeroSpot/10943245/0113_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0113_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0113_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0114_hits.csv",
+      "member": "raw/zeroSpot/10943245/0114_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0114_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0114_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0115_hits.csv",
+      "member": "raw/zeroSpot/10943245/0115_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0115_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0115_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0116_hits.csv",
+      "member": "raw/zeroSpot/10943245/0116_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0116_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0116_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0117_hits.csv",
+      "member": "raw/zeroSpot/10943245/0117_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0117_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0117_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0118_hits.csv",
+      "member": "raw/zeroSpot/10943245/0118_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0118_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0118_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0119_hits.csv",
+      "member": "raw/zeroSpot/10943245/0119_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0119_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0119_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0120_hits.csv",
+      "member": "raw/zeroSpot/10943245/0120_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0120_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0120_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0121_hits.csv",
+      "member": "raw/zeroSpot/10943245/0121_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0121_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0121_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0122_hits.csv",
+      "member": "raw/zeroSpot/10943245/0122_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0122_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0122_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0123_hits.csv",
+      "member": "raw/zeroSpot/10943245/0123_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0123_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0123_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0124_hits.csv",
+      "member": "raw/zeroSpot/10943245/0124_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0124_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0124_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0125_hits.csv",
+      "member": "raw/zeroSpot/10943245/0125_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0125_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0125_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0126_hits.csv",
+      "member": "raw/zeroSpot/10943245/0126_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0126_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0126_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0127_hits.csv",
+      "member": "raw/zeroSpot/10943245/0127_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0127_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0127_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0128_hits.csv",
+      "member": "raw/zeroSpot/10943245/0128_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0128_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0128_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0129_hits.csv",
+      "member": "raw/zeroSpot/10943245/0129_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0129_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0129_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0130_hits.csv",
+      "member": "raw/zeroSpot/10943245/0130_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0130_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0130_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0131_hits.csv",
+      "member": "raw/zeroSpot/10943245/0131_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0131_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0131_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0132_hits.csv",
+      "member": "raw/zeroSpot/10943245/0132_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0132_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0132_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0133_hits.csv",
+      "member": "raw/zeroSpot/10943245/0133_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0133_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0133_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0134_hits.csv",
+      "member": "raw/zeroSpot/10943245/0134_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0134_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0134_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0135_hits.csv",
+      "member": "raw/zeroSpot/10943245/0135_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0135_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0135_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0136_hits.csv",
+      "member": "raw/zeroSpot/10943245/0136_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0136_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0136_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0137_hits.csv",
+      "member": "raw/zeroSpot/10943245/0137_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0137_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0137_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0138_hits.csv",
+      "member": "raw/zeroSpot/10943245/0138_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0138_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0138_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0139_hits.csv",
+      "member": "raw/zeroSpot/10943245/0139_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0139_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0139_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0140_hits.csv",
+      "member": "raw/zeroSpot/10943245/0140_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0140_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0140_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0141_hits.csv",
+      "member": "raw/zeroSpot/10943245/0141_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0141_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0141_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0142_hits.csv",
+      "member": "raw/zeroSpot/10943245/0142_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0142_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0142_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0143_hits.csv",
+      "member": "raw/zeroSpot/10943245/0143_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0143_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0143_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0144_hits.csv",
+      "member": "raw/zeroSpot/10943245/0144_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0144_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0144_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0145_hits.csv",
+      "member": "raw/zeroSpot/10943245/0145_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0145_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0145_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0146_hits.csv",
+      "member": "raw/zeroSpot/10943245/0146_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0146_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0146_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0147_hits.csv",
+      "member": "raw/zeroSpot/10943245/0147_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0147_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0147_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0148_hits.csv",
+      "member": "raw/zeroSpot/10943245/0148_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0148_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0148_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0149_hits.csv",
+      "member": "raw/zeroSpot/10943245/0149_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0149_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0149_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0150_hits.csv",
+      "member": "raw/zeroSpot/10943245/0150_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0150_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0150_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0151_hits.csv",
+      "member": "raw/zeroSpot/10943245/0151_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0151_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0151_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0152_hits.csv",
+      "member": "raw/zeroSpot/10943245/0152_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0152_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0152_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0153_hits.csv",
+      "member": "raw/zeroSpot/10943245/0153_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0153_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0153_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0154_hits.csv",
+      "member": "raw/zeroSpot/10943245/0154_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0154_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0154_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0155_hits.csv",
+      "member": "raw/zeroSpot/10943245/0155_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0155_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0155_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0156_hits.csv",
+      "member": "raw/zeroSpot/10943245/0156_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0156_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0156_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0157_hits.csv",
+      "member": "raw/zeroSpot/10943245/0157_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0157_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0157_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0158_hits.csv",
+      "member": "raw/zeroSpot/10943245/0158_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0158_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0158_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0159_hits.csv",
+      "member": "raw/zeroSpot/10943245/0159_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0159_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0159_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0160_hits.csv",
+      "member": "raw/zeroSpot/10943245/0160_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0160_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0160_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0161_hits.csv",
+      "member": "raw/zeroSpot/10943245/0161_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0161_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0161_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0162_hits.csv",
+      "member": "raw/zeroSpot/10943245/0162_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0162_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0162_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0163_hits.csv",
+      "member": "raw/zeroSpot/10943245/0163_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0163_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0163_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0164_hits.csv",
+      "member": "raw/zeroSpot/10943245/0164_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0164_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0164_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0165_hits.csv",
+      "member": "raw/zeroSpot/10943245/0165_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0165_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0165_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0166_hits.csv",
+      "member": "raw/zeroSpot/10943245/0166_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0166_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0166_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0167_hits.csv",
+      "member": "raw/zeroSpot/10943245/0167_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0167_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0167_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0168_hits.csv",
+      "member": "raw/zeroSpot/10943245/0168_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0168_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0168_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0169_hits.csv",
+      "member": "raw/zeroSpot/10943245/0169_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0169_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0169_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0170_hits.csv",
+      "member": "raw/zeroSpot/10943245/0170_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0170_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0170_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0171_hits.csv",
+      "member": "raw/zeroSpot/10943245/0171_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0171_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0171_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0172_hits.csv",
+      "member": "raw/zeroSpot/10943245/0172_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0172_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0172_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0173_hits.csv",
+      "member": "raw/zeroSpot/10943245/0173_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0173_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0173_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0174_hits.csv",
+      "member": "raw/zeroSpot/10943245/0174_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0174_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0174_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0175_hits.csv",
+      "member": "raw/zeroSpot/10943245/0175_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0175_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0175_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0176_hits.csv",
+      "member": "raw/zeroSpot/10943245/0176_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0176_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0176_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0177_hits.csv",
+      "member": "raw/zeroSpot/10943245/0177_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0177_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0177_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0178_hits.csv",
+      "member": "raw/zeroSpot/10943245/0178_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0178_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0178_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0179_hits.csv",
+      "member": "raw/zeroSpot/10943245/0179_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0179_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0179_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0180_hits.csv",
+      "member": "raw/zeroSpot/10943245/0180_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0180_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0180_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0181_hits.csv",
+      "member": "raw/zeroSpot/10943245/0181_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0181_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0181_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0182_hits.csv",
+      "member": "raw/zeroSpot/10943245/0182_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0182_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0182_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0183_hits.csv",
+      "member": "raw/zeroSpot/10943245/0183_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0183_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0183_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0184_hits.csv",
+      "member": "raw/zeroSpot/10943245/0184_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0184_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0184_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0185_hits.csv",
+      "member": "raw/zeroSpot/10943245/0185_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0185_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0185_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0186_hits.csv",
+      "member": "raw/zeroSpot/10943245/0186_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0186_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0186_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0187_hits.csv",
+      "member": "raw/zeroSpot/10943245/0187_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0187_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0187_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0188_hits.csv",
+      "member": "raw/zeroSpot/10943245/0188_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0188_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0188_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0189_hits.csv",
+      "member": "raw/zeroSpot/10943245/0189_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0189_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0189_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0190_hits.csv",
+      "member": "raw/zeroSpot/10943245/0190_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0190_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0190_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0191_hits.csv",
+      "member": "raw/zeroSpot/10943245/0191_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0191_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0191_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0192_hits.csv",
+      "member": "raw/zeroSpot/10943245/0192_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0192_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0192_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0193_hits.csv",
+      "member": "raw/zeroSpot/10943245/0193_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0193_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0193_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0194_hits.csv",
+      "member": "raw/zeroSpot/10943245/0194_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0194_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0194_vacs.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0195_hits.csv",
+      "member": "raw/zeroSpot/10943245/0195_hits.csv"
+    },
+    {
+      "source": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0195_vacs.csv",
+      "member": "raw/zeroSpot/10943245/0195_vacs.csv"
+    }
+  ]
+}

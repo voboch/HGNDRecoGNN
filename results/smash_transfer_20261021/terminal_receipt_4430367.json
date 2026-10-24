@@ -1,0 +1,5 @@
+{
+  "job": "4430367",
+  "slurm_accounting": "4430367|FAILED|1:0|00:02:26|cn-038|rocky\n4430367.batch|FAILED|1:0|00:02:26|cn-038|\n4430367.extern|COMPLETED|0:0|00:02:26|cn-038|\n",
+  "queue": ""
+}

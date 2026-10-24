@@ -1,0 +1,6 @@
+{
+  "job_id": "4435627",
+  "slurm_accounting": "4435627|FAILED|1:0|00:00:25|cn-039|rocky\n4435627.batch|FAILED|1:0|00:00:25|cn-039|\n4435627.extern|COMPLETED|0:0|00:00:25|cn-039|\n",
+  "checked_at_utc": "2026-10-22T20:16:06.143471+00:00",
+  "log": "Traceback (most recent call last):\n  File \"/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44/HGNDRecoGNN/scripts/map_smash_primary.py\", line 129, in <module>\n    main()\n  File \"/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44/HGNDRecoGNN/scripts/map_smash_primary.py\", line 125, in main\n    run(args.inventory, args.output, args.tag, args.staged_root)\n  File \"/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44/HGNDRecoGNN/scripts/map_smash_primary.py\", line 78, in run\n    targets.append(targets_from_vacs(frame, member))\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/vbocharnikov/hgnd_experiments/smash_staged_20261022_521a10aa44/HGNDRecoGNN/scripts/map_smash_primary.py\", line 36, in targets_from_vacs\n    if not np.isfinite(selected.to_numpy()).all():\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''\n"
+}

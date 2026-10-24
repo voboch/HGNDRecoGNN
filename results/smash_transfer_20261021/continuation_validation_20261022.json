@@ -1,0 +1,51 @@
+{
+  "state": "verified",
+  "scope": "Oct22 source-association and failed mapping receipts, not SMASH model performance",
+  "created_at_utc": "2026-10-22T19:49:33.228323+00:00",
+  "checks": {
+    "source_and_inventory_hashes_match": true,
+    "first_locator_complete_200_files": true,
+    "first_pair_334_exact_unique_matches": true,
+    "mapping_job_terminal_FAILED_1_0": true,
+    "mapping_complete_summary_exists": false,
+    "new_mapping_retry_submitted": false,
+    "active_stage_jobs": [],
+    "full_primary_binding_established": false,
+    "generated_event_denominator_established": false,
+    "full_smash_audit_submitted": false,
+    "smash_transfer_submitted": false,
+    "smash_training_submitted": false
+  },
+  "local_code_checks": {
+    "focused_pytest_passed": 20,
+    "ruff": "passed",
+    "compileall": "passed",
+    "table_header_lint": "passed"
+  },
+  "sha256": {
+    "results/smash_transfer_20261021/launch_status.json": "cc25176200e83940af31e61eee4c9754aab0bdfd767bfc6fe6c4efd6c5144bcf",
+    "results/smash_transfer_20261021/locator_source.json": "e68db6ce36ff2470d9c04be42ba77acf1006bdcb27bf8a43a9b9b0d933f21302",
+    "results/smash_transfer_20261021/locator_submission.json": "019d7b5003ee2585f7e1cbf875ecbca2b30b2fc7cc7d880d803befa851d8bfef",
+    "results/smash_transfer_20261021/locator_summary.json": "c72f7e938d95c3dbf350a13acf2a18aca36c30cd0a98dbd96cd5e9938e043bf4",
+    "results/smash_transfer_20261021/locator_terminal_receipt.json": "1affec805e1a9fb88f45127f30b9a1cade0dbecbf8c4980605ec17dddf5f45e4",
+    "results/smash_transfer_20261021/locator_validation.json": "98de2c720175067dbdc302a356f3c2d4268d4474ab9ed34017ed032defcb5aa9",
+    "results/smash_transfer_20261021/mapping_source.json": "e75f06f667143a36760a04379433d9a588bf2726bec2b37bcb35cbc8fe395729",
+    "results/smash_transfer_20261021/mapping_submission.json": "7d5274e963921008b6535904d91aeccb9c62f223b1d6d73de9d8182f7bfcf164",
+    "results/smash_transfer_20261021/mapping_terminal_receipt.json": "4db3d5063cf24a9351ef7d2dcd39b64e481136678df16cdb01c0dbaf9e1743cd",
+    "results/smash_transfer_20261021/mapping_login_access_after_failure.json": "39b23aa51ac8692630db2e93d774162a013c641e1aa41fd6430f7da2c0ac2346",
+    "results/smash_transfer_20261021/first_default_event_coverage.json": "5af4528fb230c5f21669b3be218a516b59e63fb3a773bebdeb8caa894cb82573",
+    "results/smash_transfer_20261021/converter_provenance.json": "6c31cff27499515d636922ef3b7adaee7033663894aa844e4ff291befe3a6ea6",
+    "results/smash_transfer_20261021/terminal_receipt_4430367.json": "0b9fc290afd0af543fa9007cdfba35b7fa240d4372a596142971be73ff7e1928",
+    "results/smash_transfer_20261021/access_receipt.json": "8d625490cb3bbf7143742e9a54ee97e0662f8ca637d3800f4b6a3deef2eb8989",
+    "results/smash_transfer_20261021/default_binding_verified.json": "c381e8e58372a49a58d7ba44fcdc454c7054d7625a322b68962cae664c14ea6e",
+    "results/smash_transfer_20261021/zero_binding_verified.json": "b2f3aaeb3cf830d10eaa310b2685da0a70a8805ea895883e213a67d8976f4004",
+    "results/smash_transfer_20261021/big_binding_verified.json": "e41d31fb52973c309592880802eacfb9e35e0ba86f0b1d9bf3a0c61f49e5a45c",
+    "results/smash_transfer_20261021/input_inventory.json": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+    "scripts/locate_smash_primary.py": "285dfe9838d3cfd3ef48ffb4cebf4f739af5f3844b324e81db4835c948775038",
+    "scripts/map_smash_primary.py": "964ac9f7ed03078a151f9f8ecf89f94da0989a4b91348effeb6a06ea7a033e39",
+    "tests/test_smash_primary_mapping.py": "eb4cc3c8019890d62df995d99a5ac377e5be0e75e7178d5527694bd19edb5b41",
+    "reports/smash_transfer_status_20261022.md": "18c779bac43d751bae9131dffaa13cffceb1355efebf0ebb08ff262597d4be48",
+    "reports/smash_transfer_protocol_20261021.md": "c0a87df681d1887fad02f10af81976514fa1c8f04bdf71f94f8a00de5d3eefa3",
+    "reports/reconstruction_smash_next_steps_20261021.md": "cf7c260162b5c096c6a85a03e9e719dd185fd85405daf15f0adc7d9b8c03c70b"
+  }
+}

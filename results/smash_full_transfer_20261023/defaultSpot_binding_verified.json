@@ -1,0 +1,31 @@
+{
+  "state": "verified",
+  "tag": "defaultSpot",
+  "detector_files": 200,
+  "exact_bound_nonempty_files": 186,
+  "header_only_exports": 14,
+  "target_records": 225844,
+  "ambiguous_tracks": 0,
+  "source_tracks_reused": 0,
+  "source_events_reused_among_eligible_records": 0,
+  "processed_root_events": null,
+  "fresh_holdout_established": false,
+  "primary_minus_detector_filename_index_counts": {
+    "1": 3,
+    "2": 7,
+    "3": 1,
+    "4": 11,
+    "5": 17,
+    "6": 8,
+    "7": 2,
+    "8": 30,
+    "9": 23,
+    "10": 38,
+    "11": 37,
+    "12": 3,
+    "13": 4,
+    "14": 2
+  },
+  "mapping_summary_sha256": "61bb025f80370bdbae3777eb565fc33f6edd93f6ac05f24a1bc0eb3748e1287a",
+  "raw_manifest_sha256": "ad7bcfe7132b1d516458a47b2d001f28cc0b9e597e0b209786b1392943c43ea6"
+}

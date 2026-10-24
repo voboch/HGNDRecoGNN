@@ -1,0 +1,12 @@
+{
+  "checked_utc": "2026-10-23T10:40:35.969709+00:00",
+  "cluster_local_time": "2026-10-23T13:40:35.969724+03:00",
+  "queue": "4437675|PENDING|1:00:00|0:00|(None)|2026-10-23T16:28:37\n4437674|PENDING|1:00:00|0:00|(None)|2026-10-23T15:37:57\n4437676|PENDING|30:00|0:00|(Dependency)|N/A\n",
+  "accounting": "JobID|State|ExitCode|Elapsed|NodeList|Timelimit\n4437674|PENDING|0:0|00:00:00|None assigned|01:00:00\n4437675|PENDING|0:0|00:00:00|None assigned|01:00:00\n4437676|PENDING|0:0|00:00:00|None assigned|00:30:00\n",
+  "complete_publication_receipts": {
+    "zeroSpot": false,
+    "defaultSpot": false,
+    "bigSpot": false
+  },
+  "no_new_jobs_submitted": true
+}

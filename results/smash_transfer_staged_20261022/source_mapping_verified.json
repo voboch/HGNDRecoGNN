@@ -1,0 +1,2340 @@
+{
+  "state": "verified",
+  "scope": "frozen defaultSpot source association only; no model evaluation or generation independence claim",
+  "input_summary_sha256": "61bb025f80370bdbae3777eb565fc33f6edd93f6ac05f24a1bc0eb3748e1287a",
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "source_script_sha256": "cd8eea61841e7e57a6a8ea646e218bc1bd8fdc693e718baa142d234e985f943d",
+  "detector_files_checked": 200,
+  "primary_files_checked": 200,
+  "target_records": 225844,
+  "matched_detector_records": 225844,
+  "ambiguous_detector_records": 0,
+  "unique_source_tracks": 225844,
+  "source_tracks_reused_across_detector_files": 0,
+  "source_events_reused_across_detector_files": 0,
+  "all_matched_Row_Id_equal": true,
+  "exact_unique_file_candidates": 186,
+  "distinct_primary_source_files_for_candidates": 186,
+  "primary_minus_detector_filename_index_counts": {
+    "1": 3,
+    "2": 7,
+    "3": 1,
+    "4": 11,
+    "5": 17,
+    "6": 8,
+    "7": 2,
+    "8": 30,
+    "9": 23,
+    "10": 38,
+    "11": 37,
+    "12": 3,
+    "13": 4,
+    "14": 2
+  },
+  "unresolved_files": [
+    {
+      "detector_member": "10943245/0187",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0188",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0189",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0190",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0191",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0192",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0193",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0194",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0195",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0196",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0197",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0198",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0199",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0200",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    }
+  ],
+  "candidates": [
+    {
+      "detector_member": "10943245/0001",
+      "eligible_records": 334,
+      "matched_records": 334,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0002"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0002",
+      "eligible_records": 1269,
+      "matched_records": 1269,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0003"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0003",
+      "eligible_records": 1197,
+      "matched_records": 1197,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0004"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0004",
+      "eligible_records": 1181,
+      "matched_records": 1181,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0006"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0005",
+      "eligible_records": 1453,
+      "matched_records": 1453,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0007"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0006",
+      "eligible_records": 1350,
+      "matched_records": 1350,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0008"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0007",
+      "eligible_records": 432,
+      "matched_records": 432,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0009"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0008",
+      "eligible_records": 1261,
+      "matched_records": 1261,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0010"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0009",
+      "eligible_records": 1299,
+      "matched_records": 1299,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0011"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0010",
+      "eligible_records": 1257,
+      "matched_records": 1257,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0012"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0011",
+      "eligible_records": 1284,
+      "matched_records": 1284,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0014"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0012",
+      "eligible_records": 1260,
+      "matched_records": 1260,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0016"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0013",
+      "eligible_records": 1215,
+      "matched_records": 1215,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0017"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0014",
+      "eligible_records": 1316,
+      "matched_records": 1316,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0018"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0015",
+      "eligible_records": 1248,
+      "matched_records": 1248,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0019"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0016",
+      "eligible_records": 1224,
+      "matched_records": 1224,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0020"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0017",
+      "eligible_records": 1341,
+      "matched_records": 1341,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0021"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0018",
+      "eligible_records": 1152,
+      "matched_records": 1152,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0022"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0019",
+      "eligible_records": 1310,
+      "matched_records": 1310,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0023"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0020",
+      "eligible_records": 1219,
+      "matched_records": 1219,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0024"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0021",
+      "eligible_records": 1173,
+      "matched_records": 1173,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0025"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0022",
+      "eligible_records": 1359,
+      "matched_records": 1359,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0026"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0023",
+      "eligible_records": 1250,
+      "matched_records": 1250,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0028"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0024",
+      "eligible_records": 1196,
+      "matched_records": 1196,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0029"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0025",
+      "eligible_records": 1187,
+      "matched_records": 1187,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0030"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0026",
+      "eligible_records": 1196,
+      "matched_records": 1196,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0031"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0027",
+      "eligible_records": 1261,
+      "matched_records": 1261,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0032"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0028",
+      "eligible_records": 1237,
+      "matched_records": 1237,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0033"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0029",
+      "eligible_records": 1245,
+      "matched_records": 1245,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0034"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0030",
+      "eligible_records": 1162,
+      "matched_records": 1162,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0035"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0031",
+      "eligible_records": 1187,
+      "matched_records": 1187,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0036"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0032",
+      "eligible_records": 1179,
+      "matched_records": 1179,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0037"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0033",
+      "eligible_records": 1190,
+      "matched_records": 1190,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0038"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0034",
+      "eligible_records": 1079,
+      "matched_records": 1079,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0039"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0035",
+      "eligible_records": 1147,
+      "matched_records": 1147,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0040"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0036",
+      "eligible_records": 1353,
+      "matched_records": 1353,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0041"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0037",
+      "eligible_records": 1276,
+      "matched_records": 1276,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0042"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0038",
+      "eligible_records": 1304,
+      "matched_records": 1304,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0043"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0039",
+      "eligible_records": 1186,
+      "matched_records": 1186,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0044"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0040",
+      "eligible_records": 1203,
+      "matched_records": 1203,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0046"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0041",
+      "eligible_records": 1083,
+      "matched_records": 1083,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0047"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0042",
+      "eligible_records": 1235,
+      "matched_records": 1235,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0048"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0043",
+      "eligible_records": 1217,
+      "matched_records": 1217,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0049"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0044",
+      "eligible_records": 1105,
+      "matched_records": 1105,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0050"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0045",
+      "eligible_records": 1129,
+      "matched_records": 1129,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0051"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0046",
+      "eligible_records": 1141,
+      "matched_records": 1141,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0052"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0047",
+      "eligible_records": 1252,
+      "matched_records": 1252,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0053"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0048",
+      "eligible_records": 1235,
+      "matched_records": 1235,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0055"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0049",
+      "eligible_records": 1267,
+      "matched_records": 1267,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0056"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0050",
+      "eligible_records": 1345,
+      "matched_records": 1345,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0058"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0051",
+      "eligible_records": 1234,
+      "matched_records": 1234,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0059"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0052",
+      "eligible_records": 1243,
+      "matched_records": 1243,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0060"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0053",
+      "eligible_records": 1128,
+      "matched_records": 1128,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0061"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0054",
+      "eligible_records": 1212,
+      "matched_records": 1212,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0062"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0055",
+      "eligible_records": 1176,
+      "matched_records": 1176,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0063"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0056",
+      "eligible_records": 1199,
+      "matched_records": 1199,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0064"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0057",
+      "eligible_records": 1248,
+      "matched_records": 1248,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0065"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0058",
+      "eligible_records": 1139,
+      "matched_records": 1139,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0066"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0059",
+      "eligible_records": 1031,
+      "matched_records": 1031,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0067"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0060",
+      "eligible_records": 1342,
+      "matched_records": 1342,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0068"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0061",
+      "eligible_records": 1196,
+      "matched_records": 1196,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0069"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0062",
+      "eligible_records": 1070,
+      "matched_records": 1070,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0070"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0063",
+      "eligible_records": 1269,
+      "matched_records": 1269,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0071"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0064",
+      "eligible_records": 1259,
+      "matched_records": 1259,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0072"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0065",
+      "eligible_records": 1056,
+      "matched_records": 1056,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0073"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0066",
+      "eligible_records": 1293,
+      "matched_records": 1293,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0074"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0067",
+      "eligible_records": 1258,
+      "matched_records": 1258,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0075"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0068",
+      "eligible_records": 1254,
+      "matched_records": 1254,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0076"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0069",
+      "eligible_records": 1333,
+      "matched_records": 1333,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0077"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0070",
+      "eligible_records": 1267,
+      "matched_records": 1267,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0078"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0071",
+      "eligible_records": 1195,
+      "matched_records": 1195,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0079"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0072",
+      "eligible_records": 1296,
+      "matched_records": 1296,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0080"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0073",
+      "eligible_records": 1267,
+      "matched_records": 1267,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0081"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0074",
+      "eligible_records": 1070,
+      "matched_records": 1070,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0082"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0075",
+      "eligible_records": 1213,
+      "matched_records": 1213,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0083"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0076",
+      "eligible_records": 1250,
+      "matched_records": 1250,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0084"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0077",
+      "eligible_records": 1241,
+      "matched_records": 1241,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0085"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0078",
+      "eligible_records": 1231,
+      "matched_records": 1231,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0086"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0079",
+      "eligible_records": 1178,
+      "matched_records": 1178,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0087"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0080",
+      "eligible_records": 1444,
+      "matched_records": 1444,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0089"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0081",
+      "eligible_records": 1034,
+      "matched_records": 1034,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0090"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0082",
+      "eligible_records": 1299,
+      "matched_records": 1299,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0091"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0083",
+      "eligible_records": 1249,
+      "matched_records": 1249,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0092"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0084",
+      "eligible_records": 1242,
+      "matched_records": 1242,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0093"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0085",
+      "eligible_records": 1236,
+      "matched_records": 1236,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0094"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0086",
+      "eligible_records": 1258,
+      "matched_records": 1258,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0095"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0087",
+      "eligible_records": 1134,
+      "matched_records": 1134,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0096"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0088",
+      "eligible_records": 1166,
+      "matched_records": 1166,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0097"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0089",
+      "eligible_records": 1080,
+      "matched_records": 1080,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0098"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0090",
+      "eligible_records": 1227,
+      "matched_records": 1227,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0099"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0091",
+      "eligible_records": 1193,
+      "matched_records": 1193,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0100"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0092",
+      "eligible_records": 1220,
+      "matched_records": 1220,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0101"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0093",
+      "eligible_records": 1320,
+      "matched_records": 1320,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0102"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0094",
+      "eligible_records": 1275,
+      "matched_records": 1275,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0103"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0095",
+      "eligible_records": 1343,
+      "matched_records": 1343,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0104"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0096",
+      "eligible_records": 1125,
+      "matched_records": 1125,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0105"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0097",
+      "eligible_records": 1339,
+      "matched_records": 1339,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0106"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0098",
+      "eligible_records": 1216,
+      "matched_records": 1216,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0107"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0099",
+      "eligible_records": 1289,
+      "matched_records": 1289,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0108"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0100",
+      "eligible_records": 1150,
+      "matched_records": 1150,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0109"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0101",
+      "eligible_records": 1275,
+      "matched_records": 1275,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0110"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0102",
+      "eligible_records": 1318,
+      "matched_records": 1318,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0111"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0103",
+      "eligible_records": 1340,
+      "matched_records": 1340,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0113"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0104",
+      "eligible_records": 1138,
+      "matched_records": 1138,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0114"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0105",
+      "eligible_records": 1220,
+      "matched_records": 1220,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0115"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0106",
+      "eligible_records": 1205,
+      "matched_records": 1205,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0116"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0107",
+      "eligible_records": 1282,
+      "matched_records": 1282,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0117"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0108",
+      "eligible_records": 1215,
+      "matched_records": 1215,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0118"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0109",
+      "eligible_records": 1241,
+      "matched_records": 1241,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0119"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0110",
+      "eligible_records": 1373,
+      "matched_records": 1373,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0120"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0111",
+      "eligible_records": 1168,
+      "matched_records": 1168,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0121"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0112",
+      "eligible_records": 1139,
+      "matched_records": 1139,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0122"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0113",
+      "eligible_records": 1254,
+      "matched_records": 1254,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0123"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0114",
+      "eligible_records": 1335,
+      "matched_records": 1335,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0124"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0115",
+      "eligible_records": 1231,
+      "matched_records": 1231,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0125"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0116",
+      "eligible_records": 1364,
+      "matched_records": 1364,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0126"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0117",
+      "eligible_records": 1208,
+      "matched_records": 1208,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0127"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0118",
+      "eligible_records": 1218,
+      "matched_records": 1218,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0128"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0119",
+      "eligible_records": 1235,
+      "matched_records": 1235,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0129"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0120",
+      "eligible_records": 1286,
+      "matched_records": 1286,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0130"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0121",
+      "eligible_records": 1333,
+      "matched_records": 1333,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0131"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0122",
+      "eligible_records": 1192,
+      "matched_records": 1192,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0132"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0123",
+      "eligible_records": 1192,
+      "matched_records": 1192,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0133"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0124",
+      "eligible_records": 1218,
+      "matched_records": 1218,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0134"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0125",
+      "eligible_records": 1303,
+      "matched_records": 1303,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0135"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0126",
+      "eligible_records": 1316,
+      "matched_records": 1316,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0136"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0127",
+      "eligible_records": 1067,
+      "matched_records": 1067,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0137"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0128",
+      "eligible_records": 1170,
+      "matched_records": 1170,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0138"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0129",
+      "eligible_records": 1122,
+      "matched_records": 1122,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0139"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0130",
+      "eligible_records": 1252,
+      "matched_records": 1252,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0140"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0131",
+      "eligible_records": 1156,
+      "matched_records": 1156,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0141"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0132",
+      "eligible_records": 1150,
+      "matched_records": 1150,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0142"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0133",
+      "eligible_records": 1174,
+      "matched_records": 1174,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0143"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0134",
+      "eligible_records": 1125,
+      "matched_records": 1125,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0144"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0135",
+      "eligible_records": 1191,
+      "matched_records": 1191,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0145"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0136",
+      "eligible_records": 1242,
+      "matched_records": 1242,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0146"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0137",
+      "eligible_records": 1175,
+      "matched_records": 1175,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0147"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0138",
+      "eligible_records": 1153,
+      "matched_records": 1153,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0148"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0139",
+      "eligible_records": 1417,
+      "matched_records": 1417,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0149"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0140",
+      "eligible_records": 1281,
+      "matched_records": 1281,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0150"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0141",
+      "eligible_records": 1269,
+      "matched_records": 1269,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0152"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0142",
+      "eligible_records": 1300,
+      "matched_records": 1300,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0153"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0143",
+      "eligible_records": 1110,
+      "matched_records": 1110,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0154"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0144",
+      "eligible_records": 1022,
+      "matched_records": 1022,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0155"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0145",
+      "eligible_records": 1148,
+      "matched_records": 1148,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0156"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0146",
+      "eligible_records": 1195,
+      "matched_records": 1195,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0157"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0147",
+      "eligible_records": 1227,
+      "matched_records": 1227,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0158"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0148",
+      "eligible_records": 1303,
+      "matched_records": 1303,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0159"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0149",
+      "eligible_records": 1262,
+      "matched_records": 1262,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0160"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0150",
+      "eligible_records": 1217,
+      "matched_records": 1217,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0161"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0151",
+      "eligible_records": 1358,
+      "matched_records": 1358,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0162"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0152",
+      "eligible_records": 1132,
+      "matched_records": 1132,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0163"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0153",
+      "eligible_records": 1117,
+      "matched_records": 1117,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0164"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0154",
+      "eligible_records": 1320,
+      "matched_records": 1320,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0165"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0155",
+      "eligible_records": 1239,
+      "matched_records": 1239,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0166"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0156",
+      "eligible_records": 1215,
+      "matched_records": 1215,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0167"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0157",
+      "eligible_records": 1198,
+      "matched_records": 1198,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0168"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0158",
+      "eligible_records": 1212,
+      "matched_records": 1212,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0169"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0159",
+      "eligible_records": 1222,
+      "matched_records": 1222,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0170"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0160",
+      "eligible_records": 1195,
+      "matched_records": 1195,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0171"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0161",
+      "eligible_records": 1221,
+      "matched_records": 1221,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0172"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0162",
+      "eligible_records": 1341,
+      "matched_records": 1341,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0173"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0163",
+      "eligible_records": 1123,
+      "matched_records": 1123,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0174"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0164",
+      "eligible_records": 1179,
+      "matched_records": 1179,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0175"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0165",
+      "eligible_records": 1273,
+      "matched_records": 1273,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0176"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0166",
+      "eligible_records": 1189,
+      "matched_records": 1189,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0177"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0167",
+      "eligible_records": 1216,
+      "matched_records": 1216,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0178"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0168",
+      "eligible_records": 1318,
+      "matched_records": 1318,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0179"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0169",
+      "eligible_records": 1211,
+      "matched_records": 1211,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0180"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0170",
+      "eligible_records": 1321,
+      "matched_records": 1321,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0181"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0171",
+      "eligible_records": 1140,
+      "matched_records": 1140,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0182"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0172",
+      "eligible_records": 1118,
+      "matched_records": 1118,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0183"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0173",
+      "eligible_records": 1238,
+      "matched_records": 1238,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0184"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0174",
+      "eligible_records": 1287,
+      "matched_records": 1287,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0185"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0175",
+      "eligible_records": 1278,
+      "matched_records": 1278,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0186"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0176",
+      "eligible_records": 1165,
+      "matched_records": 1165,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0187"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0177",
+      "eligible_records": 1234,
+      "matched_records": 1234,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0188"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0178",
+      "eligible_records": 1067,
+      "matched_records": 1067,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0190"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0179",
+      "eligible_records": 1090,
+      "matched_records": 1090,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0191"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0180",
+      "eligible_records": 1268,
+      "matched_records": 1268,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0192"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0181",
+      "eligible_records": 1272,
+      "matched_records": 1272,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0194"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0182",
+      "eligible_records": 1285,
+      "matched_records": 1285,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0195"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0183",
+      "eligible_records": 1118,
+      "matched_records": 1118,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0196"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0184",
+      "eligible_records": 1152,
+      "matched_records": 1152,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0197"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0185",
+      "eligible_records": 1093,
+      "matched_records": 1093,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0199"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0186",
+      "eligible_records": 1144,
+      "matched_records": 1144,
+      "ambiguous_records": 0,
+      "primary_members": [
+        "10943245/0200"
+      ],
+      "all_row_id_equal": true,
+      "state": "exact_unique_file_candidate"
+    },
+    {
+      "detector_member": "10943245/0187",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0188",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0189",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0190",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0191",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0192",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0193",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0194",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0195",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0196",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0197",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0198",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0199",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    },
+    {
+      "detector_member": "10943245/0200",
+      "eligible_records": 0,
+      "matched_records": 0,
+      "ambiguous_records": 0,
+      "primary_members": [],
+      "all_row_id_equal": false,
+      "state": "unresolved"
+    }
+  ],
+  "all_primary_hashes_unchanged_since_locator_4435586": true,
+  "all_detector_hashes_match_staged_bundle": true,
+  "generated_event_count_established": false,
+  "generation_job_independence_established": false
+}

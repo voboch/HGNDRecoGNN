@@ -1,0 +1,22 @@
+{
+  "state": "submitted",
+  "created_at_utc": "2026-10-22T19:34:04.229524+00:00",
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_primary_locator_20261021_285dfe9838.py",
+  "source_sha256": "285dfe9838d3cfd3ef48ffb4cebf4f739af5f3844b324e81db4835c948775038",
+  "inventory": "/home/vbocharnikov/hgnd_experiments/smash_transfer_20261021_9b3eed1f0b/input_inventory.json",
+  "inventory_sha256": "9ca9df3edc0fafdc9d2e1720f37136443d41d96424966ec4fd43c35be786e110",
+  "output": "/scratch/vbocharnikov/hgnd/experiments/smash_primary_locator_20261021_285dfe9838",
+  "submission_script_sha256": "f2a76a77a56392c40a9ef7a5cd13ef8969f43fa39439a5c089dccd658aaed417",
+  "limits": {
+    "partition": "rocky",
+    "cpus": 4,
+    "gpus": 0,
+    "time": "00:45:00",
+    "no_requeue": true
+  },
+  "scope": "one exact fingerprint lookup, no model evaluation or training",
+  "sbatch_returncode": 0,
+  "sbatch_stdout": "4435586\n",
+  "sbatch_stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87m\u0420\u0435\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f \u043d\u0435\u0439\u0442\u0440\u043e\u043d\u043e\u0432 \u0432 \u0434\u0435\u0442\u0435\u043a\u0442\u043e\u0440\u0435 \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u0433\u0440\u0430\u043d\u0443\u043b\u044f\u0440\u043d\u043e\u0441\u0442\u0438 hgnd \u043d\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0435 bm@n. \u041f\u0440\u043e\u0434\u043b\u0435\u043d\u0438\u0435 (2026 \u0433\u043e\u0434)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+  "job_id": "4435586"
+}
