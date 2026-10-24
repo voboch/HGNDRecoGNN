@@ -91,15 +91,23 @@ def write_index(path, records):
             f.write(','.join(map(str, item)) + '\n')
 
 
-def validate_smoke(receipt, inventory_path, dcm_root):
+def validate_smoke(receipt, inventory_path, dcm_root, dcm_inventory):
     """A passed smoke is usable only for the exact current code and inputs."""
-    x = json.loads(Path(receipt).read_text())
+    verified = json.loads(Path(receipt).read_text())
+    if verified['slurm_state'] != 'COMPLETED' or verified['exit_code'] != '0:0':
+        raise ValueError('Smoke Slurm job did not complete successfully')
+    summary = Path(verified['summary_path'])
+    if sha256(summary) != verified['summary_sha256'] or sha256(verified['archive_path']) != verified['archive_sha256']:
+        raise ValueError('Smoke export verification failed')
+    x = json.loads(summary.read_text())
     inventory = json.loads(Path(inventory_path).read_text())
     if (x.get('status') != 'complete' or x.get('smoke') is not True
             or x.get('code_sha256') != sha256(__file__)
-            or x.get('smash_inventory_sha256') != sha256(inventory_path)):
+            or x.get('smash_inventory_sha256') != sha256(inventory_path)
+            or x.get('dcm_inventory_sha256') != sha256(dcm_inventory)):
         raise ValueError('Smoke receipt is incomplete or belongs to different code/inventory')
-    expected = {str(sorted((Path(dcm_root) / run).glob('*_hits.csv'))[0])
+    membership = json.loads(Path(dcm_inventory).read_text())['files']
+    expected = {str(Path(dcm_root) / next(v['relative'] for v in membership if v['relative'].startswith(run + '/')))
                 for run in ('988974', '988975', '988976')}
     expected.update(str(Path(info['primary_root']) / f'{info["common_primary_pair_names"][0]}_prim.csv')
                     for info in inventory['tags'].values())
@@ -112,7 +120,7 @@ def validate_smoke(receipt, inventory_path, dcm_root):
     if set(x['identities']) != required:
         raise ValueError('Smoke skipped an identity definition')
     for name in required:
-        if sha256(Path(receipt).parent / f'{name}.csv.gz') != x['identities'][name]['index_sha256']:
+        if sha256(summary.parent / f'{name}.csv.gz') != x['identities'][name]['index_sha256']:
             raise ValueError('Smoke identity index missing or corrupt')
 
 
@@ -133,15 +141,30 @@ def run(args):
         summary['files'].append({'kind': 'pickle', 'path': str(args.pickle), 'sha256': sha256(args.pickle),
                                  'records': len(frame), 'events': frame.Row.nunique()})
     if args.dcm_root:
+        membership = json.loads(args.dcm_inventory.read_text())
+        summary['dcm_inventory_sha256'] = sha256(args.dcm_inventory)
+        declared = {v['relative'] for v in membership['files']}
+        actual = {str(p.relative_to(args.dcm_root)) for p in args.dcm_root.glob('*/*_hits.csv')}
+        if declared != actual:
+            raise ValueError('DCM file membership differs from frozen inventory')
         for source in ('988974', '988975', '988976'):
-            files = sorted((args.dcm_root / source).glob('*_hits.csv'))
+            files = [v for v in membership['files'] if v['relative'].startswith(source + '/')]
             if not files:
                 raise ValueError(f'Missing DCM source {source}')
             if args.smoke:
                 files = files[:1]
-            for file in files:
+            for item in files:
+                file = args.dcm_root / item['relative']
                 before = sha256(file)
+                if before != item['sha256']:
+                    raise ValueError(f'DCM input differs from frozen inventory: {file}')
                 frame = pd.read_csv(file)
+                if frame.empty:
+                    if item['included_in_prepared'] or tuple(frame.columns[2:]) != HIT_FIELDS:
+                        raise ValueError('Prepared file is empty or header is malformed')
+                    summary['files'].append({'kind': 'dcm_header_only', 'path': str(file), 'sha256': before,
+                                             'records': 0, 'events': 0})
+                    continue
                 collections['dcm_hits'].extend((source, file.name, row, n, h)
                                               for row, n, h in event_signatures(frame, HIT_FIELDS))
                 # 3 MeV is the existing loader convention, not a fitted cut.
@@ -198,6 +221,7 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pickle', type=Path)
     p.add_argument('--dcm-root', type=Path)
+    p.add_argument('--dcm-inventory', type=Path)
     p.add_argument('--smash-inventory', type=Path)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--smoke', action='store_true')

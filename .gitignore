@@ -174,3 +174,11 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_full_transfer_20261023/*.json
 !/results/smash_full_transfer_20261023/*.md
 !/results/smash_full_transfer_20261023/*.log
+
+# Exact-content independence audit: summaries and input membership only.
+!/results/content_census_20261024/
+/results/content_census_20261024/*
+!/results/content_census_20261024/*.json
+!/results/content_census_20261024/student/
+/results/content_census_20261024/student/*
+!/results/content_census_20261024/student/summary.json

@@ -1,0 +1,91 @@
+{
+  "schema": "export-content-census-v1",
+  "code_sha256": "e187b908bb1953b666ad7772aef4005c88f3f8437310c49d6a47fd72de199c91",
+  "smoke": false,
+  "files": [
+    {
+      "kind": "pickle",
+      "path": "../NeutronRecoGNN/data/Jan26/hits_Jan_26.pkl",
+      "sha256": "183e38f1d22829dc4ed0979b53d82a0db803aa6fd3b5795122fc1c5c664fa4df",
+      "records": 1748494,
+      "events": 197027
+    }
+  ],
+  "identities": {
+    "student_hits": {
+      "events": 197027,
+      "unique_contents": 79324,
+      "events_in_repeated_groups": 135331,
+      "maximum_multiplicity": 137,
+      "multiplicity_histogram": {
+        "1": 61696,
+        "2": 6870,
+        "3": 4434,
+        "4": 627,
+        "5": 1260,
+        "6": 1241,
+        "7": 608,
+        "8": 308,
+        "9": 311,
+        "12": 678,
+        "25": 324,
+        "31": 299,
+        "34": 335,
+        "137": 333
+      },
+      "within_file_repeated_groups": 17628,
+      "cross_file_groups": 0,
+      "events_in_cross_file_groups": 0,
+      "cross_directory_groups": 0,
+      "events_in_cross_directory_groups": 0,
+      "groups": {
+        "student": {
+          "events": 197027,
+          "unique_contents": 79324,
+          "files": 1
+        }
+      },
+      "cross_directory_examples": [],
+      "index_sha256": "43491f97afdf2aab5dc057b78b0cdcb8832025614c538c0f04c5fe4931d9394e"
+    },
+    "student_hits_truth": {
+      "events": 197027,
+      "unique_contents": 79324,
+      "events_in_repeated_groups": 135331,
+      "maximum_multiplicity": 137,
+      "multiplicity_histogram": {
+        "1": 61696,
+        "2": 6870,
+        "3": 4434,
+        "4": 627,
+        "5": 1260,
+        "6": 1241,
+        "7": 608,
+        "8": 308,
+        "9": 311,
+        "12": 678,
+        "25": 324,
+        "31": 299,
+        "34": 335,
+        "137": 333
+      },
+      "within_file_repeated_groups": 17628,
+      "cross_file_groups": 0,
+      "events_in_cross_file_groups": 0,
+      "cross_directory_groups": 0,
+      "events_in_cross_directory_groups": 0,
+      "groups": {
+        "student": {
+          "events": 197027,
+          "unique_contents": 79324,
+          "files": 1
+        }
+      },
+      "cross_directory_examples": [],
+      "index_sha256": "96f1a88cdfeb1d99173f5789da642f155c2983941840dbf0a3123025b4efa9b6"
+    }
+  },
+  "limits": "Exact represented export contents only; absent collisions and generator lineage unknown.",
+  "seconds": 5.1932425000704825,
+  "status": "complete"
+}

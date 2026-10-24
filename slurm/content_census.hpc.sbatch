@@ -20,7 +20,7 @@ STAGE="${SLURM_TMPDIR:-/tmp}/hgnd-content-${SLURM_JOB_ID}"
 mkdir "$STAGE"
 cd "$CENSUS_SOURCE"
 sha256sum -c SHA256SUMS
-ARGS=(--dcm-root "$CENSUS_DCM" --smash-inventory original_inventory.json --output "$STAGE/result")
+ARGS=(--dcm-root "$CENSUS_DCM" --dcm-inventory dcm_membership.json --smash-inventory original_inventory.json --output "$STAGE/result")
 [[ ${CENSUS_MODE:-smoke} == smoke || ${CENSUS_MODE:-smoke} == full ]] || exit 2
 if [[ ${CENSUS_MODE:-smoke} == smoke ]]; then
   ARGS+=(--smoke)
@@ -29,7 +29,7 @@ else
   "$CENSUS_ENV/bin/python" - "$CENSUS_SMOKE_RECEIPT" "$CENSUS_DCM" <<'PY'
 import sys
 from content_census import validate_smoke
-validate_smoke(sys.argv[1], 'original_inventory.json', sys.argv[2])
+validate_smoke(sys.argv[1], 'original_inventory.json', sys.argv[2], 'dcm_membership.json')
 PY
 fi
 "$CENSUS_ENV/bin/python" -u content_census.py "${ARGS[@]}"
