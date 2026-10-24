@@ -1,0 +1,185 @@
+{
+  "scope": "Post-hoc descriptive population diagnostic on already evaluated DCM source988976; no new inference, tuning or independence claim",
+  "uncertainty": "sample SD across three fixed DCM training seeds; not MC/source error",
+  "inputs": {
+    "test_evaluation/test_pack.pt": "9491c22ac7bb39cc7978938c484f72e4777f1de5bd25d2af0ddc8cfc08b18d22",
+    "test_evaluation/student_sage_42/predictions.csv": "9d0779e7b31fd2f551b663ebd94736702593c970f7b9a8dd95ac7cccf9449b8e",
+    "test_evaluation/student_sage_123/predictions.csv": "0111e91c417d1618765e2ae85ae4f30d4d6a86b83301554dc4536e31f693b80c",
+    "test_evaluation/student_sage_456/predictions.csv": "5759dbfb521e47139957279087504f38fbb653c6621866677c8a2ab893d86099"
+  },
+  "manifest_sha256": "3267f0920cd077c18367341ca2d5dbf41576abbd9259b12bf62e2d865d0a2eb5",
+  "script_sha256": "3aecd5dd43d3ff5641611256820b964c1f061c414fb955494079d13311d1b07e",
+  "per_seed": [
+    {
+      "seed": 42,
+      "all_auc": 0.9145697292619566,
+      "all_n": 222251,
+      "all_signal": 36713,
+      "singleton_auc": 0.8181206395325481,
+      "singleton_n": 85816,
+      "singleton_signal": 4703,
+      "multiple_hit_auc": 0.9166974750603508,
+      "multiple_hit_n": 136435,
+      "multiple_hit_signal": 32010,
+      "without_singletons_minus_all_auc": 0.002127745798394254,
+      "pair_decomposition": [
+        {
+          "signal_singleton": true,
+          "background_singleton": true,
+          "n_signal": 4703,
+          "n_background": 81113,
+          "pair_weight": 0.056003181272529075,
+          "pair_auc": 0.8181206395325481,
+          "auc_deficit_contribution": 0.010185822793990367
+        },
+        {
+          "signal_singleton": true,
+          "background_singleton": false,
+          "n_signal": 4703,
+          "n_background": 104425,
+          "pair_weight": 0.0720985810459957,
+          "pair_auc": 0.768202725749603,
+          "auc_deficit_contribution": 0.016712254563783138
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": true,
+          "n_signal": 32010,
+          "n_background": 81113,
+          "pair_weight": 0.3811741085548917,
+          "pair_auc": 0.953686166035401,
+          "auc_deficit_contribution": 0.017653634375215284
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": false,
+          "n_signal": 32010,
+          "n_background": 104425,
+          "pair_weight": 0.49072412912658353,
+          "pair_auc": 0.9166974750603508,
+          "auc_deficit_contribution": 0.04087855900505485
+        }
+      ]
+    },
+    {
+      "seed": 123,
+      "all_auc": 0.9098400795716919,
+      "all_n": 222251,
+      "all_signal": 36713,
+      "singleton_auc": 0.8128616816708918,
+      "singleton_n": 85816,
+      "singleton_signal": 4703,
+      "multiple_hit_auc": 0.916814358422976,
+      "multiple_hit_n": 136435,
+      "multiple_hit_signal": 32010,
+      "without_singletons_minus_all_auc": 0.006974278851284099,
+      "pair_decomposition": [
+        {
+          "signal_singleton": true,
+          "background_singleton": true,
+          "n_signal": 4703,
+          "n_background": 81113,
+          "pair_weight": 0.056003181272529075,
+          "pair_auc": 0.8128616816708918,
+          "auc_deficit_contribution": 0.010480341164421297
+        },
+        {
+          "signal_singleton": true,
+          "background_singleton": false,
+          "n_signal": 4703,
+          "n_background": 104425,
+          "pair_weight": 0.0720985810459957,
+          "pair_auc": 0.7990154166338541,
+          "auc_deficit_contribution": 0.014490703272819748
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": true,
+          "n_signal": 32010,
+          "n_background": 81113,
+          "pair_weight": 0.3811741085548917,
+          "pair_auc": 0.9360720628042427,
+          "auc_deficit_contribution": 0.024367674472345887
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": false,
+          "n_signal": 32010,
+          "n_background": 104425,
+          "pair_weight": 0.49072412912658353,
+          "pair_auc": 0.9168143584229762,
+          "auc_deficit_contribution": 0.04082120151872112
+        }
+      ]
+    },
+    {
+      "seed": 456,
+      "all_auc": 0.8995424471922521,
+      "all_n": 222251,
+      "all_signal": 36713,
+      "singleton_auc": 0.7944024999273936,
+      "singleton_n": 85816,
+      "singleton_signal": 4703,
+      "multiple_hit_auc": 0.9074615934675071,
+      "multiple_hit_n": 136435,
+      "multiple_hit_signal": 32010,
+      "without_singletons_minus_all_auc": 0.007919146275255029,
+      "pair_decomposition": [
+        {
+          "signal_singleton": true,
+          "background_singleton": true,
+          "n_signal": 4703,
+          "n_background": 81113,
+          "pair_weight": 0.056003181272529075,
+          "pair_auc": 0.7944024999273935,
+          "auc_deficit_contribution": 0.01151411406574499
+        },
+        {
+          "signal_singleton": true,
+          "background_singleton": false,
+          "n_signal": 4703,
+          "n_background": 104425,
+          "pair_weight": 0.0720985810459957,
+          "pair_auc": 0.779025739152231,
+          "auc_deficit_contribution": 0.015931930654811872
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": true,
+          "n_signal": 32010,
+          "n_background": 81113,
+          "pair_weight": 0.3811741085548917,
+          "pair_auc": 0.9275903622221049,
+          "auc_deficit_contribution": 0.02760067913077178
+        },
+        {
+          "signal_singleton": false,
+          "background_singleton": false,
+          "n_signal": 32010,
+          "n_background": 104425,
+          "pair_weight": 0.49072412912658353,
+          "pair_auc": 0.9074615934675071,
+          "auc_deficit_contribution": 0.045410828956419326
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "all_auc": {
+      "mean": 0.9079840853419668,
+      "sample_sd": 0.007683640903646855
+    },
+    "singleton_auc": {
+      "mean": 0.8084616070436111,
+      "sample_sd": 0.012456244583606571
+    },
+    "multiple_hit_auc": {
+      "mean": 0.9136578089836114,
+      "sample_sd": 0.005366398277394484
+    },
+    "without_singletons_minus_all_auc": {
+      "mean": 0.005673723641644461,
+      "sample_sd": 0.003107034399686686
+    }
+  }
+}
