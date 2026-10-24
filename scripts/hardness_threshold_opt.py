@@ -25,8 +25,9 @@ admissible:
   * the ordering runs the way the truth scan established, R rising with U_sym,
     since a reconstructed observable moving the other way is not measuring the
     response;
-  * for reconstructed energy, both edges sit above `--plateau-min`, the energy
-    below which detection efficiency collapses.
+  * for reconstructed energy, the low-band upper edge sits above
+    `--plateau-min`. This legacy constraint does not remove soft entries from
+    the denominator and does not establish efficiency across either band.
 
 Selection happens on development data and the chosen point is applied once to
 the held-out sample.  The scan surface is written out so the choice can be seen
@@ -38,6 +39,8 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from HGNDRecoGNN.analysis.energy_bands import EnergyBands
 
 TAGS = [("zeroSpot", 0.0), ("defaultSpot", 18.0), ("bigSpot", 90.0)]
 
@@ -82,17 +85,24 @@ def load_reco(pred_dir, purity, threshold=None):
     return out
 
 
-def _counts_truth(per_job, edges, lo_hi, species=0):
+def _counts_truth(per_job, edges, lo_hi, species=0, *, energy_bounds=None):
     """Counts per job in the low and high bands."""
     (lo_edge, hi_edge) = lo_hi
-    c = np.sqrt(np.maximum(edges[:-1], 1e-12) * edges[1:])
-    lo_m, hi_m = c < lo_edge, c >= hi_edge
+    if energy_bounds is None:
+        c = np.sqrt(np.maximum(edges[:-1], 1e-12) * edges[1:])
+        lo_m, hi_m = c < lo_edge, c >= hi_edge
+    else:
+        lo_m, hi_m = EnergyBands(energy_bounds[0], lo_edge, hi_edge,
+                                energy_bounds[1]).histogram_masks(edges)
     s = per_job[:, species, :]
     return s[:, lo_m].sum(axis=1), s[:, hi_m].sum(axis=1)
 
 
-def _counts_reco(e, unit, lo_hi):
+def _counts_reco(e, unit, lo_hi, *, energy_bounds=None, all_units=None):
     lo_edge, hi_edge = lo_hi
+    if energy_bounds is not None:
+        return EnergyBands(energy_bounds[0], lo_edge, hi_edge,
+                           energy_bounds[1]).counts(e, unit, all_units)
     uniq, inv = np.unique(unit, return_inverse=True)
     lo = np.bincount(inv, weights=(e < lo_edge).astype(float), minlength=len(uniq))
     hi = np.bincount(inv, weights=(e >= hi_edge).astype(float), minlength=len(uniq))
