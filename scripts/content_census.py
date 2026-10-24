@@ -19,6 +19,8 @@ import pandas as pd
 
 HIT_FIELDS = ('fX', 'fY', 'fZ', 'DetectorId', 'LayerId', 'RowId',
               'ColumnId', 'fTime', 'fELoss')
+PRIMARY_FIELDS = ('PDG', 'E', 'Ekin', 'Mass', 'Px', 'Py', 'Pz', 'Pt',
+                  'P', 'Rapid', 'vX', 'vY', 'vZ', 'B', 'NPrim')
 
 
 def sha256(path):
@@ -191,9 +193,9 @@ def run(args):
             for file in files:
                 before = sha256(file)
                 frame = pd.read_csv(file)
-                full = tuple(c for c in frame if c not in ('Row', 'Instance', 'Id'))
-                if not {'PDG', 'Px', 'Py', 'Pz', 'vX', 'vY', 'vZ'}.issubset(full):
-                    raise ValueError(f'Missing primary schema: {file}')
+                full = PRIMARY_FIELDS
+                if set(frame.columns) != set(full) | {'Row', 'Instance', 'Id'}:
+                    raise ValueError(f'Unexpected primary schema: {file}')
                 momentum = tuple(c for c in full if c not in ('vX', 'vY', 'vZ'))
                 for name, fields in [('smash_full', full), ('smash_without_vertex', momentum)]:
                     collections[name].extend((tag, str(file.relative_to(info['primary_root'])), row, n, h)

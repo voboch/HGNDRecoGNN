@@ -95,6 +95,23 @@ def test_native_predict_preserves_every_cluster_key_and_empty_unsupported_heads(
     assert cl.e_true.tolist() == [1., 0., 2., 1., 0., 2.]
 
 
+def test_predict_applies_selected_device_plan(monkeypatch):
+    from HGNDRecoGNN import device
+    gs = [graph()]
+    model, spec = models.get('student_sage', gs, hidden=16, num_layers=1, dropout=0.)
+    applied = []
+    original = device.to_device
+    def record(model_arg, plan):
+        applied.append(plan)
+        return original(model_arg, plan)
+    monkeypatch.setattr(device, 'to_device', record)
+    plan = device.DeviceMap(torch.device('cpu'))
+    result = predict(model, DataLoader(gs, batch_size=1), plan=plan,
+                     forward_fn=spec.forward_fn, verbose=False)
+    assert applied == [plan]
+    assert len(result['clusters']) == 3
+
+
 def test_test_barrier_requires_all_training_receipts_before_opening_test(tmp_path):
     from argparse import Namespace
     from HGNDRecoGNN.scripts.student_pipeline import test as evaluate_test

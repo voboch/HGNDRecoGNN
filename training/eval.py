@@ -37,6 +37,7 @@ def predict(
     """
     if plan is None:
         plan = device_mod.plan_for(model, None, None)
+    device_mod.to_device(model, plan)
 
     all_hit_rows:  list[int]   = []
     all_hit_inst:  list[int]   = []
