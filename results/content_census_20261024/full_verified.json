@@ -1,0 +1,13 @@
+{
+  "slurm_job_id": "4440582",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed_seconds": 2296,
+  "node": "cn-036",
+  "source_archive_sha256": "6336b549d2b37209a0b281364128e6d81b75192e5a6c7f9318fae9fd17250206",
+  "archive_sha256": "97741a898b40744731aa33260fab8c79dc2ae6e782cd50e2aff60683818ca4c1",
+  "summary_sha256": "de267d7361d9721c26605b7bdbd4a317f78a7c51905f01c5cd3b764ce2bedfd8",
+  "identity_indexes_verified": 4,
+  "raw_input_count": 1187,
+  "no_new_training": true
+}

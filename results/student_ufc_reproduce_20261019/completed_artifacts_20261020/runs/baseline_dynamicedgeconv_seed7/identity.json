@@ -1,0 +1,20 @@
+{
+  "config": {
+    "model_key": "baseline_dynamicedgeconv",
+    "seed": 7,
+    "max_epochs": 100,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "lambda_reg": 0.05,
+    "lambda_rank": 0.2,
+    "rank_margin": 0.2,
+    "grad_clip": 1.0,
+    "patience": 12,
+    "min_delta": 0.0001,
+    "pos_weight": 2.675295146480105
+  },
+  "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+  "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+  "identity_hash": "f97a5e8934b24d7aaa4eadc44dcc4ddc10122d9ed58490359ae2c5bf1ba27f06"
+}

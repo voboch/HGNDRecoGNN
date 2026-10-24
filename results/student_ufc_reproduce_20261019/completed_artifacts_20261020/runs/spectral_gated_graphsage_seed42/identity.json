@@ -1,0 +1,20 @@
+{
+  "config": {
+    "model_key": "spectral_gated_graphsage",
+    "seed": 42,
+    "max_epochs": 100,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "lambda_reg": 0.05,
+    "lambda_rank": 0.2,
+    "rank_margin": 0.2,
+    "grad_clip": 1.0,
+    "patience": 12,
+    "min_delta": 0.0001,
+    "pos_weight": 2.675295146480105
+  },
+  "data_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5",
+  "source_sha256": "cff5033e9a64ceb34cf7d84fe9c794f124d74f94584f6baa4df088e74790e071",
+  "identity_hash": "11eff1af8d30ac0f4763070759f77a47b1de9f4f44049ffa031bf7d22c853ef1"
+}

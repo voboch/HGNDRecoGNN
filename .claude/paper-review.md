@@ -89,26 +89,25 @@ SMASH samples), funding.
 
 ## Number sources (read by `number-auditor`)
 
-- **Canonical chain.** HGND has no single canonical-results builder. The
-  paper `\input`s tables from `../HGNDPaper/tables/*.tex`
-  (`dcm_grouped_numbers.tex`, `dcm_grouped_points.tex`,
-  `dcm_validation_20261016.tex`, `truth_scan.tex`, `archived_ladder.tex`).
-  Their data and provenance are in `../HGNDPaper/data/*.json`
-  (`manuscript_provenance.json`, `dcm_grouped_20261017.json`,
-  `historical_validation_selector_20261017.json`).
-  The absence of one builder is itself a finding under the thesis-kb
-  canonical-table rule.
-- **Typed numbers.** Look them up in `docs/HGND_PROGRESS_GUIDE.md`,
-  `../HGNDPaper/manuscript_corrections_20261017.md`, `reports/`, `results/`
-  and `output/`.
-- **Figures:** `../HGNDPaper/figs/`; label fixes are in
-  `../HGNDPaper/data/figure_label_corrections.json`.
-- **Precision rules:** the HIC `SCIENTIFIC_WRITING_POLICY.md`, by reference.
+- **Canonical chain (v9):** `../HGNDPaper/data/canonical_inputs.sha256.json`
+  pins the inputs; `scripts/build_results.py` in the paper repository generates
+  `data/canonical_results.json` and `tables/canonical_numbers.tex`,
+  `dcm_content.tex`, `dcm_grouped_20261017.tex`, `truth_scan.tex`.
+  The paper's `scripts/plot_results.py` reads only the canonical JSON.
+- **Content evidence:** `results/content_census_20261024/full_summary.json`,
+  `full_verified.json`, `student_lineage_verified.json`, `leakage/summary.json`.
+- **Current state:** `reports/v9_actions_20261024.md` and
+  `../HGNDPaper/manuscript_corrections_v9_20261024.md`. The older guide is
+  preserved under `docs/archive/` and is not the current acceptance ledger.
+- **Precision:** at most two significant figures in uncertainty, matched central
+  precision; training-seed SD differs from bootstrap SD and SE.
+- **Submission:** local selected weights are backed up. Public deposit,
+  production configurations and historical raw-counter provenance remain open.
 
 ## Reviews
 
 - **`reviews_dir`:** `../HGNDPaper/`
-- **Naming:** continue the series `critical_review_v<N>.md`; the next is v9.
+- **Naming:** continue the series `critical_review_v<N>.md`; the next is v10.
 
 ---
 

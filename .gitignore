@@ -182,3 +182,20 @@ tests/cpp/sourceid_probe.cc
 !/results/content_census_20261024/student/
 /results/content_census_20261024/student/*
 !/results/content_census_20261024/student/summary.json
+!/results/content_census_20261024/leakage/
+/results/content_census_20261024/leakage/*
+!/results/content_census_20261024/leakage/summary.json
+!/results/content_census_20261024/dcm_local/
+/results/content_census_20261024/dcm_local/*
+!/results/content_census_20261024/dcm_local/summary.json
+
+# Histories and selected-run receipts are numerical inputs, not disposable logs.
+!/results/student_pipeline_20261020/completed_20261021/
+/results/student_pipeline_20261020/completed_20261021/*
+!/results/student_pipeline_20261020/completed_20261021/student_*/
+!/results/student_pipeline_20261020/completed_20261021/student_*/*.json
+!/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/
+/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/*
+!/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/
+!/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/*/
+!/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/*/*.json

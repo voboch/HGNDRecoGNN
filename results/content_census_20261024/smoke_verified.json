@@ -1,0 +1,13 @@
+{
+  "slurm_job_id": "4440572",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed_seconds": 52,
+  "code_sha256": "d4c594d54fca368d702c1558676a8489321e23be8e09a81d185a26fb7ef22564",
+  "summary_path": "/scratch/vbocharnikov/hgnd/experiments/content_census_20261024_6336b549d2/smoke_extracted/result/summary.json",
+  "summary_sha256": "50302fd81f1abd0f3cbbbbed7755dcb604c4a3afe0a1d94c160351f982af8b66",
+  "archive_path": "/scratch/vbocharnikov/hgnd/experiments/content_census_20261024_6336b549d2/smoke/result.tar.gz",
+  "archive_sha256": "c07f29f2c4f786aaaeb1e7fc6d2d60445475b430e2dddc7a294cde85f174e222",
+  "full_time_estimate_minutes": 50,
+  "estimate_basis": "Linear size extrapolation: 13.98 s for472785237 B; full88927981067 B gives43.9minutes plus16.1minutes margin to60minute limit, not a runtime guarantee."
+}

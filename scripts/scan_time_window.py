@@ -288,7 +288,7 @@ def main() -> int:
     p.add_argument("--twindows", nargs="*", type=float,
                    default=[0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0])
     p.add_argument("--out", required=True, help="output directory")
-    p.add_argument("--system", default=r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV",
+    p.add_argument("--system", default=r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV",
                    help="system and energy for the in-frame label; the two "
                         "samples differ and a figure that names the wrong one "
                         "is not interpretable")
@@ -410,7 +410,7 @@ def _plot_multiplicities(recs, tw, rlocal, meta, path, plt, hep_label,
     ax[2].legend(loc="upper right", fontsize=6.2)
     no_grid(*ax)
     hep_label(ax[0],
-              system=meta.get("system", r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV"),
+              system=meta.get("system", r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV"),
               extra=(f"{meta.get('note', 'MC truth')}\n"
                      rf"$r_{{\rm local}}$ = {rlocal} cells"),
               loc="lower left")
@@ -472,7 +472,7 @@ def _plot_bias(recs, tw, rlocal, meta, path, plt, hep_label, no_grid, FULL):
     no_grid(a1, a2, a3)
     # panel 1 is full: the two curves span the top and the legend the bottom
     hep_label(a2,
-              system=meta.get("system", r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV"),
+              system=meta.get("system", r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV"),
               extra=meta.get("note", "MC truth"), loc="upper left")
     fig.tight_layout()
     fig.savefig(path, dpi=200)

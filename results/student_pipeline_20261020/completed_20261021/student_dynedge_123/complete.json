@@ -1,0 +1,44 @@
+{
+  "model": "student_dynedge",
+  "seed": 123,
+  "epochs": 30,
+  "selected_epoch": 0,
+  "config": {
+    "model": "student_dynedge",
+    "seed": 123,
+    "architecture": {
+      "hidden": 128,
+      "num_layers": 4,
+      "dropout": 0.1,
+      "k": 8
+    },
+    "epochs": 30,
+    "batch_size": 256,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "weight_decay": 1e-05,
+    "scheduler": "multistep",
+    "milestones": [
+      10,
+      15,
+      25
+    ],
+    "gamma": 0.1,
+    "validation_aggregation": "population",
+    "loss": "native hetero_cluster_loss: BCEWithLogits + 0.5 signal SmoothL1",
+    "selector": "minimum population validation composite loss",
+    "threshold": "first of 401 validation cuts [0.001,0.999] reaching count purity 0.70",
+    "previously_opened_test": true,
+    "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+    "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+    "prepared_sha256": "0e3269fc4b422a137dc0fb3d1f2a5961417019b6864a8d14dab5ca772f91640b",
+    "parameters": 358275
+  },
+  "validation_threshold": 0.397705,
+  "validation_sha256": "822059b796422b617f8d6a3ee6efbd1124d8b6c23afd11a6139d00eb33e473b3",
+  "files": {
+    "checkpoints/model.pt": "5d6fc1feae3ea22326ac029a64a3d4b1b661e305a6703d9f3823f5f07915ec84",
+    "checkpoints/resume.pt": "64315383587d56fc324e1e13fcc17a4fb8094f6146a4f3bf09c9de9ea4445898",
+    "history.json": "4e4807442001c7a24543497bf61d254079c2a645b5f72bf16f1be16386fc5103"
+  }
+}

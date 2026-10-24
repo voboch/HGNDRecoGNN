@@ -1,0 +1,136 @@
+{
+  "scored_on": "native HGND validation source run 988974",
+  "n_clusters": 101107,
+  "n_signal": 16877,
+  "roc_auc": 0.9183593818889388,
+  "average_precision": 0.7354291354590651,
+  "working_threshold": 0.41018,
+  "working_point": {
+    "threshold": 0.41018,
+    "n_selected": 15399.0,
+    "n_selected_signal": 10782.0,
+    "purity_count": 0.7001753360607832,
+    "efficiency_count": 0.6388576168750371,
+    "purity_energy": 0.7256413321367068,
+    "efficiency_energy": 0.7077340242374472
+  },
+  "energy_all_signal": {
+    "n": 16877,
+    "mae_GeV": 0.2710306628476375,
+    "rmse_GeV": 0.42689403602368076,
+    "bias_GeV": -0.030771437330240885
+  },
+  "energy_selected_signal": [
+    {
+      "e_lo": 0.3,
+      "e_hi": 0.5,
+      "e_mid": 0.4,
+      "n": 45,
+      "median_e_reco": 0.4533270597457886,
+      "linearity": 0.04676181039642568,
+      "resolution": 0.08523171508408206
+    },
+    {
+      "e_lo": 0.5,
+      "e_hi": 0.7,
+      "e_mid": 0.6,
+      "n": 235,
+      "median_e_reco": 0.6435059309005737,
+      "linearity": 0.05982655255024307,
+      "resolution": 0.1362071310909096
+    },
+    {
+      "e_lo": 0.7,
+      "e_hi": 1.0,
+      "e_mid": 0.85,
+      "n": 721,
+      "median_e_reco": 0.8995549082756042,
+      "linearity": 0.03471415002256432,
+      "resolution": 0.11714688442202832
+    },
+    {
+      "e_lo": 1.0,
+      "e_hi": 1.4,
+      "e_mid": 1.2,
+      "n": 1418,
+      "median_e_reco": 1.257708728313446,
+      "linearity": 0.03771359538162192,
+      "resolution": 0.149109988788891
+    },
+    {
+      "e_lo": 1.4,
+      "e_hi": 1.8,
+      "e_mid": 1.6,
+      "n": 1670,
+      "median_e_reco": 1.6668865084648132,
+      "linearity": 0.03993588307712209,
+      "resolution": 0.13365334353797753
+    },
+    {
+      "e_lo": 1.8,
+      "e_hi": 2.2,
+      "e_mid": 2.0,
+      "n": 1606,
+      "median_e_reco": 2.0402806997299194,
+      "linearity": 0.023380037308253828,
+      "resolution": 0.13505241514778485
+    },
+    {
+      "e_lo": 2.2,
+      "e_hi": 2.6,
+      "e_mid": 2.4000000000000004,
+      "n": 1450,
+      "median_e_reco": 2.4336029291152954,
+      "linearity": 0.015085485530066237,
+      "resolution": 0.12168829483386484
+    },
+    {
+      "e_lo": 2.6,
+      "e_hi": 3.0,
+      "e_mid": 2.8,
+      "n": 1211,
+      "median_e_reco": 2.7848563194274902,
+      "linearity": 0.0026510649725654542,
+      "resolution": 0.11676956687050541
+    },
+    {
+      "e_lo": 3.0,
+      "e_hi": 3.5,
+      "e_mid": 3.25,
+      "n": 1050,
+      "median_e_reco": 3.1455999612808228,
+      "linearity": -0.018317588247647426,
+      "resolution": 0.11836875090053203
+    },
+    {
+      "e_lo": 3.5,
+      "e_hi": 4.0,
+      "e_mid": 3.75,
+      "n": 682,
+      "median_e_reco": 3.5372323989868164,
+      "linearity": -0.052568419717235124,
+      "resolution": 0.11455163891597216
+    },
+    {
+      "e_lo": 4.0,
+      "e_hi": 5.0,
+      "e_mid": 4.5,
+      "n": 537,
+      "median_e_reco": 3.9420478343963623,
+      "linearity": -0.10816361875844824,
+      "resolution": 0.10873558962208499
+    },
+    {
+      "e_lo": 5.0,
+      "e_hi": 6.5,
+      "e_mid": 5.75,
+      "n": 139,
+      "median_e_reco": 4.306419849395752,
+      "linearity": -0.1945651647780714,
+      "resolution": 0.08860400239682399
+    }
+  ],
+  "energy_population": "native MC-positive clusters with e_true>0; not neutron-track resolution",
+  "previously_opened_test": false,
+  "predictions_sha256": "017074e6d03f5bcb806630e07a20ebce5df552d571209dfd465fcb4e55053f6b"
+}

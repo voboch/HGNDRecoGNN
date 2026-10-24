@@ -14,6 +14,22 @@ Mac/MPS) and the SLURM jobs (for production runs on the CUDA cluster).
 
 ---
 
+## Current evidence and reproducible tables
+
+The current decision record is `reports/v9_actions_20261024.md`.
+The student event split contains repeated candidate inputs; its approximately
+0.98 AUC is not a collision-independent benchmark. The full DCM/SMASH content
+census and checkpoint-backup checksums are in `results/content_census_20261024/`.
+No reconstructed symmetry-potential sensitivity is established.
+
+Use `make test PYTHON=<environment-python>` for the test suite and
+`make reproduce-smash` for compact canonical transfer tables with checked
+three-seed arithmetic. This table export does not re-score raw predictions.
+`make reproduce-paper PYTHON=<environment-python>` builds the sibling manuscript
+from pinned inputs; NumPy, Matplotlib and TeX are required for that target.
+Selected weights are backed up locally with hashes; a public immutable deposit
+and production run cards remain submission gates.
+
 ## Repository layout
 
 ```

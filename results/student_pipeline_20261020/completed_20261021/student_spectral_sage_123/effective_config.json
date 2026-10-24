@@ -1,0 +1,33 @@
+{
+  "model": "student_spectral_sage",
+  "seed": 123,
+  "architecture": {
+    "hidden": 128,
+    "num_layers": 4,
+    "dropout": 0.1,
+    "pe_dim": 4,
+    "pe_hidden": 64,
+    "gate_init_std": 0.001
+  },
+  "epochs": 30,
+  "batch_size": 256,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "scheduler": "multistep",
+  "milestones": [
+    10,
+    15,
+    25
+  ],
+  "gamma": 0.1,
+  "validation_aggregation": "population",
+  "loss": "native hetero_cluster_loss: BCEWithLogits + 0.5 signal SmoothL1",
+  "selector": "minimum population validation composite loss",
+  "threshold": "first of 401 validation cuts [0.001,0.999] reaching count purity 0.70",
+  "previously_opened_test": true,
+  "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+  "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+  "prepared_sha256": "0e3269fc4b422a137dc0fb3d1f2a5961417019b6864a8d14dab5ca772f91640b",
+  "parameters": 299843
+}

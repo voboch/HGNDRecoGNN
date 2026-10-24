@@ -1,0 +1,7 @@
+{
+  "archive_sha256": "6336b549d2b37209a0b281364128e6d81b75192e5a6c7f9318fae9fd17250206",
+  "source": "/home/vbocharnikov/hgnd_experiments/content_census_20261024_6336b549d2",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/content_census_20261024_6336b549d2",
+  "git_commit": "07a0328",
+  "preflight": "GO smoke; full gated"
+}

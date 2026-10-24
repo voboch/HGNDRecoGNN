@@ -139,7 +139,7 @@ def main():
     # it would collide with the per-panel annotations.
     fig.text(0.005, 0.995,
              "BM@N HGND simulation      "
-             r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV      "
+             r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV      "
              r"$U_{\rm sym}$ = 0, 18, 90 MeV",
              ha="left", va="top", fontsize=6.8)
     save(fig, out, "fig_hardness_window_surface")

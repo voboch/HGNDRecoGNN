@@ -68,7 +68,7 @@ arXiv:1111.2062](https://arxiv.org/pdf/1111.2062) (ratio/pull panels).
 
 Every figure carries, inside the frame:
 
-- **System and energy**: `Xe+CsI, √s_NN = 2.87 GeV` (or `E_kin = 3.8A GeV` as
+- **System and energy**: `Xe+Cs, E_kin/A = 2.87 GeV` (or `E_kin = 3.8A GeV` as
   appropriate) — a plot that does not say what collided is not interpretable.
 - **Status label**: `BM@N HGND simulation`, `work in progress`, or `preliminary`.
   Simulation figures must say they are simulation.

@@ -1,5 +1,17 @@
 # Откуда разница ROC-AUC
 
+> Уточнение v9, 24.10.2026: исходные student≈0.98 не являются качеством на
+> новых событиях. В 197027 событиях79324 различных retained-hit содержимых;
+> multiset точно совпадает с объединением трёх98897x каталогов. 23880/36343
+> test-кандидатов имеют те же ordered features/edges, что training. На seen
+> AUC0.994–0.997, на unseen0.934–0.947 (18 моделей/seed). Это post-hoc strata,
+> не контролируемое причинное разложение AUC gap. Exact cross-directory
+> retained-hit duplicates отсутствуют; generator collision lineage неизвестна.
+> Источники: results/content_census_20261024/{full_verified,student_lineage_verified}.json
+> и leakage/summary.json. Предыдущая строка о неизвестной связи pickle с98897x
+> и интерпретация≈0.98 как generalisation superseded этим измерением.
+
+
 23 октября 2026. Разрыв student≈0.98 → native≈0.91 возникает уже на DCM.
 Его нельзя приписать переносу на SMASH. Веса студента отсутствовали; обучение
 с нуля на восстановленном student event split дало≈0.98 у четырёх моделей

@@ -17,6 +17,7 @@ set -euo pipefail
 : "${NATIVE_ENV:?Dedicated environment required}"
 : "${NATIVE_PREPARED:?Approved frozen split required}"
 : "${NATIVE_FROZEN:?Approved cache inventory required}"
+: "${NATIVE_CONTENT_CENSUS:?Verified exact-content census required}"
 export PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
 export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4
 export MPLCONFIGDIR="${SLURM_TMPDIR:-/tmp}/native-mpl-${SLURM_JOB_ID}"
@@ -26,7 +27,7 @@ export PYTHONHASHSEED=${SEEDS[$((TASK / 4))]}
 cd "$NATIVE_SOURCE"
 COMMON=(--source-manifest "$NATIVE_SOURCE/source_manifest.json"
         --campaign "$NATIVE_CAMPAIGN" --prepared "$NATIVE_PREPARED"
-        --frozen-data "$NATIVE_FROZEN")
+        --frozen-data "$NATIVE_FROZEN" --content-census "$NATIVE_CONTENT_CENSUS")
 case "${NATIVE_PHASE:-train}" in
   prepare_smoke)
     "$NATIVE_ENV/bin/python" -u HGNDRecoGNN/scripts/student_pipeline.py prepare "${COMMON[@]}"

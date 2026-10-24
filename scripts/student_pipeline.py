@@ -17,6 +17,7 @@ from torch_geometric.loader import DataLoader
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from HGNDRecoGNN import device, models  # noqa: E402
 from HGNDRecoGNN.data.student_pipeline import NativePackDataset, pack_native, population  # noqa: E402
+from HGNDRecoGNN.data.content_guard import validate_census  # noqa: E402
 from HGNDRecoGNN.models.student_pipeline import PIPELINE_MODELS  # noqa: E402
 from HGNDRecoGNN.scripts.dcm_development import load_selected, validate_population, validate_prepared  # noqa: E402
 from HGNDRecoGNN.scripts.dcm_grouped import digest, write_json  # noqa: E402
@@ -82,6 +83,7 @@ def frozen_inputs(args):
     expected = {"train": ["988975"], "validation": ["988974"], "test": ["988976"]}
     if manifest["partition_source_runs"] != expected:
         raise ValueError("Not the approved source-run split")
+    validate_census(getattr(args, 'content_census', None), manifest['raw_root'], args.prepared, expected)
     if sorted(np.concatenate([bundle[k] for k in expected]).tolist()) != list(range(283398)):
         raise ValueError("Split does not cover the approved graph population exactly")
     frozen = json.loads(args.frozen_data.read_text())
@@ -367,6 +369,8 @@ def main():
     p.add_argument("--prepared", type=Path, required=True)
     p.add_argument("--frozen-data", type=Path, required=True)
     p.add_argument("--campaign", type=Path, required=True)
+    p.add_argument("--content-census", type=Path, required=True,
+                   help="Verified full census summary with its exact retained-hit index")
     p.add_argument("--task", type=int, choices=range(len(TASKS)), default=0)
     args = p.parse_args()
     torch.set_num_threads(int(os.getenv("SLURM_CPUS_PER_TASK", "4")))

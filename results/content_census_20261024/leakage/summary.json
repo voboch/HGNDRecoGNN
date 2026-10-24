@@ -1,0 +1,335 @@
+{
+  "definition": "Stratify saved student test scores by identical training candidate inputs.\n\nNo model fitting, inference, cut choice or new holdout is performed. Positional\neigenvectors are excluded because eigensolver sign conventions are arbitrary;\nthe signature covers the ordered six input features and exact directed edges.\n",
+  "inputs": {
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_dynamicedgeconv_seed21.csv": "803e409518bafea8b32df821f0bc4abe9e472800089f25f5a4b9363a4a91338c",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_dynamicedgeconv_seed42.csv": "bf8bec60f46bf43ba687b98de68b6fd3502e6957cbd5c8a94cfe6575924a336f",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_dynamicedgeconv_seed7.csv": "19aec77bc4c366345191486139ce8398059743eea634220d82578485eab97027",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_gatv2_seed21.csv": "dc469d16ab87a70b9fcceacff682c72307fe9e8b35a6a93273c11771564eb2ce",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_gatv2_seed42.csv": "43b16d8cb332c59fa11332e48b19a41e65ecbfbebb6134aa99fdbb656d13062b",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_gatv2_seed7.csv": "4d1731026ead153106da17f632a4878c4e2dfddb206bca327a29b89403425527",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_graphsage_seed21.csv": "37cc82ca61b6bcbd54e02d2c56954e0fceb73ae9e9cfbe7987cb77516004ba82",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_graphsage_seed42.csv": "fb03471ecef5f09f72c08471811ac3f6b81c57015a599b15b4053026746d0891",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/baseline_graphsage_seed7.csv": "ca1732ce758edd4bc4b3e46231e3b5d11fa082c7ae61662f6cceb79d74a63771",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_dynamicedgeconv_seed21.csv": "13ef25a172c3d179f5b9ad8b0b802f92c503b0a8def6652b0471604fcb9888f8",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_dynamicedgeconv_seed42.csv": "cc91ecc5f3e70188debc1f58e4bd5803afdbc210a3ae2c5e26c9574caec017f9",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_dynamicedgeconv_seed7.csv": "52e631199a969e6caa9805b4f11e059323529c53a25677b60417d4a70177ef61",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_gatv2_seed21.csv": "dbc147019509eec9441288fb6d7b12ab26f7cee15a9c9e7011bc978199bb77f8",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_gatv2_seed42.csv": "c1954d3f060dff3b1c8a2c9bc176b8c1e2b3d8c1146d84656645599f16d6f6a4",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_gatv2_seed7.csv": "2b23e214ec3a3aefb4465a1a8b5e338b6d6fc09b89dfe8030f6f1e2b68e28e91",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_graphsage_seed21.csv": "380d0305d8c80821d82abb208f279c251901057c74e60bb8d447e262d05f42fa",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_graphsage_seed42.csv": "bab970e30f9b969ceceb75d77de6f5bde4faff166194db7b9b8a815ae7fa5e1c",
+    "results/student_ufc_reproduce_20261019/completed_artifacts_20261020/test_evaluation/spectral_gated_graphsage_seed7.csv": "6fb6a30114b1a80b85bd026eb726c83ef8cf9208f6f8263399f1f36c30d78859"
+  },
+  "metrics": {
+    "baseline_dynamicedgeconv_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9836645454142849
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9959750592221044
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9469303597737421
+      }
+    },
+    "baseline_dynamicedgeconv_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9828257190410654
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.995043233841659
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9473317051061421
+      }
+    },
+    "baseline_dynamicedgeconv_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9836576335411993
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.99604557982133
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9468807619331222
+      }
+    },
+    "baseline_gatv2_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9801048618287651
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9946442430395492
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9392993660010776
+      }
+    },
+    "baseline_gatv2_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9805316053545923
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9945137748499286
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9418638960413506
+      }
+    },
+    "baseline_gatv2_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9794439419744022
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9940615213560287
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9391035513629461
+      }
+    },
+    "baseline_graphsage_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9820101429142469
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.996268143203624
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9388487018364265
+      }
+    },
+    "baseline_graphsage_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9820338279057823
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9964739346922609
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9368571565121406
+      }
+    },
+    "baseline_graphsage_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9822427928468698
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9960834358763495
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9408401650994274
+      }
+    },
+    "spectral_gated_dynamicedgeconv_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9837870535289082
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9962204740885907
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.945281305428295
+      }
+    },
+    "spectral_gated_dynamicedgeconv_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9825790136258777
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9953135061037498
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9456258643515144
+      }
+    },
+    "spectral_gated_dynamicedgeconv_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9837208228846713
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9960681308606413
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9467238935808249
+      }
+    },
+    "spectral_gated_gatv2_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9795874806455105
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9948561450468709
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9365114323186752
+      }
+    },
+    "spectral_gated_gatv2_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9798288925120119
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9946996044272002
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9378953630647276
+      }
+    },
+    "spectral_gated_gatv2_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9806730545678073
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9952431401452719
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9385365242962458
+      }
+    },
+    "spectral_gated_graphsage_seed21": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9812712868550209
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9965586203839694
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.934390328637721
+      }
+    },
+    "spectral_gated_graphsage_seed42": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9814292314860491
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9961235761961267
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9369191291945298
+      }
+    },
+    "spectral_gated_graphsage_seed7": {
+      "all": {
+        "n": 36343,
+        "positive": 9857,
+        "roc_auc": 0.9806712772837332
+      },
+      "seen_training_candidate": {
+        "n": 23880,
+        "positive": 6518,
+        "roc_auc": 0.9961996550256529
+      },
+      "unseen_training_candidate": {
+        "n": 12463,
+        "positive": 3339,
+        "roc_auc": 0.9338513501182143
+      }
+    }
+  },
+  "n_test_candidates": 36343,
+  "n_identical_training_candidate": 23880,
+  "membership_sha256": "d741c250aa3d61d25d2d5d262ae205ee5fc2cc6d7b131995eac5dd7d7f32b8ce",
+  "prepared_manifest_sha256": "e380c86cc4c6e95bbdb8eaa2912f2608244565d09ceebf9853381bbd39d356c5"
+}

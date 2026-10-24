@@ -249,7 +249,7 @@ def _plot_absolute(table, out_dir, thr):
     # every panel is small and fully occupied; the label goes above the row
     fig.text(0.005, 0.995,
              "BM@N HGND simulation      "
-             r"Xe+CsI, $\sqrt{s_{NN}}$ = 2.87 GeV      "
+             r"Xe+Cs, $E_{\mathrm{kin}}/A$ = 2.87 GeV      "
              rf"held-out units, $q>{thr:.2f}$",
              ha="left", va="top", fontsize=6.4)
     fig.tight_layout()

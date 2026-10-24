@@ -1,0 +1,47 @@
+{
+  "model": "student_spectral_dynedge",
+  "seed": 123,
+  "epochs": 30,
+  "selected_epoch": 0,
+  "config": {
+    "model": "student_spectral_dynedge",
+    "seed": 123,
+    "architecture": {
+      "hidden": 128,
+      "num_layers": 4,
+      "dropout": 0.1,
+      "pe_dim": 4,
+      "pe_hidden": 64,
+      "gate_init_std": 0.001,
+      "k": 8
+    },
+    "epochs": 30,
+    "batch_size": 256,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "weight_decay": 1e-05,
+    "scheduler": "multistep",
+    "milestones": [
+      10,
+      15,
+      25
+    ],
+    "gamma": 0.1,
+    "validation_aggregation": "population",
+    "loss": "native hetero_cluster_loss: BCEWithLogits + 0.5 signal SmoothL1",
+    "selector": "minimum population validation composite loss",
+    "threshold": "first of 401 validation cuts [0.001,0.999] reaching count purity 0.70",
+    "previously_opened_test": true,
+    "source_sha256": "56bcc48206186e32e182a801410d42865b7f25df656d85166e7a64f67a67fe96",
+    "split_sha256": "1ab9285e3315dc0f043b7d5116255f1459978477dc9a9b4d95e046649163278b",
+    "prepared_sha256": "0e3269fc4b422a137dc0fb3d1f2a5961417019b6864a8d14dab5ca772f91640b",
+    "parameters": 366915
+  },
+  "validation_threshold": 0.35529,
+  "validation_sha256": "b6cfc370427de6bf45fbc58c7078e8344ae82bc3a9a0d5655ece3ea3da10e2ec",
+  "files": {
+    "checkpoints/model.pt": "24575884d0a18b0415e2a177ebeda52143176f8ae49036b7153bc01eeadcb741",
+    "checkpoints/resume.pt": "3e14b6e41ad816c2d332def3232227fbf3a2e9919b1755bb96e58eef47f1edae",
+    "history.json": "f14b0d2138d6ee5b6912d6ee9b7031fd7494dad5000197fefead784df6c67ffc"
+  }
+}
