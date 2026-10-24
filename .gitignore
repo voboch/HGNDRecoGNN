@@ -199,3 +199,8 @@ tests/cpp/sourceid_probe.cc
 !/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/
 !/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/*/
 !/results/student_ufc_reproduce_20261019/completed_artifacts_20261020/runs/*/*.json
+
+# The standalone source-ID regression compiles this production header.
+!/ncx_refactor/
+/ncx_refactor/*
+!/ncx_refactor/BmnTrackExport.h

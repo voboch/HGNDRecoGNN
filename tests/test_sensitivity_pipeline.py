@@ -51,18 +51,23 @@ REQUIRED_COLUMNS = (
 
 
 def _skip_if_missing_prereqs() -> None:
+    def missing(message):
+        if 'pytest' in sys.modules:
+            import pytest
+            pytest.skip(message)
+        print(f'SKIP: {message}')
+        raise SystemExit(0)
+
     for ds in DATASETS:
         pkl = PRED_ROOT / f'{ds}_hpc' / 'pred_clusters_hpc_pooled.pkl'
         if not pkl.exists():
-            print(f'SKIP: missing prediction pickle {pkl}. Rebuild with '
-                  f'scripts/run_pooled_scaler_sensitivity.py.')
-            raise SystemExit(0)
+            missing(f'Missing optional integration prediction {pkl}; '
+                    'requires supplied smoke data, not part of a clean clone.')
     for ds, suffix in (('defaultSpot', ''), ('zeroSpot', '_smoke'),
                        ('bigSpot', '_smoke')):
         cache = CACHE_ROOT / f'ndet_dataset_smash_{ds}{suffix}'
         if not (cache / 'processed').exists():
-            print(f'SKIP: missing smoke cache {cache}')
-            raise SystemExit(0)
+            missing(f'Missing optional integration smoke cache {cache}')
 
 
 def _run_sensitivity(out_dir: Path, extra_args: list[str] | None = None) -> pd.DataFrame:
