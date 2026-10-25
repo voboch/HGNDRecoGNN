@@ -1,7 +1,7 @@
 {
   "stage": "truth-counter provenance",
   "date": "2026-10-25",
-  "state": "local_subset_verified_full_chain_requires_B_source",
+  "state": "B_free_counter_certification_active_B_conditioned_checks_deferred",
   "subset": {
     "tag": "zeroSpot",
     "member": "10943245/0001_prim.csv",
@@ -18,7 +18,7 @@
     "available_charisma_copy": "B=-1 for every event",
     "old_mount": "/Users/vovvy/ncx: Device not configured",
     "documented_ssh": "boch@sshgate.jinr.ru: Permission denied (keyboard-interactive)",
-    "human_question_pending": true
+    "human_question_pending": false
   },
   "merge_changes": [
     "full run/member keys preserved",
@@ -38,5 +38,23 @@
     "focused_provenance_tests_passed": 9,
     "three_sample_synthetic_cli_join": "passed",
     "ruff": "passed"
+  },
+  "scope_update": {
+    "human_instruction_date": "2026-10-25",
+    "instruction": "Use the available data without B for now",
+    "missing_B_policy": "B=-1 is a missing-value sentinel, never a physical bin or centrality estimate",
+    "current_scope": [
+      "raw-to-counter certification",
+      "unconditioned neutron/proton spectra and fixed-window ratios",
+      "generation-file uncertainty with explicit sampling limitations"
+    ],
+    "deferred": [
+      "R_n, R_p and double ratio versus b",
+      "b-distribution matching across potentials",
+      "impact-parameter reweighting",
+      "truth-centrality classes",
+      "within-file b drift checks"
+    ],
+    "historical_B_reweighted_result_provenance": "remains unverified; no replacement or relabelling by B-free results"
   }
 }
