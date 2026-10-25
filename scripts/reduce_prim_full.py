@@ -60,8 +60,8 @@ COUNTERS = [
 ]
 
 
-def reduce_member(fobj, file_idx):
-    """Per-event counters and one 3-D histogram for a single job CSV."""
+def reduce_member(fobj, file_idx, *, histograms=True):
+    """Replay counters; optional legacy histograms require physical B metadata."""
     d = pd.read_csv(fobj, usecols=USECOLS, engine="c")
     row = d.Row.to_numpy()
     # events are contiguous and ascending within a job file
@@ -118,6 +118,11 @@ def reduce_member(fobj, file_idx):
     }
     for name in COUNTERS:
         out[name] = np.add.reduceat(masks[name].astype(np.int32), start).astype(np.int16)
+
+    # The B-free provenance replay must not bin the missing-B sentinel.
+    # Preserve the legacy default for callers consuming physical B histograms.
+    if not histograms:
+        return pd.DataFrame(out), None, {}, None
 
     # b is an event property; broadcast it to the event's rows
     b_rows = np.repeat(d.B.to_numpy()[start], cnt)

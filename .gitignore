@@ -212,3 +212,9 @@ tests/cpp/sourceid_probe.cc
 !/results/truth_provenance_20261025/zeroSpot_first_member/
 /results/truth_provenance_20261025/zeroSpot_first_member/*
 !/results/truth_provenance_20261025/zeroSpot_first_member/proof.json
+
+# B-free primary replay: compact source/input/launch verification receipts only.
+!/results/bfree_truth_20261025/
+/results/bfree_truth_20261025/*
+!/results/bfree_truth_20261025/*.json
+!/results/bfree_truth_20261025/*.md

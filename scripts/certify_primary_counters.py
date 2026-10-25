@@ -61,7 +61,7 @@ def certify(args):
         raise ValueError("A raw copy override requires exactly one declared member")
     # Leave any existing result untouched, including failed/subset certificates.
     args.output.mkdir(parents=True, exist_ok=False)
-    frames, identities, verified_files = [], [], []
+    frames, identities, verified_files, spectra = [], [], [], []
     output_progress = {"done": {}}
     for i, member in enumerate(selected):
         item = raw[member]
@@ -75,7 +75,7 @@ def certify(args):
         identity = provenance.particle_identities(primary)
         if args.role == "impact" and (primary.B < 0).any():
             raise ValueError("Impact-parameter source still contains B < 0")
-        fresh, _, _, _ = reducer.reduce_member(path, i)
+        fresh, _, _, _ = reducer.reduce_member(path, i, histograms=False)
         fresh = fresh.set_index("Row").sort_index()
         old = reference.xs(member, level="member").sort_index()
         if not fresh.index.equals(old.index) or not fresh.index.equals(identity.index):
@@ -87,6 +87,20 @@ def certify(args):
                 raise ValueError(f"Counter differs from raw replay: {member}/{name}")
         if not np.array_equal(fresh.nprim, identity.nprim):
             raise ValueError("Independent primary-row multiplicity mismatch")
+        if getattr(args, "save_spectra", False):
+            acc = geometry.in_acceptance(
+                *(primary[c].to_numpy() for c in ("Px", "Py", "Pz", "vX", "vY", "vZ"))
+            )
+            counts = []
+            for pdg, column in ((2112, "acc_n"), (2212, "acc_p")):
+                energy = primary.loc[acc & (primary.PDG == pdg), "Ekin"].to_numpy()
+                if not np.isfinite(energy).all() or (energy < 0).any():
+                    raise ValueError("Invalid selected kinetic energy")
+                hist = np.histogram(energy, bins=reducer.E_EDGES)[0]
+                if int(hist.sum()) != int(fresh[column].sum()):
+                    raise ValueError("Spectrum overflow or selected-count mismatch")
+                counts.append(hist)
+            spectra.append(counts)
         if sha256(path) != before:
             raise ValueError("Raw input changed during certification")
         output_progress["done"][member] = len(fresh)
@@ -119,6 +133,16 @@ def certify(args):
     (args.output / "progress.json").write_text(
         json.dumps(output_progress, indent=2) + "\n"
     )
+    artifacts = ["events.pkl", "progress.json", "identity.csv.gz"]
+    if getattr(args, "save_spectra", False):
+        np.savez_compressed(
+            args.output / "spectra.npz",
+            counts=np.asarray(spectra, dtype=np.int64),
+            members=np.asarray(selected),
+            e_edges=reducer.E_EDGES,
+            events=np.asarray(list(output_progress["done"].values()), dtype=np.int64),
+        )
+        artifacts.append("spectra.npz")
     proof = {
         "schema": "primary-counter-proof-v1",
         "status": "verified",
@@ -144,15 +168,14 @@ def certify(args):
                 geometry.Y_HI,
             ],
             "selection_policy": "Unchanged inherited reducer conventions; no fitted selection",
+            "B_policy": "Metadata only; no B histogram or weighting",
+            "spectra_E_edges_GeV": reducer.E_EDGES.tolist() if spectra else None,
         },
         "input_manifest_sha256": manifest_hash,
         "reference_events_sha256": events_hash,
         "reference_progress_sha256": progress_hash,
         "raw_files": verified_files,
-        "artifacts_sha256": {
-            n: sha256(args.output / n)
-            for n in ("events.pkl", "progress.json", "identity.csv.gz")
-        },
+        "artifacts_sha256": {n: sha256(args.output / n) for n in artifacts},
         "environment": {
             "python": platform.python_version(),
             "numpy": np.__version__,
@@ -182,5 +205,6 @@ if __name__ == "__main__":
     group.add_argument("--all", action="store_true")
     group.add_argument("--member", action="append")
     p.add_argument("--raw-copy", type=Path)
+    p.add_argument("--save-spectra", action="store_true")
     p.add_argument("--output", type=Path, required=True)
     certify(p.parse_args())

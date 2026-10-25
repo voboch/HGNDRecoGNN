@@ -84,7 +84,7 @@ def particle_identities(frame):
     ).set_index("Row")
 
 
-def load_certified(directory, role):
+def load_certified(directory, role, *, smoke_members=None):
     directory = Path(directory)
     proof_path = directory / "proof.json"
     proof = json.loads(proof_path.read_text())
@@ -92,22 +92,24 @@ def load_certified(directory, role):
         proof.get("schema") != "primary-counter-proof-v1"
         or proof.get("role") != role
         or proof.get("status") != "verified"
-        or proof.get("coverage") != "full"
+        or proof.get("coverage") != ("subset" if smoke_members is not None else "full")
         or tuple(proof.get("particle_fields", [])) != PARTICLE_FIELDS
     ):
         raise ValueError(
             "A complete primary-counter certificate with the declared role is required"
         )
     if (
-        proof["files_checked"] != proof["files_expected"]
-        or proof["counter_mismatches"] != 0
-    ):
+        smoke_members is None and proof["files_checked"] != proof["files_expected"]
+    ) or proof["counter_mismatches"] != 0:
         raise ValueError("Incomplete or mismatched primary-counter certificate")
-    if set(proof["artifacts_sha256"]) != {
+    required_artifacts = {
         "events.pkl",
         "progress.json",
         "identity.csv.gz",
-    }:
+    }
+    if not required_artifacts.issubset(proof["artifacts_sha256"]) or (
+        set(proof["artifacts_sha256"]) - required_artifacts - {"spectra.npz"}
+    ):
         raise ValueError("Certificate does not pin every consumed artifact")
     for name, expected in proof["artifacts_sha256"].items():
         if Path(name).name != name or sha256(directory / name) != expected:
@@ -116,6 +118,11 @@ def load_certified(directory, role):
         pd.read_pickle(directory / "events.pkl"),
         json.loads((directory / "progress.json").read_text()),
     )
+    if smoke_members is not None and (
+        set(events.index.get_level_values("member")) != set(smoke_members)
+        or proof["files_checked"] != len(smoke_members)
+    ):
+        raise ValueError("Smoke membership differs from the declared subset")
     identities = (
         pd.read_csv(directory / "identity.csv.gz", dtype={"member": str})
         .set_index(KEYS)
