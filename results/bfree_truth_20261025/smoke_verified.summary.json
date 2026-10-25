@@ -1,0 +1,125 @@
+{
+  "schema": "bfree-truth-summary-v1",
+  "status": "verified",
+  "coverage": "smoke_subset",
+  "samples": {
+    "zeroSpot": {
+      "files": 3,
+      "events": 12232,
+      "counts": {
+        "acc_n": 9115,
+        "acc_p": 7894,
+        "acc_n_hi": 2159,
+        "acc_n_lo": 3350,
+        "acc_p_hi": 1894,
+        "acc_p_lo": 2901
+      },
+      "observables": {
+        "R_n": 0.6444776119402985,
+        "R_p": 0.6528783178214409,
+        "D": 0.9871328153319989,
+        "n_over_p": 1.1546744362807195
+      },
+      "bootstrap_sd": {
+        "R_n": 0.009457947161072172,
+        "R_p": 0.007894481732870023,
+        "D": 0.01720282315112341,
+        "n_over_p": 0.006152486696920361
+      },
+      "proof_sha256": "c4e3927fdd0af6534a88e79fa7a496606c9131148cf2f605f15b935c6f80d7e5",
+      "seconds": 16.71727694803849,
+      "bytes": 463624749
+    },
+    "defaultSpot": {
+      "files": 3,
+      "events": 12443,
+      "counts": {
+        "acc_n": 9287,
+        "acc_p": 8053,
+        "acc_n_hi": 2199,
+        "acc_n_lo": 3516,
+        "acc_p_hi": 1871,
+        "acc_p_lo": 2939
+      },
+      "observables": {
+        "R_n": 0.6254266211604096,
+        "R_p": 0.6366110922082341,
+        "D": 0.9824312344149887,
+        "n_over_p": 1.153234819321992
+      },
+      "bootstrap_sd": {
+        "R_n": 0.020478115971006794,
+        "R_p": 0.007718031823146424,
+        "D": 0.03866865435799247,
+        "n_over_p": 0.012258618882881808
+      },
+      "proof_sha256": "ea58797691cf1f02934b78320690c1e6b7d50f04882c6676ff7a7f0f754bb738",
+      "seconds": 14.58252286305651,
+      "bytes": 471674100
+    },
+    "bigSpot": {
+      "files": 3,
+      "events": 12389,
+      "counts": {
+        "acc_n": 9631,
+        "acc_p": 8137,
+        "acc_n_hi": 2301,
+        "acc_n_lo": 3438,
+        "acc_p_hi": 1891,
+        "acc_p_lo": 2998
+      },
+      "observables": {
+        "R_n": 0.6692844677137871,
+        "R_p": 0.6307538358905938,
+        "D": 1.0610866389243436,
+        "n_over_p": 1.1836057515054688
+      },
+      "bootstrap_sd": {
+        "R_n": 0.00803808753934968,
+        "R_p": 0.008422787023966998,
+        "D": 0.021029517620094116,
+        "n_over_p": 0.01819042038951246
+      },
+      "proof_sha256": "ef5793ed7bd12e54b012798f8a601348d2d0048ad33abf430734a31cd5eeadc5",
+      "seconds": 14.499654246028513,
+      "bytes": 469582521
+    }
+  },
+  "endpoint_fraction_big_over_zero_minus_one": [
+    0.038491415859743805,
+    -0.03388760405564284,
+    0.07491780482190946,
+    0.025055820338362178
+  ],
+  "endpoint_bootstrap_sd": [
+    0.019833856625771282,
+    0.016257864837936082,
+    0.027677530513256523,
+    0.01649962861500045
+  ],
+  "observable_order": [
+    "R_n",
+    "R_p",
+    "D",
+    "n_over_p"
+  ],
+  "bootstrap": {
+    "replicates": 400,
+    "seed": 20261025,
+    "unit": "whole production file",
+    "error": "SD, ddof=1"
+  },
+  "scope": "MC truth; fixed inherited straight-ray rectangle; unweighted; B ignored. Proton magnetic response is not modelled. File independence and unknown centrality mixture limit interpretation.",
+  "spectra_sha256": "f9deefcde1444358d562dbd81aedb4123d8e9823db21110128b8a5dabfd32ff8",
+  "mode": "smoke",
+  "source_digest": "0039c5acfb3addf1f219dd931c68bb0a418aac7ac4c0d0f5a02bb69d163b7cb7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "job_id": "4450596_single",
+  "seconds": 47.108134618029,
+  "input_manifest_sha256": "2822cd726d743bf77aaf354735f60766b8d97f57a4305caf9754d3f8d488d393"
+}

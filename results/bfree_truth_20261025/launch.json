@@ -6,8 +6,19 @@
   "source_files": 193,
   "git_commit": "932105a8ab542559295f9a8f2d8e3fd9a9f856e2",
   "environment": "/home/vbocharnikov/.conda/envs/hgnd-env",
-  "status": "prepared",
+  "status": "full_array_submitted",
   "smoke_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=smoke --partition=test --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch",
   "full_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/smoke_verified.json --partition=rocky --time=00:45:00 --array=0-2%2 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch",
-  "aggregate_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=aggregate,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/smoke_verified.json,BF_FULL_RECEIPTS=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/full_receipts.json --partition=rocky --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch"
+  "aggregate_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=aggregate,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/smoke_verified.json,BF_FULL_RECEIPTS=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/full_receipts.json --partition=rocky --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch",
+  "smoke_job_id": "4450596",
+  "smoke_state": "COMPLETED",
+  "smoke_exit_code": "0:0",
+  "full_array_job_id": "4450608",
+  "full_tasks": {
+    "0": "zeroSpot",
+    "1": "defaultSpot",
+    "2": "bigSpot"
+  },
+  "aggregation_status": "not_submitted; requires all three terminal successful exports externally verified",
+  "smoke_verified_receipt": "smoke_verified.json"
 }
