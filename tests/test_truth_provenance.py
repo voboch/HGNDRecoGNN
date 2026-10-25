@@ -177,3 +177,82 @@ def test_certificate_replays_counters_and_rejects_missing_or_changed_inputs(
         (args.output / "identity.csv.gz").write_bytes(b"corrupt")
         with pytest.raises(ValueError, match="changed"):
             load_certified(args.output, "acceptance")
+
+
+def test_complete_three_sample_join_preserves_certified_counters(tmp_path, monkeypatch):
+    from argparse import Namespace
+    from HGNDRecoGNN.scripts.merge_acc_with_b import main
+
+    tags = ("zeroSpot", "defaultSpot", "bigSpot")
+    memberships = {"acceptance": [], "impact": []}
+    sources = {}
+    for role in memberships:
+        for tag in tags:
+            folder = tmp_path / "raw" / role / tag / "run"
+            folder.mkdir(parents=True)
+            raw = folder / "0001_prim.csv"
+            data = primary()
+            if role == "impact":
+                data["B"] = 7.0
+                data["NPrim"] = 2
+            data.to_csv(raw, index=False)
+            frame, _, _, _ = reduce_member(raw, 0)
+            reference = folder / "reference.pkl"
+            frame.to_pickle(reference)
+            progress = folder / "reference_progress.json"
+            progress.write_text(json.dumps({"done": {"run/0001_prim.csv": 1}}))
+            memberships[role].append(
+                {
+                    "kind": "smash_primary",
+                    "tag": tag,
+                    "path": str(raw),
+                    "sha256": sha256(raw),
+                }
+            )
+            sources[role, tag] = (raw, reference, progress)
+    manifests = {}
+    for role, files in memberships.items():
+        manifests[role] = tmp_path / f"{role}_manifest.json"
+        manifests[role].write_text(
+            json.dumps({"files": files, "status": "complete", "smoke": False})
+        )
+        for tag in tags:
+            _, reference, progress = sources[role, tag]
+            certify(
+                Namespace(
+                    input_manifest=manifests[role],
+                    reference_events=reference,
+                    reference_progress=progress,
+                    tag=tag,
+                    role=role,
+                    all=True,
+                    member=None,
+                    raw_copy=None,
+                    output=tmp_path / role / tag,
+                )
+            )
+    output = tmp_path / "joined"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "merge_acc_with_b",
+            "--acc-dir",
+            str(tmp_path / "acceptance"),
+            "--b-dir",
+            str(tmp_path / "impact"),
+            "--census",
+            str(manifests["acceptance"]),
+            "--out-dir",
+            str(output),
+        ],
+    )
+    main()
+    receipt = json.loads((output / "merge_report.json").read_text())
+    assert receipt["status"] == "complete" and len(receipt["samples"]) == 3
+    for tag in tags:
+        frame = pd.read_pickle(output / f"{tag}_events.pkl")
+        assert len(frame) == 1 and frame.B.iloc[0] == 7.0
+        assert frame.nprim.iloc[0] == 2
+        assert frame.acc_n_hi.iloc[0] == frame.acc_p_lo.iloc[0] == 1
+        assert receipt["samples"][tag]["particle_mismatches"] == 0

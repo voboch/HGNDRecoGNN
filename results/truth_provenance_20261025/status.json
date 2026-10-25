@@ -1,0 +1,42 @@
+{
+  "stage": "truth-counter provenance",
+  "date": "2026-10-25",
+  "state": "local_subset_verified_full_chain_requires_B_source",
+  "subset": {
+    "tag": "zeroSpot",
+    "member": "10943245/0001_prim.csv",
+    "events": 4179,
+    "counter_fields": 26,
+    "physics_counters": 24,
+    "counter_mismatches": 0,
+    "full_file_count": 195,
+    "files_checked": 1,
+    "proof_sha256": "223a8b3bfa53b1ca56562a63b1ade9e4f78a0785f1e954e134c5abe60a02cbca"
+  },
+  "reference_transfer_sha256_verified_against_charisma": true,
+  "impact_parameter_source": {
+    "available_charisma_copy": "B=-1 for every event",
+    "old_mount": "/Users/vovvy/ncx: Device not configured",
+    "documented_ssh": "boch@sshgate.jinr.ru: Permission denied (keyboard-interactive)",
+    "human_question_pending": true
+  },
+  "merge_changes": [
+    "full run/member keys preserved",
+    "no implicit file intersection",
+    "requires two complete counter certificates",
+    "requires exact complete particle identity excluding repaired B/NPrim",
+    "rejects negative/nonfinite B",
+    "subset certificates rejected"
+  ],
+  "no_new_hpc_jobs": true,
+  "no_training": true,
+  "paper_numbers_changed": false,
+  "github_push": "still awaiting explicit human approval",
+  "verification": {
+    "full_suite_passed": 220,
+    "full_suite_failed": 0,
+    "focused_provenance_tests_passed": 9,
+    "three_sample_synthetic_cli_join": "passed",
+    "ruff": "passed"
+  }
+}

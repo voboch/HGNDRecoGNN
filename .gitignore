@@ -204,3 +204,11 @@ tests/cpp/sourceid_probe.cc
 !/ncx_refactor/
 /ncx_refactor/*
 !/ncx_refactor/BmnTrackExport.h
+
+# Truth-counter certification: compact receipts only, no raw/counter tables.
+!/results/truth_provenance_20261025/
+/results/truth_provenance_20261025/*
+!/results/truth_provenance_20261025/*.json
+!/results/truth_provenance_20261025/zeroSpot_first_member/
+/results/truth_provenance_20261025/zeroSpot_first_member/*
+!/results/truth_provenance_20261025/zeroSpot_first_member/proof.json

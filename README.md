@@ -30,6 +30,25 @@ from pinned inputs; NumPy, Matplotlib and TeX are required for that target.
 Selected weights are backed up locally with hashes; a public immutable deposit
 and production run cards remain submission gates.
 
+## Exact truth-counter provenance
+
+`certify_primary_counters.py` replays the unchanged primary reducer and compares
+all saved counters against explicitly hash-pinned raw inputs. It records complete
+particle identities, code hashes, effective selections and input/output hashes.
+A subset certificate is useful for diagnosis and is rejected by the physics join.
+
+`merge_acc_with_b.py` now accepts certificate roots containing
+`<sample>/proof.json` and requires `--census`. It preserves full run/member names,
+requires exact file/event coverage and particle-content equality, and rejects
+negative or nonfinite impact parameters. The older counts-only/intersection
+invocation cannot produce a new verified result.
+
+Before a full replay, provide the B-enabled primary export and its saved counter
+and progress tables (or a recoverable raw source). The available cHARISMa copy
+contains B=-1. The source/configuration and data deposit limitations in the paper
+remain open; matching counters on a subset does not validate the bootstrap.
+A full HPC replay requires the project preflight and test-partition smoke.
+
 ## Repository layout
 
 ```

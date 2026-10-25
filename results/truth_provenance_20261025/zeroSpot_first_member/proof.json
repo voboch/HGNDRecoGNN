@@ -1,0 +1,102 @@
+{
+  "schema": "primary-counter-proof-v1",
+  "status": "verified",
+  "role": "acceptance",
+  "tag": "zeroSpot",
+  "coverage": "subset",
+  "files_expected": 195,
+  "files_checked": 1,
+  "events": 4179,
+  "counter_mismatches": 0,
+  "particle_fields": [
+    "Id",
+    "PDG",
+    "E",
+    "Ekin",
+    "Mass",
+    "Px",
+    "Py",
+    "Pz",
+    "Pt",
+    "P",
+    "Rapid",
+    "vX",
+    "vY",
+    "vZ"
+  ],
+  "source_sha256": {
+    "certify_primary_counters.py": "fd4a52af2952ed00546f0f7afdfb7b29b1f27fda26cbffbbc07df889ff575916",
+    "truth_provenance.py": "c908c0d92c963424bdba56c25a57e0fcb129b6aee5e9167fff7596ede3acf466",
+    "reduce_prim_full.py": "d447cdf502ff636a8ca095e11f1917a4aec23492b377b2868b3e97f6b6271bff",
+    "hgnd_acceptance.py": "89d0c9faa5356aa00f89bee215abda57dccd9ef3fb815ede691f0540e3819fec",
+    "content_census.py": "d4c594d54fca368d702c1558676a8489321e23be8e09a81d185a26fb7ef22564"
+  },
+  "effective_recipe": {
+    "hardness_low_exclusive_GeV": 1.0,
+    "hardness_high_inclusive_GeV": 2.0,
+    "polar_angle_band_deg": [
+      8.9,
+      13.1
+    ],
+    "rapidity_shift": 0.9863,
+    "rectangle_cm": [
+      718.42,
+      -146.61,
+      -106.67,
+      -77.34,
+      77.34
+    ],
+    "selection_policy": "Unchanged inherited reducer conventions; no fitted selection"
+  },
+  "input_manifest_sha256": "de267d7361d9721c26605b7bdbd4a317f78a7c51905f01c5cd3b764ce2bedfd8",
+  "reference_events_sha256": "2f15d72b0b08fb2b8ce5af424a79ddef145e8d01fce496cbe3082b8fd045ddcc",
+  "reference_progress_sha256": "7021a2801141357b6813346cba6c72aa144da498e371fe64684b589adcd2b8ec",
+  "raw_files": [
+    {
+      "member": "10943245/0001_prim.csv",
+      "path_read": "results/smash_audit_20261021/probe_zero_0001_prim.csv",
+      "sha256": "e57ca1851139672e2966fd88b8eafa28481b8d7bfa6a5785a10267c9848842e3",
+      "events": 4179,
+      "counter_columns_checked": [
+        "B",
+        "acc_n",
+        "acc_n_hi",
+        "acc_n_lo",
+        "acc_p",
+        "acc_p_hi",
+        "acc_p_lo",
+        "all_n",
+        "all_n_hi",
+        "all_n_lo",
+        "all_p",
+        "all_p_hi",
+        "all_p_lo",
+        "band_n",
+        "band_n_hi",
+        "band_n_lo",
+        "band_p",
+        "band_p_hi",
+        "band_p_lo",
+        "mid_n",
+        "mid_n_hi",
+        "mid_n_lo",
+        "mid_p",
+        "mid_p_hi",
+        "mid_p_lo",
+        "nprim"
+      ]
+    }
+  ],
+  "artifacts_sha256": {
+    "events.pkl": "ebb7f04af5532465d50604c91c53a0476f9517d7ed7e8ed25e6ba6a1323b4453",
+    "progress.json": "0d57fbe8dd02e63ed4bbfaf8c4bf42efeb8554b80987ef0eeeb3e262ad2e6ba3",
+    "identity.csv.gz": "b4d070ec1dd8a5980048dae11ca7dc6aed4f06ce329cfa0d9106b2abeb8a9f15"
+  },
+  "environment": {
+    "python": "3.11.14",
+    "numpy": "2.3.5",
+    "pandas": "3.0.2"
+  },
+  "seconds": 1.916301375022158,
+  "scope": "Exact saved-counter replay on the declared bytes; generator provenance is not inferred."
+}
