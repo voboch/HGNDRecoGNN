@@ -1,0 +1,13 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe",
+  "source_tar_sha256": "995a749cbe793c3b1379d2f0ae251f1ce43e6b5c0bae1d3b64adbbd7d58a1815",
+  "source_digest": "0039c5acfb3addf1f219dd931c68bb0a418aac7ac4c0d0f5a02bb69d163b7cb7",
+  "source_files": 193,
+  "git_commit": "932105a8ab542559295f9a8f2d8e3fd9a9f856e2",
+  "environment": "/home/vbocharnikov/.conda/envs/hgnd-env",
+  "status": "prepared",
+  "smoke_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=smoke --partition=test --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch",
+  "full_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/smoke_verified.json --partition=rocky --time=00:45:00 --array=0-2%2 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch",
+  "aggregate_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=aggregate,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/smoke_verified.json,BF_FULL_RECEIPTS=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/full_receipts.json --partition=rocky --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/bfree_truth_20261025_995a749cbe/slurm/bfree_truth.hpc.sbatch"
+}
