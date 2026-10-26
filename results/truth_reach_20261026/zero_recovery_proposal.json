@@ -1,5 +1,5 @@
 {
-  "status": "AUTHORIZED_NOT_YET_SUBMITTED",
+  "status": "SUBMITTED",
   "authorization": {
     "date": "2026-10-26",
     "human_answer": "Разрешить один повтор",
@@ -29,5 +29,7 @@
     "bound_seconds": 1800
   },
   "preflight": "GO conditional on explicit human permission, fresh terminal task1/parallel cap, unchanged hashes",
-  "failed_log_sha256": "7aebe5a84106ee863dca1fbd3e09bc81faa296390af4d902579e51a58db396aa"
+  "failed_log_sha256": "7aebe5a84106ee863dca1fbd3e09bc81faa296390af4d902579e51a58db396aa",
+  "job_id": "4453846",
+  "automatic_retry_allowed": false
 }
