@@ -1,6 +1,18 @@
-# CPU truth/canonical path measured on Python3.11.14, macOS arm64.
-# Install this and the package with --no-deps; no torch/PyG extensions needed.
-numpy==2.3.5
-pandas==3.0.2
+# Exact transitive truth/test environment, Python3.11.14 macOS arm64.
+# Platform-specific lock; no Torch/PyG dependency.
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.61.0
+iniconfig==2.3.0
+kiwisolver==1.4.9
 matplotlib==3.10.8
+numpy==2.3.5
+packaging==25.0
+pandas==3.0.2
+pillow==12.0.0
+pluggy==1.5.0
+pygments==2.19.2
+pyparsing==3.2.5
 pytest==8.4.2
+python-dateutil==2.9.0.post0
+six==1.17.0
