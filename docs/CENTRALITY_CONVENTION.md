@@ -1,3 +1,28 @@
+# Current centrality/composition scope (2026-10-26)
+
+The certified SMASH primary exports carry B=-1, a missing-data sentinel. The
+quoted truth result is unweighted. No b distribution, independent b count or
+experimental centrality percentile follows from those exports. The v10 proxy
+is midrapidity n+p multiplicity outside the rectangular window, with the CM
+rapidity computed at2.87GeV/nucleon. Its approximate rank classes are descriptive
+MC-truth composition controls. They do not establish a measured centrality scale.
+
+Serial correlations on scales near10 represented events are visible in a
+multiplicity proxy. They are consistent with shared initial geometry or
+parallel-ensemble output, but Ensembles/Testparticles settings and the generator
+ledger are needed to identify the mechanism. Calling this proven job-file drift
+or dividing the event count by10 to infer an independent b count is unsupported.
+Whole-file resampling keeps these within-file blocks intact, conditional on
+independent production files. Both file SD and event-clustered compound-Poisson
+SD are reported; the larger is used in primary prose.
+
+The recovered-B analyses below are an archived investigation with an open
+raw-input/assignment provenance gate (N1). Their mechanism and numeric claims
+are not current acceptance decisions. No b-reweighted value enters the v10
+headline or validates a centrality distribution. See reports/v10_actions_20261026.md.
+
+---
+
 # Centrality convention for the HGND sensitivity analyses
 
 ## Why percentile classes rather than impact parameter

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hgnd-reconstruction-analysis"
+version = "0.1.0"
+description = "HGND reconstruction diagnostics and certified primary-truth analysis"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24", "pandas>=2.0"]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.7"]
+test = ["pytest>=8"]
+reconstruction = ["torch>=2.1", "torch-geometric>=2.4", "scikit-learn>=1.3", "scipy>=1.10", "pyarrow>=13", "tqdm>=4.65"]
+
+[tool.setuptools]
+packages = ["HGNDRecoGNN", "HGNDRecoGNN.analysis", "HGNDRecoGNN.scripts", "HGNDRecoGNN.data", "HGNDRecoGNN.models", "HGNDRecoGNN.training", "HGNDRecoGNN.proton_pid"]
+package-dir = {HGNDRecoGNN = "."}
+include-package-data = false

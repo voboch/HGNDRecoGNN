@@ -1,5 +1,13 @@
-"""Post-training analysis: metrics, efficiency, and the sensitivity study."""
+"""Analysis modules; truth-only tools load without reconstruction dependencies."""
 
-from . import metrics, efficiency, sensitivity  # noqa: F401
+from importlib import import_module
 
-__all__ = ['metrics', 'efficiency', 'sensitivity']
+__all__ = ["metrics", "efficiency", "sensitivity"]
+
+
+def __getattr__(name):
+    if name in __all__:
+        value = import_module("." + name, __name__)
+        globals()[name] = value
+        return value
+    raise AttributeError(name)

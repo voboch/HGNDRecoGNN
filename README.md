@@ -271,3 +271,45 @@ python -m HGNDRecoGNN.scripts.sensitivity \
 ```
 
 Interactively: `notebooks/sensitivity_study.ipynb`.
+
+## v10 exact reach-window path
+
+The adopted primary hardness denominator is `0.3 <= Ekin < 1 GeV`; numerator
+`Ekin >= 2 GeV`. The original unrestricted low-energy result remains a separate
+variant. The current state is `reports/v10_actions_20261026.md`; a failed array
+task is never included in a full aggregate.
+
+Truth-only installation needs no Torch/PyG operators:
+
+```bash
+python -m pip install -r requirements-truth.lock
+python -m pip install --no-deps .
+```
+
+The package installs from a DOI archive with any directory name. This was tested
+with an offline wheel build from `doi-release-arbitrary-name`. Reconstruction
+has a separate dependency record in `requirements-reconstruction.lock`; its
+compiled PyG neighbour operators must match the selected Torch/platform ABI.
+
+The reproducibility path is:
+
+1. Raw primaries and saved counter/progress pairs: verify the SHA256 inventory.
+2. `scripts/certify_primary_counters.py`: replay old counters, bind exact particle
+   identities and add reach-window counters and a disjoint composition proxy.
+3. `scripts/bfree_truth_campaign.py`: aggregate only all three complete certified
+   samples; repeat the fixed400-file-bootstrap recipe and export per-file integer
+   counts plus event second moments.
+4. `scripts/verify_bfree_export.py --full-receipts ...`: externally check Slurm,
+   source/input/archive bindings, every full certificate and the numerical replay
+   of all sample/endpoint/midpoint uncertainties. Its aggregate mode also checks
+   the exported per-file counts/moments against certified event tables.
+5. The manuscript builder reads pinned compact per-file inputs and independently
+   replays its numerical arithmetic; tampering with a summary is rejected even
+   after an outer hash lock is changed. It then writes all tables and figures.
+
+For a relocated raw deposit, keep the last three path components
+`<potential-production>/<run>/<member>`. Pass `--raw-root /deposit/extracted`
+to the certifier and explicit relocated `--reference-events` and
+`--reference-progress` paths. The immutable inventory is not edited: identities
+and hashes stay identical. Exact active geometry and production cards are still
+owner-provided inputs, not inferred from these checks.

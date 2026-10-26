@@ -1,6 +1,7 @@
 # HGND: current evidence and next gates
 
-Status: 2026-10-24. Current finite work is recorded in
+Status: 2026-10-26. v10 corrections and the active reach-window replay are recorded in
+[the v10 action record](../reports/v10_actions_20261026.md). Previous finite work is recorded in
 [the v9 decision record](../reports/v9_actions_20261024.md). Older conclusions
 are preserved in [the dated guide](archive/HGND_PROGRESS_GUIDE_20260927.md)
 and must not be treated as current acceptance decisions.
@@ -23,8 +24,7 @@ and must not be treated as current acceptance decisions.
   identity. PRNG/configuration lineage remains an owner question.
 - The rectangular window used for truth ratios omits module gaps and inactive
   regions. It is an analysis phase-space window, not full detector acceptance
-  or charged-particle transport. Its neutron 90/0 response is+4.52±0.45%;
-  neutron/proton hardness double ratio+10.48±0.76% (whole-file bootstrap SD).
+  or charged-particle transport. For the certified original E<1GeV variant, its neutron90/0 response is+4.39±0.46%; double ratio+10.49±0.72% (whole-file bootstrap SD). The newly adopted[0.3,1)GeV primary definition is being reduced separately; these original-window numbers must not be relabelled.
 - Six diagnostic-network checkpoints are selected before the late step-rate
   decreases. Their schedule comparison does not test those decreases.
 - Corrected-SMASH transfer is retrospective, with reused data and no new SMASH

@@ -1,0 +1,5 @@
+{
+  "source_directory_name": "doi-release-arbitrary-name",
+  "install": "passed, local no-index/no-deps wheel",
+  "import": "installed package imports certificate and statistics without relying on checkout name"
+}

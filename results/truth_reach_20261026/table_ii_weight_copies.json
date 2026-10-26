@@ -1,0 +1,57 @@
+{
+  "status": "six_local_and_cluster_copies_hash_equal",
+  "files": [
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "multistep_42/checkpoints/model.pt",
+      "sha256": "c86938802550268e51686b9f526104e7df0d39d7c9953b335a67e509e8b48f8f",
+      "bytes": 49959406,
+      "actual_sha256": "c86938802550268e51686b9f526104e7df0d39d7c9953b335a67e509e8b48f8f",
+      "matches": true
+    },
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "multistep_123/checkpoints/model.pt",
+      "sha256": "18042d6491c345922b2fa7da0e3f0bdd0e5a9514746e69ff3d654be20f7f5d41",
+      "bytes": 49959406,
+      "actual_sha256": "18042d6491c345922b2fa7da0e3f0bdd0e5a9514746e69ff3d654be20f7f5d41",
+      "matches": true
+    },
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "multistep_456/checkpoints/model.pt",
+      "sha256": "495d055bf83dcd43e4126a0e74a91e7b81fbe94c504d0291ec58d5fd31e021b6",
+      "bytes": 49959406,
+      "actual_sha256": "495d055bf83dcd43e4126a0e74a91e7b81fbe94c504d0291ec58d5fd31e021b6",
+      "matches": true
+    },
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "cosine_42/checkpoints/model.pt",
+      "sha256": "3b1e85786d48a86e280981d6711d988fd82804159bfb97811849e50878b24bff",
+      "bytes": 49959406,
+      "actual_sha256": "3b1e85786d48a86e280981d6711d988fd82804159bfb97811849e50878b24bff",
+      "matches": true
+    },
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "cosine_123/checkpoints/model.pt",
+      "sha256": "7b2643fd6b1ce9cf3499c74707971acb53f9cfec0626c8b564d0b12dc08c0e0c",
+      "bytes": 49959406,
+      "actual_sha256": "7b2643fd6b1ce9cf3499c74707971acb53f9cfec0626c8b564d0b12dc08c0e0c",
+      "matches": true
+    },
+    {
+      "campaign": "dcm_grouped_20261016_077a236ca2",
+      "relative": "cosine_456/checkpoints/model.pt",
+      "sha256": "273faade12d65512c2f5904d8813b0e778661ad8a90b5e0d4bc568333b18b6cd",
+      "bytes": 49959406,
+      "actual_sha256": "273faade12d65512c2f5904d8813b0e778661ad8a90b5e0d4bc568333b18b6cd",
+      "matches": true
+    }
+  ],
+  "cluster_prefix": "/scratch/vbocharnikov/hgnd/experiments/dcm_grouped_20261016_077a236ca2",
+  "local_prefix": "checkpoints_hpc/v9_20261024",
+  "public_deposit": false,
+  "scope": "Independent read-only SSH SHA256 of each current cluster file matched the local backup receipt; scratch durability is not guaranteed"
+}

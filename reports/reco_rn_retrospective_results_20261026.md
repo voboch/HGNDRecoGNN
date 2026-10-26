@@ -143,3 +143,43 @@ performance; efficiency relative to generated neutrons; the proton arm;
 centrality control; anything about the model described in the manuscript (the
 transfer uses the student-pipeline GraphSAGE trained on DCM exports with 2,209
 distinct training events); exclusion of the M4 differential energy response.
+
+## v10 interpretation correction (2026-10-26)
+
+This addendum supersedes the unqualified interpretation in “Reading” and the
+production-budget inference in decision output1. The frozen protocol, recorded
+measurements, predictions and gate definitions are unchanged. These values use
+the original E<1GeV denominator; they are not results for the newly adopted
+[0.3,1)GeV observable.
+
+The C4/T1 response-retention ratio is uncertain. Its bootstrap intervals are
+reported in the v10 action record from the saved joint replicas; a range of
+central ratios alone cannot establish a retained fraction. Selection shifts are
+positive in all seeds and background shifts negative, but only C4−C3 in seed42
+exceeds2pairedSD. No component effect is resolved across all seeds. G6 is a
+marginal pass:1.54 versus1.58percentage points, a0.04margin and outside the
+predicted spread range. Passing it does not establish stability.
+
+The injected weight acts only on true-hard positive clusters. Recoveryk therefore
+tests the numerator signal path with fixed background, not an energy-spectrum
+perturbation through the denominator or correlated background. About44–50% of
+the selected low-energy counts are background. There is no no-selection C0
+control. These untested paths limit the interpretation ofk.
+
+The446/556/538file estimate used the harder matched-subset truth contrast5.08%.
+Using the full-production4.39% contrast gives approximately597/745/720files
+per potential under the same inverse-square, zero-bias assumptions. This is a
+precision estimate for a hypothetical null closure, not a production request
+that guarantees G2. Observed closure offsets−2.0 and−2.3points already exceed
+the1.27point subset tolerance in seeds42/123; reducing uncertainty alone cannot
+make those fixed offsets pass. A response correction and an independent closure
+study are required before sizing a new production. PathB remains future work.
+
+Bootstrap retention intervals from the saved joint replicas (no independent
+resampling of T1 and C4):
+
+| training seed | median C4/T1 | central68% interval | central95% interval |
+|---|---:|---:|---:|
+|42|0.58|[0.33,0.87]|[0.07,1.14]|
+|123|0.50|[0.18,0.85]|[−0.09,1.15]|
+|456|0.81|[0.51,1.14]|[0.17,1.48]|

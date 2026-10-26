@@ -1,3 +1,19 @@
+# Current truth-to-manuscript runbook (2026-10-26)
+
+The primary publication path is now raw primary files -> exact counter
+certification -> full three-potential aggregation -> external verification ->
+pinned per-file manuscript replay. See README “v10 exact reach-window path” and
+reports/v10_actions_20261026.md for the exact finite campaign and stop rules.
+The E<1GeV variant and the adopted0.3<=E<1GeV definition have separate receipts.
+No training or test-set tuning is part of this path.
+
+The old reconstructed-spectrum runbook below is retained as development
+history. It does not feed the manuscript headline and does not establish an
+unfolded spectrum, collision-independent reconstruction quality, or detector
+sensitivity to a symmetry-energy parameter.
+
+---
+
 # HGND + GNN reconstruction pipeline runbook
 
 End-to-end recipe from raw SMASH CSVs (on cHARISMa scratch) to the

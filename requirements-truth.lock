@@ -1,0 +1,6 @@
+# CPU truth/canonical path measured on Python3.11.14, macOS arm64.
+# Install this and the package with --no-deps; no torch/PyG extensions needed.
+numpy==2.3.5
+pandas==3.0.2
+matplotlib==3.10.8
+pytest==8.4.2
