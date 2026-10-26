@@ -1,0 +1,20 @@
+{
+  "status": "verified",
+  "verifier_sha256": "25659649b76c577587169caf9869c5ef37c29f0395eb8cbcf24c6c7941b6b10e",
+  "mode": "certify",
+  "job_id": "4453689_2",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/certify_4453689_2/result.tar.gz",
+  "archive_sha256": "acc9251c64196c70fb87975d5f87fbbebf18c92dc33292dc533a3403643d3b1f",
+  "summary_sha256": "5aa9814e9b01bdf27b247cdadc8e1a699a5d60d052c69a882baab2be53d3d892",
+  "local_archive": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/truth_reach_20261026/full_4453689_2.tar.gz",
+  "tag": "bigSpot"
+}

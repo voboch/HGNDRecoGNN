@@ -1,0 +1,19 @@
+{
+  "schema": "bfree-certify-job-v1",
+  "status": "verified",
+  "tag": "bigSpot",
+  "coverage": "full",
+  "events": 717286,
+  "files": 173,
+  "mode": "certify",
+  "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "job_id": "4453689_2",
+  "seconds": 837.8373409230262,
+  "input_manifest_sha256": "2822cd726d743bf77aaf354735f60766b8d97f57a4305caf9754d3f8d488d393"
+}

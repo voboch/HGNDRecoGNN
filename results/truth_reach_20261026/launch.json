@@ -5,7 +5,7 @@
   "source_tar_sha256": "841e1f3521ac63df593b9bd68ef67a719f50fc74265855ee4d265e4a474fd58f",
   "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
   "git_commit": "09771681136ce5134d01a619f755b0ad7265b709",
-  "status": "zeroSpot_failed_recovery_permission_pending",
+  "status": "two_samples_completed_zeroSpot_failed_permission_pending",
   "smoke_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=smoke --partition=test --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch",
   "full_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/smoke_verified.json --partition=rocky --time=00:45:00 --array=0-2%2 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch",
   "aggregate_command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=aggregate,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/smoke_verified.json,BF_FULL_RECEIPTS=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/full_receipts.json --partition=rocky --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch",
@@ -14,7 +14,9 @@
   "zero_failure": "zero_failure.json",
   "recovery_proposal": "zero_recovery_proposal.json",
   "full_verified": {
-    "defaultSpot": "full_4453689_1_verified.json"
+    "defaultSpot": "full_4453689_1_verified.json",
+    "bigSpot": "full_4453689_2_verified.json"
   },
-  "aggregation_status": "blocked: zeroSpot full certificate missing; no partial aggregate"
+  "aggregation_status": "blocked: zeroSpot full certificate missing; no partial aggregate",
+  "active_campaign_tasks": 0
 }
