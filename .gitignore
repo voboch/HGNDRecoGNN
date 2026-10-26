@@ -218,3 +218,11 @@ tests/cpp/sourceid_probe.cc
 /results/bfree_truth_20261025/*
 !/results/bfree_truth_20261025/*.json
 !/results/bfree_truth_20261025/*.md
+
+# Retrospective reco-R_n ladder (protocol 5abd90e): the complete run output.
+!/results/reco_rn_retrospective_20261026/
+/results/reco_rn_retrospective_20261026/*
+!/results/reco_rn_retrospective_20261026/summary.json
+!/results/reco_rn_retrospective_20261026/per_file_counts.json
+!/results/reco_rn_retrospective_20261026/replicas.npz
+!/results/reco_rn_retrospective_20261026/figures/
