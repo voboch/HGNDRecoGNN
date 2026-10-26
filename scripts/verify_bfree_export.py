@@ -29,6 +29,11 @@ def verify(args):
     config = json.loads((args.source / "campaign.json").read_text())
     manifest_path = args.source / "primary_manifest.json"
     files = json.loads(manifest_path.read_text())["files"]
+    archive_hash = sha256(args.archive)
+    expected_hash = getattr(args, "expected_archive_sha256", None)
+    if expected_hash is not None and archive_hash != expected_hash:
+        raise ValueError("Downloaded archive differs from the completed job hash")
+    args.extracted.mkdir(parents=True, exist_ok=False)
     with tarfile.open(args.archive) as tar:
         tar.extractall(args.extracted, filter="data")
     result = args.extracted / "result"
@@ -218,4 +223,5 @@ if __name__ == "__main__":
         p.add_argument("--" + key, type=Path, required=True)
     p.add_argument("--remote-archive", required=True)
     p.add_argument("--full-receipts", type=Path)
+    p.add_argument("--expected-archive-sha256")
     verify(p.parse_args())
