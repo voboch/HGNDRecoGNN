@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "mode": "certify",
+  "job_id": "4450608_0",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "source_digest": "0039c5acfb3addf1f219dd931c68bb0a418aac7ac4c0d0f5a02bb69d163b7cb7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/bfree_truth_20261025_995a749cbe/certify_4450608_0/result.tar.gz",
+  "archive_sha256": "4af77012091af42d46b55211001ffa2edcb7433f1cfec0f02dc4f7552392d783",
+  "summary_sha256": "4ce3213e5f4b2cd8e26aab1b07155db62b04e04a5f64209b1e05ab41a4de6bb5",
+  "local_archive": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/bfree_truth_20261025/full_4450608_0.tar.gz",
+  "tag": "zeroSpot"
+}
