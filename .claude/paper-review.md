@@ -89,16 +89,18 @@ SMASH samples), funding.
 
 ## Number sources (read by `number-auditor`)
 
-- **Canonical chain (v9):** `../HGNDPaper/data/canonical_inputs.sha256.json`
+- **Canonical chain (v10):** `../HGNDPaper/data/canonical_inputs.sha256.json`
   pins the inputs; `scripts/build_results.py` in the paper repository generates
   `data/canonical_results.json` and `tables/canonical_numbers.tex`,
-  `dcm_content.tex`, `dcm_grouped_20261017.tex`, `truth_scan.tex`.
+  `dcm_content.tex`, `dcm_grouped_20261017.tex`, `truth_scan.tex`, `truth_classes.tex`.
   The paper's `scripts/plot_results.py` reads only the canonical JSON.
 - **Content evidence:** `results/content_census_20261024/full_summary.json`,
   `full_verified.json`, `student_lineage_verified.json`, `leakage/summary.json`.
-- **Current state:** `reports/v9_actions_20261024.md` and
-  `../HGNDPaper/manuscript_corrections_v9_20261024.md`. The older guide is
+- **Current state:** `reports/v10_actions_20261026.md` and
+  `../HGNDPaper/manuscript_corrections_v10_20261026.md`. The older guide is
   preserved under `docs/archive/` and is not the current acceptance ledger.
+- **Adopted observable:** exact0.3<=Ekin<1GeV denominator, Ekin>=2GeV numerator. The unrestricted Ekin<1GeV case is a separate variant. Builder replays568per-file integer-count rows, second moments,400file-bootstrap replicates and seed20261025. Headline errors use the larger of file SD and event-clustered compound-Poisson SD.
+- **Reach evidence:** `results/truth_reach_20261026/` source/input/Slurm/archive receipts; all three complete certificates are required. Original failed zeroSpot task is excluded. No unbalanced or partial aggregate. Proxy controls count midrapidity nucleons strictly outside the rectangle, with corrected CM rapidity and five rank classes.
 - **Precision:** at most two significant figures in uncertainty, matched central
   precision; training-seed SD differs from bootstrap SD and SE.
 - **Submission:** local selected weights are backed up. Public deposit,
@@ -107,7 +109,7 @@ SMASH samples), funding.
 ## Reviews
 
 - **`reviews_dir`:** `../HGNDPaper/`
-- **Naming:** continue the series `critical_review_v<N>.md`; the next is v10.
+- **Naming:** continue the series `critical_review_v<N>.md`; the next is v11.
 
 ---
 

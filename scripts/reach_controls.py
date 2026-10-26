@@ -9,6 +9,7 @@ inside every whole-file bootstrap replicate; no threshold is optimised.
 from __future__ import annotations
 import argparse
 import json
+import platform
 import sys
 from pathlib import Path
 import numpy as np
@@ -50,6 +51,7 @@ def run(root, output):
     bins = 0
     autocorr = {}
     filedata = {}
+    proofs = {}
     for tag in TAGS:
         ev, _, proof = load_certified(root / tag, "acceptance")
         if (
@@ -57,6 +59,7 @@ def run(root, output):
             or proof["effective_recipe"]["reach_floor_GeV"] != 0.3
         ):
             raise ValueError("Controls require the bound exact reach aggregate")
+        proofs[tag] = sha256(root / tag / "proof.json")
         all_events[tag] = ev
         names[tag] = sorted(ev.index.get_level_values("member").unique())
         bins = max(bins, int(ev.ref_mult.max()) + 1)
@@ -106,6 +109,8 @@ def run(root, output):
         "schema": "truth-reach-controls-v1",
         "aggregate_summary_sha256": sha256(root / "summary.json"),
         "code_sha256": sha256(__file__),
+        "proof_sha256": proofs,
+        "environment": {"python": platform.python_version(), "numpy": np.__version__},
         "estimator": {
             "definition": "N(n,p), |y-y_beam/2|<0.5, strictly outside rectangle",
             "cm_rapidity": float(Y_CM),
