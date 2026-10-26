@@ -14,5 +14,15 @@
   "preserve": "failed Slurm status/log/source; unique result directory and no overwrite",
   "stop_policy": "any failure stops; no further retry",
   "budget": "smoke175s + failed694s + two full45min caps + retry30min + aggregation15min =4.98CPUhours worst bound; within5.5CPUhours",
-  "command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/smoke_verified.json --partition=rocky --time=00:30:00 --array=0 --exclude=cn-031 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch"
+  "command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/smoke_verified.json --partition=rocky --time=00:30:00 --array=0 --exclude=cn-031 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch",
+  "runtime_evidence": {
+    "successful_prefix_files": 134,
+    "expected_files": 195,
+    "elapsed_seconds": 694,
+    "byte_scaling_factor": 1.45556146,
+    "policy": "1.5*elapsed*max(file_count_ratio,byte_ratio)+120",
+    "estimate_seconds": 1635.23947986,
+    "bound_seconds": 1800
+  },
+  "preflight": "GO conditional on explicit human permission, fresh terminal task1/parallel cap, unchanged hashes"
 }
