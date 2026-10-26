@@ -41,8 +41,16 @@ def verify(args):
     ):
         raise ValueError("Export does not bind the declared Slurm/source/input")
     mode = summary["mode"]
-    expected = TAGS if mode == "smoke" else (summary["tag"],)
+    if mode not in ("smoke", "certify", "aggregate"):
+        raise ValueError("Unknown export mode")
+    expected = TAGS if mode in ("smoke", "aggregate") else (summary["tag"],)
+    if mode == "aggregate" and args.full_receipts is None:
+        raise ValueError("Aggregate requires all externally verified full receipts")
+    full_receipts = (
+        json.loads(args.full_receipts.read_text()) if mode == "aggregate" else {}
+    )
     estimates = {}
+    numerical_rows = []
     for tag in expected:
         members = config["smoke_members"][tag] if mode == "smoke" else None
         events, _, proof = load_certified(
@@ -82,20 +90,79 @@ def verify(args):
             if set(names) != selected or len(set(names)) != len(names):
                 raise ValueError("Spectrum membership mismatch")
             if not np.array_equal(
-                z["counts"].sum(axis=2), grouped[["acc_n", "acc_p"]].sum().loc[names]
+                z["counts"].sum(axis=2),
+                grouped[list(config.get("counter_columns", ["acc_n", "acc_p"]))[:2]]
+                .sum()
+                .loc[names],
             ):
                 raise ValueError("Spectrum/counter integral mismatch")
             if not np.array_equal(z["events"], grouped.size().loc[names]):
                 raise ValueError("Spectrum normalisation mismatch")
+        if mode == "aggregate":
+            columns = config.get(
+                "counter_columns",
+                ["acc_n", "acc_p", "acc_n_hi", "acc_n_lo", "acc_p_hi", "acc_p_lo"],
+            )
+            for member, frame in events.groupby(level="member"):
+                matrix = frame[columns].to_numpy(dtype=np.int64)
+                numerical_rows.append(
+                    {
+                        "tag": tag,
+                        "member": member,
+                        "events": len(frame),
+                        "counts": matrix.sum(axis=0).tolist(),
+                        "second_moments": (matrix.T @ matrix).tolist(),
+                    }
+                )
+            bound = json.loads(Path(full_receipts[tag]).read_text())
+            if (
+                bound["slurm_state"] != "COMPLETED"
+                or bound["exit_code"] != "0:0"
+                or bound["tag"] != tag
+                or bound["source_digest"] != source
+            ):
+                raise ValueError("Unverified full task in aggregate")
+            archive = Path(bound["local_archive"])
+            if sha256(archive) != bound["archive_sha256"]:
+                raise ValueError("Full source archive changed")
+            with tarfile.open(archive) as tar:
+                original = tar.extractfile("result/" + tag + "/proof.json").read()
+            if original != (result / tag / "proof.json").read_bytes():
+                raise ValueError(
+                    "Aggregate certificate differs from verified full task"
+                )
         if mode == "smoke":
             total_bytes = sum(f["bytes"] for f in tag_files.values())
             subset_bytes = sum(tag_files[m]["bytes"] for m in members)
             scale = max(len(tag_files) / len(members), total_bytes / subset_bytes)
             estimates[tag] = 1.5 * proof["seconds"] * scale + 120
-    if mode == "smoke":
+    if mode == "aggregate":
+        from HGNDRecoGNN.analysis.truth_statistics import replay
+
+        rebuilt = replay({"columns": columns, "rows": numerical_rows})
+        for tag in TAGS:
+            for key in ("counts", "observables", "bootstrap_sd"):
+                old, new = summary["samples"][tag][key], rebuilt["samples"][tag][key]
+                if set(old) != set(new) or not np.allclose(
+                    list(old.values()), list(new.values()), rtol=1e-12, atol=1e-14
+                ):
+                    raise ValueError("Aggregate numerical replay mismatch: " + key)
+        for key in (
+            "endpoint_fraction_big_over_zero_minus_one",
+            "endpoint_bootstrap_sd",
+        ):
+            if not np.allclose(summary[key], rebuilt[key], rtol=1e-12, atol=1e-14):
+                raise ValueError("Aggregate numerical replay mismatch: " + key)
+    if mode in ("smoke", "aggregate"):
+        if (
+            "per_file_counts_sha256" in summary
+            and sha256(result / "per_file_counts.json")
+            != summary["per_file_counts_sha256"]
+        ):
+            raise ValueError("Per-file counters changed")
         if sha256(result / "spectra.npz") != summary["spectra_sha256"]:
             raise ValueError("Smoke aggregation spectra changed")
-        if max(estimates.values()) > 2700:
+        if estimates and max(estimates.values()) > 2700:
             raise ValueError(
                 f"Full run exceeds preregistered runtime bound: {estimates}"
             )
@@ -117,7 +184,7 @@ def verify(args):
             estimated_full_seconds_with_margin=max(estimates.values()),
             estimates_seconds=estimates,
         )
-    else:
+    elif mode == "certify":
         receipt["tag"] = summary["tag"]
     write_json(args.receipt, receipt)
     # Keep the standalone summary for inspection; the archive hash binds it too.
@@ -130,4 +197,5 @@ if __name__ == "__main__":
     for key in ("source", "slurm", "archive", "extracted", "receipt"):
         p.add_argument("--" + key, type=Path, required=True)
     p.add_argument("--remote-archive", required=True)
+    p.add_argument("--full-receipts", type=Path)
     verify(p.parse_args())

@@ -226,3 +226,8 @@ tests/cpp/sourceid_probe.cc
 !/results/reco_rn_retrospective_20261026/per_file_counts.json
 !/results/reco_rn_retrospective_20261026/replicas.npz
 !/results/reco_rn_retrospective_20261026/figures/
+
+!/results/truth_reach_20261026/
+/results/truth_reach_20261026/*
+!/results/truth_reach_20261026/*.json
+!/results/truth_reach_20261026/*.md

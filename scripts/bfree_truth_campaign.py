@@ -88,6 +88,9 @@ def summarize(root, output, *, smoke=False, config=None):
     rng = np.random.default_rng(SEED)
     results, draws, spectra = {}, {}, {}
     edges = None
+    columns = config.get("counter_columns", COLUMNS)
+    floor = config.get("reach_floor")
+    file_rows = []
     for tag in TAGS:
         members = config["smoke_members"][tag] if smoke else None
         events, _, proof = load_certified(
@@ -125,18 +128,31 @@ def summarize(root, output, *, smoke=False, config=None):
             if edges is None:
                 edges = z["e_edges"].copy()
             if not np.array_equal(z["e_edges"], edges) or not np.array_equal(
-                edges, E_EDGES
+                edges, E_EDGES if floor is None else np.unique(np.r_[E_EDGES, floor])
             ):
                 raise ValueError("Energy binning differs from the fixed recipe")
         if len(set(names)) != len(names) or set(names) != selected:
             raise ValueError("Spectrum file membership mismatch")
         grouped = events.groupby(level="member")
-        counts = grouped[list(COLUMNS)].sum().loc[names].to_numpy(dtype=np.int64)
+        counts = grouped[list(columns)].sum().loc[names].to_numpy(dtype=np.int64)
         if (spec < 0).any() or not np.array_equal(spec.sum(axis=2), counts[:, :2]):
             raise ValueError("Spectrum integral does not equal selected particles")
         if not np.array_equal(nevent, grouped.size().loc[names]):
             raise ValueError(
                 "Spectrum event normalisation differs from certified table"
+            )
+        for name, count, n in zip(names, counts, nevent):
+            matrix = events.xs(name, level="member")[list(columns)].to_numpy(
+                dtype=np.int64
+            )
+            file_rows.append(
+                {
+                    "tag": tag,
+                    "member": name,
+                    "events": int(n),
+                    "counts": count.tolist(),
+                    "second_moments": (matrix.T @ matrix).tolist(),
+                }
             )
         # One whole-file multiplicity draw drives counts, yields and all bins.
         weights = rng.multinomial(
@@ -169,7 +185,7 @@ def summarize(root, output, *, smoke=False, config=None):
         results[tag] = {
             "files": len(names),
             "events": int(nevent.sum()),
-            "counts": dict(zip(COLUMNS, counts.sum(axis=0).tolist())),
+            "counts": dict(zip(columns, counts.sum(axis=0).tolist())),
             "observables": dict(zip(("R_n", "R_p", "D", "n_over_p"), central.tolist())),
             "bootstrap_sd": dict(
                 zip(("R_n", "R_p", "D", "n_over_p"), boot.std(axis=0, ddof=1).tolist())
@@ -177,7 +193,7 @@ def summarize(root, output, *, smoke=False, config=None):
             "proof_sha256": sha256(root / tag / "proof.json"),
             "seconds": proof["seconds"],
             "bytes": sum(
-                Path(v["path_read"]).stat().st_size for v in proof["raw_files"]
+                wanted[v["member"]].get("bytes", 0) for v in proof["raw_files"]
             ),
         }
     contrast = draws["bigSpot"] / draws["zeroSpot"] - 1
@@ -186,9 +202,20 @@ def summarize(root, output, *, smoke=False, config=None):
         / np.array(list(results["zeroSpot"]["observables"].values()))
         - 1
     )
+    write_json(
+        output / "per_file_counts.json",
+        {
+            "schema": "truth-file-counts-v1",
+            "columns": list(columns),
+            "reach_floor_GeV": floor,
+            "rows": file_rows,
+        },
+    )
     np.savez_compressed(output / "spectra.npz", e_edges=edges, **spectra)
-    return {
+    result = {
         "schema": "bfree-truth-summary-v1",
+        "per_file_counts_sha256": sha256(output / "per_file_counts.json"),
+        "reach_floor_GeV": floor,
         "status": "verified",
         "coverage": "smoke_subset" if smoke else "full",
         "samples": results,
@@ -204,6 +231,14 @@ def summarize(root, output, *, smoke=False, config=None):
         "scope": "MC truth; fixed inherited straight-ray rectangle; unweighted; B ignored. Proton magnetic response is not modelled. File independence and unknown centrality mixture limit interpretation.",
         "spectra_sha256": sha256(output / "spectra.npz"),
     }
+    if floor is not None:
+        from HGNDRecoGNN.analysis.truth_statistics import replay
+
+        independent = replay(json.loads((output / "per_file_counts.json").read_text()))
+        for tag, sample in independent.pop("samples").items():
+            result["samples"][tag].update(sample)
+        result.update(independent)
+    return result
 
 
 def main(args):
@@ -233,6 +268,9 @@ def main(args):
                     member=config["smoke_members"][tag],
                     raw_copy=None,
                     save_spectra=True,
+                    reach_floor=config.get("reach_floor"),
+                    independent_window=args.mode == "smoke"
+                    and config.get("reach_floor") is not None,
                     output=args.output / tag,
                 )
             )

@@ -22,6 +22,7 @@ from HGNDRecoGNN.scripts import reduce_prim_full as reducer  # noqa: E402
 from HGNDRecoGNN.scripts import hgnd_acceptance as geometry  # noqa: E402
 from HGNDRecoGNN.scripts import content_census as identity_code  # noqa: E402
 from HGNDRecoGNN.scripts.content_census import sha256  # noqa: E402
+from HGNDRecoGNN.analysis import truth_reach  # noqa: E402
 
 
 def certify(args):
@@ -32,6 +33,7 @@ def certify(args):
         Path(reducer.__file__),
         Path(geometry.__file__),
         Path(identity_code.__file__),
+        Path(truth_reach.__file__),
     ]
     source_hashes = {p.name: sha256(p) for p in source_files}
     manifest_hash = sha256(args.input_manifest)
@@ -66,6 +68,8 @@ def certify(args):
     for i, member in enumerate(selected):
         item = raw[member]
         path = args.raw_copy or Path(item["path"])
+        if getattr(args, "raw_root", None):
+            path = args.raw_root.joinpath(*Path(item["path"]).parts[-3:])
         before = sha256(path)
         if before != item["sha256"]:
             raise ValueError(
@@ -87,6 +91,20 @@ def certify(args):
                 raise ValueError(f"Counter differs from raw replay: {member}/{name}")
         if not np.array_equal(fresh.nprim, identity.nprim):
             raise ValueError("Independent primary-row multiplicity mismatch")
+        floor = getattr(args, "reach_floor", None)
+        edges = (
+            reducer.E_EDGES
+            if floor is None
+            else np.unique(np.r_[reducer.E_EDGES, floor])
+        )
+        if floor is not None:
+            fresh = fresh.join(
+                truth_reach.reach_counters(
+                    primary,
+                    floor,
+                    independent=getattr(args, "independent_window", False),
+                )
+            )
         if getattr(args, "save_spectra", False):
             acc = geometry.in_acceptance(
                 *(primary[c].to_numpy() for c in ("Px", "Py", "Pz", "vX", "vY", "vZ"))
@@ -94,9 +112,12 @@ def certify(args):
             counts = []
             for pdg, column in ((2112, "acc_n"), (2212, "acc_p")):
                 energy = primary.loc[acc & (primary.PDG == pdg), "Ekin"].to_numpy()
+                if floor is not None:
+                    energy = energy[energy >= floor]
+                    column += "_reach"
                 if not np.isfinite(energy).all() or (energy < 0).any():
                     raise ValueError("Invalid selected kinetic energy")
-                hist = np.histogram(energy, bins=reducer.E_EDGES)[0]
+                hist = np.histogram(energy, bins=edges)[0]
                 if int(hist.sum()) != int(fresh[column].sum()):
                     raise ValueError("Spectrum overflow or selected-count mismatch")
                 counts.append(hist)
@@ -139,7 +160,7 @@ def certify(args):
             args.output / "spectra.npz",
             counts=np.asarray(spectra, dtype=np.int64),
             members=np.asarray(selected),
-            e_edges=reducer.E_EDGES,
+            e_edges=edges,
             events=np.asarray(list(output_progress["done"].values()), dtype=np.int64),
         )
         artifacts.append("spectra.npz")
@@ -169,7 +190,12 @@ def certify(args):
             ],
             "selection_policy": "Unchanged inherited reducer conventions; no fitted selection",
             "B_policy": "Metadata only; no B histogram or weighting",
-            "spectra_E_edges_GeV": reducer.E_EDGES.tolist() if spectra else None,
+            "spectra_E_edges_GeV": edges.tolist() if spectra else None,
+            "reach_floor_GeV": getattr(args, "reach_floor", None),
+            "proxy_cm_rapidity": float(truth_reach.Y_CM)
+            if getattr(args, "reach_floor", None)
+            else None,
+            "independent_window_check": getattr(args, "independent_window", False),
         },
         "input_manifest_sha256": manifest_hash,
         "reference_events_sha256": events_hash,
@@ -206,5 +232,8 @@ if __name__ == "__main__":
     group.add_argument("--member", action="append")
     p.add_argument("--raw-copy", type=Path)
     p.add_argument("--save-spectra", action="store_true")
+    p.add_argument("--reach-floor", type=float, choices=[0.3])
+    p.add_argument("--independent-window", action="store_true")
+    p.add_argument("--raw-root", type=Path)
     p.add_argument("--output", type=Path, required=True)
     certify(p.parse_args())

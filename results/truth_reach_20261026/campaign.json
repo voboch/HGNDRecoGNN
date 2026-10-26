@@ -1,0 +1,61 @@
+{
+  "schema": "bfree-campaign-v1",
+  "references": {
+    "zeroSpot": {
+      "events": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/zeroSpot_events.pkl",
+      "events_sha256": "2f15d72b0b08fb2b8ce5af424a79ddef145e8d01fce496cbe3082b8fd045ddcc",
+      "progress": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/zeroSpot_progress.json",
+      "progress_sha256": "7021a2801141357b6813346cba6c72aa144da498e371fe64684b589adcd2b8ec"
+    },
+    "defaultSpot": {
+      "events": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/defaultSpot_events.pkl",
+      "events_sha256": "45325459596b65f75112843c8fe3954661b1ddc4d2680ecbb63405482c1ed519",
+      "progress": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/defaultSpot_progress.json",
+      "progress_sha256": "302a7be4db1f626983531ac6fb227a3c09f9fb8655a28f028289519ddb84cb0d"
+    },
+    "bigSpot": {
+      "events": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/bigSpot_events.pkl",
+      "events_sha256": "7f85ba5cd12d6cdf0356123e32dbefe73787974e51ff0ea0c822f886a9708171",
+      "progress": "/scratch/vbocharnikov/hgnd/results/prim_events_acc/bigSpot_progress.json",
+      "progress_sha256": "951861e45772e96f2ee18785cd527931da3d34eefbb6c130b40a99f9d5c28e03"
+    }
+  },
+  "smoke_members": {
+    "zeroSpot": [
+      "10943245/0001_prim.csv",
+      "10943245/0002_prim.csv",
+      "10943245/0003_prim.csv"
+    ],
+    "defaultSpot": [
+      "10943245/0001_prim.csv",
+      "10943245/0002_prim.csv",
+      "10943245/0003_prim.csv"
+    ],
+    "bigSpot": [
+      "10943245/0001_prim.csv",
+      "10943245/0002_prim.csv",
+      "10943245/0003_prim.csv"
+    ]
+  },
+  "resource_caps": {
+    "cpus": 2,
+    "gpus": 0,
+    "memory": "0",
+    "smoke_minutes": 15,
+    "full_minutes_per_task": 45,
+    "array": "0-2%2",
+    "aggregate_minutes": 15,
+    "allocated_cpu_hours_max": 5.5
+  },
+  "stop_policy": "Any failure stops its branch; no automatic retry; no partial-cohort aggregate",
+  "analysis": "MC truth; no B weights; fixed rectangle and thresholds; whole-file bootstrap400 seed20261025",
+  "reach_floor": 0.3,
+  "counter_columns": [
+    "acc_n_reach",
+    "acc_p_reach",
+    "acc_n_hi",
+    "acc_n_lo_reach",
+    "acc_p_hi",
+    "acc_p_lo_reach"
+  ]
+}
