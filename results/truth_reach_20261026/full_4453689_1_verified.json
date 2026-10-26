@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "mode": "certify",
+  "job_id": "4453689_1",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/certify_4453689_1/result.tar.gz",
+  "archive_sha256": "4d3328b989e6ce911866a0523ddfe223d3fd8b425f491f6ac5ff08931e784370",
+  "summary_sha256": "2c730683859879d8f025d33d1bef85d220430709f0a703b03db3ebf23103d4f5",
+  "local_archive": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/truth_reach_20261026/full_4453689_1.tar.gz",
+  "tag": "defaultSpot"
+}

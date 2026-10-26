@@ -193,6 +193,7 @@ def verify(args):
             )
     receipt = dict(
         status="verified",
+        verifier_sha256=sha256(__file__),
         mode=mode,
         job_id=slurm["job_key"],
         slurm_state=slurm["state"],
