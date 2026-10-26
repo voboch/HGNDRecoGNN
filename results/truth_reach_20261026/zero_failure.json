@@ -1,0 +1,13 @@
+{
+  "job_key": "4453689_0",
+  "state": "FAILED",
+  "exit_code": "1:0",
+  "elapsed": "00:11:34",
+  "node": "cn-031",
+  "phase": "post-read raw SHA256 verification",
+  "member": "10943245/0135_prim.csv",
+  "error": "EACCES on reopening the input after successful earlier reads",
+  "permissions": "0644 owner vbocharnikov, uid2761,gid100; no restrictive ACL in login metadata",
+  "cause": "unproven; transient filesystem accessibility is plausible",
+  "complete_certificate": false
+}

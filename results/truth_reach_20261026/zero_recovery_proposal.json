@@ -1,0 +1,18 @@
+{
+  "status": "NOT_SUBMITTED",
+  "authorization": "required: preregistered no-automatic-retry rule",
+  "scope": "exactly one repeat of failed zeroSpot task; no training, no recipe/window/source/split change",
+  "source": "/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521",
+  "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521",
+  "smoke_receipt": "smoke_verified.json",
+  "time_limit_minutes": 30,
+  "cpus": 2,
+  "gpus": 0,
+  "exclude_node": "cn-031",
+  "start_gate": "defaultSpot task must be terminal, leaving <=1 other running campaign task",
+  "preserve": "failed Slurm status/log/source; unique result directory and no overwrite",
+  "stop_policy": "any failure stops; no further retry",
+  "budget": "smoke175s + failed694s + two full45min caps + retry30min + aggregation15min =4.98CPUhours worst bound; within5.5CPUhours",
+  "command": "sbatch --parsable --export=ALL,BF_SOURCE=/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521,BF_EXPORT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521,BF_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,BF_MODE=certify,BF_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/smoke_verified.json --partition=rocky --time=00:30:00 --array=0 --exclude=cn-031 --output=/scratch/vbocharnikov/hgnd/experiments/truth_reach_20261026_841e1f3521/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521/slurm/bfree_truth.hpc.sbatch"
+}
