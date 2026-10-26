@@ -1,6 +1,10 @@
 {
-  "status": "NOT_SUBMITTED",
-  "authorization": "required: preregistered no-automatic-retry rule",
+  "status": "AUTHORIZED_NOT_YET_SUBMITTED",
+  "authorization": {
+    "date": "2026-10-26",
+    "human_answer": "Разрешить один повтор",
+    "scope": "one zeroSpot repeat, maximum30min, unchanged source/data/recipe, exclude cn-031"
+  },
   "scope": "exactly one repeat of failed zeroSpot task; no training, no recipe/window/source/split change",
   "source": "/home/vbocharnikov/hgnd_experiments/truth_reach_20261026_841e1f3521",
   "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
@@ -24,5 +28,6 @@
     "estimate_seconds": 1635.23947986,
     "bound_seconds": 1800
   },
-  "preflight": "GO conditional on explicit human permission, fresh terminal task1/parallel cap, unchanged hashes"
+  "preflight": "GO conditional on explicit human permission, fresh terminal task1/parallel cap, unchanged hashes",
+  "failed_log_sha256": "7aebe5a84106ee863dca1fbd3e09bc81faa296390af4d902579e51a58db396aa"
 }
