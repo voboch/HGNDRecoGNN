@@ -141,18 +141,38 @@ def verify(args):
 
         rebuilt = replay({"columns": columns, "rows": numerical_rows})
         for tag in TAGS:
-            for key in ("counts", "observables", "bootstrap_sd"):
+            for key in (
+                ("counts", "observables", "bootstrap_sd", "event_poisson_sd")
+                if config.get("reach_floor") is not None
+                else ("counts", "observables", "bootstrap_sd")
+            ):
                 old, new = summary["samples"][tag][key], rebuilt["samples"][tag][key]
                 if set(old) != set(new) or not np.allclose(
                     list(old.values()), list(new.values()), rtol=1e-12, atol=1e-14
                 ):
                     raise ValueError("Aggregate numerical replay mismatch: " + key)
         for key in (
-            "endpoint_fraction_big_over_zero_minus_one",
-            "endpoint_bootstrap_sd",
+            k
+            for k in rebuilt
+            if k != "samples"
+            and k != "observable_order"
+            and (
+                config.get("reach_floor") is not None
+                or k
+                in (
+                    "endpoint_fraction_big_over_zero_minus_one",
+                    "endpoint_bootstrap_sd",
+                )
+            )
         ):
             if not np.allclose(summary[key], rebuilt[key], rtol=1e-12, atol=1e-14):
                 raise ValueError("Aggregate numerical replay mismatch: " + key)
+        if "per_file_counts_sha256" in summary:
+            saved = json.loads((result / "per_file_counts.json").read_text())
+            if saved["columns"] != columns or saved["rows"] != numerical_rows:
+                raise ValueError(
+                    "Saved per-file counters/moments differ from certified events"
+                )
     if mode in ("smoke", "aggregate"):
         if (
             "per_file_counts_sha256" in summary
