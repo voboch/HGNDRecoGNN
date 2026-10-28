@@ -1,0 +1,193 @@
+{
+  "schema": "bfree-truth-summary-v1",
+  "per_file_counts_sha256": "33717dab84435e08009623f6f84eb6bf3f812025b2448e092df548a15ec5964f",
+  "reach_floor_GeV": 0.3,
+  "status": "verified",
+  "coverage": "full",
+  "samples": {
+    "zeroSpot": {
+      "files": 195,
+      "events": 804369,
+      "counts": {
+        "acc_n_reach": 528929,
+        "acc_p_reach": 456186,
+        "acc_n_hi": 145694,
+        "acc_n_lo_reach": 142056,
+        "acc_p_hi": 122260,
+        "acc_p_lo_reach": 125308
+      },
+      "observables": {
+        "R_n": 1.0256096187419046,
+        "R_p": 0.9756759344973984,
+        "D": 1.0511785547628871,
+        "n_over_p": 1.1594590802874267
+      },
+      "bootstrap_sd": {
+        "R_n": 0.0038057324245295674,
+        "R_p": 0.004005699594581499,
+        "D": 0.005677052696269702,
+        "n_over_p": 0.0020462499100391673
+      },
+      "proof_sha256": "505385dc187f986d89b3d20d295d19faf5feb94b4cba825501050b348b00d0a2",
+      "seconds": 889.6361784297042,
+      "bytes": 30490664659,
+      "event_poisson_sd": {
+        "R_n": 0.003932372970958036,
+        "R_p": 0.004010430847378198,
+        "D": 0.005764618920373198,
+        "n_over_p": 0.0023279716602166594
+      }
+    },
+    "defaultSpot": {
+      "files": 200,
+      "events": 824338,
+      "counts": {
+        "acc_n_reach": 545592,
+        "acc_p_reach": 468687,
+        "acc_n_hi": 151208,
+        "acc_n_lo_reach": 146412,
+        "acc_p_hi": 124252,
+        "acc_p_lo_reach": 129775
+      },
+      "observables": {
+        "R_n": 1.0327568778515421,
+        "R_p": 0.9574417260643421,
+        "D": 1.0786629094355333,
+        "n_over_p": 1.1640860531655455
+      },
+      "bootstrap_sd": {
+        "R_n": 0.004288368660476062,
+        "R_p": 0.004376036485623169,
+        "D": 0.006004749598691181,
+        "n_over_p": 0.002398163142381534
+      },
+      "proof_sha256": "4d692413e293890f3be1921239c29ed492c396ef944c1bbb3d4662d3bd435232",
+      "seconds": 919.8222648669034,
+      "bytes": 31247370792,
+      "event_poisson_sd": {
+        "R_n": 0.003881007918157705,
+        "R_p": 0.003882072601945084,
+        "D": 0.0057962399356123505,
+        "n_over_p": 0.002299148972829443
+      }
+    },
+    "bigSpot": {
+      "files": 173,
+      "events": 717286,
+      "counts": {
+        "acc_n_reach": 474877,
+        "acc_p_reach": 408600,
+        "acc_n_hi": 134482,
+        "acc_n_lo_reach": 125224,
+        "acc_p_hi": 105260,
+        "acc_p_lo_reach": 114967
+      },
+      "observables": {
+        "R_n": 1.0739315147256117,
+        "R_p": 0.9155670757695686,
+        "D": 1.1729686913686053,
+        "n_over_p": 1.1622050905531083
+      },
+      "bootstrap_sd": {
+        "R_n": 0.004045908120386734,
+        "R_p": 0.0038012639453557946,
+        "D": 0.006296945291990149,
+        "n_over_p": 0.0028019825670267907
+      },
+      "proof_sha256": "7e63f7bb6160ce3d09ca81fbbe92fe7ed0246220b354cb8cd06fd701ecfd880c",
+      "seconds": 837.4076059968211,
+      "bytes": 27189945616,
+      "event_poisson_sd": {
+        "R_n": 0.004308610174283434,
+        "R_p": 0.003983861108098758,
+        "D": 0.006753789039441308,
+        "n_over_p": 0.00244905973370142
+      }
+    }
+  },
+  "endpoint_fraction_big_over_zero_minus_one": [
+    0.04711529133568648,
+    -0.06160740118981589,
+    0.11586056056213034,
+    0.0023683546167070357
+  ],
+  "endpoint_bootstrap_sd": [
+    0.005257445090823848,
+    0.005413579996593547,
+    0.007934866004201544,
+    0.0029914226190649756
+  ],
+  "observable_order": [
+    "R_n",
+    "R_p",
+    "D",
+    "n_over_p"
+  ],
+  "bootstrap": {
+    "replicates": 400,
+    "seed": 20261025,
+    "unit": "whole production file",
+    "error": "SD, ddof=1"
+  },
+  "scope": "MC truth; fixed inherited straight-ray rectangle; unweighted; B ignored. Proton magnetic response is not modelled. File independence and unknown centrality mixture limit interpretation.",
+  "spectra_sha256": "7cff8756f115fcb98be4449f6cdcb042cf0fce697b3b2eb266dbcd747e25a6d2",
+  "endpoint_event_poisson_sd": [
+    0.005810977180956029,
+    0.005616957288255196,
+    0.00887279253958889,
+    0.0029175304895595997
+  ],
+  "endpoint_quoted_sd": [
+    0.005810977180956029,
+    0.005616957288255196,
+    0.00887279253958889,
+    0.0029914226190649756
+  ],
+  "endpoint_file_over_event_sd": [
+    0.9047437164361548,
+    0.9637922666624328,
+    0.8942918442866237,
+    1.0253269433755017
+  ],
+  "midpoint_fraction_middle_over_zero_minus_one": [
+    0.006968791028310495,
+    -0.018688795929407975,
+    0.02614622848622128,
+    0.003990630593855737
+  ],
+  "midpoint_bootstrap_sd": [
+    0.00571729597798122,
+    0.005800721681761608,
+    0.007932904387230565,
+    0.002852763441414102
+  ],
+  "midpoint_event_poisson_sd": [
+    0.005406103597646551,
+    0.005665788992602782,
+    0.007878554182411436,
+    0.002827653233955069
+  ],
+  "midpoint_quoted_sd": [
+    0.00571729597798122,
+    0.005800721681761608,
+    0.007932904387230565,
+    0.002852763441414102
+  ],
+  "midpoint_file_over_event_sd": [
+    1.0575631551844735,
+    1.0238153396349552,
+    1.0068984998466424,
+    1.0088802287202348
+  ],
+  "mode": "aggregate",
+  "source_digest": "64fe250f12dc84fc5bbbb6e79956af4725d60b793d6c8428ef80d737d7fc23c7",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "job_id": "4453896_single",
+  "seconds": 11.051822092849761,
+  "input_manifest_sha256": "2822cd726d743bf77aaf354735f60766b8d97f57a4305caf9754d3f8d488d393"
+}
