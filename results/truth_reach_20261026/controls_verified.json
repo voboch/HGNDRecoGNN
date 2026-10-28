@@ -1,0 +1,34 @@
+{
+  "status": "complete",
+  "operation": "Post-hoc composition and serial-correlation controls; no fitting or tuning",
+  "aggregate_summary_sha256": "c6613d0b4b33d6a86b971c64c9cd0ca081491c0bcd3035ee8ff176edbdb166aa",
+  "code_sha256": "df1bccb3828ed9660d160a887e29583f33d61ad8e540bd7664aee379d7e05d3b",
+  "proof_sha256": {
+    "zeroSpot": "505385dc187f986d89b3d20d295d19faf5feb94b4cba825501050b348b00d0a2",
+    "defaultSpot": "4d692413e293890f3be1921239c29ed492c396ef944c1bbb3d4662d3bd435232",
+    "bigSpot": "7e63f7bb6160ce3d09ca81fbbe92fe7ed0246220b354cb8cd06fd701ecfd880c"
+  },
+  "environment": {
+    "python": "3.11.14",
+    "numpy": "2.3.5"
+  },
+  "controls_sha256": "27442e54fe7f31eb5e0e1c23a643d2f290bdadefd42060b3f8fba04885ba9692",
+  "class_files_sha256": "658b49828226d529a1835cf856ac4ea13a327a3819e7517fc6b4abfef5d231d2",
+  "replicates": 400,
+  "seed": 20261025,
+  "class_count": 5,
+  "local_output": "results/truth_reach_20261026/controls/",
+  "paper_input": "HGNDPaper/data/canonical_inputs/truth_reach_controls.json",
+  "endpoint_shift_percent": [
+    0.002980230395155381,
+    0.0007530053481308308,
+    0.0022804573011514506,
+    -0.0008870289598172931
+  ],
+  "endpoint_shift_paired_sd_percent": [
+    0.10421470922687862,
+    0.09149314663143966,
+    0.00738930995190934,
+    0.01072772279561151
+  ]
+}
