@@ -1,0 +1,31 @@
+{
+  "status": "verified",
+  "mode": "smoke",
+  "job_id": "4464146_single",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:06:33",
+  "node": "cn-036",
+  "source_digest": "42dbde3901590b189205cc782f516de21317f6f049978aa1d9c25e2994269c67",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_4464146_single/result.tar.gz",
+  "archive_sha256": "c89c4a3fcc1f3cd2c7cc66e71480442036b2969f12c529155719c1bbfa2e8e5f",
+  "local_archive": "smoke_4464146.tar.gz",
+  "summary_sha256": "f9a051fa5de801a20aa5cbfa2a6a8ae14ce3f21d0fad7e74819bc52b6280c21d",
+  "census_sha256": "d6b6d6de6d565eecb0230d0db285092e694ffd647314ef1557f548cd66f4c35b",
+  "estimated_full_seconds": {
+    "zeroSpot": 790.1551432034437,
+    "defaultSpot": 433.8400037986828,
+    "bigSpot": 372.3296307349441
+  },
+  "estimated_full_seconds_with_margin": {
+    "zeroSpot": 1485.2327148051654,
+    "defaultSpot": 950.7600056980242,
+    "bigSpot": 858.4944461024161
+  }
+}

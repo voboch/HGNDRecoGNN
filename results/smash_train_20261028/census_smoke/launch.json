@@ -1,0 +1,62 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473",
+  "source_tar_sha256": "224342547374ffdc6ffd8a40a6c4b350bc393841a5f35b89b721c8cc33389548",
+  "source_digest": "42dbde3901590b189205cc782f516de21317f6f049978aa1d9c25e2994269c67",
+  "source_files": 245,
+  "package_contents": "git archive of 6f49a5b (code dirs only: analysis data models proton_pid scripts training tests slurm, top-level .py/.toml/.lock/.txt; results/ reports/ notebooks/ docs/ paper/ excluded) + uncommitted working-tree files scripts/smash_export_census.py scripts/smash_split.py slurm/smash_census.hpc.sbatch tests/test_smash_export_census.py tests/test_smash_split.py; bound_inventory.json = git show 6f49a5b:results/smash_full_transfer_20261023/bound_inventory.json; slurm/smash_census.hpc.sbatch also at top level",
+  "git_commit": "6f49a5bf7108192f14a1b6aec89a152d62cf9d5d",
+  "environment": "/home/vbocharnikov/.conda/envs/hgnd-env",
+  "staging_commands": [
+    "scp source.tar.gz charisma:/home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473.tar.gz",
+    "cd /home/vbocharnikov/hgnd_experiments && mkdir smash_census_20261028_2243425473 && tar -xzf smash_census_20261028_2243425473.tar.gz -C smash_census_20261028_2243425473 && cd smash_census_20261028_2243425473 && sha256sum -c --quiet SHA256SUMS && chmod -R a-w /home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473",
+    "mkdir -p /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/logs"
+  ],
+  "smoke_command": "cd /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473 && sbatch --parsable --export=ALL,SC_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473,SC_EXPORT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473,SC_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,SC_MODE=smoke --partition=test --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473/slurm/smash_census.hpc.sbatch",
+  "smoke_submitted": "2026-10-28T18:52:05+03:00",
+  "smoke_job_id": "4464146",
+  "smoke_members": {
+    "zeroSpot": [
+      "10943245/0001 (pinned bound)",
+      "10943245/0629 (byte alias)",
+      "10943245/0196 (header-only)"
+    ],
+    "defaultSpot": [
+      "10943245/0008 (pinned bound -> primary 0010)",
+      "10943245/0395 (byte alias)",
+      "10943245/0187 (pinned header-only)"
+    ],
+    "bigSpot": [
+      "10943245/0008 (pinned bound -> primary 0005)",
+      "10943245/0031 (pinned alias)",
+      "10943245/0002 (pinned header-only)"
+    ]
+  },
+  "alias_precheck": "sha256sum on login-02 2026-10-28: 0001=0629 (zeroSpot), 0008=0395 (defaultSpot), 0008=0031 (bigSpot) byte-identical for hits and vacs",
+  "status": "smoke COMPLETED 0:0; ownership of download/verification transferred to the main session (coordinator, 2026-10-28 ~19:00); full census NOT submitted",
+  "smoke_slurm": {
+    "job_key": "4464146_single",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:06:33",
+    "start": "2026-10-28T18:52:34",
+    "end": "2026-10-28T18:59:07",
+    "node": "cn-036",
+    "alloc_cpus": 4,
+    "max_rss_batch": "589916K"
+  },
+  "smoke_python_seconds": {
+    "zeroSpot": 8.32,
+    "defaultSpot": 4.02,
+    "bigSpot": 4.03,
+    "job_total": 19.87
+  },
+  "smoke_startup_note": "about 6 of the 6:33 minutes were interpreter start-up: the process sat in Lustre I/O wait importing torch/sympy/sklearn (pulled in by audit_smash_sources and bfree imports); observed with ps on cn-036 during the run",
+  "smoke_export_printed_by_job": {
+    "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_4464146_single/result.tar.gz": "c89c4a3fcc1f3cd2c7cc66e71480442036b2969f12c529155719c1bbfa2e8e5f",
+    "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_4464146_single/summary.json": "f9a051fa5de801a20aa5cbfa2a6a8ae14ce3f21d0fad7e74819bc52b6280c21d"
+  },
+  "smoke_verified_by_implementer_a": false,
+  "proposed_full_command": "cd /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473 && sbatch --parsable --export=ALL,SC_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473,SC_EXPORT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473,SC_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,SC_MODE=full,SC_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_verified.json --partition=rocky --time=01:30:00 --array=0-2%2 --output=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/smash_census_20261028_2243425473/slurm/smash_census.hpc.sbatch",
+  "full_gate": "independent preflight GO and an externally verified smoke receipt uploaded to /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_verified.json"
+}

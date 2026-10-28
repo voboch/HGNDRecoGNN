@@ -231,3 +231,15 @@ tests/cpp/sourceid_probe.cc
 /results/truth_reach_20261026/*
 !/results/truth_reach_20261026/*.json
 !/results/truth_reach_20261026/*.md
+
+# SMASH training campaign (protocol 6f49a5b): compact receipts, manifests and figures only.
+!/results/smash_train_20261028/
+/results/smash_train_20261028/*
+!/results/smash_train_20261028/*.json
+!/results/smash_train_20261028/figures/
+!/results/smash_train_20261028/census_smoke/
+/results/smash_train_20261028/census_smoke/*
+!/results/smash_train_20261028/census_smoke/*.json
+!/results/smash_train_20261028/census/
+/results/smash_train_20261028/census/*
+!/results/smash_train_20261028/census/census.json

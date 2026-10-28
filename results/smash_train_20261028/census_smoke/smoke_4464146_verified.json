@@ -1,0 +1,22 @@
+{
+  "status": "verified",
+  "mode": "smoke",
+  "job_id": "4464146_single",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:06:33",
+  "node": "cn-036",
+  "submitted_by": "implementer A (before the main session took over launches)",
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_2243425473/smoke_4464146_single/result.tar.gz",
+  "archive_sha256": "c89c4a3fcc1f3cd2c7cc66e71480442036b2969f12c529155719c1bbfa2e8e5f",
+  "summary_sha256": "f9a051fa5de801a20aa5cbfa2a6a8ae14ce3f21d0fad7e74819bc52b6280c21d",
+  "source_tar_sha256": "224342547374ffdc6ffd8a40a6c4b350bc393841a5f35b89b721c8cc33389548",
+  "checks": [
+    "archive SHA256 equals the job-printed value before extraction",
+    "census status complete, no stop reasons",
+    "each tag: pinned bound file and its byte alias form one content, bound file kept",
+    "binding equals the pinned primary map (default 0008->0010, big 0008->0005)",
+    "header-only member classified"
+  ],
+  "note": "source package contains uncommitted working-tree census code; the full census must run from committed code"
+}

@@ -1,0 +1,38 @@
+{
+  "anchor_sd": [
+    1.5,
+    1.7
+  ],
+  "anchor_files": [
+    195,
+    51
+  ],
+  "n0_bound": 195,
+  "rows": [
+    {
+      "n90_bound": 51,
+      "test_fraction": 0.3333333333333333,
+      "sd_low": 2.598076211353316,
+      "sd_high": 2.9444863728670914
+    },
+    {
+      "n90_bound": 51,
+      "test_fraction": 1.0,
+      "sd_low": 1.5,
+      "sd_high": 1.7000000000000002
+    },
+    {
+      "n90_bound": 173,
+      "test_fraction": 0.3333333333333333,
+      "sd_low": 1.7253224709160788,
+      "sd_high": 1.9553654670382223
+    },
+    {
+      "n90_bound": 173,
+      "test_fraction": 1.0,
+      "sd_low": 0.9961153930223082,
+      "sd_high": 1.128930778758616
+    }
+  ],
+  "model": "sd = anchor * sqrt(1/n0 + 1/n90) / sqrt(1/195 + 1/51), n = fraction * bound"
+}

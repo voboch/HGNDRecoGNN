@@ -1,0 +1,76 @@
+{
+  "schema": "smash-smoke-split-v1",
+  "salt": "smash-train-smoke-v1:",
+  "inventory_sha256": "a3baf9d9379fb48f797a0ce47f1de1fba73e4495aa27edacf1208bab258723f4",
+  "scope": "GPU smoke only; pinned truth-bound files with saved audit tensors and transfer CSVs; no reported number may come from these assignments",
+  "train": [
+    {
+      "tag": "zeroSpot",
+      "member": "10943245/0187",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "hits_path": "10943245/0187_hits.csv",
+      "vacs_path": "10943245/0187_vacs.csv",
+      "hits_sha256": "5f1662c6f125246a7cf78b46d99e05e8ed2b50b92994ec4c0bb1dd3ed4077fa9",
+      "vacs_sha256": "bf1d397ded5f6a4933df0d0cae5fe8a54adb796dbab894a10450d1f502c86a8a",
+      "primary": "10943245/0187",
+      "primary_sha256": "94fd7fe3d900be53c5bf8c4b0a13eb65de4be79678bff26b48228022910ea5dc"
+    },
+    {
+      "tag": "defaultSpot",
+      "member": "10943245/0184",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "hits_path": "10943245/0184_hits.csv",
+      "vacs_path": "10943245/0184_vacs.csv",
+      "hits_sha256": "d14ddea70f45f2428b2453aa73bb5331b9aa924eb957ab9f3f70b4d94f864eb9",
+      "vacs_sha256": "ed8cc863b8fde919604b5c2202e67ffa719ab6df0cec1fa318cddfa586f0eb68",
+      "primary": "10943245/0197",
+      "primary_sha256": "7cb5e17b0e45c13ec5c12e716251c272423e6d402cfa4b7f3671d8bdb3a208e7"
+    },
+    {
+      "tag": "bigSpot",
+      "member": "10943245/0001",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "hits_path": "10943245/0001_hits.csv",
+      "vacs_path": "10943245/0001_vacs.csv",
+      "hits_sha256": "fcf2a5a419de48635f1f933128e6d1a6db81a90c7399dbcf73fa79173dba657e",
+      "vacs_sha256": "358de8545807993e4c15de6283ad9ed55684cf7ecd5abc31bd79899925add4ad",
+      "primary": "10943245/0001",
+      "primary_sha256": "33681207d27bda4f22399da3657ca6235714174674825cf970e461df4a23564d"
+    }
+  ],
+  "val": [
+    {
+      "tag": "zeroSpot",
+      "member": "10943245/0059",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot",
+      "hits_path": "10943245/0059_hits.csv",
+      "vacs_path": "10943245/0059_vacs.csv",
+      "hits_sha256": "5a4b462f9cade68c3ed2ce1bcae207d60c936aeb064ac65f50ac48636536a3bb",
+      "vacs_sha256": "d0bc49234f7ed4436dbbe7eac3476e9c366d8b3584332207e5a43ae6922073fc",
+      "primary": "10943245/0059",
+      "primary_sha256": "102c2d0c2a4e414aee7c7f5bd8fca275c82f32b0cbb3cc7fd694c56c9d7f1d22"
+    },
+    {
+      "tag": "defaultSpot",
+      "member": "10943245/0102",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot",
+      "hits_path": "10943245/0102_hits.csv",
+      "vacs_path": "10943245/0102_vacs.csv",
+      "hits_sha256": "4c90779fa58dcdd7efea05e2219553bf7d1de86759b53189f62678697b41dff7",
+      "vacs_sha256": "6a1c829278e4538002ff783864e4fc58085ddb3d1087935cd8ecaf780ace5057",
+      "primary": "10943245/0111",
+      "primary_sha256": "125dd09c81cd26e0a9c6f235c65633dfd1a2f07722ddf16b064a7b340a729a20"
+    },
+    {
+      "tag": "bigSpot",
+      "member": "10943245/0060",
+      "raw_root": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot",
+      "hits_path": "10943245/0060_hits.csv",
+      "vacs_path": "10943245/0060_vacs.csv",
+      "hits_sha256": "2d7fc1b9a7437165e9c5769d551d3e448eba4324dba2630f1690d3e0be4e3690",
+      "vacs_sha256": "674d1e1ae7a2d33b4a25c9de1c237615ca6ef0a2a3a1fc122e4c979b0946eb7d",
+      "primary": "10943245/0023",
+      "primary_sha256": "b70a2fe1a4e8980ef03497a7ff6162dfb1cb1eea3d90bba10f4079d6fcd53ff0"
+    }
+  ]
+}
