@@ -1,0 +1,20 @@
+{
+  "status": "verified",
+  "mode": "full",
+  "job_id": "4464531_0",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:11:12",
+  "node": "cn-036",
+  "source_digest": "b3e50d02a0bef88bfe4cc50ed75a0a7c9d3bdb3c3db630a099ca2ef336c1d692",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "executable_sha256": "2a9d8f7ad0e08dc4a8a383ab51278972f0f517512a115bc23a28a847ef266003"
+  },
+  "archive": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/full_4464531_0/result.tar.gz",
+  "archive_sha256": "48cfe6614c8ba9a780e079a9c17de77091e58c0862081ac2c7598b012ace8566",
+  "local_archive": "full_4464531_0.tar.gz",
+  "summary_sha256": "eed3c152f6e1dd29d7cd82aaaaee8babd6d403131d67c276adb3d4b4e4f74192"
+}

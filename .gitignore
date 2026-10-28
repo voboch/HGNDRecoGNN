@@ -243,3 +243,12 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/census/
 /results/smash_train_20261028/census/*
 !/results/smash_train_20261028/census/census.json
+!/results/smash_train_20261028/census_retry/
+/results/smash_train_20261028/census_retry/*
+!/results/smash_train_20261028/census_retry/*.json
+!/results/smash_train_20261028/census_full/
+/results/smash_train_20261028/census_full/*
+!/results/smash_train_20261028/census_full/*.json
+!/results/smash_train_20261028/gpu_smoke/
+/results/smash_train_20261028/gpu_smoke/*
+!/results/smash_train_20261028/gpu_smoke/*.json

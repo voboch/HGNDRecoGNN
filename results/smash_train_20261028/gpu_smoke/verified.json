@@ -1,0 +1,88 @@
+{
+  "status": "verified",
+  "job_id": "4464277_single",
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:06:42",
+  "node": "cn-002",
+  "gpu": "Tesla V100-SXM2-32GB",
+  "max_rss_kb": 1429976,
+  "submitted_by": "main session",
+  "source_package": "smash_train_smoke_20261028_d8103bd9df",
+  "source_sha256sums_sha256": "d8103bd9dfcd7dcad7a8522da464a62dd1f7617c06b4469dd48f6a164ae9d6ec",
+  "code_commit_byte_identical": "5e9d80e",
+  "code_digest": "dd616e524b08cc8381ed7a6524922cc9dd745d88eee78b80a60f9d6601db909c",
+  "manifest_sha256": "ad92a96021fba7445e1ad875b9bb697603c699c1f58744aad6014a774bb1bc6a",
+  "archive_sha256": "c72d5d4739d83efffef1679cfe5cf54f0d00ce76702a6005d9ed57d6ae06ea0c",
+  "summary_files": {
+    "prepare/summary.json": "467b5ce09f9fcd9ded82c3e3cb8fcbc6a4a1b01266150ec291cf14ffdeb76aca",
+    "smoke/summary.json": "fc64ceb553994cc16148b4693748b3cd601a7d8e4db34d26c135183fb50fd08f"
+  },
+  "all_checks_passed": true,
+  "checks": {
+    "observations_bit_identical_to_audit": true,
+    "a_b_candidates_identical": true,
+    "scaler_train_only": true,
+    "epoch_checkpoints_and_selector": true,
+    "resume_from_mirror": true,
+    "isolation_and_no_truth_in_forward": true,
+    "a0_parity_with_transfer": true,
+    "throughput": true
+  },
+  "resume_final_weights_max_abs_diff": 0.02083277888596058,
+  "throughput": {
+    "passed": true,
+    "train": {
+      "batches": 200,
+      "graphs": 50504,
+      "seconds": 12.10200046794489,
+      "seconds_per_graph": 0.00023962459345685272
+    },
+    "validation": {
+      "batches": 200,
+      "graphs": 50384,
+      "seconds": 10.924685440957546,
+      "seconds_per_graph": 0.00021682846619874456
+    },
+    "max_memory_allocated_bytes": 44900352
+  },
+  "projection": {
+    "measured_smoke_graphs_per_file": 4075.6666666666665,
+    "from_measured_graphs_per_file": {
+      "train_graphs": 1190094.6666666665,
+      "validation_graphs": 399415.3333333333,
+      "epoch_seconds": 371.7805647780956,
+      "post_training_scoring_seconds": 346.41845641170784,
+      "load_seconds_assumed": 600,
+      "projected_run_seconds": 12099.835399754576,
+      "recommended_time_seconds": 20100,
+      "recommended_time": "05:35:00"
+    },
+    "from_plan_4115_graphs_per_file": {
+      "train_graphs": 1201580,
+      "validation_graphs": 403270,
+      "epoch_seconds": 375.36853456985284,
+      "post_training_scoring_seconds": 349.7616622558709,
+      "load_seconds_assumed": 600,
+      "projected_run_seconds": 12210.817699351455,
+      "recommended_time_seconds": 20400,
+      "recommended_time": "05:40:00"
+    },
+    "files_assumed": {
+      "train": 292,
+      "validation": 98
+    },
+    "pack_bytes_mean": 2959100.6666666665,
+    "prepare_archive_bytes_for_584_files_A_plus_3B": 6912459157.333333
+  },
+  "prepare_phase_seconds": {
+    "audit_and_observations": 34.46145922737196,
+    "scalers": 0.1729423739016056,
+    "packs": 8.88145539490506
+  },
+  "verification": [
+    "manifest and archive SHA256 equal the receipt before extraction",
+    "smash_input_bundle unpack checked every member",
+    "both summary SHA256 equal the receipt"
+  ]
+}

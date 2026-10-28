@@ -140,7 +140,8 @@
  ],
  "access_diagnosis": {
   "observed": "Every input path traverses /scratch/vbocharnikov (root:root, mode 0750); the only grant is the named-user POSIX ACL user:vbocharnikov:r-x. Failing files, their directories and data_fixed are 0644/0755 vbocharnikov:users, HSM state 0x0 (not released).",
-  "hypothesis": "Unproven: a compute-node Lustre client intermittently evaluates the 0750 root:root mode without the ACL during path lookup and returns EACCES. Consistent with all earlier RA-09 EACCES being under /scratch/vbocharnikov, on different files and nodes, while login reads succeed.",
+  "hypothesis": "Unproven: a Lustre client intermittently evaluates the 0750 root:root mode without the ACL during path lookup and returns EACCES. The four failing census files read on login after the failures, but RA-09 is not confined to compute nodes: at least eight events since 2026-10-23 (cn-030, cn-031 twice, cn-036..039, and login-02 on a stat of 0071_prim.csv, reports/smash_full_transfer_status_20261023.md).",
   "status": "open"
- }
+ },
+ "superseded_by": "census_retry/launch.json (package smash_census_20261028_0996498868, commit 0757f2e)"
 }

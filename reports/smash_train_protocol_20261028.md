@@ -174,16 +174,23 @@ and `0056_vacs` (retry 4464423_0, cn-039), defaultSpot `0098_hits`
 (4464315_1, cn-037) and `0106_hits` (4464423_1, cn-038). The pre-approved
 retry was used. bigSpot completed (4464315_2). The inputs are 0644 under 0755
 directories; every path passes through `/scratch/vbocharnikov`, which is
-root:root 0750 and grants access only through a named-user ACL. A compute
+root:root 0750 and grants access only through a named-user ACL. A Lustre
 client that checks the mode bits without the ACL would produce this pattern;
-that cause is not proven.
+that cause is not proven. RA-09 is not confined to compute nodes: since
+2026-10-23 at least eight events are recorded, on cn-030, cn-031 (twice),
+cn-036..039 and once on login-02 (a stat of `0071_prim.csv`,
+`smash_full_transfer_status_20261023.md`). The four files above read on login
+after the failures.
 
 The user authorised the following change. Every census input access (hash,
 CSV read, chunked primary scan, stat, directory listing, the smoke receipt) is
-retried on EACCES only, after 1, 2, 4, 8, 16 and 32 s. Each retry goes to the
-tag summary (`access_retries`: path, call, attempt, node, time) and the job
-log. Any other error, or EACCES after the last wait, crashes the task as
-before. The export copy in the batch script gets the same schedule. The
+retried on EACCES only, after 1, 2, 4, 8, 16 and 32 s. Every retry is printed
+to the job log; retries during a tag's census also go to the tag summary
+(`access_retries`: path, call, attempt, node, time), while retries reading the
+smoke receipt or projecting the smoke runtime appear in the log only. Any
+other error, or EACCES after the last wait, crashes the task as before. If
+the rerun fails on EACCES again, the next step is a request to cluster
+support about the cause, not a further code change. The export copy in the batch script gets the same schedule. The
 schedule is a convention: no outage duration has been measured, and the
 recorded retries will be the first measurement. A retried read cannot alter
 a result unnoticed, because inputs are hashed, pinned hashes are checked and

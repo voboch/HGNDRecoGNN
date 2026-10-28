@@ -1,0 +1,248 @@
+{
+ "purpose": "Rerun of the full SMASH export census with the in-process EACCES retry (protocol amendment 2026-10-28, authorised by the user after 4464315/4464423)",
+ "supersedes": "census_smoke/launch.json package smash_census_20261028_2243425473 (source digest 42dbde39...)",
+ "source": "/home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868",
+ "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868",
+ "environment": "/home/vbocharnikov/.conda/envs/hgnd-env",
+ "git_commit": "0757f2e",
+ "source_tar_sha256": "099649886854284b8b2ac7632480b497dec9f64fa4ec718b04d8959dabcc2f06",
+ "source_digest": "b3e50d02a0bef88bfe4cc50ed75a0a7c9d3bdb3c3db630a099ca2ef336c1d692",
+ "package_contents": "git archive of 0757f2e with the same path set as the superseded package (plus the training pipeline files committed in 5e9d80e); bound_inventory.json = git show 0757f2e:results/smash_full_transfer_20261023/bound_inventory.json (identical to the superseded package); slurm/smash_census.hpc.sbatch also at top level; 259 files in SHA256SUMS",
+ "package_tests": "tests/test_smash_export_census.py from inside the package: 14 passed; full repository suite at 0757f2e: 308 passed",
+ "staging_commands": [
+  "scp source.tar.gz charisma:/home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868.tar.gz",
+  "cd /home/vbocharnikov/hgnd_experiments && mkdir smash_census_20261028_0996498868 && tar -xzf smash_census_20261028_0996498868.tar.gz -C smash_census_20261028_0996498868 && cd smash_census_20261028_0996498868 && sha256sum -c --quiet SHA256SUMS && chmod -R a-w /home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868",
+  "mkdir -p /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/logs"
+ ],
+ "smoke_command": "cd /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868 && sbatch --parsable --export=ALL,SC_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868,SC_EXPORT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868,SC_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,SC_MODE=smoke --partition=test --time=00:15:00 --output=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/logs/%x_%j.out /home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868/slurm/smash_census.hpc.sbatch",
+ "smoke_job_id": "4464520",
+ "smoke_submitted": "2026-10-28T19:41:07+03:00",
+ "submitted_by": "main session",
+ "status": "full census complete and verified; combine complete",
+ "smoke_slurm": {
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:02:29",
+  "node": "cn-031"
+ },
+ "smoke_archive_sha256": "8f70db030b3109e80c664e05ee209422902e9eca61e84ce94ce7a21c85dae05e",
+ "smoke_access_retries": {
+  "zeroSpot": 0,
+  "defaultSpot": 0,
+  "bigSpot": 0
+ },
+ "smoke_verified": {
+  "receipt": "census_retry/smoke_verified.json",
+  "sha256": "bcb1bcb7fd93638e370d0f2a26f84e977f1d3d90f57241a48a5b36d1ab2bd139",
+  "uploaded_to": "/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/smoke_verified.json",
+  "estimated_full_seconds_with_margin": {
+   "zeroSpot": 1348,
+   "defaultSpot": 892,
+   "bigSpot": 813
+  },
+  "parity_with_smoke_4464146": "tag summaries (contents, groups, counts, header_only, pinned, membership) and decompressed indexes identical"
+ },
+ "human_authorization_text": {
+  "date": "2026-10-28",
+  "question": "Should I add the bounded EACCES retry to the census and rerun all three tags?",
+  "answer": "Yes, add retry"
+ },
+ "retry_rule": "none; the pre-approved retry D3 was used by 4464423; any FAILED task or exit 3 stops the stage and is reported to the user; a further EACCES failure goes to a cluster-support request, not a code change",
+ "full_preflight": {
+  "verdict": "GO-with-fixes",
+  "date": "2026-10-28",
+  "fixes_applied": [
+   "P1 retry rule, authorisation text and final command recorded here",
+   "P3 diagnosis wording corrected (login-02 EACCES on 2026-10-23) in census_smoke/launch.json and the protocol amendment",
+   "P4 protocol amendment states which retries reach the tag summary and which only the job log",
+   "P6 --exclude=cn-031 kept"
+  ],
+  "after_run": [
+   "P2 compare new bigSpot with verified 4464315_2 (contents, groups, counts, files, pinned, decompressed indexes); any difference stops; record access_retries per tag"
+  ],
+  "deferred": [
+   "P5 retry cp and cmp together in the next revision of the batch script"
+  ]
+ },
+ "full_command": "cd /scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868 && sbatch --parsable --export=ALL,SC_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868,SC_EXPORT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868,SC_ENV=/home/vbocharnikov/.conda/envs/hgnd-env,SC_MODE=full,SC_SMOKE_RECEIPT=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/smoke_verified.json --partition=rocky --time=01:30:00 --exclude=cn-031 --array=0-2%2 --output=/scratch/vbocharnikov/hgnd/experiments/smash_census_20261028_0996498868/logs/%x_%A_%a.out /home/vbocharnikov/hgnd_experiments/smash_census_20261028_0996498868/slurm/smash_census.hpc.sbatch",
+ "full_job_id": "4464531",
+ "full_submitted": "2026-10-28T19:53:29+03:00",
+ "full_submitted_by": "main session",
+ "full_results": [
+  {
+   "job": "4464531_0",
+   "tag": "zeroSpot",
+   "state": "COMPLETED 0:0",
+   "elapsed": "00:11:12",
+   "node": "cn-036",
+   "archive_sha256": "48cfe6614c8ba9a780e079a9c17de77091e58c0862081ac2c7598b012ace8566",
+   "verified_receipt": "census_retry/full_4464531_0_verified.json",
+   "verified_receipt_sha256": "c8919d870bdce44330ec3c2d606da42e273524e2276fd7f20219788b60a67f00",
+   "counts": {
+    "contents": 195,
+    "groups": 195,
+    "truth_bound_groups": 195,
+    "kept_events": 602635,
+    "events_all_contents": 602635
+   },
+   "pinned": {
+    "hashes_verified": 195,
+    "bound_members_verified": 195,
+    "header_only_declared": 0,
+    "aliases_declared": 0
+   },
+   "membership": {
+    "pairs": 3123,
+    "header_only": 1577,
+    "nonempty": 1546
+   },
+   "access_retries": [
+    {
+     "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_hits.csv",
+     "call": "read_csv",
+     "attempt": 1,
+     "wait_seconds": 1,
+     "node": "cn-036",
+     "utc": "2026-10-28T16:54:37Z"
+    },
+    {
+     "path": "/scratch/vbocharnikov/hgnd/data_np_full_20260924/extracted/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0014_prim.csv",
+     "call": "stat",
+     "attempt": 1,
+     "wait_seconds": 1,
+     "node": "cn-036",
+     "utc": "2026-10-28T16:55:37Z"
+    }
+   ]
+  },
+  {
+   "job": "4464531_1",
+   "tag": "defaultSpot",
+   "state": "COMPLETED 0:0",
+   "elapsed": "00:16:19",
+   "node": "cn-037",
+   "archive_sha256": "c33d50d57b26c5eff44e07af8d022f902cdca1b32e0e6356e8da19531395c478",
+   "verified_receipt": "census_retry/full_4464531_1_verified.json",
+   "verified_receipt_sha256": "5f94a25d90aed8ebdf2beba421fe97a9985c395d156e143a1e7af1701aba1d4b",
+   "counts": {
+    "contents": 206,
+    "groups": 200,
+    "truth_bound_groups": 200,
+    "kept_events": 618753,
+    "events_all_contents": 630366
+   },
+   "pinned": {
+    "hashes_verified": 200,
+    "bound_members_verified": 186,
+    "header_only_declared": 14,
+    "aliases_declared": 0
+   },
+   "membership": {
+    "pairs": 2383,
+    "header_only": 1199,
+    "nonempty": 1184
+   },
+   "access_retries": [
+    {
+     "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_defaultSpot/10943245/0107_hits.csv",
+     "call": "read_csv",
+     "attempt": 1,
+     "wait_seconds": 1,
+     "node": "cn-037",
+     "utc": "2026-10-28T16:54:36Z"
+    }
+   ]
+  },
+  {
+   "job": "4464531_2",
+   "tag": "bigSpot",
+   "state": "COMPLETED 0:0",
+   "elapsed": "00:09:26",
+   "node": "cn-036",
+   "archive_sha256": "5cb5edebcc3be4f3ae0c1ceb9ff55e2f0164f00b5c291d8f1af1527f440632e3",
+   "verified_receipt": "census_retry/full_4464531_2_verified.json",
+   "verified_receipt_sha256": "a80ffc1d29ae53175f85e001feae66a422ee096ca097a29209c366e7e7d7e3b4",
+   "counts": {
+    "contents": 183,
+    "groups": 183,
+    "truth_bound_groups": 173,
+    "kept_events": 570400,
+    "events_all_contents": 570400
+   },
+   "pinned": {
+    "hashes_verified": 173,
+    "bound_members_verified": 51,
+    "header_only_declared": 86,
+    "aliases_declared": 36
+   },
+   "membership": {
+    "pairs": 1865,
+    "header_only": 974,
+    "nonempty": 891
+   },
+   "access_retries": [
+    {
+     "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_bigSpot/10943245/0070_vacs.csv",
+     "call": "read_csv",
+     "attempt": 1,
+     "wait_seconds": 1,
+     "node": "cn-036",
+     "utc": "2026-10-28T17:05:44Z"
+    }
+   ]
+  }
+ ],
+ "access_retry_measurement": "4 EACCES events in the full run, each cleared after the first 1 s wait: cn-036 16:54:37Z read_csv zeroSpot 0081_hits.csv; cn-037 16:54:36Z read_csv defaultSpot 0107_hits.csv; cn-036 16:55:37Z stat zeroSpot primary 0014_prim.csv; cn-036 17:05:44Z read_csv bigSpot 0070_vacs.csv. Two different nodes failed within one second of each other. Smoke 4464520: 0.",
+ "p2_bigspot_comparison": {
+  "against": "census_full/full_4464315_2_verified.json (old code, verified)",
+  "result": "identical: all summary keys except timings/job_id/source_digest/code_sha256/access_retries, primary_files without seconds, and decompressed events/records indexes"
+ },
+ "combine": {
+  "output": "census/census.json",
+  "sha256": "f10725044e4a8d2e7bddba5acf145c70533766eba11087c82a9dd55652a9fb5a",
+  "status": "complete",
+  "cross_potential": {
+   "shared_event_signatures": 0,
+   "event_pairs_with_min_shared_records": 0,
+   "shared_raw_files": 0,
+   "shared_primary_files": 0
+  },
+  "pinned_bound_total": 432,
+  "groups": {
+   "zeroSpot": 195,
+   "defaultSpot": 200,
+   "bigSpot": 183
+  },
+  "truth_bound_groups": {
+   "zeroSpot": 195,
+   "defaultSpot": 200,
+   "bigSpot": 173
+  },
+  "pinned_member_not_kept": {
+   "defaultSpot": [
+    {
+     "pinned": "10943245/0001",
+     "events": 781,
+     "kept": "10943245/0387",
+     "kept_events": 3080,
+     "primary": "10943245/0002"
+    },
+    {
+     "pinned": "10943245/0007",
+     "events": 1199,
+     "kept": "10943245/0394",
+     "kept_events": 3134,
+     "primary": "10943245/0009"
+    },
+    {
+     "pinned": "10943245/0034",
+     "events": 2648,
+     "kept": "10943245/0533",
+     "kept_events": 2986,
+     "primary": "10943245/0039"
+    }
+   ],
+   "note": "each pinned member is a truncated event subset of a fuller export bound to the same primary file; the census keeps the content with most events (protocol rule); not a stop"
+  }
+ }
+}
