@@ -83,6 +83,10 @@ class TrainConfig:
     # Native losses: aggregate each head over its full scored population.
     # 'batch_mean' reproduces the historical checkpoint-selection statistic.
     validation_aggregation: str = 'population'
+    # Keep every epoch's weights as epoch_XXX.pt beside the rolling files.
+    # Per-head selection after training needs the weights of epochs that were
+    # never the composite best; False leaves the historical file set unchanged.
+    epoch_checkpoints: bool = False
     verbose: bool = True
 
 
@@ -244,6 +248,31 @@ def eval_epoch(
 # ── Orchestrator ─────────────────────────────────────────────────────────
 
 RESUME_NAME = 'resume.pt'
+
+
+def epoch_checkpoint_name(epoch: int) -> str:
+    return f'epoch_{int(epoch):03d}.pt'
+
+
+def _check_epoch_checkpoints(checkpoint_dir, start_epoch, resumed_model):
+    """A resumed run with epoch checkpoints must hold every earlier epoch.
+
+    Selection later loads any epoch, so a gap would only surface after the
+    whole budget had been spent. The newest file must also be the weights the
+    atomic resume state continues from, or the two describe different runs.
+    """
+    from .checkpoint import load_checkpoint
+    missing = [epoch_checkpoint_name(e) for e in range(start_epoch)
+               if not os.path.exists(os.path.join(checkpoint_dir, epoch_checkpoint_name(e)))]
+    if missing:
+        raise ValueError(f'Resume lacks epoch checkpoints: {missing}')
+    if start_epoch and resumed_model is not None:
+        last = load_checkpoint(os.path.join(checkpoint_dir, epoch_checkpoint_name(start_epoch - 1)))
+        if last.epoch != start_epoch - 1 or set(last.state_dict) != set(resumed_model):
+            raise ValueError('Newest epoch checkpoint does not match the resume state')
+        for key, value in last.state_dict.items():
+            if not torch.equal(value, resumed_model[key]):
+                raise ValueError('Newest epoch checkpoint weights differ from the resume state')
 
 
 def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
@@ -408,6 +437,7 @@ def fit(
     plan: Optional[device_mod.DeviceMap] = None,
     forward_fn: Callable = _forward_default_net,
     loss_fn: Callable = default_net_loss,
+    epoch_callback: Optional[Callable] = None,
 ) -> dict:
     """Full training loop. Returns a dict with loss history and checkpoint path.
 
@@ -415,6 +445,10 @@ def fit(
     before invoking). We do not construct the model here so notebooks can
     initialise lazy PyG modules (SAGEConv with in_channels=-1) with a dummy
     forward pass before fit() starts.
+
+    `epoch_callback(epoch, history)`, when given, runs after every file of the
+    epoch has been committed (resume.pt last); a caller uses it to mirror the
+    checkpoint directory. Its failures are the caller's to handle.
     """
     if plan is None:
         plan = device_mod.plan_for(model, cfg.device, cfg.cpu_pinned)
@@ -455,10 +489,18 @@ def fit(
         best_epoch = int(blob.get('best_epoch', best_epoch))
         _restore_rng_state(blob.get('rng') or {})
         history = blob.get('history', [])
+        if getattr(cfg, 'epoch_checkpoints', False):
+            _check_epoch_checkpoints(cfg.checkpoint_dir, start_epoch, blob['model'])
+            if len(history) != start_epoch:
+                raise ValueError('Resume history length differs from next_epoch')
         if cfg.verbose:
             print(f'fit(): resumed model, optimizer, schedule and RNG from '
                   f'{resume_path} at epoch {start_epoch} '
                   f'(lr {scheduler.get_last_lr()[0]:.2e})')
+    elif start_epoch and getattr(cfg, 'epoch_checkpoints', False):
+        # Every epoch's weights are part of the result; a resume that cannot
+        # restore the atomic state would leave earlier epochs unaccounted for.
+        raise ValueError('epoch_checkpoints resume requires the atomic resume.pt')
     elif start_epoch and os.path.exists(opt_path):
         blob = torch.load(opt_path, map_location='cpu', weights_only=False)
         # Legacy two-file layout. It can describe two different epochs, so it
@@ -563,6 +605,15 @@ def fit(
             epoch=epoch,
             metrics={'train_loss': train_loss, 'val_loss': val_loss},
         )
+        if getattr(cfg, 'epoch_checkpoints', False):
+            # Before resume.pt, the commit point: a resume never names an
+            # epoch whose own weights were not yet stored.
+            save_checkpoint(
+                os.path.join(cfg.checkpoint_dir, epoch_checkpoint_name(epoch)), model,
+                arch_name=cfg.arch_name, arch_kwargs=cfg.arch_kwargs,
+                epoch=epoch,
+                metrics={'train_loss': train_loss, 'val_loss': val_loss},
+            )
         torch.save({'optimizer': optimizer.state_dict(),
                     'scheduler': scheduler.state_dict(),
                     'next_epoch': epoch + 1,
@@ -590,6 +641,8 @@ def fit(
                        'validation_aggregation': cfg.validation_aggregation,
                        'lr_used': lr_used, 'lr_next': optimizer.param_groups[0]['lr']}, f)
         os.replace(status_path + '.tmp', status_path)
+        if epoch_callback is not None:
+            epoch_callback(epoch, history)
 
         if cfg.verbose:
             lr_now = optimizer.param_groups[0]['lr']

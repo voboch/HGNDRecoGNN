@@ -122,6 +122,40 @@ def ledger(frame, cluster):
             'relaxed_matching': matching(cluster, frame.Row.to_numpy(), frame.Id.to_numpy(), relaxed, nc)}
 
 
+def noise_seed(noise_key):
+    """Path-seeded audit jitter; the key is the hits path relative to the tag root."""
+    return int.from_bytes(hashlib.sha256((noise_key+':audit-noise-v1:42').encode()).digest()[:8], 'little')
+
+
+def observe(hf, vf, noise_key, hp=None, vp=None):
+    """Inherited observation recipe of the audit, shared with SMASH training packs.
+
+    Edep > 3 MeV and finite hit fields, one-to-one MC association, path-seeded
+    0.15 ns time jitter, fY != 0, and the production half-event PDG==0
+    rejection. Returns (threshold-pass hits, kept observed hits, rejected count).
+    `hp`/`vp` only label error messages.
+    """
+    if vf.duplicated(['Row', 'Instance']).any() or hf.duplicated(['Row', 'Instance']).any():
+        raise ValueError(f'Duplicate local Row/Instance in {hp}')
+    obs = hf.loc[(hf.fELoss > .003) & np.isfinite(hf[HITS]).all(axis=1)].copy()
+    truth_cols = ['Row', 'Instance', 'Id', 'PDG', 'Ekin', 'Side', 'fMotherId', 'vX', 'vY', 'vZ']
+    merged = obs.merge(vf[truth_cols], on=['Row', 'Instance'], how='left', validate='one_to_one', indicator=True)
+    missing = merged._merge != 'both'
+    if missing.any():
+        raise ValueError(f'{int(missing.sum())} observed hits lack MC association in {hp}')
+    if not np.isfinite(merged[['Id', 'PDG', 'Ekin', 'Side']]).all(axis=None):
+        raise ValueError(f'Invalid truth fields in {vp}')
+    merged['fTime'] += np.random.default_rng(noise_seed(noise_key)).normal(0, .15, len(merged))
+    merged = merged.loc[merged.fY != 0].copy()
+    # Preserve the production half-event PDG==0 rejection, and record it.
+    keys = pd.MultiIndex.from_arrays([merged.Row, merged.fY > 0])
+    bad_keys = keys[merged.PDG.to_numpy() == 0].unique()
+    rejected = keys.isin(bad_keys)
+    dropped = int(rejected.sum())
+    kept = merged.loc[~rejected].copy()
+    return obs, kept, dropped
+
+
 def add(total, values):
     for k, v in values.items():
         if isinstance(v, dict):
@@ -257,31 +291,13 @@ def run(args):
             if pair_hash in seen_content:
                 raise ValueError(f'Duplicate nonempty export pair: {hp} and {seen_content[pair_hash]}')
             seen_content[pair_hash] = str(hp)
-        if vf.duplicated(['Row', 'Instance']).any() or hf.duplicated(['Row', 'Instance']).any():
-            raise ValueError(f'Duplicate local Row/Instance in {hp}')
+        obs, kept, dropped = observe(hf, vf, str(original_hp.relative_to(root)), hp, vp)
         inventory = np.union1d(hf.Row.unique(), vf.Row.unique())
         arrival = vf.loc[(vf.PDG.abs() == 2112) & vf.Side.isin([5, 6])]
         # The same transported object may have multiple hit associations.
         # This is detector-export coverage, not the generated inventory.
         arrival_ids = arrival[['Row', 'Id']].drop_duplicates()
         hard_arrival_ids = arrival.loc[arrival.Ekin > .3, ['Row', 'Id']].drop_duplicates()
-        obs = hf.loc[(hf.fELoss > .003) & np.isfinite(hf[HITS]).all(axis=1)].copy()
-        truth_cols = ['Row', 'Instance', 'Id', 'PDG', 'Ekin', 'Side', 'fMotherId', 'vX', 'vY', 'vZ']
-        merged = obs.merge(vf[truth_cols], on=['Row', 'Instance'], how='left', validate='one_to_one', indicator=True)
-        missing = merged._merge != 'both'
-        if missing.any():
-            raise ValueError(f'{int(missing.sum())} observed hits lack MC association in {hp}')
-        if not np.isfinite(merged[['Id', 'PDG', 'Ekin', 'Side']]).all(axis=None):
-            raise ValueError(f'Invalid truth fields in {vp}')
-        seed = int.from_bytes(hashlib.sha256((str(original_hp.relative_to(root))+':audit-noise-v1:42').encode()).digest()[:8], 'little')
-        merged['fTime'] += np.random.default_rng(seed).normal(0, .15, len(merged))
-        merged = merged.loc[merged.fY != 0].copy()
-        # Preserve the production half-event PDG==0 rejection, and record it.
-        keys = pd.MultiIndex.from_arrays([merged.Row, merged.fY > 0])
-        bad_keys = keys[merged.PDG.to_numpy() == 0].unique()
-        rejected = keys.isin(bad_keys)
-        dropped = int(rejected.sum())
-        kept = merged.loc[~rejected].copy()
         cluster = native_components(kept)
         counts = ledger(kept, cluster)
         counts.update(export_events=len(inventory), exported_hits=len(hf), exported_truth_records=len(vf),

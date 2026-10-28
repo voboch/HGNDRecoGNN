@@ -16,15 +16,45 @@ RADIUS_CELLS = 3.6
 TIME_NS = 1.0
 
 
+def _ordered(frame):
+    """Transfer hit order: detector side, then event Row, then original order."""
+    rows = frame.Row.to_numpy(np.int64)
+    sides = (frame.fY.to_numpy() > 0).astype(np.int64)
+    order = np.lexsort((np.arange(len(rows)), rows, sides))
+    return frame.iloc[order].copy(), rows[order], sides[order]
+
+
+def _derive(frame, geometry_bounds):
+    """Add eToF and SurfaceHit in place; refuse cells outside the DCM geometry."""
+    distance = np.linalg.norm(frame[['fX', 'fY', 'fZ']].to_numpy()/100., axis=1)
+    frame['eToF'] = _dfToF(distance, frame.fTime.to_numpy())
+    frame['SurfaceHit'] = False
+    for col, (lo, hi) in geometry_bounds.items():
+        if not frame[col].between(lo, hi).all():
+            raise ValueError('SMASH cell outside verified DCM geometry')
+        frame['SurfaceHit'] |= (frame[col] == lo) | (frame[col] == hi)
+    return distance
+
+
+def observed_features(frame, geometry_bounds):
+    """Unscaled scaler inputs, FEATURES[:-1], per detector side in transfer_pack order.
+
+    These are exactly the frames transfer_pack passes to scalers[side].transform,
+    so a scaler fitted on them standardises the same numbers it will later see.
+    SurfaceHit is binary and enters unscaled, as in the DCM cache.
+    """
+    if not len(frame):
+        return {side: pd.DataFrame(columns=FEATURES[:-1], dtype=float) for side in (0, 1)}
+    frame, _, sides = _ordered(frame)
+    _derive(frame, geometry_bounds)
+    return {side: frame.loc[sides == side, FEATURES[:-1]] for side in (0, 1)}
+
+
 def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
     """Keep per-event/arm namespaces, local cluster/edge IDs, and hit order."""
     if not len(frame):
         return None
-    rows = frame.Row.to_numpy(np.int64)
-    sides = (frame.fY.to_numpy() > 0).astype(np.int64)
-    order = np.lexsort((np.arange(len(rows)), rows, sides))
-    frame = frame.iloc[order].copy()
-    rows, sides = rows[order], sides[order]
+    frame, rows, sides = _ordered(frame)
     keys = pd.MultiIndex.from_arrays([sides, rows])
     batch, uniques = pd.factorize(keys, sort=False)
     node_lengths = np.bincount(batch)
@@ -51,13 +81,7 @@ def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
     cluster_ptr = np.r_[0, np.cumsum(cluster_lengths)]
     local_cluster = labels - cluster_ptr[batch]
     local_edges = edges - node_ptr[edge_batch]
-    distance = np.linalg.norm(frame[['fX', 'fY', 'fZ']].to_numpy()/100., axis=1)
-    frame['eToF'] = _dfToF(distance, frame.fTime.to_numpy())
-    frame['SurfaceHit'] = False
-    for col, (lo, hi) in geometry_bounds.items():
-        if not frame[col].between(lo, hi).all():
-            raise ValueError('SMASH cell outside verified DCM geometry')
-        frame['SurfaceHit'] |= (frame[col] == lo) | (frame[col] == hi)
+    distance = _derive(frame, geometry_bounds)
     x = np.empty((len(frame), len(FEATURES)), dtype=np.float32)
     for side in (0, 1):
         mask = sides == side
