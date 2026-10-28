@@ -29,7 +29,7 @@
  "proposed_train_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && sbatch --parsable --array=0-8%3 --time=05:30:00 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_<P>,SMASH_PREPARE_MANIFEST_SHA=<manifest sha from the verified prepare receipt>,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
  "time_limit_basis": "GPU smoke 4465935 projection: 05:25 from measured graphs per file (292 train / 98 validation files), 05:30 from the plan's 4115 graphs per file; the largest fold has 291 train and 98 validation groups",
  "node_local_disk_evidence": "job 4437449 (cn-030, rocky/type_d) held ~31 GB of node-local input copies; prepare projects ~6.9 GB of packs plus a bundle of similar size",
- "status": "preflight GO-with-fixes applied in this record; prepare not yet submitted",
+ "status": "training array 4466016 submitted; first-wave watch running",
  "preflight": {
   "date": "2026-10-29",
   "verdict": {
@@ -70,5 +70,62 @@
  "submission_hygiene": "Submit with env -u SMASH_RESUME_MIRROR -u SMASH_DCM_PREPARED -u SMASH_NATIVE so login-shell variables cannot leak through --export=ALL.",
  "first_wave_watch": "Tasks 0-2 must print 'Training seed ... from epoch 0: ~1.18M train / ~0.40M validation graphs' within ~15 min; an earlier failure -> scancel the array and report (cost <= 0.3 GPU-h). The smoke used from_directory; from_bundle/fetch is covered only by the CPU test.",
  "before_each_evaluate": "Manual stop-rule check: e_cls == 0 in two or more seeds sends the census back for checking; a head minimum at epoch 29 flags the run as budget-limited (no extension); written into the evaluation launch entry before submission.",
- "budget": "training 30-38 GPU-h (3.3-4.2 h x 9), with three evaluations 31-41 GPU-h against the protocol's 30-37; prepare <= 8 CPU-h"
+ "budget": "training 30-38 GPU-h (3.3-4.2 h x 9), with three evaluations 31-41 GPU-h against the protocol's 30-37; prepare <= 8 CPU-h",
+ "prepare_job": {
+  "id": "4465983",
+  "submitted": "2026-10-29T00:07:02+03:00",
+  "submitted_by": "main session",
+  "command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_AUDIT_INDEX=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/audit_bundles.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train_prepare.hpc.sbatch",
+  "pre_submit_checks": "logs/ and receipts/ exist in the submission dir; queue empty; no SMASH_* in the login environment; package sha256sum -c passed",
+  "state": "COMPLETED 0:0",
+  "elapsed": "00:08:48",
+  "node": "cn-035",
+  "max_rss_kb": 4841596,
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+  "manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+  "archive_sha256": "4edba4d61b5fb8ac888d20d343570c8e79c05c4573fc130154b10d9daf77cdf1",
+  "archive_bytes": 6871214080,
+  "access_retries": [
+   {
+    "attempt": 1,
+    "call": "_copy_hashing",
+    "node": "cn-035",
+    "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_hits.csv",
+    "utc": "2026-10-28T21:20:45Z",
+    "wait_seconds": 1
+   },
+   {
+    "attempt": 1,
+    "call": "_copy_hashing",
+    "node": "cn-035",
+    "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0093_hits.csv",
+    "utc": "2026-10-28T21:20:45Z",
+    "wait_seconds": 1
+   }
+  ],
+  "acceptance": {
+   "accepted": true,
+   "checks": {
+    "state": true,
+    "split_sha256": true,
+    "source_sums": true,
+    "files_578": true,
+    "packs": true,
+    "scalers_train_only": true,
+    "audit_429_bit_identical": true,
+    "publication": true
+   },
+   "file": "prepare_4465983/acceptance.json",
+   "summary_sha256_matches_receipt_and_manifest": true,
+   "archive_hash": "not re-hashed locally; train re-hashes the archive against the manifest before extraction (from_bundle)"
+  }
+ },
+ "train_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && env -u SMASH_RESUME_MIRROR -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=0-8%3 --time=05:30:00 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
+ "train_job": {
+  "array_id": "4466016",
+  "tasks": "0-8%3 (t -> fold t//3, seed (42,123,456)[t%3])",
+  "submitted": "2026-10-29T00:24:39+03:00",
+  "submitted_by": "main session",
+  "queue_before": "empty"
+ }
 }

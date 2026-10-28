@@ -258,3 +258,6 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/gpu_smoke_retry/
 /results/smash_train_20261028/gpu_smoke_retry/*
 !/results/smash_train_20261028/gpu_smoke_retry/*.json
+!/results/smash_train_20261028/prepare_4465983/
+/results/smash_train_20261028/prepare_4465983/*
+!/results/smash_train_20261028/prepare_4465983/*.json

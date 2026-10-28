@@ -1,0 +1,57 @@
+{
+ "accepted": true,
+ "checks": {
+  "state": true,
+  "split_sha256": true,
+  "source_sums": true,
+  "files_578": true,
+  "packs": true,
+  "scalers_train_only": true,
+  "audit_429_bit_identical": true,
+  "publication": true
+ },
+ "notes": {
+  "packs": {
+   "A": 578,
+   "B": 1724,
+   "empty_after_cuts": []
+  },
+  "fold_0_train_files": 285,
+  "fold_1_train_files": 291,
+  "fold_2_train_files": 290,
+  "audit_comparison": {
+   "files_compared": 429,
+   "all_bit_identical": true,
+   "file_sha256_identical": 429
+  },
+  "access_retries": {
+   "receipt_prepare": [
+    {
+     "attempt": 1,
+     "call": "_copy_hashing",
+     "node": "cn-035",
+     "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0081_hits.csv",
+     "utc": "2026-10-28T21:20:45Z",
+     "wait_seconds": 1
+    },
+    {
+     "attempt": 1,
+     "call": "_copy_hashing",
+     "node": "cn-035",
+     "path": "/scratch/vbocharnikov/hgnd/data_fixed/smash_xecs_2.87gev_hardSkyrme_zeroSpot/10943245/0093_hits.csv",
+     "utc": "2026-10-28T21:20:45Z",
+     "wait_seconds": 1
+    }
+   ],
+   "publish": []
+  },
+  "phase_seconds": {
+   "audit_and_observations": 54.37956154020503,
+   "scalers": 8.539524458814412,
+   "packs": 78.30662313988432
+  }
+ },
+ "manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+ "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+ "archive_sha256": "4edba4d61b5fb8ac888d20d343570c8e79c05c4573fc130154b10d9daf77cdf1"
+}
