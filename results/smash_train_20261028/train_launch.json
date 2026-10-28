@@ -1,0 +1,74 @@
+{
+ "purpose": "SMASH training campaign (protocol reports/smash_train_protocol_20261028.md): prepare, 9 training tasks, per-fold evaluation",
+ "code_commit": "d739c54",
+ "code_digest": "4ee0d70fb9229b67cb28732431dc012b2e1e9a43089c48916951efdb20b57d3c",
+ "gpu_smoke": {
+  "job": "4465935_single",
+  "package": "/home/vbocharnikov/hgnd_experiments/smash_train_smoke_20261028_3d1c2d80cf",
+  "sums_sha256": "3d1c2d80cfb64e32a9bbbfb91899bc4ee8a6521ed945b1e0cba052021cf64bdf",
+  "verified": "gpu_smoke_retry/verified.json",
+  "all_checks_passed": true,
+  "access_retries": 0,
+  "supersedes": "4464277 (code digest dd616e52, before the training-path EACCES retry)"
+ },
+ "training_package": {
+  "path": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9",
+  "sums_sha256": "4f82efeae9024a33fd7d181674da0b904a55a88f250fd3ebade9ac16152c033d",
+  "archive_sha256": "7063f11c2c21932cefe9603ae168bd710a6b3be567990b95be0241e554ccb367",
+  "differs_from_smoke_package_only_by": [
+   "inputs/split_manifest.json",
+   "inputs/smoke_summary.json"
+  ],
+  "split_manifest_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "smoke_summary_sha256": "fc16c80e73c912202055c45e259c5f251fdfd2a547bc684d5e1ec1804da7227b",
+  "builder": "scratchpad stage_smash_train_smoke.py --name smash_train_20261028 (same builder as both smoke packages)"
+ },
+ "submission_dir": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission",
+ "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028",
+ "proposed_prepare_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && sbatch --parsable --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_AUDIT_INDEX=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/audit_bundles.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train_prepare.hpc.sbatch",
+ "proposed_train_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && sbatch --parsable --array=0-8%3 --time=05:30:00 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_<P>,SMASH_PREPARE_MANIFEST_SHA=<manifest sha from the verified prepare receipt>,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
+ "time_limit_basis": "GPU smoke 4465935 projection: 05:25 from measured graphs per file (292 train / 98 validation files), 05:30 from the plan's 4115 graphs per file; the largest fold has 291 train and 98 validation groups",
+ "node_local_disk_evidence": "job 4437449 (cn-030, rocky/type_d) held ~31 GB of node-local input copies; prepare projects ~6.9 GB of packs plus a bundle of similar size",
+ "status": "preflight GO-with-fixes applied in this record; prepare not yet submitted",
+ "preflight": {
+  "date": "2026-10-29",
+  "verdict": {
+   "prepare": "GO-with-fixes",
+   "train": "GO-with-fixes after prepare acceptance"
+  },
+  "fixes": "P1 submission dir checked before sbatch; P2 acceptance criteria below written before the receipt is read; P3 failed prepare goes to the user; P4/P5 estimates recorded; P6 retry command and failure classes recorded; P7 resume-path gap recorded; P8 env -u on submission; P9 manual stop-rule check before evaluate; P10 first-wave watch; P11 support request drafted for the user (results/smash_train_20261028/census_retry/support_request_eacces_draft.md, not committed); P12 commit before submission"
+ },
+ "prepare_acceptance": {
+  "written_before_reading_the_receipt": true,
+  "receipt": [
+   "state == complete",
+   "split_sha256 == 848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+   "source_sums_sha256 == 4f82efeae9024a33fd7d181674da0b904a55a88f250fd3ebade9ac16152c033d",
+   "len(files) == 578 used contents"
+  ],
+  "packs": "A packs + empty_after_cuts files == 578; B packs + (empty files x their fold roles) == 1724; every empty_after_cuts file listed in the verification",
+  "scalers": "scalers.fold_k.files == sorted training contents of fold k (285 / 291 / 290), disjoint from that fold's validation and test; n_samples_seen > 0 on both sides",
+  "audit": "audit_comparison.files_compared == 429 (zeroSpot 195, defaultSpot 183, bigSpot 51: used contents with a saved audit tensor, counted from the pinned audit-bundle manifests) and all_bit_identical == true",
+  "access_retries": "listed in the verification, whatever their number",
+  "publication": "receipt manifest_sha256 == sha256 of the published manifest.json, which becomes SMASH_PREPARE_MANIFEST_SHA",
+  "any_failure": "stop and report to the user; the training array is not submitted"
+ },
+ "prepare_failure_policy": "No automatic retry. The pre-approved retry (D3) was worded for training tasks; a failed prepare is reported to the user, who decides.",
+ "prepare_estimates": {
+  "wall": "<= 55 min (observation <= 28 min, packs <= 12 min, scalers <= 5 min, publish <= 10 min; scaled from smoke phase_seconds 45.5/0.18/9.7 s for 6 files with 4 workers to 578 files with 8 workers); limit 2 h",
+  "node_local_disk_peak": "~17 GB (packs 6.8 + inputs.tar 6.8 + observations 1.8 + audit tensors <= 1.8); job 4437449 held ~31 GB on cn-030 (type_d); ENOSPC would cost <= 1 CPU-hour; risk accepted"
+ },
+ "train_time_calibration": "Per-fold projection from real event counts (1.334 graphs/event in the smoke files): 3.24 / 3.27 / 3.29 h; 1.5 x T + 0.5 h = 5.35 / 5.40 / 5.43 h -> --time 05:30:00. The smoke's throughput loop has no per-batch sync; its own 2-epoch fit took 3.05x the rate estimate, but native student_sage 4424084 runs (30 epochs) took 1.13-1.31x the rate prediction, so the excess is a fixed per-epoch cost. At 1.3x a task takes ~4.2 h < 5.5 h. SMASH and DCM graph sizes may differ; the 600 s load allowance is not measured.",
+ "train_failure_policy": {
+  "infrastructure (NODE_FAIL; EACCES after the last 32 s wait)": "one pre-approved retry per task (D3): cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=<t> --time=05:30:00 --exclude=cn-007,cn-008,cn-034,<failed node> --export=ALL,<same variables>,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_<t>_<A>_<t> /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch ; pass SMASH_RESUME_MIRROR only if its state.json exists, otherwise restart from scratch; the evaluation train index names the retry's receipt",
+  "not infrastructure (TIMEOUT, OOM, non-finite loss, code error)": "reported to the user, no retry",
+  "hash or guard failure": "stops the stage: scancel the pending array tasks and report"
+ },
+ "known_gaps": [
+  "Resume path only: smash_train.py sha(mirror/state.json) and the read of effective_config.json from the resume mirror are not wrapped in the EACCES retry; changing them would change the code digest and require a new smoke. An EACCES there goes to the user."
+ ],
+ "submission_hygiene": "Submit with env -u SMASH_RESUME_MIRROR -u SMASH_DCM_PREPARED -u SMASH_NATIVE so login-shell variables cannot leak through --export=ALL.",
+ "first_wave_watch": "Tasks 0-2 must print 'Training seed ... from epoch 0: ~1.18M train / ~0.40M validation graphs' within ~15 min; an earlier failure -> scancel the array and report (cost <= 0.3 GPU-h). The smoke used from_directory; from_bundle/fetch is covered only by the CPU test.",
+ "before_each_evaluate": "Manual stop-rule check: e_cls == 0 in two or more seeds sends the census back for checking; a head minimum at epoch 29 flags the run as budget-limited (no extension); written into the evaluation launch entry before submission.",
+ "budget": "training 30-38 GPU-h (3.3-4.2 h x 9), with three evaluations 31-41 GPU-h against the protocol's 30-37; prepare <= 8 CPU-h"
+}

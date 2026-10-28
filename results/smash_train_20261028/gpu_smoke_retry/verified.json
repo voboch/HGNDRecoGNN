@@ -1,0 +1,99 @@
+{
+ "status": "verified",
+ "job_id": "4465935_single",
+ "slurm_state": "COMPLETED",
+ "exit_code": "0:0",
+ "elapsed": "00:09:52",
+ "node": "cn-009",
+ "gpu": "Tesla V100-SXM2-32GB",
+ "max_rss_kb": 1376792,
+ "submitted_by": "main session",
+ "source_package": "smash_train_smoke_20261028_3d1c2d80cf",
+ "source_sha256sums_sha256": "3d1c2d80cfb64e32a9bbbfb91899bc4ee8a6521ed945b1e0cba052021cf64bdf",
+ "code_commit_byte_identical": "d739c54",
+ "code_digest": "4ee0d70fb9229b67cb28732431dc012b2e1e9a43089c48916951efdb20b57d3c",
+ "supersedes": "gpu_smoke/verified.json (code digest dd616e52, before the training-path EACCES retry)",
+ "manifest_sha256": "e6f5df9991d4431adf47be2efebd0c50551ffab04bac9fa2da36e43a6cae1526",
+ "archive_sha256": "3d27414bc7020938f77254b247aad7533dbdf6f5ed068ce9ef3e5323c0d57609",
+ "summary_files": {
+  "prepare/summary.json": "8695dd930d4e6a20fe0ecc42043bc8ceb19899b2da2797954e95012be4e3286a",
+  "smoke/summary.json": "fc16c80e73c912202055c45e259c5f251fdfd2a547bc684d5e1ec1804da7227b"
+ },
+ "smoke_summary_sha256": "fc16c80e73c912202055c45e259c5f251fdfd2a547bc684d5e1ec1804da7227b",
+ "all_checks_passed": true,
+ "checks": {
+  "observations_bit_identical_to_audit": true,
+  "a_b_candidates_identical": true,
+  "scaler_train_only": true,
+  "epoch_checkpoints_and_selector": true,
+  "resume_from_mirror": true,
+  "isolation_and_no_truth_in_forward": true,
+  "a0_parity_with_transfer": true,
+  "throughput": true
+ },
+ "access_retries": {
+  "smoke": [],
+  "prepare": [],
+  "publish": []
+ },
+ "throughput": {
+  "passed": true,
+  "train": {
+   "batches": 200,
+   "graphs": 50504,
+   "seconds": 11.704093676060438,
+   "seconds_per_graph": 0.00023174587510019876
+  },
+  "validation": {
+   "batches": 200,
+   "graphs": 50384,
+   "seconds": 10.558884057682008,
+   "seconds_per_graph": 0.00020956819739762639
+  },
+  "max_memory_allocated_bytes": 44900352
+ },
+ "projection": {
+  "measured_smoke_graphs_per_file": 4075.6666666666665,
+  "from_measured_graphs_per_file": {
+   "train_graphs": 1190094.6666666665,
+   "validation_graphs": 399415.3333333333,
+   "epoch_seconds": 359.5042813983847,
+   "post_training_scoring_seconds": 334.81900567855496,
+   "load_seconds_assumed": 600,
+   "projected_run_seconds": 11719.947447630097,
+   "recommended_time_seconds": 19500,
+   "recommended_time": "05:25:00"
+  },
+  "from_plan_4115_graphs_per_file": {
+   "train_graphs": 1201580,
+   "validation_graphs": 403270,
+   "epoch_seconds": 362.9737755674376,
+   "post_training_scoring_seconds": 338.0502678581632,
+   "load_seconds_assumed": 600,
+   "projected_run_seconds": 11827.263534881291,
+   "recommended_time_seconds": 19800,
+   "recommended_time": "05:30:00"
+  },
+  "files_assumed": {
+   "train": 292,
+   "validation": 98
+  },
+  "pack_bytes_mean": 2959100.6666666665,
+  "prepare_archive_bytes_for_584_files_A_plus_3B": 6912459157.333333
+ },
+ "prepare_phase_seconds": {
+  "audit_and_observations": 45.49397469870746,
+  "scalers": 0.18395433109253645,
+  "packs": 9.67324934201315
+ },
+ "audit_comparison": {
+  "files_compared": 6,
+  "all_bit_identical": true,
+  "file_sha256_identical": 6
+ },
+ "verification": [
+  "manifest and archive SHA256 equal the receipt before extraction",
+  "smash_input_bundle unpack checked every member",
+  "both summary SHA256 equal the receipt"
+ ]
+}
