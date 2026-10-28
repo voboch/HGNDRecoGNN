@@ -41,6 +41,7 @@ from HGNDRecoGNN.scripts.reco_performance import E_BINS, threshold_scan  # noqa:
 from HGNDRecoGNN.scripts.smash_train_prepare import (  # noqa: E402
     PACK_PREFIX, TAGS, clean, extract_members, fit_fold_scalers,
     load_split, same_candidates, sha, write_json)
+from HGNDRecoGNN.scripts.scratch_access import ACCESS_RETRIES, with_access_retry  # noqa: E402
 from HGNDRecoGNN.scripts.smash_transfer_infer import check_prediction  # noqa: E402
 from HGNDRecoGNN.scripts.student_pipeline import check_isolation, recipe  # noqa: E402
 from HGNDRecoGNN.scripts.student_reproduce import environment  # noqa: E402
@@ -281,6 +282,11 @@ def build_model(seed, dataset, device_name):
 
 
 def load_dcm(native, seed, dataset, device_name):
+    """Frozen DCM GraphSAGE of one seed; its files sit on /scratch (RA-09 retry)."""
+    return with_access_retry(_load_dcm, native, seed, dataset, device_name)
+
+
+def _load_dcm(native, seed, dataset, device_name):
     folder = Path(native) / f'student_sage_{seed}'
     complete = json.loads((folder / 'complete.json').read_text())
     if complete['config']['source_sha256'] != NATIVE_SOURCE_SHA:
@@ -417,12 +423,12 @@ class Mirror:
 def restore_from_mirror(mirror, checkpoint_dir):
     """Copy the newest complete mirrored generation into a fresh node-local directory."""
     mirror, checkpoint_dir = Path(mirror), Path(checkpoint_dir)
-    state = json.loads((mirror / 'state.json').read_text())
+    state = json.loads(with_access_retry((mirror / 'state.json').read_text))
     n = int(state['next_epoch'])
     checkpoint_dir.mkdir(parents=True, exist_ok=False)
     for name, digest in state['sha256'].items():
         target = checkpoint_dir / (RESUME_NAME if name == state['resume'] else name)
-        shutil.copyfile(mirror / name, target)
+        with_access_retry(shutil.copyfile, mirror / name, target)
         if sha(target) != digest:
             raise ValueError('Mirrored checkpoint differs from its state: ' + name)
     blob = torch.load(checkpoint_dir / RESUME_NAME, map_location='cpu', weights_only=False)
@@ -598,7 +604,7 @@ def run_task(args, identity, store, split, fold, seed, out, epochs, mirror=None,
 
 def train(args, identity):
     fold, seed = TASKS[args.task]
-    smoke = json.loads(args.smoke_summary.read_text())
+    smoke = json.loads(with_access_retry(args.smoke_summary.read_text))
     if smoke.get('state') != 'complete' or not smoke.get('all_checks_passed') \
             or smoke['identity']['code_digest'] != identity['code_digest']:
         raise ValueError('No passed GPU smoke for this exact code')
@@ -616,7 +622,8 @@ def train(args, identity):
         print('WARNING head validation minimum at the last epoch: budget-limited, not extended', flush=True)
     write_json(args.output / 'summary.json', {'state': 'complete', 'task': args.task, 'fold': fold, 'seed': seed,
                                               'complete_sha256': sha(out / 'complete.json'),
-                                              'evaluable': receipt['evaluable']})
+                                              'evaluable': receipt['evaluable'],
+                                              'access_retries': list(ACCESS_RETRIES)})
 
 
 # ── evaluation ───────────────────────────────────────────────────────────
@@ -660,7 +667,9 @@ def evaluate(args, identity):
     split = load_split(args.split)
     runs = require_fold(args, fold, work / 'training')
     marker = args.campaign / f'evaluation_fold_{fold}.opened'
-    with marker.open('x') as stream:  # each fold's test is opened exactly once, across jobs
+    # Each fold's test is opened exactly once, across jobs. EACCES fails the
+    # lookup before the file exists, so retrying the exclusive create is safe.
+    with with_access_retry(marker.open, 'x') as stream:
         stream.write(json.dumps({'job': os.getenv('SLURM_JOB_ID'), 'time': time.time()}) + '\n')
     out = args.output / 'evaluation'
     out.mkdir(parents=True, exist_ok=False)
@@ -722,7 +731,8 @@ def evaluate(args, identity):
                'test_threshold_tuning': False}
     write_json(out / 'summary.json', summary)
     write_json(args.output / 'summary.json', {'state': 'complete', 'fold': fold,
-                                              'evaluation_sha256': sha(out / 'summary.json')})
+                                              'evaluation_sha256': sha(out / 'summary.json'),
+                                              'access_retries': list(ACCESS_RETRIES)})
 
 
 # ── smoke ────────────────────────────────────────────────────────────────
@@ -902,7 +912,8 @@ def smoke(args, identity):
     passed = all(v['passed'] for v in checks.values())
     summary = {'state': 'complete', 'all_checks_passed': passed, 'checks': checks, 'projection': projection,
                'identity': identity, 'prepare_receipt_sha256': sha(args.prepared / 'summary.json'),
-               'split_sha256': sha(args.split), 'test_opened': False, 'seconds': time.monotonic() - started}
+               'split_sha256': sha(args.split), 'test_opened': False, 'seconds': time.monotonic() - started,
+               'access_retries': list(ACCESS_RETRIES)}
     write_json(out / 'summary.json', summary)
     if not passed:
         raise ValueError('GPU smoke check failed: ' + ', '.join(k for k, v in checks.items() if not v['passed']))

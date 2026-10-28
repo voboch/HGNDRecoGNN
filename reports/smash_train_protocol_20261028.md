@@ -200,6 +200,17 @@ one code digest, all three tags are rerun, bigSpot included, after a new smoke
 on the test partition and a preflight review. The task-level rule stands: no
 resubmission without the user.
 
+The rerun 4464531 completed on all three tags. Four EACCES events occurred,
+each cleared by the first 1 s wait, two of them on different nodes within one
+second. On the user's decision the same retry (`scripts/scratch_access.py`)
+now covers the /scratch accesses of the training path before its first full
+job: raw-file staging and audit-bundle reads in prepare, bundle extraction,
+the frozen DCM inputs, the resume mirror, the once-only evaluation marker and
+the final export. A partial copy is removed before each retry, and every
+retry is written to the job summary and the publication receipt. The
+per-epoch checkpoint mirror already tolerated failures and is unchanged.
+Because executed code changed, the GPU smoke is repeated before prepare.
+
 ## What this does not establish
 
 A blind holdout (the files were scored by the transfer, and the [0.3, 1) GeV

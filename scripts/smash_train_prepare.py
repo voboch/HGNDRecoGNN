@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from HGNDRecoGNN.data.graph_dataset import FEATURES  # noqa: E402
 from HGNDRecoGNN.data.smash_transfer import RADIUS_CELLS, TIME_NS, observed_features, transfer_pack  # noqa: E402
 from HGNDRecoGNN.scripts import audit_smash_sources as audit  # noqa: E402
+from HGNDRecoGNN.scripts.scratch_access import ACCESS_RETRIES, with_access_retry  # noqa: E402
 
 SPLIT_SCHEMA = 'smash-train-split-v1'
 TAGS = tuple(audit.TAGS)
@@ -203,7 +204,21 @@ def extract_members(bundle_dir, manifest_sha256, members, output, check_archive=
     unknown or missing member fails; nothing else in the archive is written.
     `check_archive=False` skips only the whole-archive re-hash for a caller
     that already verified this archive; per-member hashes are always checked.
+    The bundle sits on /scratch, so an EACCES retries the whole extraction
+    after removing the members this call wrote (RA-09).
     """
+    output = Path(output)
+    fresh = [output / safe_member(m) for m in members if not (output / safe_member(m)).exists()]
+
+    def remove_partial():
+        for path in fresh:
+            path.unlink(missing_ok=True)
+
+    return with_access_retry(_extract_members, bundle_dir, manifest_sha256, members, output, check_archive,
+                             cleanup=remove_partial)
+
+
+def _extract_members(bundle_dir, manifest_sha256, members, output, check_archive):
     bundle_dir, output = Path(bundle_dir), Path(output)
     manifest_path = bundle_dir / 'manifest.json'
     if sha(manifest_path) != manifest_sha256:
@@ -248,9 +263,10 @@ def audit_references(index_path, ids, work):
     for tag in TAGS:
         item = index[tag]
         bundle = Path(item['bundle_dir'])
-        if sha(bundle / 'manifest.json') != item['manifest_sha256']:
+        if with_access_retry(sha, bundle / 'manifest.json') != item['manifest_sha256']:
             raise ValueError('Audit bundle manifest differs from its pin: ' + tag)
-        listed = {x['member'] for x in json.loads((bundle / 'manifest.json').read_text())['files']}
+        manifest = json.loads(with_access_retry((bundle / 'manifest.json').read_text))
+        listed = {x['member'] for x in manifest['files']}
         summary_member = f'audit/{tag}/summary.json'
         candidates = {cid: f'audit/{tag}/observations/' + cid.split('/', 1)[1] + '.pt'
                       for cid in ids if cid.startswith(tag + '/')}
@@ -274,15 +290,25 @@ def audit_references(index_path, ids, work):
 # ── observation phase ────────────────────────────────────────────────────
 
 def stage(source, target, expected):
-    """Copy to node-local storage while hashing; parse only the verified copy."""
+    """Copy to node-local storage while hashing; parse only the verified copy.
+
+    An EACCES on the /scratch source removes the partial copy and copies again
+    (RA-09); the hash check below is unchanged.
+    """
     target.parent.mkdir(parents=True, exist_ok=True)
+    digest = with_access_retry(_copy_hashing, source, target,
+                               cleanup=lambda: target.unlink(missing_ok=True))
+    if digest != expected:
+        raise ValueError('Raw export differs from the split pin: ' + str(source))
+
+
+def _copy_hashing(source, target):
     digest = hashlib.sha256()
     with Path(source).open('rb') as inp, target.open('xb') as out:
         for block in iter(lambda: inp.read(1 << 20), b''):
             digest.update(block)
             out.write(block)
-    if digest.hexdigest() != expected:
-        raise ValueError('Raw export differs from the split pin: ' + str(source))
+    return digest.hexdigest()
 
 
 def load_observation(path):
@@ -292,6 +318,7 @@ def load_observation(path):
 
 def observe_file(task):
     cid, content, raw_root, work, reference = task
+    retries_before = len(ACCESS_RETRIES)
     tag, member = content['tag'], content['member']
     local = Path(work) / 'raw' / tag
     hp, vp = local / (member + '_hits.csv'), local / (member + '_vacs.csv')
@@ -309,7 +336,8 @@ def observe_file(task):
     vp.unlink()
     item = {'path': str(path), 'sha256': sha(path), 'observed_hits': len(kept), 'exported_hits': len(hf),
             'exported_truth_records': len(vf), 'header_only_export': len(hf) == len(vf) == 0,
-            'rejected_pdg0_hits': dropped, 'audit_reference': None}
+            'rejected_pdg0_hits': dropped, 'audit_reference': None,
+            'access_retries': ACCESS_RETRIES[retries_before:]}
     if reference is not None:
         if reference['raw_sha256'] != content['sha256']:
             raise ValueError('Audit reference was built from different raw bytes: ' + cid)
@@ -413,7 +441,7 @@ def prepare(args):
     output.mkdir(parents=True, exist_ok=False)
     work = args.work
     work.mkdir(parents=True, exist_ok=True)
-    dcm_scalers, a, b, geometry, dcm_receipt = frozen_dcm(argparse.Namespace(
+    dcm_scalers, a, b, geometry, dcm_receipt = with_access_retry(frozen_dcm, argparse.Namespace(
         prepared=args.dcm_prepared, native_campaign=args.native_campaign))
     ids = used_contents(split)
     contents = split['contents']
@@ -483,6 +511,10 @@ def prepare(args):
                              'file_sha256_identical': sum(r['file_sha256_identical'] for r in bound_refs)},
         'folds': split['folds'], 'files': files, 'pack_prefix_in_bundle': PACK_PREFIX,
         'workers': args.workers, 'phase_seconds': phases, 'seconds': time.monotonic() - started,
+        # Main-process and per-file retries; with workers <= 1 the two lists overlap.
+        'access_retries': [json.loads(e) for e in sorted(
+            {json.dumps(e, sort_keys=True) for e in ACCESS_RETRIES}
+            | {json.dumps(e, sort_keys=True) for item in observed.values() for e in item['access_retries']})],
     }
     write_json(output / 'summary.json', receipt)
     print('prepare complete', len(files), 'files', round(receipt['seconds'], 1), 's', flush=True)
