@@ -252,3 +252,6 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/gpu_smoke/
 /results/smash_train_20261028/gpu_smoke/*
 !/results/smash_train_20261028/gpu_smoke/*.json
+!/results/smash_train_20261028/split/
+/results/smash_train_20261028/split/*
+!/results/smash_train_20261028/split/split_manifest.json

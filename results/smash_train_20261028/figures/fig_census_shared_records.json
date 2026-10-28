@@ -1,0 +1,151 @@
+{
+ "census_sha256_of": "census.json",
+ "min_shared_records": 2,
+ "rows": [
+  {
+   "tag": "zeroSpot",
+   "threshold": 1,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "zeroSpot",
+   "threshold": 2,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "zeroSpot",
+   "threshold": 3,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "zeroSpot",
+   "threshold": 4,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "zeroSpot",
+   "threshold": 5,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "zeroSpot",
+   "threshold": 6,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 1,
+   "event_pairs": 3925,
+   "content_pairs": 7,
+   "same_group": 7,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 2,
+   "event_pairs": 974,
+   "content_pairs": 7,
+   "same_group": 7,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 3,
+   "event_pairs": 229,
+   "content_pairs": 7,
+   "same_group": 7,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 4,
+   "event_pairs": 54,
+   "content_pairs": 7,
+   "same_group": 7,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 5,
+   "event_pairs": 19,
+   "content_pairs": 6,
+   "same_group": 6,
+   "cross_group": 0
+  },
+  {
+   "tag": "defaultSpot",
+   "threshold": 6,
+   "event_pairs": 3,
+   "content_pairs": 3,
+   "same_group": 3,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 1,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 2,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 3,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 4,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 5,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  },
+  {
+   "tag": "bigSpot",
+   "threshold": 6,
+   "event_pairs": 0,
+   "content_pairs": 0,
+   "same_group": 0,
+   "cross_group": 0
+  }
+ ],
+ "cross_group_at_any_threshold": 0
+}
