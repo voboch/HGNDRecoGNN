@@ -46,9 +46,20 @@ set -e
 sha256sum -c --quiet SHA256SUMS
 tar -C "$STAGE" -czf "$STAGE/result.tar.gz" result
 DEST="$SC_EXPORT/${SC_MODE}_${JOB_KEY}"
-mkdir "$DEST"
-cp "$STAGE/result.tar.gz" "$DEST/result.tar.gz"
-cmp "$STAGE/result.tar.gz" "$DEST/result.tar.gz"
-cp "$STAGE/result/summary.json" "$DEST/summary.json"
-sha256sum "$DEST/result.tar.gz" "$DEST/summary.json"
+# Scratch writes get the census's RA-09 schedule (1..32 s, then one last try);
+# the job key is unique, so mkdir -p cannot reuse an earlier export.
+retry() {
+  local wait
+  for wait in 1 2 4 8 16 32; do
+    "$@" && return 0
+    echo "access retry after ${wait}s: $*" >&2
+    sleep "$wait"
+  done
+  "$@"
+}
+retry mkdir -p "$DEST"
+retry cp "$STAGE/result.tar.gz" "$DEST/result.tar.gz"
+retry cmp "$STAGE/result.tar.gz" "$DEST/result.tar.gz"
+retry cp "$STAGE/result/summary.json" "$DEST/summary.json"
+retry sha256sum "$DEST/result.tar.gz" "$DEST/summary.json"
 exit "$rc"

@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
+import errno
 import gzip
 import hashlib
 import json
@@ -81,10 +82,51 @@ FULL_LIMIT_SECONDS = 5400
 # allowance, not a measured bound.
 MARGIN_FACTOR, MARGIN_SECONDS = 1.5, 300
 STOPPED = 3
+# RA-09: on compute nodes, opening a readable /scratch input has failed with
+# EACCES at a different file each time (full census 4464315 and retry 4464423,
+# cn-036..039, 2026-10-28); the same files read on login and on other nodes.
+# Every input access is retried after these waits, and each retry is written
+# to the summary and the job log. The schedule is a convention, not a
+# measurement: no outage duration has been observed. The worst case adds 63 s
+# per file against the 1:30:00 limit; a longer outage still crashes the task
+# with nothing exported. A retried read cannot change a result unnoticed:
+# every input is hashed, pinned hashes are checked and each parsed content is
+# hashed again.
+ACCESS_RETRY_WAITS = (1, 2, 4, 8, 16, 32)
+ACCESS_RETRIES = []
 
 
 class CensusStop(Exception):
     """A census condition (hash, membership, binding, subset) failed."""
+
+
+def with_access_retry(call, path, *args, **kwargs):
+    """call(path, ...) retried on EACCES only; other errors pass through."""
+    for attempt, wait in enumerate((*ACCESS_RETRY_WAITS, None), start=1):
+        try:
+            return call(path, *args, **kwargs)
+        except PermissionError as error:
+            if wait is None or error.errno != errno.EACCES:
+                raise
+            event = {"path": str(path), "call": getattr(call, "__name__", repr(call)),
+                     "attempt": attempt, "wait_seconds": wait, "node": os.uname().nodename,
+                     "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+            ACCESS_RETRIES.append(event)
+            print("access retry " + json.dumps(event), file=sys.stderr, flush=True)
+            time.sleep(wait)
+
+
+def read_sha256(path):
+    return with_access_retry(sha256, path)
+
+
+def stat_size(path):
+    return with_access_retry(os.stat, path).st_size
+
+
+def list_dir(path):
+    with os.scandir(path) as entries:
+        return [(e.name, e.is_dir()) for e in entries]
 
 
 def write_json(path, value):
@@ -95,7 +137,7 @@ def write_json(path, value):
 
 
 def read_export(path, schema):
-    frame = pd.read_csv(path)
+    frame = with_access_retry(pd.read_csv, path)
     if list(frame.columns) != list(schema):
         raise CensusStop(f"Unexpected CSV schema: {path}")
     return frame
@@ -140,10 +182,19 @@ class UnionFind:
 
 
 def pair_names(raw_root):
-    hits = {str(p.relative_to(raw_root)).removesuffix("_hits.csv")
-            for p in raw_root.glob("*/*_hits.csv")}
-    vacs = {str(p.relative_to(raw_root)).removesuffix("_vacs.csv")
-            for p in raw_root.glob("*/*_vacs.csv")}
+    """Export pairs one directory below raw_root, as glob("*/*_hits.csv") finds them.
+
+    Listed explicitly because Path.glob skips a directory it cannot open, which
+    under RA-09 would turn an access failure into a membership change.
+    """
+    hits, vacs = set(), set()
+    for sub, is_dir in with_access_retry(list_dir, raw_root):
+        if not is_dir:
+            continue
+        for name, _ in with_access_retry(list_dir, raw_root / sub):
+            for suffix, found in (("_hits.csv", hits), ("_vacs.csv", vacs)):
+                if name.endswith(suffix):
+                    found.add(f"{sub}/{name.removesuffix(suffix)}")
     if hits != vacs:
         raise CensusStop("Unpaired hits/vacs exports: " + ", ".join(sorted(hits ^ vacs)[:5]))
     return sorted(hits)
@@ -152,7 +203,7 @@ def pair_names(raw_root):
 def hash_files(paths, workers):
     """SHA-256 of many files; hashlib releases the GIL on large reads."""
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        return dict(zip(paths, pool.map(sha256, paths)))
+        return dict(zip(paths, pool.map(read_sha256, paths)))
 
 
 def scan_primaries(targets, primaries, pinned_sha):
@@ -167,7 +218,7 @@ def scan_primaries(targets, primaries, pinned_sha):
     matches, files = [], []
     for member, path in primaries:
         started, count = time.monotonic(), 0
-        for chunk in pd.read_csv(path, usecols=COLS, chunksize=PRIMARY_CHUNK):
+        for chunk in with_access_retry(pd.read_csv, path, usecols=COLS, chunksize=PRIMARY_CHUNK):
             if not np.isfinite(chunk.to_numpy(dtype=float)).all():
                 raise CensusStop("Nonfinite primary inventory attributes in " + member)
             chunk = chunk.loc[np.isin(chunk.Ekin.to_numpy(dtype=float), ekin)]
@@ -176,10 +227,10 @@ def scan_primaries(targets, primaries, pinned_sha):
                 joined["primary_member"] = member
                 matches.append(joined)
                 count += len(joined)
-        digest = sha256(path)
+        digest = read_sha256(path)
         if pinned_sha.get(member) is not None and digest != pinned_sha[member]:
             raise CensusStop("Primary file differs from the pinned inventory: " + member)
-        files.append({"member": member, "sha256": digest, "bytes": Path(path).stat().st_size,
+        files.append({"member": member, "sha256": digest, "bytes": stat_size(path),
                       "matches": count, "seconds": time.monotonic() - started})
     columns = ["Row_det", "Id_det", *KEYS, "detector_member", "Row_prim", "Id_prim", "primary_member"]
     found = pd.concat(matches, ignore_index=True) if matches else pd.DataFrame(columns=columns)
@@ -266,11 +317,13 @@ def census_tag(info, tag, output, *, members=None, primaries=None, workers=1, me
                "coverage": "full" if members is None else "subset",
                "raw_root": str(raw_root), "primary_root": str(primary_root), **(meta or {}),
                "timings": {}}
+    ACCESS_RETRIES.clear()
     try:
         _census(info, tag, output, raw_root, primary_root, pinned, pinned_primary, aliases,
                 members, primaries, workers, summary, expected_pinned_bound)
     except (CensusStop, ValueError) as error:
         summary["stop_reasons"].append({"kind": "condition", "detail": str(error)})
+    summary["access_retries"] = list(ACCESS_RETRIES)
     summary["status"] = "stopped" if summary["stop_reasons"] else "complete"
     write_json(output / "summary.json", summary)
     return summary
@@ -291,7 +344,7 @@ def _census(info, tag, output, raw_root, primary_root, pinned, pinned_primary, a
     files = {}
     for n, (hp, vp) in paths.items():
         files[n] = {"hits": digests[hp], "vacs": digests[vp],
-                    "hits_bytes": hp.stat().st_size, "vacs_bytes": vp.stat().st_size}
+                    "hits_bytes": stat_size(hp), "vacs_bytes": stat_size(vp)}
     summary["timings"]["hash"] = {"seconds": time.monotonic() - t0, "files": 2 * len(files),
                                   "bytes": sum(f["hits_bytes"] + f["vacs_bytes"] for f in files.values())}
 
@@ -364,7 +417,7 @@ def _census(info, tag, output, raw_root, primary_root, pinned, pinned_primary, a
         records.append(pd.DataFrame({"content": cid, "Row": target.Row.to_numpy(np.int64),
                                      "Id": target.Id.to_numpy(np.int64), "h": hashes}))
         targets.append(target)
-        if (sha256(hp), sha256(vp)) != (c["hits_sha256"], c["vacs_sha256"]):
+        if (read_sha256(hp), read_sha256(vp)) != (c["hits_sha256"], c["vacs_sha256"]):
             raise CensusStop("Input changed during census: " + cid)
     summary["timings"]["contents"] = {"seconds": time.monotonic() - t1, "contents": len(contents)}
     records = (pd.concat(records, ignore_index=True) if records
@@ -498,11 +551,11 @@ def stat_projection(info):
     raw_root, primary_root = Path(info["raw_root"]), Path(info["primary_root"])
     sizes, raw_bytes = {}, 0
     for n in info["all_pair_names"]:
-        pair = tuple((raw_root / (n + s)).stat().st_size for s in ("_hits.csv", "_vacs.csv"))
+        pair = tuple(stat_size(raw_root / (n + s)) for s in ("_hits.csv", "_vacs.csv"))
         raw_bytes += sum(pair)
         if pair != (EMPTY_BYTES["hits"], EMPTY_BYTES["vacs"]):
             sizes[pair] = sizes.get(pair, 0) + 1
-    prim = sum((primary_root / (p + "_prim.csv")).stat().st_size for p in info["common_primary_pair_names"])
+    prim = sum(stat_size(primary_root / (p + "_prim.csv")) for p in info["common_primary_pair_names"])
     # Byte-unique contents are approximated by distinct size pairs (upper bound
     # on the parse count only if no size coincidences hide distinct contents).
     return {"raw_bytes": raw_bytes, "size_groups": len(sizes), "primary_bytes": prim,
@@ -643,12 +696,12 @@ def combine(tag_dirs, output, *, coverage, expected_pinned_total=None):
 
 
 def validate_smoke_receipt(path, source, environment):
-    receipt = json.loads(Path(path).read_text())
+    receipt = json.loads(with_access_retry(Path.read_text, Path(path)))
     if (receipt.get("status") != "verified" or receipt.get("mode") != "smoke"
             or receipt.get("slurm_state") != "COMPLETED" or receipt.get("exit_code") != "0:0"
             or receipt.get("source_digest") != source or receipt.get("environment") != environment):
         raise ValueError(f"Invalid smoke receipt: {path}")
-    if sha256(receipt["archive"]) != receipt["archive_sha256"]:
+    if read_sha256(receipt["archive"]) != receipt["archive_sha256"]:
         raise ValueError("Verified smoke archive changed")
     if max(receipt["estimated_full_seconds_with_margin"].values()) > FULL_LIMIT_SECONDS:
         raise ValueError("Measured smoke does not support the 1:30:00 limit")
@@ -677,7 +730,8 @@ def run(args):
                             workers=args.workers, meta=meta,
                             expected_pinned_bound=None if members else PINNED_BOUND[tag])
         entry = {"status": result["status"], "stop_reasons": result["stop_reasons"][:20],
-                 "counts": result.get("counts"), "timings": result["timings"]}
+                 "counts": result.get("counts"), "timings": result["timings"],
+                 "access_retries": len(result["access_retries"])}
         if args.mode == "smoke":
             check_smoke(result, info, members)
             write_json(args.output / tag / "summary.json", result)

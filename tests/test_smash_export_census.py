@@ -326,3 +326,92 @@ def test_job_smoke_verify_and_gated_full_run(tmp_path, monkeypatch):
     receipt.write_text(receipt.read_text().replace('"verified"', '"pending"', 1))
     with pytest.raises(ValueError, match="Invalid smoke receipt"):
         census.main(full[:-1] + [str(tmp_path / "full2" / "result")])
+
+
+def test_transient_eacces_is_retried_recorded_and_changes_nothing(population, monkeypatch):
+    """RA-09: one EACCES per input kind is absorbed; the census is unchanged."""
+    import errno as errno_module
+    from HGNDRecoGNN.scripts import smash_export_census as census
+
+    tmp, tag, info = population
+    clean = census_tag(info, tag, tmp / "clean", workers=2, expected_pinned_bound=1)
+    assert clean["access_retries"] == []
+    raw, prim = Path(info["raw_root"]), Path(info["primary_root"])
+    # One denial per access kind: a hash, a whole-file CSV and a chunked primary scan.
+    flaky = {"sha256": {str(raw / RUN / "0005_vacs.csv")},
+             "read_csv": {str(raw / RUN / "0006_hits.csv"), str(prim / RUN / "0002_prim.csv")}}
+
+    def fail_once(call):
+        def wrapped(path, *args, **kwargs):
+            if str(path) in flaky[call.__name__]:
+                flaky[call.__name__].discard(str(path))
+                raise PermissionError(errno_module.EACCES, "Permission denied", str(path))
+            return call(path, *args, **kwargs)
+        wrapped.__name__ = call.__name__
+        return wrapped
+
+    sleeps = []
+    monkeypatch.setattr(census.time, "sleep", sleeps.append)
+    monkeypatch.setattr(census, "sha256", fail_once(census.sha256))
+    monkeypatch.setattr(census.pd, "read_csv", fail_once(pd.read_csv))
+    s = census_tag(info, tag, tmp / "flaky", workers=2, expected_pinned_bound=1)
+    assert s["status"] == "complete", s["stop_reasons"]
+    assert not any(flaky.values())
+    assert sorted((Path(r["path"]).name, r["call"]) for r in s["access_retries"]) == [
+        ("0002_prim.csv", "read_csv"), ("0005_vacs.csv", "sha256"), ("0006_hits.csv", "read_csv")]
+    assert {r["attempt"] for r in s["access_retries"]} == {1} and sleeps == [1, 1, 1]
+    for key in ("contents", "groups", "counts", "header_only", "pinned", "primary_files"):
+        if key == "primary_files":
+            assert [{k: v for k, v in f.items() if k != "seconds"} for f in s[key]] == [
+                {k: v for k, v in f.items() if k != "seconds"} for f in clean[key]]
+        else:
+            assert s[key] == clean[key], key
+    # gzip stamps the write second into the header, so compare what the indexes hold.
+    for kind, item in s["indexes"].items():
+        assert item["rows"] == clean["indexes"][kind]["rows"]
+        with gzip.open(tmp / "flaky" / item["path"]) as a, gzip.open(tmp / "clean" / item["path"]) as b:
+            assert a.read() == b.read(), kind
+
+
+def test_access_retry_gives_up_and_passes_other_errors(monkeypatch):
+    import errno as errno_module
+    from HGNDRecoGNN.scripts import smash_export_census as census
+
+    monkeypatch.setattr(census.time, "sleep", lambda s: None)
+    census.ACCESS_RETRIES.clear()
+    calls = []
+
+    def denied(path):
+        calls.append(path)
+        raise PermissionError(errno_module.EACCES, "Permission denied", path)
+
+    with pytest.raises(PermissionError):
+        census.with_access_retry(denied, "x")
+    assert len(calls) == len(census.ACCESS_RETRY_WAITS) + 1
+    assert [r["wait_seconds"] for r in census.ACCESS_RETRIES] == list(census.ACCESS_RETRY_WAITS)
+    for error in (PermissionError(errno_module.EPERM, "Operation not permitted"),
+                  FileNotFoundError(errno_module.ENOENT, "No such file")):
+        calls.clear()
+
+        def other(path, error=error):
+            calls.append(path)
+            raise error
+
+        with pytest.raises(type(error)):
+            census.with_access_retry(other, "y")
+        assert calls == ["y"]
+
+
+def test_pair_names_lists_what_glob_lists(tmp_path):
+    from HGNDRecoGNN.scripts.smash_export_census import pair_names
+
+    root = tmp_path / "raw"
+    for rel in ("a/0001_hits.csv", "a/0001_vacs.csv", "b/0002_hits.csv", "b/0002_vacs.csv",
+                "a/.0003_hits.csv", "a/.0003_vacs.csv", "0004_hits.csv", "0004_vacs.csv",
+                ".hidden/0005_hits.csv", ".hidden/0005_vacs.csv", "a/deep/0006_hits.csv",
+                "a/deep/0006_vacs.csv", "a/notes.txt"):
+        (root / rel).parent.mkdir(parents=True, exist_ok=True)
+        (root / rel).write_text("x\n")
+    expected = sorted(str(p.relative_to(root)).removesuffix("_hits.csv") for p in root.glob("*/*_hits.csv"))
+    # pathlib's "*" matches leading dots, unlike glob.glob.
+    assert pair_names(root) == expected == [".hidden/0005", "a/.0003", "a/0001", "b/0002"]

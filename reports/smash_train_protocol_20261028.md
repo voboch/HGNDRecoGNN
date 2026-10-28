@@ -166,6 +166,33 @@ seeds sends the census back for checking; each fold's test is evaluated once;
 a new arm needs a new protocol; a same-sample null with |z| ≥ 3 stops
 interpretation.
 
+### Amendment 2026-10-28: in-process access retry (census)
+
+The full census failed four times with EACCES on readable inputs, at a
+different file and node each time: zeroSpot `0004_vacs` (4464315_0, cn-036)
+and `0056_vacs` (retry 4464423_0, cn-039), defaultSpot `0098_hits`
+(4464315_1, cn-037) and `0106_hits` (4464423_1, cn-038). The pre-approved
+retry was used. bigSpot completed (4464315_2). The inputs are 0644 under 0755
+directories; every path passes through `/scratch/vbocharnikov`, which is
+root:root 0750 and grants access only through a named-user ACL. A compute
+client that checks the mode bits without the ACL would produce this pattern;
+that cause is not proven.
+
+The user authorised the following change. Every census input access (hash,
+CSV read, chunked primary scan, stat, directory listing, the smoke receipt) is
+retried on EACCES only, after 1, 2, 4, 8, 16 and 32 s. Each retry goes to the
+tag summary (`access_retries`: path, call, attempt, node, time) and the job
+log. Any other error, or EACCES after the last wait, crashes the task as
+before. The export copy in the batch script gets the same schedule. The
+schedule is a convention: no outage duration has been measured, and the
+recorded retries will be the first measurement. A retried read cannot alter
+a result unnoticed, because inputs are hashed, pinned hashes are checked and
+parsed contents are hashed again. Directory listing replaces `Path.glob`,
+which silently skips a directory it cannot open. Because `combine` requires
+one code digest, all three tags are rerun, bigSpot included, after a new smoke
+on the test partition and a preflight review. The task-level rule stands: no
+resubmission without the user.
+
 ## What this does not establish
 
 A blind holdout (the files were scored by the transfer, and the [0.3, 1) GeV
