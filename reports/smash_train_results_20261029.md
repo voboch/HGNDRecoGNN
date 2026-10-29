@@ -134,7 +134,14 @@ the step):
 | C3 − C2 | reconstructed energy on the same clusters | −0.34 / −0.46 / −0.33 ± 0.43–0.48 | −0.44 / −0.51 / +0.18 ± 0.7–0.9 |
 | C4 − C3 | background admitted by the selection | −1.11 / −1.12 / −1.31 ± 0.63 | −1.78 / −1.57 / −1.28 ± 1.0 |
 
-The largest step in both arms is the background admitted at the cut. C1 − T2
+In the pooled sample the largest step in both arms is the background admitted
+at the cut. This ranking is a property of the average over folds, not of each
+fold: B1's selection step C2 − C1 is −2.7, +2.1 and −1.2 points in folds 0, 1
+and 2 (seed 42; the other seeds agree), heterogeneous at χ² ≈ 11–16 on 2 df,
+and the background step moves the other way (−0.7, −2.5, −0.2), while A1,
+with the same frozen weights in every fold, shows no such heterogeneity
+(critical review v11, M3). The seeds within a fold share their training and
+test files, so G6 measures initialisation stability only. C1 − T2
 is a property of the native label, the same for every classifier. The 5 %
 injection on true-hard clusters is recovered with k = 0.75 in B1 and
 0.64–0.67 in A1.

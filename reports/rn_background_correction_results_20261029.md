@@ -70,7 +70,9 @@ DCM energy scale. Most of the change in c comes from the selected hard
 clusters per event, 1.74 times higher in the DCM sample. The background per
 event changes much less. The comparison changes generator, beam energy (3.26
 against 2.87 AGeV) and target (CsI against Cs) together and does not separate
-them.
+them. The DCM label "3.26 AGeV" comes from project records; without the run
+card it is not verified whether it is the kinetic energy per nucleon or
+√s_NN (which equals 3.26 GeV for E_kin/A = 3.8 GeV).
 
 Per-event rates use events with at least one candidate cluster in both
 samples. With the processed-event count for SMASH instead, both per-event
