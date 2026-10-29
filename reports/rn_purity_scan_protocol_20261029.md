@@ -6,6 +6,22 @@ number at a cut other than purity 0.70 has been computed. Requested by the user
 on 2026-10-29 as the next step on R_n closure. No new training or inference;
 the analysis re-reads published, verified predictions.
 
+**Status: not adopted. Preflight review 2026-10-29: NO-GO; design on hold for
+the user's decision.** The choice rule below rests on a false premise: file
+sampling does not cancel between purities, because raising the cut removes
+most of the low-band population (B1 on S loses about 74 % of its low-band
+clusters from 0.70 to 0.90). Measured on S only (bootstrap SDs, no contrast
+values looked at), the paired SD of C4(p) − C4(0.70), B1, seed mean, is 0.44,
+0.50, 0.85, 1.17, 1.77 and 3.32 points at p = 0.65, 0.75, 0.80, 0.85, 0.90 and
+0.95 (A1: 0.46, 0.68, 1.37, 2.10, 3.82, 8.95); the unpaired SD of C4 is 1.1–3.8
+(B1) and 1.2–14.7 (A1). With the predicted ΔC4 of +0.3 to +1.2 points the
+paired one-SE rule would return the lowest p, and the primary test has about
+10–30 % power even on all 568 files (paired SD about 0.8 at 0.85), so a null
+would be uninformative, not negative. The review also measured the count
+purity per energy band at the 0.70 cut on S, B1: 0.56 in the low band and 0.81
+in the high band (0.80 and 0.93 at 0.90), so the dilution acts mostly on the
+denominator. The predictions table below is kept as committed in 61659b5.
+
 ## Question and consumer
 
 The reconstructed hardness contrast C4 keeps about 40 % of the truth contrast
