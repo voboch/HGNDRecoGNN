@@ -1,0 +1,67 @@
+{
+ "accepted": true,
+ "checks": {
+  "receipt_complete": true,
+  "manifest_sha": true,
+  "archive_sha_in_manifest": true,
+  "summary_sha": true,
+  "evaluation_summary_sha": true,
+  "fold": true,
+  "test_files_equal_split": true,
+  "identity": true,
+  "no_test_threshold_tuning": true,
+  "training_runs": true,
+  "prediction_files": true
+ },
+ "training": {
+  "42": {
+   "task": 6,
+   "fold_seed": true,
+   "complete_sha_equal_verified": true,
+   "cuts_equal_frozen": true,
+   "selection_equal": true
+  },
+  "123": {
+   "task": 7,
+   "fold_seed": true,
+   "complete_sha_equal_verified": true,
+   "cuts_equal_frozen": true,
+   "selection_equal": true
+  },
+  "456": {
+   "task": 8,
+   "fold_seed": true,
+   "complete_sha_equal_verified": true,
+   "cuts_equal_frozen": true,
+   "selection_equal": true
+  }
+ },
+ "prediction_counts": {
+  "A0/42": 187,
+  "A0/123": 187,
+  "A0/456": 187,
+  "A1/42": 187,
+  "A1/123": 187,
+  "A1/456": 187,
+  "B0/42": 187,
+  "B0/123": 187,
+  "B0/456": 187,
+  "B1/42": 187,
+  "B1/123": 187,
+  "B1/456": 187,
+  "Bcomp/42": 187,
+  "Bcomp/123": 187,
+  "Bcomp/456": 187
+ },
+ "bad_predictions": [],
+ "test_files": 187,
+ "scored_files": 187,
+ "unscored_test_files": [],
+ "empty_after_cuts": [],
+ "access_retries": {
+  "evaluate": 0,
+  "publish": 0
+ },
+ "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/evaluate_bundles/evaluate_4467091_single",
+ "manifest_sha256": "a4aaca859207132af43c8b80a643825e55dc67ef872db7c0b7646e60178800c3"
+}

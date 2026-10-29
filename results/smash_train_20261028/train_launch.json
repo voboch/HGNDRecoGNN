@@ -29,7 +29,7 @@
  "proposed_train_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && sbatch --parsable --array=0-8%3 --time=05:30:00 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_<P>,SMASH_PREPARE_MANIFEST_SHA=<manifest sha from the verified prepare receipt>,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
  "time_limit_basis": "GPU smoke 4465935 projection: 05:25 from measured graphs per file (292 train / 98 validation files), 05:30 from the plan's 4115 graphs per file; the largest fold has 291 train and 98 validation groups",
  "node_local_disk_evidence": "job 4437449 (cn-030, rocky/type_d) held ~31 GB of node-local input copies; prepare projects ~6.9 GB of packs plus a bundle of similar size",
- "status": "training array 4466016 running; first wave healthy",
+ "status": "cluster stage complete 2026-10-29 12:01: nine training runs (three by resume retry) and three evaluations verified; analysis local",
  "preflight": {
   "date": "2026-10-29",
   "verdict": {
@@ -555,6 +555,18 @@
    "checks_in_submitting_shell": "marker absent, index sha 6f36e7bd…, DCM model.pt hashes of seeds 42/123/456 equal the validated ones",
    "command": "as evaluate_fold_0.command with SMASH_FOLD=2, SMASH_TRAIN_INDEX=<SUB2>/train_index_fold2.json and no --dependency",
    "expected": "receipt receipts/evaluate_4467091_single.json, bundle evaluate_bundles/evaluate_4467091_single; ~50 min"
+  },
+  "result": {
+   "state": "COMPLETED 00:45:26 on cn-004, exit 0",
+   "published": {
+    "bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/evaluate_bundles/evaluate_4467091_single",
+    "manifest_sha256": "a4aaca859207132af43c8b80a643825e55dc67ef872db7c0b7646e60178800c3",
+    "archive_sha256": "77c69210e655036d6a3700bf82b1c87baeaae402d33c20e1cd4973f8a5527d35",
+    "files": 2807,
+    "archive_bytes": 922613760
+   },
+   "acceptance": "results/smash_train_20261028/evaluate_4467091/acceptance.json: accepted; 187/187 test files scored in every arm and seed, cuts and selections equal the verified complete.json of the task 6 and 7 retries and task 8, no access retries",
+   "local_copy": "results/smash_train_20261028/evaluate_4467091/extracted (not committed)"
   }
  }
 }
