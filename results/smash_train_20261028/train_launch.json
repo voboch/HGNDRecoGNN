@@ -518,6 +518,18 @@
    "command": "as evaluate_fold_0.command with SMASH_FOLD=1, SMASH_TRAIN_INDEX=<SUB2>/train_index_fold1.json and no --dependency",
    "concurrency": "with the task 6 and 7 retries: three GPUs",
    "expected": "receipt receipts/evaluate_4467086_single.json, bundle evaluate_bundles/evaluate_4467086_single; ~50 min"
+  },
+  "result": {
+   "state": "COMPLETED 00:47:55 on cn-012, exit 0",
+   "published": {
+    "bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/evaluate_bundles/evaluate_4467086_single",
+    "manifest_sha256": "6c02040439c8ee79b508055d5a85f2cf85e2497d954be1c132e7680e5f7db66c",
+    "archive_sha256": "26df6fc50a345684f3aa88616317b1b4de61a4feaa95d66516ef0d1218546910",
+    "files": 2837,
+    "archive_bytes": 934758400
+   },
+   "acceptance": "results/smash_train_20261028/evaluate_4467086/acceptance.json: accepted; 189/189 test files scored in every arm and seed, cuts and selections equal the verified complete.json of tasks 3, 4 and the task-5 retry, no access retries",
+   "local_copy": "results/smash_train_20261028/evaluate_4467086/extracted (not committed)"
   }
  },
  "evaluate_fold_2": {
