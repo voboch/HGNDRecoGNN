@@ -238,6 +238,21 @@ measured this difference and did not gate on it).
 All remaining jobs of this campaign end within 3 h (evaluations took 48 min).
 Later campaigns must plan for the rule (HPC.md, section 2).
 
+### Amendment 2026-10-29: results enter the manuscript
+
+The user decided on 2026-10-29 that the campaign's results enter the
+manuscript. This supersedes "no number from this campaign enters the
+manuscript" in "Question and consumer". They appear as an appendix
+(reconstruction-level check) and one sentence each in the abstract, the
+requirements subsection, Limitations and Conclusions. Every number comes from
+the paper's canonical builder, which reads a hash-pinned, byte-identical copy
+of `results/smash_train_20261028/results_table.json` (code commit 31d91ff,
+sha256 87bb13a3…) as `data/canonical_inputs/smash_reconstruction.json`; nothing
+is refitted in the paper. The stated limits stay with the numbers: not a blind
+holdout, one generator for training and test, the native hit label, and a loss
+ordering that holds for the pooled sample only (critical review v11, M3).
+The background-coefficient study is not included.
+
 ## What this does not establish
 
 A blind holdout (the files were scored by the transfer, and the [0.3, 1) GeV

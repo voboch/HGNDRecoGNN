@@ -4,8 +4,10 @@ Results of the campaign defined in `reports/smash_train_protocol_20261028.md`,
 2026-10-29, branch `smash-train-20261028`. Every number below comes from
 `results/smash_train_20261028/results_table.json`, written by
 `scripts/smash_train_results_table.py` from the verified analysis outputs
-(`analysis/summary.json`, `heldout_rn/summary.json`). No number from this
-campaign enters the manuscript (protocol, "Question and consumer").
+(`analysis/summary.json`, `heldout_rn/summary.json`). On the user's decision of
+2026-10-29 the results enter the manuscript as Appendix B, through the paper's
+canonical builder from a pinned copy of that table (protocol amendment of the
+same date); the original rule that no number enters the manuscript is superseded.
 
 <!-- table-provenance: scored on cross-fitted test files (568 truth-bound files of
      corrected, deduplicated SMASH Xe+Cs 2.87 GeV/nucleon, U_sym 0/18/90 MeV,
