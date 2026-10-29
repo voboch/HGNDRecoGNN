@@ -79,6 +79,16 @@ Time formats: `mm`, `mm:ss`, `hh:mm:ss`, `d-hh`, `d-hh:mm:ss`. Backfill is on �
 shorter `--time` starts sooner. Default limit is generous (rocky allows up to 30 d)
 but keep requests honest; low GPU utilisation is visible to admins (HPC TaskMaster).
 
+**Hourly root cancellation of long jobs (seen 2026-10-27..29).** A root process
+runs at about xx:03–xx:04 every hour and cancels some jobs older than 3 h; sacct
+shows `CANCELLED by 0`, the batch step gets SIGTERM, no node is drained. On
+2026-10-29 it hit V100, H100 and CPU-only jobs of several users at 3:06–3:59
+elapsed (one at 3 d 17 h), while other jobs run for days, so elapsed time is not
+the whole criterion (utilisation is the likely other part; unconfirmed, asked of
+support). It is not `slurm-mem-guard.py`, which only drains or requeueholds.
+Plan GPU jobs to end within 3 h, or split them into resumable segments with a
+scratch mirror; a job crossing 3 h is exposed at the next xx:04.
+
 ## 3. Environment (Rocky 9 login node)
 
 Modules (from `/opt/el9/hse/modules`):

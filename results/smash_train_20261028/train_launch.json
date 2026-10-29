@@ -276,7 +276,7 @@
      "phase": "all 30 epochs done (mirror resume_029.pt and state.json next_epoch=30 at 07:02:47); killed 86 s later in final validation scoring; nothing published (no receipt, no bundle)",
      "not_the_memory_guard": "/etc/slurm/slurm-mem-guard.py (HealthCheckProgram, every 60 s) only drains nodes at >= 50 % RAM or requeueholds on IO (IO check off on Rocky); it never scancels. Its log /var/log/slurm/mem_guard.log is root-only.",
      "context": "no other job on any node cancelled 07:00-07:10; cn-004 not drained (MIXED+PLANNED); task 8 started on cn-004 at 07:04:41; node RAM 34/754 GB used at 07:10; rocky PreemptMode=OFF",
-     "cause": "unknown: a root scancel (admin or a root process), not a node failure and not EACCES",
+     "cause": "hourly root cancellation of jobs older than 3 h (see cancellation_policy); task 5 was 3:12 old at the 07:04 run",
      "classification": "outside both recorded classes: not the pre-approved D3 cases (EACCES, node failure) and not a run defect. Retry goes to the user.",
      "preserved_node_output": "cn-004:/tmp/hgnd-smash-train-4466016_5.UD4pH8 (42 MB, train outputs without complete.json); not used",
      "prepared_retry": {
@@ -295,6 +295,14 @@
        "counts_as": "the one retry of task 5; a further failure goes to the user"
       }
      }
+    },
+    "6": {
+     "state": "CANCELLED by 0 at 2026-10-29T10:03:59 after 03:06:20 on cn-002 (hourly root cancellation)",
+     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 09:58:47): one epoch, validation scoring and export left; nothing published"
+    },
+    "7": {
+     "state": "CANCELLED by 0 at 2026-10-29T10:03:59 after 03:06:20 on cn-002 (hourly root cancellation)",
+     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 10:00:42): one epoch, validation scoring and export left; nothing published"
     }
    },
    "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002; task 5 started 03:52 on cn-004",
@@ -309,7 +317,17 @@
     "source": "results/smash_train_20261028/train_4466016/check.json"
    },
    "third_wave": "tasks 6-7 (fold 2) started 06:57 on cn-002; task 5 (fold 1) still running at 06:59"
-  }
+  },
+  "retries_6_7": {
+   "status": "prepared, NOT submitted: the auto-mode permission check blocked the submission at ~10:15; waits for the user",
+   "what": "resume from each mirror after epoch 28 (the resume path the GPU smoke tested): one epoch (~6 min), validation scoring and export (~8 min), loading ~6 min; ~20-25 min each, limit 01:30:00, not on cn-002",
+   "concurrency": "task 6 without dependency (with task 8 and the task-5 retry: 3 GPUs); task 7 after the task-5 retry 4466738_5 ends; fold-0 evaluation 4466339 starts when task 8 ends",
+   "commands": [
+    "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_6_4466016_6/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=6 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-002 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_6_4466016_6 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
+    "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_7_4466016_7/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=7 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-002 --dependency=afterany:4466738_5 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_7_4466016_7 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch"
+   ]
+  },
+  "retry_5_progress": "4466738_5 started 10:04:22 on cn-012; log: \"Training seed 456 from epoch 30\" (restore from mirror worked)"
  },
  "evaluate_failure_policy": "No automatic rerun; the marker evaluation_fold_<k>.opened stays. Record sacct (State, ExitCode, Elapsed, NodeList), logs/smash-train_<J>_4294967294.out with its traceback, the marker content, whether evaluate_bundles/evaluate_<J>_single and receipts/evaluate_<J>_single.json exist (a partial bundle is never extracted), and the phase reached (traceback frame or progress probes). Phases: (a) marker created, test not read (prepare-bundle hash, EACCES after the last wait); (b) test packs read, not scored (load_packs, /tmp space, hash mismatch); (c) scored, not published (load_dcm, CUDA, TIMEOUT, CSV or metric loop, sha256sum -c, publish). In (a)-(c) no test number leaves the node: evaluate prints nothing and $WORK/output stays in node /tmp. Report to the user, who alone may authorise renaming the marker to evaluation_fold_<k>.opened.void_<J> and one identical rerun on another node. If the log shows publish \"copied\" lines, first try to recover $WORK/output from that node. A published evaluation is never rerun. A code or hash failure needs a new package, smoke and preflight.",
  "evaluate_fold_0": {
@@ -352,5 +370,12 @@
    "release_now": "scontrol update JobId=4466339 Dependency= (only on the user's decision)"
   }
  },
- "cluster_maintenance": "reservation \"maintenance\" on all nodes cn-[001-041,043-051] 2026-10-30 09:00-21:00 (scontrol show reservation, seen 2026-10-29 07:10): every job must end before 09:00 tomorrow; a job whose limit crosses it will not start"
+ "cluster_maintenance": "reservation \"maintenance\" on all nodes cn-[001-041,043-051] 2026-10-30 09:00-21:00 (scontrol show reservation, seen 2026-10-29 07:10): every job must end before 09:00 tomorrow; a job whose limit crosses it will not start",
+ "cancellation_policy": {
+  "finding": "a root process cancels some jobs older than 3 h at about xx:03-xx:04 every hour; sacct CANCELLED by 0",
+  "evidence": "sacct -a -s CA since 2026-10-25: root cancellations cluster at xx:03/xx:04 (27-29 Oct, 1-3 per hour). On 29 Oct: 4466049 agdemin V100 3:16:11 at 04:03, 4466073 agdemin V100 3:59:04 at 05:03, 4466078 aoshavrina CPU 3:56:29 at 05:03, 4433994 kuznetsov.sa H100 3-17:17:18 at 02:04, 4466016_5 3:12:11 at 07:04, 4466016_6/7 3:06:20 at 10:04. 4466016_8 was 2:59:19 old at 10:04 and was not touched. Tasks 0-4 (3:09-3:19) each ended before the first xx:04 past 3 h.",
+  "criterion_unknown": "jobs running for days (e.g. on cn-004 since 2026-10-19) survive, so elapsed time is not the whole rule; low utilisation is the likely other part (HPC.md mentions HPC TaskMaster); asked in the support draft",
+  "consequence": "every remaining job of this campaign must end within 3 h: resume retries (<= 30 min) and evaluations (~1 h, limit 3:00) do; a 30-epoch training task (3:10-3:20) does not and needs a split or a start time that lands its end before the next xx:04 past 3 h",
+  "recorded_in": "HPC.md section 2"
+ }
 }
