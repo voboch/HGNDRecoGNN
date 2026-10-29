@@ -261,3 +261,9 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/prepare_4465983/
 /results/smash_train_20261028/prepare_4465983/*
 !/results/smash_train_20261028/prepare_4465983/*.json
+!/results/smash_train_20261028/train_4466016/
+/results/smash_train_20261028/train_4466016/*
+!/results/smash_train_20261028/train_4466016/*.json
+!/results/smash_train_20261028/train_4466016/task_*/
+/results/smash_train_20261028/train_4466016/task_*/*
+!/results/smash_train_20261028/train_4466016/task_*/*.json

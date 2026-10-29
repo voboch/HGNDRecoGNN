@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_0",
+  "manifest_sha256": "2b9d1f1eebc8a82d115d22b2dc4ef4cb6d08e70c75c1bc12b3b4c2f4c5fe4d7e",
+  "archive_sha256": "3b38445ddab72e911817f621af1441b777ed6c011f85d42178c91bbaf0d25329",
+  "archive_bytes": 61214720,
+  "files": 51,
+  "summary_files": {
+    "summary.json": "f3ac5fa770b40c2c1a9b90ee3b368f56023e07213649e16e9561d41eb1903a03"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}

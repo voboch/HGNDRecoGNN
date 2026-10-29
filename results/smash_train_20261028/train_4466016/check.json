@@ -1,0 +1,85 @@
+{
+ "tasks": {
+  "0": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 28,
+    "e_en": 21,
+    "e_comp": 27
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.46507,
+    "A1": 0.47505,
+    "Bcomp": 0.30289499999999997,
+    "B0": 0.30289499999999997,
+    "B1": 0.30289499999999997
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_0",
+   "manifest_sha256": "2b9d1f1eebc8a82d115d22b2dc4ef4cb6d08e70c75c1bc12b3b4c2f4c5fe4d7e"
+  },
+  "1": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 29,
+    "e_en": 22,
+    "e_comp": 29
+   },
+   "budget_limited": {
+    "e_cls": true,
+    "e_en": false,
+    "e_comp": true
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.35778499999999996,
+    "A1": 0.35279499999999997,
+    "Bcomp": 0.3004,
+    "B0": 0.3004,
+    "B1": 0.3004
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_1",
+   "manifest_sha256": "0fd12ad128852ac5f803701ab593c4cdfa3daba8aa2e4ecca07c30985faa7e1a"
+  }
+ },
+ "folds": {}
+}

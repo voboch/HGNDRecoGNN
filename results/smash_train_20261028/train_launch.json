@@ -29,7 +29,7 @@
  "proposed_train_command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && sbatch --parsable --array=0-8%3 --time=05:30:00 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_<P>,SMASH_PREPARE_MANIFEST_SHA=<manifest sha from the verified prepare receipt>,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
  "time_limit_basis": "GPU smoke 4465935 projection: 05:25 from measured graphs per file (292 train / 98 validation files), 05:30 from the plan's 4115 graphs per file; the largest fold has 291 train and 98 validation groups",
  "node_local_disk_evidence": "job 4437449 (cn-030, rocky/type_d) held ~31 GB of node-local input copies; prepare projects ~6.9 GB of packs plus a bundle of similar size",
- "status": "training array 4466016 submitted; first-wave watch running",
+ "status": "training array 4466016 running; first wave healthy",
  "preflight": {
   "date": "2026-10-29",
   "verdict": {
@@ -126,6 +126,53 @@
   "tasks": "0-8%3 (t -> fold t//3, seed (42,123,456)[t%3])",
   "submitted": "2026-10-29T00:24:39+03:00",
   "submitted_by": "main session",
-  "queue_before": "empty"
+  "queue_before": "empty",
+  "first_wave": {
+   "tasks_0_2": "fold 0, seeds 42/123/456 on cn-002, cn-002, cn-004; started 00:29:30 / 00:32:31 / 00:33:02",
+   "graphs": "1,176,436 train / 401,221 validation (expected ~1.18M / ~0.40M)",
+   "epoch_seconds": "~360 s (mirrored epoch files 00:42:09, 00:48:10, 00:54:08 for task 0; 00:42:18, 00:48:27 for task 2)",
+   "projected_task_hours": "about 3.1-3.3 h (load + 30 x 6.0 min + scoring and publish) against the 05:30 limit"
+  },
+  "verified": {
+   "record": "results/smash_train_20261028/train_4466016/ (receipt, manifest, complete.json, summary.json per task; check.json from scripts/smash_train_check_task.py)",
+   "download": "inputs.tar fetched in full; archive and manifest sha256 equal the receipt for every task",
+   "tasks": {
+    "0": {
+     "state": "COMPLETED 03:12:28 on cn-002, exit 0",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 28,
+      "e_en": 21,
+      "e_comp": 27
+     },
+     "budget_limited": false,
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "2b9d1f1eebc8a82d115d22b2dc4ef4cb6d08e70c75c1bc12b3b4c2f4c5fe4d7e"
+    },
+    "1": {
+     "state": "COMPLETED 03:09:27 on cn-002, exit 0",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 29,
+      "e_en": 22,
+      "e_comp": 29
+     },
+     "budget_limited": {
+      "e_cls": true,
+      "e_comp": true
+     },
+     "budget_limited_size": "formal: the epoch-29 minimum improves on the best value over epochs 0-24 by 2.8e-4 (cls) and 2.1e-4 (composite) relative; lr is 1e-6 from epoch 25 (steps 1e-3 -> 1e-4 at 10, 1e-5 at 15, 1e-6 at 25, same in task 0); recorded, no extension per protocol",
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "0fd12ad128852ac5f803701ab593c4cdfa3daba8aa2e4ecca07c30985faa7e1a"
+    }
+   },
+   "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002 when 0-1 ended; task 2 still running at 03:45"
+  }
  }
 }
