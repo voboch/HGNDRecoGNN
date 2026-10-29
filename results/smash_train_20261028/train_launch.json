@@ -270,6 +270,23 @@
       "publish": 0
      },
      "manifest_sha256": "52d7d315f45d5897ffbc4773df128368e16813fecc501d9ae10d86aa8af4e5fb"
+    },
+    "5": {
+     "state": "CANCELLED by 0 (uid 0) at 2026-10-29T07:04:13 after 03:12:11 on cn-004; batch step signal 15; raw job 4466332",
+     "phase": "all 30 epochs done (mirror resume_029.pt and state.json next_epoch=30 at 07:02:47); killed 86 s later in final validation scoring; nothing published (no receipt, no bundle)",
+     "not_the_memory_guard": "/etc/slurm/slurm-mem-guard.py (HealthCheckProgram, every 60 s) only drains nodes at >= 50 % RAM or requeueholds on IO (IO check off on Rocky); it never scancels. Its log /var/log/slurm/mem_guard.log is root-only.",
+     "context": "no other job on any node cancelled 07:00-07:10; cn-004 not drained (MIXED+PLANNED); task 8 started on cn-004 at 07:04:41; node RAM 34/754 GB used at 07:10; rocky PreemptMode=OFF",
+     "cause": "unknown: a root scancel (admin or a root process), not a node failure and not EACCES",
+     "classification": "outside both recorded classes: not the pre-approved D3 cases (EACCES, node failure) and not a run defect. Retry goes to the user.",
+     "preserved_node_output": "cn-004:/tmp/hgnd-smash-train-4466016_5.UD4pH8 (42 MB, train outputs without complete.json); not used",
+     "prepared_retry": {
+      "what": "resume from the complete mirror: restore_from_mirror copies the 30 epoch checkpoints and resume_029.pt with hash checks, fit() runs no epoch (start_epoch == epochs), then validation scoring, cuts, calibration and export as in a normal run; ~15-20 min GPU incl. loading",
+      "difference_from_a_normal_export": "no last.pt, optim.pt, live_status.json (not in complete.json files, not read by evaluate); train_seconds covers only the resumed part; effective_config.resumed names the interrupted job",
+      "concurrency": "tasks 6-8 hold the three GPUs; held with --dependency=afterany:4466016_6?afterany:4466016_7 so it starts when the first of them ends",
+      "command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_5_4466016_5/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=5 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-004 --dependency=afterany:4466016_6?afterany:4466016_7 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_5_4466016_5 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
+      "time_limit_basis": "01:30:00: loading ~6 min + mirror restore of 31 files (~110 MB) + post-training validation and export ~8 min in tasks 0-4; x4 margin",
+      "untested_on_cluster": "resume with start_epoch == epochs (the GPU smoke resumed after epoch 0); the resume-path reads of state.json sha and effective_config.json are not EACCES-wrapped (known_gaps)"
+     }
     }
    },
    "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002; task 5 started 03:52 on cn-004",
@@ -326,5 +343,6 @@
    "expected": "receipt receipts/evaluate_4466339_single.json, bundle evaluate_bundles/evaluate_4466339_single, log logs/smash-train_4466339_4294967294.out",
    "release_now": "scontrol update JobId=4466339 Dependency= (only on the user's decision)"
   }
- }
+ },
+ "cluster_maintenance": "reservation \"maintenance\" on all nodes cn-[001-041,043-051] 2026-10-30 09:00-21:00 (scontrol show reservation, seen 2026-10-29 07:10): every job must end before 09:00 tomorrow; a job whose limit crosses it will not start"
 }
