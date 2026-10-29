@@ -152,6 +152,22 @@ def main():
                                          for arm in ('A1', 'B1')}
     out['rn_prediction_rows'] = rn['predictions']
 
+    # Retention C4/T1 with percentile intervals from the ladder's 400 shared whole-file
+    # replicas (pooled, primary band): a ratio of two noisy contrasts is skewed, so the
+    # interval is quoted rather than a symmetric SD.
+    import numpy as np
+    reps = np.load(BASE / 'heldout_rn/replicas.npz')
+    j1, j4 = 1, 6  # RUNGS = T0, T1, T2, C1, C2, C3, C4
+    retention = {}
+    for arm in ('A1', 'B1'):
+        r = reps[f'primary__pooled__{arm}__endpoint']
+        ratio = r[:, :, j4] / r[:, :, j1]
+        retention[arm] = {'per_seed_interval_68': np.percentile(ratio, [16, 84], axis=0).T.tolist(),
+                          'per_seed_interval_95': np.percentile(ratio, [2.5, 97.5], axis=0).T.tolist(),
+                          'fraction_of_replicas_with_C4_not_positive': (r[:, :, j4] <= 0).mean(axis=0).tolist()}
+    out['retention_intervals'] = {'source': 'heldout_rn/replicas.npz, primary__pooled__<arm>__endpoint',
+                                  'arms': retention}
+
     # Selection and stop rules.
     out['selection'] = ana['selection']
     out['stop_rules'] = ana['stop_rules']
