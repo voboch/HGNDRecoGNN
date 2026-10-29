@@ -1,0 +1,9 @@
+{
+  "state": "complete",
+  "task": 5,
+  "fold": 1,
+  "seed": 456,
+  "complete_sha256": "bae87176847351cb3df7a4159128d11048cb3c93a8c58489074435abf9640a7b",
+  "evaluable": true,
+  "access_retries": []
+}

@@ -294,6 +294,24 @@
        "expected": "receipt receipts/train_4466738_5.json, bundle train_bundles/train_4466738_5, mirror mirror/task_5_4466738_5; the fold-1 train index names this receipt for task 5",
        "counts_as": "the one retry of task 5; a further failure goes to the user"
       }
+     },
+     "retry_result": {
+      "job": "4466738_5",
+      "state": "COMPLETED 00:13:00 on cn-012, exit 0",
+      "checks": "all pass",
+      "selection": {
+       "e_cls": 23,
+       "e_en": 25,
+       "e_comp": 25
+      },
+      "budget_limited": false,
+      "access_retries": {
+       "task": 0,
+       "publish": 0
+      },
+      "manifest_sha256": "1636a09c17e8abd83cd61715c3b677838468a87de7f669988410bb3b13bf6e7b",
+      "resume_evidence": "effective_config.resumed: next_epoch 30, interrupted_job 4466332, previous_identity equal; all 30 epoch checkpoints hash-equal to the cancelled run mirror; history 30 epochs; train_seconds 0.3",
+      "export_members": "47: as a normal run minus checkpoints/history.json, last.pt, live_status.json, optim.pt (written only by fit() during epochs; not in complete.json files, not read by evaluate)"
      }
     },
     "6": {
@@ -303,6 +321,21 @@
     "7": {
      "state": "CANCELLED by 0 at 2026-10-29T10:03:59 after 03:06:20 on cn-002 (hourly root cancellation)",
      "phase": "mirror state.json next_epoch=29 (resume_028.pt, 10:00:42): one epoch, validation scoring and export left; nothing published"
+    },
+    "8": {
+     "state": "COMPLETED 03:12:44 on cn-004, exit 0 (2:59:19 old at the 10:04 cancellation run, not touched)",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 23,
+      "e_en": 26,
+      "e_comp": 26
+     },
+     "budget_limited": false,
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "be7410d4b2a728ea3c833164860f5885be0b9f9341bc6c23db3c89de1eddc977"
     }
    },
    "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002; task 5 started 03:52 on cn-004",
@@ -316,7 +349,20 @@
     "evaluate_allowed": true,
     "source": "results/smash_train_20261028/train_4466016/check.json"
    },
-   "third_wave": "tasks 6-7 (fold 2) started 06:57 on cn-002; task 5 (fold 1) still running at 06:59"
+   "third_wave": "tasks 6-7 (fold 2) started 06:57 on cn-002; task 5 (fold 1) still running at 06:59",
+   "fold_1_stop_rules": {
+    "checked": "2026-10-29 ~10:20 MSK",
+    "tasks": [
+     3,
+     4,
+     5
+    ],
+    "e_cls_at_epoch_0_seeds": 0,
+    "stop_census_check": false,
+    "budget_limited_tasks": [],
+    "evaluate_allowed": true,
+    "source": "results/smash_train_20261028/train_4466016/check.json"
+   }
   },
   "retries_6_7": {
    "status": "prepared, NOT submitted: the auto-mode permission check blocked the submission at ~10:15; waits for the user",
@@ -367,7 +413,8 @@
    "submitted": "2026-10-29 ~04:15 MSK by the main session",
    "state_at_submission": "PENDING Dependency afterany:4466016_*; marker absent and index sha d0faa918… rechecked in the submitting shell",
    "expected": "receipt receipts/evaluate_4466339_single.json, bundle evaluate_bundles/evaluate_4466339_single, log logs/smash-train_4466339_4294967294.out",
-   "release_now": "scontrol update JobId=4466339 Dependency= (only on the user's decision)"
+   "release_now": "scontrol update JobId=4466339 Dependency= (only on the user's decision)",
+   "started": "2026-10-29T10:17:54 on cn-004 when task 8 ended"
   }
  },
  "cluster_maintenance": "reservation \"maintenance\" on all nodes cn-[001-041,043-051] 2026-10-30 09:00-21:00 (scontrol show reservation, seen 2026-10-29 07:10): every job must end before 09:00 tomorrow; a job whose limit crosses it will not start",
@@ -377,5 +424,23 @@
   "criterion_unknown": "jobs running for days (e.g. on cn-004 since 2026-10-19) survive, so elapsed time is not the whole rule; low utilisation is the likely other part (HPC.md mentions HPC TaskMaster); asked in the support draft",
   "consequence": "every remaining job of this campaign must end within 3 h: resume retries (<= 30 min) and evaluations (~1 h, limit 3:00) do; a 30-epoch training task (3:10-3:20) does not and needs a split or a start time that lands its end before the next xx:04 past 3 h",
   "recorded_in": "HPC.md section 2"
+ },
+ "evaluate_fold_1": {
+  "train_index": {
+   "path": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/train_index_fold1.json",
+   "sha256": "5e92950e97f50277824f8209f21706490a1034ad7b1af0f670e808a177515eda",
+   "copy": "results/smash_train_20261028/train_4466016/train_index_fold1.json",
+   "tasks": {
+    "3": "train_4466016_3",
+    "4": "train_4466016_4",
+    "5": "train_4466738_5 (resume retry)"
+   }
+  },
+  "pre_submission_checks_so_far": {
+   "marker_absent": true,
+   "receipts_equal_committed_copies": true,
+   "index_entries": "exactly 3, 4, 5"
+  },
+  "plan": "submit after fold-0 evaluation 4466339 publishes and verifies, so an evaluate-path fault cannot spend a second fold; same command as fold 0 with SMASH_FOLD=1, the fold-1 index, no dependency (one GPU next to nothing else of this campaign), --time=03:00:00; DCM hashes and marker rechecked in the submitting shell"
  }
 }

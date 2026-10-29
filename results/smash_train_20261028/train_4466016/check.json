@@ -199,6 +199,86 @@
    },
    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_4",
    "manifest_sha256": "52d7d315f45d5897ffbc4773df128368e16813fecc501d9ae10d86aa8af4e5fb"
+  },
+  "5": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 23,
+    "e_en": 25,
+    "e_comp": 25
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.397705,
+    "A1": 0.42016,
+    "Bcomp": 0.30289499999999997,
+    "B0": 0.30289499999999997,
+    "B1": 0.30289499999999997
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466738_5",
+   "manifest_sha256": "1636a09c17e8abd83cd61715c3b677838468a87de7f669988410bb3b13bf6e7b"
+  },
+  "8": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 23,
+    "e_en": 26,
+    "e_comp": 26
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.397705,
+    "A1": 0.41517,
+    "Bcomp": 0.3004,
+    "B0": 0.3004,
+    "B1": 0.3004
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_8",
+   "manifest_sha256": "be7410d4b2a728ea3c833164860f5885be0b9f9341bc6c23db3c89de1eddc977"
   }
  },
  "folds": {
@@ -214,6 +294,18 @@
    "budget_limited_tasks": [
     1
    ],
+   "evaluate_allowed": true
+  },
+  "1": {
+   "tasks": [
+    3,
+    4,
+    5
+   ],
+   "all_ok": true,
+   "e_cls_at_epoch_0_seeds": 0,
+   "stop_census_check": false,
+   "budget_limited_tasks": [],
    "evaluate_allowed": true
   }
  }
