@@ -6,8 +6,9 @@ number at a cut other than purity 0.70 has been computed. Requested by the user
 on 2026-10-29 as the next step on R_n closure. No new training or inference;
 the analysis re-reads published, verified predictions.
 
-**Status: not adopted. Preflight review 2026-10-29: NO-GO; design on hold for
-the user's decision.** The choice rule below rests on a false premise: file
+**Status: withdrawn 2026-10-29 by the user's decision; superseded by
+`reports/rn_background_correction_protocol_20261029.md`. Not run.**
+Preflight review 2026-10-29: NO-GO. The choice rule below rests on a false premise: file
 sampling does not cancel between purities, because raising the cut removes
 most of the low-band population (B1 on S loses about 74 % of its low-band
 clusters from 0.70 to 0.90). Measured on S only (bootstrap SDs, no contrast
