@@ -421,6 +421,19 @@
    "expected": "receipt receipts/evaluate_4466339_single.json, bundle evaluate_bundles/evaluate_4466339_single, log logs/smash-train_4466339_4294967294.out",
    "release_now": "scontrol update JobId=4466339 Dependency= (only on the user's decision)",
    "started": "2026-10-29T10:17:54 on cn-004 when task 8 ended"
+  },
+  "result": {
+   "state": "COMPLETED 00:47:37 on cn-004, exit 0; marker created 10:19:14 (after require_fold); progress probes at 1.5, 9 and 39 min recorded in the session",
+   "published": {
+    "bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/evaluate_bundles/evaluate_4466339_single",
+    "manifest_sha256": "138772da5c2f303a6e34d2fbbf76a1508d4cb5b25ee6c055b6244b4db0106829",
+    "archive_sha256": "dda74a3fc313fadf7c1373b1799270b21570e7fab6b974649b7414bf4e49701b",
+    "files": 2882,
+    "archive_bytes": 948674560
+   },
+   "acceptance": "scripts/smash_train_check_evaluation.py -> results/smash_train_20261028/evaluate_4466339/acceptance.json: accepted; 192/192 test files scored in every arm and seed, every CSV hash and column layout checked, cuts and selections equal the verified complete.json of tasks 0-2, test_threshold_tuning false, no access retries",
+   "local_copy": "results/smash_train_20261028/evaluate_4466339/extracted (not committed; receipt, manifest, summary.json, evaluation_summary.json committed)",
+   "timing": "loading and test-pack extraction ~13 min, scoring ~13.5 min per seed, CSV publish ~2 min; the 03:00 limit had a x3.8 margin"
   }
  },
  "cluster_maintenance": "reservation \"maintenance\" on all nodes cn-[001-041,043-051] 2026-10-30 09:00-21:00 (scontrol show reservation, seen 2026-10-29 07:10): every job must end before 09:00 tomorrow; a job whose limit crosses it will not start",
