@@ -460,6 +460,14 @@
    "receipts_equal_committed_copies": true,
    "index_entries": "exactly 3, 4, 5"
   },
-  "plan": "submit after fold-0 evaluation 4466339 publishes and verifies, so an evaluate-path fault cannot spend a second fold; same command as fold 0 with SMASH_FOLD=1, the fold-1 index, no dependency (one GPU next to nothing else of this campaign), --time=03:00:00; DCM hashes and marker rechecked in the submitting shell"
+  "plan": "submit after fold-0 evaluation 4466339 publishes and verifies, so an evaluate-path fault cannot spend a second fold; same command as fold 0 with SMASH_FOLD=1, the fold-1 index, no dependency (one GPU next to nothing else of this campaign), --time=03:00:00; DCM hashes and marker rechecked in the submitting shell",
+  "job": {
+   "id": "4467086",
+   "submitted": "2026-10-29 ~11:13 MSK by the main session after fold 0 was accepted",
+   "checks_in_submitting_shell": "marker absent, index sha 5e92950e…, DCM model.pt hashes of seeds 42/123/456 equal the validated ones",
+   "command": "as evaluate_fold_0.command with SMASH_FOLD=1, SMASH_TRAIN_INDEX=<SUB2>/train_index_fold1.json and no --dependency",
+   "concurrency": "with the task 6 and 7 retries: three GPUs",
+   "expected": "receipt receipts/evaluate_4467086_single.json, bundle evaluate_bundles/evaluate_4467086_single; ~50 min"
+  }
  }
 }
