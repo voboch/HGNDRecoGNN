@@ -272,3 +272,5 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/evaluate_*/*.json
 !/results/smash_train_20261028/analysis/
 !/results/smash_train_20261028/heldout_rn/
+!/results/rn_background_correction_20261029/
+/results/rn_background_correction_20261029/inputs/dcm_validation/*/predictions.csv
