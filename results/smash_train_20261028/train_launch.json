@@ -365,13 +365,19 @@
    }
   },
   "retries_6_7": {
-   "status": "prepared, NOT submitted: the auto-mode permission check blocked the submission at ~10:15; waits for the user",
+   "status": "submitted ~10:35 MSK by the main session after the user approved (\"Submit both\")",
    "what": "resume from each mirror after epoch 28 (the resume path the GPU smoke tested): one epoch (~6 min), validation scoring and export (~8 min), loading ~6 min; ~20-25 min each, limit 01:30:00, not on cn-002",
    "concurrency": "task 6 without dependency (with task 8 and the task-5 retry: 3 GPUs); task 7 after the task-5 retry 4466738_5 ends; fold-0 evaluation 4466339 starts when task 8 ends",
    "commands": [
     "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_6_4466016_6/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=6 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-002 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_6_4466016_6 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
     "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_7_4466016_7/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=7 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-002 --dependency=afterany:4466738_5 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_7_4466016_7 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch"
-   ]
+   ],
+   "jobs": {
+    "6": "4467054_6 on cn-001",
+    "7": "4467055_7 on cn-009 (dependency afterany:4466738_5 already met)"
+   },
+   "expected": "receipts train_4467054_6.json and train_4467055_7.json; the fold-2 train index names them for tasks 6 and 7, and train_4466016_8.json for task 8",
+   "counts_as": "the one retry of each task; a further failure goes to the user"
   },
   "retry_5_progress": "4466738_5 started 10:04:22 on cn-012; log: \"Training seed 456 from epoch 30\" (restore from mirror worked)"
  },
