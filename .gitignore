@@ -270,3 +270,5 @@ tests/cpp/sourceid_probe.cc
 !/results/smash_train_20261028/evaluate_*/
 /results/smash_train_20261028/evaluate_*/*
 !/results/smash_train_20261028/evaluate_*/*.json
+!/results/smash_train_20261028/analysis/
+!/results/smash_train_20261028/heldout_rn/

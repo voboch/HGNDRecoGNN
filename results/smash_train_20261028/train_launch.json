@@ -568,5 +568,11 @@
    "acceptance": "results/smash_train_20261028/evaluate_4467091/acceptance.json: accepted; 187/187 test files scored in every arm and seed, cuts and selections equal the verified complete.json of the task 6 and 7 retries and task 8, no access retries",
    "local_copy": "results/smash_train_20261028/evaluate_4467091/extracted (not committed)"
   }
+ },
+ "analysis": {
+  "classification_energy": "results/smash_train_20261028/analysis (scripts/smash_train_analysis.py, 2:21 local)",
+  "rn_ladder": "results/smash_train_20261028/heldout_rn (scripts/reco_rn_heldout.py, 6:16 local)",
+  "table": "results/smash_train_20261028/results_table.json (scripts/smash_train_results_table.py)",
+  "report": "reports/smash_train_results_20261029.md"
  }
 }
