@@ -316,11 +316,46 @@
     },
     "6": {
      "state": "CANCELLED by 0 at 2026-10-29T10:03:59 after 03:06:20 on cn-002 (hourly root cancellation)",
-     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 09:58:47): one epoch, validation scoring and export left; nothing published"
+     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 09:58:47): one epoch, validation scoring and export left; nothing published",
+     "retry_result": {
+      "job": "4467054_6",
+      "state": "COMPLETED 00:18:53 on cn-001, exit 0",
+      "checks": "all pass",
+      "selection": {
+       "e_cls": 29,
+       "e_en": 22,
+       "e_comp": 29
+      },
+      "budget_limited": true,
+      "access_retries": {
+       "task": 0,
+       "publish": 0
+      },
+      "manifest_sha256": "87635a4be860e19758a056c606d2283c196279e6ec5990cf175e5e8c17233b27",
+      "resume_evidence": "effective_config.resumed next_epoch 29; epoch checkpoints 0-28 hash-equal to the cancelled run mirror; epoch 29 trained in the retry; history 30 epochs; 51 export members",
+      "budget_limited_size": "formal: e_cls and e_comp minima at epoch 29 improve on epochs 0-24 by 1.1e-4 and 1.7e-4 relative (on epochs 0-28 by 5.9e-5 and 6.4e-5) with lr 1e-6 from epoch 25; recorded, no extension per protocol"
+     }
     },
     "7": {
      "state": "CANCELLED by 0 at 2026-10-29T10:03:59 after 03:06:20 on cn-002 (hourly root cancellation)",
-     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 10:00:42): one epoch, validation scoring and export left; nothing published"
+     "phase": "mirror state.json next_epoch=29 (resume_028.pt, 10:00:42): one epoch, validation scoring and export left; nothing published",
+     "retry_result": {
+      "job": "4467055_7",
+      "state": "COMPLETED 00:19:14 on cn-009, exit 0",
+      "checks": "all pass",
+      "selection": {
+       "e_cls": 21,
+       "e_en": 28,
+       "e_comp": 28
+      },
+      "budget_limited": false,
+      "access_retries": {
+       "task": 0,
+       "publish": 0
+      },
+      "manifest_sha256": "3a2d43615954a2c9d29062d4a0d0b1562a7d0e7b23cc3628b23ed0b0c3864ab0",
+      "resume_evidence": "effective_config.resumed next_epoch 29; epoch checkpoints 0-28 hash-equal to the cancelled run mirror; epoch 29 trained in the retry; history 30 epochs; 51 export members"
+     }
     },
     "8": {
      "state": "COMPLETED 03:12:44 on cn-004, exit 0 (2:59:19 old at the 10:04 cancellation run, not touched)",
@@ -360,6 +395,21 @@
     "e_cls_at_epoch_0_seeds": 0,
     "stop_census_check": false,
     "budget_limited_tasks": [],
+    "evaluate_allowed": true,
+    "source": "results/smash_train_20261028/train_4466016/check.json"
+   },
+   "fold_2_stop_rules": {
+    "checked": "2026-10-29 ~11:20 MSK",
+    "tasks": [
+     6,
+     7,
+     8
+    ],
+    "e_cls_at_epoch_0_seeds": 0,
+    "stop_census_check": false,
+    "budget_limited_tasks": [
+     6
+    ],
     "evaluate_allowed": true,
     "source": "results/smash_train_20261028/train_4466016/check.json"
    }
@@ -469,5 +519,23 @@
    "concurrency": "with the task 6 and 7 retries: three GPUs",
    "expected": "receipt receipts/evaluate_4467086_single.json, bundle evaluate_bundles/evaluate_4467086_single; ~50 min"
   }
+ },
+ "evaluate_fold_2": {
+  "train_index": {
+   "path": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/train_index_fold2.json",
+   "sha256": "6f36e7bd40f4e2aa2a13344412cfc2525d852a49a1bc39bbd16b8b4d3225285f",
+   "copy": "results/smash_train_20261028/train_4466016/train_index_fold2.json",
+   "tasks": {
+    "6": "train_4467054_6 (resume retry)",
+    "7": "train_4467055_7 (resume retry)",
+    "8": "train_4466016_8"
+   }
+  },
+  "pre_submission_checks": {
+   "marker_absent": true,
+   "receipts_equal_committed_copies": true,
+   "index_entries": "exactly 6, 7, 8"
+  },
+  "plan": "submit now beside the fold-1 evaluation (two GPUs): fold 0 showed the evaluate path works on the cluster; same command as fold 0 with SMASH_FOLD=2 and the fold-2 index"
  }
 }

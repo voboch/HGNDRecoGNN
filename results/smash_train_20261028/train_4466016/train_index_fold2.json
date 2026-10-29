@@ -1,0 +1,19 @@
+{
+ "tasks": [
+  {
+   "task": 6,
+   "receipt": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts/train_4467054_6.json",
+   "receipt_sha256": "d580817f88d441088df90b214cf8bea0630ada07504d3a9b00eb0d69787e40af"
+  },
+  {
+   "task": 7,
+   "receipt": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts/train_4467055_7.json",
+   "receipt_sha256": "66d4e16665125dcbb4de87e772f8954bed65f59cdf34b04bf1b3daa6c8fbbdea"
+  },
+  {
+   "task": 8,
+   "receipt": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts/train_4466016_8.json",
+   "receipt_sha256": "2c885ac8333e7bdff8ea8d4ac0747cd06cce5377af1c9aed49797fd6f28d83e1"
+  }
+ ]
+}

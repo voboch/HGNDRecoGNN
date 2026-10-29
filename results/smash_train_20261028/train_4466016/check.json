@@ -240,6 +240,86 @@
    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466738_5",
    "manifest_sha256": "1636a09c17e8abd83cd61715c3b677838468a87de7f669988410bb3b13bf6e7b"
   },
+  "6": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 29,
+    "e_en": 22,
+    "e_comp": 29
+   },
+   "budget_limited": {
+    "e_cls": true,
+    "e_en": false,
+    "e_comp": true
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.46507,
+    "A1": 0.47006,
+    "Bcomp": 0.3004,
+    "B0": 0.3004,
+    "B1": 0.3004
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4467054_6",
+   "manifest_sha256": "87635a4be860e19758a056c606d2283c196279e6ec5990cf175e5e8c17233b27"
+  },
+  "7": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 21,
+    "e_en": 28,
+    "e_comp": 28
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.35778499999999996,
+    "A1": 0.35279499999999997,
+    "Bcomp": 0.29541,
+    "B0": 0.29541,
+    "B1": 0.29541
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4467055_7",
+   "manifest_sha256": "3a2d43615954a2c9d29062d4a0d0b1562a7d0e7b23cc3628b23ed0b0c3864ab0"
+  },
   "8": {
    "checks": {
     "receipt_complete": true,
@@ -306,6 +386,20 @@
    "e_cls_at_epoch_0_seeds": 0,
    "stop_census_check": false,
    "budget_limited_tasks": [],
+   "evaluate_allowed": true
+  },
+  "2": {
+   "tasks": [
+    6,
+    7,
+    8
+   ],
+   "all_ok": true,
+   "e_cls_at_epoch_0_seeds": 0,
+   "stop_census_check": false,
+   "budget_limited_tasks": [
+    6
+   ],
    "evaluate_allowed": true
   }
  }
