@@ -536,6 +536,13 @@
    "receipts_equal_committed_copies": true,
    "index_entries": "exactly 6, 7, 8"
   },
-  "plan": "submit now beside the fold-1 evaluation (two GPUs): fold 0 showed the evaluate path works on the cluster; same command as fold 0 with SMASH_FOLD=2 and the fold-2 index"
+  "plan": "submit now beside the fold-1 evaluation (two GPUs): fold 0 showed the evaluate path works on the cluster; same command as fold 0 with SMASH_FOLD=2 and the fold-2 index",
+  "job": {
+   "id": "4467091",
+   "submitted": "2026-10-29 ~11:22 MSK by the main session",
+   "checks_in_submitting_shell": "marker absent, index sha 6f36e7bd…, DCM model.pt hashes of seeds 42/123/456 equal the validated ones",
+   "command": "as evaluate_fold_0.command with SMASH_FOLD=2, SMASH_TRAIN_INDEX=<SUB2>/train_index_fold2.json and no --dependency",
+   "expected": "receipt receipts/evaluate_4467091_single.json, bundle evaluate_bundles/evaluate_4467091_single; ~50 min"
+  }
  }
 }
