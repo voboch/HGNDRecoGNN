@@ -1,0 +1,147 @@
+{
+  "status": "verified",
+  "date": "2026-10-29",
+  "material_cutoff": "2026-10-29T14:09:01+03:00",
+  "source_head": "020e766",
+  "source_files_checked": 31,
+  "arithmetic_checks": 110,
+  "pdf_sha256": "aafd598951128050690aadc462c3fb0319ce3e91e6e43bf360ed6cf85d763ffa",
+  "markdown_sha256": "315137a8189992118ba0d0825d2121e5834fa5097b2530a484ed64c086e32139",
+  "data_sha256": "5bca730b0f1ec8ff31b56b9b6d0a8bec8fae172368ab096e753619cc7a374b1a",
+  "status_snapshot_sha256": "c36968587da952777f642e52873c7a4bcf887327506ca3a9a5b41db35257b81c",
+  "script_sha256": {
+    "build.py": "c76f852cd958983cfe611651f48d4ed2ecb10c9ff0ec8fe1e47d4ef6d2682081",
+    "plot.py": "ff53ccb8688cd1f280c133af572ac57310f3bd3ede6f878006f05afd16427081",
+    "validate.py": "2968f4e569a1bed1a71da8d330f81620dcb67c0f7e62757433834cfa1b54141a"
+  },
+  "figure_count": 9,
+  "figure_sha256": {
+    "01_dcm_census.pdf": "e3f924ef41c73cb745e7d6258183dbad3fc0d1d15bf0b0325f41287c797dcd50",
+    "01_dcm_census.png": "a5ebaff655eb1a6ffdbff4d6d624f39cf432de9138d9345e9206f2783922dc48",
+    "02_crossfit.pdf": "e1ad2744160f1a79ef148bfecf00b4f23e3c6b0896bef7c5cb2e5457faf76dcb",
+    "02_crossfit.png": "4e0767f8ecf7dc562b87cdc1bfb2ed35453a1d2b843482a13affa4989750acc4",
+    "03_truth_spectra.pdf": "39ead74a428d9c7dff859e85d74730a6ed941ef22ecb4d19c8b4d29861483983",
+    "03_truth_spectra.png": "4a31e2ff993dcf678a3b8be4b04d3c2b803d1ab808e6f4d16213b2215a6373a9",
+    "04_truth_contrasts.pdf": "3ca6fce818f6e7d781e98fb8a2bed327c96c70d57918a3e3be423be96c4fe230",
+    "04_truth_contrasts.png": "193361dc5293284b63c56ec21b6823b058f328462ee62968acd59b9aa34bb3b5",
+    "05_retrospective.pdf": "7faebf9a28c05b426e3c1e5d62527f0403cffdaaeb636787b08f8de2b3471eea",
+    "05_retrospective.png": "73e06b239d347a01323847851d09d071761dbc851375200df1a40ff90f15cbc3",
+    "06_training_metrics.pdf": "3d075341dfe701348f1d29a82746edc656757daef6b1f3a616e322cc584cd499",
+    "06_training_metrics.png": "19d58ff07f5a33de1b4e9c796c99375578be589171b3f7e927cd066499c8df01",
+    "07_closure.pdf": "4666ff58fe2dc6b73f3a5a4f20f442f4433162cbd0e0ebddedeb4898438b8881",
+    "07_closure.png": "aea87f233ca2a15d6dc7b324ff46eb54506fe66516e6af5ba1816e0f2167089d",
+    "08_bias_folds.pdf": "7081902c5df583607ebb00844374688fdd2374296745e80b582ea67509779e5a",
+    "08_bias_folds.png": "99d658deb45f4d8ca08482d6be9f5a04e58512926a020edc2470190d4fc1d3f7",
+    "09_purity_preflight.pdf": "550b0221c27ae85738afafa93eafa488a7d62f5068ed1a669c054c0cde71ca11",
+    "09_purity_preflight.png": "7451b49575e82bc4c56bc0079d75163131cbcfa5bb28140966a31b64aa3ee483"
+  },
+  "pdf_pages": 13,
+  "word_bounds": [
+    {
+      "page": 1,
+      "words": 357,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 2,
+      "words": 350,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 3,
+      "words": 311,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 4,
+      "words": 333,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 5,
+      "words": 336,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 6,
+      "words": 325,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 7,
+      "words": 276,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 8,
+      "words": 348,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 9,
+      "words": 320,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 10,
+      "words": 281,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 11,
+      "words": 328,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 12,
+      "words": 340,
+      "out_of_bounds": 0
+    },
+    {
+      "page": 13,
+      "words": 330,
+      "out_of_bounds": 0
+    }
+  ],
+  "all_fonts_embedded": true,
+  "type3_fonts": 0,
+  "raster_images_in_pdf": 0,
+  "visual_inspection": {
+    "status": "passed",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "dpi": 130,
+    "findings": "All final pages accounted for and readable. No clipping, overlapping text, broken glyphs, missing plots or stranded pages. Changed final pages 1/2/4/11/13 inspected directly; remaining content areas pixel-identical to inspected first render.",
+    "renders_sha256": {
+      "page-01.png": "a3e51b882f4d9977320a2232afb90b1caaf9bf484108088566f1327fb85f0853",
+      "page-02.png": "60aa596798cf0e32f08bc684c35609f29d5304783fd672820efe021c71a3da01",
+      "page-03.png": "d2a500147c211438d8dace568e87dbc4f7492d5c0dcab1f9ef336ac9209eb01e",
+      "page-04.png": "040a9f2def428973da2894adbd39f878c60436d61e2b5b247faeda748e72edda",
+      "page-05.png": "ce68f9473ab01c25c64f43918d8110fb87078da3fc80d07d7d65cb3a2d6b8243",
+      "page-06.png": "804a24051ee1afc6799b0911ab234d9d1a752282127aa6600ec9355a79e34467",
+      "page-07.png": "ef2dfbf07b610ad46502306352af5fe2c979f8e984a02fd98670800f816ba2ba",
+      "page-08.png": "9c894891332c5e021074652d023661d0e7ab077fd4b501a27e165786a2915e30",
+      "page-09.png": "3aa8237dbaad796c6b0f96e61d919660eb81add90587786dc1a32e3e510b0588",
+      "page-10.png": "dd1b622dedd34fea6bab168d2401cff2eb33fc7d76d42afdc536982030ac70c4",
+      "page-11.png": "cd640ae0f91d545add04a59e229ec882a8998b59c0d743d4eb87de9cf025b6e7",
+      "page-12.png": "e61356d85df7698bedd22a2dd05734184806a819a551c6633339b7698a4b789c",
+      "page-13.png": "7d71ee33571990f14cc9ec6071b2474a601729a84a271983bb009766e587ca70"
+    }
+  },
+  "scope": "Document generation and arithmetic only; no raw-data reduction, inference, training or new physics experiment",
+  "complete_pdf_markdown_rebuild_byte_identical": true,
+  "progress_guide_sha256": "d42e13280ba87d53ee6071acf81286900666d8aa5b63de79d02f2940af8506a5"
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "page": 2,
+    "x": 44.0,
+    "y": 287.1897637795277,
+    "width": 492.48,
+    "height": 241.2,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/01_dcm_census.pdf"
+  },
+  {
+    "page": 3,
+    "x": 44.0,
+    "y": 337.9897637795277,
+    "width": 492.48,
+    "height": 194.4,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/02_crossfit.pdf"
+  },
+  {
+    "page": 4,
+    "x": 44.0,
+    "y": 359.6897637795277,
+    "width": 492.48,
+    "height": 331.2,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/03_truth_spectra.pdf"
+  },
+  {
+    "page": 5,
+    "x": 44.0,
+    "y": 444.6897637795277,
+    "width": 492.48,
+    "height": 313.2,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/04_truth_contrasts.pdf"
+  },
+  {
+    "page": 6,
+    "x": 44.0,
+    "y": 404.2897637795277,
+    "width": 492.48,
+    "height": 273.6,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/05_retrospective.pdf"
+  },
+  {
+    "page": 7,
+    "x": 44.0,
+    "y": 474.6897637795277,
+    "width": 492.48,
+    "height": 223.2,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/06_training_metrics.pdf"
+  },
+  {
+    "page": 8,
+    "x": 44.0,
+    "y": 363.4897637795277,
+    "width": 492.48,
+    "height": 374.4,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/07_closure.pdf"
+  },
+  {
+    "page": 9,
+    "x": 44.0,
+    "y": 505.8897637795277,
+    "width": 492.48,
+    "height": 252.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/08_bias_folds.pdf"
+  },
+  {
+    "page": 10,
+    "x": 44.0,
+    "y": 480.6897637795277,
+    "width": 492.48,
+    "height": 223.2,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/progress_20261021_20261029/figures/09_purity_preflight.pdf"
+  }
+]

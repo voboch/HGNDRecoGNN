@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-29T13:47:57+03:00",
+  "host": "charisma (login-02)",
+  "operation": "Read-only squeue and sacct; no submission, cancellation or computation",
+  "query_job_ids": ["4466016", "4466738", "4467054", "4467055", "4466339", "4467086", "4467091"],
+  "active_hgnd_campaign_jobs": [],
+  "other_account_jobs_in_queue": 1,
+  "other_jobs_assessed": false,
+  "sacct_columns": ["JobIDRaw", "JobName", "State", "ExitCode", "Elapsed", "End", "NodeList"],
+  "sacct_rows": [
+    ["4466028", "smash-train", "COMPLETED", "0:0", "03:12:28", "2026-10-29T03:41:58", "cn-002"],
+    ["4466040", "smash-train", "COMPLETED", "0:0", "03:09:27", "2026-10-29T03:41:58", "cn-002"],
+    ["4466041", "smash-train", "COMPLETED", "0:0", "03:18:53", "2026-10-29T03:51:55", "cn-004"],
+    ["4466320", "smash-train", "COMPLETED", "0:0", "03:14:55", "2026-10-29T06:57:23", "cn-002"],
+    ["4466321", "smash-train", "COMPLETED", "0:0", "03:14:55", "2026-10-29T06:57:23", "cn-002"],
+    ["4466332", "smash-train", "CANCELLED by 0", "0:0", "03:12:11", "2026-10-29T07:04:13", "cn-004"],
+    ["4466458", "smash-train", "CANCELLED by 0", "0:0", "03:06:20", "2026-10-29T10:03:59", "cn-002"],
+    ["4466459", "smash-train", "CANCELLED by 0", "0:0", "03:06:20", "2026-10-29T10:03:59", "cn-002"],
+    ["4466016", "smash-train", "COMPLETED", "0:0", "03:12:44", "2026-10-29T10:17:25", "cn-004"],
+    ["4466339", "smash-train", "COMPLETED", "0:0", "00:47:37", "2026-10-29T11:05:31", "cn-004"],
+    ["4466738", "smash-train", "COMPLETED", "0:0", "00:13:00", "2026-10-29T10:17:22", "cn-012"],
+    ["4467054", "smash-train", "COMPLETED", "0:0", "00:18:53", "2026-10-29T11:11:23", "cn-001"],
+    ["4467055", "smash-train", "COMPLETED", "0:0", "00:19:14", "2026-10-29T11:11:44", "cn-009"],
+    ["4467086", "smash-train", "COMPLETED", "0:0", "00:47:55", "2026-10-29T11:58:58", "cn-012"],
+    ["4467091", "smash-train", "COMPLETED", "0:0", "00:45:26", "2026-10-29T12:01:00", "cn-004"]
+  ],
+  "interpretation": "Nine accepted complete training outcomes include three verified resume retries. The three original cancelled task executions remain cancelled. All three fold evaluations completed successfully."
+}
