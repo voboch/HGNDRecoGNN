@@ -211,6 +211,33 @@ retry is written to the job summary and the publication receipt. The
 per-epoch checkpoint mirror already tolerated failures and is unchanged.
 Because executed code changed, the GPU smoke is repeated before prepare.
 
+### Amendment 2026-10-29: hourly root cancellation and resume retries
+
+Three training tasks were cancelled by uid 0 (`CANCELLED by 0`, SIGTERM, no
+node drained): task 5 at 07:04 after 3:12, tasks 6 and 7 at 10:04 after 3:06.
+sacct over all users shows root cancellations every hour at xx:03–xx:04, each
+of a job older than 3 h, including other users' V100, H100 and CPU jobs; task 8
+was 2:59:19 old at 10:04 and was not touched. Tasks 0–4 (3:09–3:19) each ended
+before the first xx:04 past 3 h. Jobs running for days survive, so age is not
+the whole criterion; the rest is unknown and has been asked of support. The
+cluster memory guard is not the cause: it drains or requeue-holds and never
+cancels.
+
+A root cancellation is neither of the pre-approved retry cases, so each retry
+was authorised by the user. Each task's one retry resumed from its scratch
+mirror: task 5 after epoch 29 (validation and export only, 13 min), tasks 6
+and 7 after epoch 28 (one epoch, 19 min). In every retry the restored epoch
+checkpoints are hash-equal to those of the cancelled run, and the export
+passed the same checks as an uninterrupted one. A resumed export lacks the
+fit-time files `last.pt`, `optim.pt`, `live_status.json` and
+`checkpoints/history.json`, which no result reads. Epoch 29 of tasks 6 and 7
+was trained after the resume; GPU scatter order is nondeterministic, so it is
+not bit-identical to what the cancelled job would have produced (the GPU smoke
+measured this difference and did not gate on it).
+
+All remaining jobs of this campaign end within 3 h (evaluations took 48 min).
+Later campaigns must plan for the rule (HPC.md, section 2).
+
 ## What this does not establish
 
 A blind holdout (the files were scored by the transfer, and the [0.3, 1) GeV
