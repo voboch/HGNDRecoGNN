@@ -204,6 +204,72 @@
       "publish": 0
      },
      "manifest_sha256": "7baeba1a51d3f43d5bca3f85066bd720126a21a10d585c6f15bed62cdbea1164"
+    },
+    "3": {
+     "state": "COMPLETED 03:14:55 on cn-002, exit 0",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 26,
+      "e_en": 23,
+      "e_comp": 27
+     },
+     "budget_limited": false,
+     "lr_steps": [
+      [
+       0,
+       "1e-03"
+      ],
+      [
+       10,
+       "1e-04"
+      ],
+      [
+       15,
+       "1e-05"
+      ],
+      [
+       25,
+       "1e-06"
+      ]
+     ],
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "d8039218915e34582b3ad49e4b4841f11182a1dd0b4fe233eee6fc592bc7f97e"
+    },
+    "4": {
+     "state": "COMPLETED 03:14:55 on cn-002, exit 0",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 28,
+      "e_en": 22,
+      "e_comp": 28
+     },
+     "budget_limited": false,
+     "lr_steps": [
+      [
+       0,
+       "1e-03"
+      ],
+      [
+       10,
+       "1e-04"
+      ],
+      [
+       15,
+       "1e-05"
+      ],
+      [
+       25,
+       "1e-06"
+      ]
+     ],
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "52d7d315f45d5897ffbc4773df128368e16813fecc501d9ae10d86aa8af4e5fb"
     }
    },
    "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002; task 5 started 03:52 on cn-004",
@@ -216,7 +282,8 @@
     ],
     "evaluate_allowed": true,
     "source": "results/smash_train_20261028/train_4466016/check.json"
-   }
+   },
+   "third_wave": "tasks 6-7 (fold 2) started 06:57 on cn-002; task 5 (fold 1) still running at 06:59"
   }
  },
  "evaluate_failure_policy": "No automatic rerun; the marker evaluation_fold_<k>.opened stays. Record sacct (State, ExitCode, Elapsed, NodeList), logs/smash-train_<J>_4294967294.out with its traceback, the marker content, whether evaluate_bundles/evaluate_<J>_single and receipts/evaluate_<J>_single.json exist (a partial bundle is never extracted), and the phase reached (traceback frame or progress probes). Phases: (a) marker created, test not read (prepare-bundle hash, EACCES after the last wait); (b) test packs read, not scored (load_packs, /tmp space, hash mismatch); (c) scored, not published (load_dcm, CUDA, TIMEOUT, CSV or metric loop, sha256sum -c, publish). In (a)-(c) no test number leaves the node: evaluate prints nothing and $WORK/output stays in node /tmp. Report to the user, who alone may authorise renaming the marker to evaluation_fold_<k>.opened.void_<J> and one identical rerun on another node. If the log shows publish \"copied\" lines, first try to recover $WORK/output from that node. A published evaluation is never rerun. A code or hash failure needs a new package, smoke and preflight.",

@@ -119,6 +119,86 @@
    },
    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_2",
    "manifest_sha256": "7baeba1a51d3f43d5bca3f85066bd720126a21a10d585c6f15bed62cdbea1164"
+  },
+  "3": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 26,
+    "e_en": 23,
+    "e_comp": 27
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.46507,
+    "A1": 0.47754499999999994,
+    "Bcomp": 0.30289499999999997,
+    "B0": 0.30289499999999997,
+    "B1": 0.30289499999999997
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_3",
+   "manifest_sha256": "d8039218915e34582b3ad49e4b4841f11182a1dd0b4fe233eee6fc592bc7f97e"
+  },
+  "4": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 28,
+    "e_en": 22,
+    "e_comp": 28
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.35778499999999996,
+    "A1": 0.35778499999999996,
+    "Bcomp": 0.30289499999999997,
+    "B0": 0.30289499999999997,
+    "B1": 0.30289499999999997
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_4",
+   "manifest_sha256": "52d7d315f45d5897ffbc4773df128368e16813fecc501d9ae10d86aa8af4e5fb"
   }
  },
  "folds": {
