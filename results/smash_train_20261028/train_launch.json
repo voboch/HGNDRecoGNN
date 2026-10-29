@@ -65,7 +65,8 @@
   "hash or guard failure": "stops the stage: scancel the pending array tasks and report"
  },
  "known_gaps": [
-  "Resume path only: smash_train.py sha(mirror/state.json) and the read of effective_config.json from the resume mirror are not wrapped in the EACCES retry; changing them would change the code digest and require a new smoke. An EACCES there goes to the user."
+  "Resume path only: smash_train.py sha(mirror/state.json) and the read of effective_config.json from the resume mirror are not wrapped in the EACCES retry; changing them would change the code digest and require a new smoke. An EACCES there goes to the user.",
+  "Evaluate phase: the GPU smoke 4465935 did not run it. score_files, combine, pooled, apply_calibration, arm_metrics, load_dcm and load_epoch already ran on the cluster inside validate_arms on real validation data; not covered on the cluster are require_fold on real bundles, the O_EXCL marker create on Lustre, writing ~2880 per-file CSVs (~1.1 GB) and publishing them. The CPU test tests/test_smash_train_pipeline.py::test_training_barrier_evaluation_and_analysis covers them with one test file and a stubbed load_dcm."
  ],
  "submission_hygiene": "Submit with env -u SMASH_RESUME_MIRROR -u SMASH_DCM_PREPARED -u SMASH_NATIVE so login-shell variables cannot leak through --export=ALL.",
  "first_wave_watch": "Tasks 0-2 must print 'Training seed ... from epoch 0: ~1.18M train / ~0.40M validation graphs' within ~15 min; an earlier failure -> scancel the array and report (cost <= 0.3 GPU-h). The smoke used from_directory; from_bundle/fetch is covered only by the CPU test.",
@@ -170,9 +171,86 @@
       "publish": 0
      },
      "manifest_sha256": "0fd12ad128852ac5f803701ab593c4cdfa3daba8aa2e4ecca07c30985faa7e1a"
+    },
+    "2": {
+     "state": "COMPLETED 03:18:53 on cn-004, exit 0",
+     "checks": "all pass",
+     "selection": {
+      "e_cls": 24,
+      "e_en": 21,
+      "e_comp": 24
+     },
+     "budget_limited": false,
+     "lr_steps": [
+      [
+       0,
+       "1e-03"
+      ],
+      [
+       10,
+       "1e-04"
+      ],
+      [
+       15,
+       "1e-05"
+      ],
+      [
+       25,
+       "1e-06"
+      ]
+     ],
+     "access_retries": {
+      "task": 0,
+      "publish": 0
+     },
+     "manifest_sha256": "7baeba1a51d3f43d5bca3f85066bd720126a21a10d585c6f15bed62cdbea1164"
     }
    },
-   "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002 when 0-1 ended; task 2 still running at 03:45"
+   "second_wave": "tasks 3-4 (fold 1) started 03:42 on cn-002; task 5 started 03:52 on cn-004",
+   "fold_0_stop_rules": {
+    "checked": "2026-10-29 03:55 MSK, before any evaluation submission",
+    "e_cls_at_epoch_0_seeds": 0,
+    "stop_census_check": false,
+    "budget_limited_tasks": [
+     1
+    ],
+    "evaluate_allowed": true,
+    "source": "results/smash_train_20261028/train_4466016/check.json"
+   }
   }
+ },
+ "evaluate_failure_policy": "No automatic rerun; the marker evaluation_fold_<k>.opened stays. Record sacct (State, ExitCode, Elapsed, NodeList), logs/smash-train_<J>_4294967294.out with its traceback, the marker content, whether evaluate_bundles/evaluate_<J>_single and receipts/evaluate_<J>_single.json exist (a partial bundle is never extracted), and the phase reached (traceback frame or progress probes). Phases: (a) marker created, test not read (prepare-bundle hash, EACCES after the last wait); (b) test packs read, not scored (load_packs, /tmp space, hash mismatch); (c) scored, not published (load_dcm, CUDA, TIMEOUT, CSV or metric loop, sha256sum -c, publish). In (a)-(c) no test number leaves the node: evaluate prints nothing and $WORK/output stays in node /tmp. Report to the user, who alone may authorise renaming the marker to evaluation_fold_<k>.opened.void_<J> and one identical rerun on another node. If the log shows publish \"copied\" lines, first try to recover $WORK/output from that node. A published evaluation is never rerun. A code or hash failure needs a new package, smoke and preflight.",
+ "evaluate_fold_0": {
+  "preflight": "preflight-reviewer 2026-10-29: GO-with-fixes. P1 fourth concurrent GPU job -> user decision; P2 evaluate_failure_policy recorded; P3 checks below; P4 known gap recorded; P5 progress probes; P6 fold order: protocol allows evaluation per fold after its three tasks; residual risk that folds 1-2 trip the e_cls = 0 rule after fold 0 test is spent (fold 0 e_cls 28/29/24)",
+  "stop_rules": "train_job.verified.fold_0_stop_rules: evaluate_allowed, budget-limited task 1 (flag only)",
+  "train_index": {
+   "path": "/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/train_index_fold0.json",
+   "sha256": "d0faa918cb1ae36129da5c62ad337f706ce229c1d188a798bf696a375a0a17c6",
+   "copy": "results/smash_train_20261028/train_4466016/train_index_fold0.json",
+   "tasks": [
+    0,
+    1,
+    2
+   ]
+  },
+  "pre_submission_checks": {
+   "checked": "2026-10-29 ~04:10 MSK on login-02",
+   "marker_absent": true,
+   "receipts_equal_committed_copies": {
+    "0": "22f3096e…",
+    "1": "fb9512c5…",
+    "2": "52559b02…"
+   },
+   "index_entries": "exactly tasks 0, 1, 2 (require_fold keys found[] by seed, a duplicate would overwrite silently)",
+   "dcm_checkpoints_equal_validated": {
+    "42": "58fd0367…",
+    "123": "78dc29eb…",
+    "456": "8ef19d67…"
+   }
+  },
+  "time_limit": "03:00:00 against an estimate of ~1 h (load ~6 min; 12 scoring passes over 793,090 test graphs, bounded by the <= 7 min four validation passes took in training -> <= 42 min; CSV write and publish ~10 min). The x3 margin is there because a TIMEOUT after the marker spends the fold's only test opening.",
+  "concurrency": "the user set at most three concurrent GPU tasks; tasks 3-5 hold three GPUs, so the evaluation is submitted with --dependency=afterany:4466016 and released earlier only on the user's decision",
+  "progress_probes": "about 10 and 40 min after start: srun --jobid=<J> --overlap listing the extracted test packs, the CSV count under output and df -h /tmp",
+  "command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && env -u SMASH_RESUME_MIRROR -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --time=03:00:00 --dependency=afterany:4466016 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=evaluate,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_FOLD=0,SMASH_TRAIN_INDEX=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/train_index_fold0.json /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch"
  }
 }

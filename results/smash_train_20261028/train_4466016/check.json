@@ -79,7 +79,62 @@
    },
    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_1",
    "manifest_sha256": "0fd12ad128852ac5f803701ab593c4cdfa3daba8aa2e4ecca07c30985faa7e1a"
+  },
+  "2": {
+   "checks": {
+    "receipt_complete": true,
+    "manifest_sha": true,
+    "archive_sha_in_manifest": true,
+    "complete_sha": true,
+    "summary_sha": true,
+    "fold_seed": true,
+    "epochs": true,
+    "test_not_opened": true,
+    "evaluable": true,
+    "identity": true
+   },
+   "ok": true,
+   "selection": {
+    "e_cls": 24,
+    "e_en": 21,
+    "e_comp": 24
+   },
+   "budget_limited": {
+    "e_cls": false,
+    "e_en": false,
+    "e_comp": false
+   },
+   "e_cls_at_epoch_0": false,
+   "cuts": {
+    "A0": 0.397705,
+    "A1": 0.41517,
+    "Bcomp": 0.3004,
+    "B0": 0.3004,
+    "B1": 0.3004
+   },
+   "calibration_errors": {},
+   "access_retries": {
+    "task": 0,
+    "publish": 0
+   },
+   "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_2",
+   "manifest_sha256": "7baeba1a51d3f43d5bca3f85066bd720126a21a10d585c6f15bed62cdbea1164"
   }
  },
- "folds": {}
+ "folds": {
+  "0": {
+   "tasks": [
+    0,
+    1,
+    2
+   ],
+   "all_ok": true,
+   "e_cls_at_epoch_0_seeds": 0,
+   "stop_census_check": false,
+   "budget_limited_tasks": [
+    1
+   ],
+   "evaluate_allowed": true
+  }
+ }
 }
