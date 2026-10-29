@@ -285,7 +285,15 @@
       "concurrency": "tasks 6-8 hold the three GPUs; held with --dependency=afterany:4466016_6?afterany:4466016_7 so it starts when the first of them ends",
       "command": "cd /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission && test -s /scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_5_4466016_5/state.json && env -u SMASH_DCM_PREPARED -u SMASH_NATIVE sbatch --parsable --array=5 --time=01:30:00 --exclude=cn-007,cn-008,cn-034,cn-004 --dependency=afterany:4466016_6?afterany:4466016_7 --export=ALL,SMASH_SOURCE=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9,SMASH_PHASE=train,SMASH_CAMPAIGN=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028,SMASH_RECEIPT_DIR=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9_submission/receipts,SMASH_SPLIT=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/split_manifest.json,SMASH_PREPARE_BUNDLE=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983,SMASH_PREPARE_MANIFEST_SHA=c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501,SMASH_SMOKE_SUMMARY=/home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/inputs/smoke_summary.json,SMASH_RESUME_MIRROR=/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/mirror/task_5_4466016_5 /home/vbocharnikov/hgnd_experiments/smash_train_20261028_4f82efeae9/slurm/smash_train.hpc.sbatch",
       "time_limit_basis": "01:30:00: loading ~6 min + mirror restore of 31 files (~110 MB) + post-training validation and export ~8 min in tasks 0-4; x4 margin",
-      "untested_on_cluster": "resume with start_epoch == epochs (the GPU smoke resumed after epoch 0); the resume-path reads of state.json sha and effective_config.json are not EACCES-wrapped (known_gaps)"
+      "untested_on_cluster": "resume with start_epoch == epochs (the GPU smoke resumed after epoch 0); the resume-path reads of state.json sha and effective_config.json are not EACCES-wrapped (known_gaps)",
+      "submitted": {
+       "job": "4466738_5",
+       "when": "2026-10-29 ~07:25 MSK by the main session",
+       "authorised_by": "the user (\"Submit retry\"), after the cancellation was classified outside the pre-approved D3 cases",
+       "state_at_submission": "PENDING Dependency afterany:4466016_6?afterany:4466016_7",
+       "expected": "receipt receipts/train_4466738_5.json, bundle train_bundles/train_4466738_5, mirror mirror/task_5_4466738_5; the fold-1 train index names this receipt for task 5",
+       "counts_as": "the one retry of task 5; a further failure goes to the user"
+      }
      }
     }
    },
