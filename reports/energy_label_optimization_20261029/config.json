@@ -1,0 +1,47 @@
+{
+  "schema": "energy-label-optimization-plan-v1",
+  "status": "preparation_only_not_a_submission",
+  "label_floor_GeV": [null, 0.1, 0.2, 0.3, 0.4, 0.5],
+  "label_reference_GeV": 0.3,
+  "target_hist_edges_GeV": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 3.0],
+  "null_floor_means": "Remove energy clause completely; differs from strict Ekin > 0 at zero energy",
+  "tof_halfwidth_ns": 0.3,
+  "graph_time_radius_ns": 1.0,
+  "graph_spatial_radius_cells": 3.6,
+  "observation_recipe": "Existing deterministic audit.observe, unchanged jitter, Edep, side and PDG0 rules",
+  "split": "results/smash_train_20261028/split/split_manifest.json",
+  "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "selection_parts": [0, 2, 4],
+  "report_parts": [1, 3, 5],
+  "label_audit_consumes_scores": false,
+  "label_audit_opens_report_files": false,
+  "analysis_windows_GeV": {
+    "minimum": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0],
+    "low_stop": [0.8, 1.0, 1.2, 1.4, 1.6],
+    "high_start": [1.8, 2.0, 2.2, 2.4],
+    "maximum": 3.0,
+    "reference": [0.3, 1.0, 2.0, 3.0],
+    "historical_replay": [0.3, 1.0, 2.0, null],
+    "edge_convention": "minimum <= E < low_stop; high_start <= E < maximum"
+  },
+  "training_proposal": {
+    "status": "not_launched_requires_label_census_and_concrete_preflight",
+    "baseline_runs_available": 9,
+    "maximum_new_label_arms": 2,
+    "folds": 3,
+    "seeds": [42, 123, 456],
+    "epochs_total": 30,
+    "maximum_new_training_runs": 18,
+    "simultaneous_campaign_tasks_max": 2,
+    "raw_energy_is_primary": true,
+    "calibration_below_0p3_requires_explicit_amendment": true
+  },
+  "bootstrap_proposal": {
+    "resamples": 400,
+    "seed": 20261029,
+    "strata": "potential x original split part; content-group is resampling unit",
+    "shared_across": "label arms, windows, energy estimators and training seeds",
+    "interpretation": "conditional on frozen trained models and one production; not a blind test"
+  },
+  "stop_policy": "No automatic retraining, new inference, test-source988976, grid expansion, retries or manuscript update"
+}

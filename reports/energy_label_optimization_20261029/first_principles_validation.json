@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-29",
+  "scope": "Analytical estimates only; no empirical MC events, predictions or learned models read",
+  "tests": {
+    "passed": 9,
+    "failed": 0,
+    "independent_technical_critic_passed": 9,
+    "command": "python -m pytest tests/test_neutron_tof_bounds.py -q -p no:cacheprovider"
+  },
+  "static_checks": {
+    "ruff": "PASS on analytical functions, tests and generator",
+    "compileall": "PASS"
+  },
+  "figures": {
+    "count": 3,
+    "visual_inspection": "PASS for all3; no clipping or overlaps",
+    "vector_pdf": "PASS all3",
+    "embedded_fonts": "PASS all3; no Type3",
+    "bounds_assertions": "PASS"
+  },
+  "reviews": {
+    "physics": "No errors found in reviewed derivations/code claims",
+    "statistics": "GO; A>0 and positive-count assumption added",
+    "technical": "GO; formulas/source hashes and absence of empirical reads independently verified"
+  },
+  "main_results": {
+    "label_0p3_follows_from_timing_resolution": false,
+    "nominal_7m_35ns_GeV": 0.3216928254256843,
+    "local_reference_35ns_GeV": 0.367604721737606,
+    "full_detector_resolution_or_efficiency_established": false,
+    "unique_optimal_energy_windows_established": false
+  },
+  "empirical_stages_A_B_C_launched": false,
+  "artifact_sha256": {
+    "analysis/neutron_tof_bounds.py": "24896e416aa21b3ca949740e1817666951d45878011abb1607f27ac15ae79186",
+    "tests/test_neutron_tof_bounds.py": "fe5033fc3c1d44c813c224cff148cf857cb586f6e4748ae116884f44ee5097bd",
+    "reports/energy_label_first_principles_20261029.md": "a040287adc5b9e982fb4e97a0d25f12b4c62b6c3dd527a4abf4522073826a8e6",
+    "reports/energy_label_optimization_20261029/first_principles.py": "0d7da8b583eba33acfe5a6199b3c43681dba67fddaf85b7987348bb314af2903",
+    "reports/energy_label_optimization_20261029/first_principles_numbers.json": "98bd17c8a957b291fedb9df691e5da732147a0b3258268324056424a853fffe4",
+    "reports/energy_label_optimization_20261029/first_principles_figures/label_path_and_recoil.pdf": "9bc3aab8a774786d62e7161f45fd1911b517fae7584f4e84cacea769545a761e",
+    "reports/energy_label_optimization_20261029/first_principles_figures/label_path_and_recoil.png": "af4b063bfba1be207b686efd22f8d1b2d12f510544657798e94b672104060536",
+    "reports/energy_label_optimization_20261029/first_principles_figures/time_window_and_gap.pdf": "1edc40f703897d83857128bc1b5b0e87b33122c89becd7c591ab97b88e24f832",
+    "reports/energy_label_optimization_20261029/first_principles_figures/time_window_and_gap.png": "f8c9a850eefbe40f9f867a18bc31eda08bbef18fa3461aca3587d9c9c59b85c4",
+    "reports/energy_label_optimization_20261029/first_principles_figures/tof_and_timing.pdf": "5db1a3d6ff7217065ddfa798d801835afef1d08214ea3092d0ed1021d04867ac",
+    "reports/energy_label_optimization_20261029/first_principles_figures/tof_and_timing.png": "30b98c745e927bf5a4fb92cb4a7afb38831b323c1d9ca0654879364962c8fb7b"
+  },
+  "continuation_20261102": "../../reports/energy_label_autonomous_20261102.md"
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-29",
+  "scope": "Preparation plus reviewed analytical estimate; no empirical census/training/inference/window scan",
+  "focused_tests": {
+    "passed": 25,
+    "failed": 0,
+    "command": "python -m pytest tests/test_label_energy_scan.py tests/test_energy_bands.py -q -p no:cacheprovider",
+    "independent_technical_critic_passed": 25,
+    "warning": "External PyG deprecation only"
+  },
+  "ruff": "PASS on changed Python files",
+  "compileall": "PASS on changed Python files",
+  "synthetic_end_to_end": "9 toy files through pinned manifest, native replay, census, shared bootstrap, JSON and PDF",
+  "synthetic_plot_visual_check": "PASS; synthetic PDF rendered and visually inspected; not a SMASH result",
+  "scientific_inputs_bound": false,
+  "scientific_launch_performed": false,
+  "reviewer_verdicts": {
+    "physics": "GO for preparation",
+    "statistics": "GO for preparation",
+    "technical": "GO for preparation after fixes"
+  },
+  "pending": [
+    "Resolve/hash-check S286 observation and native-pack paths, then concrete CPU smoke/launch review",
+    "Ancestry/coverage ledger before physical label choice",
+    "Training diff and GPU smoke before label-arm retraining",
+    "Exact uncensored primary reduction and predeclared window-choice rule before energy optimization"
+  ],
+  "artifact_sha256": {
+    "analysis/label_energy_scan.py": "5f3e9d6112be4af37b5a785078ffec755bc0c1cb210f280d993f65b3e42184da",
+    "scripts/label_energy_audit.py": "4dbb6e2191b60f21ba4be549b315dc9f4d5e25882a15310f2d665a4fc037654f",
+    "tests/test_label_energy_scan.py": "2d185ebf4055524517e7a38c3767b3f5014e9907e14382f598747f808040283f",
+    "reports/energy_label_optimization_protocol_20261029.md": "f3590cdf716dc55882e5e94c3fd224768623a1c5f545fb751b46747bc6ae89c3",
+    "reports/energy_label_optimization_20261029/config.json": "a9ed616d5fb3d2257b1dc1e02e53579fd0057051ba07cbfdc9b0869fab71506e",
+    "reports/energy_label_optimization_20261029/input_requirements.json": "b0e7ad9956ea71d1ea064d362ac53ea8098d1031d90baa9943947179ee43087d",
+    "reports/energy_label_optimization_20261029/README.md": "b3d3787551d6a350bcd260ef1fc4b033f48371f89c5281268be88701a35b57f2",
+    "reports/energy_label_optimization_20261029/preflight_review.md": "9a2abefa1275e2b0f28fe46134c12e7dead8121a643334a8c2bf070f00194990"
+  },
+  "analytical_addendum": "first_principles_validation.json",
+  "continuation_20261102": "../../reports/energy_label_autonomous_20261102.md"
+}

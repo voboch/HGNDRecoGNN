@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-02",
+  "status": "preflight_passed_before_measurement",
+  "active_tests": {
+    "passed": 347,
+    "warnings": 19,
+    "seconds": 41.71,
+    "command": "python -m pytest tests -q -p no:cacheprovider"
+  },
+  "focused_tests_passed": 38,
+  "independent_focused_tests_passed": 38,
+  "ruff_changed_files": "PASS",
+  "compileall_analysis_scripts_tests": "PASS",
+  "sbatch_syntax": "PASS",
+  "bare_pytest_note": "Collection includes archived packages, causing import-file-mismatch. Canonical Makefile active tests path passed.",
+  "scope": "CPU smoke9 then S286;0GPU; no report-set outcomes",
+  "launch_performed": false
+}

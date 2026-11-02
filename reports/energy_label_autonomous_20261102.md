@@ -1,0 +1,82 @@
+# Автономное продолжение: census энергетической разметки
+
+02.11.2026. Прямое поручение пользователя: продолжать эксперименты автономно.
+Первый этап — A из `energy_label_optimization_protocol_20261029.md`, после
+выполненной аналитической оценки. Принятые baseline и разбиение сохраняются.
+
+## Конкретный ближайший запуск
+
+- Только S286: чётные parts0/2/4, unique truth-bound content groups.
+  Сетка labels: disabled,0.1,0.2,0.3,0.4,0.5ГэВ; временное условие±0.3нс.
+- Read-only native validation packs из принятого prepare4465983. Восстановить
+  наблюдения тем же `observe_file`, под теми же raw SHA и noise key;
+  observation bytes должны совпасть с accepted SHA. Графы и scalers не строятся.
+- Exact origin census, SHA которого закреплён split, позволяет повторно
+  использовать доказательство direct-primary subset. Для Mother>=0 есть
+  только флаг nonprimary MCTrack; полная genealogy не устанавливается.
+- Smoke: первый content ID в каждой из9 strata potential×even-part.
+  Full: все286. Smoke не служит выбору label и не является полным результатом.
+  Обе фазы выполняют stage→exact native replay→ledger→shared bootstrap→PDF→export.
+- CPU smoke15мин на test; full45мин на rocky,4CPU,0GPU,2I/O workers,
+  --mem=0. Одновременно одна задача A; не более двух задач кампании вообще.
+  Login используется только для подготовки source и submission.
+
+План с input pins: `energy_label_autonomous_20261102/launch_plan.json`.
+Код: `scripts/label_energy_campaign.py`, `scripts/label_energy_audit.py`.
+SBATCH: `slurm/label_energy.hpc.sbatch`. Неизменные источники/входы и
+предсказания коммитятся до просмотра новых научных outcomes.
+
+## Что измеряется и зачем
+
+При снижении floor positives не исчезают, maximum-energy targets общих
+positives меняются на0. Это точные проверки определения, а не прогноз AUC.
+Изменения0.3→disabled разбиваются по direct-only/nonprimary-only/unresolved-only/
+mixed, с отдельным multi-object matching. Сумма категорий равна числу
+соответствующих clusters. Mother0 — valid secondary parent, не primary.
+Вырожденный случай с одинаковыми labels/targets не обучается повторно.
+
+Проверка чтением converter обнаружила уточнение прежней терминологии:
+`vacs.Ekin=MCTrack.GetEnergy()-GetMass()` — начальная энергия **связанного
+MCTrack**, а не его энергия в ячейке. Это не меняет вычисленные метки или
+числа аналитического ToF, но меняет их физическую интерпретацию. Для
+direct primary эта энергия связана с generated primary; для secondary это
+энергия рождения самого secondary. Прежняя формулировка «транспортированная
+энергия хита» уточняется здесь и в протоколе, без изменения исторических чисел.
+
+В коде наблюдений нет35нс. Отдельно сохраняются bounds observed time и число
+hits≥35нс после jitter; это не доказательство конкретного upstream DAQ cut.
+Сначала проверяется условный guard из аналитической записки, без подгонки window.
+
+## Последующие решения в автономном режиме
+
+После полного проверенного A — содержательный результат с графиками,
+проверка critics и no-floor абляция против accepted0.3 baseline, если
+targets действительно различаются. Для неё сначала фиксируется конкретный
+training diff и выполняется GPU smoke. Одна новая arm —9 обучений,3fold×
+3seed,30эпох. Максимум две новые label arms (18 обучений); существующие
+baseline не дублировать. Вторая arm допустима только после физического
+обоснования и фиксации до обучения. Общие reference-label metrics и raw-energy
+comparison обязательны; native-AUC разных задач не сравнивается как gain.
+
+Скан148окон не запускается до exact uncensored primary reduction и
+зафиксированного правила выбора с физическим откликом и budget ошибки.
+Нечётные report parts, previously opened DCM988976 и manuscript сейчас не
+используются для развития. Не перезапускать закрытые October17 jobs.
+
+Никакого бесконечного sweep: предел — зарегистрированные A и label-ablation
+arms, затем отдельное решение по энергетическому окну. Сбой сохраняется,
+неполный cohort не агрегируется; повтор не маскируется новым именем.
+
+## Пропорциональность и текущая очередь
+
+Последний source-bound научный результат и последние model evaluations —
+29.10. Аналитическая оценка выполнена29.10. До нового поручения02.11
+эксперименты не выполнялись; календарная пауза не является многодневной
+работой над инфраструктурой. Live queue02.11: нет активной задачи этой
+кампании; видимая AFT-задача другого проекта не затрагивается.
+
+Accepted prepare для578files занимал около142с фаз computation на8CPU;
+новый S286 census не строит графы. Дополнительная стоимость — чтение/hash
+6.87ГБ native archive и выбранных0.85ГБ packs, observation replay и ledger.
+Ожидается несколько минут CPU;15/45мин — консервативные scheduler caps.
+Фактическое время smoke используется для проверки full request.

@@ -1,0 +1,32 @@
+{
+  "schema": "label-energy-launch-v1",
+  "date": "2026-11-02",
+  "authorization": "Human: continue experiments autonomously; earlier request for critics before launch",
+  "config": {
+    "path": "../energy_label_optimization_20261029/config.json",
+    "sha256": "a9ed616d5fb3d2257b1dc1e02e53579fd0057051ba07cbfdc9b0869fab71506e"
+  },
+  "split": {
+    "path": "../../results/smash_train_20261028/split/split_manifest.json",
+    "sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886"
+  },
+  "prepare": {
+    "path": "../../results/smash_train_20261028/prepare_4465983/summary.json",
+    "sha256": "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133"
+  },
+  "census": {
+    "path": "../../results/smash_train_20261028/census/census.json",
+    "sha256": "f10725044e4a8d2e7bddba5acf145c70533766eba11087c82a9dd55652a9fb5a"
+  },
+  "prepare_bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+  "prepare_bundle_manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+  "resources": {
+    "cpus": 4,
+    "gpus": 0,
+    "workers": 2,
+    "smoke_minutes": 15,
+    "full_minutes": 45,
+    "simultaneous_jobs_max": 1
+  },
+  "scope": "Stage A only: label counts and direct/nonprimary/unresolved provenance on S286; no learned calls or report-part outcomes"
+}

@@ -1,0 +1,189 @@
+{
+  "scope": "Analytic conditional estimates; no MC truth, reconstructed events or learned models",
+  "constants": {
+    "neutron_mass_GeV": 0.93956542052,
+    "c_m_per_ns": 0.299792458
+  },
+  "assumptions": {
+    "reference_length_m": 7.2949639204042676,
+    "front_ray_range_m": [
+      7.262959350705469,
+      7.372945572157711
+    ],
+    "single_hit_sigma_ns": 0.15,
+    "prompt_halfwidth_ns": 0.3,
+    "published_time_gate_ns": 35.0,
+    "known_start_and_straight_constant_speed": true
+  },
+  "table": [
+    {
+      "kinetic_GeV": 0.1,
+      "tof_ns": 56.86133043716378,
+      "timing_sigma_fraction": 0.006148179293838892,
+      "extra_path_for_0p3ns_cm": 3.8488180971068418
+    },
+    {
+      "kinetic_GeV": 0.2,
+      "tof_ns": 43.00171728216918,
+      "timing_sigma_fraction": 0.009362083126649602,
+      "extra_path_for_0p3ns_cm": 5.089306461322988
+    },
+    {
+      "kinetic_GeV": 0.3,
+      "tof_ns": 37.305220973347595,
+      "timing_sigma_fraction": 0.012303264265322675,
+      "extra_path_for_0p3ns_cm": 5.866442066339262
+    },
+    {
+      "kinetic_GeV": 0.5,
+      "tof_ns": 32.11734861723303,
+      "timing_sigma_fraction": 0.018119543694922233,
+      "extra_path_for_0p3ns_cm": 6.8140406052914795
+    },
+    {
+      "kinetic_GeV": 1.0,
+      "tof_ns": 27.814815095716536,
+      "timing_sigma_fraction": 0.034113546105502386,
+      "extra_path_for_0p3ns_cm": 7.868070194212098
+    },
+    {
+      "kinetic_GeV": 2.0,
+      "tof_ns": 25.680493381462398,
+      "timing_sigma_fraction": 0.07544863804762818,
+      "extra_path_for_0p3ns_cm": 8.521990382400725
+    },
+    {
+      "kinetic_GeV": 3.0,
+      "tof_ns": 25.056413213440237,
+      "timing_sigma_fraction": 0.13034941556456392,
+      "extra_path_for_0p3ns_cm": 8.734247625463714
+    },
+    {
+      "kinetic_GeV": 4.0,
+      "tof_ns": 24.78589631346844,
+      "timing_sigma_fraction": 0.19908312454222063,
+      "extra_path_for_0p3ns_cm": 8.829574482372356
+    }
+  ],
+  "time_gates": [
+    {
+      "length_m": 5.0,
+      "time_max_ns": 35.0,
+      "minimum_kinetic_GeV": 0.12913836391183145
+    },
+    {
+      "length_m": 5.0,
+      "time_max_ns": 40.0,
+      "minimum_kinetic_GeV": 0.09414283369778201
+    },
+    {
+      "length_m": 5.0,
+      "time_max_ns": 50.0,
+      "minimum_kinetic_GeV": 0.05708047884478976
+    },
+    {
+      "length_m": 5.0,
+      "time_max_ns": 60.0,
+      "minimum_kinetic_GeV": 0.038547699283378145
+    },
+    {
+      "length_m": 7.0,
+      "time_max_ns": 35.0,
+      "minimum_kinetic_GeV": 0.3216928254256843
+    },
+    {
+      "length_m": 7.0,
+      "time_max_ns": 40.0,
+      "minimum_kinetic_GeV": 0.217616533692366
+    },
+    {
+      "length_m": 7.0,
+      "time_max_ns": 50.0,
+      "minimum_kinetic_GeV": 0.12297558751431781
+    },
+    {
+      "length_m": 7.0,
+      "time_max_ns": 60.0,
+      "minimum_kinetic_GeV": 0.08040312641180085
+    },
+    {
+      "length_m": 7.2949639204042676,
+      "time_max_ns": 35.0,
+      "minimum_kinetic_GeV": 0.367604721737606
+    },
+    {
+      "length_m": 7.2949639204042676,
+      "time_max_ns": 40.0,
+      "minimum_kinetic_GeV": 0.24424233483670962
+    },
+    {
+      "length_m": 7.2949639204042676,
+      "time_max_ns": 50.0,
+      "minimum_kinetic_GeV": 0.13596017532990592
+    },
+    {
+      "length_m": 7.2949639204042676,
+      "time_max_ns": 60.0,
+      "minimum_kinetic_GeV": 0.08832672098184922
+    }
+  ],
+  "gap_examples": [
+    {
+      "low_stop_GeV": 0.8,
+      "high_start_GeV": 1.8,
+      "time_gap_in_sigma": 20.060246522334378,
+      "ideal_gaussian_cross_gap_probability_bound": 8.21338172770975e-90
+    },
+    {
+      "low_stop_GeV": 1.0,
+      "high_start_GeV": 2.0,
+      "time_gap_in_sigma": 14.228811428360924,
+      "ideal_gaussian_cross_gap_probability_bound": 3.0352379243338164e-46
+    },
+    {
+      "low_stop_GeV": 1.4,
+      "high_start_GeV": 1.8,
+      "time_gap_in_sigma": 4.4377502957493675,
+      "ideal_gaussian_cross_gap_probability_bound": 4.545199359927953e-06
+    },
+    {
+      "low_stop_GeV": 1.6,
+      "high_start_GeV": 1.8,
+      "time_gap_in_sigma": 1.9157734594148699,
+      "ideal_gaussian_cross_gap_probability_bound": 0.027696968688195347
+    },
+    {
+      "low_stop_GeV": 1.6,
+      "high_start_GeV": 2.0,
+      "time_gap_in_sigma": 3.4091660456333983,
+      "ideal_gaussian_cross_gap_probability_bound": 0.00032580902417120896
+    }
+  ],
+  "35ns_threshold_front_range_GeV": [
+    0.3622837839922218,
+    0.38094935327375856
+  ],
+  "conditional_prompt_floor_with_35ns_GeV": {
+    "nominal_7m": 0.31321899471830206,
+    "local_near": 0.35226673549410165,
+    "reference": 0.3573767929809952
+  },
+  "prompt_coverage_without_delay": 0.9544997361036416,
+  "sources": {
+    "HGND_operational_time_window": "https://arxiv.org/html/2412.00455v1#S3.SS1",
+    "HGND_detector_design": "https://arxiv.org/abs/2309.09610",
+    "neutron_mass": "https://pdg.lbl.gov/2025/AtomicNuclearProperties/neutron.html",
+    "pi0_mass": "https://pdg.lbl.gov/2025/listings/rpp2025-list-pi-zero.pdf"
+  },
+  "presentation_sha256": {
+    "../HGNDPaper/scripts/plot_style.py": "23fecde2974324820444c59916bf00893820cc064ee352e1ebe31f0b1d2f16a0"
+  },
+  "input_sha256": {
+    "analysis/neutron_tof_bounds.py": "24896e416aa21b3ca949740e1817666951d45878011abb1607f27ac15ae79186",
+    "scripts/hgnd_acceptance.py": "89d0c9faa5356aa00f89bee215abda57dccd9ef3fb815ede691f0540e3819fec",
+    "scripts/audit_smash_sources.py": "75f07fb914202bd4744ad1f9ed2dea67203305bd30346c504cab7efe87096595",
+    "data/smash_transfer.py": "328f9a5a71e33cbe55ce0a4c2a1c9b8faffb1b7bd75ea641fc24a53b61b82feb",
+    "reports/energy_label_optimization_20261029/first_principles.py": "0d7da8b583eba33acfe5a6199b3c43681dba67fddaf85b7987348bb314af2903"
+  },
+  "equal_mass_NN_pi0_threshold_GeV": 0.2796488996248824
+}
