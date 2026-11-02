@@ -37,3 +37,11 @@ Last science/model-job:29.10, новый запрос02.11. Между ними 
 содержательный census влияния historical energy floor и основание no-floor
 абляции. Простой путь — одна CPU-smoke, затем один full CPU-run.
 Исходники и предсказания фиксируются commit до измерения.
+
+Повторная проверка подачи 02.11: **STOP — test-partition submission blocked**.
+После отказа source-script заявки и dry-run с explicit `normal` критик
+разрешил один минимальный `--test-only --wrap=true` контроль. Он также
+получил `Invalid qos specification`; минимальный `rocky` dry-run принят.
+Отказ не зависит от кода census, но точная причина Slurm не установлена.
+Критик не разрешил заменять test smoke на rocky или отправлять full.
+Ни одного задания кампании не создано; запись — `scheduler_status.json`.

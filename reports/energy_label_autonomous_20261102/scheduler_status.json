@@ -1,0 +1,59 @@
+{
+  "schema": "label-energy-scheduler-status-v1",
+  "observed_at_utc": "2026-11-02T12:40:37Z",
+  "state": "blocked_before_job_creation",
+  "code_commit": "1f245149422e16de480d8d9551dc38b08388bc21",
+  "scientific_execution_started": false,
+  "campaign_job_ids": [],
+  "original_submission": {
+    "partition": "test",
+    "cpus": 4,
+    "gpus": 0,
+    "constraint": "type_d",
+    "memory": "0",
+    "time_limit": "00:15:00",
+    "error": "Invalid qos specification",
+    "job_id": null,
+    "receipt": "/home/vbocharnikov/hgnd_experiments/energy_label_20261102_cc7a4fb5e5_receipts/submission_smoke.txt",
+    "receipt_state": "empty stdout file from rejected submission; preserved"
+  },
+  "scheduler_only_controls": [
+    {
+      "description": "Same source script, test partition, explicit qos=normal, --test-only",
+      "execution": false,
+      "result": "Invalid qos specification"
+    },
+    {
+      "command": "sbatch --test-only --account=proj_1855 --partition=rocky --qos=normal --constraint=type_d --gpus=0 --cpus-per-task=4 --mem=0 --time=00:15:00 --wrap=true",
+      "execution": false,
+      "exit_code": 0,
+      "result": "Accepted resource estimate; no job created",
+      "estimate_id_not_a_submitted_job": "4480748",
+      "estimated_start_cluster_local": "2026-11-05T16:51:16"
+    },
+    {
+      "command": "sbatch --test-only --account=proj_1855 --partition=test --qos=normal --constraint=type_d --gpus=0 --cpus-per-task=4 --mem=0 --time=00:15:00 --wrap=true",
+      "execution": false,
+      "exit_code": 1,
+      "result": "allocation failure: Invalid qos specification"
+    }
+  ],
+  "read_only_evidence": {
+    "project": "mp reports proj_1855 as active",
+    "association": "proj_1855, user vbocharnikov, allowed QOS normal, default QOS normal",
+    "test_partition_qos": "test",
+    "rocky_partition_qos": "N/A",
+    "accounting_storage_enforce": "associations,limits,qos",
+    "job_submit_plugins": "lua",
+    "job_submit_lua_readable_on_login": false,
+    "queue": "Only unrelated AFT job 4480383 was visible; it was not modified"
+  },
+  "interpretation": "The rejection reproduces without the experiment script on test; the same minimal request is accepted as an estimate on rocky. The exact scheduler policy or configuration cause is not established.",
+  "preflight_followup": {
+    "critic": "/root/energy_technical_critic",
+    "verdict": "GO for one minimal scheduler-only test control; if rejected, stop Stage A and report the site blocker",
+    "control_result": "rejected"
+  },
+  "next_action": "Restore a valid test-partition submission path, then check actual receipts/queue and submit the unchanged finite smoke. Do not submit full before accepted smoke; do not repeatedly resubmit while blocked.",
+  "automatic_submissions": "stopped"
+}
