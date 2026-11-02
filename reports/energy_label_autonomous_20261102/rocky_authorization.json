@@ -1,0 +1,26 @@
+{
+  "schema": "label-energy-submission-amendment-v1",
+  "date": "2026-11-02",
+  "human_instruction": "продолжи запуски пока что без тестов, подготовь статус на завтра",
+  "exception": "The human waives use of the test partition for the current continuation. No additional unit tests or test-queue jobs are required. Use rocky for the existing bounded CPU phases.",
+  "scientific_code_commit": "1f245149422e16de480d8d9551dc38b08388bc21",
+  "source_sums_sha256": "cc7a4fb5e56c7744177e5e69d85ecb6b9896246eecf5ae04294d207b4008a8cb",
+  "plan_sha256": "0d1806c951944a7741e4f8ccaffa8b66fd031f7ad04846c66ad38ea06cacab08",
+  "changes": {
+    "first_cpu_phase_partition": {"before": "test", "after": "rocky"},
+    "explicit_job_qos": "normal"
+  },
+  "unchanged": [
+    "immutable executable source and input pins",
+    "fixed nine-content first CPU phase and S286 full membership",
+    "exact observation/native-label/target assertions",
+    "4 CPU, 0 GPU, type_d, mem=0, two I/O workers",
+    "15-minute first phase, 45-minute full cap, one Stage A job at a time",
+    "accepted same-source first-phase summary before the full calculation",
+    "no training/inference, report-part outcome scan or 148-window scan in Stage A"
+  ],
+  "critic": "/root/energy_technical_critic",
+  "verdict": "GO for this submission-only amendment; no executable source change or additional tests needed",
+  "status_due": "2026-11-03, Europe/Moscow",
+  "history": "scheduler_status.json retains the earlier test-partition rejection; its old next_action is superseded by this human instruction"
+}
