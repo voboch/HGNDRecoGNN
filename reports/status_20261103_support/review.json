@@ -1,0 +1,41 @@
+{
+  "scope": "Report-only saved-result export; no additional unit tests, inference, training, fit or random draws",
+  "date": "2026-11-02",
+  "arithmetic": "Central R replayed from accepted integer per-file counts; existing endpoint/midpoint values and SDs replayed; 90/18 and C4-T1 use the same saved joint replicas",
+  "statistics_review": {
+    "critic": "/root/energy_statistics_critic",
+    "verdict": "GO after read-only inspection of final prose, definitions, exported numbers and split strategy",
+    "fixes": [
+      "90/0 label on headline physics row",
+      "test-part-only unbound column",
+      "A1/B1 weights and scaler both differ",
+      "correlated potential contrasts",
+      "no closure claim from 90/18",
+      "processed-span truth separated from article"
+    ]
+  },
+  "figure": {
+    "visual_inspection": "PASS: all three upper contrast panels and all paired residual panels readable; labels, legend and error bars within bounds",
+    "data_bounds": "asserted for all six panels in figure_bounds.json",
+    "font_embedding": "Embedded TrueType; no Type3",
+    "font_details": [
+      {
+        "xref": 15,
+        "name": "BMQQDV+DejaVuSans",
+        "extension": "ttf",
+        "pdf_type": "Type0",
+        "embedded_bytes": 19860
+      }
+    ],
+    "font_verifier": "PyMuPDF get_page_fonts + extract_font; pdffonts unavailable"
+  },
+  "sha256": {
+    "build.py": "d6a94d4536cb1d189cec2f2041d2f6d27d50fafe07dcfedd9bc3114096f38510",
+    "input_pins.json": "8f8f5e1877976f8c8de866e7b1a79cae0db198a1c73ad640f88f565739de91d1",
+    "all_pair_contrasts.json": "83cf455d6b5db6e71852a3972bf07df20527affb4dc654485142d28e487f1b84",
+    "tables.md": "d89fce7d968a7c6ebfd5a23128d6a3d0d656342fe1449f1a0440e90533f49f65",
+    "all_pair_contrasts.png": "1359d990c07b6c193a5d60e28de5f4a609e02464de1fa1e5c017180a99550b6b",
+    "all_pair_contrasts.pdf": "40b3785d974960094c51fd203e5a1f85ad00428b1184ed949c2d765455d7d98d",
+    "figure_bounds.json": "98ef2eaa54b2fc8d0f92b21115412fd43d3513973894d0a0fa3cb5bc4f0b1553"
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "source_sha256": {
+    "results/smash_train_20261028/heldout_rn/summary.json": "1b4b797f307eccb9013a2d784c50633b91439f46540648d7cd2e03068aa62258",
+    "results/smash_train_20261028/heldout_rn/replicas.npz": "4685e3a60297d3536dc5733d2a38581e4b82b23f1d8253a4a41038270669248b",
+    "results/smash_train_20261028/heldout_rn/per_file_counts.json": "2f2f7ac1342651631d105701012776c539145166c4ae6826ad3522a239785218",
+    "results/smash_train_20261028/split/split_manifest.json": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886"
+  },
+  "scope": "Report-only all-potential-pair contrasts from accepted fixed-window outputs; no new inference, training, window choice or resampling",
+  "formula": "100*(R(U_high)/R(U_low)-1)",
+  "hardness": "R=N(E>=2 GeV)/N(0.3<=E<1 GeV); no upper high-energy cap",
+  "bootstrap": "SD of 400 saved joint whole-file resamples; fixed trained models",
+  "sample": {
+    "zeroSpot": 195,
+    "defaultSpot": 200,
+    "bigSpot": 173
+  },
+  "pairs": {
+    "18/0": {
+      "U_high_MeV": 18,
+      "U_low_MeV": 0,
+      "reconstructed": {
+        "A1": {
+          "42": {
+            "C4": {
+              "percent": -0.4500062832101914,
+              "whole_file_bootstrap_sd_percent": 0.9401931659053151
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.1463243475905216,
+              "whole_file_bootstrap_sd_percent": 1.0333264272766403
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": -0.9934399348241807,
+              "whole_file_bootstrap_sd_percent": 0.9742419897134001
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.6897579992045109,
+              "whole_file_bootstrap_sd_percent": 1.0560941151661485
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": -0.6368800511582395,
+              "whole_file_bootstrap_sd_percent": 1.047647720995547
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.3331981155385697,
+              "whole_file_bootstrap_sd_percent": 1.1018203141651153
+            }
+          }
+        },
+        "B1": {
+          "42": {
+            "C4": {
+              "percent": -0.5167016671306035,
+              "whole_file_bootstrap_sd_percent": 0.812154740613582
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.2130197315109337,
+              "whole_file_bootstrap_sd_percent": 0.85979791688909
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": -0.05178460428094667,
+              "whole_file_bootstrap_sd_percent": 0.8059729430749294
+            },
+            "C4_minus_T1_points": {
+              "percent": -0.7481026686612768,
+              "whole_file_bootstrap_sd_percent": 0.8351107901849787
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": -0.4449448140886325,
+              "whole_file_bootstrap_sd_percent": 0.7671142801002778
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.1412628784689627,
+              "whole_file_bootstrap_sd_percent": 0.8053676794087609
+            }
+          }
+        }
+      },
+      "MC_truth_T1": {
+        "percent": 0.6963180643803302,
+        "whole_file_bootstrap_sd_percent": 0.5995049628477227
+      }
+    },
+    "90/0": {
+      "U_high_MeV": 90,
+      "U_low_MeV": 0,
+      "reconstructed": {
+        "A1": {
+          "42": {
+            "C4": {
+              "percent": 1.1474501415636995,
+              "whole_file_bootstrap_sd_percent": 0.9459280598752068
+            },
+            "C4_minus_T1_points": {
+              "percent": -3.568607978420646,
+              "whole_file_bootstrap_sd_percent": 1.0779202583905114
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": 1.8993135255944038,
+              "whole_file_bootstrap_sd_percent": 1.0708005067205066
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.8167445943899416,
+              "whole_file_bootstrap_sd_percent": 1.1381423127021437
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": 2.6728290279719014,
+              "whole_file_bootstrap_sd_percent": 1.057520416527587
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.043229092012444,
+              "whole_file_bootstrap_sd_percent": 1.1414921692307218
+            }
+          }
+        },
+        "B1": {
+          "42": {
+            "C4": {
+              "percent": 1.944111275418381,
+              "whole_file_bootstrap_sd_percent": 0.8596127503665258
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.7719468445659645,
+              "whole_file_bootstrap_sd_percent": 0.9347104589667999
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": 2.0143423926813897,
+              "whole_file_bootstrap_sd_percent": 0.8911575553272759
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.7017157273029557,
+              "whole_file_bootstrap_sd_percent": 0.939018279132716
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": 1.8168540004852574,
+              "whole_file_bootstrap_sd_percent": 0.8454566827210352
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.899204119499088,
+              "whole_file_bootstrap_sd_percent": 0.9091651969445946
+            }
+          }
+        }
+      },
+      "MC_truth_T1": {
+        "percent": 4.716058119984345,
+        "whole_file_bootstrap_sd_percent": 0.5682968424064875
+      }
+    },
+    "90/18": {
+      "U_high_MeV": 90,
+      "U_low_MeV": 18,
+      "reconstructed": {
+        "A1": {
+          "42": {
+            "C4": {
+              "percent": 1.6046775746852315,
+              "whole_file_bootstrap_sd_percent": 1.0272183155529264
+            },
+            "C4_minus_T1_points": {
+              "percent": -2.387265857679366,
+              "whole_file_bootstrap_sd_percent": 1.069981935885495
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": 2.92177958562978,
+              "whole_file_bootstrap_sd_percent": 1.150986437590794
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.0701638467348173,
+              "whole_file_bootstrap_sd_percent": 1.150038473547548
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": 3.3309230636419107,
+              "whole_file_bootstrap_sd_percent": 1.1051458457532015
+            },
+            "C4_minus_T1_points": {
+              "percent": -0.6610203687226868,
+              "whole_file_bootstrap_sd_percent": 1.1223545862755824
+            }
+          }
+        },
+        "B1": {
+          "42": {
+            "C4": {
+              "percent": 2.4735940442134785,
+              "whole_file_bootstrap_sd_percent": 0.9450654458211839
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.518349388151119,
+              "whole_file_bootstrap_sd_percent": 0.956515579381227
+            }
+          },
+          "123": {
+            "C4": {
+              "percent": 2.0671974870006826,
+              "whole_file_bootstrap_sd_percent": 0.9400277721404522
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.9247459453639149,
+              "whole_file_bootstrap_sd_percent": 0.9178308387022932
+            }
+          },
+          "456": {
+            "C4": {
+              "percent": 2.271907549395813,
+              "whole_file_bootstrap_sd_percent": 0.9056980237909488
+            },
+            "C4_minus_T1_points": {
+              "percent": -1.7200358829687845,
+              "whole_file_bootstrap_sd_percent": 0.8960673204654512
+            }
+          }
+        }
+      },
+      "MC_truth_T1": {
+        "percent": 3.9919434323645975,
+        "whole_file_bootstrap_sd_percent": 0.6086393596434533
+      }
+    }
+  },
+  "folds": {
+    "0": {
+      "train": {
+        "total": 285,
+        "by_U_MeV": {
+          "0": 96,
+          "18": 99,
+          "90": 90
+        },
+        "without_primary_binding": 5
+      },
+      "val": {
+        "total": 97,
+        "by_U_MeV": {
+          "0": 33,
+          "18": 33,
+          "90": 31
+        },
+        "without_primary_binding": 1
+      },
+      "test": {
+        "total": 192,
+        "by_U_MeV": {
+          "0": 66,
+          "18": 68,
+          "90": 58
+        },
+        "without_primary_binding": 0
+      },
+      "unused": {
+        "total": 4,
+        "by_U_MeV": {
+          "0": 0,
+          "18": 0,
+          "90": 4
+        },
+        "without_primary_binding": 4
+      }
+    },
+    "1": {
+      "train": {
+        "total": 291,
+        "by_U_MeV": {
+          "0": 98,
+          "18": 101,
+          "90": 92
+        },
+        "without_primary_binding": 6
+      },
+      "val": {
+        "total": 95,
+        "by_U_MeV": {
+          "0": 32,
+          "18": 33,
+          "90": 30
+        },
+        "without_primary_binding": 1
+      },
+      "test": {
+        "total": 189,
+        "by_U_MeV": {
+          "0": 65,
+          "18": 66,
+          "90": 58
+        },
+        "without_primary_binding": 0
+      },
+      "unused": {
+        "total": 3,
+        "by_U_MeV": {
+          "0": 0,
+          "18": 0,
+          "90": 3
+        },
+        "without_primary_binding": 3
+      }
+    },
+    "2": {
+      "train": {
+        "total": 290,
+        "by_U_MeV": {
+          "0": 98,
+          "18": 100,
+          "90": 92
+        },
+        "without_primary_binding": 5
+      },
+      "val": {
+        "total": 98,
+        "by_U_MeV": {
+          "0": 33,
+          "18": 34,
+          "90": 31
+        },
+        "without_primary_binding": 2
+      },
+      "test": {
+        "total": 187,
+        "by_U_MeV": {
+          "0": 64,
+          "18": 66,
+          "90": 57
+        },
+        "without_primary_binding": 0
+      },
+      "unused": {
+        "total": 3,
+        "by_U_MeV": {
+          "0": 0,
+          "18": 0,
+          "90": 3
+        },
+        "without_primary_binding": 3
+      }
+    }
+  }
+}

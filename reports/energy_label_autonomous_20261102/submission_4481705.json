@@ -1,0 +1,51 @@
+{
+  "schema": "label-energy-full-submission-v1",
+  "observed_moscow": "2026-11-02T22:50:12+03:00",
+  "scientific_code_commit": "1f245149422e16de480d8d9551dc38b08388bc21",
+  "source_sums_sha256": "cc7a4fb5e56c7744177e5e69d85ecb6b9896246eecf5ae04294d207b4008a8cb",
+  "plan_sha256": "0d1806c951944a7741e4f8ccaffa8b66fd031f7ad04846c66ad38ea06cacab08",
+  "first_phase": {
+    "job_id": "4481662",
+    "partition": "rocky",
+    "qos": "normal",
+    "state": "COMPLETED",
+    "node": "cn-036",
+    "cpus": 4,
+    "gpus": 0,
+    "time_limit": "00:15:00",
+    "submit_time_moscow": "2026-11-02T22:32:54+03:00",
+    "start_time_moscow": "2026-11-02T22:33:02+03:00",
+    "submission_receipt": "/home/vbocharnikov/hgnd_experiments/energy_label_20261102_cc7a4fb5e5_receipts/submission_smoke_rocky.txt",
+    "exit_code": "0:0",
+    "elapsed": "00:05:25",
+    "accepted": true,
+    "local_output": "results/energy_label_20261102/smoke_4481662",
+    "manifest_sha256": "f39185986dc5012b7ece5c5038227b0b95e456b85bd409f5dad83d08125fb531",
+    "archive_sha256": "b7a00fc05c4a6e6a92bef686856299192ecce808b3974db5ad575cce50319c73",
+    "files": 9,
+    "all_native_replays_exact": true
+  },
+  "full": {
+    "job_id": "4481705",
+    "partition": "rocky",
+    "qos": "normal",
+    "state": "PENDING",
+    "reason": "Priority",
+    "cpus": 4,
+    "gpus": 0,
+    "time_limit": "00:45:00",
+    "submit_time_moscow": "2026-11-02T22:49:25+03:00",
+    "estimated_start_moscow": "2026-11-03T02:48:00+03:00",
+    "estimated_start_is_guarantee": false,
+    "accepted_smoke_summary": "/home/vbocharnikov/hgnd_experiments/energy_label_20261102_cc7a4fb5e5_receipts/accepted_smoke_4481662/summary.json",
+    "submission_receipt": "/home/vbocharnikov/hgnd_experiments/energy_label_20261102_cc7a4fb5e5_receipts/submission_full_rocky.txt"
+  },
+  "scope": "S-only label census; no model training or inference",
+  "latest_scheduler_observation": {
+    "observed_moscow": "2026-11-02T22:56:27+03:00",
+    "state": "PENDING",
+    "reason": "Priority",
+    "estimated_start_moscow": "2026-11-03T00:47:40+03:00",
+    "estimate_is_guarantee": false
+  }
+}

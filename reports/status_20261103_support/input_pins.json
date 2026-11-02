@@ -1,0 +1,9 @@
+{
+  "scope": "Report-only all-potential-pair contrasts from accepted fixed-window outputs; no new inference, training, window choice or resampling",
+  "files": {
+    "results/smash_train_20261028/heldout_rn/summary.json": "1b4b797f307eccb9013a2d784c50633b91439f46540648d7cd2e03068aa62258",
+    "results/smash_train_20261028/heldout_rn/replicas.npz": "4685e3a60297d3536dc5733d2a38581e4b82b23f1d8253a4a41038270669248b",
+    "results/smash_train_20261028/heldout_rn/per_file_counts.json": "2f2f7ac1342651631d105701012776c539145166c4ae6826ad3522a239785218",
+    "results/smash_train_20261028/split/split_manifest.json": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886"
+  }
+}
