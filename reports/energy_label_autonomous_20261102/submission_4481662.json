@@ -1,0 +1,25 @@
+{
+  "schema": "label-energy-submission-receipt-v1",
+  "job_id": "4481662",
+  "observed_moscow": "2026-11-02T22:33:04+03:00",
+  "source_sums_sha256": "cc7a4fb5e56c7744177e5e69d85ecb6b9896246eecf5ae04294d207b4008a8cb",
+  "plan_sha256": "0d1806c951944a7741e4f8ccaffa8b66fd031f7ad04846c66ad38ea06cacab08",
+  "code_commit": "1f245149422e16de480d8d9551dc38b08388bc21",
+  "source_hash_check": "passed on cluster immediately before submission",
+  "authorization": "rocky_authorization.json",
+  "effective_slurm": {
+    "job_id": "4481662",
+    "partition": "rocky",
+    "qos": "normal",
+    "state": "RUNNING",
+    "node": "cn-036",
+    "cpus": 4,
+    "gpus": 0,
+    "time_limit": "00:15:00",
+    "submit_time_moscow": "2026-11-02T22:32:54+03:00",
+    "start_time_moscow": "2026-11-02T22:33:02+03:00",
+    "submission_receipt": "/home/vbocharnikov/hgnd_experiments/energy_label_20261102_cc7a4fb5e5_receipts/submission_smoke_rocky.txt"
+  },
+  "scope": "S-only label census, first fixed nine-content CPU phase; no training or model scoring",
+  "full_submitted": false
+}
