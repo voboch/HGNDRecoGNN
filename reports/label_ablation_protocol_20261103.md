@@ -5,8 +5,11 @@
 Статус: target adapter и тонкий runner реализованы; CPU submission GO после
 проверки immutable source. Preparation4482805 завершена и принята на 578.
 Конкретный GPU submission preflight дал GO; поданы 4482848 и 4482849:
-9 моделей по 30 эпох сегментами 15+15. На 14:13 МСК обе arrays PENDING;
-4482849 ждёт afterok всей 4482848. Завершённых новых моделей нет.
+9 моделей по 30 эпох сегментами 15+15. На 21:15 МСК задачи 0–5 в 4482848
+завершили первые 15 эпох; архивы и mirror SHA приняты. Задачи 6/7 выполняются,
+8 ждёт лимита array; 4482849 ждёт afterok всей 4482848. Завершённых
+30-epoch моделей нет. Actual receipt-проверка:
+`label_ablation_20261103/segment1_0_5_acceptance_20261103.json`.
 
 ## Научная переменная и ожидаемое направление
 
@@ -100,8 +103,9 @@ paired errors обязательны, prevalence не ограничивает t
 старом validate_arms. Это рекомендации по реализации, не GO на ещё
 не написанный на тот момент GPU runner.
 
-03.11: [конкретная реализация](label_ablation_20261103/implementation.md)
+03.11, до submission: [конкретная реализация](label_ablation_20261103/implementation.md)
 получила Code GO после read-only проверки target-only patch, общих references
 и coherent 15+15 reuse. Выполнены AST/SHA проверки, без дополнительных tests
-и model calls. CPU preparation всех 578 ещё не выполнялась; submission GO
-для будущих source package/Slurm/resources этим не выдан.
+и model calls. Этот Code GO предшествовал preparation и не заменял
+submission review. Позднее CPU и конкретные GPU submissions получили
+отдельные GO; preparation 4482805 принята, arrays 4482848/4482849 уже поданы.
