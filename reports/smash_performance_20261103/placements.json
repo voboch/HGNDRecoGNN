@@ -1,0 +1,209 @@
+[
+  {
+    "page": 2,
+    "x": 43.0,
+    "y": 567.4897637795277,
+    "width": 492.48,
+    "height": 194.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/20_crossfit.pdf"
+  },
+  {
+    "page": 5,
+    "x": 43.0,
+    "y": 387.4897637795277,
+    "width": 492.48,
+    "height": 374.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/01_primary_spectra.pdf"
+  },
+  {
+    "page": 6,
+    "x": 43.0,
+    "y": 423.4897637795277,
+    "width": 492.48,
+    "height": 338.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/02_common_cluster_spectra.pdf"
+  },
+  {
+    "page": 7,
+    "x": 43.0,
+    "y": 423.4897637795277,
+    "width": 492.48,
+    "height": 338.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/03_selected_A1.pdf"
+  },
+  {
+    "page": 8,
+    "x": 43.0,
+    "y": 423.4897637795277,
+    "width": 492.48,
+    "height": 338.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/04_selected_B1.pdf"
+  },
+  {
+    "page": 9,
+    "x": 43.0,
+    "y": 286.6897637795277,
+    "width": 492.48,
+    "height": 475.2,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/05_roc_pr.pdf"
+  },
+  {
+    "page": 10,
+    "x": 43.0,
+    "y": 517.0897637795276,
+    "width": 492.48,
+    "height": 244.8,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/06_score_distributions.pdf"
+  },
+  {
+    "page": 11,
+    "x": 43.0,
+    "y": 394.6897637795277,
+    "width": 492.48,
+    "height": 367.2,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/10_cluster_size.pdf"
+  },
+  {
+    "page": 12,
+    "x": 43.0,
+    "y": 387.4897637795277,
+    "width": 492.48,
+    "height": 374.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/07_energy_mc_positive.pdf"
+  },
+  {
+    "page": 13,
+    "x": 43.0,
+    "y": 387.4897637795277,
+    "width": 492.48,
+    "height": 374.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/08_energy_selected_positive.pdf"
+  },
+  {
+    "page": 14,
+    "x": 43.0,
+    "y": 409.0897637795277,
+    "width": 492.48,
+    "height": 352.8,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/09_energy_selection.pdf"
+  },
+  {
+    "page": 15,
+    "x": 43.0,
+    "y": 409.0897637795277,
+    "width": 492.48,
+    "height": 352.8,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/11_migration.pdf"
+  },
+  {
+    "page": 16,
+    "x": 43.0,
+    "y": 344.2897637795277,
+    "width": 492.48,
+    "height": 417.6,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/12_head_histories.pdf"
+  },
+  {
+    "page": 17,
+    "x": 43.0,
+    "y": 344.2897637795277,
+    "width": 492.48,
+    "height": 417.6,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/13_threshold_scans.pdf"
+  },
+  {
+    "page": 18,
+    "x": 43.0,
+    "y": 344.2897637795277,
+    "width": 492.48,
+    "height": 417.6,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/14_calibration_validation.pdf"
+  },
+  {
+    "page": 19,
+    "x": 43.0,
+    "y": 351.4897637795277,
+    "width": 492.48,
+    "height": 410.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/15_delta_bias.pdf"
+  },
+  {
+    "page": 20,
+    "x": 43.0,
+    "y": 509.8897637795277,
+    "width": 492.48,
+    "height": 252.0,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/21_bias_folds.pdf"
+  },
+  {
+    "page": 21,
+    "x": 43.0,
+    "y": 495.4897637795277,
+    "width": 492.48,
+    "height": 266.4,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/16_heldout_ladder.pdf"
+  },
+  {
+    "page": 22,
+    "x": 43.0,
+    "y": 129.6897637795277,
+    "width": 492.48,
+    "height": 352.8,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/17_all_potential_pairs.pdf"
+  },
+  {
+    "page": 23,
+    "x": 43.0,
+    "y": 409.0897637795277,
+    "width": 492.48,
+    "height": 352.8,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/18_label_floor_scan.pdf"
+  },
+  {
+    "page": 24,
+    "x": 43.0,
+    "y": 502.6897637795277,
+    "width": 492.48,
+    "height": 259.2,
+    "scale": 1.0,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/19_soft_origins.pdf"
+  },
+  {
+    "page": 27,
+    "x": 43.0,
+    "y": 396.09034502952767,
+    "width": 351.5245,
+    "height": 365.79941875000003,
+    "scale": 1.55,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/22_census.pdf"
+  },
+  {
+    "page": 27,
+    "x": 43.0,
+    "y": 88.4161262795277,
+    "width": 348.83621875,
+    "height": 271.27421875,
+    "scale": 1.55,
+    "file": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/reports/smash_performance_20261103/figures/23_split_precision.pdf"
+  }
+]

@@ -1,5 +1,12 @@
 # Training on corrected SMASH: results
 
+**Expanded report, 2026-11-03:** [full SMASH performance report](smash_performance_20261103.md)
+and [PDF](../output/pdf/hgnd_smash_performance_20261103.pdf). It adds primary
+n/p and cluster spectra, 23 diagnostic figure families, every frozen cut,
+checkpoint/calibration selection, all potential-pair contrasts and the accepted
+S286 label census. It also states the limits of fold attribution and calibration
+improvements explicitly. The original 29 October results below remain preserved.
+
 Results of the campaign defined in `reports/smash_train_protocol_20261028.md`,
 2026-10-29, branch `smash-train-20261028`. Every number below comes from
 `results/smash_train_20261028/results_table.json`, written by

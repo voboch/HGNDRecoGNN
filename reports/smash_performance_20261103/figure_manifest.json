@@ -1,0 +1,167 @@
+[
+  {
+    "name": "01_primary_spectra",
+    "title": "MC-truth primary spectra",
+    "scope": "Full certified primary files, not processed spans or observed clusters",
+    "uncertainty": "SD of 400 whole-file resamples; densities divide by exact bin width",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "02_common_cluster_spectra",
+    "title": "Common-positive cluster energy spectra",
+    "scope": "Same MC-positive candidates; common denominator; three models averaged descriptively",
+    "uncertainty": "File SD of the mean fixed-model histogram; histogram ratio is not detector efficiency",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "03_selected_A1",
+    "title": "Selected spectra A1",
+    "scope": "C2/C3 identical positive IDs; C4 adds native-label negatives; no B selection",
+    "uncertainty": "400 shared file draws; common denominator; full-range C2/C3 integrals checked",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "04_selected_B1",
+    "title": "Selected spectra B1",
+    "scope": "C2/C3 identical positive IDs; C4 adds native-label negatives; no B selection",
+    "uncertainty": "400 shared file draws; common denominator; full-range C2/C3 integrals checked",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "05_roc_pr",
+    "title": "Test ROC and precision-recall",
+    "scope": "Each fold/seed separately; no pooled AUC or test retuning",
+    "uncertainty": "400 potential-by-fold file draws; displayed interpolation of fixed 401-grid; accepted AUC/AP remain exact",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "06_score_distributions",
+    "title": "Score distributions",
+    "scope": "Fold-separated MC classes; background target zero is not a physical energy",
+    "uncertainty": "400 file draws; equal three-model average",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "07_energy_mc_positive",
+    "title": "Test energy response mc_positive",
+    "scope": "Target is maximum initial MCTrack energy; selected populations differ by arm",
+    "uncertainty": "Mean \u00b1 SD of 3 seed metrics; median/width sampling error not estimated; MIN_BIN=25",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "08_energy_selected_positive",
+    "title": "Test energy response selected_positive",
+    "scope": "Target is maximum initial MCTrack energy; selected populations differ by arm",
+    "uncertainty": "Mean \u00b1 SD of 3 seed metrics; median/width sampling error not estimated; MIN_BIN=25",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "09_energy_selection",
+    "title": "Energy-dependent efficiency and purity",
+    "scope": "Mean of fixed-model ratios; actual MC-positive candidate denominator",
+    "uncertainty": "400 shared whole-file draws",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "10_cluster_size",
+    "title": "Quality versus cluster size",
+    "scope": "All accepted test folds; candidate-level metrics",
+    "uncertainty": "Mean \u00b1 SD over three seed-labelled fold averages",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "11_migration",
+    "title": "Cluster energy migration",
+    "scope": "All MC-positive candidates, every seed; row sum can be <1 because reco tails are tabulated",
+    "uncertainty": "Finite-sample conditional frequencies; no per-cell CI, not an unfolded response",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "17_all_potential_pairs",
+    "title": "Every potential pair",
+    "scope": "Accepted processed-span truth and reconstructed C4; same saved paired replicas",
+    "uncertainty": "400 shared saved whole-file draws",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "18_label_floor_scan",
+    "title": "S286 label-floor scan",
+    "scope": "Accepted S286 observations, no score/model calls",
+    "uncertainty": "400 potential-by-part shared group draws",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "19_soft_origins",
+    "title": "S286 soft targets and origins",
+    "scope": "Qualifying-hit category, not full-cluster purity or primary efficiency",
+    "uncertainty": "400 shared group draws",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "12_head_histories",
+    "title": "Validation head histories",
+    "scope": "Native MC labels/targets; independent per-head first argmin",
+    "uncertainty": "Three fixed seed trajectories, no CI",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "13_threshold_scans",
+    "title": "Validation threshold scans",
+    "scope": "401 fixed score cuts; first count purity >=0.70; potentials pooled",
+    "uncertainty": "Three fixed seed curves, no CI",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "14_calibration_validation",
+    "title": "Validation calibration response",
+    "scope": "Accepted maps reapplied, no fit; all positive validation candidates",
+    "uncertainty": "Three fixed-model curves; sampling error not estimated",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "15_delta_bias",
+    "title": "Potential-dependent test bias",
+    "scope": "All MC-positive test clusters, each seed and both potential differences",
+    "uncertainty": "400 whole-file bootstrap SD",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "16_heldout_ladder",
+    "title": "Truth-to-reconstruction ladder",
+    "scope": "Retrospective cross-fit; processed-span primary truth and cluster stages",
+    "uncertainty": "400 shared whole-file draws; paired B1-A1",
+    "source": "counts.npz / accepted analysis summary"
+  },
+  {
+    "name": "20_crossfit",
+    "title": "Cross-fit roles",
+    "scope": "split scheme, no measurement",
+    "uncertainty": "exact role diagram",
+    "source": "reports/progress_20261021_20261029/figures/02_crossfit",
+    "source_pdf_sha256": "e1ad2744160f1a79ef148bfecf00b4f23e3c6b0896bef7c5cb2e5457faf76dcb"
+  },
+  {
+    "name": "21_bias_folds",
+    "title": "Energy bias by fold",
+    "scope": "test MC-positive [1.75,3) window",
+    "uncertainty": "file SD and seed spread separated",
+    "source": "reports/progress_20261021_20261029/figures/08_bias_folds",
+    "source_pdf_sha256": "7081902c5df583607ebb00844374688fdd2374296745e80b582ea67509779e5a"
+  },
+  {
+    "name": "22_census",
+    "title": "Input-group census",
+    "scope": "Content/event grouping",
+    "uncertainty": "exact finite inventory counts",
+    "source": "results/smash_train_20261028/figures/fig_census_shared_records",
+    "source_pdf_sha256": "69b4d0a7379687a0623e27f8a6087b0b7da079ea5cebf2bdb517530fb1932933"
+  },
+  {
+    "name": "23_split_precision",
+    "title": "Split design precision projection",
+    "scope": "design diagnostic before training",
+    "uncertainty": "projected counting precision; not measured model uncertainty",
+    "source": "results/smash_train_20261028/figures/fig_split_projected_sd",
+    "source_pdf_sha256": "2e07eddccde7c19be2134931e2799f5ccc9e1481c10cd526b0b37183909e834d"
+  }
+]
