@@ -17,12 +17,12 @@
   "code_files_sha256": {
     "data/label_ablation.py": "84b7199f59ef84396ac13bae8550fbec5456f930156cc38d0aa963d794f39183",
     "scripts/label_ablation_prepare.py": "cc5be1c7952be2211539789926b90a034365679bff276a2843cf09377823d788",
-    "scripts/label_ablation_train.py": "538441078aaa8dae5ba45e3b18ac450eade58d3da02fb0bd604035457cd22091"
+    "scripts/label_ablation_train.py": "81dc4144dc8302b3bd1d23b222451e36e2152dedc953e42af8ad406d9c563990"
   },
   "actual_slurm": {
     "4481662": "COMPLETED/0:0",
     "4481705": "COMPLETED/0:0",
     "new_campaign_jobs_in_queue": []
   },
-  "next_action": "Freeze CPU launch plan/Slurm/resources and immutable source; submission preflight before preparing all578 target patches; GPU9runs30epochs only after accepted patches; no new jobs yet"
+  "next_action": "Freeze source with CPU/GPU wrappers; concrete CPU submission preflight and submit one 45min CPU preparation; GPU review after accepted patches"
 }

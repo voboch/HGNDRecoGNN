@@ -1,0 +1,85 @@
+{
+  "schema": "smash-label-ablation-launch-v1",
+  "date": "2026-11-03",
+  "scope": "One no-floor arm; all578 train/validation target patches; no F outcomes or baseline retraining",
+  "split": {
+    "path": "../../results/smash_train_20261028/split/split_manifest.json",
+    "sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886"
+  },
+  "prepare": {
+    "path": "../../results/smash_train_20261028/prepare_4465983/summary.json",
+    "sha256": "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133"
+  },
+  "prepare_bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+  "prepare_bundle_manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+  "authorization": {
+    "path": "../energy_label_autonomous_20261102/rocky_authorization.json",
+    "sha256": "056092203b0ef1271c19ee33351897397e9cc37ac65c2695b8fd46f0464acde0"
+  },
+  "cpu_resources": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_d",
+    "cpus": 4,
+    "gpus": 0,
+    "mem": "0",
+    "time": "00:45:00",
+    "workers": 2,
+    "jobs_max": 1
+  },
+  "gpu_resources_proposed": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_a",
+    "cpus": 4,
+    "gpus": 1,
+    "mem": "0",
+    "time_per_segment": "02:45:00",
+    "array": "0-8%2",
+    "epochs_per_model": 30,
+    "segments_epochs": [
+      15,
+      15
+    ],
+    "segment2_dependency": "afterok on entire segment1 array; never overlap arrays",
+    "submission_gate": "accepted patches and separate concrete submission review required"
+  },
+  "baseline": {
+    "0": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_0/complete.json",
+      "sha256": "a6d739265cb2f7054b6acf849ba7cd70cdb2055a3fc7c25626c412b161c897f1"
+    },
+    "1": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_1/complete.json",
+      "sha256": "888d3dcc08aee331deedf273ef1bbbb2c223d2845ae0e7dadb948d468e39438d"
+    },
+    "2": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_2/complete.json",
+      "sha256": "ed6a363499f60b57a90e90f6560b97f796aeb2e0efcbe7fe89713ab2b01ba1a9"
+    },
+    "3": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_3/complete.json",
+      "sha256": "dbf60114cd9a99563450e653a2106dc1d4935a432bb2ba74e6b42baf01f909f5"
+    },
+    "4": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_4/complete.json",
+      "sha256": "f6db82e3892936611917a1737bb4ded2d429f57745d9a25a85dd7310f5eea0f9"
+    },
+    "5": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_5/complete.json",
+      "sha256": "bae87176847351cb3df7a4159128d11048cb3c93a8c58489074435abf9640a7b"
+    },
+    "6": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_6/complete.json",
+      "sha256": "c6100fdece0e41c79c64a852e19cd5a6b48e15fb54ad74ce7a5daf832895edfd"
+    },
+    "7": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_7/complete.json",
+      "sha256": "4511bc65408863737918cf1e1be8c6f407ff47dedd169c7a0ff4852fdc080aec"
+    },
+    "8": {
+      "path": "../../results/smash_train_20261028/train_4466016/task_8/complete.json",
+      "sha256": "634f5c8331e14c7b7aa6e062ed25a226afda825a93f8ea84037e9adc3b5d93f0"
+    }
+  }
+}

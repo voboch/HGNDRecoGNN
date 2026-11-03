@@ -124,6 +124,9 @@ def train(args):
         prep.write_json(args.output / "segment.json", {"state": "planned_boundary", "complete_seed": False,
                         "epochs_committed": 15, "identity": identity, "execution": execution,
                         "mirror_state_sha256": prep.sha(args.mirror / "state.json")})
+        prep.write_json(args.output / "summary.json", {"state": "complete", "phase": "planned_segment_1",
+                        "scientific_seed_complete": False, "epochs_committed": 15,
+                        "requires_continuation": True, "identity": identity, "execution": execution})
         return
     model, spec, plan, selection, hashes, run = result
     checkpoint_dir = args.output / "train/checkpoints"
@@ -156,6 +159,10 @@ def train(args):
                                         "calibration": None, "cut_refitted": False},
                     "validation_only": True, "validation_metrics": metrics, "predictions": export,
                     "test_outcomes_opened": False, "soft_calibration_fitted": False})
+    prep.write_json(args.output / "summary.json", {"state": "complete", "phase": "training_30_epochs",
+                    "scientific_seed_complete": True, "epochs_committed": 30,
+                    "complete_sha256": prep.sha(args.output / "complete.json"), "identity": identity,
+                    "execution": execution})
 
 
 if __name__ == "__main__":
