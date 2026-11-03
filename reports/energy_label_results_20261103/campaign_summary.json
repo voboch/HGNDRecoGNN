@@ -1,0 +1,12 @@
+{
+  "schema": "label-energy-campaign-v1",
+  "state": "complete",
+  "phase": "full",
+  "files": 286,
+  "all_native_replays_exact": true,
+  "direct_primary_proof_bound": true,
+  "plan_sha256": "0d1806c951944a7741e4f8ccaffa8b66fd031f7ad04846c66ad38ea06cacab08",
+  "source_sums_sha256": "cc7a4fb5e56c7744177e5e69d85ecb6b9896246eecf5ae04294d207b4008a8cb",
+  "seconds": 87.76948851300403,
+  "scope": "S-only label census, no training/inference or report-set scan"
+}

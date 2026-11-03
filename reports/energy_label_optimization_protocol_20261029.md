@@ -275,3 +275,17 @@ Converter `ncx_refactor/Convert2Csv.C:381` сохраняет начальную
 связанного MCTrack; прежнее описание как энергии транспортированного хита
 уточнено. Origin ledger повторно использует exact direct-primary binding,
 без новой полной primary-редукции и без утверждения о secondary genealogy.
+
+## Результат A и исполнение B, 03.11.2026
+
+Полный S286 census4481705 принят; результаты и ограничения сохранены в
+`energy_label_results_20261103/README.md`. Порог0,3 исключал5480observed
+positive-кластеров, включая3500direct-primary-only по qualifying-хитам.
+Все добавленные targets строго ниже0,3ГэВ. Решение — один disabled arm;
+промежуточный threshold не выбирается.
+
+Прежняя оценка бюджета около20GPU·ч на новый arm заменена проверкой
+полных непрерванных baseline receipts:27–28GPU·ч fit, примерно30–33GPU·ч
+с validation/I/O. Старые короткие resumed-segment времена не являются
+полной стоимостью30эпох. Конкретный план B и 15+15plannedcontinuation:
+`label_ablation_protocol_20261103.md`. Новых GPU-задач пока нет.

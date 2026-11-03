@@ -1,0 +1,61 @@
+{
+  "state": "accepted",
+  "date": "2026-11-03",
+  "job": "4481705",
+  "slurm": "COMPLETED/0:0,304s,cn-040",
+  "source_sums_sha256": "cc7a4fb5e56c7744177e5e69d85ecb6b9896246eecf5ae04294d207b4008a8cb",
+  "plan_sha256": "0d1806c951944a7741e4f8ccaffa8b66fd031f7ad04846c66ad38ea06cacab08",
+  "archive_sha256": "852de9c2bd0d257d051aac6d9cdb72c254d4474e64dedb503dc215d6ea7e2eb2",
+  "manifest_sha256": "8202428cbd94241e503ab2483489f5f6d3fc83cedabc3c60547d525a2858f301",
+  "accepted_files": 286,
+  "checks": [
+    "all archive/member/summary SHA verified",
+    "split S286 membership exact",
+    "all observation/native labels/float32 targets exact in immutable runner",
+    "direct-primary census proof bound",
+    "origin and histogram conservation",
+    "all new targets strictly below0.3",
+    "accepted prevalence and bootstrap SD replayed",
+    "same whole-group draws for origin and energy diagnostics"
+  ],
+  "additional_unit_tests_run": false,
+  "reviews": {
+    "physics": "GO for report and one registered no-floor arm; not established Rn remedy",
+    "statistics": "GO for census report; composition is qualifying-hit category, not efficiency or automatic background",
+    "technical": "implementation advice only, not submission GO for an unwritten runner",
+    "final_text": "Statistics GO; S-only invariance boundary caveat included in protocol and report"
+  },
+  "visual_inspection": "Both figures inspected: all panels, labels, markers and errors visible; no clipping/overlap; soft_origins bounds asserted; PDF text bounds checked",
+  "fonts": [
+    {
+      "file": "label_counts.pdf",
+      "font": "BMQQDV+DejaVuSans",
+      "type": "Type0",
+      "extension": "ttf",
+      "embedded_bytes": 17036
+    },
+    {
+      "file": "soft_origins.pdf",
+      "font": "BMQQDV+DejaVuSans",
+      "type": "Type0",
+      "extension": "ttf",
+      "embedded_bytes": 17788
+    }
+  ],
+  "access_note": "First local manifest read got EACCES; one repeat matched expected SHA. No job retry.",
+  "sha256": {
+    "audit_summary.json": "117aa68461574987513c742eecba1e90648b37f5a5c7d741682aaa86b8983736",
+    "campaign_summary.json": "a328ab5adbf23d8623548c27e2f0d49f8bc036aa385ed1ec0f1af26caf72669d",
+    "publication_receipt.json": "d1c770506dedb3f529f51ef7c90c4bb23b2f03ed0003066a0863b1b092c2f339",
+    "inputs.json": "e8cccb5979757229f21079780dd52d71621d5e70d44c226534ba23a341d00f1a",
+    "results.json": "815ef71ef431501887f6228be7b32314c820f08d68c211d4ae59f0b87df8e735",
+    "table.md": "3f3567385fe627c561b8dd169fbf83cd73932ed921b9f7679e730348f0811766",
+    "build.py": "fa7db34d3f427b2f6428d003b942da2337a65a22ecfd7be1892ef7b87f2995ad",
+    "label_counts.pdf": "afc5aa263cbce1892f06df249e2f5aed3a1c3a70983e277ad68b0344e4cd0014",
+    "label_counts.png": "75b410d93d1aff3a87d63b44c8ef910cbaac09654581b61e54a0b006716b7a28",
+    "soft_origins.pdf": "422af7fd328bb375b65165b2d088cadced4c41ae5153a39b094491a9a7854f97",
+    "soft_origins.png": "fee1d4433a97c5f94bb76497233360e6addf545aca7a5a39bc6f5603b7967ff8",
+    "figure_bounds.json": "26144c25d4f3529aae0867ef772ae90c88f06cf930292cd96f71d70638675a1e",
+    "README.md": "bfebca1b133e903efccd0d82e85bba8fe2df5cd84a08ff552efaa8acc069bad3"
+  }
+}

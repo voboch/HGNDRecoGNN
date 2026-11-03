@@ -1,0 +1,15 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/energy_label_20261102_cc7a4fb5e5/full_4481705",
+  "manifest_sha256": "8202428cbd94241e503ab2483489f5f6d3fc83cedabc3c60547d525a2858f301",
+  "archive_sha256": "852de9c2bd0d257d051aac6d9cdb72c254d4474e64dedb503dc215d6ea7e2eb2",
+  "archive_bytes": 2959360,
+  "files": 4,
+  "summary_files": {
+    "audit/summary.json": "117aa68461574987513c742eecba1e90648b37f5a5c7d741682aaa86b8983736",
+    "summary.json": "a328ab5adbf23d8623548c27e2f0d49f8bc036aa385ed1ec0f1af26caf72669d"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}

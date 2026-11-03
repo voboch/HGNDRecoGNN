@@ -1,0 +1,313 @@
+{
+  "state": "complete",
+  "scope": "S-only native-graph label census; direct-source proof if bound; no full ancestry, model calls, T1 or optimizer result",
+  "files": 286,
+  "source_sha256": {
+    "audit_summary.json": "117aa68461574987513c742eecba1e90648b37f5a5c7d741682aaa86b8983736",
+    "campaign_summary.json": "a328ab5adbf23d8623548c27e2f0d49f8bc036aa385ed1ec0f1af26caf72669d",
+    "inputs.json": "e8cccb5979757229f21079780dd52d71621d5e70d44c226534ba23a341d00f1a",
+    "publication_receipt.json": "d1c770506dedb3f529f51ef7c90c4bb23b2f03ed0003066a0863b1b092c2f339"
+  },
+  "draws": {
+    "n": 400,
+    "seed": 20261029,
+    "strata": "potential x even part"
+  },
+  "by_potential": {
+    "0": {
+      "groups": 98,
+      "clusters": 613598,
+      "observed_hits": 1990779,
+      "native_positive": 109778,
+      "no_floor_positive": 111664,
+      "added_positive": 1886,
+      "added_direct_only": 1194,
+      "added_nonprimary_only": 692,
+      "added_singletons": 1384,
+      "added_vs_native_percent": 1.7180127165734482,
+      "delta_positive_fraction_points": [
+        0.3073673643004052,
+        0.19458994325274853,
+        0.1127774210476566
+      ],
+      "delta_positive_fraction_bootstrap_sd_points": [
+        0.0075516096876682036,
+        0.005801180417058208,
+        0.00470304912090296
+      ],
+      "new_target_histogram": [
+        287,
+        563,
+        1036,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_hits_t_ge_35ns": 128493,
+      "floor_scan": {
+        "positive_fraction_percent": [
+          18.198234022927064,
+          18.15146072835961,
+          18.05970684389454,
+          17.890866658626656,
+          17.65308883014612,
+          17.31850494949462
+        ],
+        "bootstrap_sd_percent": [
+          0.05799995118255183,
+          0.0578196475810115,
+          0.05751145412428829,
+          0.057422994710596933,
+          0.057273877350461966,
+          0.05749127562306556
+        ],
+        "paired_delta_vs_native_points": [
+          0.3073673643004078,
+          0.26059406973295296,
+          0.16884018526788225,
+          0.0,
+          -0.2377778284805352,
+          -0.5723617091320357
+        ],
+        "paired_delta_sd_points": [
+          0.007551609687668222,
+          0.006190453959304594,
+          0.005423686260988363,
+          0.0,
+          0.006136694965832789,
+          0.009389891723401019
+        ]
+      }
+    },
+    "18": {
+      "groups": 100,
+      "clusters": 627854,
+      "observed_hits": 2035927,
+      "native_positive": 112563,
+      "no_floor_positive": 114475,
+      "added_positive": 1912,
+      "added_direct_only": 1227,
+      "added_nonprimary_only": 685,
+      "added_singletons": 1429,
+      "added_vs_native_percent": 1.6986043371267645,
+      "delta_positive_fraction_points": [
+        0.30452939696171405,
+        0.19542759941005394,
+        0.10910179755166009
+      ],
+      "delta_positive_fraction_bootstrap_sd_points": [
+        0.007062976357870164,
+        0.005451696317117444,
+        0.00420785098231799
+      ],
+      "new_target_histogram": [
+        276,
+        599,
+        1037,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_hits_t_ge_35ns": 131241,
+      "floor_scan": {
+        "positive_fraction_percent": [
+          18.23274200689969,
+          18.18878274248472,
+          18.093378396888447,
+          17.92821260993798,
+          17.69519665399918,
+          17.370280351801533
+        ],
+        "bootstrap_sd_percent": [
+          0.055166116731536624,
+          0.05470566542758038,
+          0.054112352926924664,
+          0.0539297253741212,
+          0.054027079787405,
+          0.05171941118123908
+        ],
+        "paired_delta_vs_native_points": [
+          0.304529396961712,
+          0.26057013254673933,
+          0.16516578695046746,
+          0.0,
+          -0.2330159559388001,
+          -0.5579322581364465
+        ],
+        "paired_delta_sd_points": [
+          0.007062976357870149,
+          0.00642731843090519,
+          0.005117427748320054,
+          0.0,
+          0.00560192463270955,
+          0.009315591548815238
+        ]
+      }
+    },
+    "90": {
+      "groups": 88,
+      "clusters": 556773,
+      "observed_hits": 1807234,
+      "native_positive": 99717,
+      "no_floor_positive": 101399,
+      "added_positive": 1682,
+      "added_direct_only": 1079,
+      "added_nonprimary_only": 603,
+      "added_singletons": 1274,
+      "added_vs_native_percent": 1.6867735692008383,
+      "delta_positive_fraction_points": [
+        0.30209798248119074,
+        0.1937953169424523,
+        0.10830266553873841
+      ],
+      "delta_positive_fraction_bootstrap_sd_points": [
+        0.007301611399526389,
+        0.006142486387728958,
+        0.004726425775247419
+      ],
+      "new_target_histogram": [
+        296,
+        564,
+        822,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_hits_t_ge_35ns": 116692,
+      "floor_scan": {
+        "positive_fraction_percent": [
+          18.211910419506694,
+          18.15874692199514,
+          18.05744890646637,
+          17.9098124370255,
+          17.67596489053887,
+          17.351954925975217
+        ],
+        "bootstrap_sd_percent": [
+          0.05847292620156892,
+          0.058752736984043284,
+          0.05921386998665049,
+          0.05902661414348719,
+          0.05804918950616915,
+          0.05516803444643563
+        ],
+        "paired_delta_vs_native_points": [
+          0.30209798248119313,
+          0.248934484969638,
+          0.14763646944086872,
+          0.0,
+          -0.2338475464866292,
+          -0.5578575110502833
+        ],
+        "paired_delta_sd_points": [
+          0.007301611399526381,
+          0.006573450097414509,
+          0.005375332565665301,
+          0.0,
+          0.005764093435537411,
+          0.009026415308938664
+        ]
+      }
+    }
+  },
+  "total": {
+    "clusters": 1798225,
+    "observed_hits": 5833940,
+    "native_positive": 322058,
+    "no_floor_positive": 327538,
+    "added_positive": 5480,
+    "added_direct_only": 3500,
+    "added_nonprimary_only": 1980,
+    "added_singletons": 4087,
+    "observed_hits_t_ge_35ns": 376426,
+    "added_vs_native_percent": 1.7015568624285067,
+    "new_target_histogram": [
+      859,
+      1726,
+      2895,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "new_target_fraction_points": [
+      0.04776932808741954,
+      0.09598353932349957,
+      0.16099208942151289,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "new_target_fraction_bootstrap_sd_points": [
+      0.0015279132279542285,
+      0.0020679332775480007,
+      0.0029609610993502115,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "observed_time_min_max_ns": [
+      23.79259037222206,
+      100.25166029577028
+    ]
+  }
+}
