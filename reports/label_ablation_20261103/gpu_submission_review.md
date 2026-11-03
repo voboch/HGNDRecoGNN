@@ -6,20 +6,20 @@
 patches - `prepare_4482805_acceptance.json`. Это один no-floor arm, девять
 моделей, по 30 суммарных epochs; baseline не повторяется.
 
-Source262, wrapper SHA, manifest/archive/summary hashes patches проверены
-независимо и совпадают с plan. CPU4482805 принят на всех578, S286 replay
+Source 262, wrapper SHA, manifest/archive/summary hashes patches проверены
+независимо и совпадают с plan. CPU4482805 принят на всех 578, S286 replay
 совпадает; superset и common targets сохранены. Wrapper передаёт source,
 input, patches, baseline/fold/seed и стабильный mirror без job IDs в identity.
 
-Type_a V100,1GPU/4CPU,mem0,rocky/normal,2:45 на segment,0-8%2,no-requeue.
+Type_a V100,1 GPU/4 CPU,mem0,rocky/normal,2:45 на segment,0-8%2,no-requeue.
 Вторая array должна иметь **afterok:<ID всей первой array>**, без task
-suffix или aftercorr. Две arrays тогда не пересекаются; максимум2 задачи.
-30-33GPU·ч - прежний прогноз с validation/I/O. Перед подачами проверить
+suffix или aftercorr. Две arrays тогда не пересекаются; максимум 2 задачи.
+30-33 GPU·ч - прежний прогноз с validation/I/O. Перед подачами проверить
 отсутствие дубликатов; до первой - отсутствие старого mirror. Никакого
 скрытого retry, второго arm или продления epochs.
 
 Epoch15 marker не является complete seed; continuation требует coherent
-next_epoch15 и совпадающие config/RNG/history, затем total30. Экспорт -
+next_epoch 15 и совпадающие config/RNG/history, затем total 30. Экспорт -
 только validation нового arm с обеими reference labels и candidate keys,
 frozen baseline cut и raw energy. Cut/calibration не фитятся; F не оценивается.
 Human waiver явный, GPU-smoke PASS не заявляется.

@@ -1,0 +1,89 @@
+{
+  "submissions": [
+    {
+      "state": "submitted",
+      "segment": 1,
+      "job_id": "4482848",
+      "stdout": "4482848",
+      "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87mРеконструкция нейтронов в детекторе высокой гранулярности hgnd на установке bm@n. Продление (2026 год)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "returncode": 0,
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch"
+      ],
+      "AB_SEGMENT": "1",
+      "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+      "plan_sha256": "b63e8fb0bcff8e6bf92533fa2e6120f3734eea8c6d67668278d773137921b3ca",
+      "patch_summary_sha256": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac",
+      "submitted_at": "2026-11-03T11:11:21.933981+00:00",
+      "whole_first_array_dependency": null,
+      "one_submission_only": true
+    },
+    {
+      "state": "submitted",
+      "segment": 2,
+      "job_id": "4482849",
+      "stdout": "4482849",
+      "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87mРеконструкция нейтронов в детекторе высокой гранулярности hgnd на установке bm@n. Продление (2026 год)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+      "returncode": 0,
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--dependency=afterok:4482848",
+        "--kill-on-invalid-dep=yes",
+        "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch"
+      ],
+      "AB_SEGMENT": "2",
+      "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+      "plan_sha256": "b63e8fb0bcff8e6bf92533fa2e6120f3734eea8c6d67668278d773137921b3ca",
+      "patch_summary_sha256": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac",
+      "submitted_at": "2026-11-03T11:11:21.998284+00:00",
+      "whole_first_array_dependency": "4482848",
+      "one_submission_only": true
+    }
+  ],
+  "squeue": "4482848_[0-8%2]|hgnd-label-nofloor|PENDING|(Priority)|2026-11-03T14:37:06\n4482849_[0-8%2]|hgnd-label-nofloor|PENDING|(Dependency)|N/A\n",
+  "sacct": "4482848_[0-8%2]|PENDING|0:0|00:00:00|Unknown|Unknown\n4482849_[0-8%2]|PENDING|0:0|00:00:00|Unknown|Unknown\n",
+  "observed_at": "2026-11-03T11:13:01.843077+00:00",
+  "control": {
+    "4482848": {
+      "JobId": "4482848",
+      "ArrayJobId": "4482848",
+      "ArrayTaskId": "0-8%2",
+      "ArrayTaskThrottle": "2",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "Reason": "Priority",
+      "Dependency": "(null)",
+      "Requeue": "0",
+      "TimeLimit": "02:45:00",
+      "StartTime": "2026-11-03T14:37:06",
+      "Partition": "rocky",
+      "NumCPUs": "4",
+      "ReqTRES": "cpu=4,mem=1M,node=1,billing=4,gres/gpu=1",
+      "Features": "type_a",
+      "Command": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch",
+      "WorkDir": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts"
+    },
+    "4482849": {
+      "JobId": "4482849",
+      "ArrayJobId": "4482849",
+      "ArrayTaskId": "0-8%2",
+      "ArrayTaskThrottle": "2",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:4482848_*(unfulfilled)",
+      "Requeue": "0",
+      "TimeLimit": "02:45:00",
+      "StartTime": "Unknown",
+      "Partition": "rocky",
+      "NumCPUs": "4",
+      "ReqTRES": "cpu=4,mem=1M,node=1,billing=4,gres/gpu=1",
+      "Features": "type_a",
+      "Command": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch",
+      "WorkDir": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts"
+    }
+  }
+}

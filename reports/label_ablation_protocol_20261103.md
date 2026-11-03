@@ -3,8 +3,10 @@
 03.11.2026. Решение после S286 4481705; основание — автономное поручение
 пользователя и заранее зарегистрированное сравнение disabled против 0,3 ГэВ.
 Статус: target adapter и тонкий runner реализованы; CPU submission GO после
-проверки immutable source. Preparation4482805 завершена и принята на578.
-Конкретный GPU submission preflight дал GO; **новых GPU-задач пока нет**.
+проверки immutable source. Preparation4482805 завершена и принята на 578.
+Конкретный GPU submission preflight дал GO; поданы 4482848 и 4482849:
+9 моделей по 30 эпох сегментами 15+15. На 14:13 МСК обе arrays PENDING;
+4482849 ждёт afterok всей 4482848. Завершённых новых моделей нет.
 
 ## Научная переменная и ожидаемое направление
 
@@ -73,7 +75,7 @@ Read-only проверка исходных complete receipts обнаружил
 Эта оценка заменяет прежние 20 GPU·ч; принятые метрики baseline не меняются.
 
 Для риска отмены задач дольше 3 ч — одна заранее запланированная граница
-после 15 эпох, затем continuation ещё15 до total 30. Это не повтор обучения:
+после 15 эпох, затем continuation ещё 15 до total 30. Это не повтор обучения:
 coherent mirrored model/optimizer/scheduler/RNG/history переносятся в рамках
 той же stable identity. Job/segment IDs — только execution metadata.
 Сегмент 15 эпох ожидается около 1,5–1,6 GPU·ч pure fit; конкретный scheduler cap,

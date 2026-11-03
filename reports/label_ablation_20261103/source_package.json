@@ -1,5 +1,5 @@
 {
-  "state": "CPU_preparation_accepted_GPU_submission_review_GO",
+  "state": "CPU_preparation_accepted_GPU_arrays_submitted",
   "code_commit": "721beff8099937f2923827229e7217f0590c8cf0",
   "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
   "archive_sha256": "f08c6b78bccb6409b845633849271d4605498b6e0565e1a4226a0d025409444a",
@@ -18,5 +18,7 @@
   "CPU_submission_review": "submission_review.md",
   "remote_verification_receipt": "prepare_4482805_launch.json",
   "CPU_acceptance": "prepare_4482805_acceptance.json",
-  "GPU_submission_review": "gpu_submission_review.md"
+  "GPU_submission_review": "gpu_submission_review.md",
+  "GPU_arrays": ["4482848", "4482849"],
+  "GPU_submission_receipts": "GPU_submissions.json"
 }
