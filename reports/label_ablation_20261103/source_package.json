@@ -1,5 +1,5 @@
 {
-  "state": "remote_verified_CPU_preparation_running",
+  "state": "CPU_preparation_accepted_GPU_submission_review_GO",
   "code_commit": "721beff8099937f2923827229e7217f0590c8cf0",
   "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
   "archive_sha256": "f08c6b78bccb6409b845633849271d4605498b6e0565e1a4226a0d025409444a",
@@ -16,5 +16,7 @@
   "stage_A_source_unchanged": true,
   "CPU_prepare_job_id": "4482805",
   "CPU_submission_review": "submission_review.md",
-  "remote_verification_receipt": "prepare_4482805_launch.json"
+  "remote_verification_receipt": "prepare_4482805_launch.json",
+  "CPU_acceptance": "prepare_4482805_acceptance.json",
+  "GPU_submission_review": "gpu_submission_review.md"
 }

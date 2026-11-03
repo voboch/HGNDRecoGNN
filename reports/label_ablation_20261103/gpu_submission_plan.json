@@ -1,0 +1,70 @@
+{
+  "schema": "smash-label-ablation-GPU-submission-v1",
+  "date": "2026-11-03",
+  "scope": "One registered no-floor arm;9models,3folds x3seeds,30totalepochs per model; baseline9 not repeated; validation-only outputs, no F scoring",
+  "source": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+  "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+  "code_commit": "721beff8099937f2923827229e7217f0590c8cf0",
+  "wrapper": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch",
+  "wrapper_sha256": "26e962e187ab679e2f388792987dcfa3ea85ebe1bde18d6c6e21c588f791243a",
+  "patch_acceptance_sha256": "b930960afef40e72c6668ea6dece16a1cfdc7ec996ac2957a890e683fb796bbf",
+  "patch_archive_sha256": "a43082c5124a62ee1a9356564f123fb86627d98fd0d143eee9ceac805c03900d",
+  "env": {
+    "AB_SOURCE": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+    "AB_CAMPAIGN": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1",
+    "AB_RECEIPTS": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+    "AB_PATCH_BUNDLE": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/prepare_4482805",
+    "AB_PATCH_MANIFEST_SHA": "a9850da1f9230e9d00fe9cd1c9f65381782f5be79fb893bb3c4de0a9049d05eb",
+    "AB_PATCH_SUMMARY_SHA": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac"
+  },
+  "resources": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_a",
+    "cpus_per_task": 4,
+    "gpus_per_task": 1,
+    "mem": 0,
+    "time_per_segment": "02:45:00",
+    "array": "0-8%2",
+    "simultaneous_campaign_tasks_max": 2,
+    "total_models": 9,
+    "epochs_total": 30,
+    "planned_epochs_segments": [
+      15,
+      15
+    ],
+    "automatic_requeue": false
+  },
+  "segment1": {
+    "env_extra": {
+      "AB_SEGMENT": "1"
+    },
+    "argv": [
+      "sbatch",
+      "--parsable",
+      "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch"
+    ]
+  },
+  "segment2": {
+    "env_extra": {
+      "AB_SEGMENT": "2"
+    },
+    "argv_template": [
+      "sbatch",
+      "--parsable",
+      "--dependency=afterok:<entire_segment1_array_job_id>",
+      "--kill-on-invalid-dep=yes",
+      "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1/slurm/label_ablation_train.hpc.sbatch"
+    ],
+    "dependency_scope": "whole first array; no overlap between independent %2 arrays; invalid dependency cancels never-started continuation"
+  },
+  "mirror_root": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/mirror/task_<0..8>",
+  "execution_output": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_<task>_segment_<1or2>_<jobid>",
+  "receipt_directory": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+  "test_exception": "reports/energy_label_autonomous_20261102/rocky_authorization.json; no additional unit tests or test-queue jobs; not a GPU-smoke PASS",
+  "review_status": "GO_after_actual_queue_and_Slurm_capability_checks",
+  "no_new_GPU_jobs_submitted": true,
+  "next_gate": "read-only concrete GPU submission preflight; actual Slurm/receipt check before sbatch",
+  "review": "gpu_submission_review.md",
+  "Slurm_kill_invalid_dependency_help_parse": "verified, return0, help only, no job"
+}

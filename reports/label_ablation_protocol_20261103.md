@@ -3,8 +3,8 @@
 03.11.2026. Решение после S286 4481705; основание — автономное поручение
 пользователя и заранее зарегистрированное сравнение disabled против 0,3 ГэВ.
 Статус: target adapter и тонкий runner реализованы; CPU submission GO после
-проверки immutable source. Preparation4482805 RUNNING. GPU submission gate
-после принятого patch export; **новых GPU-задач пока нет**.
+проверки immutable source. Preparation4482805 завершена и принята на578.
+Конкретный GPU submission preflight дал GO; **новых GPU-задач пока нет**.
 
 ## Научная переменная и ожидаемое направление
 

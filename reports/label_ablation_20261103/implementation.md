@@ -3,8 +3,9 @@
 03.11.2026. После принятого census A реализованы target adapter, CPU
 preparation и тонкий training/validation runner. Предзапускный технический
 критик дал **Code GO**, затем GO на один CPU submission после удалённой
-проверки hashes. CPU preparation4482805 RUNNING с13:49:54 МСК на cn-035;
-GPU submission ещё не одобрен и GPU-задач этого arm нет.
+проверки hashes. CPU preparation4482805 завершена и принята:578 patches,
+exact native replay,7:02 на cn-035. Конкретный GPU preflight дал GO на
+две плановые arrays; GPU-задач этого arm до подачи нет.
 
 ## Реализовано
 
@@ -24,9 +25,10 @@ GPU submission ещё не одобрен и GPU-задач этого arm не�
   с native/disabled references и ключами кандидатов. Common positives и
   добавленные soft объекты имеют раздельные bias/MAE, включая target=0.
 
-Exact replay/structural assertions реализованы в исполняемом пути, но их
-выполнение на всех 578 группах **ещё не состоялось**. Прошлый accepted replay
-S286 не подменяет новый preparation receipt. Stage A source/artifacts сохранены.
+Exact replay/structural assertions исполнены для всех578 при preparation;
+локально проверены579 archive members, все patch SHA/keys/targets, metadata
+исходных observations/packs и полный S286 replay. Принят новый receipt,
+прежние Stage A source/artifacts сохранены. Proof - `prepare_4482805_acceptance.json`.
 
 ## Что проверено сейчас
 
@@ -57,11 +59,12 @@ keys, поэтому ключи для его будущего соединен�
 Новый immutable source sums921e04a4e6d1... (commit721beff) проверен локально
 и удалённо:262 entries, все read-only, A не изменён. Paths/caps и CPU review
 сохранены в `source_package.json`, `launch_plan.json`, `submission_review.md`.
-Факт единственной подачи и actual RUNNING - `prepare_4482805_launch.json`.
-Дождаться 4482805 и принять exact replay/patch export всех578; повтор не
-отправлять. Затем зафиксировать SHA patches и предъявить конкретные GPU
-submissions критику:9 новых моделей, максимум2 задачи,15+15 total30,
-2:45 на segment. GPU wrapper заморожен, но GPU submission GO пока нет.
+Факт единственной CPU подачи - `prepare_4482805_launch.json`, завершение и
+приёмка - `prepare_4482805_completion.json`/`prepare_4482805_acceptance.json`.
+Повтор CPU не нужен. Patch SHA и конкретные GPU submissions закреплены в
+`gpu_submission_plan.json`, verdict - `gpu_submission_review.md`:9 новых
+моделей,максимум2 задачи,15+15 total30,2:45 на segment. Подать два массива
+с afterok ВСЕЙ первой array и наблюдать фактические receipts, без retries.
 
 Прежний бюджет остаётся: 27-28 GPU·ч pure fit, 30-33 с validation/I/O.
 30 эпох не расширяются; промежуточный floor не выбран; baseline не повторяется.

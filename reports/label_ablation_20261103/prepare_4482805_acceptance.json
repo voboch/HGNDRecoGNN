@@ -1,0 +1,35 @@
+{
+  "state": "accepted",
+  "job": "4482805",
+  "slurm": "COMPLETED/0:0,7:02,cn-035",
+  "files": 578,
+  "archive_members_verified": 579,
+  "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+  "plan_sha256": "acecffa122fe9b618f709b5840370d5e9faa191468cbc81c749b5c1d802324db",
+  "manifest_sha256": "a9850da1f9230e9d00fe9cd1c9f65381782f5be79fb893bb3c4de0a9049d05eb",
+  "archive_sha256": "a43082c5124a62ee1a9356564f123fb86627d98fd0d143eee9ceac805c03900d",
+  "patch_summary_sha256": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac",
+  "source_observation_and_native_replay": "all578 guarded on compute; local metadata/pins exact",
+  "local_patch_checks": "all patch SHAs, keys, native/disabled support, common targets, dtype and ledger counts exact",
+  "inventory_totals": {
+    "clusters": 3636611,
+    "native_positive": 651642,
+    "disabled_positive": 662620,
+    "added": 10978,
+    "disabled_zero_energy_positive": 0,
+    "added_float32_at_0p3": 0
+  },
+  "S286_totals": {
+    "clusters": 1798225,
+    "native_positive": 322058,
+    "disabled_positive": 327538,
+    "added": 5480,
+    "disabled_zero_energy_positive": 0,
+    "added_float32_at_0p3": 0
+  },
+  "full_inventory_counts_are_not_F_model_metrics": true,
+  "new_model_outcomes": false,
+  "additional_unit_tests_run": false,
+  "source": "results/label_ablation_20261103/prepare_4482805",
+  "accept_script_sha256": "692ca68536e63b3acc8f2fccb5b758e5dfb95d2368789baae6e4067757d56abb"
+}

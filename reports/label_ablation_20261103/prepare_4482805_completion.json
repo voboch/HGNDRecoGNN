@@ -1,0 +1,19 @@
+{
+  "sacct": "4482805|hgnd-label-patches|COMPLETED|0:0|00:07:02|2026-11-03T13:49:54|2026-11-03T13:56:56\n4482805.batch|batch|COMPLETED|0:0|00:07:02|2026-11-03T13:49:54|2026-11-03T13:56:56\n4482805.extern|extern|COMPLETED|0:0|00:07:02|2026-11-03T13:49:54|2026-11-03T13:56:56\n",
+  "squeue": "",
+  "log_tail": "Node-local inputs and outputs: /tmp/hgnd-label-patches-4482805.xUN9lD on cn-035\nMatplotlib is building the font cache; this may take a moment.\n{\"state\": \"complete\", \"files\": 578, \"summary_sha256\": \"d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac\"}\ncopied 1 / 579\ncopied 26 / 579\ncopied 51 / 579\ncopied 76 / 579\ncopied 101 / 579\ncopied 126 / 579\ncopied 151 / 579\ncopied 176 / 579\ncopied 201 / 579\ncopied 226 / 579\ncopied 251 / 579\ncopied 276 / 579\ncopied 301 / 579\ncopied 326 / 579\ncopied 351 / 579\ncopied 376 / 579\ncopied 401 / 579\ncopied 426 / 579\ncopied 451 / 579\ncopied 476 / 579\ncopied 501 / 579\ncopied 526 / 579\ncopied 551 / 579\ncopied 576 / 579\ncopied 579 / 579\nbundle complete 579 147865600\n{\"state\": \"complete\", \"bundle_dir\": \"/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/prepare_4482805\", \"manifest_sha256\": \"a9850da1f9230e9d00fe9cd1c9f65381782f5be79fb893bb3c4de0a9049d05eb\", \"archive_sha256\": \"a43082c5124a62ee1a9356564f123fb86627d98fd0d143eee9ceac805c03900d\", \"archive_bytes\": 147865600, \"files\": 579, \"summary_files\": {\"summary.json\": \"d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac\"}, \"publisher_sha256\": \"5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add\", \"scratch_atomic_replace\": false, \"access_retries\": []}\nPreparation exported; node-local work preserved at /tmp/hgnd-label-patches-4482805.xUN9lD\n",
+  "publication": {
+    "state": "complete",
+    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/prepare_4482805",
+    "manifest_sha256": "a9850da1f9230e9d00fe9cd1c9f65381782f5be79fb893bb3c4de0a9049d05eb",
+    "archive_sha256": "a43082c5124a62ee1a9356564f123fb86627d98fd0d143eee9ceac805c03900d",
+    "archive_bytes": 147865600,
+    "files": 579,
+    "summary_files": {
+      "summary.json": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac"
+    },
+    "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+    "scratch_atomic_replace": false,
+    "access_retries": []
+  }
+}
