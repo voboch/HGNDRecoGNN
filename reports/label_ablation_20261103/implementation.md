@@ -2,7 +2,9 @@
 
 03.11.2026. После принятого census A реализованы target adapter, CPU
 preparation и тонкий training/validation runner. Предзапускный технический
-критик дал **Code GO**. **Submission GO ещё нет**, новых задач этого arm нет.
+критик дал **Code GO**, затем GO на один CPU submission после удалённой
+проверки hashes. CPU preparation4482805 RUNNING с13:49:54 МСК на cn-035;
+GPU submission ещё не одобрен и GPU-задач этого arm нет.
 
 ## Реализовано
 
@@ -52,12 +54,14 @@ keys, поэтому ключи для его будущего соединен�
 
 ## Следующий шаг
 
-Подготовить конкретный CPU launch plan и Slurm wrapper, новый immutable
-source package, output paths и caps; предъявить их submission preflight.
-После принятого CPU preparation зафиксировать SHA patches и конкретные
-GPU submissions: девять новых моделей, максимум две задачи одновременно,
-два сегмента короче 3 ч на модель. Ресурсы/receipts ещё не подготовлены,
-поэтому настоящий документ не является разрешением на подачу.
+Новый immutable source sums921e04a4e6d1... (commit721beff) проверен локально
+и удалённо:262 entries, все read-only, A не изменён. Paths/caps и CPU review
+сохранены в `source_package.json`, `launch_plan.json`, `submission_review.md`.
+Факт единственной подачи и actual RUNNING - `prepare_4482805_launch.json`.
+Дождаться 4482805 и принять exact replay/patch export всех578; повтор не
+отправлять. Затем зафиксировать SHA patches и предъявить конкретные GPU
+submissions критику:9 новых моделей, максимум2 задачи,15+15 total30,
+2:45 на segment. GPU wrapper заморожен, но GPU submission GO пока нет.
 
 Прежний бюджет остаётся: 27-28 GPU·ч pure fit, 30-33 с validation/I/O.
 30 эпох не расширяются; промежуточный floor не выбран; baseline не повторяется.

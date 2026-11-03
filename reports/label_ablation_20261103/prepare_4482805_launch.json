@@ -1,0 +1,41 @@
+{
+  "submission": {
+    "state": "submitted",
+    "returncode": 0,
+    "stdout": "4482805",
+    "stderr": "sbatch: \u001b[1mThe job is starting as part of project: \u001b[0m\u001b[38;5;87mРеконструкция нейтронов в детекторе высокой гранулярности hgnd на установке bm@n. Продление (2026 год)\u001b[0m (\u001b[38;5;82mproj_1855\u001b[0m)\n",
+    "source": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+    "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+    "wrapper_sha256": "4436079e32eed3bc907830de0d661186a44147a241d169d1f0172625ded34b49",
+    "submitted_at": "2026-11-03T10:49:29.624480+00:00",
+    "one_submission_only": true,
+    "resources": {
+      "partition": "rocky",
+      "qos": "normal",
+      "constraint": "type_d",
+      "cpus": 4,
+      "gpus": 0,
+      "mem": 0,
+      "minutes": 45
+    }
+  },
+  "sacct": "4482805|hgnd-label-patches|RUNNING|0:0|00:00:30|2026-11-03T13:49:54|Unknown\n4482805.batch|batch|RUNNING|0:0|00:00:30|2026-11-03T13:49:54|Unknown\n4482805.extern|extern|RUNNING|0:0|00:00:30|2026-11-03T13:49:54|Unknown\n",
+  "squeue": "4482805|hgnd-label-patches|RUNNING|cn-035|2026-11-03T13:49:54\n",
+  "log_tail": "Node-local inputs and outputs: /tmp/hgnd-label-patches-4482805.xUN9lD on cn-035\n",
+  "observed_at_moscow": "2026-11-03T13:50:24+03:00",
+  "pre_submission_source_verification": {
+    "state": "verified",
+    "source": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+    "source_files_verified": 262,
+    "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+    "archive_sha256": "f08c6b78bccb6409b845633849271d4605498b6e0565e1a4226a0d025409444a",
+    "all_source_files_read_only": true,
+    "prepare_manifest_pinned": true,
+    "stage_A_source_sums_unchanged": true,
+    "receipt_directory": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+    "campaign": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1",
+    "submission_cwd": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+    "logs_exist": true,
+    "no_job_submitted": true
+  }
+}

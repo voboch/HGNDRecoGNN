@@ -1,0 +1,20 @@
+{
+  "state": "remote_verified_CPU_preparation_running",
+  "code_commit": "721beff8099937f2923827229e7217f0590c8cf0",
+  "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+  "archive_sha256": "f08c6b78bccb6409b845633849271d4605498b6e0565e1a4226a0d025409444a",
+  "archive_bytes": 1166857,
+  "files": 262,
+  "local_source": "/private/tmp/hgnd-label-ablation-source-20261103-721beff",
+  "local_archive": "/private/tmp/hgnd-label-ablation-721beff.tar.gz",
+  "source": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+  "plan_sha256": "acecffa122fe9b618f709b5840370d5e9faa191468cbc81c749b5c1d802324db",
+  "prepare_wrapper_sha256": "4436079e32eed3bc907830de0d661186a44147a241d169d1f0172625ded34b49",
+  "GPU_submissions_authorized_by_this_receipt": false,
+  "stage_A_source_unchanged": true,
+  "CPU_prepare_job_id": "4482805",
+  "CPU_submission_review": "submission_review.md",
+  "remote_verification_receipt": "prepare_4482805_launch.json"
+}
