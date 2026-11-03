@@ -2,7 +2,8 @@
 
 03.11.2026. Решение после S286 4481705; основание — автономное поручение
 пользователя и заранее зарегистрированное сравнение disabled против 0,3 ГэВ.
-Статус: конкретизация исполнения, **новых GPU-задач пока нет**.
+Статус: target adapter и тонкий runner реализованы, технический Code GO;
+submission gate/source/resources ещё впереди. **Новых GPU-задач пока нет**.
 
 ## Научная переменная и ожидаемое направление
 
@@ -94,5 +95,10 @@ paired errors обязательны, prevalence не ограничивает t
 Технический: рекомендован patch adapter и reuse train_run; обнаружены
 опасные native truth-equality guards и повторная настройка baseline в
 старом validate_arms. Это рекомендации по реализации, не GO на ещё
-не написанный GPU runner. Следующее действие — реализовать adapters и
-предъявить конкретный diff предзапускному критику.
+не написанный на тот момент GPU runner.
+
+03.11: [конкретная реализация](label_ablation_20261103/implementation.md)
+получила Code GO после read-only проверки target-only patch, общих references
+и coherent 15+15 reuse. Выполнены AST/SHA проверки, без дополнительных tests
+и model calls. CPU preparation всех 578 ещё не выполнялась; submission GO
+для будущих source package/Slurm/resources этим не выдан.

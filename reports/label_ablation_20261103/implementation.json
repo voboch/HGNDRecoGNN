@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-03",
+  "observed_at_moscow": "2026-11-03T13:18:56+03:00",
+  "state": "code_implemented_preflight_code_GO_submission_pending",
+  "jobs_submitted": [],
+  "review": {
+    "critic": "/root/label_ablation_diff_preflight",
+    "code": "GO",
+    "submission": "NOT_REVIEWED"
+  },
+  "verification": {
+    "AST_parsing": "all three files parsed",
+    "inherited_target_and_ToF_SHA": "match accepted Stage A",
+    "additional_unit_tests_run": false,
+    "model_calls": false
+  },
+  "code_files_sha256": {
+    "data/label_ablation.py": "84b7199f59ef84396ac13bae8550fbec5456f930156cc38d0aa963d794f39183",
+    "scripts/label_ablation_prepare.py": "cc5be1c7952be2211539789926b90a034365679bff276a2843cf09377823d788",
+    "scripts/label_ablation_train.py": "538441078aaa8dae5ba45e3b18ac450eade58d3da02fb0bd604035457cd22091"
+  },
+  "actual_slurm": {
+    "4481662": "COMPLETED/0:0",
+    "4481705": "COMPLETED/0:0",
+    "new_campaign_jobs_in_queue": []
+  },
+  "next_action": "Freeze CPU launch plan/Slurm/resources and immutable source; submission preflight before preparing all578 target patches; GPU9runs30epochs only after accepted patches; no new jobs yet"
+}
