@@ -1,0 +1,40 @@
+{
+  "state": "accepted",
+  "date": "2026-11-04",
+  "population": "selected validation S286",
+  "groups": 286,
+  "candidates": 1798225,
+  "new_model_calls": 0,
+  "new_jobs": [],
+  "F_scored": false,
+  "cut_or_calibration_fitted": false,
+  "additional_unit_tests_run": false,
+  "human_no_test_exception_retained": true,
+  "source_native_key_coverage_assertions_passed": true,
+  "preflight": {
+    "technical": "GO",
+    "methodology": "GO"
+  },
+  "final_review": {
+    "technical": "GO",
+    "methodology": "ACCEPT",
+    "text": "GO after fixes",
+    "manager": "GO",
+    "number_auditor": "GO"
+  },
+  "paper_pages": 10,
+  "visual_check": "Parent and text critic inspected final pages8-10 and standalone figure; no clipping/overlap/Overfull or undefined references. Deferred-float notice visually checked.",
+  "syntax_check": "AST parse passed for all four changed Python files",
+  "ruff": "PASS: existing /opt/homebrew/Caskroom/miniconda/base/bin/ruff checked all four changed Python files",
+  "sha256": {
+    "rn_comparison.pdf": "e1d980be2df0fe90e06f2b55857804b33c5d218007cf5728b820f38f6d86f6f8",
+    "rn_comparison.png": "7d6f2758ce71899e0e4d848c8bc0697fc6f85f144111454ad6d72092d928e389",
+    "preflight.md": "716f91aa007b2d5a111b700b464e3ef51621c3a5156b7ebf8d883aabae48ddfb",
+    "results.json": "b728d86099a85ee88ff665dba8e5ae1680ea6a50fa9247096823810247326e11",
+    "README.md": "cc1f8ae5148400c97b9a225e13a85d6eddc74660f895f4b844e0f3f0b8cd23b1",
+    "analyze.py": "14868539075382ab1c748b645ab46f7ec50d669fd3f2c47f67846598e64f8f16",
+    "protocol.md": "a0df05cc8b4cf26e5a298409b4e6b78400df75ca077f1e1b69e363f43356211e"
+  },
+  "manuscript_pdf_sha256": "b6cab22a2835ed145c49088c621796a5c3f66200a69fb25574e5a67a6a35ef70",
+  "scientific_replay_after_lint": "PASS: entire results payload identical to pre-lint execution except analysis source SHA"
+}
