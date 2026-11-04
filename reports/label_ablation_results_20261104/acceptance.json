@@ -1,0 +1,381 @@
+{
+  "observed_at_utc": "2026-11-04T10:32:18.897017+00:00",
+  "state": "accepted",
+  "source_files_readonly_verified": 262,
+  "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+  "tasks": {
+    "0": {
+      "fold": 0,
+      "seed": 42,
+      "complete_sha256": "8333e7384b12b2c1f3a585479375f8a8317b8374cf8aa426b42f062491d1ceeb",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_0_segment_1_4482879",
+        "manifest_sha256": "18b0e28065cd8bfa9d68477b4b5399605f1e70f8d307bbcd67a0f83e6c2f04eb",
+        "archive_sha256": "d3af207c72e65d38a08770691f28f4b77ec04b6868ed390ab9ad0e20ddd0352e",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "28591e40044e57361f3dbf9d1e56a044011cdd4d142760822e89cd0945de4d14"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_0_segment_2_4484262",
+        "manifest_sha256": "c4e39ce1f77f7a1fcfcd4bd4f8dc6c872acdf1b43ce94e35369dc6d9a5ba6aea",
+        "archive_sha256": "a0ec3a9620cb9d275b1953e304cf57b852496cc2c95bf8e726c8e4ca16944049",
+        "archive_bytes": 77332480,
+        "files": 139,
+        "summary_files": {
+          "summary.json": "9def55a736bc9ed8344c2ce8fe8cb12729d3525a52b7ac5f05f3bc7086f8e851"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "a6d739265cb2f7054b6acf849ba7cd70cdb2055a3fc7c25626c412b161c897f1",
+      "mirror_state_sha256": "bee0f9a652b529943e44660ff2268c658ec868a39a74dc08d7e50695fb29c1ae",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 165,
+      "baseline_members_verified": 51,
+      "predictions_verified": 97
+    },
+    "1": {
+      "fold": 0,
+      "seed": 123,
+      "complete_sha256": "1fc88091d0a33d3fd40a9d536f9767f5752ce5582eb75024bd714e4220a75502",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_1_segment_1_4482888",
+        "manifest_sha256": "96a0ef1df376d9c3e80b4ef7b9bbffc0dcbb0626b2f55007a185ea76c90ae7c9",
+        "archive_sha256": "3115553deaa0578dbdc4ba1594e4add615118e4a1af78bef61a304e24a6e1772",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "2e046007a5be3ec841984502e9ad89597d7229ac02417f0b06589df78ecad440"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_1_segment_2_4484266",
+        "manifest_sha256": "2bfdb5ac69b15e53e262f4a7f89698ad35af2f0d3c34293094cf3d3efe87288d",
+        "archive_sha256": "79fda0e9b53ca110f100a0f1964ed65fc28dbfa29b7d6dfdb5b90daa711168f5",
+        "archive_bytes": 77332480,
+        "files": 139,
+        "summary_files": {
+          "summary.json": "dfa5158e94fe0ab0fa6a19cef03170f613879fb1d8290c8c4ff4558153645c63"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "888d3dcc08aee331deedf273ef1bbbb2c223d2845ae0e7dadb948d468e39438d",
+      "mirror_state_sha256": "6cfb5d8479f761908f38f4c72a9e5dc40ab8670da6128d662d51fff5afddeb5b",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 165,
+      "baseline_members_verified": 51,
+      "predictions_verified": 97
+    },
+    "2": {
+      "fold": 0,
+      "seed": 456,
+      "complete_sha256": "2dd1859205067e531b00042327793337b444424cfbb45d19ed36b59d546f1392",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_2_segment_1_4483137",
+        "manifest_sha256": "1cc06d6995b0db9982d57519f295cbb6c4670a98ded47aa463d2b12159f258bb",
+        "archive_sha256": "f50abedadc26193b6c5eb4dbc096d15b00914a03d107c5b97f673d0f8b88fda1",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "1b6e027e960ed3b7c2f944639676deebd15dad5a7207520ec86a4bc46eba76eb"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_2_segment_2_4484709",
+        "manifest_sha256": "72ffcc240dd7432a4665393f01479da46a2a4fd6beb89e99207e586469ca730b",
+        "archive_sha256": "d61241d491be8092a8846a648316d727c706b1aca2646bfa403e084265b33b26",
+        "archive_bytes": 77322240,
+        "files": 139,
+        "summary_files": {
+          "summary.json": "3fddea015e707d4e1ebab57aba7132c5176b87fb94a9e082b4baa666ad2503b7"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "ed6a363499f60b57a90e90f6560b97f796aeb2e0efcbe7fe89713ab2b01ba1a9",
+      "mirror_state_sha256": "cbedd573a8071668eab84b2fe17e728f5f0e2d20d825449c56eeaded74ff04d9",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 165,
+      "baseline_members_verified": 51,
+      "predictions_verified": 97
+    },
+    "3": {
+      "fold": 1,
+      "seed": 42,
+      "complete_sha256": "048f12c3d243c0f37031deddef506251690fca877955e0a2bcffa4ec985e5722",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_3_segment_1_4483138",
+        "manifest_sha256": "e8075b894c7a08481c085422836802cec464e755b716b3ea94e0dea035d17939",
+        "archive_sha256": "5e01bd12b2f251015713805a09d2614df6f942b159a3ce256ee7731ac77596a7",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "5e4a68ba20fd2069e12223ea9fccd76be8d4b06131e979e696fe67ae62be7c17"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_3_segment_2_4484710",
+        "manifest_sha256": "5662157707fb08058d733805d972aac7dbee93405e928d3da0ab6e2926d26694",
+        "archive_sha256": "0d07b98c6a22dc2511ffdd351b58339bcbfa10d8820938670902b0b6eab4dd5e",
+        "archive_bytes": 76451840,
+        "files": 137,
+        "summary_files": {
+          "summary.json": "8b6e39c58ef4d91fa87470752aa371f0751da5e553e3499e8fb8a6e60ca7bd19"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "dbf60114cd9a99563450e653a2106dc1d4935a432bb2ba74e6b42baf01f909f5",
+      "mirror_state_sha256": "f621a2f12ac97b63241e2088846743842f8988505635dd163043dad9cb0df5a2",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 163,
+      "baseline_members_verified": 51,
+      "predictions_verified": 95
+    },
+    "4": {
+      "fold": 1,
+      "seed": 123,
+      "complete_sha256": "3a36656b7955415988910626a0c10d9b2b00287709864088b6889b0b9c06f915",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_4_segment_1_4483335",
+        "manifest_sha256": "b08356da9358965673cb9d692b24c73f6ccce377c04cb491a87afad0f8f297df",
+        "archive_sha256": "e7a16be75d8f046c60d498159f6fd39599a44bfc3c44e595a6e4a7fbce16a2f2",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "40aa08c243e80d2ef41eb7e21dea51f4df2f5cfc888c7698740c346d3cdfd172"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_4_segment_2_4485222",
+        "manifest_sha256": "10b354d04a1a5466acd3c924533aeb5398abd4be36aa9888a3ac937ab9b48711",
+        "archive_sha256": "e7528d607438ca6a93dcf85cd634e8a82705d49960afa5115f3ce353847f6491",
+        "archive_bytes": 76462080,
+        "files": 137,
+        "summary_files": {
+          "summary.json": "947d8ef83ca98b256eed4eae6391f8898ba5117777e1eb99adaa4b829715d9ed"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "f6db82e3892936611917a1737bb4ded2d429f57745d9a25a85dd7310f5eea0f9",
+      "mirror_state_sha256": "901de0b5c73a6ab8e2a6ffd7621839aa25643b8cc0953b1b3cd5776afaf2cc10",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 163,
+      "baseline_members_verified": 51,
+      "predictions_verified": 95
+    },
+    "5": {
+      "fold": 1,
+      "seed": 456,
+      "complete_sha256": "a6f29da63de236d1fbcc4b542ecd217ef362c7e0a33a5d465d2acc655112ccdd",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_5_segment_1_4483341",
+        "manifest_sha256": "77d748664be24236182af36c73aa6aabdc4db133c11dace67b7e3cc191b7e83e",
+        "archive_sha256": "471c893e278467223d130a2fdeb95124729983d82d3fced5181cbb19a2acd11a",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "f30a6ac888ae74148f01134ca9c08b50abf9c081db125140918d254b5132d6f6"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_5_segment_2_4485231",
+        "manifest_sha256": "737ca51d3c1d19478bc24de7e0fbca93822a78e38a420c85584665420180bc3a",
+        "archive_sha256": "612b04057ae7051bcb8e54fc842107bb004aac7505585efc4ca044466d4382fa",
+        "archive_bytes": 76462080,
+        "files": 137,
+        "summary_files": {
+          "summary.json": "315d7400252a4d452e389d0418215558a14e271046937c6c8448c14b0bb167f0"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "bae87176847351cb3df7a4159128d11048cb3c93a8c58489074435abf9640a7b",
+      "mirror_state_sha256": "29241cff4c5d8f702bfcaf7e051b00e3f5f9994ed5d972aa543a01f76c1ce3fe",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 163,
+      "baseline_members_verified": 47,
+      "predictions_verified": 95
+    },
+    "6": {
+      "fold": 2,
+      "seed": 42,
+      "complete_sha256": "c94363782189d066f24adab849984c1ac6fa0539770c4acbca986e1b383803b4",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_6_segment_1_4483721",
+        "manifest_sha256": "a4d795b54f6243936bd28a9b99ee1b7fc61c7f2e7eb4aa8fad6312e478b1a7e9",
+        "archive_sha256": "862f5a57c11f75c90ca01bf68d1957dffa2bd36711687f209263eec968e2340c",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "9a4b72763d3dd442ee86a88d7141d047745e7c1158d70b66cf789d5bcb81cf32"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_6_segment_2_4485387",
+        "manifest_sha256": "6b42d5c463c2d9836b406a192e9b740ae65c1d7f28d12eee6e282ccf2389c5cf",
+        "archive_sha256": "407b26fc93ab63b9b6911d0c203b03feff6ab70df8f7526d1788bf377e92ddfb",
+        "archive_bytes": 77578240,
+        "files": 140,
+        "summary_files": {
+          "summary.json": "45c32b73e83b1536c695c7c79b54626a7a0de9939453f28b95c34448fae73d22"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "c6100fdece0e41c79c64a852e19cd5a6b48e15fb54ad74ce7a5daf832895edfd",
+      "mirror_state_sha256": "7623c86005f08e70738b7ed62c8e9aa49cefa72954a47b6996e25b725ad920da",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 166,
+      "baseline_members_verified": 51,
+      "predictions_verified": 98
+    },
+    "7": {
+      "fold": 2,
+      "seed": 123,
+      "complete_sha256": "b95ccbc121139e640d9a33d4a63464b26db0082ccdb4db64d021fdf5b1b6d729",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_7_segment_1_4483722",
+        "manifest_sha256": "00f8d7deb8bf2a754bd44c0c6f011f1228cec39adbaaa1b8e3ba74b8df747689",
+        "archive_sha256": "a5c0294d3101cec265edff92ae0d38a3de98e88fee46d2588b1fe69f4d65d9cd",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "aefc283bcff159c4a2ea3cd485cac330c6e885a8dacc719c075be5c0efc81c50"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_7_segment_2_4485389",
+        "manifest_sha256": "df6ed49914b0ba2877a2dd9333e37e7c9c1202077049df692e28d80955d2fdf0",
+        "archive_sha256": "4833dfa7b4c3ba903459171d7bd29fc38af1afbf37f966402ee9ddd6bce94aad",
+        "archive_bytes": 77588480,
+        "files": 140,
+        "summary_files": {
+          "summary.json": "a9db1098fd8d392bd75b2d46a9c3e8cb35abd74bdbcff807f53d85bf3697340c"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "4511bc65408863737918cf1e1be8c6f407ff47dedd169c7a0ff4852fdc080aec",
+      "mirror_state_sha256": "2c2e25c9c576e087a67f43cad6a9f3e94a3a94d4c14994f5234cfa537fc95d4d",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 166,
+      "baseline_members_verified": 51,
+      "predictions_verified": 98
+    },
+    "8": {
+      "fold": 2,
+      "seed": 456,
+      "complete_sha256": "62faeabf7e4f58cf4627f925677778359bf6e46ead128b2b5d624b14fa1c908e",
+      "complete_30epochs": true,
+      "segment1_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_8_segment_1_4482848",
+        "manifest_sha256": "70e4dcbeade0971ebf77667da36f8e6e2c42a3b78782f9567ed9bc99e00793a9",
+        "archive_sha256": "ac29a3d1e62aa7d4d745dab6ba46b3e1dcb14a2cd97a31f37afb494aca8ce5e6",
+        "archive_bytes": 26019840,
+        "files": 26,
+        "summary_files": {
+          "summary.json": "8345bbdf2c2e5978aeb02edde6379c07e7c31daca17aecbd512b97c9b76ad42a"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "segment2_receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1/task_8_segment_2_4482849",
+        "manifest_sha256": "086b2053c3ef0c0ebb11e78c1d0647ca972881c7d3e72135f2cc7523d153f828",
+        "archive_sha256": "3904e506f4879e067b230b0474031f65f5626d3204f725881c95b751b615c76f",
+        "archive_bytes": 77598720,
+        "files": 140,
+        "summary_files": {
+          "summary.json": "4d5a6b0575024e61be1000cb5bbe6d95fce0554c1138dad034e53fcdb49199fe"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      },
+      "baseline_complete_sha256": "634f5c8331e14c7b7aa6e062ed25a226afda825a93f8ea84037e9adc3b5d93f0",
+      "mirror_state_sha256": "8e338095fd20159662c590d005d84696cd4734ecb7aeac5aee445c12b2ecad60",
+      "prefix_15_epochs_identical": true,
+      "resume_state_bound": true,
+      "new_members_verified": 166,
+      "baseline_members_verified": 51,
+      "predictions_verified": 98
+    }
+  },
+  "models_or_tests_run": false,
+  "new_jobs_submitted": [],
+  "squeue": "",
+  "sacct": "4482848_0|COMPLETED|0:0|01:38:24|2026-11-03T14:24:34|2026-11-03T16:02:58|cn-003\n4482848_0.batch|COMPLETED|0:0|01:38:24|2026-11-03T14:24:34|2026-11-03T16:02:58|cn-003\n4482848_0.extern|COMPLETED|0:0|01:38:24|2026-11-03T14:24:34|2026-11-03T16:02:58|cn-003\n4482848_1|COMPLETED|0:0|01:35:53|2026-11-03T14:27:05|2026-11-03T16:02:58|cn-003\n4482848_1.batch|COMPLETED|0:0|01:35:53|2026-11-03T14:27:05|2026-11-03T16:02:58|cn-003\n4482848_1.extern|COMPLETED|0:0|01:35:53|2026-11-03T14:27:05|2026-11-03T16:02:58|cn-003\n4482848_2|COMPLETED|0:0|01:59:49|2026-11-03T16:03:06|2026-11-03T18:02:55|cn-003\n4482848_2.batch|COMPLETED|0:0|01:59:49|2026-11-03T16:03:06|2026-11-03T18:02:55|cn-003\n4482848_2.extern|COMPLETED|0:0|01:59:49|2026-11-03T16:03:06|2026-11-03T18:02:55|cn-003\n4482848_3|COMPLETED|0:0|02:02:52|2026-11-03T16:03:07|2026-11-03T18:05:59|cn-003\n4482848_3.batch|COMPLETED|0:0|02:02:52|2026-11-03T16:03:07|2026-11-03T18:05:59|cn-003\n4482848_3.extern|COMPLETED|0:0|02:02:52|2026-11-03T16:03:07|2026-11-03T18:05:59|cn-003\n4482848_4|COMPLETED|0:0|02:01:55|2026-11-03T18:03:04|2026-11-03T20:04:59|cn-003\n4482848_4.batch|COMPLETED|0:0|02:01:55|2026-11-03T18:03:04|2026-11-03T20:04:59|cn-003\n4482848_4.extern|COMPLETED|0:0|02:01:55|2026-11-03T18:03:04|2026-11-03T20:04:59|cn-003\n4482848_5|COMPLETED|0:0|01:58:53|2026-11-03T18:06:06|2026-11-03T20:04:59|cn-003\n4482848_5.batch|COMPLETED|0:0|01:58:53|2026-11-03T18:06:06|2026-11-03T20:04:59|cn-003\n4482848_5.extern|COMPLETED|0:0|01:58:53|2026-11-03T18:06:06|2026-11-03T20:04:59|cn-003\n4482848_6|COMPLETED|0:0|01:53:50|2026-11-03T20:04:59|2026-11-03T21:58:49|cn-016\n4482848_6.batch|COMPLETED|0:0|01:53:50|2026-11-03T20:04:59|2026-11-03T21:58:49|cn-016\n4482848_6.extern|COMPLETED|0:0|01:53:50|2026-11-03T20:04:59|2026-11-03T21:58:49|cn-016\n4482848_7|COMPLETED|0:0|01:55:57|2026-11-03T20:04:59|2026-11-03T22:00:56|cn-003\n4482848_7.batch|COMPLETED|0:0|01:55:57|2026-11-03T20:04:59|2026-11-03T22:00:56|cn-003\n4482848_7.extern|COMPLETED|0:0|01:55:57|2026-11-03T20:04:59|2026-11-03T22:00:56|cn-003\n4482848_8|COMPLETED|0:0|02:00:14|2026-11-03T21:58:49|2026-11-03T23:59:03|cn-016\n4482848_8.batch|COMPLETED|0:0|02:00:14|2026-11-03T21:58:49|2026-11-03T23:59:03|cn-016\n4482848_8.extern|COMPLETED|0:0|02:00:15|2026-11-03T21:58:49|2026-11-03T23:59:04|cn-016\n4482849_0|COMPLETED|0:0|01:41:58|2026-11-03T23:59:09|2026-11-04T01:41:07|cn-016\n4482849_0.batch|COMPLETED|0:0|01:41:58|2026-11-03T23:59:09|2026-11-04T01:41:07|cn-016\n4482849_0.extern|COMPLETED|0:0|01:41:58|2026-11-03T23:59:09|2026-11-04T01:41:07|cn-016\n4482849_1|COMPLETED|0:0|01:39:04|2026-11-04T00:00:10|2026-11-04T01:39:14|cn-001\n4482849_1.batch|COMPLETED|0:0|01:39:04|2026-11-04T00:00:10|2026-11-04T01:39:14|cn-001\n4482849_1.extern|COMPLETED|0:0|01:39:04|2026-11-04T00:00:10|2026-11-04T01:39:14|cn-001\n4482849_2|COMPLETED|0:0|01:52:14|2026-11-04T01:40:09|2026-11-04T03:32:23|cn-003\n4482849_2.batch|COMPLETED|0:0|01:52:14|2026-11-04T01:40:09|2026-11-04T03:32:23|cn-003\n4482849_2.extern|COMPLETED|0:0|01:52:14|2026-11-04T01:40:09|2026-11-04T03:32:23|cn-003\n4482849_3|COMPLETED|0:0|01:45:50|2026-11-04T01:41:10|2026-11-04T03:27:00|cn-016\n4482849_3.batch|COMPLETED|0:0|01:45:50|2026-11-04T01:41:10|2026-11-04T03:27:00|cn-016\n4482849_3.extern|COMPLETED|0:0|01:45:50|2026-11-04T01:41:10|2026-11-04T03:27:00|cn-016\n4482849_4|COMPLETED|0:0|01:41:37|2026-11-04T03:28:28|2026-11-04T05:10:05|cn-004\n4482849_4.batch|COMPLETED|0:0|01:41:37|2026-11-04T03:28:28|2026-11-04T05:10:05|cn-004\n4482849_4.extern|COMPLETED|0:0|01:41:37|2026-11-04T03:28:28|2026-11-04T05:10:05|cn-004\n4482849_5|COMPLETED|0:0|01:38:50|2026-11-04T03:32:30|2026-11-04T05:11:20|cn-003\n4482849_5.batch|COMPLETED|0:0|01:38:50|2026-11-04T03:32:30|2026-11-04T05:11:20|cn-003\n4482849_5.extern|COMPLETED|0:0|01:38:50|2026-11-04T03:32:30|2026-11-04T05:11:20|cn-003\n4482849_6|COMPLETED|0:0|01:41:50|2026-11-04T05:10:12|2026-11-04T06:52:02|cn-004\n4482849_6.batch|COMPLETED|0:0|01:41:50|2026-11-04T05:10:12|2026-11-04T06:52:02|cn-004\n4482849_6.extern|COMPLETED|0:0|01:41:50|2026-11-04T05:10:12|2026-11-04T06:52:02|cn-004\n4482849_7|COMPLETED|0:0|01:40:03|2026-11-04T05:11:43|2026-11-04T06:51:46|cn-003\n4482849_7.batch|COMPLETED|0:0|01:40:03|2026-11-04T05:11:43|2026-11-04T06:51:46|cn-003\n4482849_7.extern|COMPLETED|0:0|01:40:03|2026-11-04T05:11:43|2026-11-04T06:51:46|cn-003\n4482849_8|COMPLETED|0:0|01:46:17|2026-11-04T06:52:13|2026-11-04T08:38:30|cn-003\n4482849_8.batch|COMPLETED|0:0|01:46:17|2026-11-04T06:52:13|2026-11-04T08:38:30|cn-003\n4482849_8.extern|COMPLETED|0:0|01:46:18|2026-11-04T06:52:13|2026-11-04T08:38:31|cn-003\n"
+}

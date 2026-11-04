@@ -1,0 +1,30 @@
+{
+  "01_common_reference_curves.pdf": [
+    {
+      "font": "BMQQDV+DejaVuSans",
+      "extension": "ttf",
+      "embedded_bytes": 15908
+    }
+  ],
+  "02_paired_metrics.pdf": [
+    {
+      "font": "BMQQDV+DejaVuSans",
+      "extension": "ttf",
+      "embedded_bytes": 16536
+    }
+  ],
+  "03_raw_energy_response.pdf": [
+    {
+      "font": "BMQQDV+DejaVuSans",
+      "extension": "ttf",
+      "embedded_bytes": 16608
+    }
+  ],
+  "04_validation_histories.pdf": [
+    {
+      "font": "BMQQDV+DejaVuSans",
+      "extension": "ttf",
+      "embedded_bytes": 14260
+    }
+  ]
+}

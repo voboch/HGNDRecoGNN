@@ -1,0 +1,164 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/label_ablation_20261103_921e04a4e6d1",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/label_ablation_20261103_921e04a4e6d1_receipts",
+  "source_sums_sha256": "921e04a4e6d1faec8e8b1a757e2a08df2b02f34d2a2f35e9d4e34c0ef750eb3c",
+  "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "prepare_sha256": "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133",
+  "patch_summary_sha256": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac",
+  "baseline": {
+    "0": {
+      "complete_sha256": "a6d739265cb2f7054b6acf849ba7cd70cdb2055a3fc7c25626c412b161c897f1",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_0",
+        "manifest_sha256": "2b9d1f1eebc8a82d115d22b2dc4ef4cb6d08e70c75c1bc12b3b4c2f4c5fe4d7e",
+        "archive_sha256": "3b38445ddab72e911817f621af1441b777ed6c011f85d42178c91bbaf0d25329",
+        "archive_bytes": 61214720,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "f3ac5fa770b40c2c1a9b90ee3b368f56023e07213649e16e9561d41eb1903a03"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "1": {
+      "complete_sha256": "888d3dcc08aee331deedf273ef1bbbb2c223d2845ae0e7dadb948d468e39438d",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_1",
+        "manifest_sha256": "0fd12ad128852ac5f803701ab593c4cdfa3daba8aa2e4ecca07c30985faa7e1a",
+        "archive_sha256": "a7345fdd02292e2af3a3a241d484bb252debdbe3eea20abb42ebf8fcda077f87",
+        "archive_bytes": 61204480,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "dd2c08c5862215da7a5f73ccc875adb96745868824a160358962da1839b1ebc3"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "2": {
+      "complete_sha256": "ed6a363499f60b57a90e90f6560b97f796aeb2e0efcbe7fe89713ab2b01ba1a9",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_2",
+        "manifest_sha256": "7baeba1a51d3f43d5bca3f85066bd720126a21a10d585c6f15bed62cdbea1164",
+        "archive_sha256": "06eeb23c8407f2543b447bcf166cf737543f184b2d8c011d985338e14a3d1ca9",
+        "archive_bytes": 61204480,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "986e666cd4096e0f3f77083208687898afee29b3162dad0b23c35713088a3800"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "3": {
+      "complete_sha256": "dbf60114cd9a99563450e653a2106dc1d4935a432bb2ba74e6b42baf01f909f5",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_3",
+        "manifest_sha256": "d8039218915e34582b3ad49e4b4841f11182a1dd0b4fe233eee6fc592bc7f97e",
+        "archive_sha256": "ffd7c19d21c87aa4052e7f8e5edf8998e38bd480f994193fab7d89e8e4f83ec3",
+        "archive_bytes": 60764160,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "109371754dac1bcf1f1e10e8f3a299be0060c1bee08339f90c44cc7cd1b2b012"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "4": {
+      "complete_sha256": "f6db82e3892936611917a1737bb4ded2d429f57745d9a25a85dd7310f5eea0f9",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_4",
+        "manifest_sha256": "52d7d315f45d5897ffbc4773df128368e16813fecc501d9ae10d86aa8af4e5fb",
+        "archive_sha256": "74f6a4187352259b08c7dd44dc92a23d8ab8fb8b20d0497175c32c70eab05fd6",
+        "archive_bytes": 60743680,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "9caa70cc366f620183d571fa3eb7af851b5402bede122f80c55fcf283cccb52d"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "5": {
+      "complete_sha256": "bae87176847351cb3df7a4159128d11048cb3c93a8c58489074435abf9640a7b",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466738_5",
+        "manifest_sha256": "1636a09c17e8abd83cd61715c3b677838468a87de7f669988410bb3b13bf6e7b",
+        "archive_sha256": "6d34d423d4cbd437a40ab1e70ab4b047644e5791ec0199ea122fc4c4c5284c12",
+        "archive_bytes": 57200640,
+        "files": 47,
+        "summary_files": {
+          "summary.json": "f64fec719dc9970336b6b79a7953bfb86965fc34aa57ef566140130c3eceda3a"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "6": {
+      "complete_sha256": "c6100fdece0e41c79c64a852e19cd5a6b48e15fb54ad74ce7a5daf832895edfd",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4467054_6",
+        "manifest_sha256": "87635a4be860e19758a056c606d2283c196279e6ec5990cf175e5e8c17233b27",
+        "archive_sha256": "2e348173f5ca395b95fbdf8031dcb4f33e87ff663aceb097839987dda146d360",
+        "archive_bytes": 61358080,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "905925e9f326a315841b865faf83d109acf4b3cf840c5f0128d1ee9112e0e4aa"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "7": {
+      "complete_sha256": "4511bc65408863737918cf1e1be8c6f407ff47dedd169c7a0ff4852fdc080aec",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4467055_7",
+        "manifest_sha256": "3a2d43615954a2c9d29062d4a0d0b1562a7d0e7b23cc3628b23ed0b0c3864ab0",
+        "archive_sha256": "b1a09666f0f3b523da3324576a63fbbe5d3200d4809964415c2684197761d677",
+        "archive_bytes": 61368320,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "4f0dd487a50bef0a34b3ca601cd258fc7533931d920b2862b45b0f430cb0dde8"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    },
+    "8": {
+      "complete_sha256": "634f5c8331e14c7b7aa6e062ed25a226afda825a93f8ea84037e9adc3b5d93f0",
+      "receipt": {
+        "state": "complete",
+        "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/train_bundles/train_4466016_8",
+        "manifest_sha256": "be7410d4b2a728ea3c833164860f5885be0b9f9341bc6c23db3c89de1eddc977",
+        "archive_sha256": "fd1e9b5ebabbbbc379f83d1137a7bd74a91359380128e79b86bf15a86c753f75",
+        "archive_bytes": 61337600,
+        "files": 51,
+        "summary_files": {
+          "summary.json": "a5c5d5aaf4a94c0dda43a499eead5f500ad4fc6d91975c87e0e6b78c65ae8c80"
+        },
+        "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+        "scratch_atomic_replace": false,
+        "access_retries": []
+      }
+    }
+  }
+}

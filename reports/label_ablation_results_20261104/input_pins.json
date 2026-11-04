@@ -1,0 +1,10 @@
+{
+  "compact_archive_sha256": "197198ca97f59f1cb21e1c2ad686a26300a47a746fa708d153111cb3a22adc3d",
+  "compact_manifest_sha256": "b9762d07680828edc22d8265ad26fa545c7f917d5ddadf5ef8bf597e6afefb80",
+  "patch_summary_sha256": "d551fc41539742b54e9fe5b0d1036d1fe3909438f0cd0ee63f0248278d3c3bac",
+  "prepare_summary_sha256": "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133",
+  "compact_files_verified": 1193,
+  "results_sha256": "8942661983717128f4a3461fecb27fccb703e71f215b9f712e036eb295dbb43b",
+  "plot_data_sha256": "c38a05cc9c68861372ebaba6c5dcc516ed51e4507f5b10aceeee3d2ef10986cb",
+  "collector_sha256": "6a76cd9d3aa81fd187622ceb309aa9be31be4121cd436901397ae6532be262f3"
+}

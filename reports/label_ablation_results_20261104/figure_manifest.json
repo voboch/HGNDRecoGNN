@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "file": "01_common_reference_curves.png",
+      "sha256": "9445dedf4b1c3ec6bd5e963bf1441ce07301e88b351642fbcb17430cce410500"
+    },
+    {
+      "file": "01_common_reference_curves.pdf",
+      "sha256": "452d802521ec581438147b529aac601911a17dedddeb4a77eeba4cd9389c833b"
+    },
+    {
+      "file": "02_paired_metrics.png",
+      "sha256": "64b516a9dff195ec321bbc487afd67f12e061779f29bf3f07e035d561ec4da82"
+    },
+    {
+      "file": "02_paired_metrics.pdf",
+      "sha256": "8e46336127942b2d1d0c11316ad64e41ebadd272ae5ad133368f7cc0c5fc8fb6"
+    },
+    {
+      "file": "03_raw_energy_response.png",
+      "sha256": "7f8e384d9f9b5b221c7ff3c9ead9ed6c3f7ff81ff608b4f1de4430b8806faa63"
+    },
+    {
+      "file": "03_raw_energy_response.pdf",
+      "sha256": "e4ae048337f701e546fa054cc6d577f0783720b17f7b6c531901b13cd225bf40"
+    },
+    {
+      "file": "04_validation_histories.png",
+      "sha256": "e1b5d0b495beab8d222b7887e538f98d6fc955d84b07bf284c1c27b4a988925e"
+    },
+    {
+      "file": "04_validation_histories.pdf",
+      "sha256": "1fa1500e7c74af1feb380abc9f3a75fc1ed759769d2e42be8d9cc78d4bdc481a"
+    }
+  ],
+  "bounds": "all visible text inside canvas; data axes use finite data/full probability ranges"
+}

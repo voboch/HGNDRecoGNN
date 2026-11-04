@@ -2,15 +2,18 @@
 
 03.11.2026. Решение после S286 4481705; основание — автономное поручение
 пользователя и заранее зарегистрированное сравнение disabled против 0,3 ГэВ.
-Статус: target adapter и тонкий runner реализованы; CPU submission GO после
-проверки immutable source. Preparation4482805 завершена и принята на 578.
-Конкретный GPU submission preflight дал GO; поданы 4482848 и 4482849:
-9 моделей по 30 эпох сегментами 15+15. На 22:04 МСК задачи 0–7 в 4482848
-завершили первые 15 эпох; архивы и mirror SHA приняты. Последняя задача 8
-выполняется; 4482849 ждёт afterok всей 4482848. Завершённых
-30-epoch моделей нет. Actual receipt-проверка:
+Статус 04.11.2026: **конечный опыт завершён**. Preparation 4482805 принята;
+arrays 4482848/4482849 завершили девять моделей по 30 эпох, 15+15, exit 0:0.
+Все source/member/checkpoint/resume guards приняты. Последняя задача закончилась
+04.11 в 08:38:30 МСК. No-floor сравнение на общих validation references:
+[итог, данные, рисунки и review](label_ablation_results_20261104/README.md).
+Новые model calls, F scoring, cut/calibration fit и второй floor не выполнялись.
+
+Исторические границы первых сегментов сохранены в
 `label_ablation_20261103/segment1_0_5_acceptance_20261103.json` и
 `label_ablation_20261103/segment1_6_7_acceptance_20261103.json`.
+Финальная приёмка всех 9×30:
+`label_ablation_results_20261104/acceptance.json`.
 
 ## Научная переменная и ожидаемое направление
 
