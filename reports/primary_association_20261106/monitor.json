@@ -1,0 +1,13 @@
+{
+  "agent": "/root/monitor_luna",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "fork_turns": "none",
+  "read_only": true,
+  "job_id": "4491592",
+  "state": "dispatched",
+  "poll_seconds": 120,
+  "scientific_acceptance": false,
+  "stop": "terminal Slurm and receipt evidence; parent takes acceptance",
+  "mutations_allowed": false
+}

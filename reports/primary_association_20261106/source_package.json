@@ -1,0 +1,12 @@
+{
+  "source_base_commit": "495e1e90b21113d9137819f87f797f0435dcfc44",
+  "source_sha256sums": "32a88fb3c6ad09307efc9848fbf3278c28825809b9ca62706108a2ebbe02c8bb",
+  "entries": 7,
+  "local_source": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/primary_association_20261106/source_32a88fb3c6ad",
+  "tar": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/primary_association_20261106/source_32a88fb3c6ad.tar",
+  "tar_sha256": "0a868571c8a983d1475b33bb87a9934d4b12ce0f0ed023e78644c4e09ed6587a",
+  "remote_source": "/home/vbocharnikov/hgnd_experiments/primary_association_20261106_32a88fb3c6ad",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/primary_association_20261106_32a88fb3c6ad",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/primary_association_20261106_32a88fb3c6ad_receipts",
+  "plan_sha256": "5334f00367adca90949b6f6e4f824a60c687a5d58fe81e706e27440546fb8c70"
+}

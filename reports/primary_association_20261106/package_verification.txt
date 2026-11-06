@@ -1,0 +1,7 @@
+High-performance computing cluster cHARISMa of the HSE University
+Host: login-02
+/home/vbocharnikov/hgnd_experiments/primary_association_20261106_32a88fb3c6ad.tar: OK
+SHA256SUMS: OK
+SHA256SUMS: OK
+4491435 aft_paper_cap_pair_off_rprime_c123_GPU_full1_20261106 RUNNING
+4491434 aft_paper_cap_pair_on_rprime_c123_GPU_full1_20261106 RUNNING

@@ -1,0 +1,20 @@
+{
+  "job_id": "4491592",
+  "submitted_UTC": "2026-11-06T20:41:23.625271+00:00",
+  "state": "submitted",
+  "source_sha256sums": "32a88fb3c6ad09307efc9848fbf3278c28825809b9ca62706108a2ebbe02c8bb",
+  "plan_sha256": "5334f00367adca90949b6f6e4f824a60c687a5d58fe81e706e27440546fb8c70",
+  "duplicate_queue_accounting_receipts_checked": true,
+  "caps": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_d",
+    "cpus": 4,
+    "gpus": 0,
+    "mem": 0,
+    "time": "00:45:00",
+    "requeue": false
+  },
+  "scientific_acceptance": false,
+  "repeat_authorized": false
+}

@@ -212,3 +212,10 @@ job4491447COMPLETED0:0. 286пар,1798225кластеров,5833940хитов; b
 non-x и prediction digests точны. Моменты признаков рассчитаны, но причинный
 вклад scalers в performance gap этим опытом не изолирован. Мониторинг выполнял
 GPT-6Luna/low с коротким контекстом и read-only правами, остановился наterminal.
+
+Третья серия зарегистрирована: [uncensored primary/direct association](primary_association_20261106/protocol.md),
+job4491592 подан один раз06.11 в23:41МСК,45мин4CPU0GPU. Methodology/Code GO;
+858rawinputs46,06GB доступны, frozen source32a88fb3c6ad. Полный событийный
+replay, retained observations/native targets и exact direct binding проверяются
+внутри задания. На момент подачи PENDING/Priority; результата ещё нет.
+Luna/low ведёт только read-only мониторинг этого job. Нового обучения и скана нет.
