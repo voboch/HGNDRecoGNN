@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-06",
+  "job_id": "4491447",
+  "submitted_MSK": "2026-11-06T22:49:47+03:00",
+  "actual_state_at_submission": "PENDING",
+  "actual_reason": "Priority",
+  "source_sha256sums": "3e514b7191fd56f5c98e346c36ac66036d2b30fd570afdde178a0b323fc3b417",
+  "partition": "rocky",
+  "qos": "normal",
+  "constraint": "type_d",
+  "cpus": 4,
+  "gpus": 0,
+  "mem": "0",
+  "time": "00:45:00",
+  "requeue": false,
+  "no_duplicate_receipt_or_queue_or_accounting_before_submission": true,
+  "monitor_agent": "/root/monitor_luna",
+  "monitor_model": "gpt-6-luna",
+  "monitor_reasoning": "low",
+  "monitor_context": "fork_turns:none"
+}

@@ -1,0 +1,17 @@
+{
+  "agent": "/root/monitor_luna",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "fork_turns": "none",
+  "read_only": true,
+  "notifications": "completion, failure, inconsistent/missing terminal receipt, required parent decision",
+  "mutations_allowed": false,
+  "policy": "thesis-kb/conventions/30-development-process.md \u00a711",
+  "job_id": "4491447",
+  "state": "stopped_at_terminal",
+  "observed_slurm_state": "COMPLETED",
+  "observed_exit_code": "0:0",
+  "observed_terminal_UTC": "2026-11-06T19:53:36Z",
+  "receipt_state": "complete",
+  "monitor_scientific_acceptance": false
+}

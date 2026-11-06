@@ -206,3 +206,9 @@ Methodology ACCEPT, report GO. Фоновая поправка не устано
 разделяет выполненные расчёты и ещё не выполненные native/raw/PID части.
 Принятый native-pack archive4465983 найден; manifest SHA совпал. Сам архив
 не скачивался и feature/scaler projections ещё не рассчитаны.
+
+Вторая серия: [native feature/scaler diagnostic](native_features_20261106/README.md),
+job4491447COMPLETED0:0. 286пар,1798225кластеров,5833940хитов; byte-identity
+non-x и prediction digests точны. Моменты признаков рассчитаны, но причинный
+вклад scalers в performance gap этим опытом не изолирован. Мониторинг выполнял
+GPT-6Luna/low с коротким контекстом и read-only правами, остановился наterminal.

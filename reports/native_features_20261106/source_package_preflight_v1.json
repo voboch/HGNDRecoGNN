@@ -1,0 +1,13 @@
+{
+  "source_base_commit": "73568ce",
+  "source_sha256sums": "327b94dce8ad68d682a1cecbc0cd3db93c03f7cf1dd284a6490d4d501adbd630",
+  "entries": 7,
+  "local_source": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/native_features_20261106/source_327b94dce8ad",
+  "tar": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/native_features_20261106/source_327b94dce8ad.tar",
+  "tar_sha256": "000acace22d7972797d8571f9a9cdf383b1a1c25ef7c386716823abf3b5abee4",
+  "remote_source": "/home/vbocharnikov/hgnd_experiments/native_features_20261106_327b94dce8ad",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/native_features_20261106_327b94dce8ad",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/native_features_20261106_327b94dce8ad_receipts",
+  "plan_sha256": "f0c33dab8b2e90ce4563323de19af75ac79650ac998c761a752047e4e38a639a",
+  "status": "superseded before submission: two preflight guard fixes; no job executed"
+}

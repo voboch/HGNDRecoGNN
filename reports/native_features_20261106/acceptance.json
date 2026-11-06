@@ -1,0 +1,16 @@
+{
+  "state": "accepted_numeric_export",
+  "job_id": "4491447",
+  "source_sums_sha256": "3e514b7191fd56f5c98e346c36ac66036d2b30fd570afdde178a0b323fc3b417",
+  "receipt_sha256": "cb3e7d0c935a7727dddd4e9b22fbe8237638361967c802981241e241a416d97f",
+  "files": 286,
+  "clusters": 1798225,
+  "hits": 5833940,
+  "non_x_byte_exact": 286,
+  "candidate_target_size_exact": 286,
+  "archive_and_member_hashes_exact": true,
+  "new_models": 0,
+  "new_inference": 0,
+  "monitor_model": "gpt-6-luna",
+  "monitor_reasoning": "low"
+}

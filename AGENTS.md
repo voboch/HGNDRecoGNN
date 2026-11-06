@@ -105,3 +105,23 @@ measure. Reconstructed quantities use only what the pipeline derives from hits.
 A figure travels without its caption into talks and slides, which is why the
 panel carries the label too. Mixing the two silently in one figure made an
 earlier draft read as though the detector had measured the truth-level response.
+
+## Scientific reports and presentations
+
+Before preparing or reviewing a report/deck, read the binding
+`thesis-kb/conventions/25-scientific-reporting.md` and §20 for figure grammar.
+Use `.claude/report-review.md` for the current artifact and project-specific
+sources, and `~/.claude/agents/critic-report.md` for report review. Every result
+must be understandable without presenter comments. Check graph necessity,
+explicit selections, paired bias/correction scope, main/Backup separation and
+readable legends that do not overlap data or labels. Reuse accepted science
+when the change is cosmetic.
+
+## Monitoring subagents
+
+Routine experiment monitoring uses **GPT-6 Luna / low**, per shared
+`thesis-kb/conventions/30-development-process.md` §11. In Codex dispatch with
+`model: gpt-6-luna`, `reasoning_effort: low`, `fork_turns: none` and a compact
+job-specific brief. Read-only status/receipt/log checks only, messages on
+meaningful changes, no submissions/cancellations/retries or scientific
+acceptance. Do not silently substitute a more expensive model.
