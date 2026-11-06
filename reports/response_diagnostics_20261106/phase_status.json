@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-06",
+  "saved_output_ledger": "complete",
+  "joint_A1_B1_and_same_head_calibration_controls": "complete",
+  "frozen_M_hard_internal_transfer": "complete; no validated universal correction",
+  "proton_response_derivative": "complete; conditional requirement, not real PID",
+  "new_MC_acceptance_specification": "prepared",
+  "remaining": [
+    "native input feature/scaler projections",
+    "uncensored-primary denominator and direct-association efficiency",
+    "full ancestry background categories if sufficient raw links exist",
+    "proton response scenarios with externally justified parameter ranges",
+    "real proton tracking/PID response on compatible production"
+  ],
+  "native_pack_inventory": {
+    "available": true,
+    "remote_archive": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983/inputs.tar",
+    "bytes": 6871214080,
+    "manifest_sha_exact": true,
+    "downloaded_archive": false,
+    "inspection": "file manifest and feature/scaler schema only; no native-pack analysis performed"
+  },
+  "next_action": "Implement a bounded hash-checked native-pack feature reduction and preflight it before CPU submission. No new training needed for that reduction."
+}

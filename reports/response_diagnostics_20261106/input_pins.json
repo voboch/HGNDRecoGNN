@@ -1,0 +1,14 @@
+{
+  "split": "results/smash_train_20261028/split/split_manifest.json",
+  "files": {
+    "results/smash_train_20261028/split/split_manifest.json": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+    "reports/hybrid_np_20261105/results.json": "1c10ff1245a5fb7abc453d51b1865e49e4d493df79d9b0ff15380b558b576bad",
+    "reports/smash_performance_20261103/data.json": "dec63d7a5eccc41a056114a5f5220fc1c6ce116e64f73c4e13fbbb38d6293fc4",
+    "reports/smash_performance_20261103/input_pins.json": "95e6b03f8820b517f9b8194756ddf9cb77bf9e5b4999a4159d44a8c2dfb924b0",
+    "results/rn_background_correction_20261029/summary.json": "05fd4f7161959f56b703376e364625121bdbc04354fab76293ec0a674875d1e3",
+    "results/smash_train_20261028/evaluate_4466339/evaluation_summary.json": "30e456e22b83d78b1d947247f338da771353b7918bbf3e5f3c3ebb7eecdcd6a7",
+    "results/smash_train_20261028/evaluate_4467086/evaluation_summary.json": "6306bc293bdce9011ac5800929e4fd373ee63a86de3089bfbcde57e7254f984a",
+    "results/smash_train_20261028/evaluate_4467091/evaluation_summary.json": "2b4fcbb19376874674a0b9fb7ef675a14780266f9755f1e734ce131e09b7154c",
+    "scripts/smash_train.py": "be28de388a9ff3c20bb7caf21fa106b7065c3dee3a2b638507e40707144c53d1"
+  }
+}

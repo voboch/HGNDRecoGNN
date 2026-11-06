@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-06",
+  "state": "accepted",
+  "files": 286,
+  "candidates": 1798225,
+  "source_files_verified": 3450,
+  "new_model_calls": 0,
+  "new_cluster_submissions": 0,
+  "invalid_aggregate_denominators": 0,
+  "analysis_seconds": 17.12999145919457,
+  "methodology": "ACCEPT",
+  "report": "GO",
+  "sha256": {
+    "protocol.md": "d7691fe6a1607970b2d01ac755000da5ef05a0f851c177bf005b3be1277adb3a",
+    "analyze.py": "c3b8f5fcbe43e7af5df9f8fffa98a3a5bd69131c52e3724c126d8fa11dc903c5",
+    "input_pins.json": "5ece5a55d43b5ccafc56a07fb7d17de00f20cc20c42f37182a555164c4413854",
+    "results.json": "c9dc8eca3f74dd5a2ca88f0bc250c133a3205882bd93f10ed3d44f9a726bf70e",
+    "counts.npz": "f14d46c9c435a522f8e1519f594dd05c6d9f58e3f3c5f5e7b6f982264df12e9f",
+    "report.py": "0ef5acb31bcbebd3927ecb0566e98f5cc7772ee3110c43379f9fe8df7273e029",
+    "README.md": "da8f3a4f2d2e99aca40fad1bb31bf3df471b924a5f80d6f3b0e8668425477e0c",
+    "figure_manifest.json": "7843443326c0f8764cb6f9ad098dce2dd52577a27ce5222b05a060321ca15b90",
+    "native_prepare_manifest.json": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501"
+  }
+}

@@ -1,0 +1,18 @@
+/Users/vovvy/.matplotlib is not a writable directory
+Matplotlib created a temporary cache directory at /var/folders/j_/4s8d_m9n7nd3pz6rjdz3cj700000gn/T/matplotlib-hyco9tgv because there was an issue with the default path (/Users/vovvy/.matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/vovvy/.cache/fontconfig
+	/Users/vovvy/.fontconfig
+Matplotlib is building the font cache; this may take a moment.
+Accepted even-part CSV content 1 / 286
+Accepted even-part CSV content 41 / 286
+Accepted even-part CSV content 81 / 286
+Accepted even-part CSV content 121 / 286
+Accepted even-part CSV content 161 / 286
+Accepted even-part CSV content 201 / 286
+Accepted even-part CSV content 241 / 286
+Accepted even-part CSV content 281 / 286
+Accepted even-part CSV content 286 / 286
+COMPLETE 17.12999145919457

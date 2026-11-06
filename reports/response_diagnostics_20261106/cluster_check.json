@@ -1,0 +1,14 @@
+{
+  "date_client": "2026-11-06",
+  "access": "one-hop ssh charisma",
+  "actual_user_queue_rows": 0,
+  "checked_arrays": [
+    "4482848",
+    "4482849"
+  ],
+  "main_records": 18,
+  "states": "all COMPLETED",
+  "exit_codes": "all 0:0",
+  "new_submissions": 0,
+  "connection_note": "Initial restricted-network DNS failure; actual query succeeded after tool network permission."
+}
