@@ -5,9 +5,15 @@
   "fork_turns": "none",
   "read_only": true,
   "job_id": "4491592",
-  "state": "dispatched",
+  "state": "stopped_at_terminal",
   "poll_seconds": 120,
   "scientific_acceptance": false,
   "stop": "terminal Slurm and receipt evidence; parent takes acceptance",
-  "mutations_allowed": false
+  "mutations_allowed": false,
+  "slurm_state": "COMPLETED",
+  "exit_code": "0:0",
+  "slurm_end_msk": "2026-11-06T23:53:20+03:00",
+  "receipt_state": "complete",
+  "receipt_members": 860,
+  "receipt_archive_bytes": 27791360
 }

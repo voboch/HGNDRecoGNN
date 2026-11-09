@@ -1,0 +1,46 @@
+{
+  "state": "accepted_numeric_export",
+  "job_id": "4491592",
+  "files": 286,
+  "clusters": 1798225,
+  "hits": 5833940,
+  "export_events": 1180686,
+  "primary_export_records": 303276469,
+  "direct_binding_records_exact": 348888,
+  "events_zero_rectangle_neutrons": 668559,
+  "export_Row_gaps": 0,
+  "zero_energy_accepted_neutrons": 0,
+  "source_sha256sums": "32a88fb3c6ad09307efc9848fbf3278c28825809b9ca62706108a2ebbe02c8bb",
+  "plan_sha256": "5334f00367adca90949b6f6e4f824a60c687a5d58fe81e706e27440546fb8c70",
+  "receipt_sha256": "694131583df72ce5f2d660b28dcac2fc8ff4acd1f0e2fa958baca61206953c14",
+  "manifest_sha256": "e32d7ea8f4629354864d8a63e76a674c8dfaa4d63d2f941889399c885063ccba",
+  "archive_sha256": "80271830b4f304612e512613babd843ea6473b69172cd457a6dde8b47dc12446",
+  "summary_sha256": "50563de5950c168a452c9445368460eb9b472b8841e634326fc7334f5947e1b3",
+  "counts_sha256": "34be4538b1da56b5efacfc3bb8ebca87137b0348587a565419c06c602401222a",
+  "checks": [
+    "archive/member/summary SHA",
+    "full per-event certified matrix SHA",
+    "old T1 n/p counters runtime",
+    "observation SHA/native dtype-byte targets runtime",
+    "unbinned spectra/histograms and nested direct objects",
+    "cluster key uniqueness and per-event edges",
+    "independent structural split/merge/cardinality replay"
+  ],
+  "mixed_cohort_merges": {
+    "observed": {
+      "all_direct_merged_clusters": 5716,
+      "mixed_rectangle_clusters": 1273
+    },
+    "disabled": {
+      "all_direct_merged_clusters": 4671,
+      "mixed_rectangle_clusters": 1014
+    },
+    "native": {
+      "all_direct_merged_clusters": 4671,
+      "mixed_rectangle_clusters": 1014
+    }
+  },
+  "scope": "direct-only associations; not complete descendant genealogy or full neutron detection efficiency",
+  "scientific_review": "pending",
+  "extra_tests": false
+}

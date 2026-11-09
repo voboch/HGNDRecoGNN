@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-09",
+  "state": "accepted",
+  "job_id": "4491592",
+  "numeric_acceptance": "acceptance.json",
+  "scientific_review": {
+    "agent": "/root/rn_methodology_20261104",
+    "decision": "GO",
+    "scope": "T0/T1 event coverage, direct-only fractions and uncertainty, hardness-band ratio, split/merge and matching limitations"
+  },
+  "report_review": {
+    "agent": "/root/report_primary_20261106",
+    "decision": "GO",
+    "resolved_finding": "Added generator, collision system, beam energy and absence of an impact-parameter selection to report and figures. Direct plot uses unconnected bin markers. Full PNGs inspected."
+  },
+  "reviewed_sha256": {
+    "README.md": "bf9a7fec994b1fe854fdd8da825e85324eed8d4d6d3e8bd886211a4b08f1fc7a",
+    "direct_observability.png": "a39a6cc2dff0acf88c5c12c37df3467d0cacddb94b5c3be0dd565d7a86170e6d",
+    "uncensored_inventory.png": "81f49ae2e55c610f5ee5e3142dd7d91fce691f24038393dbd96e1bb54827519f",
+    "results.json": "aae999bf1415c929986198c4af6db93db24403c9d3f89847ebe368a2f34450da",
+    "acceptance.json": "147920f44ccdc4d56376687212cbd82c48377cb44485acef1ea464ac3f31a8c2"
+  }
+}

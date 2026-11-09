@@ -1,0 +1,4 @@
+# Immutable full export is retained remotely and locally under pinned receipts.
+export_*/inputs.tar
+result/*
+!result/summary.json
