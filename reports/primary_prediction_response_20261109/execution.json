@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "date": "2026-11-09",
+  "files": 286,
+  "candidates": 1798225,
+  "prediction_files": 3432,
+  "elapsed_seconds": 15.710991875035688,
+  "new_jobs": [],
+  "new_model_calls": 0,
+  "input_pins_sha256": "71bba31c7e067bbe6640da6a814ab526089d9f1fd0818b6990c72c3acd2172fe",
+  "protocol_sha256": "81c46973fd66a34e48e1904507c6b47d8774ef869f3d1e3978e8452cdfd87320",
+  "code_sha256": "4d205072d9b6e7c7d19f52624000580e706ca2d6f5819dd13ad5236910bd2ca0",
+  "counts_sha256": "8ac8ec5322527e867320cdc8732f51ecd151a0ca326bfce16e87ed8df8c90412"
+}

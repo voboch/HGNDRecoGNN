@@ -6,7 +6,7 @@
   "proton_response_derivative": "complete; conditional requirement, not real PID",
   "new_MC_acceptance_specification": "prepared",
   "remaining": [
-    "direct-primary score survival and energy response on saved candidate predictions",
+    "matched first-hit ToF energy versus raw and calibrated network predictions",
     "full ancestry background categories if sufficient raw links exist",
     "proton response scenarios with externally justified parameter ranges",
     "real proton tracking/PID response on compatible production"
@@ -19,7 +19,7 @@
     "downloaded_archive": false,
     "inspection": "S286 original TEST-fold paired tensors processed on node; all non-x bytes/candidate digests exact; SurfaceHit control exact"
   },
-  "next_action": "Prepare the exact candidate-key join to frozen A1/B1 predictions on S286. Separate object score survival, uniquely linked energy response and ambiguous edges. Register the choice rule before any window scan.",
+  "next_action": "Inventory original timestamps, hit positions, and start/path provenance for a matched first-hit ToF baseline on the fixed isolated S286 cohort. Register hit choice and unphysical beta handling before calculating. Require independently constrained response inputs before a detector-wide correction or proton response scenario.",
   "native_input_feature_scaler_projections": "complete descriptive same-hit encoding ledger; job4491447",
   "primary_association": {
     "state": "accepted",
@@ -32,5 +32,15 @@
     "geometric_neutrons_T1": 897563,
     "scope": "direct primary associations in nominal geometric window"
   },
-  "last_update": "2026-11-09"
+  "last_update": "2026-11-09",
+  "direct_primary_prediction_response": {
+    "state": "accepted",
+    "report": "../primary_prediction_response_20261109/",
+    "files": 286,
+    "candidate_keys": 1798225,
+    "native_linked_primary_neutrons": 190002,
+    "isolated_primary_neutrons": 142912,
+    "new_model_calls": 0,
+    "new_jobs": []
+  }
 }

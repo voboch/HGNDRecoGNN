@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-09",
+  "state": "accepted",
+  "methodology": "preflight.json",
+  "execution": "execution.json",
+  "report_review": {
+    "agent": "/root/report_primary_20261106",
+    "decision": "GO",
+    "resolved_findings": [
+      "Distinguished own-cut migration and common-cut energy-error populations",
+      "Documented frozen score threshold and calibration provenance",
+      "Corrected rounding of calibrated paired file SD"
+    ],
+    "reviewed_sha256": {
+      "README.md": "6c8794142c2ddbf203d9b31d6a606f507ad1effd815954757446cf35ecf9f987",
+      "score_energy_response.png": "44383771edaf774a0e08fd8dcea1816103d896dedba3000ca45358fb80b4a561",
+      "results.json": "a1e68def5c1a579cd14224be86f7fae887c90903b723feed8aa8c9bcf24d35e3"
+    }
+  }
+}
