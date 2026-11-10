@@ -1,0 +1,4 @@
+4500616
+High-performance computing cluster cHARISMa of the HSE University
+Host: login-02
+sbatch: [1mThe job is starting as part of project: [0m[38;5;87mРеконструкция нейтронов в детекторе высокой гранулярности hgnd на установке bm@n. Продление (2026 год)[0m ([38;5;82mproj_1855[0m)

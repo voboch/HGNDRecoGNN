@@ -1,0 +1,24 @@
+{
+  "state": "complete",
+  "scope": "Complete node-local HGND outputs; immutable publication without scratch atomic replace",
+  "plan_sha256": "431bcf09bee38dab107dad5fc5017b19c12e85c5d6bf1d22a2d90a1457620be9",
+  "source_stat_method": "fstat on the same read descriptor before and after copying",
+  "source_script_sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd",
+  "archive_sha256": "b95e5710d8b5b3a2afd5cf9bf7703403a2a400058e10bfc06ed5c09f3b16782c",
+  "archive_bytes": 2990080,
+  "unpacked_bytes": 2984611,
+  "files": [
+    {
+      "source": "/tmp/hgnd-first-hit-tof-4500616.XFHCfD/output/first_hits.npz",
+      "member": "first_hits.npz",
+      "sha256": "b4ff0b180fa5049a1c11b5cfc7c2bea24633ca75bd394c23506d66a6c6aed7f2",
+      "bytes": 2983977
+    },
+    {
+      "source": "/tmp/hgnd-first-hit-tof-4500616.XFHCfD/output/summary.json",
+      "member": "summary.json",
+      "sha256": "8a7ebfab2ab9d252996302ed1b6ac597f7f90b3a9c113fd3493ace98261e4baf",
+      "bytes": 634
+    }
+  ]
+}

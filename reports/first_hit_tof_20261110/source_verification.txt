@@ -1,0 +1,3 @@
+/home/vbocharnikov/hgnd_experiments/first_hit_tof_20261110_25f7d23ed7de.tar: OK
+SHA256SUMS: OK
+Python 3.12.15

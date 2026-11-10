@@ -1,0 +1,18 @@
+{
+  "job_id": "4500616",
+  "source": {
+    "source_base_commit": "d53635e32a2fe179022803462083c1c0634469f8",
+    "source_sha256sums": "25f7d23ed7ded8af7543d80243d101739e95d43602535f3b02c49c191ff77063",
+    "entries": 8,
+    "local_source": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/first_hit_tof_20261110/source_25f7d23ed7de",
+    "tar": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/output/first_hit_tof_20261110/source_25f7d23ed7de.tar",
+    "tar_sha256": "19e438bc97492d3c4b8b8748d7e58bb900f96f19a7a55cfe73a3b6136162e631",
+    "remote_source": "/home/vbocharnikov/hgnd_experiments/first_hit_tof_20261110_25f7d23ed7de",
+    "campaign": "/scratch/vbocharnikov/hgnd/experiments/first_hit_tof_20261110_25f7d23ed7de",
+    "receipts": "/home/vbocharnikov/hgnd_experiments/first_hit_tof_20261110_25f7d23ed7de_receipts",
+    "plan_sha256": "eff3c75dab2371ab359715a8f21fd4a3dc22ce7504c1fb136afa754f0c27a533"
+  },
+  "preflight": "Code GO and package/duplicate guards passed",
+  "resources": "rocky/normal type_d 4CPU 0GPU mem0 45min no-requeue",
+  "tests": false
+}

@@ -6,7 +6,6 @@
   "proton_response_derivative": "complete; conditional requirement, not real PID",
   "new_MC_acceptance_specification": "prepared",
   "remaining": [
-    "matched first-hit ToF energy versus raw and calibrated network predictions",
     "full ancestry background categories if sufficient raw links exist",
     "proton response scenarios with externally justified parameter ranges",
     "real proton tracking/PID response on compatible production"
@@ -19,7 +18,7 @@
     "downloaded_archive": false,
     "inspection": "S286 original TEST-fold paired tensors processed on node; all non-x bytes/candidate digests exact; SurfaceHit control exact"
   },
-  "next_action": "Inventory original timestamps, hit positions, and start/path provenance for a matched first-hit ToF baseline on the fixed isolated S286 cohort. Register hit choice and unphysical beta handling before calculating. Require independently constrained response inputs before a detector-wide correction or proton response scenario.",
+  "next_action": "Use compatible MC with event start and path provenance and independently constrained proton tracking/PID. Validate response on ambiguous and descendant-mediated associations before attempting a detector-wide correction.",
   "native_input_feature_scaler_projections": "complete descriptive same-hit encoding ledger; job4491447",
   "primary_association": {
     "state": "accepted",
@@ -32,7 +31,7 @@
     "geometric_neutrons_T1": 897563,
     "scope": "direct primary associations in nominal geometric window"
   },
-  "last_update": "2026-11-09",
+  "last_update": "2026-11-10",
   "direct_primary_prediction_response": {
     "state": "accepted",
     "report": "../primary_prediction_response_20261109/",
@@ -42,5 +41,19 @@
     "isolated_primary_neutrons": 142912,
     "new_model_calls": 0,
     "new_jobs": []
+  },
+  "matched_first_hit_tof": {
+    "state": "accepted",
+    "job_id": "4500616",
+    "report": "../first_hit_tof_20261110/README.md",
+    "files": 286,
+    "isolated_links": 142912,
+    "joint_cut_physical_timing_counts": [
+      80515,
+      81097,
+      77384
+    ],
+    "scope": "matched isolated direct links with nominal straight-line path",
+    "new_model_calls": 0
   }
 }

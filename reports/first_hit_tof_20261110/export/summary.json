@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "files": 286,
+  "isolated": 142912,
+  "nodes": 5833940,
+  "clusters": 1798225,
+  "seconds": 181.8768880290445,
+  "columns": [
+    "original_time_ns",
+    "jittered_time_ns",
+    "nominal_length_m"
+  ],
+  "selection_sha256": "b5e6d813a479f1fee330a39a2cce0c61563d24230a178b47198878121ec20179",
+  "plan_sha256": "eff3c75dab2371ab359715a8f21fd4a3dc22ce7504c1fb136afa754f0c27a533",
+  "extractor_sha256": "2c0996e70ae56ac6f7e7e58bf6f42d6498c1ba07294adfcae05ff44eeec56e4c",
+  "first_hits_sha256": "b4ff0b180fa5049a1c11b5cfc7c2bea24633ca75bd394c23506d66a6c6aed7f2",
+  "model_calls": 0,
+  "native_replay": "exact"
+}

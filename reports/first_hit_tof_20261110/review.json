@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-10",
+  "methodology_review": "GO after explicit positive MC reference-ratio guard",
+  "report_review": "GO after adding the paired contrast difference and timing-selection limitations to the slide",
+  "presentation": {
+    "artifact_ref": "artifact_6IVhUvwe0L4TNUz-tiqx-jiDd95lpLR_",
+    "slide_count": 30,
+    "comparison_slide": 8,
+    "reviewed_slides": [1, 2, 5, 8, 12, 16, 17],
+    "review_text_sha256": "f0a61fc7cab905a4a869926c5dbd6c474798ad4c1210c41e39b7351e03445670"
+  },
+  "results_sha256": "8edc6ee637dd8d618fbe4c12261cccf2ba24f0ca0544615715ab458507f5e3a3",
+  "figure_data_sha256": "04a529101abe55127faadbfece3d2445320fb55b571347bb2b56e39d1f117816",
+  "figure_png_sha256": "987ca7032b4c7408e28c62ccf42998119958b30f505567234dc6899dcdfe1c0b"
+}
