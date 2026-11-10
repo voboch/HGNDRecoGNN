@@ -1,0 +1,17 @@
+{
+  "job_id": "4502690",
+  "source": "/home/vbocharnikov/hgnd_experiments/rule_tof_odd_20261110_4a09f59942da",
+  "source_sums_sha256": "4a09f59942dadb7003d9d7bd146d917042ea01054a95ee2f4c6d534efa5f776c",
+  "plan_sha256": "ca5261eca36567c661f2ccea945da3f3fbd6bf89af6d9883aa3a5810269140b3",
+  "source_tar_sha256": "3febf08e1cf6c62b6d29fac9565f20e25ce7a6509892de8b984c5a78760d1c5c",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/rule_tof_odd_20261110_4a09f59942da",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/rule_tof_odd_20261110_4a09f59942da_receipts",
+  "partition": "rocky",
+  "qos": "normal",
+  "constraint": "type_d",
+  "cpus": 4,
+  "gpus": 0,
+  "mem": 0,
+  "time": "00:30:00",
+  "requeue": false
+}

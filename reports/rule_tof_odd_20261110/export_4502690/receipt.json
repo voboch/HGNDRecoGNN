@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/rule_tof_odd_20261110_4a09f59942da/result_4502690",
+  "manifest_sha256": "a60fbd2c1d7d86372f7d25ed9626a6f140aca7a8ca4c3058a67d7367802e5a3f",
+  "archive_sha256": "ce1883f531bc81b42f8c0bff315bb2fb7eda7375e7c96ae43a8f894a40a989d8",
+  "archive_bytes": 19200000,
+  "files": 283,
+  "summary_files": {
+    "summary.json": "e960c2e367e0f2396ce617385507b5b3fe57b12b0eb4da4e900a1e8f0cd5c819"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}
