@@ -1,0 +1,6 @@
+4502287|FAILED|1:0|00:03:23|cn-030
+The log reached Replayed 275/286 and invoked the publisher, which could
+only be reached after extract.py checked all 286 files. The publisher
+failed to import HGNDRecoGNN.scripts.scratch_access. No published receipt
+was produced. The log identifies node-local /tmp/hgnd-rule-tof-4502287.bTIMaN.
+The immutable original source and receipt paths are in literal_submission.json.

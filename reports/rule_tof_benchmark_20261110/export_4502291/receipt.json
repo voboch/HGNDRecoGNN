@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/rule_tof_reach_20261110_be1588f653fb/result_4502291",
+  "manifest_sha256": "e1c3e904e2adef6341e06487fdeedf4e4384b54ad5f606944dbab51a97c67218",
+  "archive_sha256": "fb4539658a52843aa48e9a2deda70ada49cc8c2de016a122db8f469aa6db22d7",
+  "archive_bytes": 19384320,
+  "files": 287,
+  "summary_files": {
+    "summary.json": "c3d4eb0e5e69500822c69b46f4970cedbdcc9212fd196ab3928724a0f99a1634"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}

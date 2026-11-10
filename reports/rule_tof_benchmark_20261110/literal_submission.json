@@ -1,0 +1,9 @@
+{
+  "job_id": "4502287",
+  "submitted_utc": "2026-11-10T16:29:41.818469+00:00",
+  "source": "/home/vbocharnikov/hgnd_experiments/rule_tof_20261110_6989849a5317",
+  "source_sums_sha256": "6989849a5317f824cade650679974cdb2bb25335bf826947e5e51a166b98a791",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/rule_tof_20261110_6989849a5317",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/rule_tof_20261110_6989849a5317_receipts",
+  "scope": "one CPU replay; no training or new predictions"
+}

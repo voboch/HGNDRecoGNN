@@ -1,0 +1,9 @@
+{
+  "job_id": "4502291",
+  "submitted_utc": "2026-11-10T16:35:04.243874+00:00",
+  "source": "/home/vbocharnikov/hgnd_experiments/rule_tof_reach_20261110_be1588f653fb",
+  "source_sums_sha256": "be1588f653fbe5ac38b337566caa9fccf06286324e680320881ef3d24ca4ecbb",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/rule_tof_reach_20261110_be1588f653fb",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/rule_tof_reach_20261110_be1588f653fb_receipts",
+  "scope": "physical beta and 0.3\u20134 GeV main; nested literal beta control; no training"
+}
