@@ -91,3 +91,7 @@ before applying the shared ToF validity mask.
 
 [Energy linearity and resolution by true-energy bin](energy_response/README.md)
 uses the same matched sample and bootstrap draws.
+
+The [fixed-cut replay](../rn_score_cut_20261110/fixed_results/matched_tof/README.md)
+applies the contrast-selected SMASH threshold to a nested subset of the same
+even-file timing sample.

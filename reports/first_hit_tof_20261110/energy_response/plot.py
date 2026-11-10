@@ -24,7 +24,7 @@ SERIES = (
 TRUTH_AXIS = r"Initial primary-neutron MC kinetic energy $E_{\mathrm{true}}$ (GeV)"
 
 
-def panels(title):
+def panels(title, selected=False):
     fig, (top, bottom) = plt.subplots(
         2, 1, sharex=True, figsize=(9.6, 6.0), gridspec_kw={"height_ratios": [2.5, 1]}
     )
@@ -40,7 +40,11 @@ def panels(title):
     fig.text(
         0.13,
         0.873,
-        "Nominal HGND window · isolated neutron links · both score cuts · physical speed for both first-hit times",
+        (
+            "Even selection files · isolated links · contrast-selected SMASH and original DCM cuts · both times physical"
+            if selected
+            else "Nominal HGND window · isolated neutron links · both score cuts · physical speed for both first-hit times"
+        ),
         size=10,
         va="top",
     )
@@ -131,14 +135,16 @@ def check_extent(ax, bins, x, metric):
         ), metric
 
 
-def save(fig, stem):
+def save(fig, stem, source):
     for ext in ("png", "pdf"):
-        fig.savefig(HERE / f"{stem}.{ext}", dpi=200, bbox_inches=None)
+        fig.savefig(source / f"{stem}.{ext}", dpi=200, bbox_inches=None)
     plt.close(fig)
 
 
-def main():
-    bins = json.loads((HERE / "bins.json").read_text())["bins"]
+def main(source=HERE):
+    result = json.loads((source / "bins.json").read_text())
+    bins = result["bins"]
+    selected = result.get("smash_score_policy") == "contrast-selected"
     edges = np.array([bins[0]["low_GeV"], *(b["high_GeV"] for b in bins)])
     x = np.array([b.get("median_truth_GeV", np.nan) for b in bins])
     apply_style()
@@ -146,7 +152,7 @@ def main():
         {"axes.labelsize": 11, "xtick.labelsize": 10, "ytick.labelsize": 10}
     )
 
-    fig, top, bottom = panels("Neutron energy linearity")
+    fig, top, bottom = panels("Neutron energy linearity", selected)
     top.plot(edges[[0, -1]], edges[[0, -1]], "--", color="0.5", lw=1, zorder=0)
     draw_metric(top, bins, edges, x, "median_reco_GeV", stairs=False)
     top.set_ylabel(r"Median reconstructed $E_{\mathrm{kin}}$ (GeV)")
@@ -160,9 +166,9 @@ def main():
     bottom.set_xlim(edges[0], edges[-1])
     check_extent(top, bins, x, "median_reco_GeV")
     check_extent(bottom, bins, x, "linearity_percent")
-    save(fig, "energy_linearity")
+    save(fig, "energy_linearity", source)
 
-    fig, top, bottom = panels("Neutron energy resolution")
+    fig, top, bottom = panels("Neutron energy resolution", selected)
     draw_metric(top, bins, edges, x, "resolution_percent")
     top.set_ylabel("Relative residual\ncentral 68% half-width (%)")
     mark_provenance(top, "mixed", "upper left")
@@ -182,7 +188,7 @@ def main():
     )
     bottom.set_xlim(edges[0], edges[-1])
     check_extent(top, bins, x, "resolution_percent")
-    save(fig, "energy_resolution")
+    save(fig, "energy_resolution", source)
 
 
 if __name__ == "__main__":

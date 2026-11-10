@@ -55,7 +55,7 @@ def stats(value, replicas):
     return {"value": value.tolist(), "file_sd": replicas.std(axis=0, ddof=1).tolist()}
 
 
-def reduce_matched(visit=None):
+def reduce_matched(visit=None, smash_cuts=None):
     """Replay the matched comparison and optionally visit each valid file/seed sample."""
     primary_acceptance = load(PRIMARY / "acceptance.json")
     pins = load(PREVIOUS / "input_pins.json")
@@ -143,6 +143,9 @@ def reduce_matched(visit=None):
                     assert np.array_equal(raw_pred.cl_score, cal.cl_score)
                     cut = evaluation["training"][seed]["cuts"][arm]
                     common &= cal.cl_score.to_numpy()[cluster] > cut
+                    if arm == "B1":
+                        smash_scores = cal.cl_score.to_numpy()[cluster]
+                        original_smash_cut = cut
                     energies.extend(
                         [
                             raw_pred.e_pred.to_numpy()[cluster],
@@ -173,7 +176,13 @@ def reduce_matched(visit=None):
                 energies = np.stack(energies)
                 valid_target, valid_energies = target[valid], energies[:, valid]
                 if visit is not None:
-                    visit(i, si, valid_target, valid_energies)
+                    if smash_cuts is None:
+                        visit(i, si, valid_target, valid_energies)
+                    else:
+                        cut = smash_cuts[f"{evaluation['fold']}/{seed}"]
+                        assert cut >= original_smash_cut
+                        retained = valid & (smash_scores > cut)
+                        visit(i, si, target[retained], energies[:, retained])
                 residual = valid_energies - valid_target
                 moments[i, si, :, 0] = residual.sum(axis=1)
                 moments[i, si, :, 1] = np.abs(residual).sum(axis=1)

@@ -34,14 +34,14 @@ def quantiles(values, file_index, weights, probabilities):
     return np.stack(out)
 
 
-def main():
+def main(output=HERE, smash_cuts=None):
     pieces = [[] for _ in SEEDS]
 
     def collect(file_index, repeat, truth, estimates):
         files = np.full(len(truth), file_index, dtype=np.int32)
         pieces[repeat].append((files, truth, estimates))
 
-    result, ledger = reduce_matched(collect)
+    result, ledger = reduce_matched(collect, smash_cuts)
     # Require exact agreement with the accepted comparison before binning.
     assert json.loads(json.dumps(result)) == load(SOURCE / "results.json")
     with np.load(SOURCE / "counts.npz") as accepted:
@@ -134,11 +134,14 @@ def main():
         == total
         for i, total in enumerate(result["selected_per_repeat"])
     )
-    (HERE / "bins.json").write_text(
+    if smash_cuts is not None:
+        result["smash_score_policy"] = "contrast-selected"
+        summarize_matched(output, samples, ledger["content"], weights)
+    (output / "bins.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )
-    with (HERE / "bins.csv").open("w", newline="") as out:
-        writer = csv.writer(out)
+    with (output / "bins.csv").open("w", newline="") as out:
+        writer = csv.writer(out, lineterminator="\n")
         writer.writerow(
             [
                 "low_GeV",
@@ -159,6 +162,76 @@ def main():
             ]
         )
         writer.writerows(csv_rows)
+
+
+def summarize_matched(output, samples, content, weights):
+    """Keep sampling widths for matched hardness and both energy-error summaries."""
+    from compare import PAIR_INDEX, TAGS
+
+    counts, errors = [], []
+    for files, truth, energies in samples:
+        both = np.vstack((truth, energies))
+        counts.append(
+            np.stack(
+                [
+                    np.bincount(files, weights=mask, minlength=len(content))
+                    for mask in np.stack(
+                        (both >= 2, (both >= 0.3) & (both < 1)), axis=1
+                    ).reshape(-1, len(files))
+                ],
+                axis=1,
+            ).reshape(len(content), len(METHODS) + 1, 2)
+        )
+        absolute = np.abs(energies - truth) * 1000
+        count = weights @ np.bincount(files, minlength=len(content))
+        sums = np.stack(
+            [np.bincount(files, weights=r, minlength=len(content)) for r in absolute],
+            axis=1,
+        )
+        errors.append((weights @ sums / count[:, None], np.median(absolute, axis=1)))
+    counts = np.stack(counts, axis=1)
+    grouped = np.stack(
+        [
+            np.einsum("df,fsmk->dsmk", weights[:, use], counts[use])
+            for tag in TAGS
+            for use in [np.char.startswith(content, tag + "/")]
+        ],
+        axis=1,
+    )
+    assert (grouped > 0).all()
+    rn = grouped[..., 0] / grouped[..., 1]
+
+    def stat(draws):
+        lo, hi = np.quantile(draws[1:], [0.16, 0.84], axis=0)
+        return {
+            "value": draws[0].tolist(),
+            "file_sd": draws[1:].std(axis=0, ddof=1).tolist(),
+            "q16": lo.tolist(),
+            "q84": hi.tolist(),
+            "half_width_68": ((hi - lo) / 2).tolist(),
+        }
+
+    pairs = {}
+    for label, (hi, lo) in PAIR_INDEX.items():
+        contrast = 100 * (rn[:, hi] / rn[:, lo] - 1)
+        pairs[label] = {
+            "contrast_percent": stat(contrast.mean(1)),
+            "by_repeat": contrast[0].tolist(),
+            "smash_raw_minus_original_tof_pp": stat(
+                (contrast[..., 5] - contrast[..., 1]).mean(1)
+            ),
+        }
+    out = {
+        "contrast_methods": ["MC primary truth", *METHODS],
+        "pairs": pairs,
+        "mae_MeV": stat(np.stack([x[0] for x in errors], axis=1).mean(1)),
+        "median_absolute_error_MeV_by_repeat": np.stack(
+            [x[1] for x in errors]
+        ).tolist(),
+    }
+    (output / "matched_summary.json").write_text(
+        json.dumps(out, indent=2, allow_nan=False) + "\n"
+    )
 
 
 if __name__ == "__main__":

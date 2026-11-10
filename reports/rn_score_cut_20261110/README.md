@@ -1,5 +1,9 @@
 # Classifier score cut for neutron hardness
 
+The [fixed-cut update](fixed_results/README.md) extends this selection
+record with all three contrast pairs, paired widths, response stages,
+spectra and the matched energy comparison.
+
 The baseline used the first of 401 score cuts reaching 70% count purity
 on pooled validation for each fold and training repeat. The new policy
 instead ranks these validation-purity operating points by the signed
