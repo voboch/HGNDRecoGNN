@@ -88,3 +88,6 @@ before applying the shared ToF validity mask.
 [Protocol](protocol.md) · [Slurm receipt](terminal_slurm.txt) ·
 [Input and output receipt](export/receipt.json) · [Numerical results](results.json) ·
 [Paired figure data](figure_data.json) · [Figure PDF](first_hit_energy_comparison.pdf)
+
+[Energy linearity and resolution by true-energy bin](energy_response/README.md)
+uses the same matched sample and bootstrap draws.

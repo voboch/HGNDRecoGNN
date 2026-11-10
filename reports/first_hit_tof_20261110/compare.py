@@ -55,9 +55,8 @@ def stats(value, replicas):
     return {"value": value.tolist(), "file_sd": replicas.std(axis=0, ddof=1).tolist()}
 
 
-def main():
-    if (HERE / "results.json").exists():
-        raise FileExistsError("Existing result")
+def reduce_matched(visit=None):
+    """Replay the matched comparison and optionally visit each valid file/seed sample."""
     primary_acceptance = load(PRIMARY / "acceptance.json")
     pins = load(PREVIOUS / "input_pins.json")
     for path, expected in pins.items():
@@ -172,7 +171,10 @@ def main():
                     (valid & (jitter > 10)).sum(),
                 ]
                 energies = np.stack(energies)
-                residual = energies[:, valid] - target[valid]
+                valid_target, valid_energies = target[valid], energies[:, valid]
+                if visit is not None:
+                    visit(i, si, valid_target, valid_energies)
+                residual = valid_energies - valid_target
                 moments[i, si, :, 0] = residual.sum(axis=1)
                 moments[i, si, :, 1] = np.abs(residual).sum(axis=1)
                 med_inputs[tag_idx][si].append(np.abs(residual))
@@ -255,14 +257,15 @@ def main():
         "source_job": load(HERE / "submission.json")["job_id"],
         "scope": "same isolated links, selected by both original cuts, with both ToF times physical",
     }
-    np.savez_compressed(
-        HERE / "counts.npz",
-        content=ids,
-        weights=weights,
-        counts=counts,
-        moments=moments,
-        bands=bands,
-    )
+    ledger = dict(content=ids, weights=weights, counts=counts, moments=moments, bands=bands)
+    return result, ledger
+
+
+def main():
+    if (HERE / "results.json").exists():
+        raise FileExistsError("Existing result")
+    result, ledger = reduce_matched()
+    np.savez_compressed(HERE / "counts.npz", **ledger)
     (HERE / "results.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )
