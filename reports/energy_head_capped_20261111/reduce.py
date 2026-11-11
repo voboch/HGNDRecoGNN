@@ -24,7 +24,8 @@ def main(args):
     validation = []
     for folder, info in runs.values():
         record = old.load(HERE / "acceptance" / f"task_{info['task']}.json")
-        assert record["summary"] == info and record["calibration_replay"] == "exact"
+        assert record["summary"] == info and record["calibration_band_decisions_exact"]
+        assert record["calibration_replay"] == "within_2_ulps"
         old.checked(folder / "summary.json", record["receipt"]["summary_files"]["summary.json"])
         validation.append({
             "fold": info["fold"], "seed": info["seed"], **info["validation_choice"],

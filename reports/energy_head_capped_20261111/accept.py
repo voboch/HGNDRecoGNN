@@ -50,6 +50,7 @@ def verify(folder, summary, plan):
     assert (np.diff(x) > 0).all() and (np.diff(y) > 0).all()
     previous = HERE.parent / "energy_head_dombay_20261111/exports" / f"task_{summary['task']}"
     maximum = 0.0
+    calibration_maximum = 0.0
     for cid in summary["test_files"]:
         member = f"predictions/{cid}.npz"
         with np.load(folder / member) as new, np.load(previous / member) as old_pred:
@@ -62,8 +63,16 @@ def verify(folder, summary, plan):
             expected = np.interp(energy, x, y)
             expected[energy < x[0]] = energy[energy < x[0]] * y[0] / x[0]
             expected[energy > x[-1]] = energy[energy > x[-1]] * y[-1] / x[-1]
-            assert np.array_equal(expected, new["capped_calibrated"])
-    return {"unit_replay_max_abs_GeV": maximum, "calibration_replay": "exact"}
+            observed = new["capped_calibrated"]
+            # Linux and macOS NumPy can round the interpolation multiply-add differently.
+            np.testing.assert_array_max_ulp(expected, observed, maxulp=2)
+            calibration_maximum = max(calibration_maximum, float(np.max(np.abs(expected - observed))))
+            assert np.array_equal(expected > .3, observed > .3)
+            for edge in (1, 2, 4):
+                assert np.array_equal(expected >= edge, observed >= edge)
+    return {"unit_replay_max_abs_GeV": maximum, "calibration_replay": "within_2_ulps",
+            "calibration_replay_max_abs_GeV": calibration_maximum,
+            "calibration_band_decisions_exact": True}
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+{
+  "job_id": 4505437,
+  "array": "1-8%2",
+  "submitted_cluster_local": "2026-11-11T17:49:11",
+  "source_sums_sha256": "eb0ee9cede023882be467180816289364870ca0136f0c9d4edc4cfd521059a08",
+  "pilot": {
+    "job_id": 4505406,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:16:45",
+    "node": "cn-004",
+    "acceptance": "acceptance/task_0.json"
+  }
+}
