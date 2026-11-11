@@ -55,7 +55,7 @@ def stats(value, replicas):
     return {"value": value.tolist(), "file_sd": replicas.std(axis=0, ddof=1).tolist()}
 
 
-def reduce_matched(visit=None, smash_cuts=None):
+def reduce_matched(visit=None, smash_cuts=None, visit_keys=None):
     """Replay the matched comparison and optionally visit each valid file/seed sample."""
     primary_acceptance = load(PRIMARY / "acceptance.json")
     pins = load(PREVIOUS / "input_pins.json")
@@ -175,6 +175,13 @@ def reduce_matched(visit=None, smash_cuts=None):
                 ]
                 energies = np.stack(energies)
                 valid_target, valid_energies = target[valid], energies[:, valid]
+                if visit_keys is not None:
+                    retained = valid
+                    if smash_cuts is not None:
+                        cut = smash_cuts[f"{evaluation['fold']}/{seed}"]
+                        assert cut >= original_smash_cut
+                        retained = valid & (smash_scores > cut)
+                    visit_keys(cid, si, cluster[retained], target[retained], energies[:, retained])
                 if visit is not None:
                     if smash_cuts is None:
                         visit(i, si, valid_target, valid_energies)
