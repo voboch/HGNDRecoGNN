@@ -21,6 +21,7 @@ KEYS = ["Row", "ClusterID", "cl_istop"]
 ARMS = ("baseline_raw", "unit_mse", "energy_weighted_mse")
 ALL_ARMS = ("mc_truth", "baseline_calibrated", *ARMS)
 PAIRS = {"18/0": (1, 0), "90/0": (2, 0), "90/18": (2, 1)}
+ODD_REFERENCE = "3c994767445146594af810359d5842628ea5d65bbd7d78fa890ba83f3973733b"
 sys.path.insert(0, str(FIRST_HIT))
 from compare import reduce_matched  # noqa: E402
 
@@ -191,12 +192,14 @@ def band_counts(energy):
 
 
 def odd_contrast(runs, registry, output):
+    reference = load(checked(ODD / "results.json", ODD_REFERENCE))
     with np.load(ODD / "counts.npz") as prior:
         ids, draws, tags = prior["content"], prior["draws"], prior["tags"]
         prior_names = prior["arms"].tolist()
         assert len(ids) == 282 and draws.shape == (400, 282)
         truth_index, gnn_index = prior_names.index("mc"), prior_names.index("gnn")
-        old = np.stack([prior["soft"], prior["hard"] - prior["overflow"], prior["overflow"]], axis=-1)
+        # The accepted ledger stores 2 <= E < 4 and E >= 4 separately.
+        old = np.stack([prior["soft"], prior["hard"], prior["overflow"]], axis=-1)
         counts = np.zeros((len(ids), len(SEEDS), len(ALL_ARMS), 3), dtype=np.int64)
         counts[:, :, 0] = old[:, :, truth_index]
         counts[:, :, 1] = old[:, :, gnn_index]
@@ -204,6 +207,9 @@ def odd_contrast(runs, registry, output):
         keep = np.isin(fixed["parts"], (1, 3, 5))
         assert np.array_equal(ids, fixed["ids"][keep]) and np.array_equal(ids, saved["ids"][keep])
         assert np.array_equal(draws, saved["weights"][:, keep])
+        assert fixed["spans"][keep].sum() == reference["event_count"] == 1165216
+        assert np.array_equal(counts[:, 0, 0, 1:].sum(axis=-1), fixed["truth"][keep, 1, 0])
+        assert np.array_equal(counts[:, 0, 0, 0], fixed["truth"][keep, 1, 1])
         expected = fixed["objects"][keep, :, 1, 2]
         hist = fixed["spectra"][keep, :, 1, 4]
         edges = fixed["edges"]
@@ -232,11 +238,18 @@ def odd_contrast(runs, registry, output):
     for band, hard in (("open_2_GeV", sums[..., 1:].sum(axis=-1)), ("2_to_4_GeV", sums[..., 1])):
         rn = hard / sums[..., 0]
         assert (rn > 0).all()
+        old_contrasts = reference["open_upper" if band == "open_2_GeV" else "within_reach"]["contrasts"]
         result = {}
         for pair, (a, b) in PAIRS.items():
             by_seed = 100 * (rn[:, a] / rn[:, b] - 1)
             c = by_seed.mean(axis=1)
             bias = c - c[:, :1]
+            for method, values in (("mc", c[:, 0]), ("gnn", c[:, 1]), ("gnn_minus_mc", bias[:, 1])):
+                for field, value in summary(values).items():
+                    name = "half_width_68" if field == "half_width" else field
+                    assert np.isclose(value, old_contrasts[pair][method][name], rtol=0, atol=1e-12), (
+                        band, pair, method, name
+                    )
             result[pair] = {
                 "contrast_percent": {
                     arm: {**summary(c[:, j]), "by_seed": by_seed[0, :, j].tolist()}

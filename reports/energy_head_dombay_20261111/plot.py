@@ -55,8 +55,9 @@ def response(result, directory):
 
 def hardness(result, directory):
     pairs = result["odd_hardness"]["open_2_GeV"]["pairs"]
-    fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True, layout="constrained")
-    models = {**ENERGY_ARMS, "baseline_calibrated": ("Published calibration", "#78628a", "^")}
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.9), sharey=True)
+    fig.subplots_adjust(left=.11, right=.98, bottom=.26, top=.87, wspace=.15)
+    models = {**ENERGY_ARMS, "baseline_calibrated": ("Original calibrated", "#78628a", "^")}
     pair_order = ("18/0", "90/0", "90/18")
     offsets = np.linspace(-.27, .27, len(models) + 1)
     labels = ("Contrast (%)", "Paired displacement from MC truth (p.p.)")
@@ -79,9 +80,10 @@ def hardness(result, directory):
         ax.grid(axis="x", color="#dedede", linewidth=.55)
     axes[0].set_ylabel("Symmetry-potential pair (MeV/MeV)")
     axes[0].invert_yaxis()
-    axes[0].legend(loc="upper center", bbox_to_anchor=(1.02, -.18),
-                   frameon=False, fontsize=9, ncols=3)
-    fig.suptitle("Reconstructed and MC-truth neutron hardness on the same odd files")
+    handles, legend_labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, legend_labels, loc="lower center", bbox_to_anchor=(.5, .025),
+               frameon=False, fontsize=9, ncols=3)
+    fig.suptitle("Neutron hardness contrast on the same odd files")
     save(fig, directory, "hardness_contrast")
 
 
