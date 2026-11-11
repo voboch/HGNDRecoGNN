@@ -1,0 +1,38 @@
+{
+  "job_id": 4505029,
+  "tasks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "array": "1-8%2",
+  "submitted_cluster_local": "2026-11-11T15:18:25",
+  "job_name": "hgnd-en-head",
+  "state_on_submit": "PENDING",
+  "resources": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_a",
+    "time": "01:15:00",
+    "mem": 0,
+    "cpus": 4,
+    "gpus": 1,
+    "requeue": false,
+    "throttle": 2
+  },
+  "prior_pilot": {
+    "job_id": 4505005,
+    "task": 0,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:16:28",
+    "node": "cn-007",
+    "acceptance": "acceptance/task_0.json"
+  },
+  "source_sums_sha256": "5e2353cec5fae6478eed4615bde3426d6b3e87824f8ac45e3911f8b5ee407e0d"
+}
