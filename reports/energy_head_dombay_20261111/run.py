@@ -16,7 +16,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
 from HGNDRecoGNN.scripts.smash_train import (  # noqa: E402
     TASKS, NativePackDataset, PackStore, build_model, epoch_checkpoint_name,
-    extract_members, load_epoch, load_split, seed_everything, sha, task_partitions,
+    apply_calibration, extract_members, load_epoch, load_split, seed_everything, sha, task_partitions,
     write_json,
 )
 from HGNDRecoGNN.scripts.smash_transfer_infer import check_prediction  # noqa: E402
@@ -170,7 +170,18 @@ def score(branch, features, main):
     return torch.cat([branch_energy(branch, x.to(main)).cpu() for x in features.split(BATCH)]).numpy()
 
 
-def run(args):
+def fit_dombay(args, original, train, validation, seed, main):
+    weights, occupancy = energy_weights(train[1])
+    branches = {}
+    for arm, weight in zip(ARMS, (np.ones_like(weights), weights), strict=True):
+        branch, history = fit_branch(original, train, validation, weight, seed, main, arm)
+        branches[arm] = branch
+        torch.save(branch.state_dict(), args.output / f"{arm}.pt")
+        write_json(args.output / f"{arm}_history.json", history)
+    return branches, {}, {"training_weights": occupancy}
+
+
+def run(args, fit_policy=fit_dombay):
     plan = json.loads(args.plan.read_text())
     fold, seed = TASKS[args.task]
     if sha(args.split) != plan["split_sha256"]:
@@ -215,14 +226,8 @@ def run(args):
     print("Caching train and validation representations", flush=True)
     train = cache_positives(model, store, train_ids, fold, main)
     validation = cache_positives(model, store, val_ids, fold, main)
-    weights, occupancy = energy_weights(train[1])
     args.output.mkdir(parents=True, exist_ok=False)
-    branches = {}
-    for arm, weight in zip(ARMS, (np.ones_like(weights), weights), strict=True):
-        branch, history = fit_branch(original, train, validation, weight, seed, main, arm)
-        branches[arm] = branch
-        torch.save(branch.state_dict(), args.output / f"{arm}.pt")
-        write_json(args.output / f"{arm}_history.json", history)
+    branches, calibrations, fit_info = fit_policy(args, original, train, validation, seed, main)
     del train, validation
     torch.cuda.empty_cache()
 
@@ -267,6 +272,8 @@ def run(args):
         np.testing.assert_allclose(raw_replay, old, atol=2e-5, rtol=2e-5, err_msg=cid)
         maximum_error = max(maximum_error, float(np.abs(raw_replay - old).max()))
         energies = {arm: score(branch, features, main) for arm, branch in branches.items()}
+        for arm, (raw_arm, calibration) in calibrations.items():
+            energies[arm] = apply_calibration(calibration, energies[raw_arm])
         if not all(np.isfinite(x).all() and (x >= 0).all() for x in energies.values()):
             raise ValueError(f"Invalid branch energy: {cid}")
         target = args.output / "predictions" / (cid + ".npz")
@@ -277,8 +284,8 @@ def run(args):
         "plan_sha256": sha(args.plan), "split_sha256": plan["split_sha256"],
         "prepare_manifest_sha256": prep["manifest_sha256"], "baseline_complete_sha256": sha(complete_path),
         "baseline_checkpoint_sha256": sha(checkpoint), "initial_epoch": epoch,
-        "epochs": EPOCHS, "batch_graphs": BATCH, "arms": list(ARMS), "train_files": train_ids,
-        "validation_files": val_ids, "test_files": test_ids, "training_weights": occupancy,
+        "epochs": EPOCHS, "batch_graphs": BATCH, "arms": [*branches, *calibrations], "train_files": train_ids,
+        "validation_files": val_ids, "test_files": test_ids, **fit_info,
         "raw_replay_max_abs_GeV": maximum_error, "source_sums_sha256": sha(args.source_sums),
         "gpu": torch.cuda.get_device_name(), "torch": str(torch.__version__),
     })

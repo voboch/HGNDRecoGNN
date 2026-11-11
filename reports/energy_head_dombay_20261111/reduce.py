@@ -19,7 +19,8 @@ BASE = ROOT / "results/smash_train_20261028"
 SEEDS = (42, 123, 456)
 KEYS = ["Row", "ClusterID", "cl_istop"]
 ARMS = ("baseline_raw", "unit_mse", "energy_weighted_mse")
-ALL_ARMS = ("mc_truth", "baseline_calibrated", *ARMS)
+DIFFERENCES = {"weighted_minus_original": (2, 0), "weighted_minus_unit": (2, 1),
+               "unit_minus_original": (1, 0)}
 PAIRS = {"18/0": (1, 0), "90/0": (2, 0), "90/18": (2, 1)}
 ODD_REFERENCE = "3c994767445146594af810359d5842628ea5d65bbd7d78fa890ba83f3973733b"
 sys.path.insert(0, str(FIRST_HIT))
@@ -48,14 +49,14 @@ def checked(path, expected):
     return path
 
 
-def compare_inputs(export, plan, source_sums):
+def compare_inputs(export, plan, source_sums, plan_path=HERE / "plan.json"):
     runs = {}
     for path in sorted(export.glob("task_*/summary.json")):
         info = load(path)
         key = info["fold"], info["seed"]
         run = next(x for x in plan["folds"][key[0]]["runs"] if x["task"] == info["task"])
         assert info["state"] == "complete" and info["epochs"] == 15 and key not in runs
-        assert info["plan_sha256"] == digest(HERE / "plan.json")
+        assert info["plan_sha256"] == digest(plan_path)
         assert info["source_sums_sha256"] == source_sums
         assert info["baseline_complete_sha256"] == run["complete_sha256"]
         assert info["split_sha256"] == plan["split_sha256"]
@@ -78,14 +79,14 @@ def compare_inputs(export, plan, source_sums):
     return runs, registry
 
 
-def predictions(cid, seed, registry, runs):
+def predictions(cid, seed, registry, runs, arms=ARMS):
     root, info = registry[cid]
     raw_ref = info["predictions"]["B0"][str(seed)][cid]
     raw = pd.read_csv(checked(root / raw_ref["path"], raw_ref["sha256"]),
                       usecols=[*KEYS, "cl_score", "e_pred"])
     with np.load(runs[info["fold"], seed][0] / "predictions" / (cid + ".npz")) as new:
         assert np.array_equal(new["keys"], raw[KEYS].to_numpy())
-        energy = np.stack([raw.e_pred, *(new[a] for a in ARMS[1:])])
+        energy = np.stack([raw.e_pred, *(new[a] for a in arms[1:])])
         assert np.isfinite(energy).all()
     return raw, energy
 
@@ -97,22 +98,18 @@ def summary(draws):
             "half_width": float((high - low) / 2), "file_sd": float(draws[1:].std(ddof=1))}
 
 
-def differences(values):
-    return {
-        "weighted_minus_original": values[..., 2] - values[..., 0],
-        "weighted_minus_unit": values[..., 2] - values[..., 1],
-        "unit_minus_original": values[..., 1] - values[..., 0],
-    }
+def differences(values, pairs=DIFFERENCES):
+    return {name: values[..., a] - values[..., b] for name, (a, b) in pairs.items()}
 
 
-def relative_bins(runs, registry):
+def relative_bins(runs, registry, arms=ARMS, paired=DIFFERENCES):
     spec = spec_from_file_location("accepted_bins", FIRST_HIT / "energy_response/analyze.py")
     analyzer = module_from_spec(spec)
     spec.loader.exec_module(analyzer)
     matched = [[] for _ in SEEDS]
 
     def visit(cid, repeat, indices, truth, reference):
-        _, e = predictions(cid, SEEDS[repeat], registry, runs)
+        _, e = predictions(cid, SEEDS[repeat], registry, runs, arms)
         assert np.array_equal(e[0, indices], reference[4])
         matched[repeat].append((cid, truth, e[:, indices]))
 
@@ -163,8 +160,8 @@ def relative_bins(runs, registry):
             draws = mean[:, :, m]
             row[key] = {
                 **{arm: {**summary(draws[:, a]), "by_seed": values[0, :, a, m].tolist()}
-                   for a, arm in enumerate(ARMS)},
-                **{name: summary(d) for name, d in differences(draws).items()},
+                   for a, arm in enumerate(arms)},
+                **{name: summary(d) for name, d in differences(draws, paired).items()},
             }
     absolute = []
     for files, truth, energy in samples:
@@ -177,8 +174,8 @@ def relative_bins(runs, registry):
         "matched_counts": [len(t) for _, t, _ in samples], "bins": outputs,
         "mae_MeV": {
             **{arm: {**summary(means[:, a]), "by_seed": maes[0, :, a].tolist()}
-               for a, arm in enumerate(ARMS)},
-            **{name: summary(d) for name, d in differences(means).items()},
+               for a, arm in enumerate(arms)},
+            **{name: summary(d) for name, d in differences(means, paired).items()},
         },
     }
 
@@ -191,7 +188,8 @@ def band_counts(energy):
     ]
 
 
-def odd_contrast(runs, registry, output):
+def odd_contrast(runs, registry, output, arms=ARMS, paired=DIFFERENCES):
+    all_arms = ("mc_truth", "baseline_calibrated", *arms)
     reference = load(checked(ODD / "results.json", ODD_REFERENCE))
     with np.load(ODD / "counts.npz") as prior:
         ids, draws, tags = prior["content"], prior["draws"], prior["tags"]
@@ -200,7 +198,7 @@ def odd_contrast(runs, registry, output):
         truth_index, gnn_index = prior_names.index("mc"), prior_names.index("gnn")
         # The accepted ledger stores 2 <= E < 4 and E >= 4 separately.
         old = np.stack([prior["soft"], prior["hard"], prior["overflow"]], axis=-1)
-        counts = np.zeros((len(ids), len(SEEDS), len(ALL_ARMS), 3), dtype=np.int64)
+        counts = np.zeros((len(ids), len(SEEDS), len(all_arms), 3), dtype=np.int64)
         counts[:, :, 0] = old[:, :, truth_index]
         counts[:, :, 1] = old[:, :, gnn_index]
     with np.load(FIXED / "fixed_results/files.npz") as fixed, np.load(FIXED / "fixed_results/draw_weights.npz") as saved:
@@ -222,13 +220,13 @@ def odd_contrast(runs, registry, output):
     for i, cid in enumerate(ids):
         _, info = registry[cid]
         for s, seed in enumerate(SEEDS):
-            raw, energy = predictions(cid, seed, registry, runs)
+            raw, energy = predictions(cid, seed, registry, runs, arms)
             select = raw.cl_score.to_numpy() > cuts[f"{info['fold']}/{seed}"]
             assert select.sum() == expected[i, s]
             counts[i, s, 2:] = np.asarray(band_counts(energy[:, select])).T
     assert np.array_equal(counts[:, :, 2], accepted_raw)
     np.savez_compressed(output / "odd_counts.npz", content=ids, tags=tags, draws=draws,
-                        counts=counts, arms=ALL_ARMS, seeds=SEEDS)
+                        counts=counts, arms=all_arms, seeds=SEEDS)
     tag_order = ("zeroSpot", "defaultSpot", "bigSpot")
     draws = np.vstack([np.ones(len(ids), dtype=int), draws])
     sums = np.stack([np.einsum("df,fsac->dsac", draws[:, tags == t], counts[tags == t])
@@ -253,22 +251,22 @@ def odd_contrast(runs, registry, output):
             result[pair] = {
                 "contrast_percent": {
                     arm: {**summary(c[:, j]), "by_seed": by_seed[0, :, j].tolist()}
-                    for j, arm in enumerate(ALL_ARMS)
+                    for j, arm in enumerate(all_arms)
                 },
                 "paired_bias_vs_mc_pp": {arm: summary(bias[:, j])
-                                         for j, arm in enumerate(ALL_ARMS) if j},
-                "paired_change_pp": {name: summary(d) for name, d in differences(c[:, 2:]).items()},
+                                         for j, arm in enumerate(all_arms) if j},
+                "paired_change_pp": {name: summary(d) for name, d in differences(c[:, 2:], paired).items()},
                 "change_in_abs_bias_pp": {
-                    name: summary(d) for name, d in differences(np.abs(bias[:, 2:])).items()
+                    name: summary(d) for name, d in differences(np.abs(bias[:, 2:]), paired).items()
                 },
                 "change_in_half_width_pp": {
                     name: float(d) for name, d in differences(
-                        np.array([summary(c[:, j])["half_width"] for j in range(2, len(ALL_ARMS))])
+                        np.array([summary(c[:, j])["half_width"] for j in range(2, len(all_arms))]), paired
                     ).items()
                 },
             }
         out[band] = {"Rn_by_setting_and_arm": {
-            tag: {arm: rn[0, t, :, j].tolist() for j, arm in enumerate(ALL_ARMS)}
+            tag: {arm: rn[0, t, :, j].tolist() for j, arm in enumerate(all_arms)}
             for t, tag in enumerate(tag_order)
         }, "pairs": result}
     return out
