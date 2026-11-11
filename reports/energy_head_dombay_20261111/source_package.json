@@ -1,0 +1,10 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/energy_head_dombay_20261111_5e2353cec5fa",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/energy_head_dombay_20261111_5e2353cec5fa",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/energy_head_dombay_20261111_5e2353cec5fa_receipts",
+  "source_sums_sha256": "5e2353cec5fae6478eed4615bde3426d6b3e87824f8ac45e3911f8b5ee407e0d",
+  "source_tar_sha256": "b575d23b100bf0c2a9058ec6364168726acde3d28657604d1f79b4d6f6778fa1",
+  "source_entries": 138,
+  "code_commit": "0921f8a48531dfdaad10c6c7ecbca0a946bb9bf6",
+  "plan_sha256": "5048126c6b069a182cf7c1bb2beb39ad87c8c9568dac673729fd96194d6b7f8c"
+}
