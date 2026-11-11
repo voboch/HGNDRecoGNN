@@ -1,0 +1,20 @@
+{
+  "job_id": 4506482,
+  "state_at_submission": "PENDING",
+  "reason_at_submission": "Priority",
+  "submit_time_slurm_local": "2026-11-12T00:55:55",
+  "partition": "rocky",
+  "qos": "normal",
+  "account": "proj_1855",
+  "constraint": "type_d",
+  "cpus": 4,
+  "gpus": 0,
+  "mem_option": 0,
+  "time_limit": "00:45:00",
+  "requeue": false,
+  "source_sums_sha256": "74dcaae87f007bcfe5ad94c2fff77484dc5ce01b83353dc260f424699d5b3e5b",
+  "plan_sha256": "32f97486346e1ec6d45e6fac553bd88d76a0c2a528c13fbd2667bccbcffc47bf",
+  "submission": "/home/vbocharnikov/hgnd_experiments/detector_only_20261112_74dcaae87f00_receipts/submission.txt",
+  "log": "/home/vbocharnikov/hgnd_experiments/detector_only_20261112_74dcaae87f00_receipts/logs/hgnd-detector-only_4506482.out",
+  "publication_receipt": "/home/vbocharnikov/hgnd_experiments/detector_only_20261112_74dcaae87f00_receipts/result_4506482.json"
+}

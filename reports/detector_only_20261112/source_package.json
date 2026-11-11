@@ -1,0 +1,10 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/detector_only_20261112_74dcaae87f00",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/detector_only_20261112_74dcaae87f00",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/detector_only_20261112_74dcaae87f00_receipts",
+  "code_commit": "cec1083e2c7c0f0299b76ad0008b190cf690b5a4",
+  "source_entries": 154,
+  "source_tar_sha256": "e520ac077c8fec0a6749d2a862654629bdc403efee6b7a6de00646eb9dfbf04f",
+  "source_sums_sha256": "74dcaae87f007bcfe5ad94c2fff77484dc5ce01b83353dc260f424699d5b3e5b",
+  "plan_sha256": "32f97486346e1ec6d45e6fac553bd88d76a0c2a528c13fbd2667bccbcffc47bf"
+}
