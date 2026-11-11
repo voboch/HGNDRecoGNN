@@ -14,6 +14,21 @@ from .graph_dataset import FEATURES, _dfToF
 # audit candidates are a separate diagnostic and cannot replace this window.
 RADIUS_CELLS = 3.6
 TIME_NS = 1.0
+DETECTOR_COLUMNS = (
+    'Row', 'Instance', 'fX', 'fY', 'fZ', 'DetectorId', 'LayerId',
+    'RowId', 'ColumnId', 'fTime', 'fELoss',
+)
+
+
+def detector_observations(hits, rng):
+    """Prepare the detector fields with the frozen SMASH hit and timing recipe."""
+    frame = hits.loc[:, list(DETECTOR_COLUMNS)]
+    if frame.duplicated(['Row', 'Instance']).any():
+        raise ValueError('Duplicate local Row/Instance in detector hits')
+    # Preserve the 3 MeV hit threshold and 150 ps simulated timing smearing.
+    frame = frame.loc[(frame.fELoss > .003) & np.isfinite(frame).all(axis=1)].copy()
+    frame['fTime'] += rng.normal(0, .15, len(frame))
+    return frame.loc[frame.fY != 0].copy()
 
 
 def _ordered(frame):
@@ -50,10 +65,7 @@ def observed_features(frame, geometry_bounds):
     return {side: frame.loc[sides == side, FEATURES[:-1]] for side in (0, 1)}
 
 
-def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
-    """Keep per-event/arm namespaces, local cluster/edge IDs, and hit order."""
-    if not len(frame):
-        return None
+def _pack_observables(frame, scalers, affine_a, affine_b, geometry_bounds):
     frame, rows, sides = _ordered(frame)
     keys = pd.MultiIndex.from_arrays([sides, rows])
     batch, uniques = pd.factorize(keys, sort=False)
@@ -91,6 +103,32 @@ def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
             standardized = scalers[side].transform(frame.loc[mask, FEATURES[:-1]]).astype(np.float32)
             x[mask, :-1] = standardized * np.asarray(affine_a[side], np.float32) + np.asarray(affine_b[side], np.float32)
     x[:, -1] = frame.SurfaceHit.to_numpy(np.float32)
+    pack = {'x': torch.tensor(x), 'pe': torch.zeros((len(x), 4)),
+            'edges': torch.tensor(local_edges), 'cluster': torch.tensor(local_cluster),
+            'row': torch.tensor([int(key[1]) for key in uniques]),
+            'side': torch.tensor([int(key[0]) for key in uniques]),
+            'index': torch.arange(len(uniques)), 'node_ptr': torch.tensor(node_ptr),
+            'edge_ptr': torch.tensor(edge_ptr), 'cluster_ptr': torch.tensor(cluster_ptr)}
+    if not np.isfinite(x).all():
+        raise ValueError('Nonfinite transfer features')
+    return pack, frame, distance, labels, nc
+
+
+def detector_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
+    """Build model inputs without truth targets or truth-derived masks."""
+    if not len(frame):
+        return None
+    pack, _, _, _, _ = _pack_observables(frame, scalers, affine_a, affine_b, geometry_bounds)
+    return pack
+
+
+def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
+    """Attach the native simulation labels to the observable transfer view."""
+    if not len(frame):
+        return None
+    pack, frame, distance, labels, nc = _pack_observables(
+        frame, scalers, affine_a, affine_b, geometry_bounds
+    )
     ek = frame.Ekin.to_numpy()
     prompt = ((frame.PDG.abs().to_numpy() == 2112) & frame.Side.isin([5, 6]).to_numpy()
               & (ek > .3) & (ek >= _dfToF(distance, frame.fTime.to_numpy()+.3))
@@ -99,12 +137,7 @@ def transfer_pack(frame, scalers, affine_a, affine_b, geometry_bounds):
     cl_energy = np.zeros(nc, dtype=np.float32)
     np.maximum.at(cl_label, labels, prompt)
     np.maximum.at(cl_energy, labels, np.where(prompt, ek, 0))
-    if not np.isfinite(x).all():
-        raise ValueError('Nonfinite transfer features')
-    return {'x': torch.tensor(x), 'pe': torch.zeros((len(x), 4)),
-            'edges': torch.tensor(local_edges), 'cluster': torch.tensor(local_cluster),
-            'label': torch.tensor(cl_label), 'energy': torch.tensor(cl_energy),
-            'row': torch.tensor([int(key[1]) for key in uniques]),
-            'side': torch.tensor([int(key[0]) for key in uniques]),
-            'index': torch.arange(len(uniques)), 'node_ptr': torch.tensor(node_ptr),
-            'edge_ptr': torch.tensor(edge_ptr), 'cluster_ptr': torch.tensor(cluster_ptr)}
+    # Retain legacy field order for persisted training packs.
+    leading = ('x', 'pe', 'edges', 'cluster')
+    return {**{k: pack[k] for k in leading}, 'label': torch.tensor(cl_label),
+            'energy': torch.tensor(cl_energy), **{k: v for k, v in pack.items() if k not in leading}}

@@ -48,7 +48,7 @@ def pack_native(graphs, indices, a, b):
     return result
 
 
-class NativePackDataset(torch.utils.data.Dataset):
+class DetectorPackDataset(torch.utils.data.Dataset):
     def __init__(self, pack):
         self.pack = pack
 
@@ -66,11 +66,19 @@ class NativePackDataset(torch.utils.data.Dataset):
         g["hits", "hits"].edge_index = p["edges"][:, e0:e1]
         g["clusters"].x = torch.zeros((c1-c0, 1), dtype=torch.float32)
         g.cluster = p["cluster"][n0:n1, None]
-        g.cllabel = p["label"][c0:c1]
-        g.clenergy = p["energy"][c0:c1]
         g.Row = p["row"][i:i+1]
         g.istop = p["side"][i:i+1]
         return g
+
+
+class NativePackDataset(DetectorPackDataset):
+    def __getitem__(self, i):
+        graph = super().__getitem__(i)
+        p = self.pack
+        c0, c1 = map(int, p["cluster_ptr"][i:i+2])
+        graph.cllabel = p["label"][c0:c1]
+        graph.clenergy = p["energy"][c0:c1]
+        return graph
 
 
 def population(pack):
