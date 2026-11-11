@@ -33,8 +33,9 @@ def verify_file(path, expected):
         raise ValueError(f"Digest changed: {path}")
 
 
-def accept(bundle, target, evidence, task, job):
-    source = read(HERE / "source_package.json")
+def accept(bundle, target, evidence, task, job, campaign=HERE, prediction_arms=ARMS,
+           fitted_arms=ARMS, verify=None):
+    source = read(campaign / "source_package.json")
     receipt = read(bundle / "receipt.json")
     assert receipt["state"] == "complete"
     assert receipt["bundle_dir"] == f"{source['campaign']}/task_{task}_{job}"
@@ -67,35 +68,38 @@ def accept(bundle, target, evidence, task, job):
     verify_file(temp / "summary.json", receipt["summary_files"]["summary.json"])
     summary = read(temp / "summary.json")
     fold, seed_index = divmod(task, 3)
-    plan = read(HERE / "plan.json")
+    plan_path = campaign / "plan.json"
+    plan = read(plan_path)
     run = next(x for x in plan["folds"][fold]["runs"] if x["task"] == task)
     assert summary["state"] == "complete" and summary["task"] == task
     assert (summary["fold"], summary["seed"]) == (fold, SEEDS[seed_index])
     assert summary["baseline_complete_sha256"] == run["complete_sha256"]
-    assert summary["plan_sha256"] == source["plan_sha256"] == digest(HERE / "plan.json")
+    assert summary["plan_sha256"] == source["plan_sha256"] == digest(plan_path)
     assert summary["source_sums_sha256"] == source["source_sums_sha256"]
     assert summary["prepare_manifest_sha256"] == plan["prepare"]["manifest_sha256"]
     assert summary["split_sha256"] == plan["split_sha256"]
-    assert summary["epochs"] == 15 and tuple(summary["arms"]) == ARMS
+    assert summary["epochs"] == 15 and tuple(summary["arms"]) == prediction_arms
     files = set(summary["test_files"])
     assert len(files) == (192, 189, 187)[fold]
     assert files.isdisjoint(summary["train_files"]) and files.isdisjoint(summary["validation_files"])
     paths = {f"predictions/{cid}.npz" for cid in files}
     assert {x for x in seen if x.startswith("predictions/")} == paths
     history = {}
-    for arm in ARMS:
+    for arm in fitted_arms:
         name = arm + "_history.json"
         rows = read(temp / name)
         assert [x["epoch"] for x in rows] == list(range(16))
         assert [x["learning_rate"] for x in rows[1:6]] == [1e-4] * 5
         assert [x["learning_rate"] for x in rows[6:]] == [1e-5] * 10
         history[arm] = rows
+    additional = verify(temp, summary, plan) if verify is not None else {}
     evidence.mkdir(parents=True, exist_ok=True)
     item = evidence / f"task_{task}.json"
     with item.open("x") as file:
         json.dump({"job_id": job, "summary": summary, "histories": history,
                    "receipt": receipt, "members_verified": len(seen),
-                   "branch_sha256": {arm: records[arm + ".pt"]["sha256"] for arm in ARMS}}, file, indent=2)
+                   "branch_sha256": {arm: records[arm + ".pt"]["sha256"] for arm in fitted_arms},
+                   **additional}, file, indent=2)
         file.write("\n")
     temp.rename(target)
 

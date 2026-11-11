@@ -26,7 +26,7 @@ def save(fig, directory, name):
     plt.close(fig)
 
 
-def response(result, directory):
+def response(result, directory, energy_arms=ENERGY_ARMS):
     rows = [r for r in result["matched_even_energy"]["bins"] if "linearity_percent" in r]
     fig, axes = plt.subplots(2, 1, figsize=(7.1, 6.2), sharex=True, layout="constrained")
     coordinates = np.array([r["median_truth_GeV"] for r in rows])
@@ -34,7 +34,7 @@ def response(result, directory):
         axes, ("linearity_percent", "resolution_percent"),
         ("Median relative residual (%)", "Central residual half-width (%)"), strict=True,
     ):
-        for arm, (name, color, marker) in ENERGY_ARMS.items():
+        for arm, (name, color, marker) in energy_arms.items():
             values = [r[metric][arm] for r in rows]
             ax.errorbar(coordinates, [v["value"] for v in values],
                         yerr=[v["file_sd"] for v in values], label=name, color=color,
@@ -53,11 +53,11 @@ def response(result, directory):
     save(fig, directory, "energy_response")
 
 
-def hardness(result, directory):
+def hardness(result, directory, energy_arms=ENERGY_ARMS):
     pairs = result["odd_hardness"]["open_2_GeV"]["pairs"]
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.9), sharey=True)
     fig.subplots_adjust(left=.11, right=.98, bottom=.26, top=.87, wspace=.15)
-    models = {**ENERGY_ARMS, "baseline_calibrated": ("Original calibrated", "#78628a", "^")}
+    models = {**energy_arms, "baseline_calibrated": ("Original calibrated", "#78628a", "^")}
     pair_order = ("18/0", "90/0", "90/18")
     offsets = np.linspace(-.27, .27, len(models) + 1)
     labels = ("Contrast (%)", "Paired displacement from MC truth (p.p.)")

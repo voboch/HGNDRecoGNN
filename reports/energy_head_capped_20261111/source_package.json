@@ -1,0 +1,10 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/energy_head_capped_20261111_eb0ee9cede02",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/energy_head_capped_20261111_eb0ee9cede02",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/energy_head_capped_20261111_eb0ee9cede02_receipts",
+  "source_sums_sha256": "eb0ee9cede023882be467180816289364870ca0136f0c9d4edc4cfd521059a08",
+  "source_tar_sha256": "8f9738bb3c50f6faf28f8aef0f0ddc0844e805fd6e5bc34276d69cde09a359d2",
+  "source_entries": 139,
+  "code_commit": "29f436dc7da5b075adb15c8aaf759b26498ec629",
+  "plan_sha256": "3750c714b27f68906ad5397fe43468d83642971f4f4ff2f25373c9f6cadeb909"
+}
