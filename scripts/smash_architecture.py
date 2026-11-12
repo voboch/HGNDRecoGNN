@@ -196,22 +196,54 @@ def witness_pack(sizes, seed):
             "cluster_ptr": torch.tensor([0, nc])}
 
 
-def compare_nested(a, b):
+def compare_nested(a, b, *, exact, path="state"):
     if isinstance(a, dict):
-        require(a.keys() == b.keys(), "Resume state keys differ")
+        require(a.keys() == b.keys(), f"Different keys at {path}")
         for key in a:
-            compare_nested(a[key], b[key])
+            compare_nested(a[key], b[key], exact=exact, path=f"{path}.{key}")
+    elif isinstance(a, (list, tuple)):
+        for i, (x, y) in enumerate(zip(a, b, strict=True)):
+            compare_nested(x, y, exact=exact, path=f"{path}[{i}]")
+    elif torch.is_tensor(a):
+        rtol, atol = (0, 0) if exact else (RTOL, ATOL)
+        torch.testing.assert_close(a.cpu(), b.cpu(), rtol=rtol, atol=atol,
+                                   msg=lambda msg: f"{path}: {msg}")
+    elif isinstance(a, np.ndarray):
+        np.testing.assert_array_equal(a, b, err_msg=path)
+    elif isinstance(a, float) and not exact:
+        np.testing.assert_allclose(a, b, rtol=RTOL, atol=ATOL, err_msg=path)
+    else:
+        require(a == b, f"Different values at {path}")
+
+
+def floating_pairs(a, b):
+    if isinstance(a, dict):
+        for key in a:
+            yield from floating_pairs(a[key], b[key])
     elif isinstance(a, (list, tuple)):
         for x, y in zip(a, b, strict=True):
-            compare_nested(x, y)
-    elif torch.is_tensor(a):
-        torch.testing.assert_close(a, b, rtol=RTOL, atol=ATOL)
-    elif isinstance(a, np.ndarray):
-        np.testing.assert_array_equal(a, b)
+            yield from floating_pairs(x, y)
+    elif torch.is_tensor(a) and a.is_floating_point():
+        yield a.double(), b.double()
     elif isinstance(a, float):
-        np.testing.assert_allclose(a, b, rtol=RTOL, atol=ATOL)
-    else:
-        require(a == b, "Resume state differs")
+        yield torch.tensor([a], dtype=torch.float64), torch.tensor([b], dtype=torch.float64)
+
+
+def numerical_drift(a, b):
+    """Describe CUDA arithmetic drift independently of the exact restore gate."""
+    result = {}
+    for key in ("model", "optimizer", "history"):
+        squared = maximum = 0.
+        count = 0
+        for x, y in floating_pairs(a[key], b[key]):
+            delta = x - y
+            require(torch.isfinite(delta).all(), f"Nonfinite CUDA drift in {key}")
+            if delta.numel():
+                squared += float(delta.square().sum())
+                maximum = max(maximum, float(delta.abs().max()))
+                count += delta.numel()
+        result[key] = {"values": count, "max_abs": maximum, "rms": (squared / count) ** .5}
+    return result
 
 
 def witness(args, model_key, seed):
@@ -267,23 +299,68 @@ def witness(args, model_key, seed):
     def run(name, **kwargs):
         return base.train_run(root / name, seed, dataset, dataset, "cuda", 2, trial,
                               model_key=model_key, **kwargs)
-    uninterrupted = run("continuous")
-    mirror = root / "mirror"
-    run("segment", mirror=mirror, stop_after=0)
-    continued = run("resumed", resume_mirror=mirror)
-    payloads = [torch.load(root / name / "checkpoints" / base.RESUME_NAME,
-                           map_location="cpu", weights_only=False) for name in ("continuous", "resumed")]
-    for key in ("model", "optimizer", "scheduler", "rng", "history", "next_epoch"):
-        compare_nested(payloads[0][key], payloads[1][key])
+    mirror = root / "epoch_0_mirror"
+    boundary = {}
+
+    def read_state(checkpoints):
+        return torch.load(checkpoints / base.RESUME_NAME, map_location="cpu", weights_only=False)
+
+    def capture(epoch, checkpoints):
+        if epoch != 0:
+            return
+        base.Mirror(checkpoints, mirror, static=(checkpoints.parent / "effective_config.json",))(epoch, None)
+        state = json.loads((mirror / "state.json").read_text())
+        require(state["next_epoch"] == 1, "Wrong mirror generation")
+        digest = prep.sha(checkpoints / base.RESUME_NAME)
+        require(digest == state["sha256"][state["resume"]] == prep.sha(mirror / state["resume"]),
+                "Atomic resume blob changed while mirroring")
+        name = base.epoch_checkpoint_name(epoch)
+        require(prep.sha(checkpoints / name) == state["sha256"][name] == prep.sha(mirror / name),
+                "Epoch checkpoint changed while mirroring")
+        boundary.update(blob=read_state(checkpoints), sha256=digest, state_sha256=prep.sha(mirror / "state.json"))
+
+    def check_live(state):
+        expected = boundary["blob"]
+        require(prep.sha(root / "resumed/checkpoints" / base.RESUME_NAME) == boundary["sha256"],
+                "Restored atomic blob differs from the uninterrupted checkpoint")
+        compare_nested({key: expected[key] for key in state}, state, exact=True, path="live_restore")
+        boundary["exact_live_restore"] = True
+
+    continuous = run("continuous", epoch_observer=capture)
+    control = run("control")
+    resumed = run("resumed", resume_mirror=mirror, resume_observer=check_live)
+    require(boundary.get("exact_live_restore"), "The live resume state was never observed")
+    a, b, c = (read_state(root / name / "checkpoints") for name in ("continuous", "control", "resumed"))
+    compare_nested(boundary["blob"]["history"], c["history"][:1], exact=True, path="history_prefix")
+    drift = {"uninterrupted_pair": numerical_drift(a, b),
+             "same_boundary_resume": numerical_drift(a, c)}
+    print(f"CUDA witness drift: {json.dumps(drift)}", flush=True)
+    for peer in (b, c):
+        for key in ("scheduler", "rng", "next_epoch", "best_epoch"):
+            compare_nested(a[key], peer[key], exact=True, path=key)
+        compare_nested(a["optimizer"]["param_groups"], peer["optimizer"]["param_groups"],
+                       exact=True, path="optimizer_groups")
+        steps = [{key: value["step"] for key, value in blob["optimizer"]["state"].items()}
+                 for blob in (a, peer)]
+        compare_nested(*steps, exact=True, path="optimizer_steps")
+        compare_nested(a["history"], peer["history"], exact=False, path="cuda_loss_history")
     for head in ("e_cls", "e_en", "e_comp"):
-        require(uninterrupted[3][head] == continued[3][head], "Resume changed selected epoch")
+        require(continuous[3][head] == control[3][head] == resumed[3][head], "CUDA witness changed selected epoch")
+    with torch.no_grad():
+        output_batch = Batch.from_data_list([first_graph, second_graph]).to(placement.main)
+        output_ref = spec.forward_fn(continuous[0].eval(), output_batch)
+        for trial in (control, resumed):
+            output = spec.forward_fn(trial[0].eval(), output_batch)
+            compare_nested(output_ref, output, exact=False, path="cuda_predictions")
     return {"candidate_sizes": sizes, "truth_free_forward": True, "candidate_isolation": True,
-            "resume_training": True, "rtol": RTOL, "atol": ATOL}
+            "resume_training": True, "exact_live_restore": True, "cuda_drift": drift,
+            "boundary_resume_sha256": boundary["sha256"], "boundary_state_sha256": boundary["state_sha256"],
+            "selected_epochs": {h: resumed[3][h] for h in ("e_cls", "e_en", "e_comp")},
+            "rtol": RTOL, "atol": ATOL}
 
 
-def probe(args, identity, store):
+def probe(args, identity, store, checks, archive_check_seconds):
     model_key, fold, seed = (identity[k] for k in ("model", "fold", "seed"))
-    checks = witness(args, model_key, seed)
     factory = dataset_type(model_key)
     started = time.monotonic()
     cohorts = {}
@@ -305,12 +382,19 @@ def probe(args, identity, store):
     stage_seconds = time.monotonic() - started
     _, model, spec, placement = base.build_model(seed, datasets["train"], "cuda", model_key=model_key)
     torch.cuda.reset_peak_memory_stats()
-    rates = base.throughput(model, spec, placement, datasets["train"], datasets["validation"],
-                            n_batches=24)
+    n_batches, batch_size = 24, 256
+    validation = datasets["validation"]
+    # Both the warm-up and the timed slice traverse all eight validation packs.
+    positions = np.concatenate([np.linspace(0, len(validation) - 1, count * batch_size, dtype=int)
+                                for count in (5, n_batches)])
+    validation = torch.utils.data.Subset(validation, positions.tolist())
+    rates = base.throughput(model, spec, placement, datasets["train"], validation,
+                            n_batches=n_batches, batch_size=batch_size)
     estimate = sum(cohort["graphs_full_fold"] * rates[role]["seconds_per_graph"]
                    for role, cohort in cohorts.items())
-    prep.write_json(args.output / "summary.json", {"schema": "smash-architecture-probe-v1",
+    prep.write_json(args.output / "summary.json", {"schema": "smash-architecture-probe-v2",
                     "state": "complete", **identity, "checks": checks, "cohorts": cohorts,
+                    "input_archive_check_seconds": archive_check_seconds,
                     "sample_stage_seconds": stage_seconds, "epoch_seconds_projection": estimate,
                     "parameters": sum(p.numel() for p in model.parameters()), "rates": rates,
                     "gpu": torch.cuda.get_device_name(), "environment": base.environment(),
@@ -343,10 +427,15 @@ def main():
     require(len(even) == 286 and len(odd) == 282 and not even & odd and even | odd == holdout,
             "Registered evaluation populations differ from the original test folds")
     args.output.mkdir(parents=True, exist_ok=False)
+    if args.phase == "probe":
+        model_key, _, seed = TASKS[args.task]
+        checks = witness(args, model_key, seed)
+    started = time.monotonic()
     store = native_store(args, registered)
+    archive_check_seconds = time.monotonic() - started
     identity = identity_for(registered, split, source, store, args.task)
     if args.phase == "probe":
-        probe(args, identity, store)
+        probe(args, identity, store, checks, archive_check_seconds)
     elif args.phase == "fit":
         fit(args, identity, store)
     else:

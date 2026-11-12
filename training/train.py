@@ -275,6 +275,14 @@ def _check_epoch_checkpoints(checkpoint_dir, start_epoch, resumed_model):
                 raise ValueError('Newest epoch checkpoint weights differ from the resume state')
 
 
+def _rng_state():
+    state = {'torch': torch.get_rng_state(), 'numpy': np.random.get_state(),
+             'python': random.getstate()}
+    if torch.cuda.is_available():
+        state['cuda'] = torch.cuda.get_rng_state_all()
+    return state
+
+
 def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
                         min_loss, best_epoch, arch_name, arch_kwargs, history=None):
     """Write model, optimizer, scheduler, epoch and RNG as ONE atomic file.
@@ -301,15 +309,9 @@ def _write_resume_state(path, model, optimizer, scheduler, *, next_epoch,
         'arch_name': arch_name,
         'arch_kwargs': dict(arch_kwargs or {}),
         'history': list(history or []),
-        'rng': {
-            'torch': torch.get_rng_state(),
-            'numpy': np.random.get_state(),
-            'python': random.getstate(),
-        },
+        'rng': _rng_state(),
         'format_version': 1,
     }
-    if torch.cuda.is_available():
-        blob['rng']['cuda'] = torch.cuda.get_rng_state_all()
     tmp = f'{path}.tmp'
     try:
         torch.save(blob, tmp)
@@ -438,6 +440,7 @@ def fit(
     forward_fn: Callable = _forward_default_net,
     loss_fn: Callable = default_net_loss,
     epoch_callback: Optional[Callable] = None,
+    resume_observer: Optional[Callable] = None,
 ) -> dict:
     """Full training loop. Returns a dict with loss history and checkpoint path.
 
@@ -449,6 +452,8 @@ def fit(
     `epoch_callback(epoch, history)`, when given, runs after every file of the
     epoch has been committed (resume.pt last); a caller uses it to mirror the
     checkpoint directory. Its failures are the caller's to handle.
+
+    `resume_observer` receives the live restored state before the next batch.
     """
     if plan is None:
         plan = device_mod.plan_for(model, cfg.device, cfg.cpu_pinned)
@@ -493,6 +498,12 @@ def fit(
             _check_epoch_checkpoints(cfg.checkpoint_dir, start_epoch, blob['model'])
             if len(history) != start_epoch:
                 raise ValueError('Resume history length differs from next_epoch')
+        if resume_observer is not None:
+            resume_observer({'model': model.state_dict(), 'optimizer': optimizer.state_dict(),
+                             'scheduler': scheduler.state_dict(), 'rng': _rng_state(),
+                             'history': history, 'next_epoch': start_epoch, 'min_loss': min_loss,
+                             'best_epoch': best_epoch, 'arch_name': cfg.arch_name,
+                             'arch_kwargs': cfg.arch_kwargs})
         if cfg.verbose:
             print(f'fit(): resumed model, optimizer, schedule and RNG from '
                   f'{resume_path} at epoch {start_epoch} '

@@ -456,7 +456,7 @@ class _Interrupted(Exception):
 
 
 def train_run(out, seed, train_ds, val_ds, device_name, epochs, identity, mirror=None, resume_mirror=None,
-              stop_after=None, *, model_key=MODEL):
+              stop_after=None, *, model_key=MODEL, epoch_observer=None, resume_observer=None):
     """Train one seed on fixed packs; returns (model, spec, plan, selection, checkpoint hashes, run info).
 
     `stop_after` ends the segment after that epoch's files and mirror are
@@ -490,6 +490,8 @@ def train_run(out, seed, train_ds, val_ds, device_name, epochs, identity, mirror
     def callback(epoch, history):
         if mirrored is not None:
             mirrored(epoch, history)
+        if epoch_observer is not None:
+            epoch_observer(epoch, checkpoints)
         if stop_after is not None and epoch == stop_after:
             raise _Interrupted
     loaders = (DataLoader(train_ds, batch_size=cfg.batch_size, shuffle=True),
@@ -498,7 +500,8 @@ def train_run(out, seed, train_ds, val_ds, device_name, epochs, identity, mirror
           f"{config['parameters']} parameters", flush=True)
     started = time.monotonic()
     try:
-        fit(model, *loaders, cfg, plan, forward_fn=spec.forward_fn, loss_fn=spec.loss_fn, epoch_callback=callback)
+        fit(model, *loaders, cfg, plan, forward_fn=spec.forward_fn, loss_fn=spec.loss_fn,
+            epoch_callback=callback, resume_observer=resume_observer)
     except _Interrupted:
         return None
     seconds = time.monotonic() - started

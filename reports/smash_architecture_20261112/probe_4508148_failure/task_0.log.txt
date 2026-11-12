@@ -1,0 +1,26 @@
+Node-local work /tmp/hgnd-architecture-4508169-0.sRasAs on cn-011
+Training seed 42 from epoch 0: 2 train / 2 validation graphs, 358275 parameters
+Training seed 42 from epoch 0: 2 train / 2 validation graphs, 358275 parameters
+Training seed 42 from epoch 1: 2 train / 2 validation graphs, 358275 parameters
+Traceback (most recent call last):
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 357, in <module>
+    main()
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 349, in main
+    probe(args, identity, store)
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 286, in probe
+    checks = witness(args, model_key, seed)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 277, in witness
+    compare_nested(payloads[0][key], payloads[1][key])
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 203, in compare_nested
+    compare_nested(a[key], b[key])
+  File "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c/HGNDRecoGNN/scripts/smash_architecture.py", line 208, in compare_nested
+    torch.testing.assert_close(a, b, rtol=RTOL, atol=ATOL)
+  File "/home/vbocharnikov/.conda/envs/student-ufc-240/lib/python3.12/site-packages/torch/testing/_comparison.py", line 1524, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 1 / 65536 (0.0%)
+Greatest absolute difference: 2.3037195205688477e-05 at index (90, 325) (up to 2e-06 allowed)
+Greatest relative difference: 0.0005472243647091091 at index (90, 325) (up to 1e-05 allowed)
+Preserved /tmp/hgnd-architecture-4508169-0.sRasAs on cn-011
