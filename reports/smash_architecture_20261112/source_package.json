@@ -1,0 +1,10 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_be6244c0ab0c",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c_receipts",
+  "code_commit": "3f137c09d759147abf8c911bef56edd7f210565e",
+  "source_entries": 155,
+  "source_tar_sha256": "4c9115b8067a72f6745a42ca7d0394d1d1f533917faf2826b5e5417090d766f0",
+  "source_sums_sha256": "be6244c0ab0c3423eafdc9cf2138818467276c881cd3f5c938de53631771a289",
+  "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a"
+}

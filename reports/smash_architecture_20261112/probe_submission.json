@@ -1,0 +1,18 @@
+{
+  "array_job_id": 4508148,
+  "array_task_ids": [0, 9],
+  "submitted_msk": "2026-11-12T15:23:18+03:00",
+  "partition": "rocky",
+  "qos": "normal",
+  "node_constraint": "type_a",
+  "gpus_per_task": 1,
+  "cpus_per_task": 4,
+  "memory_request": "0",
+  "concurrency": 2,
+  "time_limit_seconds": 1500,
+  "requeue": false,
+  "initial_slurm_state": "PENDING",
+  "remote_submission_receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_be6244c0ab0c_receipts/probe_submission.txt",
+  "source_sums_sha256": "be6244c0ab0c3423eafdc9cf2138818467276c881cd3f5c938de53631771a289",
+  "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a"
+}
