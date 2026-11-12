@@ -81,6 +81,17 @@ class NativePackDataset(DetectorPackDataset):
         return graph
 
 
+class HeteroCandidateDataset(NativePackDataset):
+    """Expose only the native hit graph and the two directions of membership."""
+
+    def __getitem__(self, i):
+        graph = super().__getitem__(i)
+        members = torch.stack((torch.arange(len(graph.cluster)), graph.cluster.reshape(-1)))
+        graph["hits", "belongs_to", "clusters"].edge_index = members
+        graph["clusters", "contains", "hits"].edge_index = members.flip(0)
+        return graph
+
+
 def population(pack):
     identity = torch.stack([pack[k] for k in ("index", "row", "side")], dim=1).numpy().astype("<i8")
     import hashlib

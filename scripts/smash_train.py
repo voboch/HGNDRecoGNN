@@ -271,11 +271,11 @@ def load_packs(store, cids, arm, fold=None):
     return {cid: store.load(cid, arm, fold) for cid, _ in store.entries(cids, arm, fold)}
 
 
-def build_model(seed, dataset, device_name):
+def build_model(seed, dataset, device_name, *, model_key=MODEL):
     """student_pipeline.build with an explicit device; the recipe is imported."""
     seed_everything(seed)
-    config = recipe(MODEL, seed)
-    model, spec = models.get(MODEL, dataset, **config['architecture'])
+    config = recipe(model_key, seed)
+    model, spec = models.get(model_key, dataset, **config['architecture'])
     plan = device.plan_for_spec(model, device_name, spec.default_cpu_pinned)
     device.to_device(model, plan)
     return config, model, spec, plan
@@ -307,9 +307,9 @@ def _load_dcm(native, seed, dataset, device_name):
                                'selected_epoch': complete['selected_epoch']}
 
 
-def score_pack(model, spec, plan, pack):
+def score_pack(model, spec, plan, pack, *, dataset_type=NativePackDataset):
     """Per-file scoring exactly as the frozen transfer: batch 256, file order."""
-    loader = DataLoader(NativePackDataset(pack), batch_size=256, shuffle=False)
+    loader = DataLoader(dataset_type(pack), batch_size=256, shuffle=False)
     frame = predict(model, loader, plan=plan, forward_fn=spec.forward_fn, verbose=False)['clusters']
     check_prediction(pack, frame)
     cluster = pack['cluster'].numpy() + np.repeat(pack['cluster_ptr'][:-1].numpy(), np.diff(pack['node_ptr'].numpy()))
@@ -321,12 +321,12 @@ def score_files(model, spec, plan, packs):
     return {cid: score_pack(model, spec, plan, pack) for cid, pack in packs.items()}
 
 
-def load_epoch(model, checkpoint_dir, epoch, expected_sha=None):
+def load_epoch(model, checkpoint_dir, epoch, expected_sha=None, *, model_key=MODEL):
     path = Path(checkpoint_dir) / epoch_checkpoint_name(epoch)
     if expected_sha is not None and sha(path) != expected_sha:
         raise ValueError('Epoch checkpoint changed: ' + str(path))
     checkpoint = load_checkpoint(str(path))
-    if checkpoint.epoch != epoch or checkpoint.arch_name != MODEL:
+    if checkpoint.epoch != epoch or checkpoint.arch_name != model_key:
         raise ValueError('Epoch checkpoint metadata differs: ' + str(path))
     model.load_state_dict(checkpoint.state_dict)
     return model
@@ -444,7 +444,7 @@ def restore_from_mirror(mirror, checkpoint_dir):
 
 def train_config(config, seed, spec, checkpoint_dir, epochs, start_epoch=0):
     return TrainConfig(epochs=epochs, start_epoch=start_epoch, batch_size=config['batch_size'], seed=seed,
-                       arch_name=MODEL, arch_kwargs=config['architecture'], lr=config['lr'],
+                       arch_name=config['model'], arch_kwargs=config['architecture'], lr=config['lr'],
                        weight_decay=config['weight_decay'], loss_weights=spec.default_loss_weights,
                        checkpoint_dir=str(checkpoint_dir), scheduler_milestones=tuple(config['milestones']),
                        scheduler_gamma=config['gamma'], save_best_on='val',
@@ -456,11 +456,11 @@ class _Interrupted(Exception):
 
 
 def train_run(out, seed, train_ds, val_ds, device_name, epochs, identity, mirror=None, resume_mirror=None,
-              stop_after=None):
+              stop_after=None, *, model_key=MODEL):
     """Train one seed on fixed packs; returns (model, spec, plan, selection, checkpoint hashes, run info).
 
-    `stop_after` (smoke only) ends the run after that epoch's files and mirror are
-    committed, as a scheduler kill would, and returns None.
+    `stop_after` ends the segment after that epoch's files and mirror are
+    committed. The caller verifies the resume boundary before continuation.
     """
     out.mkdir(parents=True, exist_ok=False)
     checkpoints = out / 'checkpoints'
@@ -470,7 +470,7 @@ def train_run(out, seed, train_ds, val_ds, device_name, epochs, identity, mirror
         previous = json.loads((Path(resume_mirror) / 'effective_config.json').read_text())
         resumed = {'mirror': str(resume_mirror), 'state_sha256': state_sha, 'next_epoch': start,
                    'interrupted_job': state.get('job'), 'previous_identity': previous.get('identity')}
-    config, model, spec, plan = build_model(seed, train_ds, device_name)
+    config, model, spec, plan = build_model(seed, train_ds, device_name, model_key=model_key)
     config.update(epochs=epochs, identity=identity, parameters=sum(p.numel() for p in model.parameters()),
                   train_graphs=len(train_ds), validation_graphs=len(val_ds), resumed=resumed)
     if resumed is not None:
