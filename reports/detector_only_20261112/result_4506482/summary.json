@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "slurm_job": "4506482",
+  "plan_sha256": "32f97486346e1ec6d45e6fac553bd88d76a0c2a528c13fbd2667bccbcffc47bf",
+  "source_sums_sha256": "74dcaae87f007bcfe5ad94c2fff77484dc5ce01b83353dc260f424699d5b3e5b",
+  "prepare_manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+  "files": 286,
+  "totals": {
+    "events_with_hits": 873710,
+    "events_without_hits": 306885,
+    "hits": 5833940,
+    "graphs": 1180456,
+    "edges": 25492345,
+    "clusters": 1798225
+  },
+  "witnesses": 3,
+  "fold_seed_forward_comparisons": 9,
+  "legacy_scope": "Historical even SMASH files only"
+}

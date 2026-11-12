@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/detector_only_20261112_74dcaae87f00/result_4506482",
+  "manifest_sha256": "02669e225072211b6e6beb929d2a4f7889b143d5a71e03ad23607a740a660f0d",
+  "archive_sha256": "95bd3c77768d61ea56709f3444fffe2fbb2240a1a658307a8f94e509b11e5cb1",
+  "archive_bytes": 378880,
+  "files": 3,
+  "summary_files": {
+    "summary.json": "92a0fd35adc3b2d0816c14f43a8ceca8755009282083ca64da3cca4b129625d6"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}

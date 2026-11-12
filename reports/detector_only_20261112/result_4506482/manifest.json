@@ -1,0 +1,30 @@
+{
+  "state": "complete",
+  "scope": "Complete node-local HGND outputs; immutable publication without scratch atomic replace",
+  "plan_sha256": "502dcbb188d62fd48b7b2306deb8e1d07cdffd68f86b02c38c0e3a80c7286545",
+  "source_stat_method": "fstat on the same read descriptor before and after copying",
+  "source_script_sha256": "e32b176331e052be7fd43d6affb9b2b4002e84ce54dfc2b310a58b9d1e35a4cd",
+  "archive_sha256": "95bd3c77768d61ea56709f3444fffe2fbb2240a1a658307a8f94e509b11e5cb1",
+  "archive_bytes": 378880,
+  "unpacked_bytes": 373947,
+  "files": [
+    {
+      "source": "/tmp/hgnd-detector-only-4506482.h2LcRA/output/files.json",
+      "member": "files.json",
+      "sha256": "43368941abba5d5dabe7184e26f46ebf52b16d40259e7ae38be87714b7e7a686",
+      "bytes": 362053
+    },
+    {
+      "source": "/tmp/hgnd-detector-only-4506482.h2LcRA/output/summary.json",
+      "member": "summary.json",
+      "sha256": "92a0fd35adc3b2d0816c14f43a8ceca8755009282083ca64da3cca4b129625d6",
+      "bytes": 629
+    },
+    {
+      "source": "/tmp/hgnd-detector-only-4506482.h2LcRA/output/witnesses.json",
+      "member": "witnesses.json",
+      "sha256": "413f47ef32c094ce234c64331f8b43170aeb5234f098802ace05479e80fa8a79",
+      "bytes": 11265
+    }
+  ]
+}

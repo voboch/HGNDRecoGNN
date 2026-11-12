@@ -1,0 +1,46 @@
+{
+  "state": "accepted",
+  "checked_at_msk": "2026-11-12T12:12:00+03:00",
+  "slurm": {
+    "id": 4506482,
+    "state": "COMPLETED",
+    "exit": "0:0",
+    "node": "cn-033",
+    "elapsed_seconds": 317,
+    "start_msk": "2026-11-12T00:55:59+03:00",
+    "end_msk": "2026-11-12T01:01:16+03:00"
+  },
+  "manifest_sha256": "02669e225072211b6e6beb929d2a4f7889b143d5a71e03ad23607a740a660f0d",
+  "archive_sha256": "95bd3c77768d61ea56709f3444fffe2fbb2240a1a658307a8f94e509b11e5cb1",
+  "plan_sha256": "32f97486346e1ec6d45e6fac553bd88d76a0c2a528c13fbd2667bccbcffc47bf",
+  "source_sums_sha256": "74dcaae87f007bcfe5ad94c2fff77484dc5ce01b83353dc260f424699d5b3e5b",
+  "files": 286,
+  "totals": {
+    "events_with_hits": 873710,
+    "events_without_hits": 306885,
+    "hits": 5833940,
+    "graphs": 1180456,
+    "edges": 25492345,
+    "clusters": 1798225
+  },
+  "processed_events": 1180595,
+  "fold_seed_forward_comparisons": 9,
+  "witnesses": [
+    {
+      "fold": 0,
+      "content": "bigSpot/10943245/0001",
+      "injected_pdg0_rejected_hits": 9
+    },
+    {
+      "fold": 2,
+      "content": "bigSpot/10943245/0010",
+      "injected_pdg0_rejected_hits": 2
+    },
+    {
+      "fold": 1,
+      "content": "bigSpot/10943245/0016",
+      "injected_pdg0_rejected_hits": 1
+    }
+  ],
+  "verification": "Archive and member SHA-256 and sizes, unique pinned files, fold and processed span, observation and pack hashes, candidate keys, totals, witness controls and model identities. Numerical equality comes from the runtime assertions on the frozen source."
+}
