@@ -1,0 +1,32 @@
+{
+  "source": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts",
+  "code_commit": "1a87c5b6f4dea71580680fc9f70d3cbc5ce790f2",
+  "source_entries": 155,
+  "source_tar_sha256": "097d7bf33f2a9ac0a3e18c47b677c6ce56e362b7718ae4c3acb995a47fb00b3d",
+  "source_sums_sha256": "2d31e3e25c45dff5b15818357e8d3d185cc752ef229a726971ab234f8f5d3969",
+  "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a",
+  "supersedes_probe": 4508148,
+  "changed_source_files": [
+    "training/train.py",
+    "scripts/smash_train.py",
+    "scripts/smash_architecture.py"
+  ],
+  "array_job_id": 4508255,
+  "array_task_ids": [
+    0,
+    9
+  ],
+  "submitted_msk": "2026-11-12T15:46:33+03:00",
+  "partition": "rocky",
+  "qos": "normal",
+  "node_constraint": "type_a",
+  "gpus_per_task": 1,
+  "cpus_per_task": 4,
+  "memory_request": "0",
+  "concurrency": 2,
+  "time_limit_seconds": 1500,
+  "requeue": false,
+  "initial_slurm_state": "PENDING"
+}
