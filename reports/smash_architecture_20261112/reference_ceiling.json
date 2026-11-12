@@ -1,0 +1,162 @@
+{
+  "schema": "smash-architecture-reference-ceiling-v1",
+  "scope": "even only",
+  "model": "student_sage",
+  "purity_target": 0.7,
+  "energy": "raw",
+  "files": 286,
+  "contrast": "90/0, open upper band",
+  "file_draws": 400,
+  "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "even_counts_sha256": "d1be578faaf364a182f68550da67262c3cc1ed085b4bb6e01a05e12fcfd68e2c",
+  "baseline_evaluation_sha256": {
+    "4466339": "30e456e22b83d78b1d947247f338da771353b7918bbf3e5f3c3ebb7eecdcd6a7",
+    "4467086": "6306bc293bdce9011ac5800929e4fd373ee63a86de3089bfbcde57e7254f984a",
+    "4467091": "2b4fcbb19376874674a0b9fb7ef675a14780266f9755f1e734ce131e09b7154c"
+  },
+  "baseline_fits": {
+    "0/42": {
+      "fit_sha256": "a6d739265cb2f7054b6acf849ba7cd70cdb2055a3fc7c25626c412b161c897f1",
+      "selection": {
+        "e_cls": 28,
+        "e_en": 21,
+        "e_comp": 27
+      },
+      "cut": 0.30289499999999997
+    },
+    "0/123": {
+      "fit_sha256": "888d3dcc08aee331deedf273ef1bbbb2c223d2845ae0e7dadb948d468e39438d",
+      "selection": {
+        "e_cls": 29,
+        "e_en": 22,
+        "e_comp": 29
+      },
+      "cut": 0.3004
+    },
+    "0/456": {
+      "fit_sha256": "ed6a363499f60b57a90e90f6560b97f796aeb2e0efcbe7fe89713ab2b01ba1a9",
+      "selection": {
+        "e_cls": 24,
+        "e_en": 21,
+        "e_comp": 24
+      },
+      "cut": 0.3004
+    },
+    "1/42": {
+      "fit_sha256": "dbf60114cd9a99563450e653a2106dc1d4935a432bb2ba74e6b42baf01f909f5",
+      "selection": {
+        "e_cls": 26,
+        "e_en": 23,
+        "e_comp": 27
+      },
+      "cut": 0.30289499999999997
+    },
+    "1/123": {
+      "fit_sha256": "f6db82e3892936611917a1737bb4ded2d429f57745d9a25a85dd7310f5eea0f9",
+      "selection": {
+        "e_cls": 28,
+        "e_en": 22,
+        "e_comp": 28
+      },
+      "cut": 0.30289499999999997
+    },
+    "1/456": {
+      "fit_sha256": "bae87176847351cb3df7a4159128d11048cb3c93a8c58489074435abf9640a7b",
+      "selection": {
+        "e_cls": 23,
+        "e_en": 25,
+        "e_comp": 25
+      },
+      "cut": 0.30289499999999997
+    },
+    "2/42": {
+      "fit_sha256": "c6100fdece0e41c79c64a852e19cd5a6b48e15fb54ad74ce7a5daf832895edfd",
+      "selection": {
+        "e_cls": 29,
+        "e_en": 22,
+        "e_comp": 29
+      },
+      "cut": 0.3004
+    },
+    "2/123": {
+      "fit_sha256": "4511bc65408863737918cf1e1be8c6f407ff47dedd169c7a0ff4852fdc080aec",
+      "selection": {
+        "e_cls": 21,
+        "e_en": 28,
+        "e_comp": 28
+      },
+      "cut": 0.29541
+    },
+    "2/456": {
+      "fit_sha256": "634f5c8331e14c7b7aa6e062ed25a226afda825a93f8ea84037e9adc3b5d93f0",
+      "selection": {
+        "e_cls": 23,
+        "e_en": 26,
+        "e_comp": 26
+      },
+      "cut": 0.3004
+    }
+  },
+  "counts_by_setting_seed": {
+    "0": [
+      [
+        24208,
+        33631,
+        311
+      ],
+      [
+        24598,
+        32977,
+        310
+      ],
+      [
+        24273,
+        32972,
+        292
+      ]
+    ],
+    "18": [
+      [
+        25044,
+        34261,
+        331
+      ],
+      [
+        25366,
+        33616,
+        322
+      ],
+      [
+        25099,
+        33619,
+        308
+      ]
+    ],
+    "90": [
+      [
+        21997,
+        31015,
+        304
+      ],
+      [
+        22416,
+        30437,
+        291
+      ],
+      [
+        22143,
+        30477,
+        272
+      ]
+    ]
+  },
+  "reference_graphsage_raw70": {
+    "value": 1.3920351225089576,
+    "invalid_draws": 0,
+    "file_sd": 1.243718909624691,
+    "q16": 0.3294001943713041,
+    "q84": 2.724019546076239,
+    "half_width_68": 1.1973096758524675
+  },
+  "ceiling_file_sd_pp": 2.487437819249382
+}

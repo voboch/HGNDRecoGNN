@@ -42,6 +42,8 @@ BASELINE = {
     4467086: "6306bc293bdce9011ac5800929e4fd373ee63a86de3089bfbcde57e7254f984a",
     4467091: "2b4fcbb19376874674a0b9fb7ef675a14780266f9755f1e734ce131e09b7154c",
 }
+REFERENCE_CEILING = REPORTS / "smash_architecture_20261112/reference_ceiling.json"
+REFERENCE_CEILING_SHA = "2eb8bdfa344b5fc447ec255af3043971c0dee47e6f143b81366046fa43fe42c7"
 # Inherited comparison bands, threshold grid and file resampling in plan §§3–5.
 PARTS = {"even": (0, 2, 4), "odd": (1, 3, 5)}
 SPAN_TOTAL = {"even": 1_180_595, "odd": 1_165_216}
@@ -624,8 +626,15 @@ def freeze_policy(weights, tags, policy_counts, predictions):
         valid &= ((lo > 0) & (hi > 0)).all(axis=(0, 1))
         ratios[setting] = count_ratio(hi, lo)
     contrast = (count_ratio(ratios["90"], ratios["0"], 100) - 100).mean(axis=1)
-    ref = interval(contrast[:, 0, TARGETS.index("70")])
-    cap = 2 * ref["file_sd"] if ref["file_sd"] is not None else None
+    ti_ref = TARGETS.index("70")
+    ref = interval(contrast[:, 0, ti_ref])
+    ceiling = read_json(REFERENCE_CEILING, REFERENCE_CEILING_SHA)
+    require(ceiling["reference_graphsage_raw70"] == ref
+            and ceiling["counts_by_setting_seed"] == {s: x[0, :, 0, ti_ref, :3].tolist()
+                                                       for s, x in counts.items()}
+            and ceiling["ceiling_file_sd_pp"] == 2 * ref["file_sd"],
+            "GraphSAGE raw70 replay differs from the registered width ceiling")
+    cap = ceiling["ceiling_file_sd_pp"]
     targets, scan = {}, {}
     for mi, model in enumerate(MODELS):
         rows = []
@@ -644,6 +653,7 @@ def freeze_policy(weights, tags, policy_counts, predictions):
         "split_sha256": SPLIT_SHA, "prepare_manifest_sha256": PREPARE_SHA,
         "even_counts_sha256": ARCHIVES["even"][1],
         "ceiling_file_sd_pp": cap, "reference_graphsage_raw70": ref,
+        "reference_ceiling_sha256": REFERENCE_CEILING_SHA,
         "selected_targets": targets, "scan": scan, "fits": fit_bindings(predictions),
         "cuts": {f"{m}/{f}/{s}": p.cuts.get(targets[m]) for (m, f, s), p in predictions.items()},
     }
@@ -654,6 +664,7 @@ def frozen_targets(path, predictions):
     require(frozen["schema"] == "smash-architecture-rn-policy-v1" and frozen["scope"] == "even only"
             and frozen["energy"] == "raw" and frozen["split_sha256"] == SPLIT_SHA
             and frozen["prepare_manifest_sha256"] == PREPARE_SHA
+            and frozen["reference_ceiling_sha256"] == REFERENCE_CEILING_SHA
             and frozen["even_counts_sha256"] == ARCHIVES["even"][1]
             and frozen["fits"] == fit_bindings(predictions), "Frozen even policy or fit identity differs")
     targets = frozen["selected_targets"]
