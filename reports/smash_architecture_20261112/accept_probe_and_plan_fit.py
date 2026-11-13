@@ -131,9 +131,13 @@ stage_measured = max(v['summary']['input_archive_check_seconds']+v['summary']['s
 stage_budget = math.ceil(max(900, 1.5 * stage_measured + 300) / 60) * 60
 max_time = 9900
 for n in range(2, 31):
-    boundaries = [round(i*30/n) for i in range(n+1)]
+    epochs, extra = divmod(30, n)
+    # Put longer segments first, leaving the final validation pass more room.
+    lengths = [epochs + int(i < extra) for i in range(n)]
     segments = []
-    for begin, end in zip(boundaries[:-1], boundaries[1:]):
+    begin = 0
+    for length in lengths:
+        end = begin + length
         restore = 180 if begin else 0
         publish = 300 + 2 * val_max if end == 30 else 90
         limit = 300 * math.ceil((stage_budget + restore + (end-begin)*(1.5*epoch_max+20) + publish) / 300)
@@ -141,6 +145,7 @@ for n in range(2, 31):
         segments.append({'start_epoch': begin, 'end_epoch': end, 'time_limit_seconds': limit, 'time_limit': time,
                          'stage_budget_seconds': stage_budget, 'restore_and_republish_budget_seconds': restore,
                          'validation_and_publication_budget_seconds': publish})
+        begin = end
     if max(seg['time_limit_seconds'] for seg in segments) <= max_time:
         break
 else:
@@ -156,6 +161,7 @@ plan = {'schema': 'smash-architecture-fit-submission-v1',
         'fit_only':True, 'already_accepted_graphsage_runs_reused':9, 'new_models':18,
         'time_projections':cost, 'measured_max_archive_plus_sample_stage_seconds':stage_measured,
         'shared_max_projected_epoch_seconds':epoch_max, 'shared_max_projected_validation_seconds':val_max,
+        'segment_layout':'fewest feasible balanced segments, with longer intervals first',
         'segment_cap_formula':'round up 5 min: stage + restore and republish + epochs*(1.5*max measured projected epoch + 20 s mirror I/O) + checkpoint checks, validation scan and publication',
         'stage_budget_formula':'round up minute: max(900 s, 1.5 * slowest observed archive SHA and sample stage + 300 s full-pack I/O margin)',
         'projected_training_gpu_hours':sum(row['epoch_seconds']*30*3 for row in rows)/3600,

@@ -1,0 +1,147 @@
+{
+  "schema": "smash-architecture-fit-submission-v1",
+  "source": {
+    "source": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45",
+    "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45",
+    "receipts": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts",
+    "code_commit": "1a87c5b6f4dea71580680fc9f70d3cbc5ce790f2",
+    "source_sums_sha256": "2d31e3e25c45dff5b15818357e8d3d185cc752ef229a726971ab234f8f5d3969",
+    "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a"
+  },
+  "probe_acceptance_sha256": "968d098ed2998afa9cf142115620ea3036774365280da9e33b6b3bf1fb130ccb",
+  "prepare": {
+    "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+    "manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+    "summary_sha256": "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133"
+  },
+  "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "resources": {
+    "partition": "rocky",
+    "account": "proj_1855",
+    "qos": "normal",
+    "constraint": "type_a",
+    "gpus": 1,
+    "cpus": 4,
+    "mem": "0",
+    "requeue": false,
+    "array": "0-17%2",
+    "max_active": 2,
+    "max_time_limit_seconds": 9900,
+    "exclude": [
+      "cn-007",
+      "cn-008",
+      "cn-034"
+    ]
+  },
+  "epoch_budget": 30,
+  "segments": [
+    {
+      "start_epoch": 0,
+      "end_epoch": 8,
+      "time_limit_seconds": 9300,
+      "time_limit": "02:35:00",
+      "stage_budget_seconds": 900,
+      "restore_and_republish_budget_seconds": 0,
+      "validation_and_publication_budget_seconds": 90
+    },
+    {
+      "start_epoch": 8,
+      "end_epoch": 16,
+      "time_limit_seconds": 9600,
+      "time_limit": "02:40:00",
+      "stage_budget_seconds": 900,
+      "restore_and_republish_budget_seconds": 180,
+      "validation_and_publication_budget_seconds": 90
+    },
+    {
+      "start_epoch": 16,
+      "end_epoch": 23,
+      "time_limit_seconds": 8700,
+      "time_limit": "02:25:00",
+      "stage_budget_seconds": 900,
+      "restore_and_republish_budget_seconds": 180,
+      "validation_and_publication_budget_seconds": 90
+    },
+    {
+      "start_epoch": 23,
+      "end_epoch": 30,
+      "time_limit_seconds": 9000,
+      "time_limit": "02:30:00",
+      "stage_budget_seconds": 900,
+      "restore_and_republish_budget_seconds": 180,
+      "validation_and_publication_budget_seconds": 627.4625571503061
+    }
+  ],
+  "dependency": "afterok of whole predecessor array; kill-on-invalid-dep=yes",
+  "fit_only": true,
+  "already_accepted_graphsage_runs_reused": 9,
+  "new_models": 18,
+  "time_projections": {
+    "student_dynedge": [
+      {
+        "fold": 0,
+        "graphs": {
+          "train": 1176436,
+          "validation": 401221
+        },
+        "epoch_seconds": 390.2129525998423,
+        "classifier_scoring_seconds": 100.99204324960715
+      },
+      {
+        "fold": 1,
+        "graphs": {
+          "train": 1202631,
+          "validation": 391360
+        },
+        "epoch_seconds": 394.17073275008715,
+        "classifier_scoring_seconds": 98.509913604139
+      },
+      {
+        "fold": 2,
+        "graphs": {
+          "train": 1198976,
+          "validation": 404486
+        },
+        "epoch_seconds": 396.576137807479,
+        "classifier_scoring_seconds": 101.81388213942091
+      }
+    ],
+    "smash_hetero_sage": [
+      {
+        "fold": 0,
+        "graphs": {
+          "train": 1176436,
+          "validation": 401221
+        },
+        "epoch_seconds": 668.1365237562179,
+        "classifier_scoring_seconds": 162.40964414392954
+      },
+      {
+        "fold": 1,
+        "graphs": {
+          "train": 1202631,
+          "validation": 391360
+        },
+        "epoch_seconds": 675.4056237568532,
+        "classifier_scoring_seconds": 158.4180248096891
+      },
+      {
+        "fold": 2,
+        "graphs": {
+          "train": 1198976,
+          "validation": 404486
+        },
+        "epoch_seconds": 679.1476643454142,
+        "classifier_scoring_seconds": 163.73127857515306
+      }
+    ]
+  },
+  "measured_max_archive_plus_sample_stage_seconds": 24.552596300840378,
+  "shared_max_projected_epoch_seconds": 679.1476643454142,
+  "shared_max_projected_validation_seconds": 163.73127857515306,
+  "segment_layout": "fewest feasible balanced segments, with longer intervals first",
+  "segment_cap_formula": "round up 5 min: stage + restore and republish + epochs*(1.5*max measured projected epoch + 20 s mirror I/O) + checkpoint checks, validation scan and publication",
+  "stage_budget_formula": "round up minute: max(900 s, 1.5 * slowest observed archive SHA and sample stage + 300 s full-pack I/O margin)",
+  "projected_training_gpu_hours": 80.09124087539735,
+  "maximum_allocated_gpu_hours": 183.0
+}
