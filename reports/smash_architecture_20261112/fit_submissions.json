@@ -1,0 +1,81 @@
+{
+  "state": "submitted_and_slurm_verified",
+  "plan_sha256": "677b8ecd5508ea558c66527d6f5d2e835cd93cf42ff82902b369818f6ddb1612",
+  "preflight_review_sha256": "0dbbf6e810b3f19a991b0f7a9e46240ef8d870b666105f2340e25097dfee5fc6",
+  "remote_ledger": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_submission.tsv",
+  "arrays": [
+    {
+      "array_job_id": 4511720,
+      "start_epoch": 0,
+      "end_epoch": 8,
+      "time_limit": "02:35:00",
+      "dependency": "(null)",
+      "registered_array": "0-17%2",
+      "submitted_msk": "2026-11-13T11:14:42+03:00",
+      "remaining_array_task_ids": "2-17%2",
+      "remaining_state": "PENDING",
+      "remaining_reason": "JobArrayTaskLimit",
+      "running_tasks": [
+        {
+          "array_task_id": 0,
+          "slurm_job_id": 4511725,
+          "node": "cn-013",
+          "start_msk": "2026-11-13T11:15:03+03:00"
+        },
+        {
+          "array_task_id": 1,
+          "slurm_job_id": 4511726,
+          "node": "cn-014",
+          "start_msk": "2026-11-13T11:15:03+03:00"
+        }
+      ]
+    },
+    {
+      "array_job_id": 4511721,
+      "start_epoch": 8,
+      "end_epoch": 16,
+      "time_limit": "02:40:00",
+      "dependency": "afterok:4511720_*(unfulfilled)",
+      "registered_array": "0-17%2",
+      "submitted_msk": "2026-11-13T11:14:42+03:00",
+      "remaining_array_task_ids": "0-17%2",
+      "remaining_state": "PENDING",
+      "remaining_reason": "Dependency",
+      "running_tasks": []
+    },
+    {
+      "array_job_id": 4511722,
+      "start_epoch": 16,
+      "end_epoch": 23,
+      "time_limit": "02:25:00",
+      "dependency": "afterok:4511721_*(unfulfilled)",
+      "registered_array": "0-17%2",
+      "submitted_msk": "2026-11-13T11:14:42+03:00",
+      "remaining_array_task_ids": "0-17%2",
+      "remaining_state": "PENDING",
+      "remaining_reason": "Dependency",
+      "running_tasks": []
+    },
+    {
+      "array_job_id": 4511723,
+      "start_epoch": 23,
+      "end_epoch": 30,
+      "time_limit": "02:30:00",
+      "dependency": "afterok:4511722_*(unfulfilled)",
+      "registered_array": "0-17%2",
+      "submitted_msk": "2026-11-13T11:14:42+03:00",
+      "remaining_array_task_ids": "0-17%2",
+      "remaining_state": "PENDING",
+      "remaining_reason": "Dependency",
+      "running_tasks": []
+    }
+  ],
+  "queue_snapshot": [
+    "4511720_[2-17%2]|PENDING|JobArrayTaskLimit|N/A|",
+    "4511723_[0-17%2]|PENDING|Dependency|N/A|",
+    "4511722_[0-17%2]|PENDING|Dependency|N/A|",
+    "4511721_[0-17%2]|PENDING|Dependency|N/A|",
+    "4511720_0|RUNNING|None|2026-11-13T11:15:03|cn-013",
+    "4511720_1|RUNNING|None|2026-11-13T11:15:03|cn-014"
+  ]
+}
