@@ -1,0 +1,97 @@
+{
+  "schema": "smash-architecture-score-submission-v1",
+  "source": {
+    "source": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45",
+    "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45",
+    "receipts": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts",
+    "code_commit": "1a87c5b6f4dea71580680fc9f70d3cbc5ce790f2",
+    "source_sums_sha256": "2d31e3e25c45dff5b15818357e8d3d185cc752ef229a726971ab234f8f5d3969",
+    "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a"
+  },
+  "fit_acceptance_sha256": "cb47b3a3ea1f5a507359f37145c69ec7acadec665de56f2526a7544c72adbd31",
+  "fit_index_sha256": "8ee55934884723334caa739c5332ae810b42f84cd5b72d0f0d853467b01bce2d",
+  "fit_index_remote": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_index_20261116.json",
+  "no_training": true,
+  "tasks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "stop_policy": "No requeue or retries. Preserve failing output; do not resubmit or advance odd until mechanism understood.",
+  "date": "2026-11-16",
+  "scope": "odd",
+  "resources": {
+    "partition": "rocky",
+    "account": "proj_1855",
+    "qos": "normal",
+    "constraint": "type_a",
+    "gpus": 1,
+    "cpus": 4,
+    "mem": "0",
+    "requeue": false,
+    "array": "0-17%2",
+    "max_active": 2,
+    "max_time_limit_seconds": 1200,
+    "exclude": [
+      "cn-007",
+      "cn-008",
+      "cn-034"
+    ],
+    "time_limit": "00:20:00"
+  },
+  "even_array": 4522048,
+  "measured_even_gpu_seconds": 6023,
+  "measured_even_max_elapsed_seconds": 418,
+  "cap_rule": "Round upward to 5 min: twice max measured completed even task wall time plus300s; 2*418+300=1136s <1200s. Same frozen scorer and selectedheads.",
+  "odd_files_per_fold": [
+    {
+      "fold": 0,
+      "files": 96,
+      "graphs": 397060
+    },
+    {
+      "fold": 1,
+      "files": 93,
+      "graphs": 384023
+    },
+    {
+      "fold": 2,
+      "files": 93,
+      "graphs": 384293
+    }
+  ],
+  "state": "ready_for_preflight",
+  "scientific_scope": "Raw70 primary; additionally exact frozen even-only threshold policy. No new fitting, calibration, tuning or policy change on odd.",
+  "authorization": "Explicit user request16Nov; existing no-test waiver retained, runtime SHA/native/fit/release assertions preserved.",
+  "max_active": 2,
+  "resource_cap_gpu_hours": 6.0,
+  "inference_and_io_gpu_hours_estimate": 1.6516827320214487,
+  "wall_time_estimate_excluding_queue_hours": 0.8258413660107243,
+  "odd_release_remote": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/odd_release_20261116.json",
+  "odd_release_sha256": "680506ddbdc0a66b7cbcb4e1f1b504943e3fdbe811029377c8bc7097ad5698c8",
+  "frozen_policy_remote": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/frozen_policy_even_20261116.json",
+  "frozen_policy_sha256": "8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69",
+  "even_summary_sha256": "cfa8b34a7d4a9da7f5cad0bb20b4070dabb52c8d2823e0da67a69ac68a4418bf",
+  "even_ledger_sha256": "0781663d4b830b2da2cae3dd2edcaf28d140635e375914ee289bed4b796ee53a",
+  "selected_targets": {
+    "student_sage": "90",
+    "student_dynedge": "75",
+    "smash_hetero_sage": "90"
+  },
+  "launcher_relative_path": "slurm/smash_architecture.hpc.sbatch"
+}

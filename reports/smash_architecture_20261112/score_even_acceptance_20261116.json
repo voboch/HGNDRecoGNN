@@ -1,0 +1,214 @@
+{
+  "schema": "smash-architecture-score-acceptance-v1",
+  "state": "accepted",
+  "scope": "even",
+  "source_sums_sha256": "2d31e3e25c45dff5b15818357e8d3d185cc752ef229a726971ab234f8f5d3969",
+  "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a",
+  "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+  "fit_acceptance_sha256": "cb47b3a3ea1f5a507359f37145c69ec7acadec665de56f2526a7544c72adbd31",
+  "fit_index_sha256": "8ee55934884723334caa739c5332ae810b42f84cd5b72d0f0d853467b01bce2d",
+  "odd_release_sha256": null,
+  "receipt_sums_sha256": "e58d5e4ec2bb10cc26fe7f85c03c3bb4a92922d614cb3b964531d90c3dd56a7d",
+  "tasks": {
+    "0": {
+      "receipt": "score_even_0_4522049.json",
+      "receipt_sha256": "f7f9a7b6a5100da9ba2a4a2da63aded33f22f6033d3cbbc6ef066171aecaaf35",
+      "summary_sha256": "e729c54ee20a3668059475595e144323bf25ecbc97dbca36831119d55cfe2238",
+      "manifest_sha256": "56bcaa2b371a94b84bef4625f39873c703d50ac10a847b363b9894ff52e6ca72",
+      "archive_sha256": "6f587447d210ffb05b35bb78e2f59a66dd37b865fdaf03b95b6811fb000eb3fb",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_0_4522049"
+    },
+    "1": {
+      "receipt": "score_even_1_4522064.json",
+      "receipt_sha256": "61cd1e38b9a3b2355acd40746ae50198ebf0291922260648a8a9a2cdb74352f5",
+      "summary_sha256": "735b9db07e64e5759d45aaf726d9287e2627811c16d9278fc193c76e27c036e1",
+      "manifest_sha256": "db0a24c911c3b3c5a1b21c5ff66d08f639f36e22c8fd8bd945af3b06ddb6ca4d",
+      "archive_sha256": "4276dff38daf12daefeadc84d5a9c92b22a57295a1411fab0349d266518c8c5e",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_1_4522064"
+    },
+    "2": {
+      "receipt": "score_even_2_4522089.json",
+      "receipt_sha256": "a6e1d2b46095b4acebcc27e3b5dfe540f4c90074b77e6aff19a6d127e454d04d",
+      "summary_sha256": "13bcccac9998a6227fced7018dcd4956778e5eba74907f41b130e2698ee385a8",
+      "manifest_sha256": "71bf24e3abd1208923c2e5afa4f1d1ae93c8ff67f4112ec18d3c8750cb12c56b",
+      "archive_sha256": "bf22256359f35693d67a510df3af95247d471510d8d9aed4a48375094d87f430",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_2_4522089"
+    },
+    "3": {
+      "receipt": "score_even_3_4522103.json",
+      "receipt_sha256": "3ab429c823b9ad60086be55bf7190ee8063948ce14bab5ee02335ed7118ad837",
+      "summary_sha256": "81aa9c973990f247a01166d6db401e3ac71994adb498d15107c1ed244795d912",
+      "manifest_sha256": "591033912422be0a848d19798e72a41d109b310ab882dad683060429ab8abad1",
+      "archive_sha256": "df57f28fe204d32b0de2ed0b7b85ad311ad8b8a5de30a0b86c419b4242001435",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_3_4522103"
+    },
+    "4": {
+      "receipt": "score_even_4_4522124.json",
+      "receipt_sha256": "d6c502e9774cdc66d46e248d6133f05983d08752e1d49b86bb10ba43e5599628",
+      "summary_sha256": "0a6a449950d37115d68d495b6fe92f8171f2f68e81eb12aa5e31bf82e4641217",
+      "manifest_sha256": "f1cc8fe89b1321459cf58b5c18539145be20bc9a7912905bbc0ad6d66a742e22",
+      "archive_sha256": "d6bad179d0f790b98ca6908cd6ad7117f3977a38ed23e77acf83d555999c287b",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_4_4522124"
+    },
+    "5": {
+      "receipt": "score_even_5_4522135.json",
+      "receipt_sha256": "9f54221e578623ee0f550ca95847161e288a3473b65ed7932d940bbe8239f234",
+      "summary_sha256": "f85889d6326365004e1628678bff61dd686a54323c9ce5eddef454f53534f4fc",
+      "manifest_sha256": "f5d1e7fad78faef2f19399963a8a4113d47f6f0427bbf61d4f6fd2b239f1fe03",
+      "archive_sha256": "6e06028bb10f9dfbf4f7b163b1f1a98549f5b357cf6cccb17e5e3b1f35ce0a43",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_5_4522135"
+    },
+    "6": {
+      "receipt": "score_even_6_4522137.json",
+      "receipt_sha256": "752237123c001e4c1a6ecf019a6f79610387501b3a11e6f0d8f3078ef13a03e0",
+      "summary_sha256": "205d98c6a29eeb8f527ea0387b9cfea65d289296ad17b04dd815db14c28b173d",
+      "manifest_sha256": "4313343102f28601aba8aa0e48a0f3e2282b6b1b0a4b0a7be97bc315b618bcff",
+      "archive_sha256": "820513f73ada31749b9947207169604a2ada314aea0b6797fad9ed267acca03e",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_6_4522137"
+    },
+    "7": {
+      "receipt": "score_even_7_4522143.json",
+      "receipt_sha256": "fcabed222561dae073f5f13a206383b2d32b554038495419f094e7a2616abb8a",
+      "summary_sha256": "6dc6721135e8a7bc42a085b1b21f86083dfc063a41c7a2d822ac07c0051faf1a",
+      "manifest_sha256": "0722859ff0dc7a68b2621ea7b78a18864d4ad921ef79c6ae53328747ea94a2eb",
+      "archive_sha256": "74b34facbdee25adbaa9af50643e6173c8a2d3a3f99e179c5a72160e6bb2435a",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_7_4522143"
+    },
+    "8": {
+      "receipt": "score_even_8_4522147.json",
+      "receipt_sha256": "08b2a4fed1124de78ee193ae0e0ce8b629d74aea79d13e5dee1239e726e5abce",
+      "summary_sha256": "a0f000d22c13a19c5021826cd2105e89bf9c33817a6bad41660ebeec1fc23fe5",
+      "manifest_sha256": "5b59c96574c339a1c69c57973fd9c034aa449d5110e81e1f64ba8c845555949a",
+      "archive_sha256": "fece6e1c8d0069580ac3edb168150f5b5a71f3e38a4f38050cbddc3c2547057c",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_8_4522147"
+    },
+    "9": {
+      "receipt": "score_even_9_4522149.json",
+      "receipt_sha256": "fd537c523151454905827f20025b9ae76c988426ef6b9875064556cd1f4269f8",
+      "summary_sha256": "17ad73602abf04f5be288e4c404523743399dae745ba666005c030cf7b8c0fcc",
+      "manifest_sha256": "5ec17b6a6c7abd9a5ee979071ca226056a33fa3193752f5863ea3b128bae3975",
+      "archive_sha256": "b761d877353b7e4c5817b4294ac13c292583c590293a2a8c27cd8091ecee1cb1",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_9_4522149"
+    },
+    "10": {
+      "receipt": "score_even_10_4522158.json",
+      "receipt_sha256": "6dc767e0e63cef6c1b42f7e94af7a8d04630452c21dd73ab33bea5e632e1ec51",
+      "summary_sha256": "f0fa3bf50b56c25101808c88ed6210b44c0ab267cb5d4e84890a73304317b140",
+      "manifest_sha256": "d8b3ce0bc05e768215901d997567cbea9126b4eec7d514769e979236be5034ae",
+      "archive_sha256": "71705b02aa7aff361f1a71cee169f323665b0705a954e0977949e66baa8a811c",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_10_4522158"
+    },
+    "11": {
+      "receipt": "score_even_11_4522222.json",
+      "receipt_sha256": "8acfc3272a8e7f0d34f89c211a60c5dc8ce79bc8c7fe8248af7d7294c9d99c6c",
+      "summary_sha256": "816c5c549d72ae2601dacf6f3db3e9244e914f106ad32cc499c090bbfce6781d",
+      "manifest_sha256": "169b49af0c0bfeeeefe2ae25fa7764149f412ba841f411368a6de508cb693c5b",
+      "archive_sha256": "5dbc704df2b4a019fa30ff9cd2fcd2fa0139c52c7da2324e5d40851abe871371",
+      "files": 96,
+      "rows": 603272,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_11_4522222"
+    },
+    "12": {
+      "receipt": "score_even_12_4522228.json",
+      "receipt_sha256": "c861d1ec66cafede7597681a96859b5dc4517372b8fab0d6c79c198c917d7ebf",
+      "summary_sha256": "ec5ab15f52741835e69bcb9d367a50b6529436ec2d0ba3af9a4ffe48b3fe6855",
+      "manifest_sha256": "01b3f1da92226b58299d0c67cc2686c714e8fd2fe74014da3e2af0abc3ecbb85",
+      "archive_sha256": "49057ab4f8d4056a379bdf19c72e5dfdce8ec125337cb5742f47e54b19e6cd5d",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_12_4522228"
+    },
+    "13": {
+      "receipt": "score_even_13_4522234.json",
+      "receipt_sha256": "6a669256cdb8e9125df11db8d90dfc6a935b676b541f34b79b98515c04bdab66",
+      "summary_sha256": "daf88d78ad53d9cd6286da04d9785ca7517e6a2bf025900c2ef6a86417e836bd",
+      "manifest_sha256": "ea2803a5ebaf403710ab65a69ba2be82ce834734358da5a74e9e1c4b6560b829",
+      "archive_sha256": "3f7452ff547e922e51d63c28df69b1a849ac70149af958ead651a021de4f579a",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_13_4522234"
+    },
+    "14": {
+      "receipt": "score_even_14_4522241.json",
+      "receipt_sha256": "81098c2fc964fd6d1c9a8408ea58b5924240411c9b805d8c34a1e4b1ca655a7f",
+      "summary_sha256": "e544cde9b1459fc4b85be57d383e610298eca54ce90b317c16ce47a07aa0a059",
+      "manifest_sha256": "e3092a91f508ea6ebc46578e8aa1981194dd9c1938a1ff93a651869836927896",
+      "archive_sha256": "f30e3580f6ea02a94b41958877824efb2072a449dea1aa6ff961e2981443d508",
+      "files": 96,
+      "rows": 605387,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_14_4522241"
+    },
+    "15": {
+      "receipt": "score_even_15_4522332.json",
+      "receipt_sha256": "251470ccf0da05ca6240071ec7ed1381c3617411723e12accca71511aeeee8d3",
+      "summary_sha256": "02a8fdee2b5c6d6acc84650c2811ea57a0e2d239701acbb65afc2cc3263c7d24",
+      "manifest_sha256": "0cb4babe2f0313a6375c52c9830eb499532372c4c0e97522082bbeb4a87eb5c0",
+      "archive_sha256": "9b65ad885faf9c40e873dcc4d34d06c395a034f1829b980178d1f1d92f3052e5",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_15_4522332"
+    },
+    "16": {
+      "receipt": "score_even_16_4522377.json",
+      "receipt_sha256": "e2b8fc2a6d9014c519c455f7b284c9eec57a23ad788c617629d7d2b34de0e4eb",
+      "summary_sha256": "d313c67b980290431426bb1ffe2079967d51d7553451991c64c53f02113eef7b",
+      "manifest_sha256": "6dba11df523210bc02d0a701ddc519e7d6ac237aa798ad834febe522dbe4d027",
+      "archive_sha256": "89b22e096ac3923d90f29e8c06267f2d683e4fa72220f518d2d3a8f876a38e75",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_16_4522377"
+    },
+    "17": {
+      "receipt": "score_even_17_4522048.json",
+      "receipt_sha256": "751c148f73646fbba0943e01f26507128f246dbabdcfa3e7b76a226c4b83675c",
+      "summary_sha256": "dcda0180beb1b3917a2c16e6ab22b2ea7b0688660994166232919a0d095fe89e",
+      "manifest_sha256": "c9544c6989a1e33678d59963aa8e16a396913d48e79b9b17732b30e6dd7c16fe",
+      "archive_sha256": "8dcb7dfdc3c56bf1d28833a247f6b8d41a8ed4f6cf7bba3487d57e374931bfff",
+      "files": 94,
+      "rows": 589566,
+      "bundle": "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_17_4522048"
+    }
+  },
+  "prediction_bundles": [
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_0_4522049",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_1_4522064",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_2_4522089",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_3_4522103",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_4_4522124",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_5_4522135",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_6_4522137",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_7_4522143",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_8_4522147",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_9_4522149",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_10_4522158",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_11_4522222",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_12_4522228",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_13_4522234",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_14_4522241",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_15_4522332",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_16_4522377",
+    "/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN/results/smash_architecture_20261112/score_even_accepted/score_even_17_4522048"
+  ]
+}

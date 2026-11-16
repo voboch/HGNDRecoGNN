@@ -1,0 +1,17 @@
+{
+  "schema": "hgnd-architecture-parameter-inventory-v1",
+  "method": "GraphSAGE: count allocated CPU parameters from unchanged model definition, no forward, training or data load; challengers: accepted GPU probe parameter counts.",
+  "source_sha256": "848278c9082e91d841516d5a3d9fc02afd881f79aac7d1cb6fb1c53bf23801fc",
+  "configuration": {
+    "in_dim": 10,
+    "hidden": 128,
+    "layers": 4,
+    "dropout": 0.1
+  },
+  "parameters": {
+    "student_sage": 291203,
+    "student_dynedge": 358275,
+    "smash_hetero_sage": 415106
+  },
+  "probe_acceptance_sha256": "968d098ed2998afa9cf142115620ea3036774365280da9e33b6b3bf1fb130ccb"
+}

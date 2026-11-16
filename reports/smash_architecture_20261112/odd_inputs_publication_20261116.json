@@ -1,0 +1,18 @@
+{
+  "state": "published",
+  "active_architecture_jobs": 0,
+  "files": {
+    "odd_release_20261116.json": {
+      "sha256": "680506ddbdc0a66b7cbcb4e1f1b504943e3fdbe811029377c8bc7097ad5698c8",
+      "mode": "0o444"
+    },
+    "frozen_policy_even_20261116.json": {
+      "sha256": "8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69",
+      "mode": "0o444"
+    },
+    "score_odd_launch_plan_20261116.json": {
+      "sha256": "a7890a1409b178e7b609986eab0d727a835c6cd4b5607383cff10ec96341a478",
+      "mode": "0o444"
+    }
+  }
+}

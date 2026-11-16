@@ -817,6 +817,22 @@ def run(args):
                 "Even geometric primary population")
         arrays.update(matching=match, multiplicity=mult, matching_keys=COUNT_KEYS,
                       truth_ranges=tuple(TRUTH_RANGES), stages=STAGES)
+        # Retain the already matched sample for exact derived-data energy replay.
+        # File indices follow content; no event or primary-track identifier is needed.
+        arrays.update(
+            isolated_file_index=np.repeat(np.arange(len(samples)), [len(s[0]) for s in samples]),
+            isolated_truth_energy=np.concatenate([s[0] for s in samples]),
+            isolated_raw_energy=np.concatenate([s[1] for s in samples], axis=-1),
+            isolated_range_keep=np.concatenate([s[2] for s in samples], axis=-1),
+        )
+        result["energy_replay_sample"] = {
+            "file_axis": "indices into content, in its saved order",
+            "prediction_axes": "seed, model, isolated neutron",
+            "population": "all common isolated direct primary links before classifier or reconstructed-energy selection",
+            "isolated_range_keep": "raw70 classifier cut AND 0.3 < raw reconstructed energy < 4 GeV; stored mask, not a preselection of the saved energy arrays",
+            "truth": "initial MC kinetic energy of the common isolated direct primary neutron",
+            "preserved_dtypes_and_order": True,
+        }
         result["direct_association"] = matching_summary(tags, match, mult, weights)
         result["matched_energy"] = matched_energy(weights, samples)
         all_positive = np.asarray([r[0].sum() for r in rows])

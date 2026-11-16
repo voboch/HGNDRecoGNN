@@ -1,0 +1,23 @@
+{
+  "state": "accepted",
+  "scope": "even",
+  "models": 27,
+  "new_models": 18,
+  "baseline_reused": 9,
+  "files": 286,
+  "events": 1180595,
+  "summary_sha256": "cfa8b34a7d4a9da7f5cad0bb20b4070dabb52c8d2823e0da67a69ac68a4418bf",
+  "ledger_sha256": "0781663d4b830b2da2cae3dd2edcaf28d140635e375914ee289bed4b796ee53a",
+  "frozen_policy_sha256": "8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69",
+  "reducer_sha256": "58d93c67a0d9378747ef523eaa425404ddc4efa9244819fb83ac491d9f8ac547",
+  "independent_verifier_sha256": "a4fefcd345e30f64563b566e0322660f9056beac2e591512b72ab168f5c5661f",
+  "verified": [
+    "All18predictionpublications andmemberSHAs",
+    "candidatekeys/nativefloat32targets/sizes against baseline and native pins",
+    "registered ceiling exactly replayed",
+    "shared400filedraws andselectedpuritytargets",
+    "coverage/misses/splits/merges fromcounts",
+    "all preselection matchedenergybins fromsavedsamples"
+  ],
+  "odd_state": "not yet scored"
+}

@@ -1,0 +1,13 @@
+{
+  "array": 4522048,
+  "tasks": 18,
+  "state": "accepted_predictions",
+  "events_scope": "even",
+  "export_archive_sha256": "879cfb52209f174fc02a40d8b7b559cc4431587533f277947cc441d51e3774a4",
+  "acceptance_sha256": "7d27c619c9f5fd8b145a9d301d41563257af7936616b6a4a01365d29ea533476",
+  "total_gpu_seconds": 6023,
+  "max_elapsed_seconds": 418,
+  "last_end_msk": "2026-11-16T18:50:00",
+  "sacct_sha256": "891a18b9720a27e3aa137a8d1c79b077fb5c6c945747b9aa11dd4c209233f779",
+  "comparison_state": "not yet reduced"
+}
