@@ -1,0 +1,15 @@
+{
+  "array": 4522428,
+  "tasks": 18,
+  "state": "accepted_predictions",
+  "events_scope": "odd",
+  "export_archive_sha256": "87a4c36f57030fc291af442ed9566d3d199ffaa9bbbdf9959f48b897b8c1f3b6",
+  "acceptance_sha256": "1513c7b39e4a969926c48444703b1fa1324032b74e6bef1456f99c9a60dd94b0",
+  "total_gpu_seconds": 6068,
+  "max_elapsed_seconds": 457,
+  "first_start_msk": "2026-11-16T19:46:55",
+  "last_end_msk": "2026-11-16T21:52:06",
+  "peak_concurrency": 2,
+  "sacct_sha256": "0fe18e20686b2f86cb4cb9843680978efdf0171e22c156768d22e03d26971835",
+  "comparison_state": "reduction running; scientific acceptance recorded separately"
+}

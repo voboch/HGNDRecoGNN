@@ -52,3 +52,51 @@ Staging заменяет только строковый `content` и повто
 Сохранённые draws общие для методов и seed, а preselection energy использует тот же индекс файла; средние берутся по seed внутри каждого draw. В verifier правильны sample SD (ddof=1), линейные weighted quantiles и парные разности. Provenance стратификации принят из upstream ledger; verifier не восстанавливает part strata. ROC-AUC/AP, native-positive MAE и seed t/Holm явно обозначены как accepted-summary inputs. First-hit результат и own-selected energy cohorts не становятся общим сравнением архитектур: текущая таблица использует общий preselection cohort, и это ограничение необходимо сохранить.
 
 **Would I accept this code base for submission?** Пока нет: нет принятого текущего odd/archive/PDF комплекта. **GO для продолжения уже разрешённой сборки и публикационного использования принятого even-результата в указанной области; финальная приёмка условна по T1.** Блокирующих ошибок в просмотренной арифметике и цепочке even-хешей не обнаружено.
+
+## Дополнение: принятый odd и фактически собранный пакет
+
+Проверен `HGNDPaper/output/submission/nst_20261116_architectures/hgnd_nst_architecture_replay` после полного staging. Это дополнение заменяет прежний статус отсутствия odd и архива в T1. S4-уточнение о Student t, df=2 и семье двух сравнений внесено в рабочий main.tex после staging; окончательная привязка обновлённого PDF ещё ожидается и здесь не объявляется выполненной.
+
+- Все 86 записей `SHA256SUMS` совпали с файлами; лишних файлов нет. Все 23 canonical pins и все 20 записей `NUMERICAL_OUTPUTS.sha256` совпали.
+- Прямое сравнение upstream и released architecture NPZ для обоих scopes: наборы полей одинаковы, все массивы кроме `content` поэлементно совпали; `content` точно заменён последовательностями `even_000…` / `odd_000…`. Порядок settings и все 400 draws совпали также с соответствующим историческим benchmark ledger. Таким образом, общие файлы и bootstrap pairing сохранены фактически, а не только заявлены.
+- Просмотрены поля всех шести released NPZ. Исходных detector hits, checkpoint arrays, event/track IDs в этих полях нет. Поиск `/Users/`, `/scratch/`, `/home/`, `vovvy`, `@hpc`, `BEGIN PRIVATE KEY` во всех текстовых JSON/Python/Markdown/TeX/TXT пакета совпадений не дал. Это ограниченная проверка перечисленных признаков, не универсальная гарантия анонимности.
+- T2 закрыт явным erratum в PROVENANCE с сохранением принятых even summary bytes. T3 закрыт точным scope: pooled even score-only matching, true 0.3–4 ГэВ. Accepted-summary ограничения для AUC/AP, native-positive MAE и t/Holm перечислены явно.
+- Прочитаны odd acceptance и полный replay log. Odd принят на 282 файлах / 1 165 216 событиях, с теми же 27 моделями (18 новых, 9 прежних). Лог staging подтверждает benchmark, scan, odd, capped и architecture replay и построение из 23 inputs. В этом дополнении повторный научный replay не запускался; выполнены проверки сохранённых байтов и метаданных.
+
+Точные SHA-256 дополнения:
+
+- `odd_acceptance_20261116.json`: `c0281f3fa349f6d4306a0f09bb6a0dc96d53c8a8fdac3e6c8905031e7570e864`.
+- `score_odd_acceptance_20261116.json`: `1513c7b39e4a969926c48444703b1fa1324032b74e6bef1456f99c9a60dd94b0`.
+- `odd_result/summary.json`: `8e13095ea37b0074650d8bf553b410fa72c19a99e14aec909cad52ba58f35a77`.
+- Upstream odd ledger: `632e168f12f91829b8750a22aebc099ebd5e80280be5fd002df07e548e647ca3`.
+- Released even ledger: `f028441d6f42a1f09e72655ef2d7097b296e46c8e21f37802db23cdeebc5616f`.
+- Released odd ledger: `593715d0bcb78e000b3411f6d363ab983a2f5ead5e0ef52514d2b2d800444f53`.
+- Frozen policy остаётся `8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69`.
+- `full_independent_replay_20261116.log`: `b93abf01bcbc69435df7934e143d9fcfc0483376702c76a563916e0ff40a1617`.
+- Пакет до S4 PDF refresh: `PROVENANCE.json` — `379c35a22b4b02d0cdc8404c4a056642ba90bc4cf3ea6e97b127015fdbbfdf54`; `SHA256SUMS` — `ae34fe8a99ed92fc14e9a886d7ba8331d7d192dd71e974363b7ab35f0db92ff9`.
+- `NUMERICAL_OUTPUTS.sha256`: `0b7da8e2d8e9c9d87ae9e7758c2db32918acc24984c4542726a914c5e8db8766`.
+- `stage_nst_replay.py`: `7e7cf95d5c97c8e93dead8d925a00a375ea5c1c798170f7308dec586fb10c12b`.
+- `architecture_results.py`: `b6630ef4934561b7302c4212643ab438a9312379a6d905055a435a5f15f1e93b`.
+- Независимый verifier остаётся `a4fefcd345e30f64563b566e0322660f9056beac2e591512b72ab168f5c5661f`.
+
+**Вердикт дополнения:** GO для численного состава локального release candidate. T1 остаётся открытым только для окончательной привязки source/PDF после S4; публичный выпуск отдельно требует разрешений владельцев (B1). При доказанном неизменном составе численных inputs/scripts/outputs повторять scientific replay для одной текстовой поправки не требуется.
+
+### Финальная привязка после S4: проверка 87 файлов
+
+Все 87 записей итогового SHA256SUMS совпали; лишних файлов нет. Main и PDF совпали одновременно с PROVENANCE и BUILD_VALIDATION:
+
+- `manuscript/main.tex`: `ab87c6fc9d7c6baec403340d0a0052845d40f6955714762d01a071e284323b07`.
+- `reference.pdf`: `31a65f30f6adcb7f297c0070f590adf390db011b2a3ed48ab4d9e33403ac2e2a`.
+- `BUILD_VALIDATION.json`: `0ca688c22bbdec46a740952cd708903a9d1d16ba8aaf075b465942aef80b82b7`.
+- `PROVENANCE.json`: `4150c01a2c08ac42e1b42f55614d38ce4f3e470ebe568cc9ad53f06f6d77619c`.
+- `SHA256SUMS`: `8d6f1e6d648999dd9d63f922df2871974ab8cf6bd37c867b3dfb7fb8116c4b67`.
+
+Numerical output manifest остался `0b7da8e2d8e9c9d87ae9e7758c2db32918acc24984c4542726a914c5e8db8766`; ссылка на staging replay log совпала с фактическим `/tmp/hgnd-nst-architecture-stage.log`. Визуальные и font checks здесь приняты по записи сборщика; критик повторно PDF не рендерил.
+
+Обнаружено одно уточнение [S] к BUILD_VALIDATION: поле `compiled_asset_sha256` перечисляет 50 файлов дерева сборки, включая 18 figure PDFs, отсутствующих в пакете и не вызываемых шестью `includegraphics` текущего main.tex. Все 50 хешей совпали с рабочим деревом; это инвентаризация дерева, а не доказательство 50 фактически прочитанных компилятором assets. Все шесть вызываемых рисунков и все явно подключённые таблицы присутствуют. Исправление: назвать список инвентаризацией дерева либо сузить его по фактическим входам; не добавлять неиспользуемые рисунки ради названия поля. Запрос передан сборщику.
+
+**Итог технического ревью: локальный пакет — GO; T1 закрыт.** Источники, PDF и численный пакет связаны проверенными хешами. Уточнение названия inventory выше не меняет байты результата и не блокирует локальную приёмку. **Публичный выпуск остаётся за B1 — разрешениями владельцев.**
+
+### Закрытие последнего замечания к metadata
+
+[S] закрыто: BUILD_VALIDATION теперь разделяет `source_asset_inventory_sha256` (50 файлов дерева, включая неиспользуемые) и `included_figure_sha256` (шесть рисунков из main.tex). Все шесть файлов присутствуют и совпали по хешам; обновлённый manifest проверен: 87/87. SHA-256 BUILD_VALIDATION: `38a41adabe9d3654e78b7c49b1e6eb4498617a140ce641e7818bf33d4cfe23b3`; SHA256SUMS: `fece5c957e88aebedb05ec6f98bd52dd524695fc72611877051851f39e9babf1`. Предыдущие main/PDF/numerical hashes сохраняются. **Локальный GO подтверждён; открытых технических замечаний в проверенной области нет. Публичный B1 остаётся открытым.**

@@ -1,0 +1,21 @@
+{
+  "source_script": "HGNDPaper/scripts/architecture_results.py",
+  "source_sha256": "b6630ef4934561b7302c4212643ab438a9312379a6d905055a435a5f15f1e93b",
+  "input_sha256": {
+    "even_result": "cfa8b34a7d4a9da7f5cad0bb20b4070dabb52c8d2823e0da67a69ac68a4418bf",
+    "odd_result": "8e13095ea37b0074650d8bf553b410fa72c19a99e14aec909cad52ba58f35a77"
+  },
+  "policy_sha256": "8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69",
+  "figures_sha256": {
+    "architecture_energy_response.pdf": "578428d5d6c7f9f40982134d30cdf276e7f032fa2b9ec9041989b2ed300bafda",
+    "architecture_hardness.pdf": "b57bc0e3ca45b91dbec3c293717db41377557428841c1fe612ca1322e614b7c7",
+    "architecture_threshold_policy.pdf": "c114880a62d8bffdf8f1ebfc59d186ebff513bfd2606ca3a6720b4ab027bc086"
+  },
+  "scale": "linear energy axes; standard file SD; paired Q16/Q84 residual intervals",
+  "purpose": {
+    "architecture_energy_response.pdf": "Energy-dependent bias and width on shared preselection isolated direct links",
+    "architecture_hardness.pdf": "Separate contrast width from paired MC displacement at reference and frozen operating points",
+    "architecture_threshold_policy.pdf": "Show the full registered even-only objective and precision ceiling"
+  },
+  "review": "Root visually checked the energy, hardness and threshold plots; final manuscript page review recorded separately."
+}

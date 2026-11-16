@@ -1,0 +1,29 @@
+{
+  "state": "accepted",
+  "scope": "odd",
+  "models": 27,
+  "new_models": 18,
+  "baseline_reused": 9,
+  "files": 282,
+  "events": 1165216,
+  "summary_sha256": "8e13095ea37b0074650d8bf553b410fa72c19a99e14aec909cad52ba58f35a77",
+  "ledger_sha256": "632e168f12f91829b8750a22aebc099ebd5e80280be5fd002df07e548e647ca3",
+  "frozen_policy_sha256": "8587f2bbdc750adc619daa46d4c707694c6416e652ef0e0dd372e81f56570f69",
+  "odd_release_sha256": "680506ddbdc0a66b7cbcb4e1f1b504943e3fdbe811029377c8bc7097ad5698c8",
+  "reducer_sha256": "535eb6ce66031b1f54b3bc02163625c30e305fad26f1c18f4d2ee4414877eb0a",
+  "independent_verifier_sha256": "a4fefcd345e30f64563b566e0322660f9056beac2e591512b72ab168f5c5661f",
+  "replay_log_sha256": "b93abf01bcbc69435df7934e143d9fcfc0483376702c76a563916e0ff40a1617",
+  "verified": [
+    "All 18 prediction publications and member hashes, with fixed fit and input identities",
+    "Candidate keys, native float32 targets and sizes against the reused baseline",
+    "Policy frozen before odd inference: SHA matches release and prediction exports",
+    "Both raw70 and frozen-policy contrasts, SDs, paired residuals and absolute changes: all three pairs and both bands independently replayed from the shared 400 draws",
+    "All 18 new fit exports have full 30-epoch histories; no retraining"
+  ],
+  "limitations": [
+    "Retrospective comparison within one production, not an independent holdout",
+    "Candidate AUC/AP, native-positive MAE and seed t/Holm use accepted summaries",
+    "Matching replay covers pooled score-only true energies 0.3–4 GeV; preselection energy replay covers all bins",
+    "No verified original Dombay checkpoint, scaler and input-transform combination"
+  ]
+}
