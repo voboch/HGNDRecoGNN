@@ -1,0 +1,2 @@
+a56e8140be6460a3608e11f9a3abfef0de836514aef94825e290d988cc6a3c92  /home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45/slurm/smash_architecture.hpc.sbatch
+0 /home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/submission_score_even_20261116.txt

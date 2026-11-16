@@ -1,0 +1,39 @@
+{
+  "tasks": 72,
+  "states": [
+    "COMPLETED"
+  ],
+  "exit_codes": [
+    "0:0"
+  ],
+  "allocated_gpu_hours": 83.99083333333333,
+  "earliest_start_msk": "2026-11-13T11:15:03",
+  "latest_end_msk": "2026-11-15T07:27:55",
+  "max_elapsed_seconds": 6264,
+  "per_segment": {
+    "4511720": {
+      "tasks": 18,
+      "allocated_gpu_hours": 23.127777777777776,
+      "last_end_msk": "2026-11-13T23:01:03"
+    },
+    "4511721": {
+      "tasks": 18,
+      "allocated_gpu_hours": 21.81888888888889,
+      "last_end_msk": "2026-11-14T11:14:00"
+    },
+    "4511722": {
+      "tasks": 18,
+      "allocated_gpu_hours": 19.15388888888889,
+      "last_end_msk": "2026-11-14T21:13:53"
+    },
+    "4511723": {
+      "tasks": 18,
+      "allocated_gpu_hours": 19.89027777777778,
+      "last_end_msk": "2026-11-15T07:27:55"
+    }
+  },
+  "allocated_by_architecture_gpu_hours": {
+    "DynamicEdgeConv": 34.43138888888889,
+    "HeteroSAGE": 49.559444444444445
+  }
+}

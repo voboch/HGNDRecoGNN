@@ -1,0 +1,266 @@
+{
+  "temp_root": "/tmp/hgnd-full-audit-20261116-vyqvtnw1",
+  "python": "3.14.2 (main, Dec  5 2025, 16:49:16) [Clang 17.0.0 (clang-1700.4.4.1)]",
+  "canonical_inputs": {
+    "data/dcm_grouped_20261017.json": {
+      "expected": "517f568975d8b35c27b38f238674d8456f659b3165f5cba5d79712d8ea22f91b",
+      "actual": "517f568975d8b35c27b38f238674d8456f659b3165f5cba5d79712d8ea22f91b",
+      "match": true
+    },
+    "data/canonical_inputs/analysis_settings.json": {
+      "expected": "99e7db848a3da85db92af557e4b20b41ab53dd51b3113b3661efb96b55527abf",
+      "actual": "99e7db848a3da85db92af557e4b20b41ab53dd51b3113b3661efb96b55527abf",
+      "match": true
+    },
+    "data/canonical_inputs/architecture_evaluation.json": {
+      "expected": "0c1d954e7dcf78e776e68b43357e85c6872841694e06583daabc164571be5c84",
+      "actual": "0c1d954e7dcf78e776e68b43357e85c6872841694e06583daabc164571be5c84",
+      "match": true
+    },
+    "data/canonical_inputs/capped_energy_response.json": {
+      "expected": "b560c7d93736d0312180236a355f07f78d268aee0a9e0458b7376c6752d796f2",
+      "actual": "b560c7d93736d0312180236a355f07f78d268aee0a9e0458b7376c6752d796f2",
+      "match": true
+    },
+    "data/canonical_inputs/dcm_content.json": {
+      "expected": "c31b66b17447b5971223eabf624c42bcdbdd5aeed7f6483175458b37c3d44f97",
+      "actual": "c31b66b17447b5971223eabf624c42bcdbdd5aeed7f6483175458b37c3d44f97",
+      "match": true
+    },
+    "data/canonical_inputs/label_ablation.json": {
+      "expected": "3e30e666956a3c761e7dc44186205a23140f24cb5bd99153f05139e6944d668b",
+      "actual": "3e30e666956a3c761e7dc44186205a23140f24cb5bd99153f05139e6944d668b",
+      "match": true
+    },
+    "data/canonical_inputs/reconstruction_case.json": {
+      "expected": "abca738625e997192ca7da4d58698e22570383aada4e8e8988056fb12b656273",
+      "actual": "abca738625e997192ca7da4d58698e22570383aada4e8e8988056fb12b656273",
+      "match": true
+    },
+    "data/canonical_inputs/rule_tof_benchmark.json": {
+      "expected": "42299c44af475d479781625cf332a6fe9405012ebce782c56e10b2277eb6a63b",
+      "actual": "42299c44af475d479781625cf332a6fe9405012ebce782c56e10b2277eb6a63b",
+      "match": true
+    },
+    "data/canonical_inputs/rule_tof_contrast.json": {
+      "expected": "910f25467244f06d26bd9721c39ff69e30c5b6f3c0c2fd6f9c7a031ba24b4ee1",
+      "actual": "910f25467244f06d26bd9721c39ff69e30c5b6f3c0c2fd6f9c7a031ba24b4ee1",
+      "match": true
+    },
+    "data/canonical_inputs/rule_tof_odd.json": {
+      "expected": "3c994767445146594af810359d5842628ea5d65bbd7d78fa890ba83f3973733b",
+      "actual": "3c994767445146594af810359d5842628ea5d65bbd7d78fa890ba83f3973733b",
+      "match": true
+    },
+    "data/canonical_inputs/smash_content.json": {
+      "expected": "de267d7361d9721c26605b7bdbd4a317f78a7c51905f01c5cd3b764ce2bedfd8",
+      "actual": "de267d7361d9721c26605b7bdbd4a317f78a7c51905f01c5cd3b764ce2bedfd8",
+      "match": true
+    },
+    "data/canonical_inputs/smash_cross_scoring.json": {
+      "expected": "7b2f2fd4113e3d7d0dcda0e3d8906573fe364fc539bb6526cad154b213d8f25b",
+      "actual": "7b2f2fd4113e3d7d0dcda0e3d8906573fe364fc539bb6526cad154b213d8f25b",
+      "match": true
+    },
+    "data/canonical_inputs/smash_reconstruction.json": {
+      "expected": "87bb13a394134b7eb24902d1322b3a658e199e287176048cb76a61c2a5a48622",
+      "actual": "87bb13a394134b7eb24902d1322b3a658e199e287176048cb76a61c2a5a48622",
+      "match": true
+    },
+    "data/canonical_inputs/truth_bfree.json": {
+      "expected": "769aaa41219ad1952a730669a1d7acfe1644146d8be331e301a751ff56ddcaa1",
+      "actual": "769aaa41219ad1952a730669a1d7acfe1644146d8be331e301a751ff56ddcaa1",
+      "match": true
+    },
+    "data/canonical_inputs/truth_legacy_files.json": {
+      "expected": "513eec6e4c968895df488193f9c9562697c678a65e337244bbcd714065ddb6ee",
+      "actual": "513eec6e4c968895df488193f9c9562697c678a65e337244bbcd714065ddb6ee",
+      "match": true
+    },
+    "data/canonical_inputs/truth_reach.json": {
+      "expected": "5bbba43320b161febd6a9129b1b30b380eb258a40122338b19d6260daee5a7b9",
+      "actual": "5bbba43320b161febd6a9129b1b30b380eb258a40122338b19d6260daee5a7b9",
+      "match": true
+    },
+    "data/canonical_inputs/truth_reach_controls.json": {
+      "expected": "27442e54fe7f31eb5e0e1c23a643d2f290bdadefd42060b3f8fba04885ba9692",
+      "actual": "27442e54fe7f31eb5e0e1c23a643d2f290bdadefd42060b3f8fba04885ba9692",
+      "match": true
+    },
+    "data/canonical_inputs/truth_reach_files.json": {
+      "expected": "33717dab84435e08009623f6f84eb6bf3f812025b2448e092df548a15ec5964f",
+      "actual": "33717dab84435e08009623f6f84eb6bf3f812025b2448e092df548a15ec5964f",
+      "match": true
+    },
+    "data/canonical_inputs/truth_spectra_files.json": {
+      "expected": "9c05fd4fc1107b8db51a8616885d6bc85a1a597c6548946d952f7e6ba13d744d",
+      "actual": "9c05fd4fc1107b8db51a8616885d6bc85a1a597c6548946d952f7e6ba13d744d",
+      "match": true
+    }
+  },
+  "archives": {
+    "open_v15": {
+      "archive_sha256": "e8c6402f0f2ac1221e911cbeb8b99c53fed9053f7db17be3adda04f32a07cbb1",
+      "members_hashed": 65,
+      "members_matching": 65,
+      "mismatches": [],
+      "replay_exit": 0,
+      "log": "open_v15_replay.log",
+      "current_source_vs_snapshot_same": false,
+      "current_source_sha256": "c12fe25861b4132f5b50365d1257f42a2d1310a33773247f227c171a6cbb532b",
+      "snapshot_source_sha256": "91acf3127131e3d6af2b11e90e169ec0ce3136d308183d636b3e200b7cbc639a",
+      "capped_energy_input_in_archive": false
+    }
+  },
+  "canonical_replay": {
+    "exit_code": 0,
+    "log": "canonical_replay.log",
+    "generated_matches": {
+      "data/canonical_results.json": {
+        "same_bytes": true,
+        "old": "bd9a17f176b490e7d543b3c3a6bed390696a660381f43bfcfe759628595c5f6b",
+        "replayed": "bd9a17f176b490e7d543b3c3a6bed390696a660381f43bfcfe759628595c5f6b",
+        "rewritten_by_builder": true
+      },
+      "tables/archived_ladder.tex": {
+        "same_bytes": true,
+        "old": "0f88ac2188839291967134aec4f285f450230689da7079f22550a632ff4e091d",
+        "replayed": "0f88ac2188839291967134aec4f285f450230689da7079f22550a632ff4e091d",
+        "rewritten_by_builder": false
+      },
+      "tables/canonical_numbers.tex": {
+        "same_bytes": true,
+        "old": "561e8e8b22f503632db65f9d06550627aa60a5c295f3a94717f8507bc5ad3e55",
+        "replayed": "561e8e8b22f503632db65f9d06550627aa60a5c295f3a94717f8507bc5ad3e55",
+        "rewritten_by_builder": true
+      },
+      "tables/capped_energy_response.tex": {
+        "same_bytes": true,
+        "old": "d7f16e65bb5693c88145d6367a7cc44285ec65d6d444ed3e82ff920651ff56d9",
+        "replayed": "d7f16e65bb5693c88145d6367a7cc44285ec65d6d444ed3e82ff920651ff56d9",
+        "rewritten_by_builder": true
+      },
+      "tables/dcm_content.tex": {
+        "same_bytes": true,
+        "old": "ebfddf46e52b1af40529ea084ad8e88084d4a317cb613accf227c2e7aa0a773f",
+        "replayed": "ebfddf46e52b1af40529ea084ad8e88084d4a317cb613accf227c2e7aa0a773f",
+        "rewritten_by_builder": true
+      },
+      "tables/dcm_grouped_20261017.tex": {
+        "same_bytes": true,
+        "old": "9eac7eafd3d9c1eb08fee864e8fc6d33aee35e3e4c716d1a49f839865c07eafc",
+        "replayed": "9eac7eafd3d9c1eb08fee864e8fc6d33aee35e3e4c716d1a49f839865c07eafc",
+        "rewritten_by_builder": true
+      },
+      "tables/dcm_grouped_numbers.tex": {
+        "same_bytes": true,
+        "old": "b572139b35706e0d118f133c7b82b282ddeb44e77c47493ab023a18e8e7d48ad",
+        "replayed": "b572139b35706e0d118f133c7b82b282ddeb44e77c47493ab023a18e8e7d48ad",
+        "rewritten_by_builder": false
+      },
+      "tables/dcm_grouped_points.tex": {
+        "same_bytes": true,
+        "old": "fe35482beec7b084f172bc05ce1277d26c3807643831f265e422935f13c24ef7",
+        "replayed": "fe35482beec7b084f172bc05ce1277d26c3807643831f265e422935f13c24ef7",
+        "rewritten_by_builder": false
+      },
+      "tables/dcm_validation_20261016.tex": {
+        "same_bytes": true,
+        "old": "1afbb257fe9615687c3a6516d3f8980162139a01f846a189844bf3c62fd86663",
+        "replayed": "1afbb257fe9615687c3a6516d3f8980162139a01f846a189844bf3c62fd86663",
+        "rewritten_by_builder": false
+      },
+      "tables/label_ablation.tex": {
+        "same_bytes": true,
+        "old": "13cec5f1a6ffe0c250317a4cbe3ee257cc78783ddcb789d057ddcea9ec3ef40a",
+        "replayed": "13cec5f1a6ffe0c250317a4cbe3ee257cc78783ddcb789d057ddcea9ec3ef40a",
+        "rewritten_by_builder": true
+      },
+      "tables/label_ablation_rn.tex": {
+        "same_bytes": true,
+        "old": "d363aa3b402ee89d90d67fabd63b920e6d5b39f706e037b12e1ffe655504cdef",
+        "replayed": "d363aa3b402ee89d90d67fabd63b920e6d5b39f706e037b12e1ffe655504cdef",
+        "rewritten_by_builder": true
+      },
+      "tables/reconstruction_case.tex": {
+        "same_bytes": true,
+        "old": "34246737fabda0fec2d0325ba56e2dd632eeb301f5415023ad4fe1b42ca98db7",
+        "replayed": "34246737fabda0fec2d0325ba56e2dd632eeb301f5415023ad4fe1b42ca98db7",
+        "rewritten_by_builder": true
+      },
+      "tables/rule_tof_benchmark.tex": {
+        "same_bytes": true,
+        "old": "b2fb151872913f8c3c2480ab1f81ed9b7d994ba22b63d2ad313f434f9c7186ef",
+        "replayed": "b2fb151872913f8c3c2480ab1f81ed9b7d994ba22b63d2ad313f434f9c7186ef",
+        "rewritten_by_builder": true
+      },
+      "tables/rule_tof_contrast.tex": {
+        "same_bytes": true,
+        "old": "385502f449a73b6e4d4096b40876085b11b0532df41a77fae3bb84923656b662",
+        "replayed": "385502f449a73b6e4d4096b40876085b11b0532df41a77fae3bb84923656b662",
+        "rewritten_by_builder": true
+      },
+      "tables/rule_tof_odd.tex": {
+        "same_bytes": true,
+        "old": "06d16562287e6fd8ff7aaaac770895046c48ba02bd4561c77ab7b2dc0c86b580",
+        "replayed": "06d16562287e6fd8ff7aaaac770895046c48ba02bd4561c77ab7b2dc0c86b580",
+        "rewritten_by_builder": true
+      },
+      "tables/smash_reconstruction.tex": {
+        "same_bytes": true,
+        "old": "4cbff7b1a736ca4f64552b84dd1461e60ce4b77b4b56819a0120469bb4056f8a",
+        "replayed": "4cbff7b1a736ca4f64552b84dd1461e60ce4b77b4b56819a0120469bb4056f8a",
+        "rewritten_by_builder": true
+      },
+      "tables/truth_classes.tex": {
+        "same_bytes": true,
+        "old": "20635616ae2f0fdd0d27741d9786a9cd352c6ca2331fb4d84606a7121cf912de",
+        "replayed": "20635616ae2f0fdd0d27741d9786a9cd352c6ca2331fb4d84606a7121cf912de",
+        "rewritten_by_builder": true
+      },
+      "tables/truth_scan.tex": {
+        "same_bytes": true,
+        "old": "5c3a81f4c8462f20f917343128a43358821c54c2d1ffdb14db8c8e411073829e",
+        "replayed": "5c3a81f4c8462f20f917343128a43358821c54c2d1ffdb14db8c8e411073829e",
+        "rewritten_by_builder": true
+      }
+    },
+    "generated_count": 14,
+    "scope": "Replays existing pinned canonical aggregates and formatting; does not rerun model inference or rebuild vector figures."
+  },
+  "numpy_version": "2.4.1",
+  "pdf_build": {
+    "exit_code": 2,
+    "failure": "revtex4-1.cls not found in default local TeX search path",
+    "log": "manuscript_build.log",
+    "dependency_declared_in_archive_readme": true,
+    "scope": "isolated copy, default environment; no package installs attempted",
+    "reviewed_existing_pdf": "HGNDPaper/output/pdf/hgnd_reconstruction_nst_energy_procedure.pdf"
+  },
+  "pdf_versions": {
+    "main.pdf": "efc3fc6dc5d5b2ccd54ed278f6af394db6e9dd50e48bb49ad7a25454a090fa5e",
+    "output/pdf/hgnd_manuscript_revised.pdf": "efc3fc6dc5d5b2ccd54ed278f6af394db6e9dd50e48bb49ad7a25454a090fa5e",
+    "output/pdf/hgnd_reconstruction_nst_energy_procedure.pdf": "c5dc9d707ac38f63934f228ddf54e0aa464d3164f992af838877723bbdeba3aa"
+  },
+  "visual_review": {
+    "latest_pdf_pages": 13,
+    "root_pages": [
+      1,
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "text_critic_pages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "result": "No blocking clipping or overlap observed; precise minimum font size not measured."
+  }
+}

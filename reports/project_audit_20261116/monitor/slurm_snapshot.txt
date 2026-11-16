@@ -1,0 +1,15 @@
+HGNDRecoGNN read-only monitoring snapshot — 2026-11-16
+Remote read: charisma (one-hop SSH, BatchMode, ConnectTimeout=8).
+Campaign receipts: /home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts
+Campaign scratch: /scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45
+Plan in repo: reports/smash_architecture_20261112/fit_launch_plan.json
+
+Slurm sacct queried for 4511720-4511723; 72 top-level array tasks total, all COMPLETED, ExitCode 0:0 (no failed/time-out/cancelled tasks). Current squeue returned no tasks for these IDs.
+Per fit segment, receipts matching fit_*_<segment>_*.json:
+  0_8: 18 files, all state=complete
+  8_16: 18 files, all state=complete
+  16_23: 18 files, all state=complete
+  23_30: 18 files, all state=complete
+The 18 receipts per segment bind the 18 model/fold/seed fits; receipts report summary.json hash and archive/manifest hashes. Example: fit_0_0_8_4511725.json state=complete, summary hash 93586a92f97bc60f5d52b70c25ea15c14869b764261a41e737932d6ce5f8ac97.
+Log paths: <receipts>/logs/hgnd-smash-arch_<arrayJobId>_<taskId>.out (observed for every task in filesystem listing). No ERROR/Traceback/timed-out strings appeared in the sampled log tail; no systematic full log scan performed.
+Four segment receipts confirm fit completion through requested epoch intervals ending at 8, 16, 23, and 30. This is operational evidence, not scientific acceptance.

@@ -1,0 +1,77 @@
+{
+  "schema": "smash-architecture-fit-index-v1",
+  "tasks": {
+    "0": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_0_23_30_4515458.json",
+      "sha256": "520f2bca70a8e5d7d152be80a1f6de2f967a9f1d8ce4d1e6077e657b32a529fb"
+    },
+    "1": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_1_23_30_4515459.json",
+      "sha256": "4a1bf231f438ff7946a670e5fb1c90ee91fa1f061ee1af999496ca7b390111b6"
+    },
+    "2": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_2_23_30_4515544.json",
+      "sha256": "a350a9bbeb98975c179d873115ef65f0f3e45bee56db0c10a16029751b1f90ce"
+    },
+    "3": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_3_23_30_4515548.json",
+      "sha256": "a80dc65ef9d7fb38031a9d15623b78a7ec7e4d6708f0d106bea36da127d41fb9"
+    },
+    "4": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_4_23_30_4515659.json",
+      "sha256": "06ce83d1a8ee642957425ea0584ad63b5ef840cf71df3b3252ee8b3c72cb6e46"
+    },
+    "5": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_5_23_30_4515662.json",
+      "sha256": "d2d251fde3bcd81d857f9c1e962f9667c7ece9d10886fa37ba8b204dbee99e9e"
+    },
+    "6": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_6_23_30_4515814.json",
+      "sha256": "ed0bf6f43b537a860d9c05da2e04d7251a0acf8472c808eef056f3012d616424"
+    },
+    "7": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_7_23_30_4515829.json",
+      "sha256": "a891d8ac609f9668e8f68248400fde86189877f8141ea7d6450162835a166501"
+    },
+    "8": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_8_23_30_4515949.json",
+      "sha256": "3b597d30e64ffcef0e54d907a4c4234bb98924352e8e1456c6874ae906e5f109"
+    },
+    "9": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_9_23_30_4515966.json",
+      "sha256": "04eccfd0a33c4848d2a87b155ea18e03d5ebe93eb9237755d7ab5e72955b62a1"
+    },
+    "10": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_10_23_30_4516013.json",
+      "sha256": "cccca4e01b0573de5d00c9d494baef1b74002dfddaf8b534cdeaa802047dc965"
+    },
+    "11": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_11_23_30_4516075.json",
+      "sha256": "c39e5afddc31f3860aa297787429d406cf958627d29ca75b645ff7f8494d6685"
+    },
+    "12": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_12_23_30_4516168.json",
+      "sha256": "9637a43657dc3c075fd19cd36e95e4535500636820852c3c66b45bc0089f68d4"
+    },
+    "13": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_13_23_30_4516285.json",
+      "sha256": "35521885ad9a5dfe616e7461d48a25aefe45a8d0437f884f1153a4a068308d2b"
+    },
+    "14": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_14_23_30_4516378.json",
+      "sha256": "40960ca0f1fdedc0760ceedfc598d1b00e060ba37813e9074fa7857d6e63ec56"
+    },
+    "15": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_15_23_30_4516444.json",
+      "sha256": "d16c0f1037e8aa585a5968536bb026c941081696d3b75f8b447062396ec62ffc"
+    },
+    "16": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_16_23_30_4516589.json",
+      "sha256": "e9a4987545a388ff0ac9f83db1c8d12aee6e0e881c6bd3c1f2a377581d4118c8"
+    },
+    "17": {
+      "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_17_23_30_4511723.json",
+      "sha256": "216350e8235fc0f58bfcbb6581a20ad9c542c04faebac06b595779a79d3b0410"
+    }
+  }
+}

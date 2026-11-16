@@ -1,0 +1,1235 @@
+{
+  "schema": "smash-architecture-fit-acceptance-v1",
+  "state": "accepted",
+  "source": {
+    "source": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45",
+    "campaign": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45",
+    "receipts": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts",
+    "code_commit": "1a87c5b6f4dea71580680fc9f70d3cbc5ce790f2",
+    "source_sums_sha256": "2d31e3e25c45dff5b15818357e8d3d185cc752ef229a726971ab234f8f5d3969",
+    "plan_sha256": "b78ae173a9abd813f2dd3824b451bc00dc161926d13805b336ef9f160c8dba3a"
+  },
+  "archive_sha256": "f783c802ce8bad168293eabc97190e3a0c558fb9554b71a4e68ad75d8c56950a",
+  "segments": 72,
+  "models": 18,
+  "archive_members_verified": 178,
+  "checks": [
+    "72 Slurm completions/caps",
+    "all publication/archive/member SHA and sizes",
+    "model/fold/seed/roles/native source identity",
+    "30 contiguous population-loss epochs",
+    "native train/validation candidate counts each epoch",
+    "unreset LR schedule",
+    "final resume matches published 23-epoch boundary",
+    "per-head earliest validation minima",
+    "selected weights SHA, metadata and finite tensors",
+    "all 401 threshold points and eight cuts"
+  ],
+  "limits": "No new inference; exact RNG restore uses inherited live probe and trainer guards. Full intermediate resume blobs were not downloaded.",
+  "tasks": {
+    "0": {
+      "model": "student_dynedge",
+      "fold": 0,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 22,
+        "e_en": 23
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.297905,
+        "75": 0.36277499999999996,
+        "80": 0.45259499999999997,
+        "85": 0.5573849999999999,
+        "90": 0.68463,
+        "95": 0.841815
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19506690279020886,
+          "cluster_energy": 0.008894960807984626
+        },
+        "e_en": {
+          "cluster_cls": 0.1951185860829669,
+          "cluster_energy": 0.008805095859420894
+        }
+      },
+      "history_sha256": "befec138b49f7169f576f975249b88d9cfa9b1398fdd1a7ce6abfc078d6b0f5d",
+      "checkpoints": {
+        "checkpoints/epoch_022.pt": "b08feaf74f3dde3c30b8c2c42ef5cd56009badaf628d8060ba24139ae173785c",
+        "checkpoints/epoch_023.pt": "1b1ccd0762784d1e0a96b48a7108ed6a8568009b2a1076d85b8dad9310e2abe5"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_0_23_30_4515458.json",
+        "sha256": "520f2bca70a8e5d7d152be80a1f6de2f967a9f1d8ce4d1e6077e657b32a529fb",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_0_23_30_4515458",
+          "manifest_sha256": "74a170594f0eec884a76873226d8301d8b0a33dcd61194fbe12ad44b7921318f",
+          "archive_sha256": "333a4499aff15d313207a788133cc9d8ab569a190fc828961df8f5af61f67fba",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "05d96d8050f51adef97f7af42b66074c33bbea09770cd35676fd531ed8ed006c"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "05d96d8050f51adef97f7af42b66074c33bbea09770cd35676fd531ed8ed006c",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3326,
+          "start_msk": "2026-11-14T21:14:15",
+          "end_msk": "2026-11-14T22:09:41"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "1": {
+      "model": "student_dynedge",
+      "fold": 0,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 24
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19061999999999998,
+        "65": 0.24051999999999998,
+        "70": 0.29541,
+        "75": 0.36277499999999996,
+        "80": 0.45259499999999997,
+        "85": 0.5573849999999999,
+        "90": 0.68463,
+        "95": 0.83932
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19466119415230188,
+          "cluster_energy": 0.008722445381076221
+        },
+        "e_en": {
+          "cluster_cls": 0.19475316193985182,
+          "cluster_energy": 0.008709606010411595
+        }
+      },
+      "history_sha256": "526403710a89c3fe963f1106f6727fe179863e1f7ed0f85d24187739dad8a817",
+      "checkpoints": {
+        "checkpoints/epoch_024.pt": "091fc6cbe46c6c4de4fa3e0a2ffb35af46dd299342aaf5838ecfd8004baf2c63",
+        "checkpoints/epoch_029.pt": "6b230bd82a2b7eb0ef6efcf78c4277636363c4beaf44a36f7dd7c8a62a7bd38d"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_1_23_30_4515459.json",
+        "sha256": "4a1bf231f438ff7946a670e5fb1c90ee91fa1f061ee1af999496ca7b390111b6",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_1_23_30_4515459",
+          "manifest_sha256": "72ea2ccea9a5d1053cc4d538b137d671dc770d31f828132a68725077b28468f8",
+          "archive_sha256": "10ccc1f6bbb1d888ca49d18ea75f869c0afd9e56e2d6e9c6612c97665e90ea9f",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "ecc812e4aebdc6965d7094af1e43ae3ac57839e2b2e1ce2416fdbd2daec5f8fa"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "ecc812e4aebdc6965d7094af1e43ae3ac57839e2b2e1ce2416fdbd2daec5f8fa",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3199,
+          "start_msk": "2026-11-14T21:14:15",
+          "end_msk": "2026-11-14T22:07:34"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "2": {
+      "model": "student_dynedge",
+      "fold": 0,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 24,
+        "e_en": 29
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": true
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.3004,
+        "75": 0.36527,
+        "80": 0.45509,
+        "85": 0.5598799999999999,
+        "90": 0.687125,
+        "95": 0.841815
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19477731815798435,
+          "cluster_energy": 0.008746276342686675
+        },
+        "e_en": {
+          "cluster_cls": 0.19479940169819454,
+          "cluster_energy": 0.00872603074381856
+        }
+      },
+      "history_sha256": "dff17ddb3ff889a0880f563d00c5ded0837400cdea8c174d101a64743137449f",
+      "checkpoints": {
+        "checkpoints/epoch_024.pt": "0e65646b0d0ba93849ce7129024ce8a1d4179d9ffacba455d24e3f576de268fa",
+        "checkpoints/epoch_029.pt": "ed3e36fcefc7b8dc451d3c32eb019528410d621eff8ec5d77cbbc66a91375e29"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_2_23_30_4515544.json",
+        "sha256": "a350a9bbeb98975c179d873115ef65f0f3e45bee56db0c10a16029751b1f90ce",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_2_23_30_4515544",
+          "manifest_sha256": "db06662ede6f7664549e4a4a1b15a3501fc9f367b634f32ea272d47819106211",
+          "archive_sha256": "aa76a1f5c20d0a245bbde51ee16d356d9c4369f5f8710bf93405170622ac36a4",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "61e299b3b2c43d650ca29f135a9e1e24ff142f02fc1d2606b1287bb88bdd2b22"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "61e299b3b2c43d650ca29f135a9e1e24ff142f02fc1d2606b1287bb88bdd2b22",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3135,
+          "start_msk": "2026-11-14T22:07:50",
+          "end_msk": "2026-11-14T23:00:05"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "3": {
+      "model": "student_dynedge",
+      "fold": 1,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 19,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.3004,
+        "75": 0.36527,
+        "80": 0.45509,
+        "85": 0.56487,
+        "90": 0.69461,
+        "95": 0.8468049999999999
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19584265961499164,
+          "cluster_energy": 0.008443291641832992
+        },
+        "e_en": {
+          "cluster_cls": 0.19586883665203506,
+          "cluster_energy": 0.008401635075107173
+        }
+      },
+      "history_sha256": "d6a87eaf8c23207021f785fe7a5c8fc77ea70b29c97f3f979cd41ff5195e5f4c",
+      "checkpoints": {
+        "checkpoints/epoch_019.pt": "623b1184147bdec89fd35cd361fd26660cd842014af6ecc9018c2ed2db5d57a9",
+        "checkpoints/epoch_028.pt": "233bf5d41248d224d21627050465393ac7f2a42b3ef2a0927cb45587f77c3d15"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_3_23_30_4515548.json",
+        "sha256": "a80dc65ef9d7fb38031a9d15623b78a7ec7e4d6708f0d106bea36da127d41fb9",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_3_23_30_4515548",
+          "manifest_sha256": "5479a83db0344f92100c7d7f0cd2d25f394232e3899580badced79afe8aa7b41",
+          "archive_sha256": "ee0d41c09ce9b329826a963274ef672670b8299540212b797980ec8bc857fd0a",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "bb12a2496323dca93b55888e37d52ceaaee99ef871f4d6e3daf927e1459b2a47"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "bb12a2496323dca93b55888e37d52ceaaee99ef871f4d6e3daf927e1459b2a47",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3321,
+          "start_msk": "2026-11-14T22:09:50",
+          "end_msk": "2026-11-14T23:05:11"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "4": {
+      "model": "student_dynedge",
+      "fold": 1,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 22,
+        "e_en": 19
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.3004,
+        "75": 0.36527,
+        "80": 0.45509,
+        "85": 0.562375,
+        "90": 0.69461,
+        "95": 0.8468049999999999
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.195303276778445,
+          "cluster_energy": 0.008442423619541808
+        },
+        "e_en": {
+          "cluster_cls": 0.195449965420614,
+          "cluster_energy": 0.008438905740461798
+        }
+      },
+      "history_sha256": "45d8124a364a8e24d2b1377a6101373046137ad6da2e4fc8d81153efa195bf60",
+      "checkpoints": {
+        "checkpoints/epoch_019.pt": "349d52c98cccf0b6281c4d7adb8c599f7819ae3db6835ec5af5301a7808c33fa",
+        "checkpoints/epoch_022.pt": "f9f2e3e682870e917cf420d0e1896777400a4baae095f7267de85d8beb9b4259"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_4_23_30_4515659.json",
+        "sha256": "06ce83d1a8ee642957425ea0584ad63b5ef840cf71df3b3252ee8b3c72cb6e46",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_4_23_30_4515659",
+          "manifest_sha256": "143d8ef42c32903942331e50d3aa442f90db6e78e74ed27d5096b10359b89f54",
+          "archive_sha256": "723b4bed7e11bbc37f58b0b3f47841de9c8a4088f76098bad416cfab0b8c8326",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "a7e22c142a268e9367f70fbf83be822daac51c9da9703c8090a66022d26d7bf8"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "a7e22c142a268e9367f70fbf83be822daac51c9da9703c8090a66022d26d7bf8",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3123,
+          "start_msk": "2026-11-14T23:00:23",
+          "end_msk": "2026-11-14T23:52:26"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "5": {
+      "model": "student_dynedge",
+      "fold": 1,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 25,
+        "e_en": 29
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": true
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.297905,
+        "75": 0.36527,
+        "80": 0.45259499999999997,
+        "85": 0.562375,
+        "90": 0.6921149999999999,
+        "95": 0.8443099999999999
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19569524035750135,
+          "cluster_energy": 0.008426306881422154
+        },
+        "e_en": {
+          "cluster_cls": 0.19572928758279476,
+          "cluster_energy": 0.008414461979843564
+        }
+      },
+      "history_sha256": "b9064e69525438e61caffc3797b71fd5a24c271b696852624da83cf04d4e86ed",
+      "checkpoints": {
+        "checkpoints/epoch_025.pt": "406b43aadad1f1b3cfc9b06bd1613d04d21013457301aaf0a1b4c519e409a906",
+        "checkpoints/epoch_029.pt": "0946bd632641fe35d4cb4c552f547bfa0705905ebb6a271242a738d77cc1bc39"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_5_23_30_4515662.json",
+        "sha256": "d2d251fde3bcd81d857f9c1e962f9667c7ece9d10886fa37ba8b204dbee99e9e",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_5_23_30_4515662",
+          "manifest_sha256": "ff91eb2474303d830620f7bfa22d5f67dbd826f44ec1a83ae560bb4647a58c18",
+          "archive_sha256": "81fe331aaa7672aadf8e1f321a0e27689ab11a72d390752d37d65b38455f8052",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "10cde5a96a36197637a352bbbac69e5b3e08247e4b6f0b57569830cd515af69d"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "10cde5a96a36197637a352bbbac69e5b3e08247e4b6f0b57569830cd515af69d",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3282,
+          "start_msk": "2026-11-14T23:05:24",
+          "end_msk": "2026-11-15T00:00:06"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "6": {
+      "model": "student_dynedge",
+      "fold": 2,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 27,
+        "e_en": 21
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19061999999999998,
+        "65": 0.24051999999999998,
+        "70": 0.292915,
+        "75": 0.36028,
+        "80": 0.45009999999999994,
+        "85": 0.55489,
+        "90": 0.6821349999999999,
+        "95": 0.841815
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.1946197259819666,
+          "cluster_energy": 0.008593292708091243
+        },
+        "e_en": {
+          "cluster_cls": 0.19465557922837926,
+          "cluster_energy": 0.008579325658924745
+        }
+      },
+      "history_sha256": "ad4fed4f62cb814c39691d77923225ba18aea8dfcf6c39321cac8fd12a7a8a05",
+      "checkpoints": {
+        "checkpoints/epoch_021.pt": "c4345d7c2b8e70368bc160d5672ad3c2983ac786982ec204ff94d87ced5c47ea",
+        "checkpoints/epoch_027.pt": "ef50b8791992393142afc8e5f26125a58b7ef7bf1785f1e1e7691044eea9778d"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_6_23_30_4515814.json",
+        "sha256": "ed0bf6f43b537a860d9c05da2e04d7251a0acf8472c808eef056f3012d616424",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_6_23_30_4515814",
+          "manifest_sha256": "492cac9fc4574302075187a840c6196ab3c81be3f4b1e76a7b17d6a2f662a47f",
+          "archive_sha256": "e52b281ea142cf8e9f7cbfe0d9c872b0cf1157d356ab7f3de9911b1a1ec86ea4",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "ab8f57213812daaa9f49e6590987c197530ee5de13e65048c69e6ca7f70dd2c0"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "ab8f57213812daaa9f49e6590987c197530ee5de13e65048c69e6ca7f70dd2c0",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3117,
+          "start_msk": "2026-11-14T23:52:28",
+          "end_msk": "2026-11-15T00:44:25"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "7": {
+      "model": "student_dynedge",
+      "fold": 2,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 28,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19311499999999998,
+        "65": 0.24301499999999998,
+        "70": 0.297905,
+        "75": 0.36527,
+        "80": 0.45509,
+        "85": 0.5598799999999999,
+        "90": 0.68463,
+        "95": 0.8468049999999999
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.19444875332737493,
+          "cluster_energy": 0.008544406562125486
+        },
+        "e_en": {
+          "cluster_cls": 0.19444875332737493,
+          "cluster_energy": 0.008544406562125486
+        }
+      },
+      "history_sha256": "3f830979a13bcf9c1bdaccb4699513ba33399f10067ddd5324035d8104b68a4b",
+      "checkpoints": {
+        "checkpoints/epoch_028.pt": "8192bed3053ffcc38246214b5dffa8b32ed1f1043d273da43dcf313f0ba68cf6"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_7_23_30_4515829.json",
+        "sha256": "a891d8ac609f9668e8f68248400fde86189877f8141ea7d6450162835a166501",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_7_23_30_4515829",
+          "manifest_sha256": "bf10718345c7398f83d71d4b0b82e1cb912614cb78c1ad838950ddf7a6f229a2",
+          "archive_sha256": "0e32f0314eb51826460e7963ab1b1f5e4d35254b7ef9a36efe00c240a077679c",
+          "archive_bytes": 1566720,
+          "files": 6,
+          "summary_files": {
+            "summary.json": "b0f84c9cb17b6389b34af0f7f6c79d6d3fd3a061408fc54496c968b51251ee7e"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "b0f84c9cb17b6389b34af0f7f6c79d6d3fd3a061408fc54496c968b51251ee7e",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3197,
+          "start_msk": "2026-11-15T00:00:28",
+          "end_msk": "2026-11-15T00:53:45"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "8": {
+      "model": "student_dynedge",
+      "fold": 2,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 23,
+        "e_en": 27
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19061999999999998,
+        "65": 0.24051999999999998,
+        "70": 0.292915,
+        "75": 0.36028,
+        "80": 0.45009999999999994,
+        "85": 0.55489,
+        "90": 0.68463,
+        "95": 0.8443099999999999
+      },
+      "parameters": 358275,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.1947527960185708,
+          "cluster_energy": 0.008617644376078473
+        },
+        "e_en": {
+          "cluster_cls": 0.19475397604559871,
+          "cluster_energy": 0.008599952797405143
+        }
+      },
+      "history_sha256": "4a2cc983d3536fde5c0f07bba167433e3353fe1dbf36c2ff2893449a4463dd9c",
+      "checkpoints": {
+        "checkpoints/epoch_023.pt": "d3f14b6f85719e3afebe1daf48f0337f31207bfbf893542462567edc9a0b9b54",
+        "checkpoints/epoch_027.pt": "54486c6aad5fe11540bc0c41c282b1a66b0b8e345e29cc57334bc3c65f28c55c"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_8_23_30_4515949.json",
+        "sha256": "3b597d30e64ffcef0e54d907a4c4234bb98924352e8e1456c6874ae906e5f109",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_8_23_30_4515949",
+          "manifest_sha256": "c6dbb721d7e1ef704c2446e5175e9eb2349302508a1ff4391af3fe2f1b8d769b",
+          "archive_sha256": "e44837592bfee5c0830d5e8604d27c078307f7a1f8e6d3a4e9636260f470c082",
+          "archive_bytes": 3020800,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "1e19e17774078d8dae504cd07a7f984d4fead1458e86488875a643661b310274"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "1e19e17774078d8dae504cd07a7f984d4fead1458e86488875a643661b310274",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 3579,
+          "start_msk": "2026-11-15T00:44:30",
+          "end_msk": "2026-11-15T01:44:09"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "9": {
+      "model": "smash_hetero_sage",
+      "fold": 0,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 27,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.2006,
+        "65": 0.25049999999999994,
+        "70": 0.31038,
+        "75": 0.38522999999999996,
+        "80": 0.48003999999999997,
+        "85": 0.5998,
+        "90": 0.7270449999999999,
+        "95": 0.8667649999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.2009867057387466,
+          "cluster_energy": 0.009824910792776531
+        },
+        "e_en": {
+          "cluster_cls": 0.20098749141851324,
+          "cluster_energy": 0.009822167998945799
+        }
+      },
+      "history_sha256": "ab4176a1a5269c7bce80a79b5ca0f1f06269e4825c0b63e9eb1fbc315d22fd72",
+      "checkpoints": {
+        "checkpoints/epoch_027.pt": "40930faf09b9028ae75546ff4ac0ff5d51e3eb6fc4bfe26c1f9439b95271ce06",
+        "checkpoints/epoch_028.pt": "4b4ef0566e6c580dd5b8f885d62d6471507e740af70fab34c13a0d8f64720d82"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_9_23_30_4515966.json",
+        "sha256": "04eccfd0a33c4848d2a87b155ea18e03d5ebe93eb9237755d7ab5e72955b62a1",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_9_23_30_4515966",
+          "manifest_sha256": "0fd49d1bf655d4cfbb7e4745aaa64d85e2c3e83121806135e207b7c1eaa15295",
+          "archive_sha256": "c763e2ad6bca4578ec18898c6629cbc0759c5cfc7925c519045911eae5578e6f",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "28db0820cbf5993298b741eef15e163758264ffdba5bc88f583be6b45a1b418d"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "28db0820cbf5993298b741eef15e163758264ffdba5bc88f583be6b45a1b418d",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4609,
+          "start_msk": "2026-11-15T00:54:01",
+          "end_msk": "2026-11-15T02:10:50"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "10": {
+      "model": "smash_hetero_sage",
+      "fold": 0,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.2006,
+        "65": 0.24800499999999998,
+        "70": 0.30788499999999996,
+        "75": 0.382735,
+        "80": 0.47505,
+        "85": 0.59481,
+        "90": 0.7245499999999999,
+        "95": 0.871755
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.20037723638081767,
+          "cluster_energy": 0.009785811072825485
+        },
+        "e_en": {
+          "cluster_cls": 0.2003806620154837,
+          "cluster_energy": 0.00978433254074745
+        }
+      },
+      "history_sha256": "83b3187713998d3ad0f84668fa4c64fc49f9c2a78ba670810e9562f48f182e17",
+      "checkpoints": {
+        "checkpoints/epoch_028.pt": "98dcbc83ee11e0d9766651656fdb520ec975b04150c4e8516c7c7b5bc7b42a55",
+        "checkpoints/epoch_029.pt": "e90e89b17d4bf29ca8b6d283f7248af107feae5bad3a93cdd00384c2502b72e0"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_10_23_30_4516013.json",
+        "sha256": "cccca4e01b0573de5d00c9d494baef1b74002dfddaf8b534cdeaa802047dc965",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_10_23_30_4516013",
+          "manifest_sha256": "07fc35ab2374ed7d2753f411c1683bea20ea690bbcbe958c7795c21704b7affa",
+          "archive_sha256": "cb53b88be2355543cf04f289a9b6387d693a0ee4039db3f65c1cf90b1b6fa017",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "c8b28df04f400ed96b1ee792eef38447c8299b26dae3e64a20482a7179a6b908"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "c8b28df04f400ed96b1ee792eef38447c8299b26dae3e64a20482a7179a6b908",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4605,
+          "start_msk": "2026-11-15T01:44:32",
+          "end_msk": "2026-11-15T03:01:17"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "11": {
+      "model": "smash_hetero_sage",
+      "fold": 0,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 27
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.2006,
+        "65": 0.25049999999999994,
+        "70": 0.31038,
+        "75": 0.382735,
+        "80": 0.482535,
+        "85": 0.5998,
+        "90": 0.7270449999999999,
+        "95": 0.8692599999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.20127496494060684,
+          "cluster_energy": 0.00976705686899255
+        },
+        "e_en": {
+          "cluster_cls": 0.20128530249089696,
+          "cluster_energy": 0.0097646112480476
+        }
+      },
+      "history_sha256": "403d843c44dd2734c894ff59ad638afc1be1f7fcbe889f409156a3b6f99492f4",
+      "checkpoints": {
+        "checkpoints/epoch_027.pt": "db95a42f051fbad3259e3d70fc97e49129b09cd5316f45afc581d038809bd7a8",
+        "checkpoints/epoch_029.pt": "5a3296305aaff8af29dfb38c8776075bf67c51a91d23a44c7baec24c259989ad"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_11_23_30_4516075.json",
+        "sha256": "c39e5afddc31f3860aa297787429d406cf958627d29ca75b645ff7f8494d6685",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_11_23_30_4516075",
+          "manifest_sha256": "cb8efa51ccb5d58c35be5c296c17f3c67d208b5ae1c31fd4b605d5412c34ad04",
+          "archive_sha256": "55c25e16fcf6016fb13eed35d56971dece7f98faa373c2fd551e4d2c45dbc089",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "ed8ef37bb82ee2595fe4e1073af48bef484a4a57a5df92b76d9c60fe4d1e3f07"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "ed8ef37bb82ee2595fe4e1073af48bef484a4a57a5df92b76d9c60fe4d1e3f07",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4685,
+          "start_msk": "2026-11-15T02:11:03",
+          "end_msk": "2026-11-15T03:29:08"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "12": {
+      "model": "smash_hetero_sage",
+      "fold": 1,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 24,
+        "e_en": 23
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.203095,
+        "65": 0.25549,
+        "70": 0.31537,
+        "75": 0.387725,
+        "80": 0.48502999999999996,
+        "85": 0.60978,
+        "90": 0.73952,
+        "95": 0.8817349999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.201936357403258,
+          "cluster_energy": 0.009415986326392699
+        },
+        "e_en": {
+          "cluster_cls": 0.20197823117770614,
+          "cluster_energy": 0.009382964031816484
+        }
+      },
+      "history_sha256": "4e3eb92612f71af0ce1fed61ef316d36cfd72159c08573eeefffe135f6fa48dc",
+      "checkpoints": {
+        "checkpoints/epoch_023.pt": "e16a158c42a39a8d5f3b3beedf215a9bda4847be69415010cec0e5bd5cdb0859",
+        "checkpoints/epoch_024.pt": "bdc722cf6d1df1cffff9ab75d57a649cc45dcf8cdf92e10718b6f5e939bff4ae"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_12_23_30_4516168.json",
+        "sha256": "9637a43657dc3c075fd19cd36e95e4535500636820852c3c66b45bc0089f68d4",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_12_23_30_4516168",
+          "manifest_sha256": "0dd2e45041754ff85511b135463ba7cb09b996bc90fc08cba032340731ba5bb0",
+          "archive_sha256": "0da5fe5668b21a1d0f73def4938c7df116a498f4609701535702353a81510b67",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "34dfd7226671ea3e3c521d911d76fab28a462bbb0b49dda948164248f4a05353"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "34dfd7226671ea3e3c521d911d76fab28a462bbb0b49dda948164248f4a05353",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4740,
+          "start_msk": "2026-11-15T03:01:36",
+          "end_msk": "2026-11-15T04:20:36"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "13": {
+      "model": "smash_hetero_sage",
+      "fold": 1,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 28,
+        "e_en": 26
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.203095,
+        "65": 0.25299499999999997,
+        "70": 0.31287499999999996,
+        "75": 0.387725,
+        "80": 0.487525,
+        "85": 0.607285,
+        "90": 0.7370249999999999,
+        "95": 0.87425
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.2011772346042964,
+          "cluster_energy": 0.009272829407309596
+        },
+        "e_en": {
+          "cluster_cls": 0.20120111993202416,
+          "cluster_energy": 0.009271966947440266
+        }
+      },
+      "history_sha256": "8dac2e0f9f884cc5c492938769308df451e27735928201331d0966e243ea0757",
+      "checkpoints": {
+        "checkpoints/epoch_026.pt": "4d642f3cecd982f979487029d6d59e484ca1659933c63d798800559efd502411",
+        "checkpoints/epoch_028.pt": "8b43eed5ff24d1a814526ac4eed91390a3dd7d171926bfe8ef72fb754f1d302a"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_13_23_30_4516285.json",
+        "sha256": "35521885ad9a5dfe616e7461d48a25aefe45a8d0437f884f1153a4a068308d2b",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_13_23_30_4516285",
+          "manifest_sha256": "3880820cec9eaf21e19915db947a7b540ac589613037486b97650a0d2a63abc2",
+          "archive_sha256": "06a532b416888ce09fa36bb884495fc9ee15119fd3d6298247910c69d4be0c65",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "3e9865ad62f9003c6204a3b6b818c200bd512de0aae856cbd4ba2ef4c4ac3137"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "3e9865ad62f9003c6204a3b6b818c200bd512de0aae856cbd4ba2ef4c4ac3137",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4773,
+          "start_msk": "2026-11-15T03:29:12",
+          "end_msk": "2026-11-15T04:48:45"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "14": {
+      "model": "smash_hetero_sage",
+      "fold": 1,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 23,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": false,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.20559,
+        "65": 0.25299499999999997,
+        "70": 0.31287499999999996,
+        "75": 0.39021999999999996,
+        "80": 0.48502999999999996,
+        "85": 0.607285,
+        "90": 0.7370249999999999,
+        "95": 0.8767449999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.2012480708369784,
+          "cluster_energy": 0.009305933934587438
+        },
+        "e_en": {
+          "cluster_cls": 0.20129190940751449,
+          "cluster_energy": 0.009283298116471
+        }
+      },
+      "history_sha256": "bda7de213650061702e100e2491d57efa023598639bd5f6fbb97a459d4175c3d",
+      "checkpoints": {
+        "checkpoints/epoch_023.pt": "611780842b41eb9f3195a5d9ec6ba8fca047dd6388acdfc94a76425faa8d0fb7",
+        "checkpoints/epoch_028.pt": "df7ed4473c751b8bf38404830208bf914baa55c5b468ab44c282c1eacaaaa3cd"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_14_23_30_4516378.json",
+        "sha256": "40960ca0f1fdedc0760ceedfc598d1b00e060ba37813e9074fa7857d6e63ec56",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_14_23_30_4516378",
+          "manifest_sha256": "2e14039a5d34f235fbc4a313693b2273b543a33daa2f7b1baa0360dc00d018de",
+          "archive_sha256": "a4994732836b21da6217fe11bdd08ebd049eb10e6ab1f6c08fe8081a9c17d3bc",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "9452b0fb2bc2e2300ce81451f428e86ed5c50869af02dd3212b57e162a4203e4"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "9452b0fb2bc2e2300ce81451f428e86ed5c50869af02dd3212b57e162a4203e4",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4671,
+          "start_msk": "2026-11-15T04:20:40",
+          "end_msk": "2026-11-15T05:38:31"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "15": {
+      "model": "smash_hetero_sage",
+      "fold": 2,
+      "seed": 42,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 29
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": true
+      },
+      "cuts": {
+        "60": 0.2006,
+        "65": 0.24800499999999998,
+        "70": 0.31038,
+        "75": 0.387725,
+        "80": 0.48502999999999996,
+        "85": 0.6022949999999999,
+        "90": 0.732035,
+        "95": 0.8817349999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.2013782707774594,
+          "cluster_energy": 0.009635055951375319
+        },
+        "e_en": {
+          "cluster_cls": 0.2013782707774594,
+          "cluster_energy": 0.009635055951375319
+        }
+      },
+      "history_sha256": "5c22855dbfd0b1a3bfbf1c0b9472a22c40029f5aa554df063db7a37f5646045f",
+      "checkpoints": {
+        "checkpoints/epoch_029.pt": "8f20d29a103b6433231e2f3a92399ab7ce19c0a445836f37bbff19c41b2f085b"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_15_23_30_4516444.json",
+        "sha256": "d16c0f1037e8aa585a5968536bb026c941081696d3b75f8b447062396ec62ffc",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_15_23_30_4516444",
+          "manifest_sha256": "298db1a2593e3932d75aadcf544e73ce563441e3c1c1e51de6ef8155c9e549ce",
+          "archive_sha256": "ff1fc2003f1f68810fb1992804a368f5a5ab6158515799138fde2749715963e9",
+          "archive_bytes": 1802240,
+          "files": 6,
+          "summary_files": {
+            "summary.json": "5baecb17a7e5e8094fa94a56d99f6b6c7ef03bf1836f236b5e970ef18ed3ecaa"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "5baecb17a7e5e8094fa94a56d99f6b6c7ef03bf1836f236b5e970ef18ed3ecaa",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4747,
+          "start_msk": "2026-11-15T04:48:54",
+          "end_msk": "2026-11-15T06:08:01"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "16": {
+      "model": "smash_hetero_sage",
+      "fold": 2,
+      "seed": 123,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 28
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19810499999999998,
+        "65": 0.24800499999999998,
+        "70": 0.30788499999999996,
+        "75": 0.382735,
+        "80": 0.48003999999999997,
+        "85": 0.59481,
+        "90": 0.72954,
+        "95": 0.8792399999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.20042361846818582,
+          "cluster_energy": 0.009595426124382904
+        },
+        "e_en": {
+          "cluster_cls": 0.20042847659020477,
+          "cluster_energy": 0.009592596825483754
+        }
+      },
+      "history_sha256": "0460f09511f9a4d987ab6e3f8cb9f273765c473839faa551487d30d3027b91aa",
+      "checkpoints": {
+        "checkpoints/epoch_028.pt": "d5d7d101d6eff7eda3595404b9ea6b89c0265a2c328d995d7b7a8f298154593a",
+        "checkpoints/epoch_029.pt": "308930dc99851b7e79b529145c343bc24879e65f6fb9695ecb72417a01b88370"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_16_23_30_4516589.json",
+        "sha256": "e9a4987545a388ff0ac9f83db1c8d12aee6e0e881c6bd3c1f2a377581d4118c8",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_16_23_30_4516589",
+          "manifest_sha256": "5fe816ebaa6c67e3c28c4037a418c7b2d7b5096f9660a9c41876d62cf53c6ed5",
+          "archive_sha256": "7126fc428bda278db7ffe832615be4e2f65d7b4333ec5ca8c4070013b25734ed",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "2e407ae8699d38df7ed1aabee69f32a7acbc3c7867438fa476f4dfbb508ee441"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "2e407ae8699d38df7ed1aabee69f32a7acbc3c7867438fa476f4dfbb508ee441",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4703,
+          "start_msk": "2026-11-15T05:39:00",
+          "end_msk": "2026-11-15T06:57:23"
+        }
+      },
+      "resume_boundary_verified": 23
+    },
+    "17": {
+      "model": "smash_hetero_sage",
+      "fold": 2,
+      "seed": 456,
+      "epochs": 30,
+      "selection": {
+        "e_cls": 29,
+        "e_en": 22
+      },
+      "budget_limited": {
+        "e_cls": true,
+        "e_en": false
+      },
+      "cuts": {
+        "60": 0.19810499999999998,
+        "65": 0.24800499999999998,
+        "70": 0.30788499999999996,
+        "75": 0.387725,
+        "80": 0.48003999999999997,
+        "85": 0.597305,
+        "90": 0.7270449999999999,
+        "95": 0.8767449999999999
+      },
+      "parameters": 415106,
+      "validation_loss_at_selection": {
+        "e_cls": {
+          "cluster_cls": 0.20071609007080313,
+          "cluster_energy": 0.009644789128132974
+        },
+        "e_en": {
+          "cluster_cls": 0.2008460228080597,
+          "cluster_energy": 0.009642233188499525
+        }
+      },
+      "history_sha256": "76abbfc9da84abda4fc55a15c389c9b25afb11d44eb01611c7323ee11e537d72",
+      "checkpoints": {
+        "checkpoints/epoch_022.pt": "b06c1d3fd00e6511d7062ffa63aa5b3d81894220a59bb0720f9a2a1a8cf89393",
+        "checkpoints/epoch_029.pt": "5063c0300471b55838676da50c8107815ac76f957920a171f2d91bfb8b01b88d"
+      },
+      "publication": {
+        "receipt": "/home/vbocharnikov/hgnd_experiments/smash_architecture_20261112_2d31e3e25c45_receipts/fit_17_23_30_4511723.json",
+        "sha256": "216350e8235fc0f58bfcbb6581a20ad9c542c04faebac06b595779a79d3b0410",
+        "publication": {
+          "state": "complete",
+          "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/smash_architecture_20261112_2d31e3e25c45/fit_17_23_30_4511723",
+          "manifest_sha256": "f20693b5d092cdcfe67a1b7f9165117b7ac2fd5b0e4aa85a23e0960aa71e145d",
+          "archive_sha256": "d906dd8eb4555d693ff514e96d078ea45fcdef39660d20b1837bef26c75618ca",
+          "archive_bytes": 3481600,
+          "files": 7,
+          "summary_files": {
+            "summary.json": "a6f471df8719be228c5f09c55c4bf2b2e6b66e96b67ab2c948efd3d939b067f6"
+          },
+          "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+          "scratch_atomic_replace": false,
+          "access_retries": []
+        },
+        "summary_sha256": "a6f471df8719be228c5f09c55c4bf2b2e6b66e96b67ab2c948efd3d939b067f6",
+        "slurm": {
+          "state": "COMPLETED",
+          "exit_code": "0:0",
+          "seconds": 4793,
+          "start_msk": "2026-11-15T06:08:02",
+          "end_msk": "2026-11-15T07:27:55"
+        }
+      },
+      "resume_boundary_verified": 23
+    }
+  }
+}

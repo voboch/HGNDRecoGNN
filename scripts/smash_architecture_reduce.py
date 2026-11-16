@@ -1,8 +1,8 @@
 """Reduce the registered raw-energy SMASH architecture comparison.
 
-Inputs are accepted, extracted prediction bundles. The odd scope consumes
-a separately frozen even policy if provided. The historical Dombay replay
-has its own input contract and is outside this fixed-candidate reducer.
+Inputs are accepted, extracted prediction bundles. The pinned odd release
+selects raw70 alone or raw70 with a frozen even policy. The historical
+Dombay replay follows a separate input contract.
 """
 
 from argparse import ArgumentParser
@@ -29,7 +29,13 @@ BASE = ROOT / "results/smash_train_20261028"
 PRIMARY = REPORTS / "primary_association_20261106"
 ODD = REPORTS / "rule_tof_odd_20261110"
 SEEDS = ("42", "123", "456")
+FOLDS = (0, 1, 2)
 MODELS = ("student_sage", "student_dynedge", "smash_hetero_sage")
+# Scoring and fit receipts use model-major, then fold-major task indices.
+CHALLENGER_TASKS = tuple((model, fold, seed) for model in MODELS[1:] for fold in FOLDS for seed in SEEDS)
+ODD_RELEASE_SCHEMA = "smash-architecture-odd-release-v1"
+RAW70_ONLY = "raw70_only"
+WITH_FROZEN_POLICY = "raw70_with_frozen_even_policy"
 SPLIT_SHA = "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886"
 PREPARE_SHA = "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501"
 PREPARE_SUMMARY_SHA = "2b58f9ccce0efccb4c66afa96e93c4bbd124c1c61a22593baa05c26544de7133"
@@ -130,7 +136,7 @@ def baseline_cuts(info, fold, seed, roles, scan_rn):
     return cuts
 
 
-def inputs(scope, bundle_roots, scan_rn):
+def inputs(scope, bundle_roots, scan_rn, odd_release, odd_release_digest):
     archive, digest = ARCHIVES[scope]
     require(sha(archive) == digest, f"Accepted file draws differ: {archive}")
     split = read_json(BASE / "split/split_manifest.json", SPLIT_SHA)
@@ -210,14 +216,17 @@ def inputs(scope, bundle_roots, scan_rn):
                 {"evaluation_sha256": pin, "fit_sha256": info["complete_sha256"]},
             )
     fold_for = {cid: fold for fold, ids in by_fold.items() for cid in ids}
-    require(set(by_fold) == {0, 1, 2} and set(fold_for) == wanted
+    require(set(by_fold) == set(FOLDS) and set(fold_for) == wanted
             and sum(map(len, by_fold.values())) == len(wanted), "Cross-fit coverage")
     if scope == "odd":
         require(all(records[cid]["fold"] == fold_for[cid] for cid in wanted), "Odd TEST fold")
-    releases, source_plans = set(), set()
+    source_plans = set()
+    tasks = {key: str(task) for task, key in enumerate(CHALLENGER_TASKS)}
     for root in bundle_roots:
-        meta = read_json(root / "summary.json")
+        raw = (root / "summary.json").read_bytes()
+        meta = json.loads(raw)
         model, fold, seed = meta["model"], int(meta["fold"]), str(meta["seed"])
+        key = model, fold, seed
         ids, empty = meta["test_files"], frozenset(meta["empty_after_cuts"])
         entries, selection, cuts = meta["predictions"], meta["selection"], meta["cuts"]
         require(meta["schema"] == "smash-architecture-predictions-v1" and meta["state"] == "complete"
@@ -234,25 +243,25 @@ def inputs(scope, bundle_roots, scan_rn):
                 f"Invalid architecture prediction receipt: {root}")
         require(all(cut is None or np.any(np.isclose(cut, THRESHOLD_GRID, rtol=0, atol=1e-12))
                     for cut in cuts.values()), f"Off-grid score cut: {root}")
-        require((model, fold, seed) not in predictions, f"Duplicate evaluation: {root}")
+        require(key not in predictions, f"Duplicate evaluation: {root}")
         fit_digest = meta["fit_receipt_sha256"]
         require(isinstance(fit_digest, str) and len(fit_digest) == 64,
                 f"Missing complete fit receipt hash: {root}")
         source_plans.add((meta["source_sums_sha256"], meta["plan_sha256"]))
-        provenance = {"summary_sha256": sha(root / "summary.json"), "fit_sha256": fit_digest,
+        provenance = {"summary_sha256": sha256(raw).hexdigest(), "fit_sha256": fit_digest,
                       "source_sums_sha256": meta["source_sums_sha256"], "plan_sha256": meta["plan_sha256"]}
         if scope == "odd":
-            release_digest = meta["odd_release_sha256"]
-            require(isinstance(release_digest, str) and len(release_digest) == 64,
-                    f"Missing odd release hash: {root}")
-            releases.add(release_digest)
-            provenance["odd_release_sha256"] = release_digest
-        predictions[(model, fold, seed)] = PredictionSet(root, entries, cuts, empty, selection, provenance)
+            require(meta.get("odd_release_sha256") == odd_release_digest,
+                    f"Odd prediction release digest differs: {root}")
+            require(meta["plan_sha256"] == odd_release["plan_sha256"]
+                    and fit_digest == odd_release["fit_receipt_sha256"][tasks[key]],
+                    f"Odd release does not cover this plan and fit: {root}")
+            provenance["odd_release_sha256"] = odd_release_digest
+        predictions[key] = PredictionSet(root, entries, cuts, empty, selection, provenance)
     require(set(predictions) == {(model, fold, seed) for model in MODELS
                                 for fold in by_fold for seed in SEEDS},
             "Expected one complete export per architecture, TEST fold and seed")
     require(len(source_plans) == 1, "Prediction exports span different source or plan pins")
-    require(scope != "odd" or len(releases) == 1, "Odd exports span different releases")
     return content, tags, weights, records, fold_for, truth, predictions
 
 
@@ -659,8 +668,7 @@ def freeze_policy(weights, tags, policy_counts, predictions):
     }
 
 
-def frozen_targets(path, predictions):
-    frozen = read_json(path)
+def frozen_targets(frozen, predictions):
     require(frozen["schema"] == "smash-architecture-rn-policy-v1" and frozen["scope"] == "even only"
             and frozen["energy"] == "raw" and frozen["split_sha256"] == SPLIT_SHA
             and frozen["prepare_manifest_sha256"] == PREPARE_SHA
@@ -679,13 +687,44 @@ def frozen_targets(path, predictions):
     return targets
 
 
+def read_odd_release(args):
+    if args.scope == "even":
+        require(args.odd_release is None and args.odd_release_sha256 is None and args.frozen_policy is None,
+                "Odd release and frozen policy apply to odd reduction")
+        return None, None
+
+    require(args.odd_release is not None and args.odd_release_sha256,
+            "Odd reduction requires --odd-release and --odd-release-sha256")
+    release = read_json(args.odd_release, args.odd_release_sha256)
+    require(isinstance(release, dict) and release.get("schema") == ODD_RELEASE_SCHEMA
+            and "frozen_policy_sha256" in release
+            and isinstance(release.get("plan_sha256"), str)
+            and isinstance(release.get("fit_receipt_sha256"), dict)
+            and set(release["fit_receipt_sha256"]) == {str(task) for task in range(len(CHALLENGER_TASKS))},
+            "Invalid odd scoring release")
+    policy_digest = release["frozen_policy_sha256"]
+    mode = release.get("policy_mode")
+    if mode == RAW70_ONLY:
+        require(policy_digest is None and args.frozen_policy is None,
+                "Raw70-only release requires a null policy digest and no --frozen-policy")
+        return release, None
+
+    require(mode == WITH_FROZEN_POLICY and isinstance(policy_digest, str) and args.frozen_policy is not None,
+            "Frozen-even-policy release requires a policy digest and --frozen-policy")
+    policy = read_json(args.frozen_policy, policy_digest)
+    require(isinstance(policy, dict), "Invalid frozen even policy")
+    return release, policy
+
+
 def run(args):
     require(not args.output.exists(), "Output already exists")
-    require((not args.scan_rn or args.scope == "even")
-            and (args.frozen_policy is None or args.scope == "odd"), "Policy phase and scope")
+    require(not args.scan_rn or args.scope == "even", "Policy selection applies to even reduction")
+    release, frozen_policy = read_odd_release(args)
     content, tags, weights, records, fold_for, truth, predictions = inputs(
-        args.scope, args.prediction_bundle, args.scan_rn or args.frozen_policy is not None,
+        args.scope, args.prediction_bundle, args.scan_rn or frozen_policy is not None,
+        release, args.odd_release_sha256,
     )
+    frozen = frozen_targets(frozen_policy, predictions) if frozen_policy is not None else None
     identities = {
         f"{m}/{f}/{s}": source.provenance | {"selection": source.selection, "cuts": source.cuts}
         for (m, f, s), source in sorted(predictions.items())
@@ -714,10 +753,10 @@ def run(args):
             "e32d7ea8f4629354864d8a63e76a674c8dfaa4d63d2f941889399c885063ccba",
         )["files"]}
         require(set(native) == set(content), "Even native candidate inventory")
-    frozen = frozen_targets(args.frozen_policy, predictions) if args.frozen_policy else None
-    if args.frozen_policy:
-        result["frozen_policy_sha256"] = sha(args.frozen_policy)
-        if frozen is None:
+    if release is not None:
+        result.update(odd_release_sha256=args.odd_release_sha256, policy_mode=release["policy_mode"],
+                      frozen_policy_sha256=release["frozen_policy_sha256"])
+        if frozen_policy is not None and frozen is None:
             result["hardness_frozen_even_policy"] = {"state": "operating_point_unavailable"}
     primary_targets = {model: "70" for model in MODELS}
     rows, match, mult, samples, counts, alternate, native_error = [], [], [], [], [], [], []
@@ -820,5 +859,7 @@ if __name__ == "__main__":
                         help="Extracted accepted prediction bundle root (one per new model/fold/seed)")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--scan-rn", action="store_true", help="Freeze secondary policy on even files")
-    parser.add_argument("--frozen-policy", type=Path, help="Registered even-only policy for odd scoring")
+    parser.add_argument("--odd-release", type=Path, help="Pinned release receipt for odd predictions")
+    parser.add_argument("--odd-release-sha256", help="Published digest of the odd release receipt")
+    parser.add_argument("--frozen-policy", type=Path, help="Even-only policy bound by the odd release")
     run(parser.parse_args())

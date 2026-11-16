@@ -1,0 +1,80 @@
+{
+  "audit_date": "2026-11-16",
+  "scope": "Full code, current dirty NST draft, archives and experiment plan; audit only, no launches or manuscript edits",
+  "rules": "thesis-kb conventions 2026-11-12; user no extra tests waiver; no Copilot",
+  "models": {
+    "monitor": {
+      "model": "gpt-6-luna",
+      "reasoning_effort": "low",
+      "fork_turns": "none",
+      "scope": "bounded read-only Slurm, receipts and summaries"
+    },
+    "science_technical": [
+      "gpt-6-astra",
+      "medium",
+      "none"
+    ],
+    "critics": {
+      "technical": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "fork_turns": "none",
+        "word_budget": 1500
+      },
+      "methodology": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "fork_turns": "none",
+        "word_budget": 1500
+      },
+      "text": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "fork_turns": "none",
+        "word_budget": 1200
+      },
+      "manager": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "fork_turns": "none",
+        "word_budget": 1000
+      }
+    }
+  },
+  "repositories": {
+    "HGNDRecoGNN": {
+      "head": "0e5126d17bd29f497e275d8fdd0f3a10a30e1527",
+      "branch": "smash-train-20261028",
+      "initial_status": "M AGENTS.md\n M docs/plotting_style_protocol.md\n?? .claude/agents/\n?? .claude/report-review.md\n?? docs/copilot_worker_instructions_20261103.md\n?? docs/reporting_protocol.md\n?? outputs/\n?? reports/gnn_baseline_spot_20261112/\n?? reports/hybrid_np_20261105/\n?? reports/presentation_spectral_hardness_20261105/\n?? reports/project_audit_20261116/\n?? scripts/prepare_copilot_task1_evidence.py\n?? scripts/prepare_copilot_task4_evidence.py"
+    },
+    "HGNDPaper": {
+      "head": "ce39645163a5ed6db167f5e1d2f622bad0472eaa",
+      "branch": "main",
+      "initial_status": "M Makefile\n M data/canonical_results.json\n M figs/reconstruction_energy_response.pdf\n M figs/reconstruction_score_policy.pdf\n M figs/rule_tof_direct_coverage.pdf\n M main.tex\n M output/pdf/hgnd_manuscript_revised.pdf\n M scripts/build_results.py\n M scripts/label_ablation_results.py\n M scripts/plot_results.py\n M scripts/verify_rule_tof_archive.py\n M tables/canonical_numbers.tex\n M tables/label_ablation.tex\n M tables/rule_tof_benchmark.tex\n M tables/rule_tof_contrast.tex\n M tables/rule_tof_odd.tex\n?? .DS_Store\n?? critical_review_v13.md\n?? critical_review_v16.md\n?? critical_review_v17.md\n?? data_availability.tex\n?? nst.cls\n?? nst_submission_notes.md"
+    }
+  },
+  "files": {
+    "HGNDPaper/main.tex": "c12fe25861b4132f5b50365d1257f42a2d1310a33773247f227c171a6cbb532b",
+    "HGNDPaper/Makefile": "b9f1245f71b3a1fb17b00a15c22d9cfd7f4ea77c17568e8a61c076155963f458",
+    "HGNDPaper/data/canonical_inputs.sha256.json": "cef243d7c0406930d983c0d06911c905d7abd59f726c3862c7cca91d3e5effb6",
+    "HGNDPaper/data/canonical_results.json": "bd9a17f176b490e7d543b3c3a6bed390696a660381f43bfcfe759628595c5f6b",
+    "HGNDPaper/output/pdf/hgnd_reconstruction_nst_energy_procedure.pdf": "c5dc9d707ac38f63934f228ddf54e0aa464d3164f992af838877723bbdeba3aa",
+    "HGNDRecoGNN/reports/smash_architecture_comparison_plan_20261112.md": "94aa281229f9f0e9374276f81a5ec251786a0925cde0ddb35c066fe26ec11657",
+    "HGNDRecoGNN/reports/smash_architecture_20261112/fit_submissions.json": "578b3f87d719922c75bd75f5aa1189614139b5443279adb929d3d4db5948a92f"
+  },
+  "delegation": "4 independent critics in two waves because only3 child slots; one Luna monitor reused for metadata. No Copilot. Exact billed token totals unavailable.",
+  "limits": {
+    "new_fit_summary_contents_read": false,
+    "new_checkpoint_archives_hashed": false,
+    "model_inference_rerun": false,
+    "unit_tests_run": false,
+    "new_jobs_submitted": false,
+    "manuscript_or_training_source_edited": false,
+    "monitor_followup": "Stopped before additional final receipt/summary reads; existing scheduler rows and receipt counts only."
+  },
+  "report": {
+    "path": "HGNDPaper/critical_review_v19.md",
+    "sha256": "2ba878dd0b80c3b09bb3306a9b615886edca12dca742bab4aa7ef53476b86975",
+    "independent_synthesis_review": "GO, audit_text gpt-6-astra medium"
+  }
+}

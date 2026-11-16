@@ -5,12 +5,12 @@ and the `paper-critic` skill. Project specifics live here, never in the agents.
 
 ## Project
 
-- **Paper:** HGND neutron reconstruction with graph neural networks and the
-  symmetry-potential (`S_pot`) sensitivity of neutron spectral hardness at
-  BM@N.
-- **Target journal:** Physical Review C (REVTeX `aps,prc`).
+- **Paper:** HGND neutron reconstruction with graph neural networks at BM@N.
+  Neutron spectral hardness on common simulated events is the example for
+  comparing reconstruction and selecting an operating point.
+- **Target journal:** Nuclear Science and Techniques (`nst.cls`, `submitting`).
 - **Target experiment:** BM@N at NICA, Highly Granular Neutron Detector
-  (HGND); the proton arm comes from BM@N tracking.
+  (HGND). The manuscript evaluates neutron reconstruction on simulation.
 - **Review language:** Russian, matching the existing `critical_review_v*.md`
   series.
 
@@ -18,17 +18,17 @@ and the `paper-critic` skill. Project specifics live here, never in the agents.
 
 | role | path |
 |---|---|
-| code repo | `/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN` (branch `reco-calibration-and-audit`) |
+| code repo | `/Users/vovvy/Project/BM@N/HGND/HGNDRecoGNN` (branch `smash-train-20261028`) |
 | paper repo | `/Users/vovvy/Project/BM@N/HGND/HGNDPaper` (branch `main`) |
-| draft | `../HGNDPaper/main.tex`; build with `make` (`make bib` runs bibtex); PDF `main.pdf` |
-| manuscript corrections | `../HGNDPaper/manuscript_corrections_20261017.md` |
-| writing policy | No HGND-specific policy yet. Use `/Users/vovvy/Project/HIC-NeuralFusion-paper/SCIENTIFIC_WRITING_POLICY.md` by reference, including its scope rule: no development history in the paper |
+| manuscript source | [`main.tex`](../../HGNDPaper/main.tex), [`nst.cls`](../../HGNDPaper/nst.cls), [`data_availability.tex`](../../HGNDPaper/data_availability.tex) and the paper repository's `tables/` and `figs/`. `make` regenerates results, figures, `main.pdf` and `output/pdf/hgnd_manuscript_revised.pdf`. Verify the PDF against the selected source snapshot. |
+| latest reviewed NST render | [`hgnd_reconstruction_nst_energy_procedure.pdf`](../../HGNDPaper/output/pdf/hgnd_reconstruction_nst_energy_procedure.pdf), with scope and SHA-256 in the [v19 audit](../../HGNDPaper/critical_review_v19.md). The audit identified `main.pdf` and the default export as older v15 renders. |
+| writing policy | [`AGENTS.md`](../AGENTS.md) and shared conventions §20, §25 and §30.8. |
 | binding conventions | `/Users/vovvy/Project/thesis-kb/conventions/` (methodology, result representation, development process, glossary; note glossary §1 on `E_kin/A = 2.87 GeV` versus `√s_NN = 2.98 GeV`) |
 | local rules | `AGENTS.md` (every fixed parameter needs a plot and a written justification at the point of use), `PIPELINE.md`, `HPC.md`, `HPC_DATA.md` |
 | progress and decision record | `docs/HGND_PROGRESS_GUIDE.md` (established, withdrawn, blocking, next) |
 | plotting rules | `docs/PLOT_CONVENTIONS.md`, `docs/plotting_style_protocol.md` (the shared thesis-kb result-representation file supersedes both where they differ) |
 | other notes | `docs/CENTRALITY_CONVENTION.md`, `docs/NOTE_beam_energy_frame_conflict.md`, `docs/NP_RATIO_PLAN.md`, `docs/PROTON_PID_*.md` |
-| experiment state | latest `HANDOFF_*.md`, plus `logs/` and `reports/`. There is no single state file; the manager critic should say so |
+| experiment state | [16 November audit snapshot](../reports/project_audit_20261116/scope.json), [architecture plan](../reports/smash_architecture_20261112/plan.json), [fit accounting](../reports/project_audit_20261116/monitor/accounting.json) and the corresponding reports and receipts. |
 | raw outputs | `output/`, `results/`, `reports/`, `checkpoints_hpc/` |
 
 ## Key code
@@ -40,7 +40,6 @@ and the `paper-critic` skill. Project specifics live here, never in the agents.
 - `scripts/`: DCM development and grouping, acceptance, systematics,
   SMASH-source audits
 - `ncx/`, `proton_pid/`: reconstruction and particle identification
-- Tests: `pytest tests/`
 
 ## External owners
 
@@ -73,8 +72,11 @@ SMASH samples), funding.
 - **Launchers:** `slurm/*.hpc.sbatch`, `slurm/hpcjob.sh`; Python entry
   points in `scripts/` (DCM development and grouping, acceptance,
   systematics).
-- **HPC:** `HPC.md` and `HPC_DATA.md` are directive. Smoke on the test
-  partition first; never train on the login node.
+- **HPC:** `HPC.md` and `HPC_DATA.md` are directive. Training runs on compute
+  nodes. The user's waiver directs the current campaign to proceed without
+  test-queue jobs or extra unit tests. Source, input, receipt and production
+  preflight checks apply. See the [architecture probe preflight](../reports/smash_architecture_20261112/probe_preflight.md)
+  and the [detector-only preflight](../reports/detector_only_20261112/preflight.md).
 - **Local rule (`AGENTS.md`):** every fixed parameter (cut, threshold,
   binning, fit range) needs a plot of the objective or feature and a written
   justification at the point of use. A launch that introduces an
@@ -84,32 +86,47 @@ SMASH samples), funding.
     a domain leak);
   - selection in the real detector acceptance, not a polar-angle band;
   - truth information in the purity lock and calibration.
-- **State:** there is no single state file. Read the newest `HANDOFF_*.md`
-  and `logs/`.
+- **State:** verify completion and scientific acceptance in the campaign's own
+  plan, result export and acceptance receipts.
 
 ## Number sources (read by `number-auditor`)
 
-- **Canonical chain (v10):** `../HGNDPaper/data/canonical_inputs.sha256.json`
-  pins the inputs; `scripts/build_results.py` in the paper repository generates
-  `data/canonical_results.json` and `tables/canonical_numbers.tex`,
-  `dcm_content.tex`, `dcm_grouped_20261017.tex`, `truth_scan.tex`, `truth_classes.tex`.
-  The paper's `scripts/plot_results.py` reads only the canonical JSON.
-- **Content evidence:** `results/content_census_20261024/full_summary.json`,
-  `full_verified.json`, `student_lineage_verified.json`, `leakage/summary.json`.
-- **Current state:** `reports/v10_actions_20261026.md` and
-  `../HGNDPaper/manuscript_corrections_v10_20261026.md`. The older guide is
-  preserved under `docs/archive/` and is not the current acceptance ledger.
-- **Adopted observable:** exact0.3<=Ekin<1GeV denominator, Ekin>=2GeV numerator. The unrestricted Ekin<1GeV case is a separate variant. Builder replays568per-file integer-count rows, second moments,400file-bootstrap replicates and seed20261025. Headline errors use the larger of file SD and event-clustered compound-Poisson SD.
-- **Reach evidence:** `results/truth_reach_20261026/` source/input/Slurm/archive receipts; all three complete certificates are required. Original failed zeroSpot task is excluded. No unbalanced or partial aggregate. Proxy controls count midrapidity nucleons strictly outside the rectangle, with corrected CM rapidity and five rank classes.
-- **Precision:** at most two significant figures in uncertainty, matched central
-  precision; training-seed SD differs from bootstrap SD and SE.
-- **Submission:** local selected weights are backed up. Public deposit,
-  production configurations and historical raw-counter provenance remain open.
+- **Canonical chain:** the [input manifest](../../HGNDPaper/data/canonical_inputs.sha256.json)
+  pins the sources. The [builder](../../HGNDPaper/scripts/build_results.py)
+  generates [`canonical_results.json`](../../HGNDPaper/data/canonical_results.json),
+  the number macros and the current manuscript tables. The
+  [v19 reproduction ledger](../reports/project_audit_20261116/reproduction_audit.json)
+  records the verified scope, including the historical v15 derived-data replay.
+- **Reconstruction and threshold:** use the [split](../results/smash_train_20261028/split/split_manifest.json),
+  [even-file comparison](../reports/rule_tof_benchmark_20261110/contrast.json),
+  [even-file cut decision](../reports/rn_score_cut_20261110/choice.json),
+  [odd-file plan](../reports/rule_tof_odd_20261110/plan.json) and
+  [odd-file comparison](../reports/rule_tof_odd_20261110/results.json).
+  The truth soft band is $0.3 \le E < 1$ GeV and the candidate lower edge
+  is strict. The open hard band is $E \ge 2$ GeV. The common-range check
+  uses $2 \le E < 4$ GeV. The odd-file check is retrospective at frozen cuts.
+- **Energy treatment and detector-only replay:** see the [energy decision](../../HGNDPaper/energy_procedure_decision_20261111.md),
+  [matched and odd energy results](../reports/energy_head_capped_20261111/reduction/results.json)
+  and [replay acceptance](../reports/detector_only_20261112/result_4506482/README.md).
+  The replay checked preparation on 286 files and CPU inference on three
+  witness files, one per fold.
+- **Precision:** report fixed-model file-bootstrap sample SD in percentage
+  points for contrast spread and both Q16 and Q84 for paired intervals.
+  Distinguish between-seed SD and SE from file-sampling variation.
+- **Submission:** the [NST notes](../../HGNDPaper/nst_submission_notes.md),
+  [data availability statement](../../HGNDPaper/data_availability.tex) and
+  [owner checklist](../../HGNDPaper/output/submission/nst_v15_open/owner_approval_checklist.md)
+  track deposit access, production records and author approvals. Use the
+  checklist with the named source/PDF/archive release selected for review.
+- **Historical records:** the v10 [action report](../reports/v10_actions_20261026.md)
+  and [manuscript corrections](../../HGNDPaper/manuscript_corrections_v10_20261026.md)
+  remain available for earlier content and truth studies.
 
 ## Reviews
 
 - **`reviews_dir`:** `../HGNDPaper/`
-- **Naming:** continue the series `critical_review_v<N>.md`; the next is v11.
+- **Naming:** continue the `critical_review_v<N>.md` series from the
+  [v19 audit](../../HGNDPaper/critical_review_v19.md), dated 16 November 2026.
 
 ---
 
