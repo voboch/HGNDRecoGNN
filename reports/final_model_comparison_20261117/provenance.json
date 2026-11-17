@@ -1,0 +1,43 @@
+{
+  "date_msk": "2026-11-17",
+  "state": "accepted",
+  "upstream_commit": "cdcc57e",
+  "python": "3.13.9",
+  "packages": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.2",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.10.9"
+  },
+  "inherited_sources_sha256": {
+    "scripts/smash_architecture_reduce.py": "535eb6ce66031b1f54b3bc02163625c30e305fad26f1c18f4d2ee4414877eb0a",
+    "reports/rule_tof_benchmark_20261110/rule.py": "0b045a0b9dbaf2cae1742aec91f7b608e4f90d9f2644c3a86faa3fdd61ff0538",
+    "reports/rule_tof_benchmark_20261110/reduce.py": "dbcee61670f17bb0c676b213e6d52631775300e0ee4038878cc0f505c4869946",
+    "reports/rule_tof_benchmark_20261110/contrast.py": "c0954ec5c41e27cad4e42155a4a138873e4082f751f98cfc343613e2e223a1eb",
+    "reports/rule_tof_benchmark_20261110/summarize.py": "05bce372e7b751a3145110a08101758a5c21b0dd6c8aa321651dc0b70bbf9d75",
+    "reports/first_hit_tof_20261110/compare.py": "1017d20db6fa9fd7d700ad00cd39046ce6448038863d7ecc05bc43f239dbab7a",
+    "reports/primary_prediction_response_20261109/analyze.py": "4d205072d9b6e7c7d19f52624000580e706ca2d6f5819dd13ad5236910bd2ca0"
+  },
+  "artifacts_sha256": {
+    "README.md": "0259c9074ab130c110101a54a94fc8c633633c092b3946dd242ed18332ffe474",
+    "even.json": "446898bad3b81abbaa0bf30a309f0fe6fddc13317f9209b8c98ca8cc53b30c76",
+    "even.npz": "99baab7068803ebd080fe0d78cc6f39b4e3ad4925eb913dde0d112bd2d3638cd",
+    "first_hit_response.pdf": "34d5b15096be4bc6c897a993f08b0c3bfb8b9145c32f6010d9a43f9035a5e8e1",
+    "first_hit_response.png": "86b26d7c8afb3f50559c8bcb18e61b62f6498043ddbf196c9e9d35484537b4a0",
+    "odd.json": "cf95297756a984aa1441591c92b7fbabc6c614855cfb8f82e583cf42ab50ff30",
+    "odd_contrast.pdf": "5c4ead9364d7d63ec6abd083c6faabea16bd839b5e84459ada2ba899f2c02ab9",
+    "odd_contrast.png": "03616ab708681bdb349f4d79ea6b292c7dd891fc66596f53792c609d95f118f8",
+    "plot.py": "f9a66c54716cc7714266842b22d288d8ad6529fb8fa57b29a77d6d18258b3a2c",
+    "reduce_final.py": "33c3439e842202ff75e37995571a12d5d0dab5b0e5df067e30fba04fbe42560f",
+    "review.md": "aa18af1fd5d1c28ce6d22c0ec333ea82ac11b9c00fd3489b27a1e4de0b3fa512",
+    "rules_response.pdf": "170c3bc958f002dcafe56bdece2aa10ac3723605bff515d0933dee32a668bed2",
+    "rules_response.png": "acc1d254f51d909f3937a801944b9863fef44f58a6785be2fc7968d285e51fd6"
+  },
+  "cohorts": {
+    "event": "All accepted even processed spans. Joint 0.3 < reconstructed energy < 4 GeV. GNN score target 70%.",
+    "rules_energy": "Common degree-one primary/candidate links in each preselection graph with strict 0.3 < MC energy < 4 GeV, retained and in range for both methods.",
+    "first_hit": "Native-qualifying isolated links, saved original hit identity, DynamicEdgeConv 70% score cut, both physical ToF masks, no reconstructed energy restriction. Primary true-energy band [0.3,4) GeV.",
+    "hardness": "Same 282 odd files, processed spans and shared 400 draws. Raw70 and frozen even raw75 thresholds. Both open and bounded hard bands."
+  }
+}
