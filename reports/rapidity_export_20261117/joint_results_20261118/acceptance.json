@@ -1,0 +1,11 @@
+{
+  "state": "accepted",
+  "date_msk": "2026-11-18",
+  "files": 286,
+  "shared_file_draws": 400,
+  "exact_previous_marginals": true,
+  "source_sha256": "78de7cb214e43814f3b9cbdcfde9af66767f42df2c9cf0cfdbad3afaf6b5b4c6",
+  "joint_summary_sha256": "4efdfdd7d3eb9a54511960b3a6a59301397affbed092a1f4c245687e68ab637c",
+  "joint_ledger_sha256": "6a6c02d2b26da212757c5b6aa47e681d51784cc0bd5ba2457e6a97d6c20038ef",
+  "review": "independent methodology and technical critics checked indexing, cohort conservation, paired bootstrap and manuscript-copy identity; no new numerical blocker"
+}

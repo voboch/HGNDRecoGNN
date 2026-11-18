@@ -1,0 +1,20 @@
+{
+  "state": "accepted",
+  "job_id": "4525207",
+  "source_sums_sha256": "a450ea751ed5e0723d2cd7449b93cc7fbcc58a4194904eeb9f89af72ca393650",
+  "observations_native_targets_and_frozen_scores_verified_files": 286,
+  "max_abs_y_lab_minus_csv": {
+    "neutron": 4.594532528212625e-06,
+    "proton": 3.68307085452102e-06
+  },
+  "checks": {
+    "files": 286,
+    "processed_events": 1180595,
+    "candidate_keys": 1798225,
+    "first_hit_rows": 142912
+  },
+  "source_receipt_sha256": "1059de9c2196784a856b8f4382235a181596b595d11bc3d41f44ea1de548f754",
+  "archive_sha256": "0bab5aa3b7c27d6eaa8ca0fbfe8ca7fa3877fc2455bcc8b907301f927b7300cd",
+  "summary_sha256": "36c65ca010bac31e749a5259802e9e3ff00eca9a12f8bd430d877c7a93c25ecd",
+  "manifest_sha256": "2499a3240aa50920948a97ef0702715f59b0936e66994333ebb3980328be6f4a"
+}

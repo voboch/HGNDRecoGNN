@@ -1,0 +1,35 @@
+{
+  "schema": "hgnd-rapidity-s286-launch-v1",
+  "date_msk": "2026-11-17",
+  "historical_plan": "reports/first_hit_tof_20261110/plan.json",
+  "historical_plan_sha256": "eff3c75dab2371ab359715a8f21fd4a3dc22ce7504c1fb136afa754f0c27a533",
+  "score_directory": "results/smash_architecture_20261112/score_even_accepted",
+  "score_acceptance_sha256": "7d27c619c9f5fd8b145a9d301d41563257af7936616b6a4a01365d29ea533476",
+  "prepare": {
+    "bundle": "/scratch/vbocharnikov/hgnd/experiments/smash_train_20261028/prepare_bundles/prepare_4465983",
+    "manifest_sha256": "c0156ec47c8ef9d7e5b4b714660b53a4e8e5fc3a10ad9a0c6421ecc7b1130501",
+    "archive_sha256": "4edba4d61b5fb8ac888d20d343570c8e79c05c4573fc130154b10d9daf77cdf1",
+    "archive_bytes": 6871214080
+  },
+  "workers": 2,
+  "expected_counts": {
+    "files": 286,
+    "processed_events": 1180595,
+    "candidate_keys": 1798225,
+    "first_hit_rows": 142912
+  },
+  "limits": {
+    "partition": "rocky",
+    "qos": "normal",
+    "constraint": "type_d",
+    "cpus": 4,
+    "gpus": 0,
+    "mem": "0",
+    "wall": "00:45:00",
+    "no_requeue": true,
+    "jobs": 1
+  },
+  "scope": "Add momentum, rapidity and direction to the accepted even event, candidate and primary populations. Frozen DynamicEdgeConv raw70. No training, inference or selection changes.",
+  "comparison": "Existing even paired counts and native inputs exact; further physical efficiency/ancestry require new production.",
+  "cost": "Same 46.06 GB input CSVs plus 6.87 GB archive as accepted 4491592 (11:49 wall); extra candidate vectors, frozen predictions, publication. Estimated output 0.71 GB by one-file extrapolation. Single 45 min cap."
+}

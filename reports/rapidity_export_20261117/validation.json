@@ -1,0 +1,183 @@
+{
+  "state": "validated_local_pilots",
+  "date_msk": "2026-11-17",
+  "cases": {
+    "complete_candidate_pilot": {
+      "source": "results/rapidity_export_20261117/complete_candidate_pilot",
+      "receipt": {
+        "schema": "smash-rapidity-kinematics-v1",
+        "state": "complete",
+        "content": "bigSpot/10943245/0001",
+        "processed_span": 4168,
+        "primary": {
+          "neutron": {
+            "rows": 3264,
+            "in_span": 3264,
+            "max_abs_y_minus_exported": 3.2735643689107974e-06
+          },
+          "proton": {
+            "rows": 2735,
+            "in_span": 2735,
+            "max_abs_y_minus_exported": 2.955282767835854e-06
+          }
+        },
+        "candidates": {
+          "gnn_candidates": 6302,
+          "rule_candidates": 7083,
+          "isolated_first_hits_replayed": 521,
+          "observation_sha256": "4ffd1fca93d5b75fd35cf26bc19d8a520be82ec64b9799db4c82f0594a224148",
+          "observation_serialization_exact": false,
+          "observation_values_exact": true,
+          "native_target_bytes_exact": true,
+          "rule_member_sha256": "f51fa209f65b3c3e482b6303aff672db96af3ee63b01d28ac5e7ee76ba2ee3d4",
+          "dynamic_scores": {
+            "acceptance_sha256": "7d27c619c9f5fd8b145a9d301d41563257af7936616b6a4a01365d29ea533476",
+            "split_sha256": "848ebf492b254b75e09297b95f89d7c2773f7877afe5e629520d520904a59886",
+            "observation_pack_fold": 2,
+            "evaluation_fold": 0,
+            "seeds": {
+              "42": {
+                "fold": 0,
+                "threshold70": 0.297905,
+                "summary_sha256": "e729c54ee20a3668059475595e144323bf25ecbc97dbca36831119d55cfe2238",
+                "prediction_sha256": "b44e73cea7e2bece3c356f596ae4ca459cb6ad221bcf6f81d4e2d70e0c9643dd",
+                "e_en": 23
+              },
+              "123": {
+                "fold": 0,
+                "threshold70": 0.29541,
+                "summary_sha256": "735b9db07e64e5759d45aaf726d9287e2627811c16d9278fc193c76e27c036e1",
+                "prediction_sha256": "be2e38abffb3cd78ce5f5fa414aefceefe8ceba088532691c31b3e0153b6ca25",
+                "e_en": 24
+              },
+              "456": {
+                "fold": 0,
+                "threshold70": 0.3004,
+                "summary_sha256": "13bcccac9998a6227fced7018dcd4956778e5eba74907f41b130e2698ee385a8",
+                "prediction_sha256": "9819e5035b9874e3487b53a9896850678fe23c0fa593304f7897c122780a7a2e",
+                "e_en": 29
+              }
+            }
+          }
+        },
+        "units": {
+          "momentum": "GeV/c",
+          "energy_mass": "GeV with c=1",
+          "vertex_hit": "cm",
+          "time": "ns",
+          "length": "m",
+          "rapidity_direction": "dimensionless"
+        },
+        "nn_cm": {
+          "beam_kinetic_GeV_per_nucleon": 2.87,
+          "equal_nucleon_mass_GeV": 0.9382720813,
+          "lab_rapidity_offset": 1.0392525112213318,
+          "convention": "fixed-target NN center of mass"
+        },
+        "weighting": "unweighted object inventory; the primary CSV does not supply generator weights here",
+        "phase_space": "accepted geometric neutrons plus linked out-of-window neutrons; geometric protons only",
+        "direction": "nominal origin to detector hit, original-time earliest for GNN, input-time fastest beta for rules",
+        "source_sha256": {
+          "plan": "eff3c75dab2371ab359715a8f21fd4a3dc22ce7504c1fb136afa754f0c27a533",
+          "primary": "33681207d27bda4f22399da3657ca6235714174674825cf970e461df4a23564d",
+          "vacs": "358de8545807993e4c15de6283ad9ed55684cf7ecd5abc31bd79899925add4ad",
+          "hits": "fcf2a5a419de48635f1f933128e6d1a6db81a90c7399dbcf73fa79173dba657e",
+          "pack": "f003f0fe84ad172e1a1130118ea86bf736749fd8ae637a5b11f40a409fa0dd91",
+          "associations": "99b15e71d6d85509c7d29188aacc23f69a539e6a10513dead0ee8de338b0b703",
+          "events": "d921192f8b74eaae51c2fde7fe24d1410b80c84e9857795ba2094fae837f6507"
+        },
+        "output_sha256": "732dd75f915a86944b381f346501c8f5ceb61425edbe45cfed2b4ab6f415334f",
+        "script_sha256": "620eacdcdcdbaa5e3865e4d593c36e1e21cb96b9cbc6bc36ef7263cb719eca78",
+        "elapsed_seconds": 1.0657162498682737
+      },
+      "compressed_bytes": 2494252,
+      "exported_events": 4168,
+      "events_in_span": 4168,
+      "neutron_geometric_in_span": 3121,
+      "neutron_geometric_outside_span": 0,
+      "proton_geometric_in_span": 2735,
+      "proton_geometric_outside_span": 0,
+      "paired_legacy_selection_counts_rules_dynamic_by_seed": [
+        [
+          1165,
+          1286
+        ],
+        [
+          1165,
+          1305
+        ],
+        [
+          1165,
+          1289
+        ]
+      ]
+    },
+    "short_span_primary_pilot": {
+      "source": "results/rapidity_export_20261117/short_span_primary_pilot",
+      "receipt": {
+        "schema": "smash-rapidity-kinematics-v1",
+        "state": "complete",
+        "content": "zeroSpot/10943245/0091",
+        "processed_span": 4070,
+        "primary": {
+          "neutron": {
+            "rows": 3227,
+            "in_span": 3220,
+            "max_abs_y_minus_exported": 2.9958661635909323e-06
+          },
+          "proton": {
+            "rows": 2558,
+            "in_span": 2554,
+            "max_abs_y_minus_exported": 3.113579475577666e-06
+          }
+        },
+        "candidates": null,
+        "units": {
+          "momentum": "GeV/c",
+          "energy_mass": "GeV with c=1",
+          "vertex_hit": "cm",
+          "time": "ns",
+          "length": "m",
+          "rapidity_direction": "dimensionless"
+        },
+        "nn_cm": {
+          "beam_kinetic_GeV_per_nucleon": 2.87,
+          "equal_nucleon_mass_GeV": 0.9382720813,
+          "lab_rapidity_offset": 1.0392525112213318,
+          "convention": "fixed-target NN center of mass"
+        },
+        "weighting": "unweighted object inventory; the primary CSV does not supply generator weights here",
+        "phase_space": "accepted geometric neutrons plus linked out-of-window neutrons; geometric protons only",
+        "direction": "nominal origin to detector hit, original-time earliest for GNN, input-time fastest beta for rules",
+        "source_sha256": {
+          "plan": "eff3c75dab2371ab359715a8f21fd4a3dc22ce7504c1fb136afa754f0c27a533",
+          "primary": "f677de0c61685dcc91148a3450aee157da1fa165726e52b5de6762ada8336361",
+          "vacs": "d365cb6cbb85895897e96473a514e37e6457d49023f2b45aa341f89c336b3dad",
+          "hits": null,
+          "pack": null,
+          "associations": "464f7dda33be9651fe85883f36f74b955b5b886f2c9578b8d362dacb8a7c4d24",
+          "events": "5c17c6822c6cf0c737c44cd3f8a80fc5a0ccd9640123a5e82130e95a7af3bdcb"
+        },
+        "output_sha256": "691a1b20014e7d7e23d59d82577ac826e58a0f07917bdbb7fcbde1348a2e8805",
+        "script_sha256": "620eacdcdcdbaa5e3865e4d593c36e1e21cb96b9cbc6bc36ef7263cb719eca78",
+        "elapsed_seconds": 0.8429482919164002
+      },
+      "compressed_bytes": 485938,
+      "exported_events": 4072,
+      "events_in_span": 4070,
+      "neutron_geometric_in_span": 3059,
+      "neutron_geometric_outside_span": 7,
+      "proton_geometric_in_span": 2554,
+      "proton_geometric_outside_span": 4
+    }
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.2",
+    "torch": "2.9.1",
+    "scipy": "1.17.0"
+  },
+  "serialization_note": "Old and newly serialized observation data/0 tensor members match byte for byte. Local torch adds .format_version and .storage_alignment; numerical comparison used the pinned independent observation file.",
+  "scope": "Kinematic field and binding validation on two even files. One full candidate comparison and one primary-only processed-span check. No physical efficiency, closure result or model inference.",
+  "full_run": "Not submitted. Next scope S286 with identical keys, immutable per-file sources, scoped resources and preflight."
+}

@@ -1,0 +1,14 @@
+{
+  "state": "complete",
+  "bundle_dir": "/scratch/vbocharnikov/hgnd/experiments/rapidity_s286_20261117_a450ea751ed5/result_4525207",
+  "manifest_sha256": "2499a3240aa50920948a97ef0702715f59b0936e66994333ebb3980328be6f4a",
+  "archive_sha256": "0bab5aa3b7c27d6eaa8ca0fbfe8ca7fa3877fc2455bcc8b907301f927b7300cd",
+  "archive_bytes": 715151360,
+  "files": 573,
+  "summary_files": {
+    "summary.json": "36c65ca010bac31e749a5259802e9e3ff00eca9a12f8bd430d877c7a93c25ecd"
+  },
+  "publisher_sha256": "5ef4622a48d2b1a0ff72376a6f5f01d0fc3c2392c1614a0e2c0b88cedc021add",
+  "scratch_atomic_replace": false,
+  "access_retries": []
+}

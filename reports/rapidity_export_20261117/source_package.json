@@ -1,0 +1,14 @@
+{
+  "name": "rapidity_s286_20261117_a450ea751ed5",
+  "sums_sha256": "a450ea751ed5e0723d2cd7449b93cc7fbcc58a4194904eeb9f89af72ca393650",
+  "archive_sha256": "19266fc19f785077bc358e6d1584732b3b6d3929ac1a6d727ab9352b6c0b3079",
+  "archive_bytes": 147888966,
+  "members": 1612,
+  "unpacked_bytes": 332826480,
+  "remote_source": "/home/vbocharnikov/hgnd_experiments/rapidity_s286_20261117_a450ea751ed5",
+  "campaign": "/scratch/vbocharnikov/hgnd/experiments/rapidity_s286_20261117_a450ea751ed5",
+  "receipts": "/home/vbocharnikov/hgnd_experiments/rapidity_s286_20261117_a450ea751ed5_receipts",
+  "launch_sha256": "058ee3c79abb72307fe2a716a4de7d2534566daba71f5a4e31e1e032575d051e",
+  "base_commit": "0be8a19",
+  "local_archive": "/tmp/hgnd-rapidity-s286-launch.TtKEOG/rapidity_s286_20261117_a450ea751ed5.tar.gz"
+}

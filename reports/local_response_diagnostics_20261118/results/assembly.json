@@ -1,0 +1,1748 @@
+{
+  "state": "assembled_and_reconciled",
+  "elapsed_seconds": 4.161309875082225,
+  "files": 286,
+  "seeds": [
+    "42",
+    "123",
+    "456"
+  ],
+  "sample_counts": [
+    58998,
+    58909,
+    58946
+  ],
+  "stable_counts": [
+    58199,
+    58199,
+    58199
+  ],
+  "inputs": {
+    "bigSpot/10943245/0001": {
+      "kinematics": "9785416056a9f6510e89e171a789aae1557ad7a0db74744fe0653f7236fa9e08",
+      "neutrons": "99b15e71d6d85509c7d29188aacc23f69a539e6a10513dead0ee8de338b0b703",
+      "rules": "f51fa209f65b3c3e482b6303aff672db96af3ee63b01d28ac5e7ee76ba2ee3d4",
+      "processed_span": 4168
+    },
+    "bigSpot/10943245/0010": {
+      "kinematics": "b6a75599b352da1f639bf8783103f4995754680329d69bce15ec7f6904e16553",
+      "neutrons": "287bbfeb0dfb26cc566bdaa32e788dee37b3946aae493af03c2cfc0832e560a2",
+      "rules": "678644745e21ddf44fece65bc27d5b87d4e1f0bf19bf3416d7471ab140070fec",
+      "processed_span": 4140
+    },
+    "bigSpot/10943245/0012": {
+      "kinematics": "bb41cc09a8bad7e430cf2951255a44f9f2858fa308a28cd92b57199cac5f5871",
+      "neutrons": "5ed4807682bae0bd0561ae37eede216e1fa4d97f9262e984cf2611e398dc2f06",
+      "rules": "45d4b9349799166fee0c35618c72036b187e4d89540f66a1ff96e474ba6547ae",
+      "processed_span": 4211
+    },
+    "bigSpot/10943245/0016": {
+      "kinematics": "47ee8b05b637b4e72f362dfdea21b4b88a35b15284275830c884325480948bb1",
+      "neutrons": "25b0a3cfa577813b0f874605d967e42ba260b912b11a0c6e49764a269d340f3d",
+      "rules": "81e5a72f65649bd3e38ab5b2394116fcdcb61ff2af70ef1386bc66607acdac95",
+      "processed_span": 4183
+    },
+    "bigSpot/10943245/0018": {
+      "kinematics": "7d7db4e63f1e302b8e7e197322f1a5cf002b1cd7f7bbb427a5c1c8c5b1315491",
+      "neutrons": "95d024c0484da07fdc78a8536c8984a7d60fc26e286f5484e3bad2b3aae825a1",
+      "rules": "884368e3cd06a6957ff13fd3f924466582e5e00427edca920f2b851fb2ea49ab",
+      "processed_span": 4063
+    },
+    "bigSpot/10943245/0052": {
+      "kinematics": "57c5ef0a4684255079d600ac177f650f4a0dd1ca4e066051a76ca7183dbe98c2",
+      "neutrons": "d07ca072146b4d49733a02bb7d6d812f6aafae109950a319aea0df2cb757f957",
+      "rules": "37ddb03b2a902d949796baf5c72b3f8650f07142032b7113619e45276baf50f1",
+      "processed_span": 4093
+    },
+    "bigSpot/10943245/0055": {
+      "kinematics": "a30bbd61e968b8c4c6cea3e76471d19f2e9f6588141c833478ba754c73adebfc",
+      "neutrons": "6458ac08da0a7ae399aec2879cfd2739afef053784fed94fd34a39c581e1d32e",
+      "rules": "659f8aa67bfc07e0f825d5f5c890c394d548e56125556ebe9df67850baefffee",
+      "processed_span": 4179
+    },
+    "bigSpot/10943245/0058": {
+      "kinematics": "b4870458570a493a0e06b5a0dec8305ecb6ac68462171e2de84aaeeb3a99633f",
+      "neutrons": "0e0cbcc2b4b7292f2f01f6b7958e9de336c06b04909e499ec4dacaf6c471510c",
+      "rules": "e30bc6bc20aa430f6639e79b2cc7e69df31ffe776bf70ba620c92f975628680b",
+      "processed_span": 4115
+    },
+    "bigSpot/10943245/0059": {
+      "kinematics": "dee553538540c9edee29edd8b01b3a83ac8715c052af59afef1caaf9debd4061",
+      "neutrons": "0d57d9e87b0797f5532959aaceedc9f585316a84840c5c7cb5fa5311fc3c25e3",
+      "rules": "19baa44689ba1aaeb999a079c49a0683f6d5179b614f295ca162b2d1e56924b9",
+      "processed_span": 4129
+    },
+    "bigSpot/10943245/0060": {
+      "kinematics": "ee7704b14e688bd4fe25140df45df1d95935aa2fda316e8f85e7194ec454c351",
+      "neutrons": "955f8f772c4a9d437ca7db15a466e0bb55c66f799a25a4078c2ee5ed5b44c7f2",
+      "rules": "b0448f655891fb5ec313f8fe1c7f4a2249228303c295a07a7f411362288c6c78",
+      "processed_span": 4161
+    },
+    "bigSpot/10943245/0061": {
+      "kinematics": "d2c57c29cf95e133b7fb308b7c8a01a8759166ad1c0d0b67194b38eaa26c676a",
+      "neutrons": "473726679be0f407bfa264142328e47e561d35cd3910edb0ff5c82100714bf72",
+      "rules": "8282016ecbf71c8f1d6b0266f649280f616774689341d328d4bde00027df1fd5",
+      "processed_span": 4189
+    },
+    "bigSpot/10943245/0062": {
+      "kinematics": "42fe07ba4a02f8b4abda5b4359d4e810aebc1d48254eeafece07fff525dbb066",
+      "neutrons": "4021eac46f4dcc9993bd8f2f8a0f1eb39e8edd9fd40c462209f2831ef640491e",
+      "rules": "cdb0ba2a85c9973c610257252d7a4ae5cd5515b1c5dd4c8e578e77f2f07dad2f",
+      "processed_span": 4190
+    },
+    "bigSpot/10943245/0099": {
+      "kinematics": "e4ac8a3c0cc1e765832172722d7fe162faf45860c38f950ec7ab88b2ea1308ef",
+      "neutrons": "ef9eb2c45edcfa31954a88581ffb2e17da81a36b24c2b1686e155e81cf65768f",
+      "rules": "90e70278c9257477efbae2b54a268daba2d162b3b09a7825f5e436281b2db749",
+      "processed_span": 4228
+    },
+    "bigSpot/10943245/0101": {
+      "kinematics": "664f6862392f6c70e76db09e0e5ddf19ef9f89db2b10247a5c45f579d11bceac",
+      "neutrons": "0d5f0b75a25fdf6178beb2aaf794dc50921886150720d24489c3cf16966ed29c",
+      "rules": "1985c9e93a6f9d5c89860086eb686644a8576158f2745c3e3835c5e248258994",
+      "processed_span": 4217
+    },
+    "bigSpot/10943245/0102": {
+      "kinematics": "0e0fcd20d4f4a5479ec45e6de60c9c1598bc4297b3088ec71c6014202d1c2455",
+      "neutrons": "5e5cabf05ddf1a71639586662774393706984dbe4f4aacec0a4c48f9cbfc3e2d",
+      "rules": "5d55b9661443e01542b5da052415f54de1c8e76d9a2b7613ce3644f6b946a995",
+      "processed_span": 4029
+    },
+    "bigSpot/10943245/0103": {
+      "kinematics": "9b673c972abc5709454d7f9831860861fe46174fa32075261796e2e97f7d8d3d",
+      "neutrons": "ae860b2e9be7aa6a8e635ceb0355b1c95738b7b2c62feeb41d856da790cfa08d",
+      "rules": "1f754d2d6721c2467dd3be24493365bc1234c4e6b954a268d64eeddea5495223",
+      "processed_span": 4130
+    },
+    "bigSpot/10943245/0104": {
+      "kinematics": "2523f7acecd0845fed00deb5a2da5301f47fe0022109daf2b0ae147400d4ae7c",
+      "neutrons": "4c867905eae0f2539f55af1cd655ed3f2daa0edd5f10a71506dddf41a69dac67",
+      "rules": "fcf777adea1ec0796658adcfe825f08f8325b92fa820447fb9cdf3a83a043bcd",
+      "processed_span": 4133
+    },
+    "bigSpot/10943245/0106": {
+      "kinematics": "1604a99598926e7e6a5a06bb94e809cad2db89226a8e61e7468e40880cc337b1",
+      "neutrons": "5aa3cdd4929a9d75d681fe33075b48ec921cbc640311e162dec3cbf5897d490c",
+      "rules": "d6327c05bd19bb1bd059894f36564dcbd8ebaa5ee908b43399cb1ca2c37c2bd2",
+      "processed_span": 4144
+    },
+    "bigSpot/10943245/0149": {
+      "kinematics": "9ff830f43bd68521b4b3c767ab0960839fed4389607700e86a75b3817c0fc389",
+      "neutrons": "826d4ff8c79c0ec5e90cb883deaf7b60f0effebd4a20f81f4d2222cd15c8ca2d",
+      "rules": "19a4d59033b4ba8bf0e8545343b20f411c922ba9b1b48c9ccb7c5fa57ddd15d1",
+      "processed_span": 4096
+    },
+    "bigSpot/10943245/0150": {
+      "kinematics": "e078b5bee25feb6837207488c5670cf73e645178b0dbcfd34e01d843af47376d",
+      "neutrons": "fbadcb041afcdddaf7d9c8d8d351b35eb0eba3d143634818a539a4519672620e",
+      "rules": "6e52a22db644620b1c54b7335c393c925ff0c9ae96843f0c3cf6e749c5ca2edf",
+      "processed_span": 4200
+    },
+    "bigSpot/10943245/0151": {
+      "kinematics": "ebe765baac1ece7440d0c5d5fb7e8d35cfc7ab38e1d3d7c8ea6d3ec0a08e8743",
+      "neutrons": "e015ad2644031a9091c2144ea51fcda959035e14db8e4264adefcb86c69edd65",
+      "rules": "72b8872b6d76b8feb4a79282806d95b8512d5a8e0462f06d6c9530393c0e5b20",
+      "processed_span": 4134
+    },
+    "bigSpot/10943245/0152": {
+      "kinematics": "bf600640ce08c773fdfa1c4e177386be44af1c280d32361e295060330858c9fc",
+      "neutrons": "8602c136dcc3935a9d67c4c6da1eb4c2327337e6a63ee35ff1eb3b9cf9f4e9c7",
+      "rules": "c108e495dfd72c372b75072d4d067c26358aab07ce8fbd7853aae4c061ff5939",
+      "processed_span": 4167
+    },
+    "bigSpot/10943245/0237": {
+      "kinematics": "330e62a9020732536d266f8437c466bdfbb954abb5ada6a5ac522d5903f7b716",
+      "neutrons": "662816d5f55b036bff4e492d1c0166182873d7bc8249ea99588a81a779a9169b",
+      "rules": "dda8c0a28cc30eb65c63093954822d8a771c7ea4d2975d1e893116980ca7f099",
+      "processed_span": 4176
+    },
+    "bigSpot/10943245/0242": {
+      "kinematics": "4e4bf12479290574b10b145ea47f977066f587ad7b2c6e502a84f2a0aeaf9ee6",
+      "neutrons": "899aa044f48fc625c8dd422a38fa67d8108c4e9e022e534377b71be891adbb07",
+      "rules": "421ab436f17ee52dbd229b0e5749501cf6318876043e76600b85325469edd5b5",
+      "processed_span": 4119
+    },
+    "bigSpot/10943245/0243": {
+      "kinematics": "a80883361f8bca28fb690fd84fb180d4247e5cf743c10ed287f611e4acd45765",
+      "neutrons": "e8d99cee459393678d7f59abeaab15ac63718e49c1617f264e51e7e9b3f9d434",
+      "rules": "4e091a55b8a9e27c2b7c83018685e92c13c2a098320a5b2aa965e6b0fa07105a",
+      "processed_span": 4170
+    },
+    "bigSpot/10943245/0244": {
+      "kinematics": "ba9dadffea5c87a96dadbec30f1695b6e95bcb2eae601ae9c11deffe0261a438",
+      "neutrons": "d8634249fdedc51d9346b77e2af4ae1af381d1befa6fdf22a64faf4639d41621",
+      "rules": "e31d4a2cd570622147ff6c58f7e970e558eae15b1fe7fa3a233dd274457902e6",
+      "processed_span": 4152
+    },
+    "bigSpot/10943245/0246": {
+      "kinematics": "ab1cdb47e030de8cbaad0728bfd6d69591e8d80ecd7e5e103d0dcfc682b575fc",
+      "neutrons": "b3ba5611969f62d35f3ec605b061f7c4a09e159c4a57e8f66eb57d3cf13d4d95",
+      "rules": "1b7256da2ab8292b3b7525f92a45897cf5a18a66c140f569282c9aef030e041a",
+      "processed_span": 4232
+    },
+    "bigSpot/10943245/0248": {
+      "kinematics": "72f9f18af0a532a60c6c0e4f850b6284da473272429d9c68049460e58b15b25f",
+      "neutrons": "fdcd15f24623d1db37a80ba206690f80a4490a59d6b609ffb1564c856869b8dc",
+      "rules": "4a875be6c4ce05fcfc019a7c23ef9eed3e73544149630f98998d74eac6999947",
+      "processed_span": 4261
+    },
+    "bigSpot/10943245/0249": {
+      "kinematics": "ea3211b394d279a827bda36b2156a738bacb01f29be3a75952b9409b48edd81a",
+      "neutrons": "eb239baa4db0ffc6ec023e03338852eee23481ac252babc8970c1c8a33c6f539",
+      "rules": "45925072fad0114b642c8c90bec9158f49ccbfad15ddd7c6e76e0cbd3c2a7c68",
+      "processed_span": 4115
+    },
+    "bigSpot/10943245/0250": {
+      "kinematics": "6a47f59b49bfea7548ff63ac082d6d906e40bcde344a0bb556ebd7f425eb3272",
+      "neutrons": "a69d2e82f13d4ede29cb1fc60f446be4a40596107dea3de2924ce2cc8f75ae8d",
+      "rules": "393fe4d226c9db747b010c8c01ab14380286edc611c9ca8d279a390aa38d3e2a",
+      "processed_span": 4185
+    },
+    "bigSpot/10943245/0251": {
+      "kinematics": "b6d349acbcf961edb8e8f918350da96427f68dbcff9b5f1e082e0eecadb41730",
+      "neutrons": "04980e25c25d410e989181ee506880826b41ed6aa0219ab4a738d715f3b588bb",
+      "rules": "e3c44ee0e4c92e1ebb3c150358a191a0eba43500fdc852baab6dacf70ff89e84",
+      "processed_span": 4112
+    },
+    "bigSpot/10943245/0254": {
+      "kinematics": "648965c2a1f028b1af6f0891998e14875a2257ecd8a09e96a4e15be6ad5b82ad",
+      "neutrons": "362445bc84d1837c7543c163954a88be5ed2392675ac6ff9e5f633bc28d68407",
+      "rules": "ad20ae1e2490498b1df2a6799fabac2dfd59fedf2ce1488c47c5c89a45de58c6",
+      "processed_span": 4208
+    },
+    "bigSpot/10943245/0256": {
+      "kinematics": "7ffa76b8351035125db81955647037f28b3ea339c1e332e5ccc4438469b84acd",
+      "neutrons": "7e31060b16ed7af8353e962241c3f11dd9a9617981d06c78f6cb4a335eee5618",
+      "rules": "910a8fd85a13ba22aaa2294d13ba655d9e7522e34eb453ac8879f699bfbc5a7f",
+      "processed_span": 4049
+    },
+    "bigSpot/10943245/0257": {
+      "kinematics": "12cc0e2ea2405c8029271f421bf605a750ed0c5099c9fbc0fca04f4ed3ecd7ef",
+      "neutrons": "b03743cac66fef6ef715c7c3deb92e346e9a273321bcf57f5c8586a1ed173e6c",
+      "rules": "5309eea4e10450fcb778382e9ce7d9038846ae34821f043012e94f07d9c7d7dd",
+      "processed_span": 4157
+    },
+    "bigSpot/10943245/0258": {
+      "kinematics": "23cd02a7c8d6f09f351c63a306f0bf9fb18a3aca1a7db817fc4932bfc2f8a979",
+      "neutrons": "6d7f8dd749a4b4a2e19ec64a2ba6d0a9d80ee611a9f6d87677c6e2fe566b6063",
+      "rules": "e87e43c2d1d3374f44679ee70cc1f9006d324075d7c1980490409ada706eaef4",
+      "processed_span": 4219
+    },
+    "bigSpot/10943245/0260": {
+      "kinematics": "072a780fa1e07347b2ae14fd425690e03cd945bbc63355419e6b01eb92b3ab1f",
+      "neutrons": "7f1b11d495a53f81da2432edbf64974f784419fd871fb75049ae9abe1b2522c8",
+      "rules": "31c38f7bc65f0784abcc29152223e6affe13736138b05bdd47e7814520607a91",
+      "processed_span": 4137
+    },
+    "bigSpot/10943245/0262": {
+      "kinematics": "42cef8475296e0bf51e0020a98bf4e7ca43f7c3685868c519fc025845f0b9fdb",
+      "neutrons": "e02c8f043c9f080248dfc344d32ad25e5ae19d0f2764154e0be06947473cf025",
+      "rules": "998552d770bfcf231e9e15dd218292ae33ffd61f5ac3c85b0cdd0855d72e6703",
+      "processed_span": 4055
+    },
+    "bigSpot/10943245/0263": {
+      "kinematics": "eb7db22b198b5eaec1846023bcc4a6a7802c80f9129268ae531d27b4ca8ea748",
+      "neutrons": "ade9ca10c88759b4b9040022ae112b785990bfb0b0245ad75b3b43ddfc6999bb",
+      "rules": "8f8b02dca403f736071fd106541a446a759f8173499a6fee516d5b735dc28b25",
+      "processed_span": 4210
+    },
+    "bigSpot/10943245/0268": {
+      "kinematics": "c525e30b625df12341aa6210e0e750fd6d68858034ae00e6a5e380f4f39218b9",
+      "neutrons": "25590bade59738923c66a9bb0e59b8aa7bf871419628189ad07b37ebe742cb04",
+      "rules": "363ababd4f757b1e4e1d4f8dd6449cb06766f5859f8f7cfbec9cac7865ba964a",
+      "processed_span": 4263
+    },
+    "bigSpot/10943245/0269": {
+      "kinematics": "1a0d752be216107e9d537b5a17aba3a584b1014efbeb88f89888078a98d2a21e",
+      "neutrons": "495407808b609e1c19e3c1cf4dcee0644069eabd2c82e8f31405e6e16f4dd2d9",
+      "rules": "9d7cf5a01f514b64b4213f82c82cf1542ff02cb73ae1ae3e1cd82b00b2a43286",
+      "processed_span": 4147
+    },
+    "bigSpot/10943245/0270": {
+      "kinematics": "d9c0c43023fd008fafd16109fe0ff9a8dd07f77118b9834a1bbf766c3c56cb2a",
+      "neutrons": "67214417afe7fe90618b92b37a773af33af8ce94cfa2f66ab8419fd47dddbebc",
+      "rules": "ee0a56c01f1d92d74ddd89621e947fd0f2ac60db453b0349192ad90233c90f5f",
+      "processed_span": 4117
+    },
+    "bigSpot/10943245/0271": {
+      "kinematics": "2f9ce8c9be5c1d012d8ebee756644a670988df8d9291fb5c04c9e3750f65a14f",
+      "neutrons": "e7adb3b65ae2cec47f0c8a55c43df3e5b1e780c1a64a50b9bb1b39270414929e",
+      "rules": "342f014b9dcd592200ef29dd2a12f553249b87336e62bf8e4ecec8e3f619356e",
+      "processed_span": 4245
+    },
+    "bigSpot/10943245/0274": {
+      "kinematics": "8c64fd60b74951fbeeb4024e27f65c4e1edf6938580e06edbafba1e2102a0941",
+      "neutrons": "a09d093af77ed8c2f7e9ecd4dd9c0e6b15098cd5accc67386711379453e5fb9b",
+      "rules": "2ac2d17dd0a1da9bf218b528da98139d8d6438e1fc23e869b2b05ee32f4d1600",
+      "processed_span": 4183
+    },
+    "bigSpot/10943245/0280": {
+      "kinematics": "ebcb89c75042f96ca3d62bd4dc368438485d811dee7f9b50042ad1d4d23ff976",
+      "neutrons": "4af15ae60b5fb9bb0bb67c4a41ed1bd513f16fd4b9d451110e8a8914a3547e67",
+      "rules": "11dd40fcad3fb372aa2c46501ceb2519b1b86b9d3d944ebbcea556ae5e52d017",
+      "processed_span": 4049
+    },
+    "bigSpot/10943245/0281": {
+      "kinematics": "cae668833e560731a75c90651539f25600144e00e5e8a04fddb5af398936fd1c",
+      "neutrons": "8b40f7598e8e15297323cf5c48c977bba55f2ed63de2bff0eb558ecaac2ed146",
+      "rules": "a52c717eb39053a0c2019bf20a65c7b08ac88824fe16cc4a60ea87a990fb90c9",
+      "processed_span": 4124
+    },
+    "bigSpot/10943245/0284": {
+      "kinematics": "0e4fad69f4a7f9f32baeaf4e790609cfdff61dec7f188a45fd0b1e50f2b21a16",
+      "neutrons": "4b57d6ad3b9284a3e7ba401e219ccc93198d3f8b64d78fe66bdce68d8df08951",
+      "rules": "5495fdff232a8594c4bda0f173df5751494cdfb30f4d2b15d0af4469a2cc4e08",
+      "processed_span": 4079
+    },
+    "bigSpot/10943245/0285": {
+      "kinematics": "a1451330a787db5ccdb1714584ba5043f4453efc0b51d1df597d788ace08a5d6",
+      "neutrons": "ebb5a811398c9b3285ad9dde4d5c89cac92e91e6d70bf26759fd87ba90f3bd08",
+      "rules": "3ed129ccc95711d72e1efb72373cfe4f99d9353840dd2a37c33edd0ea4c1c9e4",
+      "processed_span": 4084
+    },
+    "bigSpot/10943245/0286": {
+      "kinematics": "46fe93f20f1e1fa22fade87f7b239406713662896f9ad0a0271177fde4a73541",
+      "neutrons": "fd02017ef2e7b2ea2172575e0a5275898912db8696ab9d438992e07784902983",
+      "rules": "907fa07c8e4d00cba5eedc108d626db90e8542231c1257f5fe8d3fea8505ad86",
+      "processed_span": 4143
+    },
+    "bigSpot/10943245/0289": {
+      "kinematics": "08ce3ab2b330630636244033c7f8f575c40b8681327ac33b72b6e74b908b6a89",
+      "neutrons": "20ab534cca0b1b5676f01107a0a7c34aeb5a2930b04944a6bf2f21737fcb98b8",
+      "rules": "b9e254175445c771c9750df14196aa11bad8eff7689ecbf0c97e17124599132f",
+      "processed_span": 4216
+    },
+    "bigSpot/10943245/0290": {
+      "kinematics": "cd7a66a4a4aaddf986f841bc3bff3d9d5eb364c07c8797da4ab15a6d1de5def5",
+      "neutrons": "3af5c0d347f2c53a6e55b40bd6bd1d5ca01746127b845b086b150202db833af7",
+      "rules": "2c382ffa39fb1f1d2791a16b9ff3be6ef552e4e7fc55eea2fb1bbc81f2605cba",
+      "processed_span": 4081
+    },
+    "bigSpot/10943245/0295": {
+      "kinematics": "b586d25d586bbda25c56efe8de567180d38288b93dae7755df2c3b2935c10eb7",
+      "neutrons": "5f0d17bd1d9d29bcae8e1151eb15effec7b8a3bdef2e13561b3a0a560b9e5123",
+      "rules": "d62dbed59c2dbcfd284031ff5ce05f5fefd594c7bdc29fd04854d407ca97f843",
+      "processed_span": 4147
+    },
+    "bigSpot/10943245/0296": {
+      "kinematics": "f2656eeef9f6abeea5f68c91e55873099f79adbc1ad102376707a62c56d63bf0",
+      "neutrons": "b5fcbbbf1566f2005cbcb978a75d1a2654c99441cf8e916d2073bcd7b6ad778e",
+      "rules": "f7fbc1548af65721de56e4cc03c2bf8115a2472446e6d889c72151154db1482e",
+      "processed_span": 4040
+    },
+    "bigSpot/10943245/0297": {
+      "kinematics": "53fcb8653d56dbe96c7f4b3a5f202b7b5f0dbaec7ca8b012c4b4e52fef63b7b1",
+      "neutrons": "facdad4380057f169313c1863dd07b37aef5e276b5918f65e66db99b1e2764cf",
+      "rules": "9a109811b04196c41a113221eb2661fbe10305eb17dde66263b0587b1cc00be2",
+      "processed_span": 4175
+    },
+    "bigSpot/10943245/0300": {
+      "kinematics": "eb4cb191d6b5637697e541960ec7ea72f226170dd14289150342b8ab4da72d11",
+      "neutrons": "2186fe847369fd2b7dd66f3e390272c0bcd19bb90296ddc191dbf80e6010cbd2",
+      "rules": "7907ea327de5445674e52f2f87daa03c0615c700c37786ac5b54050d5074af3c",
+      "processed_span": 4050
+    },
+    "bigSpot/10943245/0301": {
+      "kinematics": "90a4084a9325016744b7c34ccb20e36610379845a3d9d209456e67312fdb7af6",
+      "neutrons": "c4047d0aaed64dcfc1f8a547fce5d599e6fe8bd2e06f7e2ea85fd8c31d9e6d49",
+      "rules": "752188a2a7e16c36016097cdb61c663b0400e3a7c5ddeee1d2ff169fc3947158",
+      "processed_span": 4136
+    },
+    "bigSpot/10943245/0302": {
+      "kinematics": "909432f051f55724e3d9b2073032a055c103fe2c793f2ee9b79ea1e491ff01b0",
+      "neutrons": "ed4f42375793be7f44f6b4c0a91489d5725c61655eba5f91162758d195f3b2c4",
+      "rules": "76aba98083b434e18cd19c9c4cab4a2bfa4c6f46805e722bc61a238d1d894acb",
+      "processed_span": 4021
+    },
+    "bigSpot/10943245/0303": {
+      "kinematics": "3a327b234c6235f4f382d1ac58609ddf5af0240fae2d099ebc1da105de557dd5",
+      "neutrons": "e6e826758d25140eaee4092ad63df342e43ea6cd0e97cd69219c77708948ca4d",
+      "rules": "dbb63925c3cdec617359ad80dc01024ac68599a7ef1d5d61acc2870bf6433c62",
+      "processed_span": 4126
+    },
+    "bigSpot/10943245/0304": {
+      "kinematics": "b0ea36c6cbb927b53ba40a876ec5c6e603fe7683332418c2b1e9550b055d317f",
+      "neutrons": "9a1c09631b0e52fe1cb00ff8617b83e60c40fab8c2608eea4578999c2474bdeb",
+      "rules": "b721bd3e8ecc962803ea5b7f6dd59634ec56dbf0e82db5cefa7736eecf5b0340",
+      "processed_span": 4101
+    },
+    "bigSpot/10943245/0305": {
+      "kinematics": "eebb1407224defaf84ac7a9a6ba9dccb5316edf62ab4dafe9412dc657d75d637",
+      "neutrons": "6ec496e26aad2923c26bddf322cfa9f4b8b347153332fce3ef38f2e5f52ae8cb",
+      "rules": "789435f0ff1ffe436e4c12921630460009bbbed5834f17ff1324accdd3151d90",
+      "processed_span": 4153
+    },
+    "bigSpot/10943245/0309": {
+      "kinematics": "e7be0e07c5a9402395e11fda378b679bdb539457982cc411b60f00b6d2b172fe",
+      "neutrons": "7da9334554572679c815f5d5952692f37dc182cf49318dd2b319578721826111",
+      "rules": "03211ee5b8a944c6ee58b1a4c6248430c6bbf731eaa68c60fa898ea80093f644",
+      "processed_span": 4093
+    },
+    "bigSpot/10943245/0310": {
+      "kinematics": "a6574b1e7c52c11bb675ca2c8d9c0df0ae690b65cc84ca11798e6c6ba425098c",
+      "neutrons": "ce8c0fc4af4055afe9bfb53bfe176d88ca1ef45ed783b2eb83fb422fea8088da",
+      "rules": "bde1c8e9eee3206fb8e639f0531ea1064b0003c2137c153fe5bc0fcddae19ad0",
+      "processed_span": 4156
+    },
+    "bigSpot/10943245/0311": {
+      "kinematics": "09b93d843f9982b351991ce5ca90d8de92e7a89bcf2a148842b6e4f81acca978",
+      "neutrons": "84ea672e171074a426ddffbb53c2e82e9bab4e5a9c5448cf6618fabb36336bb7",
+      "rules": "6bbed98cb74591d9fc3d8dc2520e4dddd3919d707b313b4de7f7084b7505bcbb",
+      "processed_span": 4248
+    },
+    "bigSpot/10943245/0315": {
+      "kinematics": "b12376f63e4c55729b2084d24202320de3bdc56ea0039236102c5e221565041f",
+      "neutrons": "401c051ec289f0ebd971ea4f00569ec528a77413af5a0a5586f6a1eac0cfb4bc",
+      "rules": "29b2419226d650672eba35b4b7ebc4dd365dcdb2d72ef4747027997e715a65de",
+      "processed_span": 4254
+    },
+    "bigSpot/10943245/0316": {
+      "kinematics": "e62620ba062530365e2faabd7221f380e8c203f56e40f98015343a5f2a25df78",
+      "neutrons": "22fef2e89329e7984d9e36ed001d4fa1dab68d9d812cb7f2b8bef107136add81",
+      "rules": "471a9b35d895c49796edfee426809ce5f1f822263e44443e7f185a757fce47db",
+      "processed_span": 4137
+    },
+    "bigSpot/10943245/0317": {
+      "kinematics": "cbd5919ba589edc130cb5f53dde49501584a144b03418e012ec3defb59a64a0c",
+      "neutrons": "f413a29efb32586d84023bf689ad7468c3c3d4f407cc2cb8ef1983217f598bd0",
+      "rules": "e7111ac076f488512760fbec7ee294ea33016ddc199bea7fd50b465edeccafb9",
+      "processed_span": 4259
+    },
+    "bigSpot/10943245/0318": {
+      "kinematics": "9a757b97097ac7276c31873d5366fe154a605318642325044c7c010ae43d1ac6",
+      "neutrons": "c40e522bffe012e9a2fa8c5d2a03305bbc202668611a53df5fbc84b522a60f91",
+      "rules": "a62b1d930abe283fe411c5334a06bc6a3718ae7b6a10982a270bacc9a3af6d2d",
+      "processed_span": 4189
+    },
+    "bigSpot/10943245/0320": {
+      "kinematics": "e83df2c8ac5b4ed5f8d067caa8b220991b069e0025ac2e64cf345e005055a2ef",
+      "neutrons": "a42de91a404bbc56923ae645b5bcb875291b51a08239c12738002676f2d11062",
+      "rules": "1999ab5b9fac990ba275a017fcaab0af7b05ccf9ef29e6cd51a5b15045918b63",
+      "processed_span": 4219
+    },
+    "bigSpot/10943245/0322": {
+      "kinematics": "74888ae391fb49f8b9bbaac8d91821da02c83bb8cdc37f97d5fbee0da13f7b34",
+      "neutrons": "0bc64ad23a3e04c529a021a8381c449feec8e930e06cc5a60ccec6a92b2c8ef6",
+      "rules": "aab5ddd415c67bbafbbfdf33368560be24b35539e02de9db90c1f502048f9306",
+      "processed_span": 4145
+    },
+    "bigSpot/10943245/0324": {
+      "kinematics": "990a1191d0aa9dfdd8b790b13be2984a3909daae672b31d98551c8890b862d90",
+      "neutrons": "9dac11f54c7c3e8bc20e79f4ce686be9e0c6d6f92b9f591777febe962f8edc64",
+      "rules": "d4c36f007c2665eae956d4a209a9754cb416360a9c2dd25b925b99d5809f7a7c",
+      "processed_span": 4101
+    },
+    "bigSpot/10943245/0326": {
+      "kinematics": "5e931992776a4d8ee1c3b80e07dc336dc060887d8e8920c7d2d3ac48e0fbea39",
+      "neutrons": "9ebd68b3b0a86ac7ec1f2247b6c0833139341d3f1b271f840390fc79937c0225",
+      "rules": "5a69415ad2c3b4cbe91c22d90432aa73fc59497f09edb82ea36241d3dc225708",
+      "processed_span": 4123
+    },
+    "bigSpot/10943245/0327": {
+      "kinematics": "599e03511af2f2c978d3a3f0a592cf9f478dfcf13219ca0740eaf3b227ab206c",
+      "neutrons": "2264dff295a14ae797c0c90a747b2aec48c5c15bcc1ebfdba82d4b9207f9df33",
+      "rules": "b6c7516613d234eb85e43e08e47128d2bbfedfdb7645632f1dc53fc7eb24d1fd",
+      "processed_span": 4044
+    },
+    "bigSpot/10943245/0328": {
+      "kinematics": "abb2f53b04418b51e024014cef1d384814f022f76314024b778de852471d25b2",
+      "neutrons": "0c6aa2f7a996576a540b2efe92aa904c7c7470484d9b0e069db16f043e2f9202",
+      "rules": "c569c089d8c75e1d37abb82f0e51db6ec84f9b50cba04b2186c01a85ff0ca007",
+      "processed_span": 4115
+    },
+    "bigSpot/10943245/0329": {
+      "kinematics": "dd4a9fd50482ccb6468a19857007b7dba378376513091e110578a39f91598166",
+      "neutrons": "f940362cd7f920d726c4eba7033795ebd0b84c94a08dea16f3b2f334f0100469",
+      "rules": "1d7ea4a1716a1fa8b825ad371a46701fc70c9bbfbb236e1746f002076d54efa2",
+      "processed_span": 4151
+    },
+    "bigSpot/10943245/0330": {
+      "kinematics": "009347debff6263f12829493ffc3bb0e0567945cbf0d6ea3730d75c5cc2eb955",
+      "neutrons": "a391caa618684e097074d8ef467646dfc6691e593978231818b624e2872d8d9b",
+      "rules": "b3514c30915aa852f92707a6ff3bd321e696082dbcd259475c94857e6c3d21e4",
+      "processed_span": 4197
+    },
+    "bigSpot/10943245/0331": {
+      "kinematics": "0edde8ea26df55f8f1dbc32d6c20720a993ac655679a222286a7b36fc7c69afd",
+      "neutrons": "5b18596c5980ed030a592d0b608b4ca543baee7371673c634b4c932338a95223",
+      "rules": "2451f9d35fef99fdd13a3242983f62a98f54a4b2bbf284bc3def100ad149d531",
+      "processed_span": 4157
+    },
+    "bigSpot/10943245/0333": {
+      "kinematics": "544867835c76e85bd204385b2e524003bb28dc2a6bb601c57851b8c13420434f",
+      "neutrons": "09cd48fc6c2a7887001bbacd6f6d6421205f524e278cdd0b7f107741e0c06c0d",
+      "rules": "5847ab49abb2b45a3bbe4a8888ebaa4bfce29b4b7b15bfcbc57e5673e4f9e9e0",
+      "processed_span": 4229
+    },
+    "bigSpot/10943245/0334": {
+      "kinematics": "0d8538ed328551f5b3f41a891b460b67fe03bf57b928d41e7f15a58c2039af4a",
+      "neutrons": "c230be74f54eda866e8b78307646c67ee7ebda8e7787dad025f59536ea119b6f",
+      "rules": "cee1ed2ab5f595d05aa44233dab41992e9794e4824f2017e738eff0825c18666",
+      "processed_span": 4041
+    },
+    "bigSpot/10943245/0336": {
+      "kinematics": "28f639498af58349029b19c67863805c3a21f9d571381a53b9cc61d28480eb74",
+      "neutrons": "11179b99ceadb09c823d809b17997b1f524dbaa7bdc1d2492d1ad83fe61475dc",
+      "rules": "e5d780ceb3d9f89f5a3f5ad9a057c1fe707cc3396f95255ff18c32a8d39e954f",
+      "processed_span": 4060
+    },
+    "bigSpot/10943245/0338": {
+      "kinematics": "bd779e91cb6b20cad5c2185c1b89dff2611a96b9644023e8b8293b6a9aad1286",
+      "neutrons": "b6faa058c582cfdac72c31d6b79e9d3e69f5838a1aa5a454561c8b27a2e8a3e0",
+      "rules": "1341c5256898c88015d908071b536fbc7bee9853889ecd14dfd663c0432f56c7",
+      "processed_span": 4177
+    },
+    "bigSpot/10943245/0342": {
+      "kinematics": "e629401037f9f76f3cbd8cd06edcc2c8002dbafa8409e6a2668075502bcdff21",
+      "neutrons": "b452d973b44f4fedbda6d13e755d7d11fea17d016a73ba7b1090d572e520c2dd",
+      "rules": "4e15d9eec2df51d6fd8a9117f68d0fc71eaab8ed8b1bfe897652d063ed10b6b4",
+      "processed_span": 4136
+    },
+    "bigSpot/10943245/0343": {
+      "kinematics": "3041096176ac1c7742987a74f558735a8fcb7a35176260251883fc8fecf5dda5",
+      "neutrons": "10921320b181536a3a85a412a4c6ff6f1f425959e1b0ccfd93e3654c58a7b81b",
+      "rules": "05c6fdb7a63de512f2e73d7bd1ca96191fa88c0e7bda97ca9e9b356ae00b0434",
+      "processed_span": 4134
+    },
+    "bigSpot/10943245/0345": {
+      "kinematics": "39ccd8685de23f1a1d80ef5114f8cf09776165623a9977cf6b2eea189b689729",
+      "neutrons": "0ca39a3b0beee4466fe23871a7c0c845d495175b8bd72d36b47aa1a3f4e41a07",
+      "rules": "2b352575b240d3e6b0b7a68a4985c5d4286c8dc77f8f2892dcdaed94ac2bb1bb",
+      "processed_span": 4209
+    },
+    "bigSpot/10943245/0346": {
+      "kinematics": "77d371de856efb4eee781296f3682cad185752dc3e4a04b1c8d2c5f33a63004d",
+      "neutrons": "4ce716a96229c397baaaeaab058a17c550da786a58eea991d7e10f346bd4e9de",
+      "rules": "782bda07849ee8e78178b50ac9b217241e117a68d58b54b13ca7bd055e0a9fd8",
+      "processed_span": 4214
+    },
+    "bigSpot/10943245/0349": {
+      "kinematics": "1a4b65af0719f976d4b89c58d96ff3fbab281602eb6b03630c68c28f5d42e073",
+      "neutrons": "84d34d71887450c9658ac3940c809c82e6c2f8437bc40474be57f12a8ef8e8d8",
+      "rules": "e5ddb1e5dfba7a717b71595cf08d44e5851080dc747bad639b84886e1ed7ccc3",
+      "processed_span": 4178
+    },
+    "bigSpot/10943245/0352": {
+      "kinematics": "b3ffc664942d0f83243d58a2a0afb93ef4e07ed555b4886c7526f7eefe2db4dc",
+      "neutrons": "94492e6635cf5d7bc156da695ad31bb340b7cf11011562317d002796015dd026",
+      "rules": "da6dd43649fefade4d42aa960909d31b7e52b9c192138275b003d42005cc59c8",
+      "processed_span": 4145
+    },
+    "bigSpot/10943245/0353": {
+      "kinematics": "f3bbb3d40030822697e2d70d111b15596058cda8f965a85648f8f876c6890e5b",
+      "neutrons": "8498cdb5ae75b793a9cdf3fe4ead8f0c76365bf2044e8eafe4a05e78c4c9394f",
+      "rules": "1c77d694c2cfab1a90a2b497c7ba87940476aa94c34fb6130f969f45efbd58d3",
+      "processed_span": 3967
+    },
+    "bigSpot/10943245/0354": {
+      "kinematics": "8bf03f9061f1edc843f4ee551d4631fd178d8e823446fed7ac34fb23e0b53e29",
+      "neutrons": "ba6385a832cec785c3117391a428fc2b4ea7bf8d8987bb64ae8cae9974eb8da9",
+      "rules": "409532c64682e4d9bed94639dc6983affa75bab5f902159e4fbf9e2e7968e3b9",
+      "processed_span": 4066
+    },
+    "bigSpot/10943245/0356": {
+      "kinematics": "d897f799fd19b4970a2cb22eb71075af8355c913855fcd9ac13cd3be0632f9d0",
+      "neutrons": "a98cef69950cfc001f140376c9a43cd64ca481dd2c83c4147164b1a318cda30e",
+      "rules": "990a5c539952df51e6c8d9f8a5d1234d03c8d9f7ad7c7fac096289b6f412db74",
+      "processed_span": 4128
+    },
+    "defaultSpot/10943245/0002": {
+      "kinematics": "60efa466fdb2b2e8ea625aa4f822a5e957e1b35de65d7cdf50442a05eccabeb0",
+      "neutrons": "4a7eb2ea97d160c07c18795e945ffd6ee1fd07b15f2b5b74fc1cfd6447a1e473",
+      "rules": "ebc9c3674cc8c81b41ee273c40b099601e450778dc4043b26aa18370c629f44a",
+      "processed_span": 4249
+    },
+    "defaultSpot/10943245/0004": {
+      "kinematics": "b9c467c33f014ccac9d67b5e8946c25abd439623bd57118bb70100cbbe75d58f",
+      "neutrons": "1211075c41e2ccaa2e1e215a30746bc1bc39cc4db16054dadf60459a66b3789d",
+      "rules": "d55c3b1af4c9e01819e69cd99eebadd9601ddef79a54488aca852601c3b854ab",
+      "processed_span": 4093
+    },
+    "defaultSpot/10943245/0005": {
+      "kinematics": "2f330b60113572d31247a693a231412344e52faff1e01c82cf499c31d00aa780",
+      "neutrons": "b11c4ebc8531dbd787717bf1e7c4174930cc9b535b33843276ef6b15e7cbf32f",
+      "rules": "3e9aceb7ac029098b902bbc1884fe4172f85871f11289dc2d39f4b13b95dbd9b",
+      "processed_span": 4150
+    },
+    "defaultSpot/10943245/0009": {
+      "kinematics": "20b2118a4a47a8b36a478d05713ae98106fb4fbd0e1063c005dda66ec767150d",
+      "neutrons": "51447886829830faa0b35c8f025493a8cb72222e6ba02cc62267bfd4b45684d8",
+      "rules": "582a883ddc11fc16fe0658b484552de0277b7f1adcf7cf50aa18629f818e53b4",
+      "processed_span": 4089
+    },
+    "defaultSpot/10943245/0010": {
+      "kinematics": "861eb8ff3280cb8d0bf25beafca0115794ab2f4e9445cf8852e82290535290e2",
+      "neutrons": "9b8c0a875c1e5905750f6699038533f06540985a24fde57dffc3cfa0f4bb1004",
+      "rules": "b5ea9f09b7a320896a61dbe2db724b4b5cca8d4f02022c835caf1c3e1d28d035",
+      "processed_span": 4088
+    },
+    "defaultSpot/10943245/0014": {
+      "kinematics": "a499e0824b15cc7fd263bd1d79ddb0bf15948eff35ab8594e87def0bd7909c52",
+      "neutrons": "200ba8e2821a816903854fecf3381cefa1b5e4a3bcbb86a62f38db067969b700",
+      "rules": "032deaa0f1c400ca9b06a5b81d534d902741bce089dd6ae67385a6742e23b8bb",
+      "processed_span": 4121
+    },
+    "defaultSpot/10943245/0016": {
+      "kinematics": "17dda69d33d1de1c96dc2d2f03852e4257481c8284fc793d908f85faf6a6ceef",
+      "neutrons": "d09e666eb058c938bc8122657e10594256317415467fe12523dbb44e38d925ff",
+      "rules": "abc2b3ee09072d468b25c7018859c3120555e5768ccb9142327b8867119d4c13",
+      "processed_span": 4145
+    },
+    "defaultSpot/10943245/0017": {
+      "kinematics": "904596104edea6c2e20dde077d9b6450d8b3e4ee27a3d52d4449f0bdc0c32887",
+      "neutrons": "573c5523e0ab783f6c9905fc649ab6e844e4835d075c7d40321d2a33607939ff",
+      "rules": "6d02c5839f84737aa40c159165b7a328bc579d253400e27d43e49e282bacb88a",
+      "processed_span": 4158
+    },
+    "defaultSpot/10943245/0018": {
+      "kinematics": "714c9b81ed194b7bf4b6b06700636b070b4429c4fbd4f8a3c563703d6acf1d71",
+      "neutrons": "87c690d4653ee0e7701e4e72d5f33829f3ef88ae0f3e53bd2ad47b58b195c4f6",
+      "rules": "0984456f495be6136726eee36c0e88f695e6a1fccbffc103b94cfafd03e2aba6",
+      "processed_span": 4045
+    },
+    "defaultSpot/10943245/0020": {
+      "kinematics": "7110781bb6db2fb287d2223eeae5e5c8570c95c9e58d27153a878207441ac4d3",
+      "neutrons": "1542b9ff7acd8ad3cc7719ef2299d6f1a810460a7ad5a3d20216f500d0acdf0a",
+      "rules": "d37648de9311cc54eb6185d20422d27594a48e6e25b74694f349e1ec8c94eb3e",
+      "processed_span": 4095
+    },
+    "defaultSpot/10943245/0024": {
+      "kinematics": "4db4f51d73e78d0effbf3c574d80480dbba3648300121f22168dc62b8539a973",
+      "neutrons": "da453041d7c714796563290f1d7dd0c90c768e702eb7122bbe8910adf38e10bd",
+      "rules": "0e6fa728db521b754c77636c06f13c897404cf334405ef64b2812aaa7ac43419",
+      "processed_span": 4174
+    },
+    "defaultSpot/10943245/0025": {
+      "kinematics": "40522b1f00c99943d438dfe1af80b18bafd527c8b45379b7810686fc7bff5abc",
+      "neutrons": "1323795119416818087c183c7874fdd0199b28f578b93ed7051ccd892fb0f880",
+      "rules": "6fcd78e856cad0d2aaa4cc179ef681ff5dd0b732166118816986a002418e09d9",
+      "processed_span": 4095
+    },
+    "defaultSpot/10943245/0026": {
+      "kinematics": "6269b96977436e04cf7b9dbd16a35643c107f1ef44f7eb76fd99df102ee77a02",
+      "neutrons": "8d5f74070bc943992615b53c348186ab5d7509348218a405cba1c2ac3448bf5f",
+      "rules": "dfb843781dca34dc2da960a010f55ce9c7e765386d0f9d1d2d9f43574af04e6a",
+      "processed_span": 4081
+    },
+    "defaultSpot/10943245/0027": {
+      "kinematics": "d82c974c53718402b405f8040b491109adddaf2bd3d8cf99e7d0a8139a97c0b4",
+      "neutrons": "421c3b9c49512f65b0286929caf14e8626542f4be7a2eabbf6316c55b8581bfd",
+      "rules": "d78567eebc1767a9d8de4da5a9f71d54257e481220d2cffa4f1aaca1e97976d8",
+      "processed_span": 4220
+    },
+    "defaultSpot/10943245/0029": {
+      "kinematics": "bf8a2ec49ff865dd1b9fcaac586163d2854bcfe09e550d2b0f78cf43c10e70a6",
+      "neutrons": "0343666ecd0b014870f8fbeb41d75fc11f481103028099eeddd0f0e5ef61816d",
+      "rules": "36b2d0138819115ebeb2379887158e432482c3208822488d52c89c61533a49a3",
+      "processed_span": 4049
+    },
+    "defaultSpot/10943245/0032": {
+      "kinematics": "a28e3876aa5235b6e2e61cb6b13b45beee13a6e621eced4fd62cdb7b6b720464",
+      "neutrons": "3ffe8730bc3eafd5550fd9edcc18a6742ea96660a6de30aa41d79350bcd271a0",
+      "rules": "d31f723503603c6f6e6c5c5cf90100e0236414c26cbc307b75464e958509e305",
+      "processed_span": 4298
+    },
+    "defaultSpot/10943245/0036": {
+      "kinematics": "978fad7f85f7c8dcdc522f7e55bdae0cadcef2b37cebe118e8da5e0ddfeff77a",
+      "neutrons": "d281b6f8b3dcf5f898d294a55171e195f25ea29129235e560ad23e9c6633c9af",
+      "rules": "dde1a917f0501ad51632e23b76c0d7386ca8a35905241027875ef3fd9d5e5e27",
+      "processed_span": 4171
+    },
+    "defaultSpot/10943245/0037": {
+      "kinematics": "70d364b96f51f8b191caaefe57ead787b0b072b81531f034e60d18ee10418f0d",
+      "neutrons": "e08058e5873ec78c3b528102fef930590ca3c1f4ad73dcbfda6a584e5c065db0",
+      "rules": "42295cd99705b03cf7051058009eceb9069032bef9749c264370c561831746e3",
+      "processed_span": 4134
+    },
+    "defaultSpot/10943245/0039": {
+      "kinematics": "98b0f848be6b3a1040b598d5c2c025d691dca7b4aef0e6bce74b854087914474",
+      "neutrons": "5ffb3596a7fc5bbcf406c9d85549ab2bebe2ec22b663668584819cc8bbb738d4",
+      "rules": "5bccd0c9f7c4703c341cc58b8195cff6b64abc4fbc21d99c7727418f9a6bb72a",
+      "processed_span": 4043
+    },
+    "defaultSpot/10943245/0040": {
+      "kinematics": "8c4ec6207ba8fd54cac00a0cb35406636bffb8d58d6881a994c7ca7fb3476791",
+      "neutrons": "810631395e1d5e20fb328f9710158ed9bd75e03812f4a3a2ab47cd6e58246c2f",
+      "rules": "ae0c154501d1ad1ae9117638b587a2839568116949c368954319ffd6ddec50eb",
+      "processed_span": 4137
+    },
+    "defaultSpot/10943245/0041": {
+      "kinematics": "a733e48c46393f4badfaef82f9c5edb7172a6838ef2895d54274390cd7f5f562",
+      "neutrons": "e46e2d5f212284283477482637a76ac2acbc36ecf5249b85e31ac80f4282e9e3",
+      "rules": "a63a66d5de6fdee14bf564bab19b1665d529be622df4d61abef183810d04ba64",
+      "processed_span": 4107
+    },
+    "defaultSpot/10943245/0042": {
+      "kinematics": "a13f628182ee1f3626ffccd8d12e46284ea87d6064e9de31671b83d9f78cadcc",
+      "neutrons": "7547553acf071dd2a5de9c976569ec54e4bf8135c87b27d94bad9516b4a5928b",
+      "rules": "98104a62d4edc1677ee03cdf2f2bf17f222f85a8915c10eab5837602db95ecb5",
+      "processed_span": 4088
+    },
+    "defaultSpot/10943245/0044": {
+      "kinematics": "e6a5a0866470dccf20bfada7a9ab79e6c7c726f51398313112f5cc4da45e74f2",
+      "neutrons": "5990e28a3f953f5a6ecf21b900829679896db70f631dc39e64b1cb24cb697e4e",
+      "rules": "baf818a1c1d97ba574b6da0db22313caed94bf61d9c3389666d6614b7490434c",
+      "processed_span": 4103
+    },
+    "defaultSpot/10943245/0046": {
+      "kinematics": "8e08ed36f49dcb4a9b3881f43c14e4b3150af5b97b54edbc9ca85646af33bf53",
+      "neutrons": "117d85590967573d2b866f3c46fc6443bb85167935411388db7f60413fa3d584",
+      "rules": "daf2def79c02ab58931fd3f9ac4b4558312987e4d2bd8820983d9bd32f5a6e4d",
+      "processed_span": 4219
+    },
+    "defaultSpot/10943245/0048": {
+      "kinematics": "1413011b8db2967ec4468a2a277c816fc7da5b9e34b6248e01b22c899c3b41f4",
+      "neutrons": "826a18a90cd3b3c465890b2bc87c9ea84eb42b6e2fac2c8871d139171a37eb65",
+      "rules": "feaebc3d208bed458aba3203955f7ab145a761721b8c3a770ad9742c08a26608",
+      "processed_span": 4226
+    },
+    "defaultSpot/10943245/0049": {
+      "kinematics": "c109f79a8944db6976087defc4fc86f6b37a035cb3f0ab037bd7792620cea94f",
+      "neutrons": "aa378e45dc7c26c732fecad28c0271451b1185532cc2765ec8ee03888dc8ba0d",
+      "rules": "104138530992ccc8058abea88d015dbf3b6875f37e4b3a8d196a26c4e16a3226",
+      "processed_span": 4155
+    },
+    "defaultSpot/10943245/0051": {
+      "kinematics": "40f592feeb678a29d6354a8254b6f501338eefa8883a6c2f228c375c9714050b",
+      "neutrons": "9cb238d6cf2c0bd09a70d229458a021bd94e8a28ec582efcbaf318f83b68a5fa",
+      "rules": "41afaa25c1552a45eb6c135ad7f32b9c0867f73947f8796f4f69c3656b3227ae",
+      "processed_span": 4015
+    },
+    "defaultSpot/10943245/0052": {
+      "kinematics": "0431d82645cee01e291e5b84de6b8c94ff531b417c893f6cceb1c95e8b78ddd7",
+      "neutrons": "4524a9f878d65ff37837b329d55d7ef023a7b6a277ebdd834f750ddaa9ba5110",
+      "rules": "88bc9baafcef39203ea9374d1db7a89e9662de88162501286b9bc9550ed20d05",
+      "processed_span": 4119
+    },
+    "defaultSpot/10943245/0053": {
+      "kinematics": "247e2b12d0ca33bc1d3a1d9e45a3eec28a978aa9067baf1e0dfbdfd2a9a98255",
+      "neutrons": "b7aedc9fe3062fc7095dfd00e53c136b4081fb9eb8c50811e90f3c07026505be",
+      "rules": "a26fa841b4034efa43191dae29159726f6ad3197e7ba9f9dd8b5d97eb6213a63",
+      "processed_span": 4122
+    },
+    "defaultSpot/10943245/0059": {
+      "kinematics": "b1858eeff60a1c9081e862017aa39a96df950b2651cf7417521fb0613a1bf9da",
+      "neutrons": "ee78e5bd78a7f5af0afc44a65e57b1da6b1308ff2bddce2e8aa13bcbbaac33f5",
+      "rules": "4c98c1ae49099a90e601d1380a251c508c6ab6dcd05479ccdb1e7f5dac8524e4",
+      "processed_span": 4084
+    },
+    "defaultSpot/10943245/0062": {
+      "kinematics": "9cbefa4038973f647f1b642baea412299398e63cf1f22d7c778e44a8fa2ac75d",
+      "neutrons": "e5fa5a735dd3de7ba10323304084ef4ce3ab1d699b223d5cba268a37ff39d2a9",
+      "rules": "e3170659d3f766fd63f52566b45e4a1cb644202ae68e1f2cb411ec03e106ae6a",
+      "processed_span": 4151
+    },
+    "defaultSpot/10943245/0063": {
+      "kinematics": "a2f801fc8a6825513a242e7c1d11758b38c47f025e15730fb2306390b5075e7a",
+      "neutrons": "50be1d4f60e046f1db9ccf567f007369dd5e0ef5eda7fe2ae28929888dfcc5cc",
+      "rules": "a8553031f3cf8eb6228d60d66b1ab4880837c19b268e4c607ec51d1eac85fa9a",
+      "processed_span": 4075
+    },
+    "defaultSpot/10943245/0065": {
+      "kinematics": "22de2fb68955eefa0277db7decf28c3249ad50b98ac4c76b325fecd0003a173a",
+      "neutrons": "5f562873dd5f63356dd4ee106a7f62b1ccc52fee776a725000a9236babba2778",
+      "rules": "78aa910bc4df27115e1cad0f31e5d29b531eec1f72b25bf63a0e5340f85fc54b",
+      "processed_span": 3894
+    },
+    "defaultSpot/10943245/0066": {
+      "kinematics": "ffb27ab126db1619f9d6457493b1ba501cb5848c25e04015744f42c659dd37f0",
+      "neutrons": "7b20216d6635d94bec6aec647a38db2a7ecbdbda3ff3459faf3881f89e3e4ac2",
+      "rules": "1d1499b631df0c3acbbf843a7f212933e2d63335a0fd14ae3ffcb88cbd291ab5",
+      "processed_span": 4081
+    },
+    "defaultSpot/10943245/0068": {
+      "kinematics": "8d5fc6953156fd6f81ab829c4105049c1f9cb59de9745c67cf92993eb73c3787",
+      "neutrons": "533d8f1c98ec6bc25631b4ae12b5f7271645266515a6472dd9683a1d301c157f",
+      "rules": "6e5d26300a9c32cdc86380ea5b31f36e684107df1e180228e593afa2f8713aae",
+      "processed_span": 4167
+    },
+    "defaultSpot/10943245/0070": {
+      "kinematics": "982aac94ebdf69bb3ec11344e0ccece28ac672fed4f26a341a2d99c685a2efc3",
+      "neutrons": "580e4228c1800f2e94bf275d3cb422b63831eafadeb1d3ca33045575e7449d81",
+      "rules": "85a10276394ed9171d606248ac85fb1ded10fd7e1f9ccd761cce5ee76854ce97",
+      "processed_span": 4159
+    },
+    "defaultSpot/10943245/0071": {
+      "kinematics": "a54d558e6efad5ef8e62cf4e429b9bd2e38c2f5bf605392cb456ec6062599b94",
+      "neutrons": "bed263962f5f825c2af1a16c09280e73009142f5ba4dc76c0fc416a3dea7e37a",
+      "rules": "d3d57c2940a7d72d98053a03497e5af3ecbcfdda5556b07e2ffed81f7b4ceef3",
+      "processed_span": 4092
+    },
+    "defaultSpot/10943245/0072": {
+      "kinematics": "7b5c9774b3b5b1bd25b91c56b010e1bb456bbe9fb90a846b488af9863c7a0747",
+      "neutrons": "1bac9b96801670650948ae31a987c302c7116b8e51dadc434160c5887a907705",
+      "rules": "70c2bc42a384415fc02819e8bfdb8f22e185f3c143cd6cfb5b58e63ecc76ffae",
+      "processed_span": 4092
+    },
+    "defaultSpot/10943245/0075": {
+      "kinematics": "b96b1a24a5685b2a8da199552479196f47bc34d31de45bc1db54e8766f8955be",
+      "neutrons": "0ed758c92976bf11c151e8d383e9676fee1b20096cb1c7aadb16b8ea46e0122b",
+      "rules": "cb17f0565cc252e95eb9cc73c82c1ee64fc4838c37e1b4544576ba942d1beb07",
+      "processed_span": 4146
+    },
+    "defaultSpot/10943245/0078": {
+      "kinematics": "c6851c4355d3ef55d7587db9acb1d37981ceaaed8dba9a0d244ae987eed3410a",
+      "neutrons": "42b9e8e2d3311d63920cac43630435065d3dc9d794ed571c8774ff5cd41f4f5c",
+      "rules": "0ae70a6b8f4f61c21d89ceb4b613d41b3edf6f132c8a43db1bcd5829dfe51dc2",
+      "processed_span": 4194
+    },
+    "defaultSpot/10943245/0079": {
+      "kinematics": "4d63db1b9d3b23ed07da9aeaef7e64dda7ddf8c9d49f1fc870f2b1af25a169b5",
+      "neutrons": "7938f960cc1fb972c1dc8639f06fafd9b5dabc852eb91f7b97cdde576dc33eba",
+      "rules": "34ddead71bebda4ba459791014e2308fbfd48ee723ebdf7a2a74fcd25a8446c1",
+      "processed_span": 4123
+    },
+    "defaultSpot/10943245/0081": {
+      "kinematics": "27b013b43a3b6e102a4e382e192bd2a67a212a2233cf9c46cf2254a41fd4c64c",
+      "neutrons": "032f115ba4dd1f4c9dbb9e68d3005d87727874773971d43029ab5aa91e31e481",
+      "rules": "fa14494521172e95581c9263fbb7bc1ba437188300da9c4596b23282f5f58ae0",
+      "processed_span": 3950
+    },
+    "defaultSpot/10943245/0082": {
+      "kinematics": "d590ba322ba68fc84499c6bc955a0876e2e120a432c4e361ead49f6928fb121d",
+      "neutrons": "d2a5cbb4c91d2b63ca524c900a188b6e47a360b9a5f6232bb80e09297dd1cf96",
+      "rules": "a5510ad8142506b577de80f3f2d7f39a7ff081e03b1fc4ec822965e2c1cdcf55",
+      "processed_span": 4150
+    },
+    "defaultSpot/10943245/0083": {
+      "kinematics": "70a4fc6b11c44e4cef7972b75b980b56f48b080b1dd9780d9468756f4565f56d",
+      "neutrons": "723a71e2a4c986c3806512fccebdd424e070c2bae890ce8c50867266fef58cbc",
+      "rules": "2d20d8dcbae3f67eba70738d23b1ca05e2a31dcce9607d31c97388fa8184da19",
+      "processed_span": 4251
+    },
+    "defaultSpot/10943245/0084": {
+      "kinematics": "4cf41db5365f182d8c95328ab46acb45732260d728214c679ac2493a331b6d1d",
+      "neutrons": "817dd79f48a038809f1a581bb363d2cf57834a0adf65710109de0d8ea47491d1",
+      "rules": "82fbb58ed0d2a25756afe36e302f661dddfaa48e443fee7895165831f67dd3cc",
+      "processed_span": 4127
+    },
+    "defaultSpot/10943245/0087": {
+      "kinematics": "fdf4a2ae1a3a9a38b70bc5ab1ba53b408f3ad4e58bf57bef828356a4d237d1a8",
+      "neutrons": "5be52760c30561a0b49441122e0a141cd3a09479ee8bc3ccecec910380f6c58b",
+      "rules": "ded45c6a7a2523156857e58c57fb6d159d983554093aff28f1c19c80282adb3d",
+      "processed_span": 4080
+    },
+    "defaultSpot/10943245/0090": {
+      "kinematics": "2ea95d5998b3ee5de0ff19f627747354847b3b506a3b6f4db4437e0db6fee21c",
+      "neutrons": "68498854e651a6bffd1a5d10a10a3559fe77cb268204a139949340a4bd45e84b",
+      "rules": "ae9c518926349985143ba207071b8b7206e5f2c705340173bb02e06dbc81bab3",
+      "processed_span": 3975
+    },
+    "defaultSpot/10943245/0091": {
+      "kinematics": "e257cce55b8981b38d893b1298136b2a38ef60a14ec5250d4a3afc8e38751e35",
+      "neutrons": "0fdb9f2cff7ab2a04a4837ce9900630ff07aa97542d3742e1090a20bf4060b05",
+      "rules": "a61ec9dfc2de5ad1916317465d2915404821b57253b355931660055497f001a6",
+      "processed_span": 4177
+    },
+    "defaultSpot/10943245/0093": {
+      "kinematics": "0b746c584c3e88bc42ae9527495102dc72e156c0290dc9ce695e410d69f310cc",
+      "neutrons": "0f59a476bd2228935be51d120046c58b956ed696f66f21580bb2f60413643020",
+      "rules": "c5c7b37c64c37ecc671316d02ecf27f326a54d7546ae8fe0d2f04fc827618abe",
+      "processed_span": 4169
+    },
+    "defaultSpot/10943245/0094": {
+      "kinematics": "305ad7e1b6ee9b476cf149bec585b31e8840524fde1011ca293ef7dafb4b08d6",
+      "neutrons": "a67857dcdc79c6da0bfa0e57e19163a5a5ef0f25cc26de7293ff36d9f48adfde",
+      "rules": "e70c0a88150fb88a29058f06b7ed574482f2d93c2af80f094fb6e3822df99347",
+      "processed_span": 4110
+    },
+    "defaultSpot/10943245/0098": {
+      "kinematics": "6581aec682aa6c40df9341100a2784a681f4ddc160d34489f97450f5b9ebeb7f",
+      "neutrons": "568b0e46c245570b4615efee343d45923da90ba9421fd7f983c158eaec3b4923",
+      "rules": "4c90ca8f819ad59c9f0b7acae2bdd549fb62ce002748aaffe88cf156885ba5d8",
+      "processed_span": 4174
+    },
+    "defaultSpot/10943245/0099": {
+      "kinematics": "977ca76ed0780b9bfca3a6bd4d46b6d3ae426c11b168b0c474cfad7c61bcf5d8",
+      "neutrons": "f72d58ad4becdd06056928387519dc2c0cfb3644e15971afb43c3763492acfe4",
+      "rules": "7168f542a26d9cdeb42a3d7c6302e38177ba3fcb2bd98a90e87ac9dff32e1e84",
+      "processed_span": 4126
+    },
+    "defaultSpot/10943245/0100": {
+      "kinematics": "9d9aad22f41b128b8c980afd925b49b88f3057741c21b505ac761d2042ba3c15",
+      "neutrons": "40cd894d57533e2f09674c482e032fd905c9f4e4558e7dff981e87eee77a9c14",
+      "rules": "51bfe4dbc4bc14d4c014dd17c7345d97701b3cc4f11507c05f1d74c3862de1a8",
+      "processed_span": 4081
+    },
+    "defaultSpot/10943245/0102": {
+      "kinematics": "b3c14ce9a93f9acd706cbbb5ceeb27204d30cf1db039d4d6eabd77f887ab5cd6",
+      "neutrons": "3690f983e8210651a213cc1c555ce5e2e3a9379a04c861460e2bbc58842d83a4",
+      "rules": "9f59949424d370a18d8726cfed9518b1755ca4c386f504429b1708b3e7b8a306",
+      "processed_span": 4142
+    },
+    "defaultSpot/10943245/0106": {
+      "kinematics": "97c1b684206295fa1e23cc006c7d060ea0681eba4c2e2aea8e242d6f96f58ead",
+      "neutrons": "338a3d32ce2c468a677c6c78ae4e4630d06c61300132dd99bda00cb36cb47956",
+      "rules": "45dd153421b1fb53d7d1c93e710b4a145c3e969a096d12c658bae5de80235034",
+      "processed_span": 4217
+    },
+    "defaultSpot/10943245/0108": {
+      "kinematics": "3665edebb554494bc74580b7e7882b5c6cca2c648d3839cada9226d3ba384565",
+      "neutrons": "e7702aca1d18a44f643141931dbadd7156a8d7943a4f1fe4cb99f117a5e8a633",
+      "rules": "35c17c10580b34d609dcb7c9359e08475b67f5c80e546a32e5253bc7da302ba2",
+      "processed_span": 4148
+    },
+    "defaultSpot/10943245/0109": {
+      "kinematics": "8bc1598dbdcaa27cbc755d055b54b14191a83fcba0da022fca74cf80af596f21",
+      "neutrons": "5a0b9a3a6ee4bca752f1d39b12d18a8457d1ecd1c81e058e16fb4a256ea162fc",
+      "rules": "8e069e604fc2f98b44701efa52d4f1a0a2e273164186ffbb80f2e98856697fc2",
+      "processed_span": 4093
+    },
+    "defaultSpot/10943245/0111": {
+      "kinematics": "7fabf30cae65e4be52fdb92d7465ae0f5af3b8a1ba124b1ba83fed997e1b9bed",
+      "neutrons": "00bec006bcd83b3ac2ab12d2faffcec7bbfb7208d1d5a24c69d68fc1ba5f7cac",
+      "rules": "3507ebbed3086f42995bcb6f36b21f568c6fb7201f38aa5efb686b6a72017177",
+      "processed_span": 4181
+    },
+    "defaultSpot/10943245/0115": {
+      "kinematics": "8a8dae7eec049746154fe51a5e3a6f004bf3bc9a2cd1c388ce572b97a3dd6cdd",
+      "neutrons": "d12e9c2f82bb707deda839376ff5f36781ff1e20e5fed059c5e30948f6a5d451",
+      "rules": "5cdd5c018fab1d29bf3ca2414d01eec8ae8cf491bca7594341fe898ee465f120",
+      "processed_span": 4177
+    },
+    "defaultSpot/10943245/0116": {
+      "kinematics": "c6c5744f48c4bcbf1283e1a478226589dbb37eadf6df04f8722f7e0fe321696a",
+      "neutrons": "ba8490e785ff571fd785e5208a7d03afb83a5be99408a28f68ae15289b8ee89c",
+      "rules": "ef458760576c571a6e5157e377d49061965e13cce223297b0909c5a0e136e663",
+      "processed_span": 4171
+    },
+    "defaultSpot/10943245/0118": {
+      "kinematics": "6bbfdd9cebba4e71be72f3bb85552e8172a45a6a35e0889266e9681ed3f7e8f9",
+      "neutrons": "977c7bf38ae9f28ddd5294af27f280e89e864d2548fbdf8600ee78f7dc374022",
+      "rules": "2cd3c12febe3a6d665b845a398175c0fc5047d8fb94c8d7e4050a52136b0f428",
+      "processed_span": 4115
+    },
+    "defaultSpot/10943245/0119": {
+      "kinematics": "b9f1e1a42c4215e7b047580ec66926df828bcd6d93f00bc2473317d30f99795c",
+      "neutrons": "5d2f0dbe1c789cfd432fa74ef50f0d747fae2d63d510765ac8fb7171889c260e",
+      "rules": "e1483da3609258643b148adcdb82256d09e0d6ff6763bddaffe32d9071af8725",
+      "processed_span": 4145
+    },
+    "defaultSpot/10943245/0121": {
+      "kinematics": "f7a323989137bf02062a6df0b7cac55870ee61fcf5a899caa50dc4474c857112",
+      "neutrons": "8aba58606603d0a54f30d4163689a75049acdd760e1903cb4c63715b81056dc8",
+      "rules": "64a73309f527c68fae27a893fb9d55046f7ffd87a54e47248554a4a459754187",
+      "processed_span": 4242
+    },
+    "defaultSpot/10943245/0123": {
+      "kinematics": "0c476923b4186f9d71d4583fd0c50461d473faeb040a5540d0d18679d93f0910",
+      "neutrons": "91429b97d4758f69d68cdefa816753dee966a678f4f422895fb37d81251379f7",
+      "rules": "14a731243fc5147d270abd6750096209f785802af1f09d29a7bc62dbbd7a9f3f",
+      "processed_span": 4085
+    },
+    "defaultSpot/10943245/0125": {
+      "kinematics": "84bac2c0a1f76d8998849f7d9171bb2c0e66af91edbc5bc4cc14e7789b435b3c",
+      "neutrons": "415cf34c32f447a1524be868b8d1ff1ba481bc2200879ca83b0bf33db13d58a8",
+      "rules": "b48a1d51c9b2c919103fd33e1a7179798ead009a30e881befb55664f582bd57a",
+      "processed_span": 4150
+    },
+    "defaultSpot/10943245/0126": {
+      "kinematics": "78403f879ab29397c4b108f2fb5beb8ceef1ed1fa263e69135fab3dd73f62023",
+      "neutrons": "564508761a95e0a53c08dca4fa9629c461e829e0a7027d9ed172a9250ac98832",
+      "rules": "e39870d754f09bb3f858db730a2be0ead7acaa7769d435f20042874e4d18abce",
+      "processed_span": 4100
+    },
+    "defaultSpot/10943245/0128": {
+      "kinematics": "f0dd0522b9aae7b7cc8ca6a7fee9934b8a7b0bd4df7647a71d421e87d1e0d6e9",
+      "neutrons": "22726f33daab2baa68bbd4b5ddf9c5c9a1b6b1f3b7a99b42301bbee0f10ba0b1",
+      "rules": "8bd768ac3ec9db30049c1b0d3aefc7e922261a3e3e24b22180b5fc6b958ada29",
+      "processed_span": 4074
+    },
+    "defaultSpot/10943245/0129": {
+      "kinematics": "6b61cfdc91fffe7ab8676d2beb32eb483bcf3effba7019f49107d7ede3f4d6c9",
+      "neutrons": "4f3746f21481adb91a422ccee5405b7ef061f880425eb524c52735fbad04f522",
+      "rules": "a246519ec8bfd1b140e1779ce1073f75db8023ae10991dd08c1aa5f0956530e7",
+      "processed_span": 4081
+    },
+    "defaultSpot/10943245/0130": {
+      "kinematics": "5c8f0ac9b7ad278bbfbdcc7a7237aa5feb66db8639b83404608a8fda129fbe48",
+      "neutrons": "9206117bc06d968519d37a01f53637bf399d1da4cf4cda70f1a306ff0a29a926",
+      "rules": "79ed5a4ba74d916eb0e0463660953fafb89c163ee86fde5d403c32d6bd699f38",
+      "processed_span": 4233
+    },
+    "defaultSpot/10943245/0133": {
+      "kinematics": "824b519c1b3b4d551bdfaa07331ece3360fa489633bc6975483e028b06884f55",
+      "neutrons": "b417069bad657ca517d03622ff668680fb87459f6843e1f40a713ae6be583a29",
+      "rules": "6c896746067b99279b4a0cc52cb12f650c7f329558dbdb1336a1d274272a5c25",
+      "processed_span": 4127
+    },
+    "defaultSpot/10943245/0136": {
+      "kinematics": "4e5147f3826b1b9dea1fa2586099b0744dc27cbc22f74509d5bb9c4c6245908b",
+      "neutrons": "d16d0ed182aec4eba8e89ec6c341a2d6ba242d921aa14f3413a2e49c63dd3b74",
+      "rules": "b1e043b8fcf0e172daa2fe6e908bc48ed8c7dde160a84989e61df8693f21ca40",
+      "processed_span": 4095
+    },
+    "defaultSpot/10943245/0137": {
+      "kinematics": "535b38c7931fc6090285e32dfe78858e9a03b8edf7863781f162a3d2f9213da0",
+      "neutrons": "b9d4ea1f0cabb8b01e59e8ed32ed117b78ffa7d19b49ed3bce4853bd432b9bba",
+      "rules": "29dbe8e66b930c373aff60c15755a64e33ea8c1ded42b53a3c6b5e43394b35db",
+      "processed_span": 4171
+    },
+    "defaultSpot/10943245/0142": {
+      "kinematics": "0a18b45361be6971284b7608c881dd1f5773ebcb4168d4c43559a0c8c65f9d56",
+      "neutrons": "248caf4d2fd6b6dbdab2e7dcdc67bf35d57cd717263d7fb544b98e28a4d766b8",
+      "rules": "3774b6110465b25a9b3540b8831a5f055c4d196be4e2033028b596ea5693037e",
+      "processed_span": 4115
+    },
+    "defaultSpot/10943245/0145": {
+      "kinematics": "436573dc7924b18bbbcdd663b5e02cea9477561bea3900e97d658508a2c2da16",
+      "neutrons": "ff2e65c8a968945132bba102233b47bd3ad3d987ab5c758772045105861dfded",
+      "rules": "d185505d1eb5afe254fa02004d8c97ad29db1452c6dc1381cd1d8b8922545aa1",
+      "processed_span": 4144
+    },
+    "defaultSpot/10943245/0146": {
+      "kinematics": "b232c6320e8bd78d77fdcbb06f6a6640c7bf5fbeac839965b02af51426d20c48",
+      "neutrons": "6e92b706413c47a8ab587eea4b1427ab399551e5c4c21d3560cd309811d27e1a",
+      "rules": "710bb5c1d7b1968e1a2ce09d6d8597ed0f7f6bf2a57b60e473105fdbb8a8b293",
+      "processed_span": 4016
+    },
+    "defaultSpot/10943245/0147": {
+      "kinematics": "b1f98f8c91d6329ad96a789aea316357497e4e198f013ae78ec39fd892590616",
+      "neutrons": "9e7487ac1709f46e7aa6005aad29997fb5a63a1b7ea773eb8f21a1ddc391d6c1",
+      "rules": "486be12a31ce4963e2ed237193c06a7301e06bf866956ed4bd7e48764e9ed720",
+      "processed_span": 4179
+    },
+    "defaultSpot/10943245/0148": {
+      "kinematics": "d1868347f8227b8afa51e5ec005bcdf7a7a2b97ca4ae802623be95ec974f2888",
+      "neutrons": "bc88b48a52fc23c5b6dd86832d02218c8ce591929634d7a1554b62e7eb690a5a",
+      "rules": "607fb8b9c751bd39c856f49ea42881746604da238d31aef9c62ecb4f527658ea",
+      "processed_span": 4220
+    },
+    "defaultSpot/10943245/0149": {
+      "kinematics": "ccc3240f66eb4fb5df43ed8f41b96c1744c89ae72af0a27cca038eb4e1d268c3",
+      "neutrons": "5911ea8b873ba7a45744fde43e2950ea4bd8d0104dddd1ea879656f1e4d6e9e3",
+      "rules": "1d8833455367345911e2512274335bebf22fd74fcaa6a3b904c234b316ff236b",
+      "processed_span": 4122
+    },
+    "defaultSpot/10943245/0151": {
+      "kinematics": "8e877d770bc6d686b84b6b27bc06f0094630653014963c395de7d6d89f3c909a",
+      "neutrons": "a15541e6970fe6f51ba14491f6bc5c6636ce38de83db55f6bb9d902e27d88d45",
+      "rules": "3a87eec91c71e3794f4264b602928c130dd0c508f4ebfb5683a8f9a7e482ef41",
+      "processed_span": 4202
+    },
+    "defaultSpot/10943245/0159": {
+      "kinematics": "df4cb59aa5c2e6e5d84bbe71a4a676d578342bbee94d4a93444a123e478afd45",
+      "neutrons": "d21712988fb5392e80e496eb038bbabbdc9a801f473b3607dc8fc72f7b733f01",
+      "rules": "0503dc24ae57448a1618160b05660e86e69b97cf3b76f49de809e075dee9959f",
+      "processed_span": 4094
+    },
+    "defaultSpot/10943245/0163": {
+      "kinematics": "2901419bfa0184534f75fe23df0011aa0dac0aa0508b9e67d5d715168203128b",
+      "neutrons": "0c9a059a03ffa726b15124ad0951467d45925c3c5ab4e5a5fc9c81ba4cdc04fb",
+      "rules": "3be4d8ec79c91cf8de852bac399d0791eae7115d24b2b8653f1a3576f7ce33c5",
+      "processed_span": 3945
+    },
+    "defaultSpot/10943245/0165": {
+      "kinematics": "d57094c13e3d2f0d62fe4459d2bb555f491b2f3478358a44886cd4f425c67053",
+      "neutrons": "80c63bd5fed18363c46c15f0d016b1f61d8b85f3164ed89d179b6ad32b90c639",
+      "rules": "b2b8af313560f4b357a6e171336758fb191f9d0d26bfe42274cb53e6f8b1bccc",
+      "processed_span": 4162
+    },
+    "defaultSpot/10943245/0166": {
+      "kinematics": "8ee90bc7e915185c91e81ffac69a938570f7ad5033c9f2706b136b9582f98f1b",
+      "neutrons": "489ff380f390975f5ccecd286a3a466903c9c3eadddbc6fcdec78084d1c19790",
+      "rules": "44208e42e488dfdfeb660df659b5270df2c32c175d31bc260570d23136e4598e",
+      "processed_span": 4142
+    },
+    "defaultSpot/10943245/0169": {
+      "kinematics": "b5a8bd8bf0f88b1bd499da1fdfbdc4aefc29aa0624a0ce3a6d40f26b63c6e24f",
+      "neutrons": "12957bba89da011a464b631c3df676f90b8936f3c3192073bab1ac6d4ab2234f",
+      "rules": "300efb4900d2133096f2b8caed816a8a27462039f852434e2ce8bdfe7e58f2bc",
+      "processed_span": 4207
+    },
+    "defaultSpot/10943245/0171": {
+      "kinematics": "07a3e6d71bc91af5c33fe17d60355944d957ce5bac12ba7dd54d04d82535fbd8",
+      "neutrons": "e6954fab2d13577d5ec81cb9a3fb6bc372d7d0bc22c9848e963fa580546a8256",
+      "rules": "1edddf7daf6bba3e6d8d340857fdf11268e1bc337463b7ab2a59b0d935a2a7ea",
+      "processed_span": 4101
+    },
+    "defaultSpot/10943245/0174": {
+      "kinematics": "107144efdfbaa7c86f02a3c7aa7071028c68e863f90039323ff5954ddb51cd8c",
+      "neutrons": "0086ed819fc56b296ed3d26748c276593aeb96523d3a19c8ee71a75a93dafa3f",
+      "rules": "707508607744915160d1ac7b568d0c5ce15d9812c184259ffa18c403769bd98b",
+      "processed_span": 4236
+    },
+    "defaultSpot/10943245/0175": {
+      "kinematics": "a15027f32063b7a5a8b346dea265e2a3df8f7ac2894e5a07da8c0e07b89fbc98",
+      "neutrons": "c67682055b2af907a37a8c4380dcf7ad54abc2e52fe7dbe7fccf22e9267ae640",
+      "rules": "cb8883b7a62e163f01097e1ac8df1cebf33371ce2546aaa3f3a4a13127dc1a41",
+      "processed_span": 4080
+    },
+    "defaultSpot/10943245/0176": {
+      "kinematics": "e1febec7c084b78bf05af725dc1cfd013cdd3d9ec2a02b840ae3ad199dc53436",
+      "neutrons": "672f43754db971d88490e162af77d4dfc3993d962c2e5187e9f6413cbed54704",
+      "rules": "e93307a01b1190b061f8eb49bff586e58e004737cef5574efa6a396c902dcd97",
+      "processed_span": 4092
+    },
+    "defaultSpot/10943245/0177": {
+      "kinematics": "f6d96883f3431e69cd891de30e0e95afb52e9fded22814fe79ce95ab5ed25f9e",
+      "neutrons": "be18db9966605c9cab6b2f838bc8db6399ee4fd2c80920698e9b9e574d707e7a",
+      "rules": "af655ef126c3bb2ff19d87a11570787c95ce9d5b7e139445f65a7e22e03ce84d",
+      "processed_span": 4201
+    },
+    "defaultSpot/10943245/0180": {
+      "kinematics": "9aeb68d8ef6f9d56ab36ace1b8489a4c7f23f74431a6ca0c14091d3a7081f9f5",
+      "neutrons": "ddc6fddf5620f266f54b1d5b3b00534379859119aa52a9ce2869194fb053fa77",
+      "rules": "e10319328b3987aeae6e6b96c6184eee72ba9e2f011d30514e32599c8be011ec",
+      "processed_span": 4139
+    },
+    "defaultSpot/10943245/0181": {
+      "kinematics": "9f5d1a4f919b2c61333013a254165217c76ccf2364320e7b5d31fb87f7aea300",
+      "neutrons": "d7c3c66ce6705d28b753ef560a8b6fcc9548bc630475fb6760b533d1149c660d",
+      "rules": "5678fa792841fcf59c03c475fd4988d93711422e15c517a5e09a285434e1f6fb",
+      "processed_span": 4019
+    },
+    "defaultSpot/10943245/0183": {
+      "kinematics": "972a82d1bb72c92daca1eeea8590b84115b5f8f217b6344e7d29416c771f2d68",
+      "neutrons": "cf3e7d7948c25ffd20ad51bebd00eef091aba0faaf66af5e541138eb40c7fbf7",
+      "rules": "bbd061659f495c339a35d849cdb99f16b53b5bfdaf90f7bf8d35c8654c771481",
+      "processed_span": 4045
+    },
+    "defaultSpot/10943245/0185": {
+      "kinematics": "11466d7c30453be757553fa74406a0d61845aac93a259fd1705be608485eecc3",
+      "neutrons": "1e98a197f49a533b2a20ca47234cbf4879ce119709dee3071c05f240531dc77e",
+      "rules": "3d22283336865dfb1777944f9e3ea6d366c6a85954f31a1c5af6aa420c21142a",
+      "processed_span": 4021
+    },
+    "defaultSpot/10943245/0387": {
+      "kinematics": "814bbb1cc44f60f9f4fc62551d88923b813053ad6776d77eb821a703ba294a22",
+      "neutrons": "6ad14a9ff8302abac88173fe444383bf877c6b29347b0e3b1b7b9508106f72b6",
+      "rules": "ed39357e789ec432608a701665965142f8a4c267c43e17c3f5fedf75715c9bd7",
+      "processed_span": 4068
+    },
+    "defaultSpot/10943245/0399": {
+      "kinematics": "9755f8f27188c243b73c4f8e3d1ab16aaf1f878ec2c36abad38d5cf3e0a2478e",
+      "neutrons": "7714830003ae984c870dc0a14c1cf97cc8152e32e94aed79d27aaac61b0c2481",
+      "rules": "e15d6d655038694ef0d3ef28ff84be0f0f7fa543da92257ce0a8cf0d47e34d6c",
+      "processed_span": 4131
+    },
+    "defaultSpot/10943245/0486": {
+      "kinematics": "9a7b5777d42793d7a6060fe6d5a4ec09d5ed4981e65ec61ac02e6a8e3d4ab3b5",
+      "neutrons": "258465e3c08ff90a115447560ca19d257093c9dfefcb2a4f206e31fd1a783c4e",
+      "rules": "20b5b751a8dd53499c94f5510003c3d365fd197f437b46ca15f08a65c7ed38e3",
+      "processed_span": 4140
+    },
+    "defaultSpot/10943245/0539": {
+      "kinematics": "dda3438c8a1986520312629402ae3cd660179cbd7dee5f322256a841f9d3e001",
+      "neutrons": "2ccbaddcd03a891743911fc81a3c3aa3ae9dbf6aee169030b5f473103c35f3df",
+      "rules": "0a55155203590bd1ffbc1ec03626c88404265dc3c454a46118f31e37512ee9a8",
+      "processed_span": 4100
+    },
+    "defaultSpot/10943245/0621": {
+      "kinematics": "ac4065b2ac15ae12842e5f7febf46c3a8979530f1db985506e7a8e35279216fe",
+      "neutrons": "53c91e7597d2fb67b39c12a0e1113cdce8d0156f71c4c499e649a89d2f655196",
+      "rules": "fb479870e9591644d08e873b94917d5e36e501a97c225da4b5eeb1f22963be70",
+      "processed_span": 4126
+    },
+    "defaultSpot/10943245/0633": {
+      "kinematics": "a7a3e3c17a18295528f2f6cd2bd75135d79173b626b2a3c1a84c69162eeed771",
+      "neutrons": "22216da74cb5fda9036c3d0ee6f486c7802818ef47768751a347e866cbb1efde",
+      "rules": "beecd58b46ef43f9241fa6fd3cf1014a52e0a2e2e4a3559c3886768e8eab1f78",
+      "processed_span": 4060
+    },
+    "defaultSpot/10943245/0812": {
+      "kinematics": "32ae9ead9ee0872905ad727ac7609e0dd035abd5e3e655df013628e167142eaf",
+      "neutrons": "353bbdf1eb0a6a5c1baa5a556048aeb0d739297ccf256cb20474db31f9ff5bf4",
+      "rules": "a6111b9c448da3bdfe44325016d9df820568162d46f512f696124e1bcfad29b2",
+      "processed_span": 4029
+    },
+    "zeroSpot/10943245/0002": {
+      "kinematics": "07f09c996e6a4c354a5342711cf0d921406bdcc2d0e641f5ac9a6c44aeccd7a2",
+      "neutrons": "42abfbd9a899a6c95d985be482876b150bf68eb6eb8b14e65925eb892b7cdf95",
+      "rules": "e554199d236ea481eda2b1b27c0805774f58adc0afda64a2856a5293ca2aaa6f",
+      "processed_span": 4051
+    },
+    "zeroSpot/10943245/0005": {
+      "kinematics": "40772defd9008c5ee528577523fd9895254943284b071d8e08737d5e395c1446",
+      "neutrons": "94df949dbbfe7bf68d99a1289b07a34e5c020dd95a97d3434add0ade6e8a515e",
+      "rules": "97df2a39c3096a70e4ebe06e89e4d8d2e41ccacb9d22377abab2f4be31ffdf24",
+      "processed_span": 4083
+    },
+    "zeroSpot/10943245/0007": {
+      "kinematics": "cdb4fd09e3ae7df47217df2d20cadb03b78d2380b2c9a92a0c19124460f5140c",
+      "neutrons": "58323a09b6da5f3cd1d7ed37c8323f04c27d639923abc49af88f52caccb8fcbe",
+      "rules": "98e748c6d31692772b901c51f143ce1bc063f17b318c8fbe202f6ac25eba0ec7",
+      "processed_span": 4132
+    },
+    "zeroSpot/10943245/0009": {
+      "kinematics": "11313cbc0c0680a62d7ff144f228eef476b9afbc315d0a64bfe4514f01f1cf6e",
+      "neutrons": "6e16ce9182da3b9fecb01b52fac33f6a6fd3b355f1875847007a389a46dbc365",
+      "rules": "2947cd4e7ae7e469ae82a0deecd8b176af52f880ce14ed9a44e9ffaf8db2ee73",
+      "processed_span": 4071
+    },
+    "zeroSpot/10943245/0010": {
+      "kinematics": "55437d595c7c44469366f784e059ac2e58b9438f95d729abce441f85e085640b",
+      "neutrons": "284aa2a1963b3311b469b07b3a20058d78369bf0119948c64f39286c519a279f",
+      "rules": "baaf087fe64ab87b886be883dd6c0d1335419f843a3403ec4ba01adf8656f7f3",
+      "processed_span": 4186
+    },
+    "zeroSpot/10943245/0014": {
+      "kinematics": "c7663123fce2929cc02d2a660452d1cabdcd7fb7961e5329c611318627077a28",
+      "neutrons": "378203cb86d40a821bd4ea5737a1c49cba8341da2bdf07e470f95986aab40599",
+      "rules": "a4a1d149874428b165f11a7d0fb45fbb76f50bf3a6cccb973c40f0093f3591d3",
+      "processed_span": 4030
+    },
+    "zeroSpot/10943245/0015": {
+      "kinematics": "ddef62e409e292fd2ac5f8d19b78ec038f3e3d295795525131f0dd9bf2cb748b",
+      "neutrons": "79e698e4ddb4b9f8325e55cffe8574d5a8b0302684bbe5bf7435d157fe2bcb7c",
+      "rules": "ad7217028d3f9b71975bbad672ac74d845e23b8ba458fd443ababca3df6af525",
+      "processed_span": 4148
+    },
+    "zeroSpot/10943245/0017": {
+      "kinematics": "20a2c67f5043b0adda1d943f5e0f014fd5546d3d470bfac87340979d09cffbf0",
+      "neutrons": "e9ce0c943f5f19e3543aca2826ce5176050865f5c68cfa096780efcc57eb150a",
+      "rules": "55efc475a23d4c62a2474c3ec76a6934188c7eaf07e4e520f95d6257b578cdc9",
+      "processed_span": 4082
+    },
+    "zeroSpot/10943245/0018": {
+      "kinematics": "ec4b7fdad18228112f9fdb840baccfad2051850fdc86d76969a93102af4031a9",
+      "neutrons": "722aef55359c535b08ddc2d1ee95b042a1d639d18772cf37686e7dfbab4616e0",
+      "rules": "5d3355bc94b88153f01d9a42be71662f603ce5dd0d75aebc62cff209b111e7a1",
+      "processed_span": 4090
+    },
+    "zeroSpot/10943245/0019": {
+      "kinematics": "2f949c18bef23ba9873ceb6983ced820610a3a1896e414d0c3e7e4f6701a7d7d",
+      "neutrons": "42450f2f867a168d708771ac951ef4dcb49af484c703d96807b14fadf7764f78",
+      "rules": "0f3646ef95eeaa830282c5094f3a267e4febe8377836375e641e93c0ab0157eb",
+      "processed_span": 4195
+    },
+    "zeroSpot/10943245/0020": {
+      "kinematics": "d954ee674ade0f7a7ac6e1b9deea510236f9768fe415dafc0df7de82a7298d63",
+      "neutrons": "6b2bbd50b78a51d17831fc306b64df0b126afd10f06d7a236fb65132bd209ccb",
+      "rules": "7f0c277dac0cb5d0b77c1e4c20cc4f434663e0027c66680979b9e9cd60225838",
+      "processed_span": 4061
+    },
+    "zeroSpot/10943245/0021": {
+      "kinematics": "c0f0f03aaf79408bdd577e6962fc062a6f3d6152e23db3285e5da7b208aa07c7",
+      "neutrons": "470310f3d5448cf356c072a98c1c6c2006af055f8926e35b37b5b458f4b36890",
+      "rules": "ca100bd03da6e409c27318ea976fc7e402d27d1433c323a94f7ca992ef83ea1e",
+      "processed_span": 4191
+    },
+    "zeroSpot/10943245/0022": {
+      "kinematics": "dc6f85510365a43201c5d388a9cfd75bc940a76e79c1272316c7955bea1e12ad",
+      "neutrons": "23baa73682514e48ffb5bad0c28c821d2427c8f70f02b892aeee18dd78617f05",
+      "rules": "355681325e346a627e26a827b97df719f14a66b71a6d17a58da0322ff635531b",
+      "processed_span": 4124
+    },
+    "zeroSpot/10943245/0025": {
+      "kinematics": "eca4f37ecfd501d48cf8b91a6257eadf00a847a7b7a2affcbf56c41e41db0c77",
+      "neutrons": "610ed53ef23cd197070ce407f02f6cf863d7a1529733feb879a9e3d922e33ac4",
+      "rules": "c30e4bf5ed7a75f566cae5b39a68c14ff457abba3b7f359149d87c4d66cb9e19",
+      "processed_span": 3975
+    },
+    "zeroSpot/10943245/0026": {
+      "kinematics": "237d2523a720ebc25abc70beb999ec612262ff03cfc1be69bd94ba11728f8dce",
+      "neutrons": "5fa9906912f9eee228b490b482fafd953379f6faaadda7bafd7f89a2b3f11532",
+      "rules": "97f22a19387b25f352a39bf9177f1963fc85895b0731974903621472868225ad",
+      "processed_span": 4037
+    },
+    "zeroSpot/10943245/0029": {
+      "kinematics": "43b8d9052db90151aebb7938d7b9102d69edc66383b2b78cc1cb123ba1735f20",
+      "neutrons": "f56b08aa09efddd18be9e23ab13a124df27b15e15b0886743672c171ebeb1d02",
+      "rules": "734f40796457ce8f504349bc46c216dd454b2b5453f3fc74d890b05c90022b29",
+      "processed_span": 4183
+    },
+    "zeroSpot/10943245/0031": {
+      "kinematics": "fdc99e00ddcabb0783de4ca9d2acfda44fd58bdddf749025848514f0d6f016ef",
+      "neutrons": "46565b9709257b225878de583e3735aec0895d5cb5364ab6f161d8066df018f6",
+      "rules": "884f5573e5141a1bb1037b16db15740c88e93c570182115628f7d960fea21d51",
+      "processed_span": 4123
+    },
+    "zeroSpot/10943245/0035": {
+      "kinematics": "f3f1826093885e95d0202150a6209ba900e5efe064e04424598fe3389123af9c",
+      "neutrons": "56549b718a27829b29c900d49be536ecd5a549b8b447247fe0b08dfc3dfd891f",
+      "rules": "5582968d72b870010b7afe7de4e2fa94bf8c810a9ce3a87bda9806ed387b3396",
+      "processed_span": 4184
+    },
+    "zeroSpot/10943245/0040": {
+      "kinematics": "2699a2615c0701f3072a369711cc5a69e6fa5e79d0249c06d8d967a00b117838",
+      "neutrons": "bbad969ba132b90d2193853151906383493fedd1ad51e1cefb5523b36fb74839",
+      "rules": "9307fb8ff3fa899799ee829f126e58a6052b43cd6574b9bde4fcc5bcd2a0ec9a",
+      "processed_span": 4062
+    },
+    "zeroSpot/10943245/0044": {
+      "kinematics": "db85368177b9bb21dc30bdc99cc81fe12b1e652707aff23cd2902e0d8f2b4f23",
+      "neutrons": "b90a09a44f11870af3eb5fb7701c2b6e31a2a2a6ddfc3b1fe8c56e13c5418cd3",
+      "rules": "d770e5b442f8e8f32aed27c5970353559f4876bed16e76d7be5ecdc027f844a3",
+      "processed_span": 4078
+    },
+    "zeroSpot/10943245/0049": {
+      "kinematics": "53ed61c8123c6c2050f6e3c20ca524d7ce124181cd56e5bc75e7d2fc694360bd",
+      "neutrons": "c16d6047a64f4a331bdd72db1ee644d7eb8c64f7fef7a2d6b1920064e6fd30d3",
+      "rules": "e7513b410edf696e183c14677ed5b170a57076e7c0e1e9ac208f48f228039102",
+      "processed_span": 4014
+    },
+    "zeroSpot/10943245/0052": {
+      "kinematics": "5420cb45d157b0b82728fd6058520a4dc470c1052a6fb2fe215d73943a6e8c7b",
+      "neutrons": "70b175d37d4d4d8d80ece733fa8fe154797c8f2803f4278eda45dfcaf0db15d6",
+      "rules": "3b2ae860dcdc412f67fd63d3ebd3cceaf8691451e0e369bab05d5f19be8e017a",
+      "processed_span": 4134
+    },
+    "zeroSpot/10943245/0053": {
+      "kinematics": "76199a9aa0e1549e2d34f5f7ee28900cbce7ae18affa127368456de0607de9ee",
+      "neutrons": "fc3ecf430366e81122e004cb8f7681ef40e6acc2b9a605f66f44282596bca3bf",
+      "rules": "d370bed485680374c6444bba3b5e33d1f70fabed99a246ca771dda81a885bda9",
+      "processed_span": 4131
+    },
+    "zeroSpot/10943245/0056": {
+      "kinematics": "7cc2826a3b27890e728718a7277ff06ca4ba0fce6bd9b32a00263128625b6ca6",
+      "neutrons": "5751862c3063ffa1bb2dc58a7e9ac246cf3bec6bd74fe49bf6fb3ce8c4b6ef73",
+      "rules": "abd4562dea3f08971fda3047332b64816cef0012ab7e3eb463952c16e0024c25",
+      "processed_span": 4073
+    },
+    "zeroSpot/10943245/0058": {
+      "kinematics": "061aae55c83d98fddd577a1cf4b108b92954878ba0076d5874bf9a36d3aa5d4d",
+      "neutrons": "67ed9f20d495608c3304aff7c1c6bc0884ed6347d0f654f0a835e23b4ff96f24",
+      "rules": "213592c6f16d1a34ea90fb2464797b747aa973b25423dc728f2ea9243f467feb",
+      "processed_span": 4074
+    },
+    "zeroSpot/10943245/0060": {
+      "kinematics": "941d4ccab9e6c2d6ac2ae7659d1c529b4bed57d3e2ba56b6d0aa1a3dceafdc9a",
+      "neutrons": "657e207453b1d624de2d3977972f004b3fe2b1d85ebf0d733fc004a61300528c",
+      "rules": "ff5efde05a1587883530b62cc82e047cad75c244e9ee29b9743b895962ebc2a8",
+      "processed_span": 4153
+    },
+    "zeroSpot/10943245/0062": {
+      "kinematics": "590b744d47062101f2d23b66540d9ab55be145a0d27b8beb88cd3bad73434bd9",
+      "neutrons": "4695850c15943c315eace3429f260ca916851346c1778eade2fe511e2f2f8760",
+      "rules": "aac943f0487d628d9cbbdbf22d3e75fd5b869c11ef73c3c0c0be68435213b708",
+      "processed_span": 4124
+    },
+    "zeroSpot/10943245/0064": {
+      "kinematics": "c1d3a045b287008f7a49255c2cf75c438d7d8692d06c9b3e506228e57fa68a1e",
+      "neutrons": "4673a5c269d06d1cf41f08c8e4c3500c93f13e5d6b1e45c65e225ba9e9b8cb55",
+      "rules": "8b8b249b6e746bcbdd3a2c04d630ef8be764d19530733b7688b6804eae04de4e",
+      "processed_span": 4109
+    },
+    "zeroSpot/10943245/0065": {
+      "kinematics": "562da01e89091cfea17333637b7e2ad4d320329bd7671233b71f6c14a52e959a",
+      "neutrons": "013a93aca597bb22a5dc87708e5da131d304fc5edd0dc8e8572557aa94e34ed4",
+      "rules": "1b8d4bfd2e07fda06d60318c0d5e7e96abe1070c0a8973962a7eaedb957b4946",
+      "processed_span": 4118
+    },
+    "zeroSpot/10943245/0072": {
+      "kinematics": "f1b656a4a44c5b0c274dab1a1c3055ea2d085180bb0b3ffecec8a96090d4e99f",
+      "neutrons": "caa979709d18e4bc4dcf8c3b25ae765301d926557eae3782f409867168ee4d4b",
+      "rules": "42ab6a59183cc570b3df413d51009c5e421bb7ba50112689d8c79d00ad5dc241",
+      "processed_span": 4169
+    },
+    "zeroSpot/10943245/0073": {
+      "kinematics": "210d022c99535a8f3b17cde03779ae4320cd8073e162d009d1a859202225bac3",
+      "neutrons": "b3a91c60e276028c803080d9db1f2045fa8f39192f3f4823f08345378ac2341b",
+      "rules": "11a732096bd9516f359da06b285f67893cbeaa98b1d19562e7affc6586f2a019",
+      "processed_span": 4059
+    },
+    "zeroSpot/10943245/0074": {
+      "kinematics": "47b8a4d4c9c8b184eff49768cf3e11c46d3bf17db841023e50f579e73218c3a8",
+      "neutrons": "990b64611c9759b4a366fe7358679315dae03290d82c1700cf4215d7c241191d",
+      "rules": "6896d3c311428075118baa8af830770988fa61865d8ea3d5258047d7fc06a110",
+      "processed_span": 4196
+    },
+    "zeroSpot/10943245/0075": {
+      "kinematics": "198976e74fbda287019a13d4c330f39e07a6e8bf44f414babe74ee61105d9036",
+      "neutrons": "b173aa355202c6f298b34aecfacb5b67589c0db84497c20688dcfe0cab02fd03",
+      "rules": "8ea986e84c8cc2fa6e730a4ad252045302ea2846f28e93d6aae92acf96cd7138",
+      "processed_span": 4157
+    },
+    "zeroSpot/10943245/0076": {
+      "kinematics": "4bd5038608e2e1c68ddf7b075df643fa36edd25e9a8713ff0453f5411bb5e749",
+      "neutrons": "2f172865403548033ecedd48c2e21e3c48aecd11bfb9dc091b422383fbafe3b5",
+      "rules": "ae2f5e172ee12e94f63ef755448240a4725bb61a582254e5d2c77b5e47487b38",
+      "processed_span": 4127
+    },
+    "zeroSpot/10943245/0078": {
+      "kinematics": "7468621b3876315c44830a75d6946d1c8f0a2e9c7dcf227cd2f19093c8a15c5e",
+      "neutrons": "0f69dbd7d17c774a5e0306598f0180b9b7dfe501db1720cbcad42cceb56c6402",
+      "rules": "0cd0c1db73cf66dbecf6f2e61303d6ab8bc9941c118881a6f8faae8401cc2a6f",
+      "processed_span": 4099
+    },
+    "zeroSpot/10943245/0079": {
+      "kinematics": "9c5c063897e2baa03a0533c1f4c7120d2aef7f918383722c1dfdd6aeab2c1ac8",
+      "neutrons": "8a0a0eacc661d33e0e4737a6e5fc55331632b6df6a57db4cf27fc93ec73ce8c9",
+      "rules": "6165e8ec1aabfe2588a30e0eec652006ebc47f99e72e6d3e214eaf0080a9f8f8",
+      "processed_span": 4166
+    },
+    "zeroSpot/10943245/0080": {
+      "kinematics": "d97b7975c4e9b69952d9731208a2ab077c25c35232e93aa0996c20626bf57dcb",
+      "neutrons": "82ee61cd89415a16a68eb554b39b4c2f2a29b56370d9a61ff7866a52a228b4b9",
+      "rules": "b46e4015417e09d229f896bf0da8ab99008ce27763f6359dcd519c138093857f",
+      "processed_span": 4177
+    },
+    "zeroSpot/10943245/0082": {
+      "kinematics": "154cfefa57bae53065d318affe8fc6b17effa3ba5e0fcc4df4bb225e82893809",
+      "neutrons": "83a7ef31dc2dd8c44b48d8fc894dad9ea6b159f5f20315361966f47b3c799e35",
+      "rules": "4d457da3925fe3b43bc8dddfcd876b0b26684d5a44f5451477b9f89e673e1583",
+      "processed_span": 4131
+    },
+    "zeroSpot/10943245/0083": {
+      "kinematics": "7e9731633c5d1e465e9477514ae7a6df75fa4dd0d796190399b507eedb2dc1ec",
+      "neutrons": "09ab9f8d77de7c2e88d973e34e6f4f0734db04625399faab8ed8cd4f4f955b1c",
+      "rules": "7b650cefd7b2dacbc899e4a565c0d66085550b55c7ef3f0b154291b7447843db",
+      "processed_span": 4083
+    },
+    "zeroSpot/10943245/0085": {
+      "kinematics": "947d013de5dfb38feffb27c91140651e09df9bc9d524af53808d129ff10c7595",
+      "neutrons": "115214a16852b6ae92ec1bab8b8dcdb007441b0f604b78bdc5e50798cededbb5",
+      "rules": "ae530136770a8539576761f82632883348d0adb883900b08c50c572f10cf2c4a",
+      "processed_span": 4051
+    },
+    "zeroSpot/10943245/0087": {
+      "kinematics": "f183a87b4d46007b797b13a8db0e38189e6e4690a97e420a12aa114f45523446",
+      "neutrons": "51da6052c277c066b0d2bf1e08468ce2744907b29a6faa7c7c53cebc07a6bb1f",
+      "rules": "0ee6a0baac4173475c93d1f651c25a4f7bae5dca81de93c05337f808d3af5cb0",
+      "processed_span": 4177
+    },
+    "zeroSpot/10943245/0088": {
+      "kinematics": "552ee33a93ac7f1abe765c9e808db5f79366b2ad12ec4a4c0c2ae9f5bdc7d7a5",
+      "neutrons": "30a77c893c12cfb6e104846980d6f6e5a8ffcda35e7dea2c96d3ee3b976eb500",
+      "rules": "6567e65358a983911830196cfb83097ea9665f202ba9912015da9b5adca7506b",
+      "processed_span": 4089
+    },
+    "zeroSpot/10943245/0090": {
+      "kinematics": "ce61175d6a7149a2366e44fbd612d29da4caeecc26032ed8ed0c31850e91a1e8",
+      "neutrons": "1628abdd904feece954defa3fa4ae3214ea4d641f72c87ef7bfbf00521b770dc",
+      "rules": "5560e3b85a73dbb3cf4a91f111fe2ba33e5f05aa423484dbaea033a000c6388a",
+      "processed_span": 4150
+    },
+    "zeroSpot/10943245/0091": {
+      "kinematics": "71d71a231c8072f7a3e160736bc18c69aa059ae7a2a1ec01453fadde3ab00fd0",
+      "neutrons": "464f7dda33be9651fe85883f36f74b955b5b886f2c9578b8d362dacb8a7c4d24",
+      "rules": "2b3ffaecf2aa9a1f3556f2bbf22c16cd76937870f6663aac332f900e7d51f126",
+      "processed_span": 4070
+    },
+    "zeroSpot/10943245/0092": {
+      "kinematics": "b9bc9c8e876f7a0ca635c1c616ffb555e163a405c20325c82c44082e7e2cc58b",
+      "neutrons": "7b756de2af196a826e1eb38f6fb76ff3333c46584501e975030ebdd57b471630",
+      "rules": "219ebf2a53e15a1c5d809dd353b8842418e30c4a9c4a894a5d4d104046b4dc22",
+      "processed_span": 4135
+    },
+    "zeroSpot/10943245/0095": {
+      "kinematics": "9cb944e613c260b7c549139eee26ca1a25028360390f7d6ad35e084bda6d5d1f",
+      "neutrons": "16d49d2984be8f1218de63ce5c72b716715a76fc600c346eb27597248430760c",
+      "rules": "65bf1ff4ca83171f2b320135f55c7248963903f08e722436dc40913ded853892",
+      "processed_span": 4088
+    },
+    "zeroSpot/10943245/0097": {
+      "kinematics": "6abc463703a64bbe30c672036efac32636df6cc3c925028ca4b72df18e33f5e0",
+      "neutrons": "b1c029da50523f168fd08dae7da6b96eeb7f395f2727584c309f974692d78146",
+      "rules": "3a729c1ca9ea30c79abe3461cd916f766a9038de1da5ec3fb3ce239e6a2454eb",
+      "processed_span": 4192
+    },
+    "zeroSpot/10943245/0099": {
+      "kinematics": "00a032e1482ba9bbbec14ba4592b90bdff0d35783c220434d865f52f87b43562",
+      "neutrons": "0feb59dbacd8c45d30b92fe207f95d9a58fdf9e84d5be7d4b33671b876b9179a",
+      "rules": "6b8941b195259144f7d22159b3278c0827f5506235ccdd32cd8e94c86ae0ff29",
+      "processed_span": 4162
+    },
+    "zeroSpot/10943245/0100": {
+      "kinematics": "50f4fd28f2a6cf6092801b00785bf4571759842919dbd8d0fdf143e89f490dd4",
+      "neutrons": "152e02ac1e018d9daad3aa23d4bea3937399a40954e2574dfd32b9b132af6ca8",
+      "rules": "23cba130749ee1d05f5679771f8649f1e7d9cd3d84f92a5e8335ae378b47d793",
+      "processed_span": 4151
+    },
+    "zeroSpot/10943245/0101": {
+      "kinematics": "b7b40ea087615f806d7f4d7972e79fa338f36b4b8f7b61a0d7e69b8717f07af0",
+      "neutrons": "0ba66bd50ce2255791e11e8556239a7db1d040fb43d010bcf6e27584be750300",
+      "rules": "cd1275f492ff4f36bb9263a6b151269bdf2687e01d374ec0ddbf3735155f14d6",
+      "processed_span": 4138
+    },
+    "zeroSpot/10943245/0103": {
+      "kinematics": "e82ae4910b5d787faa5cafc05f76fa3d937f81af82502cecaa286cfcc57ec7ea",
+      "neutrons": "192cb88e52ce7081ac7e5a1bb35f580348eb98608715a9547ea4ed2c35ef5bbb",
+      "rules": "f62a079d85b78dc2ed28e62639291e94a4898eb251f1c3bc2bc20b6c47eb8e8f",
+      "processed_span": 4121
+    },
+    "zeroSpot/10943245/0104": {
+      "kinematics": "ec4f29fc307f0bae8183d0e58cd701b73a362d87263e89d3629b9655ecf292cb",
+      "neutrons": "860fde0008e9885373fcf13ac20058969c5e889af86f77bd99dad4615b700500",
+      "rules": "f7763f503754deecb8f385aca010a2fe9d50004897d235f58a0abc9d1df1682f",
+      "processed_span": 4088
+    },
+    "zeroSpot/10943245/0106": {
+      "kinematics": "bf502bafc990891ba47ef913d0a6831c7aacc65378a6d38cae12ac75243e050d",
+      "neutrons": "9f01e282ae8e2b5bc1fd9ded59593afc625970334e15ccf02e45e986188c580e",
+      "rules": "0f97b1c409d65499fe7568c9403d84a0cac179a1a4d9b0e5f78f50484750e7c6",
+      "processed_span": 4203
+    },
+    "zeroSpot/10943245/0108": {
+      "kinematics": "bcf26af65374a054f2dd88543ce46798dfd853fd58c6d74d97beee4d9e9551de",
+      "neutrons": "a04ee0405537380ff2fe7c951e4f503737f13de10696b97f23d77dc9005b8377",
+      "rules": "da98c3299fbf92ad0b3b4426ccc66e604b516531cc78a2ba89571e545a5b6750",
+      "processed_span": 4131
+    },
+    "zeroSpot/10943245/0109": {
+      "kinematics": "afb01bffba397e012d09a15f60530bbf0f3347178df9c9ed6cb76fb0cea2ff4b",
+      "neutrons": "6a5ab580c5d462a07d7d1b3c0da5a60fbf319b0fd39122ee9deb6228891b6320",
+      "rules": "87c34a50be9e608b9c7958f908ce139f1309f3119449d2fdadd45f46ba1529f2",
+      "processed_span": 4186
+    },
+    "zeroSpot/10943245/0110": {
+      "kinematics": "28e9f49a5c98b9b0ea77ed5a56ad268527fe104811a5b128f4e3e950c5d88785",
+      "neutrons": "1de9ecc38febefa81559326aafd6a9c0c201c816e9b53cb2f05a157f32502b20",
+      "rules": "1003c6904898bf7173e3bcca78f78cbd028614ab5719193c90b2da89fe286b5f",
+      "processed_span": 4078
+    },
+    "zeroSpot/10943245/0112": {
+      "kinematics": "b40753e35fa8e719a87ac0d167488e2f78a55c2838b9393f0ccde16fdf82317d",
+      "neutrons": "cd2a332d441855df6bd358ce4f9a13ed34b5c35d48138c72713df0819fb2d24e",
+      "rules": "179acc28d28d1804dd8bd138b4a9a0da2f8211cc5c62d5d90961367e19e8713a",
+      "processed_span": 4085
+    },
+    "zeroSpot/10943245/0113": {
+      "kinematics": "c8197476585b4e3d3a1213fc9944fea767d30af7915a8372f0769fa4ae1f9852",
+      "neutrons": "20e2e6bc4a4fd7be4a892cc4da4df3bf84f18b7c050eed85079e138507e2807c",
+      "rules": "d203309835afe94dd112fda7d7f7e17bc813c796164c2171dc8032e3bd229146",
+      "processed_span": 4092
+    },
+    "zeroSpot/10943245/0114": {
+      "kinematics": "6b5d488157228b1e09d36fc9cafa8fb9034db430e40ae675375bd29a7e716c45",
+      "neutrons": "38bee7c0131e9626980b7bb0bfd67c619fbf4473cfa94dc2bbb73a418a4f33da",
+      "rules": "ab368fe994b3bbb81d8947e91d7d51ce0be3c47d0b87eccf49b1d7121b17f698",
+      "processed_span": 4047
+    },
+    "zeroSpot/10943245/0115": {
+      "kinematics": "59d0f646087a600a3efc72d5299005815a0fb35fd9602ca4bfac41fe2ca067c5",
+      "neutrons": "8ba4bc39a5c37203dae116e1aa85c335a4e6aa2841375b54328219ce83deaf7a",
+      "rules": "a2254aafb515108dfb9aeb4c207d26c7dbc853b4e3ee50447c3a9b6f8e7d930e",
+      "processed_span": 4177
+    },
+    "zeroSpot/10943245/0117": {
+      "kinematics": "e83ca5b1c11b3da25a8a02e5d2f4127e47713e4d60b27d60fc1306a4ffc6372d",
+      "neutrons": "632920b10ce61fefbb960386729f8eced28ea4aa3ab8591e388febc497f78dba",
+      "rules": "092eacee28af78f0189604e3caac4734c417b4c0d0fce0f0997600705ac52713",
+      "processed_span": 4167
+    },
+    "zeroSpot/10943245/0124": {
+      "kinematics": "3cf786a63d9adc7fd72ecdea17382ecc5f635995bd18e93c2f9d4f20b1eda0cb",
+      "neutrons": "4c287ab766dc23db3b57e59656a5ce76bf6ba99e56302b100161a772bf5b05e5",
+      "rules": "89e353299fd2a7f599262e55c3e339384985e10bd9836b548eb503205c1ea290",
+      "processed_span": 4083
+    },
+    "zeroSpot/10943245/0125": {
+      "kinematics": "a5b49d68690ff3473c69a8b6fe7e5e5961f41c0e58f3986b7aceaacce7f445b7",
+      "neutrons": "2a638955c8f1dd31e48d635d9d948d3394a62e2e98db960ecf3c1c2c56724841",
+      "rules": "89bedc0e8cd70b5bcb5f495189736c72b949fde7e888ffa056412579662194d9",
+      "processed_span": 4128
+    },
+    "zeroSpot/10943245/0127": {
+      "kinematics": "da08a3a6e39d724d2ef53bce3edb6a4d4e71c3f9890edd71636e790043dbf835",
+      "neutrons": "b1e076b46c581e0369452d22663449731d382a5a3714519c1c011de765eac665",
+      "rules": "1131f6bb40bf35e37be4114656cfcf8ac4406413ab8c6ead08a1b4a043cc6396",
+      "processed_span": 4132
+    },
+    "zeroSpot/10943245/0129": {
+      "kinematics": "a122287ed4067b7daf105fe30e385fc9cf8d845b717a53e249c524f06e7602cf",
+      "neutrons": "9f2b5a4afb77c35d4493c387ed70cf6e7505261e7df4249d49e77ca3ffdb16f8",
+      "rules": "23cc389c5a1bf986251073b9a296d18eaa6b94062f7cd129223fa68ab6425f86",
+      "processed_span": 4160
+    },
+    "zeroSpot/10943245/0130": {
+      "kinematics": "d112a6041fea064bbe020a0637d8e79a140c9a71570a4f1ad19432fba0c6c645",
+      "neutrons": "84f7ff719afeecf6fa352c61ec5c0963520bd7ece04f2968169e2459d25069eb",
+      "rules": "e265e433f9f04ec59dea0e4ebc77352635909ae881247d9182673b2e9ae1f8c6",
+      "processed_span": 4225
+    },
+    "zeroSpot/10943245/0132": {
+      "kinematics": "dc61768166973128383735236694a1c27cb4bc82a4a359d51229b2889bfaf5e0",
+      "neutrons": "24e2ba9bfd7041bce964a28fa0f170e68977f7247aefa5b24a874ca02aff5f3a",
+      "rules": "d106e9ff5dd6ed2a7ddaf32ebf906e96f71708fb7c90e915646e659555725963",
+      "processed_span": 4094
+    },
+    "zeroSpot/10943245/0134": {
+      "kinematics": "6e27c2db185d00e6d1ebd7708e6ecaaa5a0ea0805d56e9d589eb725ff378a12d",
+      "neutrons": "9f4dfeccb5b2c84e00765e8f12bd71b79922e3dc203f611650c412757c916ba3",
+      "rules": "66b5d5834627f54b94fc32616e881df3bc5bd3cd13e5085e986a6b2652fc110f",
+      "processed_span": 4177
+    },
+    "zeroSpot/10943245/0137": {
+      "kinematics": "53242db612ed9a8247d55cc0e67b9e34c3640a229c360bef6154f88eb95d6f2a",
+      "neutrons": "4ec01e3051c65dc64479a2f393e0312ea42336be6c75fbf37f150e7a8a853b70",
+      "rules": "ddb36153bfa0e662e04c2d52d9212518ed7089d7f77668b18684e7a2db32b19e",
+      "processed_span": 4137
+    },
+    "zeroSpot/10943245/0138": {
+      "kinematics": "6c52f41b955a47dcd1fb2ec8cf7f7f937dcaae11697b56aa2fbb0dbd3e55f24e",
+      "neutrons": "ab9c844f3d1c3a5dfc97897e37abdf5a57facce447a41ec3c71459928e6b73d0",
+      "rules": "0bbab96cd76e631726d4f75c282dde86ea1f489777de675c5110a2139f61c3a1",
+      "processed_span": 4021
+    },
+    "zeroSpot/10943245/0141": {
+      "kinematics": "c5910ad9b3512ef8e9b998c5e443dc1a4f5a002635b711642cf5dfc0e06cf89f",
+      "neutrons": "d1d290c5658305d592c73489e5ec020c38a7c25601e4d3c83d7ba6b53d2c465b",
+      "rules": "64266710751e6238f5ef8bbcc69a2db9b2afc8d20e5fb3d8596551ec01e40d7e",
+      "processed_span": 4087
+    },
+    "zeroSpot/10943245/0143": {
+      "kinematics": "cbd38f11fe781d65eb65a5c6bee44752d8d630dc14eae5d3c85665bbfa38b82d",
+      "neutrons": "2b386162d154503e64ad4f11df10e4cecd1e7d16af9f24406324fd913b0abac5",
+      "rules": "1f77dd227d883e4da98860211657d12c27765c1d794f63c9b3f988e3c8b5f08b",
+      "processed_span": 4175
+    },
+    "zeroSpot/10943245/0144": {
+      "kinematics": "111dbcd7ab16c3970d2c5f14d084a9787f2a66ae6f8b8f83914efe963e17000e",
+      "neutrons": "ad168feeb3fe545ff05f582a16560611a2531e5918bc5ee56bf07d5a9d6a338c",
+      "rules": "c6378f4ad7f12c8f615ea7c8ee7f9ddac4eddf02c1d6464146fecb038ed4c65d",
+      "processed_span": 4063
+    },
+    "zeroSpot/10943245/0145": {
+      "kinematics": "de4268d901d861d189089ca4af54ad957fed010a16a6fedcb6cae7b6cf3b6069",
+      "neutrons": "ea5e951fb6490cd4b9802ce354a151c4fc9c65562bb4cd26b80c1bef3fc4083b",
+      "rules": "c1418d580e0c1aed2eaaabd67a640f57234901e15adc851db024ce24f4d41361",
+      "processed_span": 4129
+    },
+    "zeroSpot/10943245/0147": {
+      "kinematics": "d5c04db16b4546b17a00ee840b164fef02591aec9a417e681e2dc9983fdcb7a0",
+      "neutrons": "8ec76345006a08df046c0660f062ffa9a01ab92ecdd21fd11ec3b1003ad5409b",
+      "rules": "32315f9ba08963d2ed8e4a69c63351737f4fa89332accb371d7f6cb619a5a11b",
+      "processed_span": 4176
+    },
+    "zeroSpot/10943245/0148": {
+      "kinematics": "638f3a927854f9255330614d93ef85f05b9940cba0eb45d63d8939875974cd43",
+      "neutrons": "7246850a54d0fab26cd7fa07c4c9d6b5164449fb6c38d0bdbebb7f28a68d0551",
+      "rules": "6cd3bf9595a89880ab5169cfddf1067ba7998589ac43219f044dca22ff47d83a",
+      "processed_span": 4152
+    },
+    "zeroSpot/10943245/0149": {
+      "kinematics": "6f8de19977664359fd95cefcb5be55fb3792e78c2f409ae13795636bb3c2fb45",
+      "neutrons": "07e92a9b75c3f5cf67d49b70194c3b452667df4d7086d515f6b18611e6bfbb16",
+      "rules": "80a7f67cba3f29661cd1761ec4765a0d8470e2887ad546a0e8d0b4db3efd776e",
+      "processed_span": 4090
+    },
+    "zeroSpot/10943245/0150": {
+      "kinematics": "a9f4cbb7165435a930c6e89a2abb020c9d9251e439111038f602e1f2593f3362",
+      "neutrons": "8e1f6e29f69d191cbcc1443c28be57f5d33037f2f9b7fdc552995117dc353947",
+      "rules": "092a3bd16c14e7c92172accd1478c2835d08f54c0650a6e84f80f48fd8bd2721",
+      "processed_span": 4291
+    },
+    "zeroSpot/10943245/0153": {
+      "kinematics": "1294c6b69b2b573a971dbcf16ed83ccdeb1b15a3247dd94b1a87c23d8bb68053",
+      "neutrons": "00d2624392606d34cd6b02a3bc423995f7a5354786d4c663fb8ab2c3d01186ce",
+      "rules": "b41313d4664540314b6f2af446a58b79b201f0c4d6cfcf11ae04f7621a05d87f",
+      "processed_span": 4088
+    },
+    "zeroSpot/10943245/0155": {
+      "kinematics": "0ceef7a83e205a9314d01dfc7b8ec9f1e8622cf20338fea56947baa3c7c01f3b",
+      "neutrons": "dc39c084ec1cf737c5eec9382646b480c5a03b657232ea4bdfdb073a129439b2",
+      "rules": "87a6d731f6ef88b186f1505bcf5926516fdbcb7bbe816f7cb49255bda71a069e",
+      "processed_span": 4152
+    },
+    "zeroSpot/10943245/0157": {
+      "kinematics": "3bf0b5951eb1c79f2a568a898be0a3cdceaa47fd4ba1aa6f2ecdf333eb95bafb",
+      "neutrons": "e1ef83e53916ad48293913a63473fe94535672fbce892fc10fc100e2d60cf11d",
+      "rules": "3a44462a824e3da42a00065f1af6e37b917dd116bc756c3e56d7702a34c7d443",
+      "processed_span": 4099
+    },
+    "zeroSpot/10943245/0160": {
+      "kinematics": "f800bcad5af105c7a4c7932807283fa6f52c59cb791dc45b64d0d39d477c7ba1",
+      "neutrons": "122d2cd0cbaeb71901ee870418c94f0a238b36a6042b40568e045d4fcc6d82b9",
+      "rules": "c64f384e1b7493f802caf59eaa2384c35a3659d7576c34d9191266632bb5ee4e",
+      "processed_span": 4082
+    },
+    "zeroSpot/10943245/0161": {
+      "kinematics": "766479ac89db775bd69209ba1efbafaa52a5d5ae7d670a6d4629f3a1dc444be1",
+      "neutrons": "7dde4137437cf629edd2fca46b3edb5d2c5766385d97da3ba59c2e1e4ef016d5",
+      "rules": "2de658b1f85d3fdd1709cf373c3ab5932d40027275370ab2129df755de156501",
+      "processed_span": 3996
+    },
+    "zeroSpot/10943245/0169": {
+      "kinematics": "7594a0a2e14ec5b5ead0f9553a6f8ba6e79024050dc5afaf1df2ea53332eeb65",
+      "neutrons": "6f700ca1034b4b679792a1c9edddb741e191a5eaf43ddde2e97de15da997a4f4",
+      "rules": "038c0860961c4b7328f447c7533a4c93af45eefa5107b0176bb43abb072b5793",
+      "processed_span": 4190
+    },
+    "zeroSpot/10943245/0172": {
+      "kinematics": "f539a5a0f896c48edb756b35e9ece9cb31e929a5cde78d96a0cc9ffcae215f92",
+      "neutrons": "162fca2178f31d8b07c749d382e0cfa2b31a2c9c15f7f02c770c91ae88155e86",
+      "rules": "27df5cb8fb95f24a6d97359e780e261b7cf02d8cc138260ddc1c33f61f6bab50",
+      "processed_span": 4213
+    },
+    "zeroSpot/10943245/0173": {
+      "kinematics": "c727a1186a0bd2c91504e020363d8b3b9eaeeac1c3a837027734597cf89dc00c",
+      "neutrons": "839fe8271d66679be61eaf7dec26643900d92c297c1bd329f0a31d6b81ca09fc",
+      "rules": "b237a4f14634f04826b6a5fe1fed39e82290de4ee17b2eb3c1d1ac72f86ded37",
+      "processed_span": 4093
+    },
+    "zeroSpot/10943245/0175": {
+      "kinematics": "b26d0ac72c2475cdf687897e54b546a91d9f8eb79cb8699878c11bfaf7279548",
+      "neutrons": "05b503b59c224f9e91d03e456560e222e3a19341bd04860c5f1b40cf6673aa47",
+      "rules": "4a815e8e96017d5bc82f849c4c46027ca97c0474b3505303d339c24178973456",
+      "processed_span": 4099
+    },
+    "zeroSpot/10943245/0178": {
+      "kinematics": "d566d19abfe3c273d9dc047a4c6def973db3a048f839467cdd9aa97f4fa04bdd",
+      "neutrons": "4c9f5197ae0c48233ac0dccb583a82a2bbb5412e27c010b5ca9fc38c151bf2c0",
+      "rules": "a2aa7e63a6a2cc8196e9bd1a696d82dc04afc433accec3d9f30cd48653a93de4",
+      "processed_span": 4153
+    },
+    "zeroSpot/10943245/0179": {
+      "kinematics": "8774cf346340bd44b0bb76e8104aae135085f9c99ef382ad7247121444b3c1f4",
+      "neutrons": "ef859da7863809ca3eec4bbde075f419670e3c82c1c4307a1098fec1655d4e1f",
+      "rules": "23ca17b4df244719c90e3439dc1de2667315bfd9de5fef9103849cacc14c7f88",
+      "processed_span": 4030
+    },
+    "zeroSpot/10943245/0181": {
+      "kinematics": "7a039f5ac5b286206c30e6752de2da9343fc5e731700080317349e13de34e7e6",
+      "neutrons": "6ef7e26a2506969c98127ecbe825fff55a8dd67533b89cbbd543ae43ca4a2353",
+      "rules": "33a1360f6b5b1e6013bae85f7d3e505dd913c7421fc9709379f936935b8ebfcc",
+      "processed_span": 4066
+    },
+    "zeroSpot/10943245/0182": {
+      "kinematics": "39a4dcea037dc4e67ff3bb52191862446e0ccb9faf98064e2e4e857f4e55398e",
+      "neutrons": "a8b955ee3ab706c7ed5306a5be0a4d582803aec52aba0603246e8eddcbadbf3d",
+      "rules": "832e47600720282dc5c06a0b5a0ce56c3c2cb5a5e782034af6274df27a0d4fc9",
+      "processed_span": 4124
+    },
+    "zeroSpot/10943245/0183": {
+      "kinematics": "6f9a7b3c4027c27ac2b62d9b049546e05e3224cb17042dd480d110a25aa59bad",
+      "neutrons": "843c6d2f0f6d52e027ff4c48426c5ba786495d0713fe64cd3dd4e79208f65b43",
+      "rules": "cc31a40a5141380a1065918066a4627e9a652ee5ad5b30e83d9a68d37f6b7279",
+      "processed_span": 4099
+    },
+    "zeroSpot/10943245/0185": {
+      "kinematics": "280f1b9e0f6a13cb69a2b94c39db31252b9d3f5bfca19b5a342556fc028a1960",
+      "neutrons": "2f2bd4202a26820b5942994ce2b6e2908e9395b01ad9a22d5238e83ce7eebfc1",
+      "rules": "0efab25bc10cc38c04bf634bb02fe319f180715051446857216a3e8b01ca5cec",
+      "processed_span": 4052
+    },
+    "zeroSpot/10943245/0187": {
+      "kinematics": "c6b7417ea4459d7ae2e666558476e481e8c0561685f31ce9f08279b9c06588ca",
+      "neutrons": "ffd26bddff1421fe7535620cd5226b3a1651dd281570df29cf198832bc768198",
+      "rules": "c39d334e8115d97a4e927aed1a15670eb2843fbd284393e231959ee26a40ad2a",
+      "processed_span": 3981
+    },
+    "zeroSpot/10943245/0190": {
+      "kinematics": "3be55ee39ed73e5301b96e221e4ceb7c851e3fbd83e78199c2ec971fd689b079",
+      "neutrons": "dc440ae4ca8762f17423dff47479db9d7d618f2e7dcb471923217f8604809a43",
+      "rules": "53251cbd381a284497057dda6c2e76a34384e15bb9a82a1de96e468dd21c830b",
+      "processed_span": 4134
+    },
+    "zeroSpot/10943245/0191": {
+      "kinematics": "beb16676114ded7c291f3ab71d37a64c2cdb962ba7543962ce567956b9d621d9",
+      "neutrons": "f1114431cbf921f72b40b57affdb5502495e64b6dcb7a4cc3ace3e872d978fb9",
+      "rules": "7c1c93f0e80367e711694bd1fb205bfd5d3738f85e20a6c0f319f996f876a8f3",
+      "processed_span": 4168
+    },
+    "zeroSpot/10943245/0192": {
+      "kinematics": "a13a8fdb62a1c243a4ea8f18ff61524cd9982725eea1101211449fd48c8d32b5",
+      "neutrons": "3b5dd32215c403c08cfe8745169a95d64f11536262fdd5fa830933e77778b537",
+      "rules": "dced24549bce08e875a89d2bf9e1fbd6f5429dff310e9ee9164c8d5a74f54bcd",
+      "processed_span": 4141
+    },
+    "zeroSpot/10943245/0195": {
+      "kinematics": "b52f3dc60e009b440d8b3ee9eb5c0b55a423c005b32dee17ad2bd17f5a1990b2",
+      "neutrons": "2e9b4d95f86b667bf0a8a05e0e11031ab36cb846a4eff4bebaee9d0b04a46ab1",
+      "rules": "c0642f7d307dbf09233e6f02f7d8caf8cc06fa140b6489591cc250480f4b2fba",
+      "processed_span": 4049
+    }
+  },
+  "data_sha256": "ed87bba5737a34cc5c70f7560adb8ce98ffc81b7357a3485b4a689d0e56b09b5",
+  "sidecar_acceptance_sha256": "c3a48517cec64331e3d6b12935a0c5a15cb8fe4a2d740f3b31627c31ec7d0b5c",
+  "source_sha256": "bced217a294839d0535531f2f203858bbf97badc36372ea6884aeef266bd8583",
+  "protocol_sha256": "de0dea880873f958d59fbf5f305a81c8893dfa99c2dd1cf42334c325bc41f3a0",
+  "helper_sources_sha256": {
+    "reports/rapidity_export_20261117/scan.py": "9e2e8216f9874208e054e18f0553f59546c5c8c47b4550f725735e75f0ee2461",
+    "scripts/smash_architecture_reduce.py": "535eb6ce66031b1f54b3bc02163625c30e305fad26f1c18f4d2ee4414877eb0a",
+    "reports/primary_prediction_response_20261109/analyze.py": "4d205072d9b6e7c7d19f52624000580e706ca2d6f5819dd13ad5236910bd2ca0",
+    "reports/rule_tof_benchmark_20261110/reduce.py": "dbcee61670f17bb0c676b213e6d52631775300e0ee4038878cc0f505c4869946"
+  }
+}

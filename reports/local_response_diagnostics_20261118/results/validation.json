@@ -1,0 +1,59 @@
+{
+  "state": "accepted_internal_diagnostic",
+  "date": "2026-11-18",
+  "files": 286,
+  "events": 1180595,
+  "models_called": 0,
+  "jobs_submitted": 0,
+  "additional_tests": 0,
+  "source_sha256": {
+    "protocol.md": "de0dea880873f958d59fbf5f305a81c8893dfa99c2dd1cf42334c325bc41f3a0",
+    "reduce.py": "bced217a294839d0535531f2f203858bbf97badc36372ea6884aeef266bd8583",
+    "plot.py": "365dc102137410631550834028e92939f0a12d4750bf315aea136e5e422f450a",
+    "tables.py": "c88d8b1fd9cfa565b181662c8fc30d90ce58da5e1062f19a4a65cda9caae47a4",
+    "README.md": "0531dce5ea4f78ab9f84f986b9934d567d8e381909e3857b614c66eaad355a6d",
+    "review.md": "c7e7a3d13680b593ca880dc76cc61758ed1786c2000476e5cd5960c558c7a12c"
+  },
+  "outputs_sha256": {
+    "assembly.json": "cfa96a91dc5d62545ceb0554f5f9fc8b49622fe83728e53147912371f65ee1ec",
+    "tables.md": "014c74ee520106129af7326b8a9640d16e34636f495d4252d69116090cdb94d7",
+    "results.json": "141e67854e5b51d07b849bc016d73197e149c960eee0ed47e69dcc91cbebc656",
+    "energy_y_pT.pdf": "c1e4def92b4e59cd3e77ca5019f63a3224e9ec6fa53c211dc2de7a6565930359",
+    "energy_y_pT.png": "660d321c9a19ece201b269dea7bdd25016aced9851501c9731c3b5c1b62794a6",
+    "multiplicity_links.png": "098767d76153d8d74afde4e68abc830b2fc1b822881facdc9d216e06f54ea6cc",
+    "multiplicity_links.pdf": "148bbdd048ca06a4f50a61e17d38cc66964337a422a4d6ee3be763f2d6bb3be8",
+    "data.npz": "ed87bba5737a34cc5c70f7560adb8ce98ffc81b7357a3485b4a689d0e56b09b5",
+    "seed_stability.pdf": "14d4dfeaacc4b67e15d731fadb8f89c1d6e810846ff7cfc69dbc01781321e5dd",
+    "figures.json": "00e54ddda00fff6032827b3f5b02a3d3aef0e1457dc236e8770359c212f43044",
+    "seed_stability.png": "459a1dc4daa93ef29836e4c3ef3fcadb721f833106ad2cbc32731012b2adb30d"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.0",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.10.9"
+  },
+  "elapsed_seconds": {
+    "assembly": 4.161309875082225,
+    "summary": 7.5931323752738535
+  },
+  "checks": [
+    "286 SHA-bound sidecars and association graphs",
+    "exact occupancy count marginals",
+    "common stable primary keys across seeds",
+    "strict true-energy boundary reconciled",
+    "per-file energy and y-error moments replay",
+    "integrated rates and energy estimators replay",
+    "y and joint-bin estimates replay",
+    "all frozen odd Rn center/SD/quantile fields replay"
+  ],
+  "reviews": {
+    "technical": "GO",
+    "methodology": "GO",
+    "report": "GO",
+    "record": "../review.md",
+    "final_presentation_delta": "parent checked; no numerical change"
+  }
+}
